@@ -4,20 +4,36 @@
 	<body>
 		<div th:fragment="footer">
 			<div id="push"></div>
-    
+
 		    <div id="footer">
 		      <div class="container">
-		        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake <span th:text='${version}'>version</span></a></p>
+		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake <span th:text='${version}'>version</span></a>
+						</p>
+						<p>
+								<b>Disclaimer</b>
+                    Apache Tamaya (incubating) is an effort undergoing
+                    incubation at
+                    The Apache Software Foundation (ASF), sponsored by
+                    the name of Apache Incubator. Incubation is required of
+                    all newly accepted projects until a further review indicates
+                    that the infrastructure, communications, and decision making
+                    process have stabilized in a manner consistent with other
+                    successful ASF projects. While incubation status is not
+                    necessarily a reflection of the completeness or stability of
+                    the code, it does indicate that the project has yet to
+                    be fully endorsed by the ASF.<br />
+                    <a href="http://incubator.apache.org/guides/website.html" style="border:0px;" target="_target"><img class="incubator-logo" src="logos/egg-logo2.png"/></a>
+							</p>
 		      </div>
 		    </div>
-	    
+
 		    <!-- Le javascript
 		    ================================================== -->
 		    <!-- Placed at the end of the document so the pages load faster -->
 		    <script th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:src="${rootpath} + 'js/jquery-1.11.1.min.js'"></script>
 		    <script th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:src="${rootpath} + 'js/bootstrap.min.js'"></script>
 		    <script th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:src="${rootpath} + 'js/prettify.js'"></script>
-    
+
     	</div>
   	</body>
 </html>
