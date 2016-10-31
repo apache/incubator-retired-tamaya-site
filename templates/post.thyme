@@ -16,7 +16,6 @@
 			<p th:utext='${content.body}'>body</p>
 
 			<hr />
-
 		</div>
 	</div>
 	<div th:replace="footer.thyme::footer"></div>
