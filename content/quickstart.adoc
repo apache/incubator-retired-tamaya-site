@@ -32,7 +32,7 @@ Maven dependency to your project:
 <dependency>
     <groupId>{tamaya_mvn_group_id}</groupId>
     <artifactId>tamaya-core</artifactId>
-    <version>{tamaya_version_released}</version>
+    <version>{tamaya_version}</version>
 </dependency>
 ----
 
@@ -103,7 +103,7 @@ small extract of most important modules available (or available soon):
 <dependency>
   <artifactId>org.apache.tamaya.ext</id>
   <artifactId>tamaya-resolver</artifactId>
-  <version>{tamaya_version_development}</version>
+  <version>{tamaya_version}</version>
 </dependency>
 ----
 
@@ -127,7 +127,7 @@ String resolved = Resolver.evaluateExpression(myExpression);
 <dependency>
   <artifactId>org.apache.tamaya.ext</id>
   <artifactId>tamaya-resolution</artifactId>
-  <version>{tamaya_version_development}</version>
+  <version>{tamaya_version}</version>
 </dependency>
 ----
 
@@ -205,4 +205,3 @@ Currently the following resolvers are available:
 | Reference to classpath resource, replacing the expression with the resource's text value.
 
 |===
-

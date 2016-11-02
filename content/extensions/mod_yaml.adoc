@@ -44,7 +44,7 @@ To benefit from configuration builder support you only must add the correspondin
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>
   <artifactId>tamaya-yaml</artifactId>
-  <version>{tamayaVersion}</version>
+  <version>{tamaya-version}</version>
 </dependency>
 -----------------------------------------------
 
