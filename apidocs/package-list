@@ -1,6 +1,0 @@
-org.apache.tamaya
-org.apache.tamaya.core.internal
-org.apache.tamaya.core.internal.converters
-org.apache.tamaya.core.propertysource
-org.apache.tamaya.core.provider
-org.apache.tamaya.spi
