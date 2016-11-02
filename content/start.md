@@ -1,6 +1,6 @@
-title = About Apache Tamaya
-type = page
-status = published
+title=About Apache Tamaya
+type=page
+status=published
 ~~~~~~
 
 About Apache Tamaya
