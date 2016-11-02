@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 	    <meta charset="utf-8"/>
-	    <title>Apache Tamaya: Examples</title>
+	    <title>About Apache Tamaya</title>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	    <meta name="description" content=""/>
 	    <meta name="author" content=""/>
@@ -94,82 +94,41 @@
 		<div class="container">
 
 			<div class="page-header">
-				<h1>Apache Tamaya: Examples</h1>
+				<h1>About Apache Tamaya</h1>
 			</div>
 
-			<p><em>2016-10-31</em></p>
+			<p><em>2016-11-02</em></p>
 
-			<p><div id="preamble">
-<div class="sectionbody">
-<!-- toc disabled -->
-</div>
-</div>
-<div class="sect1">
-<h2 id="_tamaya_examples">Tamaya Examples</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_minimal">Minimal</h3>
-<div class="paragraph">
-<p>This example shows the basic functionality that is available when Tamaya is used without any further extensions.
-It shows how configuration can be added to the classpath and how it can be accessed.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_simple_propertysource">Simple PropertySource</h3>
-<div class="paragraph">
-<p>This example shows how to write and register an additional PropertySource and PropertySourceProvider, which is
-the SPI to add your own configuration data and locations. For a more advanced example you may also have a look at
-the provided default metamodels, e.g. the simple metamodel (currently in the experimental part and not shipped with
-the current release).</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_resources">Resources</h3>
-<div class="paragraph">
-<p>This example shows how resources can be located using ANT-styled paths and this feature can help you to implement
-PropertySourceProvider instances that provide configuration for a set of files/folders at a certain (searchable)
-location, as provided by the resource extension_.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_resolver">Resolver</h3>
-<div class="paragraph">
-<p>The resolver example defines a configuration file that illustrates the usage of placeholders that are resolved on
-configuration access, as provided by the <em>resolver extension</em>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_injection">Injection</h3>
-<div class="paragraph">
-<p>The injection sample shows how to inject configuration into a created object instance, or how to instantiate a proxied
-configuration template, which provides a type-safe configuration access mechanism. This functionality is provided
-by the <em>injection extension</em>. Hereby neither JSR 330 nor 299 are used, so it is pure and minimal SE based
-implementation.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_fileobserver">FileObserver</h3>
-<div class="paragraph">
-<p>This example shows how the event extension can be used to automatically adapt the current configuration when
-the underlying configuration data is changing, e.g. when new configuration is added to a file folder, or removed or
-adapted.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_builder">Builder</h3>
-<div class="paragraph">
-<p>This example shows how to build a Configuration using a simple pure SE builder API as provided by the
-<em>builder extension</em>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_remote">Remote</h3>
-<div class="paragraph">
-<p>THe remote example shows a simple setup where parts of the Configuration are read remotedly.</p>
-</div>
-</div>
-</div>
-</div></p>
+			<p><h2>About Apache Tamaya</h2>
+<p>Apache Tamaya (incubating) provides a flexible and powerful<br/>configuration solution<br/>for Java developers using Java SE as well as for more complex<br/>usage scenarios like cloud or Java EE. It provides a modern<br/>type-safe property based Configuration API combined with a<br/>powerful environment model and a flexible SPI.</p>
+<h2>Features</h2>
+<ul>
+  <li>Unified Configuration API</li>
+  <li>Pluggable Configuration Backends</li>
+  <li>Enforceable Configuration Policies</li>
+  <li>Configuration Validation and Documentation</li>
+  <li>Seemless Enterprise Integration</li>
+</ul>
+<h2>Documentation</h2>
+<ul>
+  <li><a href="usecases.html">Use Cases and Requirements</a></li>
+  <li><a href="highleveldesign.html">High Level Design</a></li>
+  <li><a href="api.html">API</a></li>
+  <li><a href="core.html">Core</a></li>
+  <li><a href="extensions.html">Extensions</a></li>
+</ul>
+<hr/>
+<h2>Quickstart</h2>
+<p>Using Apache Tamaya is simple:</p>
+<ol>
+  <li>Add <code>{tamaya_mvn_group_id}:tamaya-core:{tamaya_version}</code> to your dependencies.</li>
+  <li>Add your config to <code>META-INF/javaconfiguration.properties</code></li>
+  <li>Access your configuration by <code>ConfigurationProvider.getConfiguration()</code> and use it.</li>
+  <li>Look at the <a href="extensions.html">extension modules</a> to customize your setup!</li>
+  <li>Enjoy!</li>
+</ol>
+<h2>Rationale</h2>
+<p>Configuration is one of the most prominent cross-cutting concerns similar to logging. Most of us already have been<br/>writing similar code again and again in each of our projects. Sometimes in a similar way but mostly always slightly<br/>different, but certainly with high coupling to your configuration backends. Given your code is reused or integrated<br/>some how, or deployed by some customers, struggling starts: not supported backends, different policies, missing<br/>combination and validation mechanisms and so on. Tamaya solves all this by defining a common API and backend SPI.<br/>Your code is decoupled from the configuration backend. There is no difference if your code is deployed on your dev box<br/>or in a clustered Docker environment in production, it stays the same!</p></p>
 
 			<hr />
 		</div>

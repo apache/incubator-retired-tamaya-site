@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 	    <meta charset="utf-8"/>
-	    <title>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Classloader Isolation Support</title>
+	    <title>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Builder</title>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	    <meta name="description" content=""/>
 	    <meta name="author" content=""/>
@@ -94,57 +94,100 @@
 		<div class="container">
 
 			<div class="page-header">
-				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Classloader Isolation Support</h1>
+				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Builder</h1>
 			</div>
 
-			<p><em>2016-10-31</em></p>
+			<p><em>2016-11-02</em></p>
 
-			<p><div id="preamble">
-<div class="sectionbody">
-<!-- toc disabled -->
-</div>
-</div>
-<div class="sect1">
-<h2 id="Remote">Tamaya Environment Model (Extension Module)</h2>
+			<p><div class="sect1">
+<h2 id="BuilderCore">Tamaya Builder (Extension Module)</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_overview">Overview</h3>
 <div class="paragraph">
-<p>The Tamaya Environment extension adds a simple PropertySourceProvider that evaluates a List of environment context and
-combines them in the given order into an (optional) root context within the system&#8217;s configuration.</p>
+<p>The Tamaya builder module provides a generic (one time) builder for creating Configuration instances,
+e.g. as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationBuilder builder = new ConfigurationBuilder();
+// do something
+Configuration config = builder.build();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Basically the builder allows to create configuration instances completely independent of the current configuration
+setup. This gives you full control on the Configuration setup.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_compatibility">Compatibility</h3>
 <div class="paragraph">
-<p>The module is based on Java 7, so it will not run on Java 7 and beyond.</p>
+<p>The module is based on Java 7, so it will run on Java 7 and does
+not require Java 8. The ConfigurationProvider
+as defined by the API, provides a builder instance for ConfigurationContext
+in a similar way. A Configuration can also be created by passing an instance of a ConfigurationContext:</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_installation">Installation</h3>
 <div class="paragraph">
-<p>To benefit from Tamaya Environment Model you only must add the corresponding dependency to your module:</p>
+<p>To benefit from configuration builder support you only must add the corresponding
+dependency to your module:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
-  &lt;artifactId&gt;tamaya-envionment&lt;/artifactId&gt;
-  &lt;version&gt;{tamayaVersion}&lt;/version&gt;
+  &lt;artifactId&gt;tamaya-builder&lt;/artifactId&gt;
+  &lt;version&gt;0.3-SNAPSHOT&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_how_it_works">How it Works</h3>
+<h3 id="_supported_functionality">Supported Functionality</h3>
 <div class="paragraph">
-<p>tbd</p>
+<p>The builder allows you to add PropertySource instances:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationBuilder builder = new ConfigurationBuilder();
+builder.addPropertySources(sourceOne).addPropertySources(sourceTwo);
+Configuration config = builder.build();</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_reusable_base_classes">Reusable Base Classes</h3>
 <div class="paragraph">
-<p>tbd</p>
+<p>Similarly you can add filters:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">builder.addPropertyFilters(new MyConfigFilter());</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>&#8230;&#8203;or PropertySourceProvider instances:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">builder.addPropertySourceProvider(new MyPropertySourceProvider());</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Also the builder module allows to include/exclude any filters and property source already known to the current
+ConfigurationContext:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">builder.disableProvidedPropertyConverters();
+builder.enableProvidedPropertyConverters();
+
+builder.disableProvidedPropertyFilters();
+builder.enableProvidedPropertyFilters();
+
+builder.disableProvidedPropertySources();
+builder.enableProvidedPropertySources();</code></pre>
+</div>
 </div>
 </div>
 </div>
