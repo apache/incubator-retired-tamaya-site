@@ -1,0 +1,358 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	    <meta charset="utf-8"/>
+	    <title>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Integration with etcd (Core OS)</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	    <meta name="description" content=""/>
+	    <meta name="author" content=""/>
+	    <meta name="keywords" content=""/>
+	    <meta name="generator" content="'JBake '+'${version}"/>
+
+	    <!-- Le styles -->
+	    <link href="../css/bootstrap.min.css" rel="stylesheet"/>
+	    <link href="../css/asciidoctor.css" rel="stylesheet"/>
+	    <link href="../css/base.css" rel="stylesheet"/>
+	    <link href="../css/prettify.css" rel="stylesheet"/>
+
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	      <script src="../js/html5shiv.min.js"></script>
+	    <![endif]-->
+
+	    <!-- Fav and touch icons from ASF -->
+			<link rel="shortcut icon" href="../favicon.ico"/>
+			<link rel="apple-touch-icon" sizes="57x57" href="../favicons/apple-touch-icon-57x57.png"/>
+		  <link rel="apple-touch-icon" sizes="60x60" href="../favicons/apple-touch-icon-60x60.png"/>
+		  <link rel="apple-touch-icon" sizes="72x72" href="../favicons/apple-touch-icon-72x72.png"/>
+		  <link rel="apple-touch-icon" sizes="76x76" href="../favicons/apple-touch-icon-76x76.png"/>
+		  <link rel="apple-touch-icon" sizes="114x114" href="../favicons/apple-touch-icon-114x114.png"/>
+		  <link rel="apple-touch-icon" sizes="120x120" href="../favicons/apple-touch-icon-120x120.png"/>
+		  <link rel="apple-touch-icon" sizes="144x144" href="../favicons/apple-touch-icon-144x144.png"/>
+		  <link rel="apple-touch-icon" sizes="152x152" href="../favicons/apple-touch-icon-152x152.png"/>
+		  <link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-touch-icon-180x180.png"/>
+		  <link rel="icon" type="image/png" href="../favicons/favicon-32x32.png" sizes="32x32"/>
+		  <link rel="icon" type="image/png" href="../favicons/favicon-194x194.png" sizes="194x194"/>
+		  <link rel="icon" type="image/png" href="../favicons/favicon-96x96.png" sizes="96x96"/>
+		  <link rel="icon" type="image/png" href="../favicons/android-chrome-192x192.png" sizes="192x192"/>
+		  <link rel="icon" type="image/png" href="../favicons/favicon-16x16.png" sizes="16x16"/>
+		  <link rel="manifest" href="../favicons/manifest.json"/>
+		  <link rel="shortcut icon" href="../favicons/favicon.ico"/>
+		  <meta name="msapplication-TileColor" content="#603cba"/>
+		  <meta name="msapplication-TileImage" content="../favicons/mstile-144x144.png"/>
+		  <meta name="msapplication-config" content="../favicons/browserconfig.xml"/>
+		  <meta name="theme-color" content="#303284"/>
+	</head>
+	<body onload="prettyPrint()">
+	<div id="wrap">
+		<div>
+
+	  <!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../">Apache Tamaya (incubating)</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+						<li><a href="../index.html">Home</a></li>
+						<li><a href="../quickstart.html">Quickstart</a></li>
+						<li><a href="../index.html">Documentation</a></li>
+						<li><a href="..//apidocs/index.html">API</a></li>
+						<li><a href="../index.html">Development</a></li>
+						<li><a href="../index.html">Releases</a></li>
+						<li><a href="../about.html">About</a></li>
+						<li><a href="../sitemap.xml">Sitemap</a></li>
+            <li><a href="../feed.xml">Subscribe</a></li>
+<!--
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+-->
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+	</div>
+		<div class="container">
+
+			<div class="page-header">
+				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Integration with etcd (Core OS)</h1>
+			</div>
+
+			<p><em>2016-11-02</em></p>
+
+			<p><div id="preamble">
+<div class="sectionbody">
+<!-- toc disabled -->
+</div>
+</div>
+<div class="sect1">
+<h2 id="Optional">Integration with etcd (Extension Module)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview">Overview</h3>
+<div class="paragraph">
+<p>The Tamaya etcd integration module provides different artifacts which allows integration of Apachae Tamaya
+configuration with etcd. Basically the module supports read-only integration (as a EtcdPropertySource as well
+as a support for MutableConfiguration as defined by the tamaya-mutable-config extension module.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compatibility">Compatibility</h3>
+<div class="paragraph">
+<p>The module is based on Java 7, so it will not run on Java 7 and beyond.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installation">Installation</h3>
+<div class="paragraph">
+<p>To benefit from configuration builder support you only must add the corresponding dependency to your module:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
+  &lt;artifactId&gt;tamaya-etcd&lt;/artifactId&gt;
+  &lt;version&gt;{tamayaVersion}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_extensions_provided">The Extensions Provided</h3>
+<div class="paragraph">
+<p>ETcd integration comes basically with 2 artifacts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The org.apache.tamaya.etcd.EtcdAccessor can be configured with a an url targeting an etcd server&#8217;s REST endpoint root.
+(org.apache.tamaya.etcd.EtcdAccessor). The accessor basically provides a simple Java API for communicating
+with etcd server. The accessor hereby allows reading of single properties, or whole subtrees. Also the basic non
+atomic write methods are implemented.</p>
+</li>
+<li>
+<p>The org.apache.tamaya.etcd.EtcdPropertySource is a PropertySource with a default ordinal of 100 and the name
+'etcd', which is automatically registered.</p>
+</li>
+<li>
+<p>If the tamaya-mutable-config module is loaded it is possible to write property values back into the etcd cluster,
+by accessing a MutableConfiguration using the URI config:etcd.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_etcdaccessor">The EtcdAccessor</h3>
+<div class="paragraph">
+<p>The accessor mentioned implements the basic read and write API for communicating with an etcd configuration cluster.
+Hereby the accessor also provides etcd specific data such as createdIndex, modifiedIndex, ttl in the Map
+returned. Hereby the concept of etcd is used where keys starting with an '_' will be hidden from the overall
+properties map, being only directly/explicitly accessible:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public class EtcdAccessor {
+
+    /**
+     * Creates a new instance with the basic access url.
+     * @param server server url, e.g. {@code http://127.0.0.1:4001}.
+     * @throws MalformedURLException
+     */
+    public EtcdAccessor(String server) throws MalformedURLException;
+
+    /**
+     * Get the etcd server version.
+     * @return the etcd server version, never null.
+     */
+    public String getVersion();
+
+    /**
+     * Ask etcd for s aingle key, value pair. Hereby the response returned from etcd:
+     * &lt;pre&gt;
+     *     key=value
+     *     _key.source=[etcd]http://127.0.0.1:4001
+     *     _key.createdIndex=12
+     *     _key.modifiedIndex=34    // optional
+     *     _key.ttl=300             // optional
+     *     _key.expiration=...      // optional
+     * &lt;/pre&gt;
+     * @param key the requested key
+     * @return the mapped result, including meta-entries.
+     */
+    public Map&lt;String,String&gt; get(String key);
+
+    /**
+     * Creates/updates an entry in etcd without any ttl set.
+     * The response is as follows:
+     * &lt;pre&gt;
+     *     key=value
+     *     _key.source=[etcd]http://127.0.0.1:4001
+     *     _key.createdIndex=12
+     *     _key.modifiedIndex=34             // optional
+     *     _key.prevNode.createdIndex=12     // optional
+     *     _key.prevNode.modifiedIndex=34    // optional
+     * &lt;/pre&gt;
+     * @param key the property key, not null
+     * @param value the value to be set
+     * @return the result map as described above.
+     */
+    public Map&lt;String,String&gt; set(String key, String value);
+
+    /**
+     * Creates/updates an entry in etcd. The response is as follows:
+     * &lt;pre&gt;
+     *     key=value
+     *     _key.source=[etcd]http://127.0.0.1:4001
+     *     _key.createdIndex=12
+     *     _key.modifiedIndex=34             // optional
+     *     _key.ttl=300                      // optional
+     *     _key.expiry=...                   // optional
+     *     _key.prevNode.createdIndex=12     // optional
+     *     _key.prevNode.modifiedIndex=34    // optional
+     *     _key.prevNode.ttl=300             // optional
+     *     _key.prevNode.expiration=...      // optional
+     * &lt;/pre&gt;
+     * @param key the property key, not null
+     * @param value the value to be set
+     * @param ttlSeconds the ttl in seconds (optional)
+     * @return the result map as described above.
+     */
+    public Map&lt;String,String&gt; set(String key, String value, Integer ttlSeconds);
+
+
+    /**
+     * Deletes a given key. The response is as follows:
+     * &lt;pre&gt;
+     *     _key.source=[etcd]http://127.0.0.1:4001
+     *     _key.createdIndex=12
+     *     _key.modifiedIndex=34
+     *     _key.ttl=300                       // optional
+     *     _key.expiry=...                    // optional
+     *     _key.prevNode.createdIndex=12      // optional
+     *     _key.prevNode.modifiedIndex=34     // optional
+     *     _key.prevNode.ttl=300              // optional
+     *     _key.prevNode.expiration=...       // optional
+     *     _key.prevNode.value=...            // optional
+     * &lt;/pre&gt;
+     * @param key the key to be deleted.
+     * @return the response mpas as described above.
+     */
+    public Map&lt;String,String&gt; delete(String key);
+
+
+    /**
+     * Access regular Tamaya properties map as follows:
+     * &lt;pre&gt;
+     *    key1=myvalue
+     *     _key1.source=[etcd]http://127.0.0.1:4001
+     *     _key1.createdIndex=12
+     *     _key1.modifiedIndex=34          // optional
+     *     _key1.ttl=300                   // optional
+     *     _key1.expiration=...            // optional
+     *
+     *      key2=myvaluexxx
+     *     _key2.source=[etcd]http://127.0.0.1:4001
+     *     _key2.createdIndex=12
+     *
+     *      key3=val3
+     *     _key3.source=[etcd]http://127.0.0.1:4001
+     *     _key3.createdIndex=12
+     *     _key3.modifiedIndex=2
+     * &lt;/pre&gt;
+     */
+    public Map&lt;String,String&gt; getProperties(String directory, boolean recursive);
+
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_etcdpropertysource">The EtcdPropertySource</h3>
+<div class="paragraph">
+<p>The EtcdPropertySource is automatically registered and allows to configure the etcd servers to be used. This
+enables to use e.g. in Docker environments the docker environment configuration mechanisms to configure Tamaya running
+in microservice containers to connect with the according etcd cluster:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The property source reads the tamaya.etcd.server.urls system and environment property to evaluate possible etcd servers
+(comma separated), which can be connected to. On error the API just performs a Round-Robin through the list of
+configured servers. Without any configuration http://127.0.0.1:4001 is used. If no connection to any etcd
+server can be established a warning will be logged, but deployment will not fail.</p>
+</li>
+<li>
+<p>Additinoally also the
+accessor allows to configure the socket/connection timeouts by setting tamaya.etcd.timeout in seconds either as
+system or environment property.</p>
+</li>
+<li>
+<p>The EtcdPropertySource finally also allows the values read from the etcd cluster to be mapped to prefixed
+context. This can be activated by setting the -Dtamaya.etcd.prefix=&lt;PREFIX&gt; system property. E.g. when the prefix is
+set to cluster-config. a etcd key of host:known/all is mapped to cluster-config.host:known/all.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></p>
+
+			<hr />
+		</div>
+	</div>
+	<div>
+			<div id="push"></div>
+
+		    <div id="footer">
+		      <div class="container">
+		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
+							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
+							at <span>2016-11-02</span>
+						</p>
+						<p>
+								<b>Disclaimer</b>
+                    Apache Tamaya (incubating) is an effort undergoing
+                    incubation at
+                    The Apache Software Foundation (ASF), sponsored by
+                    the name of Apache Incubator. Incubation is required of
+                    all newly accepted projects until a further review indicates
+                    that the infrastructure, communications, and decision making
+                    process have stabilized in a manner consistent with other
+                    successful ASF projects. While incubation status is not
+                    necessarily a reflection of the completeness or stability of
+                    the code, it does indicate that the project has yet to
+                    be fully endorsed by the ASF.<br />
+                    <a href="http://incubator.apache.org/guides/website.html" style="border:0px;" target="_target"><img class="incubator-logo" src="../logos/egg-logo2.png"/></a>
+							</p>
+		      </div>
+		    </div>
+
+		    <!-- Le javascript
+		    ================================================== -->
+		    <!-- Placed at the end of the document so the pages load faster -->
+		    <script src="../js/jquery-1.11.1.min.js"></script>
+		    <script src="../js/bootstrap.min.js"></script>
+		    <script src="../js/prettify.js"></script>
+
+    	</div>
+    </body>
+</html>
