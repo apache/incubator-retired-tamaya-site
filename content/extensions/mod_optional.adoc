@@ -16,8 +16,6 @@
 // under the License.
 
 = Apache Tamaya -- Extension: Optional Tamaya Configuration
-:jbake-type: page
-:jbake-status: published
 
 toc::[]
 
@@ -68,3 +66,4 @@ BigDecimal interestRate =
                 .get("com.mycomp.ratecalculator.rate", BigDecimal.class))
                 .orElse(BigDecimal.of(0.05d));
 -----------------------------------------------
+

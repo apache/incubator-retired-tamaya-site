@@ -16,8 +16,6 @@
 // under the License.
 
 = Apache Tamaya -- Extension: Builder
-:jbake-type: page
-:jbake-status: published
 
 toc::[]
 
@@ -44,10 +42,11 @@ To benefit from configuration builder support you only must add the correspondin
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>
   <artifactId>tamaya-yaml</artifactId>
-  <version>{tamaya-version}</version>
+  <version>{tamayaVersion}</version>
 </dependency>
 -----------------------------------------------
 
+This extension also transitively requires the +tamaya.formats+ module.
 
 === Reading configuration in YAML
 
@@ -125,3 +124,4 @@ tax -> 251.42
 total -> 4443.52
 comments -> Late afternoon is best. Backup contact is Nancy Billsmer @ 338-4338.
 ----------------------------------------------------------------
+

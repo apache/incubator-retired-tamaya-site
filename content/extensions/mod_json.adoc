@@ -16,8 +16,6 @@
 // under the License.
 
 = Apache Tamaya -- Extension: Builder
-:jbake-type: page
-:jbake-status: published
 
 toc::[]
 
@@ -47,6 +45,7 @@ To benefit from configuration builder support you only must add the correspondin
 </dependency>
 -----------------------------------------------
 
+This extension also transitively requires the +tamaya.formats+ module.
 
 === Reading configuration in JSON
 
@@ -75,3 +74,5 @@ according property maps. E.g. the following file is a simple and correct JSON co
     }
 }
 ----------------------------------------------------------------
+
+

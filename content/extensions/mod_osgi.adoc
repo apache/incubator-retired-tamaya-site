@@ -16,8 +16,6 @@
 // under the License.
 
 = Apache Tamaya -- Extensions: OSGI Integrations
-:jbake-type: page
-:jbake-status: published
 
 toc::[]
 

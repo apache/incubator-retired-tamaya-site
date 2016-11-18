@@ -16,8 +16,6 @@
 // under the License.
 
 = Apache Tamaya -- Extension: Configuration Server
-:jbake-type: page
-:jbake-status: published
 
 toc::[]
 
@@ -380,3 +378,5 @@ public final class ScopeManager {
 
 }
 -----------------------------------------------
+
+

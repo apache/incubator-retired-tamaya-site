@@ -16,8 +16,6 @@
 // under the License.
 
 = Apache Tamaya -- Extension: Classloader Isolation Support
-:jbake-type: page
-:jbake-status: published
 
 toc::[]
 
@@ -71,3 +69,4 @@ To benefit from Tamaya CDI integration you only must add the corresponding depen
 The component will not register any components but only providing portable base classes for some common SPI
 implementation tasks. It only depends on the API, so it should be safely reusable also with other implementations
 of the Tamaya API similarly.
+

@@ -16,8 +16,6 @@
 // under the License.
 
 = Apache Tamaya -- Extension: Classloader Isolation Support
-:jbake-type: page
-:jbake-status: published
 
 toc::[]
 
@@ -56,3 +54,4 @@ tbd
 === Reusable Base Classes
 
 tbd
+

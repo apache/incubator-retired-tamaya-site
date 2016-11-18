@@ -16,8 +16,6 @@
 // under the License.
 
 = Apache Tamaya -- Extension: Classloader Isolation Support
-:jbake-type: page
-:jbake-status: published
 
 toc::[]
 
@@ -51,14 +49,14 @@ components will be compatible regardless if deployed in a pure SE, a Java EE (CD
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>
   <artifactId>tamaya-injection-api</artifactId>
-  <version>{tamaya-version}</version>
+  <version>{tamayaVersion}</version>
 </dependency>
 -----------------------------------------------
 
 
 === Compatibility
 
-Both modules are based on Java 7, so they will only run on Java 7 and beyond.
+Both modules are based on Java 7, so they will not run on Java 7 and beyond.
 
 
 === Installation
@@ -72,7 +70,7 @@ you never have installed both CDI extensions at the same time because this may b
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>
   <artifactId>tamaya-cdi-ee</artifactId>
-  <version>{tamaya-version}</version>
+  <version>{tamayaVersion}</version>
 </dependency>
 -----------------------------------------------
 
@@ -82,7 +80,7 @@ you never have installed both CDI extensions at the same time because this may b
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>
   <artifactId>tamaya-cdi-se</artifactId>
-  <version>{tamaya-version}</version>
+  <version>{tamayaVersion}</version>
 </dependency>
 -----------------------------------------------
 

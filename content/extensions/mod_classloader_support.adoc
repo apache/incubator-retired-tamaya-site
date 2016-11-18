@@ -16,8 +16,6 @@
 // under the License.
 
 = Apache Tamaya -- Extension: Classloader Isolation Support
-:jbake-type: page
-:jbake-status: published
 
 toc::[]
 
@@ -89,3 +87,4 @@ hierarchies:
 
 * +PropertySource+, +PropertySourceProviders+
 * +PropertyFilters+, +PropertyCombinationPolicy+
+

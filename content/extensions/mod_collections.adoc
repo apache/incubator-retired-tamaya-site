@@ -16,8 +16,6 @@
 // under the License.
 
 = Apache Tamaya -- Extension: Collection Support
-:jbake-type: page
-:jbake-status: published
 
 toc::[]
 

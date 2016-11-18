@@ -16,8 +16,6 @@
 // under the License.
 
 = Apache Tamaya -- Extension: JMX Management Access
-:jbake-type: page
-:jbake-status: published
 
 toc::[]
 

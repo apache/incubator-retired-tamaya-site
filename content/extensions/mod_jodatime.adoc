@@ -16,8 +16,6 @@
 // under the License.
 
 = Apache Tamaya -- Extension: JodaTime
-:jbake-type: page
-:jbake-status: published
 
 toc::[]
 
@@ -62,3 +60,6 @@ To be written.
 === Specifing periods and durations
 
 To be written.
+
+
+

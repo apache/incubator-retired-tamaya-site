@@ -16,8 +16,6 @@
 // under the License.
 
 = Apache Tamaya -- Extension: Integration with consul (Hashicorp)
-:jbake-type: page
-:jbake-status: published
 
 toc::[]
 

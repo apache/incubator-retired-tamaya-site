@@ -16,8 +16,6 @@
 // under the License.
 
 = Apache Tamaya -- Extension: Functions
-:jbake-type: page
-:jbake-status: published
 
 toc::[]
 
@@ -122,3 +120,4 @@ The following sections explain the provided functions defined by +PropertySource
   select of the returned values should be relative to its selection of be fully qualified.
 * *String stripSectionKeys(String key, String... sectionKeys)* This function strips away the matching section key as given
   in _sectionKeys_ from a given _key_.
+
