@@ -1,23 +1,5 @@
-// Licensed to the Apache Software Foundation (ASF) under one
-// or more contributor license agreements.  See the NOTICE file
-// distributed with this work for additional information
-// regarding copyright ownership.  The ASF licenses this file
-// to you under the Apache License, Version 2.0 (the
-// "License"); you may not use this file except in compliance
-// with the License.  You may obtain a copy of the License at
-// .
-//   http://www.apache.org/licenses/LICENSE-2.0
-// .
-// Unless required by applicable law or agreed to in writing,
-// software distributed under the License is distributed on an
-// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-// KIND, either express or implied.  See the License for the
-// specific language governing permissions and limitations
-// under the License.
-
 //:source-highlighter: coderay
 
-//include::temp-properties-files-for-site/attributes.adoc[]
 :jbake-type: page
 :jbake-status: published
 
@@ -68,7 +50,7 @@ Downloading of the the current state of the project can be done by
 == Previous Releases
 
 All previous releases can also be found at the
-http://www.apache.org/dist/incubator/tamaya/[Apache Software Foundation Distribution Directory^].
+https://www.apache.org/dist/incubator/tamaya/[Apache Software Foundation Distribution Directory^].
 In our link:history.html[release history overview] you can find all previous releases of Tamaya.
 
 == Verifying Releases
@@ -76,15 +58,15 @@ In our link:history.html[release history overview] you can find all previous rel
 It is essential that you verify the integrity of any downloaded files using
 the PGP or MD5 signatures.  For more information on signing artifacts and
 why we do it, check out the
-http://www.apache.org/dev/release-signing.html[Release Signing FAQ^].
+https://www.apache.org/dev/release-signing.html[Release Signing FAQ^].
 
 The PGP signatures can be verified using PGP or GPG. First download the
-http://www.apache.org/dist/incubator/tamaya/KEYS[KEYS file^]
+https://www.apache.org/dist/incubator/tamaya/KEYS[KEYS file^]
 as well as the asc signature file for the artifact. Make sure you get
 these files from the
-http://www.apache.org/dist/incubator/tamaya/[main distribution directory^]
+https://www.apache.org/dist/incubator/tamaya/[main distribution directory^]
 rather than from a
-http://www.apache.org/dyn/closer.cgi/tamaya/[mirror^].
+https://www.apache.org/dyn/closer.cgi/tamaya/[mirror^].
 Then verify the signatures using e.g.:
 
 [source,shell]

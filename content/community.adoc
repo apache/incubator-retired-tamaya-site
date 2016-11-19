@@ -1,23 +1,3 @@
-//
-// Licensed to the Apache Software Foundation (ASF) under one
-// or more contributor license agreements.  See the NOTICE file
-// distributed with this work for additional information
-// regarding copyright ownership.  The ASF licenses this file
-// to you under the Apache License, Version 2.0 (the
-// "License"); you may not use this file except in compliance
-// with the License.  You may obtain a copy of the License at
-// .
-//   http://www.apache.org/licenses/LICENSE-2.0
-// .
-// Unless required by applicable law or agreed to in writing,
-// software distributed under the License is distributed on an
-// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-// KIND, either express or implied.  See the License for the
-// specific language governing permissions and limitations
-// under the License.
-//
-
-//include::temp-properties-files-for-site/attributes.adoc[]
 :jbake-type: page
 :jbake-status: published
 
@@ -43,14 +23,14 @@ please ask on the mailing list if it's a known issue in case of a
 bug or if there is an ongoing discussion in case of a feature.
 
 You are very welcome to follow our twitter account
-http://twitter.com/{twitterhandle}[@{twitterhandle}^] and spread the word
+https://twitter.com/{twitterhandle}[@{twitterhandle}^] and spread the word
 of Tamaya with tweets, blog entries,...
 
 == Getting Involved
 
 Everybody is welcome to get involved with our community. You can find general
-information at http://apache.org/foundation/getinvolved.html and
-http://apache.org/foundation/how-it-works.html.
+information at https://apache.org/foundation/getinvolved.html and
+https://apache.org/foundation/how-it-works.html.
 The following sections provides some details about the different levels of getting involved.
 
 If you want to contribute to the
@@ -64,8 +44,8 @@ that addresses how to contribute, render and publish it.
 Before you get a committer you have to contribute to our effort.
 E.g. you can help users, participate in discussions on the dev list,
 submit patches,... . Therefore, it's essential to file
-a http://www.apache.org/licenses/icla.txt[Individual Contributor License Agreement (ICLA)^]
-or http://www.apache.org/licenses/cla-corporate.txt[Software Grant and Corporate Contributor License Agreement (CCLA)^]
+a https://www.apache.org/licenses/icla.txt[Individual Contributor License Agreement (ICLA)^]
+or https://www.apache.org/licenses/cla-corporate.txt[Software Grant and Corporate Contributor License Agreement (CCLA)^]
 and send it to secretary at apache dot org (or fax it) as early as possible.
 
 If you would like to submit a patch through Jira, you can have a look at the
@@ -88,7 +68,7 @@ Optionally mailto:commits-subscribe@tamaya.incubator.apache.org[subscribe] to ou
 mailto:commits@tamaya.incubator.apache.org[mailing list for commits].
 Furthermore, you can check our link:community.html#mailing-lists[mail-archives].
 
-Further details are available at http://www.apache.org/dev/[http://www.apache.org/dev/^].
+Further details are available at https://www.apache.org/dev/[https://www.apache.org/dev/^].
 
 === Mailing lists
 
@@ -127,7 +107,7 @@ If you have any question, you can ask us
 
 You are very welcome e.g. to write blog entries, mention our twitter handle
  @{twitterhandle} if you tweet about the project or just follow our twitter
-account http://twitter.com/{twitterhandle}[@{twitterhandle}^]
+account https://twitter.com/{twitterhandle}[@{twitterhandle}^]
 
 === IRC
 

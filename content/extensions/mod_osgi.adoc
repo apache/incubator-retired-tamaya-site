@@ -1,19 +1,5 @@
-// Licensed to the Apache Software Foundation (ASF) under one
-// or more contributor license agreements.  See the NOTICE file
-// distributed with this work for additional information
-// regarding copyright ownership.  The ASF licenses this file
-// to you under the Apache License, Version 2.0 (the
-// "License"); you may not use this file except in compliance
-// with the License.  You may obtain a copy of the License at
-//
-//   http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing,
-// software distributed under the License is distributed on an
-// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-// KIND, either express or implied.  See the License for the
-// specific language governing permissions and limitations
-// under the License.
+:jbake-type: page
+:jbake-status: published
 
 = Apache Tamaya -- Extensions: OSGI Integrations
 
@@ -72,19 +58,19 @@ environment:
 [source, listing]
 -----------------------------------------------
 # API and core
-org.apache.tamaya:tamaya-api:{tamayaVersion}
-org.apache.tamaya:tamaya-core:{tamayaVersion}
+org.apache.tamaya:tamaya-api:{tamaya_version}
+org.apache.tamaya:tamaya-core:{tamaya_version}
 org.apache.geronimo.specs:geronimo-annotation_1.2_spec:1.0-alpha-1
 # injection API. SE injection module and dependencies
-org.apache.tamaya.ext:tamaya-injection-api:{tamayaVersion}
-org.apache.tamaya.ext:tamaya-injection:{tamayaVersion}
+org.apache.tamaya.ext:tamaya-injection-api:{tamaya_version}
+org.apache.tamaya.ext:tamaya-injection:{tamaya_version}
 org.apache.geronimo.specs:geronimo-atinject_1.0_spec:1.0
 org.apache.geronimo.specs:geronimo-el_2.2_spec:1.0.4
 org.apache.geronimo.specs:geronimo-interceptor_1.1_spec:1.0
 org.apache.geronimo.specs:geronimo-jcdi_1.1_spec:1.0
 # OSGI integration and dependencies
-org.apache.tamaya.ext:tamaya-osgi:{tamayaVersion}
-org.apache.tamaya.ext:tamaya-functions:{tamayaVersion}
+org.apache.tamaya.ext:tamaya-osgi:{tamaya_version}
+org.apache.tamaya.ext:tamaya-functions:{tamaya_version}
 -----------------------------------------------
 
 
@@ -112,7 +98,7 @@ public class HelloServiceImpl implements HelloService{
 
 === SPI
 
-By defauklt the OSGI pid or factory pid is mapped to a corresponding root section in Tamaya's configuration. We are
+By default the OSGI pid or factory pid is mapped to a corresponding root section in Tamaya's configuration. We are
 well aware that this might not always be the desired approach. Therefore there as an SPI service provided that allows
 to determine this mapping:
 
