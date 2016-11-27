@@ -97,7 +97,7 @@
 				<h1></h1>
 			</div>
 
-			<p><em>2016-11-02</em></p>
+			<p><em>2016-11-19</em></p>
 
 			<p><div class="sect1">
 <h2 id="Core">Tamaya Core Implementation</h2>
@@ -132,7 +132,8 @@ hereby providing type conversion for all important types.</p>
 registers them in the global ConfigurationContext</p>
 </li>
 <li>
-<p>It provides a ConfigurationContextBuilder and allows changing the current ConfigurationContext.</p>
+<p>It provides a ConfigurationContextBuilder implementation (class DefaultConfigurationContextBuilder) and allows
+changing the current ConfigurationContext.</p>
 </li>
 </ul>
 </div>
@@ -351,6 +352,19 @@ still defined and predictable in almost all scenarios.</p>
 </li>
 </ul>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Sorting the property sources based on their ordinal value is only the default ordering principle applied. By implementing
+      your own implementation of ConfigurationProviderSpi you can apply a different logic:
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="RegisteringPropertySources">Registering Property Sources</h3>
@@ -527,7 +541,7 @@ Loading extensions hereby is trivial: you only are required to add the correspon
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
-							at <span>2016-11-02</span>
+							at <span>2016-11-27</span>
 						</p>
 						<p>
 								<b>Disclaimer</b>

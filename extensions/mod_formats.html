@@ -97,7 +97,7 @@
 				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Formats</h1>
 			</div>
 
-			<p><em>2016-11-02</em></p>
+			<p><em>2016-11-19</em></p>
 
 			<p><div id="preamble">
 <div class="sectionbody">
@@ -145,13 +145,9 @@ frameworks that provide logic for reading configuration files, such as Apache co
 <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-formats&lt;/artifactId&gt;
-  &lt;version&gt;{tamayaVersion}&lt;/version&gt;
+  &lt;version&gt;{tamaya_version}&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>The module automatically registers an according PropertyFilter that is automatically called, whenever a value
-is accessed.</p>
 </div>
 </div>
 <div class="sect2">
@@ -163,7 +159,7 @@ data structure (in our cases: property sources).</p>
 <div class="sect3">
 <h4 id="_configurationdata">ConfigurationData</h4>
 <div class="paragraph">
-<p>Configuration formats can be very different. Some are simpley key/value pairs, whereas other also consist of multiple sections (e.g. ini-files) or
+<p>Configuration formats can be very different. Some are simple key/value pairs, whereas other also consist of multiple sections (e.g. ini-files) or
 hierarchical data (e.g. yaml, xml). This is solved in Tamaya by mapping the configuration read into a normalized intermediary format called
 ConfigurationData:</p>
 </div>
@@ -177,13 +173,10 @@ ConfigurationData:</p>
 
     public Set&lt;String&gt; getSectionNames();
     public Map&lt;String,String&gt; getSection(String name);
-    public Map&lt;String,Map&lt;String,String&gt;&gt; getSections();
 
     public boolean hasDefaultProperties();
     public Map&lt;String,String&gt; getDefaultProperties();
-
     public Map&lt;String,String&gt; getCombinedProperties();
-    public boolean hasCombinedProperties();
 
     public boolean isEmpty();
 }</code></pre>
@@ -221,7 +214,7 @@ named sections, depending on the configuration format.</p>
 <p>With getSection(String name) a named section can be accessed.</p>
 </li>
 <li>
-<p>With getDefaultSection() the default section can be accessed.</p>
+<p>With getDefaultSection() the 'default' section can be accessed. This is a convenience method.</p>
 </li>
 <li>
 <p>With getCombinedProperties() a flattened entry map can be accessed built up (by default) out of</p>
@@ -231,7 +224,7 @@ named sections, depending on the configuration format.</p>
 <p>all entries from the default section, without any changes.</p>
 </li>
 <li>
-<p>all entries from named sections, where the key for each entry is prefix with the section name and a dot separator.</p>
+<p>all entries from named sections, where the key for each entry is prefix with the section name and a '::' separator.</p>
 </li>
 </ul>
 </div>
@@ -242,33 +235,6 @@ implementation can as well provide alternate implementations of how the data rea
 combined properties map.</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>Now for the conversion of ConfigurationData into a PropertySource different default approaches are used:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The ConfigurationFormat that read the data can provide the (combined) properties accessible from
-getProperties() explcitly, which can be used to initialize a single PropertySource containing the data read.</p>
-</li>
-<li>
-<p>If the format did not set the final properties, but only a default section is present this default section
-can be directly returned as combined properties.</p>
-</li>
-<li>
-<p>In all other cases a properties can be uniquely mapped into one single properties Map, by prefixing all keys of each
-section present with the (unique) section name and a '.' separator.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Nevertheless, depending on the context, where a configuration source was read (classloader, time, source etc.) the
-resulting PropertySource can have different semnatics, especially for the PropertySources ordinal. Also section
-names may be mapped into different ordinals instead of using them as key prefixes (e.g. imagine configuration formats
-with a 'default', 'main', and 'overrides' sections). For such more complex or custom cases no useful default mapping
-can be defined. In such cases this functionality must be implemented in a <em>mapData</em> method, which converts
-the normalized ConfigData read to the appropriate collection of PropertySource instances:</p>
 </div>
 </div>
 <div class="sect3">
@@ -281,17 +247,39 @@ creates a corresponding ConfigurationData instance.</p>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface ConfigurationFormat {
 
-    public String getName();
+    String getName();
     boolean accepts(URL url);
     ConfigurationData readConfiguration(String resource, InputStream inputStream);
 }</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_tranform_configurationdata_into_a_propertysource">How to tranform ConfigurationData into a PropertySource</h3>
 <div class="paragraph">
-<p>Normally you need to map the resulting ConfigurationData to one or multiple PropertySources. In case, where the
-properties provided match exactly the extected properties a FlattenedDefaultPropertySource is provided out-of-the-box.
-If the exact mapping must be overridden, you can simply override the property source&#8217;s initialize method to adapt the
-mapping:</p>
+<p>For for the conversion of ConfigurationData into a PropertySource different approaches can be useful:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The ConfigurationFormat that reads the data can provides all properties read either as sectioned properties
+or/and as default properties. The most simple cases is, where all properties have been added as 'default'
+properties. In this case the default properties can be used as the property sources properties without any change.</p>
+</li>
+<li>
+<p>If the format did also add section based properties, the combined properties returned can be used, hereby
+replacing the '::' separator with a '.' separator.</p>
+</li>
+<li>
+<p>In all other cases a custom mapping is useful, which can be acomplished by using the MappedConfigurationDataPropertySource
+and overriding the Map&lt;String,String&gt; populateData(ConfigurationData data) method.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In most cases the usage of a FlattenedDefaultPropertySource, is a good choice to start. This class
+provides a convenient default mapping and also allows to customized the mapping easily:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -303,38 +291,13 @@ FlattenedDefaultPropertySource ps = new FlattenedDefaultPropertySource(data){
 };</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_how_to_tranform_configurationdata_into_a_propertysource">How to tranform ConfigurationData into a PropertySource</h3>
 <div class="paragraph">
-<p>The Tamaya main building block for configuration properties is the PropertySource interface. You have several
-options to implement this tranformation:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>You can simply map the properties returned by getCombinedProperties() and use them as properties returned by a
-wrapping property source. Since this use case is common for all kind of non hierarchic configuration formats it
-is directly supported by the FlattenedDefaultPropertySource class.</p>
-</li>
-<li>
-<p>When the ConfigurationFormat is more complex, multiple 'sections' are common. What a section exactly is depends on
-the concrete format only. The ConfigurationFormat should provide detailed information how the data read is
-mapped to default properties and sections and how it is assembled into the combinedProperties map. Also here
-the FlattenedDefaultPropertySource class can help you with its default mapping. Nevertheless in some cases it is
-necessary to write an explicit mapping, e.g. when</p>
-</li>
-<li>
-<p>different sections must be mapped to multiple PropertySources, with optionally fixed ordinals.</p>
-</li>
-<li>
-<p>sections must be cross-checked and combined into new properties, or into several PropertySources.</p>
-</li>
-<li>
-<p>other complex mapping requirements apply.</p>
-</li>
-</ol>
+<p>Nevertheless, depending on the context, where a configuration source was read (classloader, time, source etc.) the
+resulting properties can have different semnatics, especially different priorities. Also section
+names may be mapped into different ordinals instead of using them as key prefixes (e.g. imagine configuration formats
+with a 'default', 'main', and 'overrides' sections). For such more complex or custom cases no simple mapping
+can be defined. Consequently the functionality mapping the normalized ConfigurationData read to the
+appropriate collection of PropertySource instances must be implemented.</p>
 </div>
 </div>
 <div class="sect2">
@@ -366,9 +329,9 @@ a=val2Section2</code></pre>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">a=valA
 a.b=valB
-section1.valA=sectionValA
-section1.a.b.c=SectionValC
-section2.a=val2Section2</code></pre>
+section1::valA=sectionValA
+section1::a.b.c=SectionValC
+section2::a=val2Section2</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -444,7 +407,7 @@ module hereby ships with 3 format classes:</p>
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
-							at <span>2016-11-02</span>
+							at <span>2016-11-27</span>
 						</p>
 						<p>
 								<b>Disclaimer</b>

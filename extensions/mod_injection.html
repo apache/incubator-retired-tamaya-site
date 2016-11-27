@@ -97,7 +97,7 @@
 				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Injection</h1>
 			</div>
 
-			<p><em>2016-11-02</em></p>
+			<p><em>2016-11-19</em></p>
 
 			<p><div id="preamble">
 <div class="sectionbody">
@@ -140,7 +140,7 @@ according injection services. This module adds this functionality to Tamaya.</p>
 <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-injection-api&lt;/artifactId&gt;
-  &lt;version&gt;{tamayaVersion}&lt;/version&gt;
+  &lt;version&gt;{tamaya_version}&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -152,7 +152,7 @@ according injection services. This module adds this functionality to Tamaya.</p>
 <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-injection&lt;/artifactId&gt;
-  &lt;version&gt;{tamayaVersion}&lt;/version&gt;
+  &lt;version&gt;{tamaya_version}&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -186,7 +186,7 @@ code snippet:</p>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-java" data-lang="java">package foo.bar;
 
-public class ConfiguredClass{
+public class ConfiguredClass {
 
     // resolved by default, using property name, class and package name: foo.bar.ConfiguredClass.testProperty
     private String testProperty;
@@ -230,7 +230,7 @@ package a.b;</code></pre>
 </div>
 <div class="paragraph">
 <p>@ConfigAutoInject
-public final class Tenant{
+public final class Tenant {
   private int id;
   private String name;
   private String description;
@@ -310,7 +310,7 @@ name=&lt;unnamed&gt;</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>==== Accessing ConfiguredItemSupplier instances
+<pre>==== Accessing Supplier instances
 
 In many cases you want to create a supplier that simply creates instances that are correctly configured as defined
 by the current context. This can be done using +Suppliers+:
@@ -319,8 +319,8 @@ by the current context. This can be done using +Suppliers+:
 </div>
 </div>
 <div class="paragraph">
-<p>ConfiguredItemSupplier&lt;Tenant&gt; configuredTenantSupplier = ConfigurationInjector.getInstance().getConfiguredSupplier(
-  new ConfiguredItemSupplier&lt;Tenant&gt;(){
+<p>Supplier&lt;Tenant&gt; configuredTenantSupplier = ConfigurationInjector.getInstance().getConfiguredSupplier(
+  new Supplier&lt;Tenant&gt;(){
      public Tenant get(){
        return new Tenant();
      }
@@ -328,18 +328,18 @@ by the current context. This can be done using +Suppliers+:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>With Java 8 it's even more simpler:
+<pre>With Java 8 it's even more simple:
 
 [source, java]</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>ConfiguredItemSupplier&lt;Tenant&gt; configuredTenantSupplier = ConfigurationInjector.getInstance().getConfiguredSupplier(
+<p>Supplier&lt;Tenant&gt; configuredTenantSupplier = ConfigurationInjector.getInstance().getConfiguredSupplier(
   Tenant::new);</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>Hereby this annotation can be used in multiple ways and combined with other annotations such as +@DefaultValue+,
+<pre>Hereby this annotation can be used in multiple ways and combined with other annotations such as
 +@WithLoadPolicy+, +@WithConfigOperator+, +@WithPropertyConverter+.
 
 ==== Minimal Example
@@ -378,7 +378,7 @@ In the next example we explicitly define the property value:
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>  @Config({"aValue", "a.b.value","a.b.deprecated.value"}, defaultValue="${env:java.version}")
+<pre>  @Config(value={"aValue", "a.b.value","a.b.deprecated.value"}, defaultValue="${env:java.version}")
   private String aValue;
 }</pre>
 </div>
@@ -398,7 +398,7 @@ commit new values exactly, when convenient for you.
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>  @Config({"aValue", "a.b.value","a.b.deprecated.value"}, defaultValue="${env:java.version}")
+<pre>  @Config(value={"aValue", "a.b.value","a.b.deprecated.value"}, defaultValue="${env:java.version}")
   private DynamicValue aValue;
 }</pre>
 </div>
@@ -446,8 +446,9 @@ void removeListener(PropertyChangeListener l);</pre>
 <div class="content">
 <pre>boolean isPresent();
 T orElse(T other);
-T orElseGet(ConfiguredItemSupplier&lt;? extends T&gt; other);
-&lt;X extends Throwable&gt; T orElseThrow(ConfiguredItemSupplier&lt;? extends X&gt; exceptionSupplier) throws X;</pre>
+// Enabled with Java 8
+// T orElseGet(ConfiguredItemSupplier&lt;? extends T&gt; other);
+// &lt;X extends Throwable&gt; T orElseThrow(ConfiguredItemSupplier&lt;? extends X&gt; exceptionSupplier) throws X;</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -600,7 +601,7 @@ The event published is very simple:
 <p>public interface ConfiguredType {
     Class getType();
     String getName();
-    public Collection&lt;ConfiguredField&gt; getConfiguredFields();
+    Collection&lt;ConfiguredField&gt; getConfiguredFields();
     Collection&lt;ConfiguredMethod&gt; getConfiguredMethods();
     void configure(Object instance, Configuration config);
 }</p>
@@ -644,7 +645,7 @@ The event published is very simple:
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
-							at <span>2016-11-02</span>
+							at <span>2016-11-27</span>
 						</p>
 						<p>
 								<b>Disclaimer</b>

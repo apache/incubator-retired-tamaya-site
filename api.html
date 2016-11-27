@@ -97,14 +97,14 @@
 				<h1></h1>
 			</div>
 
-			<p><em>2016-11-02</em></p>
+			<p><em>2016-11-19</em></p>
 
 			<p><div class="sect1">
 <h2 id="CoreDesign">Apache Tamaya: API</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Though Tamaya is a very powerful and flexible solution there are basically only a few simple core concepts required
-that build the base of all the other mechanisms. As a starting point we recommend you read the corresponding
+that are the base of all the other mechanisms. As a starting point we recommend you read the corresponding
 l<a href="HighLevelDesign.html">High Level Design Documentation</a></p>
 </div>
 </div>
@@ -183,12 +183,18 @@ singleton.</p>
 <p>PropertyFilter, which allows filtering of property values prior getting returned to the caller.</p>
 </li>
 <li>
-<p>ConfigurationContext, which provides the container that contains the property sources and filters that form a
-configuration.</p>
-</li>
-<li>
 <p>PropertyValueCombinationPolicy optionally can be registered to change the way how different key/value
 pairs are combined to build up the final Configuration passed over to the filters registered.</p>
+</li>
+<li>
+<p>ConfigurationContext, which provides a container for all the artifacts needed to build up a Configuration.
+For example a context contains the property sources, property filters, converters and combination policy used.
+Also the ordering of the property sources is defined by the context. A context instance given a
+Configuration can be created by calling ConfigurationProvider.createConfiguration(context);.</p>
+</li>
+<li>
+<p>Similarly a ConfigurationContext can be created using a ConfigurationContextBuilder. This builder can be
+obtained calling ConfigurationProvider.getConfigurationContextBuilder();.</p>
 </li>
 <li>
 <p>ServiceContext, which provides access to the components loaded, depending on the current runtime stack.</p>
@@ -405,7 +411,7 @@ be included.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="PropertyConverter">Property Converters</h4>
+<h4 id="PropertyConverter">Property Type Conversion</h4>
 <div class="paragraph">
 <p>As illustrated in the previous section, Configuration also to access non String types. Nevertheless internally
 all properties are strictly modelled as pure Strings only, so non String types must be derived by converting the
@@ -571,8 +577,9 @@ property sources with additional combination/aggregation rules in place.</p>
 <p>PropertySources are by default registered using the Java ServiceLoader or the mechanism provided by the current
  active ServiceContext.</p>
 </div>
-<div class="sect3">
-<h4 id="PropertySourceProvider">Interface PropertySourceProvider</h4>
+</div>
+<div class="sect2">
+<h3 id="PropertySourceProvider">Interface PropertySourceProvider</h3>
 <div class="paragraph">
 <p>Instances of this type can be used to register multiple instances of PropertySource.</p>
 </div>
@@ -594,8 +601,8 @@ refer also to <a id="ConfigurationContext"></a>.</p>
 current active ServiceContext.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="PropertyFilter">Interface PropertyFilter</h4>
+<div class="sect2">
+<h3 id="PropertyFilter">Interface PropertyFilter</h3>
 <div class="paragraph">
 <p>Also PropertyFilters can be added to a Configuration. They are evaluated before a Configuration instance is
 passed to the user. Filters can hereby used for multiple purposes, such as</p>
@@ -653,7 +660,6 @@ To prevent possible endless loops after a defined number of loops evaluation is 
 <div class="paragraph">
 <p>This method is called each time a single entry is accessed, and for each property in a full properties result.</p>
 </div>
-</div>
 <div class="sect3">
 <h4 id="PropertyValueCombinationPolicy">Interface PropertyValueCombinationPolicy</h4>
 <div class="paragraph">
@@ -690,7 +696,7 @@ public interface PropertyValueCombinationPolicy{
 <div class="sect3">
 <h4 id="ConfigurationContext">The Configuration Context</h4>
 <div class="paragraph">
-<p>A Configuration is basically based on a so called ConfigurationContext, which is
+<p>A Configuration is created from a ConfigurationContext, which is
 accessible from Configuration.getContext():</p>
 </div>
 <div class="listingblock">
@@ -700,7 +706,8 @@ accessible from Configuration.getContext():</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The ConfigurationContext provides access to the internal building blocks that determine the final Configuration:</p>
+<p>The ConfigurationContext provides access to the internal artifacts that determine the final Configuration and
+also defines the ordering of the property sources, filters and converters contained:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -723,8 +730,8 @@ combined to the final property value returned to the client.</p>
 <div class="sect3">
 <h4 id="Mutability">Changing the current Configuration Context</h4>
 <div class="paragraph">
-<p>By default the ConfigurationContext is not mutable once it is created. In many cases mutability is also not needed
-or even not wanted. Nevertheless there are use cases where the current ConfigurationContext (and
+<p>A ConfigurationContext is not mutable once it is created. In many cases mutability is also not needed. Nevertheless
+there are use cases where the current ConfigurationContext (and
 consequently Configuration) must be adapted:</p>
 </div>
 <div class="ulist">
@@ -746,7 +753,7 @@ tests executed.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>In such cases the ConfigurationContext must be mutable, meaning it must be possible:</p>
+<p>In such cases the ConfigurationContext must be changed, meaning it must be possible:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -771,11 +778,11 @@ accessed either</p>
 <div class="ulist">
 <ul>
 <li>
-<p>from the current ConfigurationContext, hereby returning a builder instance preinitialized with the values from the
-current ConfigurationContext</p>
+<p>calling ConfigurationContext.toBuilder(), hereby returning a builder instance preinitialized with the values from the
+current ConfigurationContext.</p>
 </li>
 <li>
-<p>from the current ConfigurationProvider singleton.</p>
+<p>calling ConfigurationProvider.getConfigurationContextBuilder().</p>
 </li>
 </ul>
 </div>
@@ -792,10 +799,43 @@ ConfigurationContextBuilder emptyContextBuilder = ConfigurationProvider.getConfi
 <div class="listingblock">
 <div class="title">Creating and applying a new ConfigurationContext</div>
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationContextBuilder preinitializedContextBuilder = ConfigurationProvider.getConfiguration().getContext()
-                                                           .toBuilder();
-ConfigurationContext context = preinitializedContextBuilder.addPropertySources(new MyPropertySource())
-                                                           .addPropertyFilter(new MyFilter()).build();
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationContext context = ConfigurationProvider.getConfiguration().getContext()
+                                    .toBuilder();
+                                    .addPropertySources(new MyPropertySource())
+                                    .addPropertyFilter(new MyFilter())
+                                    .build();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hereby the builder provides several methods for adding, removing of property sources and also operations
+for programmatically change the property sourcepriorities, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="title">Chain manipulation using ConfigurationContextBuilder</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">PropertySource propertySource = builder.getPropertySource("sourceId");
+
+// changing the priority of a property source. The ordinal value hereby is not considered.
+// Instead the position of the property source within the chain is changed.
+builder.decreasePriority(propertySource);
+
+// Alternately a comparator expression can be passed to establish the defined ordering...
+builder.sortPropertyFilters(MyFilterComparator::compare);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally if the new context is ready a new configuration can be created, or the context is applied to the
+current configuration.</p>
+</div>
+<div class="listingblock">
+<div class="title">Creating and applying a new ConfigurationContext</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationContext context = builder.build();
+
+// Creates a new matching Configuration instance
+Configuration newConfig = ConfigurationProvider.createConfiguration(context);
+
+// Apply the new context to replace the current configuration:
 ConfigurationProvider.setConfigurationContext(context);</code></pre>
 </div>
 </div>
@@ -825,6 +865,68 @@ ConfigurationProvider singleton. Implementing this class allows</p>
 <p>Performing changes as set with the current ConfigurationContextBuilder.</p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_interface_configurationcontextbuilder" class="sect0">Interface ConfigurationContextBuilder</h1>
+<div class="paragraph">
+<p>Unresolved directive in &lt;stdin&gt; - include::temp-properties-files-for-site/attributes.adoc[]</p>
+</div>
+<div class="sect1">
+<h2 id="BuilderCore">Interface ConfigurationContextBuilder</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview">Overview</h3>
+<div class="paragraph">
+<p>The Tamaya builder module provides a generic (one time) builder for creating Configuration instances,
+e.g. as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationBuilder builder = new ConfigurationBuilder();
+// do something
+Configuration config = builder.build();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Basically the builder allows to create configuration instances completely independent of the current configuration
+setup. This gives you full control on the Configuration setup.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_supported_functionality">Supported Functionality</h3>
+<div class="paragraph">
+<p>The builder allows you to add PropertySource instances:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationContextBuilder builder = ConfigurationProvider.getConfigurationContextBuilder();
+builder.addPropertySources(sourceOne, sourceTwo, sourceThree
+Configuration config = ConfigurationProvider.createConfiguration(builder.build());</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hereby the ordering of the propertysources is not changed, regardless of the ordinals provided
+by the property sources. This allows alternate ordering policies easily being implemented because
+creating a configuration based on a configuration context is already implemented and provided by the core
+API.</p>
+</div>
+<div class="paragraph">
+<p>Similarly you can add filters:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">builder.addPropertyFilters(new MyConfigFilter());</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>&#8230;&#8203;or PropertySourceProvider instances:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">builder.addPropertySourceProvider(new MyPropertySourceProvider());</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -983,7 +1085,7 @@ further details.</p>
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
-							at <span>2016-11-02</span>
+							at <span>2016-11-27</span>
 						</p>
 						<p>
 								<b>Disclaimer</b>

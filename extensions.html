@@ -97,7 +97,7 @@
 				<h1></h1>
 			</div>
 
-			<p><em>2016-11-02</em></p>
+			<p><em>2016-11-19</em></p>
 
 			<p><div class="sect1">
 <h2 id="_apache_tamaya_extension_modules">Apache Tamaya: Extension Modules</h2>
@@ -153,47 +153,6 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_resolver.html">Documentation</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-spi-support</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tamaya support module for SPI implementation.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_spi-support.html">Documentation</a></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_extensions">Extensions</h3>
-<div class="paragraph">
-<p>Extensions in <em>draft state</em> are tested well and normally should have rather stable APIs. Nevertheless API changes may
-still occurr, but we try to prevent such changes if possible.</p>
-</div>
-<div class="paragraph">
-<p>NOTE All extensions currently run on Java 7 as well as on Java 8.</p>
-</div>
-<table class="tableblock frame-1 grid-all spread">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><em>Artifact</em></th>
-<th class="tableblock halign-left valign-top"><em>Description</em></th>
-<th class="tableblock halign-left valign-top"><em>Links</em></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-builder</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Provides a fluent-style builder for configurations</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_builder.html">Documentation</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-classloader-support</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Manages Tamaya configuration and services considering classloading hierarchies.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_classloader_support.html">Documentation</a></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-events</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Provides support for publishing configuration changes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_events.html">Documentation</a></p></td>
@@ -204,19 +163,24 @@ still occurr, but we try to prevent such changes if possible.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_filter.html">Documentation</a></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-injection-api</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides Tamaya&#8217;s injection annotations API.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_injection.html">Documentation</a></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-injection</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Provides configuration injection services and congiruation template support.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_injection.html">Documentation</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-management</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Provides JMX support for inspecting configuration.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_management.html">Documentation</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-injection-cdi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Java EE/standalone compliant CDI integration using CDI for injection.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_cdi.html">Documentation</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-model</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Provides support documenting ang validating configuration during runtime.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_model.html">Documentation</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-injection-cdi-se</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Java EE/standalone compliant CDI integration using Tamaya SE injection mechanism.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_cdi.html">Documentation</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-mutable-config</p></td>
@@ -224,19 +188,14 @@ still occurr, but we try to prevent such changes if possible.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_mutable_config.html">Documentation</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-remote</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Provides remote configuration support.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_remote.html">Documentation</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-spi-support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tamaya support module for SPI implementation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_spi-support.html">Documentation</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-resources</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Provides ant-style resource path resolution</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_resources.html">Documentation</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-server</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lets a Tamaya configuration instance provide scoped configuration as a REST service.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_server.html">Documentation</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-yaml</p></td>
@@ -248,100 +207,32 @@ still occurr, but we try to prevent such changes if possible.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Collections support.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_collections.html">Documentation</a></p></td>
 </tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_integrations">Integrations</h3>
-<div class="paragraph">
-<p>These extensions integrate/bridge Tamayas functionality with other frameworks turning their configuration capabilities
-from a sledgehammer to a scalpell:</p>
-</div>
-<table class="tableblock frame-1 grid-all spread">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><em>Artifact</em></th>
-<th class="tableblock halign-left valign-top"><em>Description</em></th>
-<th class="tableblock halign-left valign-top"><em>Links</em></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-cdi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Java EE/standalone compliant CDI integration</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_cdi.html">Documentation</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-camel</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Integration for Apache Camel.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_camel.html">Documentation</a></p></td>
-</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-spring</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Integration for Spring / Spring Boot.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_spring.html">Documentation</a></p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-osgi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Integration for OSGI containers.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_osgi.html">Documentation</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-consul</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Integration with consul clusters.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_consul.html">Documentation</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-etcd</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Integration with etcd clusters.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_etcd.html">Documentation</a></p></td>
-</tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_extensions_in_experimental_stage">Extensions in Experimental Stage</h3>
+<h3 id="_extensions_sandbox">Extensions Sandbox</h3>
 <div class="paragraph">
-<p>Extensions in <em>experimental mode</em> may still be under discussions. API changes may still happen, so use them
-very carefully and especially give us feedback, so we can improve them before progressing to <em>draft</em> state.</p>
+<p>Extensions in <em>draft state</em> rather experimental or not yet very mature. API changes may occurr at any time
+and the may also have severe issues. So use at your own risk or join and help us getting them stable and
+well tested!</p>
 </div>
-<table class="tableblock frame-1 grid-all spread">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
+<div class="admonitionblock note">
+<table>
 <tr>
-<th class="tableblock halign-left valign-top"><em>Artifact</em></th>
-<th class="tableblock halign-left valign-top"><em>Description</em></th>
-<th class="tableblock halign-left valign-top"><em>Links</em></th>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+All extensions currently run on Java 7 as well as on Java 8.
+</td>
 </tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-jodatime</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Provides support for JodaTime.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_jodatime.html">Documentation</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-staged</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Simple configuration extension to add staged config.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_metamodel-staged.html">Documentation</a></p></td>
-</tr>
-</tbody>
 </table>
-</div>
-<div class="sect2">
-<h3 id="_integrations_in_experimental_stage">Integrations in Experimental Stage</h3>
-<div class="paragraph">
-<p>Integrations in <em>experimental mode</em> may still be under discussions, or may even not compile ! API changes may still happen, so use them
-very carefully and especially give us feedback, so we can improve them before progressing to <em>draft</em> state.</p>
 </div>
 <table class="tableblock frame-1 grid-all spread">
 <colgroup>
@@ -359,8 +250,78 @@ very carefully and especially give us feedback, so we can improve them before pr
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-commons</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Integration with Apache Commons Configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Combines Tamaya&#8217;s Format Abstraction with Apache Commons.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-jodatime</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides support for JodaTime.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_jodatime.html">Documentation</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-classloader-support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manages Tamaya configuration and services considering classloading hierarchies.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_classloader_support.html">Documentation</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-management</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides JMX support for inspecting configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_management.html">Documentation</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-metamodel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides support defining configuration using XML based meta-configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_metamodel.html">Documentation</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-validation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides support for XML based meta-configuration allowing to validate configuration read.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_validation.html">Documentation</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-usagetracker</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides support tracking of configuration usage and the consumer locations consuming configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_usagetracker.html">Documentation</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-camel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integration for Apache Camel.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_camel.html">Documentation</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-osgi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integration for OSGI containers.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_osgi.html">Documentation</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-consul</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integration with consul clusters.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_consul.html">Documentation</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-etcd</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integration with etcd clusters.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_etcd.html">Documentation</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-configured-sysprops</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows Tamaya to integrate with System.getProperties().</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_sysprops.html">Documentation</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-remote</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides remote configuration support.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_remote.html">Documentation</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lets a Tamaya configuration instance provide scoped configuration as a REST service.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_server.html">Documentation</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-ui</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides a web UI for a VM running Tamaya.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_ui.html">Documentation</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -378,7 +339,7 @@ very carefully and especially give us feedback, so we can improve them before pr
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
-							at <span>2016-11-02</span>
+							at <span>2016-11-27</span>
 						</p>
 						<p>
 								<b>Disclaimer</b>

@@ -97,7 +97,7 @@
 				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Events</h1>
 			</div>
 
-			<p><em>2016-11-02</em></p>
+			<p><em>2016-11-19</em></p>
 
 			<p><div id="preamble">
 <div class="sectionbody">
@@ -114,7 +114,7 @@
 about modules.</p>
 </div>
 <div class="paragraph">
-<p>Tamaya Events provides an abstraction for events like change events, when configuration has bee changed.</p>
+<p>Tamaya Events provides an abstraction for events like change events, when configuration has been changed.</p>
 </div>
 </div>
 <div class="sect2">
@@ -133,7 +133,7 @@ about modules.</p>
 <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-events&lt;/artifactId&gt;
-  &lt;version&gt;{tamayaVersion}&lt;/version&gt;
+  &lt;version&gt;{tamaya_version}&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -164,10 +164,9 @@ public interface ConfigEventListener {
 </div>
 </div>
 <div class="paragraph">
-<p>This mechanism can now be used to propagate configuration changes to all interested stakeholders. Hereby the payloed
+<p>This mechanism can now be used to propagate configuration changes to all interested stakeholders. Hereby the payload
 can be basically arbitrary as long as it implements the ConfigEvent interface. The next sections
-give more details on the the provided event implementations and abstractions that are used to implement such
-features.</p>
+give more details on the the provided event types and their usage.</p>
 </div>
 </div>
 <div class="sect2">
@@ -190,19 +189,7 @@ be</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>This is also reflected in the ChangeType enum</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public enum ChangeType {
-    NEW,
-    DELETED,
-    UPDATED,
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This enum type is used within the ConfigurationChange class, which implements the event sent for a changed
+<p>The most important event modelled is the ConfigurationChange class, which implements the event sent for a changed
 Configuration:</p>
 </div>
 <div class="listingblock">
@@ -217,8 +204,6 @@ Configuration:</p>
     public Class&lt;Configuration&gt; getResourceType();
     @Override
     public String getVersion();
-    @Override
-    public long getTimestamp();
     @Override
     public long getTimestamp();
 
@@ -239,7 +224,7 @@ Configuration:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>New instances of this class hereby are created using a fluent builder:</p>
+<p>New instances of this class hereby can be created using a fluent builder:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -250,8 +235,8 @@ ConfigurationChange change = ConfigurationChangeBuilder.of(config)
 </div>
 </div>
 <div class="paragraph">
-<p>Also it is possible to directly compare 2 instances of configurations to create a matching ConfigurationChange
-instance:</p>
+<p>Also it is possible to directly compare 2 instances of configurations to create ConfigurationChange that
+reflect the differences between the two configurations:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -267,8 +252,8 @@ ConfigurationChange change = ConfigurationChangeBuilder.of(config)
 <div class="paragraph">
 <p>So a ConfigurationChange allows you to evaluate the changes on a configuration. This allows you to listen to changes
 and react in your client code as useful, once you encounter changes that are relevant to you, e.g. by reconfiguring
-your component. Of course, your code has to register itself to listen for appropriate changes by implementing
-a ConfigEventListener:</p>
+your component. For listening to configuration changes you must implement the
+ConfigEventListener functional interface:</p>
 </div>
 <div class="listingblock">
 <div class="title">Implementing a ConfigChangeListener</div>
@@ -306,48 +291,9 @@ META-INF/services/org.apache.tamaya.events.ConfigEventListener</p>
 <div class="sect2">
 <h3 id="_modelling_propertysource_changes">Modelling PropertySource Changes</h3>
 <div class="paragraph">
-<p>Beside that a whole configuration changes, also PropertySource instance can change, e.g. by a configuration file
+<p>Beside that a whole configuration changes, also PropertySource instances can change, e.g. by a configuration file
 edited on the fly. This is similarly to a ConfigurationChange reflected by the classes PropertySourceChange,
 PropertySourceChangeBuilder.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_modelling_configuration_context_changes">Modelling Configuration Context Changes</h3>
-<div class="paragraph">
-<p>The ConfigurationContext models the container that manages all subcomponents that are used to define and
-evalaute a Configuration. In the case where configuration is dynamically loaded, e.g. by observing changes on a
-file folder, the ConfigurationContext may change, so a corresponding ConfigurationContextChange event is
-defined:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public final class ConfigurationContextChange implements ConfigEvent&lt;ConfigurationContext&gt;, Serializable{
-
-    public static ConfigurationContextChange emptyChangeSet();
-
-    @Override
-    public ConfigurationContext getResource();
-    @Override
-    public Class&lt;ConfigurationContext&gt; getResourceType();
-    @Override
-    public String getVersion();
-    @Override
-    public long getTimestamp();
-
-    // specific methods
-    public Collection&lt;PropertySourceChange&gt; getPropertySourceChanges();
-    public Collection&lt;PropertySourceChange&gt; getPropertySourceUpdates();
-    public Collection&lt;PropertySource&gt; getRemovedPropertySources();
-    public Collection&lt;PropertySource&gt; getAddedPropertySources();
-    public Collection&lt;PropertySource&gt; getUpdatedPropertySources();
-    public boolean isAffected(PropertySource propertySource);
-    public boolean isEmpty();
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Similar to the ConfigurationChange class you also must use a ConfigurationContextChangeBuilder to create instances
-of ConfigurationContextChange.</p>
 </div>
 </div>
 <div class="sect2">
@@ -355,6 +301,20 @@ of ConfigurationContextChange.</p>
 <div class="paragraph">
 <p>Main entry point of the events module is the ConfigEventManager singleton class, which provides static accessor
 methods to the extension&#8217;s functionality:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Adding/removing of ConfigChangeListener instances, either globally or per event type.</p>
+</li>
+<li>
+<p>Firing configuration events synchronously or asyncronously (mostly called by framework code).</p>
+</li>
+<li>
+<p>Configuring the monitor that periodically checks for changes on the global Configuration provided
+by ConfigurationProvider.getConfiguration().</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -382,30 +342,14 @@ methods to the extension&#8217;s functionality:</p>
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Looking at the methods listed above you see that there is more functionality worth to be mentioned:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>ConfigCHangeListeners can be registered either <em>globally</em> or for a certain <em>event type</em> only.</p>
-</li>
-<li>
-<p>ConfigEvents can be published within the same thread, or asynchronously.</p>
-</li>
-</ul>
-</div>
 <div class="sect3">
 <h4 id="_monitoring_of_configuration_changes">Monitoring of configuration changes</h4>
 <div class="paragraph">
 <p>The ConfigEventManager also supports active monitoring of the current configuration to trigger corresponding change
-events to listeners registered. This feature is activated by default, but can be deactivated optionally. Nevertheless
-this feature is quite handy, since regularly polling your local Configuration for any kind of changes is much
-more simpler than implementing change management on the PropertySource level. With this feature you can easily
-implement also remote property source, which can deliver different configuration based on any changes done remotedly
-on another node in your system. If such a change happened Tamaya identifies it and triggers corresponding
-+ConfigurationChange" events automatically. Similarly changes in a configuration tree, can actively identified and
-broadcasted to the targeting nodes automatically.</p>
+events to listeners registered. This feature is deactivated by default, but can be enabled by calling
+ConfigEventManager.enableChangeMonitoring(true);. This feature avoids regularly polling your local Configuration for
+any kind of changes. If a change has been encountered Tamaya identifies it and triggers corresponding
+ConfigurationChange events automatically.</p>
 </div>
 </div>
 </div>
@@ -413,8 +357,8 @@ broadcasted to the targeting nodes automatically.</p>
 <h3 id="_freezing_configurations_and_propertysources">Freezing Configurations and PropertySources</h3>
 <div class="paragraph">
 <p>Configuration instances as well as PropertySources are explicitly not required to be serializable. To enable easy
-serialization of these types as well as to fix a current state (e.g. for later comparison with a newly loaded instance)
-Tamaya allows to <strong>freeze</strong> instances of these types. Freezing hereby means</p>
+serialization of these types a Configuration's <strong>current state can be frozen</strong> (e.g. for later comparison with a newly
+loaded version). Freezing hereby means</p>
 </div>
 <div class="ulist">
 <ul>
@@ -422,18 +366,23 @@ Tamaya allows to <strong>freeze</strong> instances of these types. Freezing here
 <p>all key/values are read-out by calling the getProperties() method.</p>
 </li>
 <li>
-<p>a meta data entry is added of the form [meta]frozenAt=223273777652325677, whichdefines the UTC timestamp in
+<p>a meta data entry is added of the form _frozenAt=223273777652325677, whichdefines the UTC timestamp in
 milliseconds when this instance was frozen.</p>
+</li>
+<li>
+<p>if not already defined an _id property will be added to the Configuration containing the
+identifier of the configuration.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>In code this is done easily as follows:</p>
+<p>In code freezing is a no-brainer:</p>
 </div>
 <div class="listingblock">
 <div class="title">Freezing the current Configuration</div>
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration frozenConfig = FrozenConfiguration.of(ConfigurationProvider.getConfiguration());</code></pre>
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration config = ConfigurationProvider.getConfiguration();
+Configuration frozenConfig = FrozenConfiguration.of(config);</code></pre>
 </div>
 </div>
 <div class="olist lowerroman">
@@ -446,75 +395,9 @@ milliseconds when this instance was frozen.</p>
 <div class="listingblock">
 <div class="title">Freezing the current Configuration</div>
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">PropertySource frozenSource = FrozenPropertySource.of(ConfigurationProvider.getConfiguration());</code></pre>
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">PropertySource propertySource = ...;
+PropertySource frozenSource = FrozenPropertySource.of(propertySource);</code></pre>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_modelling_of_an_observing_propertysourceprovider">Modelling of an observing PropertySourceProvider.</h3>
-<div class="paragraph">
-<p>In Tamaya configuration data is provided by instances of PropertySource, which in case of a configuration directory
-may be provided by an implementation of PropertySourceProvider, which produces one PropertySource (at least) per
-file detected. The events module provides a base provider implementation that</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>observes all changes in a Path</p>
-</li>
-<li>
-<p>tries to reevaluate corresponding resources based on the ConfigurationFormats supported.</p>
-</li>
-<li>
-<p>it creates an instance of ConfigurationContextChange reflecting the changed ConfigurationContext and triggers
-this event by calling ConfigEventManager.fireEvent(contextChange);.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Additionally this module registers an instance of ConfigEventListener&lt;ConfigurationContextChange&gt;+, which listenes to
-these events. If such an event is triggered the listener tries to apply the changes by</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>accessing the current Configuration and its ConfigurationContext</p>
-</li>
-<li>
-<p>checking if the event is affecting the current ConfigurationContext.</p>
-</li>
-<li>
-<p>in the case the current context is affected, based on the current ConfigurationContext a new context is created,
-whereas</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>all PropertySources provided by this provider implementation type are removed.</p>
-</li>
-<li>
-<p>the new PropertySources loaded are added.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Finally the listener tries to apply the new ConfigurationContext by calling the corresponding API methods of the
-ConfigurationProvider:</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">try {
-    ConfigurationProvider.setConfigurationContext(newContext);
-} catch (Exception e) {
-    LOG.log(Level.INFO, "Failed to update the current ConfigurationContext due to config model changes", e);
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>So if the current ConfigurationProvider supports reloading of the current ConfigurationContext this will apply the
-changes to the current Configuration. Otherwise the change is logged, but no further actions are taken.</p>
 </div>
 </div>
 <div class="sect2">
@@ -522,7 +405,7 @@ changes to the current Configuration. Otherwise the change is logged, but no fur
 <div class="paragraph">
 <p>This component also defines an additional SPI, which allows to adapt the implementation of the main ConfigEventManager
 singleton. This enables, for example, using external eventing systems, such as CDI, instead of the default provided
-simple SE based implementation. As normal, implementation mus be registered using the current ServiceContext
+simple SE based implementation. As normal, implementation must be registered using the current ServiceContext
 active, by default using the Java ServiceLoader mechanism.</p>
 </div>
 <div class="listingblock">
@@ -547,6 +430,11 @@ active, by default using the Java ServiceLoader mechanism.</p>
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Summarizing with the events module you can easily observe configuration changes, record the
+state of any configuration and compare configuration states to create and publish related
+change events.</p>
+</div>
 </div>
 </div>
 </div></p>
@@ -561,7 +449,7 @@ active, by default using the Java ServiceLoader mechanism.</p>
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
-							at <span>2016-11-02</span>
+							at <span>2016-11-27</span>
 						</p>
 						<p>
 								<b>Disclaimer</b>
