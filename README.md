@@ -61,3 +61,8 @@ $ git push
 ```
 1. Wait a couple of minutes for the gitpubsub to happen.
 1. Go to xyz/tbd in your browser
+
+#### Jenkins / CI integration
+
+There is a daily build job that triggers a site baking on ASF-Jenkins:
+https://builds.apache.org/view/S-Z/view/Tamaya/job/Tamaya-Site-jBake-Master/
