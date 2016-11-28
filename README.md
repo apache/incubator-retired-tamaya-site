@@ -41,6 +41,10 @@ $ ./bake.sh
 tbd
 
 1. Generate Javadoc for Tamaya
+```
+$ cd tamaya
+$ mvn javadoc:javadoc
+```
 1. Launch the bash script to generate the homepage and switch the the asf branch:
 ```
 $ git checkout master
