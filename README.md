@@ -45,7 +45,8 @@ tbd
 1. Generate Javadoc for Tamaya Core
 ```
 $ cd tamaya
-$ mvn javadoc:javadoc
+$ mvn site
+(since javadoc:javadoc does not generate a full report)
 ```
 1. Launch the bash script to generate the homepage and switch the the asf branch:
 ```
@@ -55,7 +56,7 @@ $ ./copy-site.sh
 1. Make sure you are on branch asf-site! Copy the generated Javadoc into apidocs
 ```
 $ git checkout asf-site
-$ cp -r pathToJavadoc/* ./apidocs/
+$ cp -r pathToTamayaCoreRepo/target/site/apidocs .
 ```
 1. Push your changes
 ```
