@@ -1,0 +1,40 @@
+:jbake-type: page
+:jbake-status: published
+
+= Apache Tamaya: Project Team
+
+A successful project requires many people to play many roles. Some members write code or documentation, while others are valuable as testers, submitting patches and suggestions.
+
+The project team is comprised of Members and Contributors. Members have direct access to the source of a project and actively evolve the code-base. Contributors improve the project through submission of patches and suggestions to the Members. The number of Contributors to the project is unbounded. Get involved today. All contributions to the project are greatly appreciated.
+
+== Members
+
+The following is a list of developers with commit privileges that have directly contributed to the project in one way or another.
+
+.Members
+[width="40%",frame="topbot",options="header"]
+|======================
+|Id         |Name               |E-Mail                   |Role(s)    |Time Zone
+|anatole    |Anatole Tresch     |anatole[at]apache.org    |PMC        |+1
+|johndament |John D. Ament      |johndament[at]apache.org |PMC        |-5
+|plexus     |Oliver B. Fischer  |plexus[at]apache.org     |PMC        |+1
+|pottlinger |Phil Ottlinger     |pottlinger[at]apache.org |Committer  |+1
+|======================
+
+== Contributors
+
+The following people are active contributors: none at the moment.
+
+== Emeritus
+
+These people used to help with the development of the project but are not active anymore:
+
+.Members
+[width="40%",frame="topbot",options="header"]
+|======================
+|Id         |Name             |E-Mail                 |Role(s)    |Time Zone
+|struberg   |Mark Struberg    |struberg[at]apache.org | PMC       | +1
+|gpetracek  |Gerhard Petracek |gpetracek[at]apache.org| PMC       | +1
+|======================
+
+Thanks for all your help!
