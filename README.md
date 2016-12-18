@@ -20,8 +20,10 @@ tbd:
 
 ### ASF-site branch
 
-Is linked to ....
+Is linked to
 https://issues.apache.org/jira/browse/INFRA-12814
+://tamaya.incubator.apache.org/jbake/
+as requested via ttps://issues.apache.org/jira/browse/INFRA-12814 
 
 ### How to generate a new page
 
@@ -40,7 +42,7 @@ $ ./bake.sh
 
 tbd
 
-1. Generate Javadoc for Tamaya
+1. Generate Javadoc for Tamaya Core
 ```
 $ cd tamaya
 $ mvn javadoc:javadoc
