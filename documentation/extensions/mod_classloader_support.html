@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	    <meta charset="utf-8"/>
+	    <title>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Classloader Isolation Support</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	    <meta name="description" content=""/>
+	    <meta name="author" content=""/>
+	    <meta name="keywords" content=""/>
+	    <meta name="generator" content="'JBake '+'${version}"/>
+
+	    <!-- Le styles -->
+	    <link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+	    <link href="../../css/asciidoctor.css" rel="stylesheet"/>
+	    <link href="../../css/base.css" rel="stylesheet"/>
+	    <link href="../../css/prettify.css" rel="stylesheet"/>
+
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	      <script src="../../js/html5shiv.min.js"></script>
+	    <![endif]-->
+
+	    <!-- Fav and touch icons from ASF -->
+			<link rel="shortcut icon" href="../../favicon.ico"/>
+			<link rel="apple-touch-icon" sizes="57x57" href="../../favicons/apple-touch-icon-57x57.png"/>
+		  <link rel="apple-touch-icon" sizes="60x60" href="../../favicons/apple-touch-icon-60x60.png"/>
+		  <link rel="apple-touch-icon" sizes="72x72" href="../../favicons/apple-touch-icon-72x72.png"/>
+		  <link rel="apple-touch-icon" sizes="76x76" href="../../favicons/apple-touch-icon-76x76.png"/>
+		  <link rel="apple-touch-icon" sizes="114x114" href="../../favicons/apple-touch-icon-114x114.png"/>
+		  <link rel="apple-touch-icon" sizes="120x120" href="../../favicons/apple-touch-icon-120x120.png"/>
+		  <link rel="apple-touch-icon" sizes="144x144" href="../../favicons/apple-touch-icon-144x144.png"/>
+		  <link rel="apple-touch-icon" sizes="152x152" href="../../favicons/apple-touch-icon-152x152.png"/>
+		  <link rel="apple-touch-icon" sizes="180x180" href="../../favicons/apple-touch-icon-180x180.png"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-32x32.png" sizes="32x32"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-194x194.png" sizes="194x194"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-96x96.png" sizes="96x96"/>
+		  <link rel="icon" type="image/png" href="../../favicons/android-chrome-192x192.png" sizes="192x192"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-16x16.png" sizes="16x16"/>
+		  <link rel="manifest" href="../../favicons/manifest.json"/>
+		  <link rel="shortcut icon" href="../../favicons/favicon.ico"/>
+		  <meta name="msapplication-TileColor" content="#603cba"/>
+		  <meta name="msapplication-TileImage" content="../../favicons/mstile-144x144.png"/>
+		  <meta name="msapplication-config" content="../../favicons/browserconfig.xml"/>
+		  <meta name="theme-color" content="#303284"/>
+	</head>
+	<body onload="prettyPrint()">
+	<div id="wrap">
+		<div>
+
+	  <!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../">Apache Tamaya (incubating)</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+						<li><a href="../../index.html">Home</a></li>
+						<li><a href="../../about.html">About</a></li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="../../documentation/usecases.html">Use Cases and Requirements</a></li>
+								<li><a href="../../documentation/quickstart.html">Quickstart</a></li>
+								<li><a href="../../documentation/api.html">API</a></li>
+								<li><a href="../../documentation/core.html">Core</a></li>
+								<li><a href="../../documentation/extensions.html">Extension Guide</a></li>
+								<li class="divider"></li>
+								<li><a href="../../apidocs/index.html">Javadoc ${tamaya_version} (external)</a></li>
+              </ul>
+            </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="../../development/source.html">Sources</a></li>
+								<li><a href="../../development/community.html">Community</a></li>
+								<li><a href="../../devguide.html">Development Guide</a></li>
+								<li><a href="../../release-guide.html">Release Guide</a></li>
+              </ul>
+            </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Releases <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="../../download.html">Download</a></li>
+								<li><a href="../../history.html">Release History</a></li>
+              </ul>
+            </li>
+<!-- Example:
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+-->
+						<li><a href="../../sitemap.xml">Sitemap</a></li>
+						<li><a href="../../feed.xml">Subscribe</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+	</div>
+		<div class="container">
+
+			<div class="page-header">
+				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Classloader Isolation Support</h1>
+			</div>
+
+			<p><em>2016-12-19</em></p>
+
+			<p><div id="preamble">
+<div class="sectionbody">
+<!-- toc disabled -->
+</div>
+</div>
+<div class="sect1">
+<h2 id="Remote">Tamaya Classloader Aware ServiceContext (Extension Module)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview">Overview</h3>
+<div class="paragraph">
+<p>The Tamaya classloader support provides an alternative implementation of java.util.ServiceLoader, which is aware
+of classloaders, hereby preventing multiple loading of components within a classloader hierarchy.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compatibility">Compatibility</h3>
+<div class="paragraph">
+<p>The module is based on Java 7, so it will not run on Java 7 and beyond.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installation">Installation</h3>
+<div class="paragraph">
+<p>To benefit from configuration server support you only must add the corresponding dependency to your module:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
+  &lt;artifactId&gt;tamaya-classloader-support&lt;/artifactId&gt;
+  &lt;version&gt;{tamaya_version}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The component will auto.register its components and override the default ServicceContext in use by default
+with an instance of type org.apache.tamaya.clsupport.internal.CLAwareServiceContext. This implementation returns
+a priority of 10.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_it_works">How it works</h3>
+<div class="paragraph">
+<p>Basically the component manages a Map of all classloaders encountered. When services are accessed, the component
+will evaluate the services as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the component walks up the class loader hierarchy.</p>
+</li>
+<li>
+<p>in a next step the hierarchy is traversed down from the parent to the current classloader. Hereby it is checked
+if the service list for the required type has been loaded already. If not the service configuration files are
+evaluated.</p>
+</li>
+<li>
+<p>This configuration file evaluation will ignore all resources already loaded by any of the already traversed parent
+classloaders.</p>
+</li>
+<li>
+<p>For each configuration file newly visible to the classloader currently traversed, the corresponding services are
+loaded unleyy, the same service class already has been loaded by one its parent classloaders or another file
+loaded with this classloader.</p>
+</li>
+<li>
+<p>Finally all services found are returned as the full collection of services valid for the given context (classloader).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This ensures no service is loaded multiple times, even when it is referenced multiple times in several service
+configurations. Additionally every service is loaded on the classloader where it is also declared the first time.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_control_logging">Control Logging</h3>
+<div class="paragraph">
+<p>The service component by default only logs errors. But it is possible to change this by reconfiguring the logging
+levels on the following logging names/path: org.apache.tamaya.clsupport.internal.CLAwareServiceContext</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>INFO</em> logs additional info on the services accessed.</p>
+</li>
+<li>
+<p><em>FINEST</em> logs additional info on the services scanned and selected.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_classloader_aware_configuration">Classloader Aware Configuration</h3>
+<div class="paragraph">
+<p>The mechanism above is used to provide a classloader aware implementation of ConfigurationContext
+(org.apache.tamaya.clsupport.internal.CLAwareConfigurationContext). Similarly to the service variants
+this class provides a context implementation that manages the core configuration aspects considering classloading
+hierarchies:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>PropertySource, PropertySourceProviders</p>
+</li>
+<li>
+<p>PropertyFilters, PropertyCombinationPolicy</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></p>
+
+			<hr />
+		</div>
+	</div>
+	<div>
+			<div id="push"></div>
+
+		    <div id="footer">
+		      <div class="container">
+		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
+							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
+							at <span>2016-12-19</span>
+						</p>
+						<p>
+								<b>Disclaimer</b>
+                    Apache Tamaya (incubating) is an effort undergoing
+                    incubation at
+                    The Apache Software Foundation (ASF), sponsored by
+                    the name of Apache Incubator. Incubation is required of
+                    all newly accepted projects until a further review indicates
+                    that the infrastructure, communications, and decision making
+                    process have stabilized in a manner consistent with other
+                    successful ASF projects. While incubation status is not
+                    necessarily a reflection of the completeness or stability of
+                    the code, it does indicate that the project has yet to
+                    be fully endorsed by the ASF.<br />
+                    <a href="http://incubator.apache.org/guides/website.html" style="border:0px;" target="_target"><img class="incubator-logo" src="../../logos/egg-logo2.png"/></a>
+							</p>
+		      </div>
+		    </div>
+
+		    <!-- Le javascript
+		    ================================================== -->
+		    <!-- Placed at the end of the document so the pages load faster -->
+		    <script src="../../js/jquery-1.11.1.min.js"></script>
+		    <script src="../../js/bootstrap.min.js"></script>
+		    <script src="../../js/prettify.js"></script>
+
+    	</div>
+    </body>
+</html>

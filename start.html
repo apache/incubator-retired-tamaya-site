@@ -63,15 +63,36 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
 						<li><a href="index.html">Home</a></li>
-						<li><a href="quickstart.html">Quickstart</a></li>
-						<li><a href="index.html">Documentation</a></li>
-						<li><a href="/apidocs/index.html">API</a></li>
-						<li><a href="index.html">Development</a></li>
-						<li><a href="index.html">Releases</a></li>
 						<li><a href="about.html">About</a></li>
-						<li><a href="sitemap.xml">Sitemap</a></li>
-            <li><a href="feed.xml">Subscribe</a></li>
-<!--
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="documentation/usecases.html">Use Cases and Requirements</a></li>
+								<li><a href="documentation/quickstart.html">Quickstart</a></li>
+								<li><a href="documentation/api.html">API</a></li>
+								<li><a href="documentation/core.html">Core</a></li>
+								<li><a href="documentation/extensions.html">Extension Guide</a></li>
+								<li class="divider"></li>
+								<li><a href="apidocs/index.html">Javadoc ${tamaya_version} (external)</a></li>
+              </ul>
+            </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="development/source.html">Sources</a></li>
+								<li><a href="development/community.html">Community</a></li>
+								<li><a href="devguide.html">Development Guide</a></li>
+								<li><a href="release-guide.html">Release Guide</a></li>
+              </ul>
+            </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Releases <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="download.html">Download</a></li>
+								<li><a href="history.html">Release History</a></li>
+              </ul>
+            </li>
+<!-- Example:
 						<li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -85,6 +106,8 @@
               </ul>
             </li>
 -->
+						<li><a href="sitemap.xml">Sitemap</a></li>
+						<li><a href="feed.xml">Subscribe</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -97,7 +120,7 @@
 				<h1>About Apache Tamaya</h1>
 			</div>
 
-			<p><em>2016-11-02</em></p>
+			<p><em>2016-12-19</em></p>
 
 			<p><h2>About Apache Tamaya</h2>
 <p>Apache Tamaya (incubating) provides a flexible and powerful<br/>configuration solution<br/>for Java developers using Java SE as well as for more complex<br/>usage scenarios like cloud or Java EE. It provides a modern<br/>type-safe property based Configuration API combined with a<br/>powerful environment model and a flexible SPI.</p>
@@ -140,7 +163,7 @@
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
-							at <span>2016-11-27</span>
+							at <span>2016-12-19</span>
 						</p>
 						<p>
 								<b>Disclaimer</b>
