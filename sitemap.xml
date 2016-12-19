@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
+        <loc>https://tamaya.incubator.apache.org/documentation/api.html</loc>
+        <lastmod>2016-12-19</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/apidocs/index.html</loc>
+        <lastmod>2016-12-19</lastmod>
+    </url><url>
         <loc>https://tamaya.incubator.apache.org/development/community.html</loc>
         <lastmod>2016-12-19</lastmod>
     </url><url>
@@ -14,9 +20,6 @@
         <lastmod>2016-12-19</lastmod>
     </url><url>
         <loc>https://tamaya.incubator.apache.org/devguide.html</loc>
-        <lastmod>2016-12-19</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/api.html</loc>
         <lastmod>2016-12-19</lastmod>
     </url><url>
         <loc>https://tamaya.incubator.apache.org/documentation/core.html</loc>
