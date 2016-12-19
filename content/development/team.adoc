@@ -23,7 +23,14 @@ The following is a list of developers with commit privileges that have directly 
 
 == Contributors
 
-The following people are active contributors: none at the moment.
+The following people are active contributors:
+
+.Contributors
+[width="40%",frame="topbot",options="header"]
+|======================
+|Id       |Name            |E-Mail                 |Role(s)    |Time Zone
+|wkeil    |Werner Keil     |wkeil[at]apache.org    |PMC        |+1
+|======================
 
 == Emeritus
 
