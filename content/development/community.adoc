@@ -3,7 +3,7 @@
 
 = Apache Tamaya: Community
 
-:sectnums:
+//:sectnums:
 
 // Document properties
 :twitterhandle: tamayaconf

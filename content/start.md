@@ -1,10 +1,10 @@
-title=About Apache Tamaya
+title=Tamaya in 5 minutes
 type=page
 status=published
 ~~~~~~
 
-About Apache Tamaya
--------------------
+Tamaya in 5 minutes - a short introduction
+------------------------------------------
 
 Apache Tamaya (incubating) provides a flexible and powerful
 configuration solution

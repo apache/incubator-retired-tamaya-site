@@ -14,12 +14,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}">Apache Tamaya (incubating)</a>
+          <a class="navbar-brand" th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'index.html'">Apache Tamaya (incubating)</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-						<li><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'index.html'">Home</a></li>
-						<li><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'about.html'">About</a></li>
+						<li><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'start.html'">Tamaya in 5 minutes</a></li>
 						<li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -29,7 +28,7 @@
 								<li><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'documentation/core.html'">Core</a></li>
 								<li><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'documentation/extensions.html'">Extension Guide</a></li>
 								<li class="divider"></li>
-								<li><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'apidocs/index.html'">Javadoc ${tamaya_version} (external)</a></li>
+								<li><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'apidocs/index.html'">Javadoc {tamaya_version} (external)</a></li>
               </ul>
             </li>
 						<li class="dropdown">
@@ -38,8 +37,12 @@
 								<li><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'development/source.html'">Sources</a></li>
 								<li><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'development/community.html'">Community</a></li>
 								<li><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'development/team.html'">Project Team</a></li>
+								<li><a target="_blank" href="https://builds.apache.org/view/S-Z/view/Tamaya/">CI / ASF Jenkins</a></li>
+								<li><a target="_blank" href="https://issues.apache.org/jira/browse/TAMAYA">Issues / ASF Jira</a></li>
 								<li><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'devguide.html'">Development Guide</a></li>
 								<li><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'release-guide.html'">Release Guide</a></li>
+								<li class="divider"></li>
+								<li><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'development/possible-contributions.html'">Possible Contributions</a></li>
               </ul>
             </li>
 						<li class="dropdown">

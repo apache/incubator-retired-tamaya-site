@@ -6,11 +6,11 @@
 
 Though Tamaya is a very powerful and flexible solution there are basically only a few simple core concepts required
 that are the base of all the other mechanisms. As a starting point we recommend you read the corresponding
-llink:HighLevelDesign.html[High Level Design Documentation]
+llink:highleveldesign.html[High Level Design Documentation]
 
 [[API]]
 == The Tamaya API
-The API provides the artifacts as described in the link:HighLevelDesign.html[High Level Design Documentation], which are:
+The API provides the artifacts as described in the link:highleveldesign.html[High Level Design Documentation], which are:
 
 * A simple but complete SE *API* for accessing key/value based _Configuration_:
   ** +Configuration+ hereby models configuration, the main interface of Tamaya. +Configuration+ provides
@@ -520,8 +520,6 @@ One of the most important SPI in Tamaya if the +ConfigurationProviderSpi+ interf
 
 = Interface ConfigurationContextBuilder
 
-include::temp-properties-files-for-site/attributes.adoc[]
-
 [[BuilderCore]]
 == Interface ConfigurationContextBuilder
 === Overview
@@ -683,5 +681,5 @@ com.mypackage.MyPropertySource
 [[APIImpl]]
 == API Implementation
 
-The API is implemented by the Tamaya _Core_module. Refer to the link:Core.html[Core documentation] for
+The API is implemented by the Tamaya-Core-module. Refer to the link:core.html[Core documentation] for
 further details.
