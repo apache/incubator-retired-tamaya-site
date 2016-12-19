@@ -6,11 +6,11 @@
 
 Though Tamaya is a very powerful and flexible solution there are basically only a few simple core concepts required
 that are the base of all the other mechanisms. As a starting point we recommend you read the corresponding
-llink:highleveldesign.html[High Level Design Documentation]
+link:../highleveldesign.html[High Level Design Documentation]
 
 [[API]]
 == The Tamaya API
-The API provides the artifacts as described in the link:highleveldesign.html[High Level Design Documentation], which are:
+The API provides the artifacts as described in the link:../highleveldesign.html[High Level Design Documentation], which are:
 
 * A simple but complete SE *API* for accessing key/value based _Configuration_:
   ** +Configuration+ hereby models configuration, the main interface of Tamaya. +Configuration+ provides
@@ -116,6 +116,7 @@ Nevertheless most of these advantages can be mitigated easily, hereby still keep
 
 
 [[API Configuration]]
+
 === Configuration
 
 +Configuration+ is the main API provided by Tamaya. It allows reading of single property values or the whole
