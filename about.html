@@ -58,20 +58,41 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="">Apache Tamaya (incubating)</a>
+          <a class="navbar-brand" href="index.html">Apache Tamaya (incubating)</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="quickstart.html">Quickstart</a></li>
-						<li><a href="index.html">Documentation</a></li>
-						<li><a href="/apidocs/index.html">API</a></li>
-						<li><a href="index.html">Development</a></li>
-						<li><a href="index.html">Releases</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="sitemap.xml">Sitemap</a></li>
-            <li><a href="feed.xml">Subscribe</a></li>
-<!--
+						<li><a href="start.html">Tamaya in 5 minutes</a></li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="documentation/usecases.html">Use Cases and Requirements</a></li>
+								<li><a href="documentation/quickstart.html">Quickstart</a></li>
+								<li><a href="documentation/api.html">API</a></li>
+								<li><a href="documentation/core.html">Core</a></li>
+								<li><a href="documentation/extensions.html">Extension Guide</a></li>
+								<li class="divider"></li>
+								<li><a href="apidocs/index.html">Javadoc ${tamaya_version} (external)</a></li>
+              </ul>
+            </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="development/source.html">Sources</a></li>
+								<li><a href="development/community.html">Community</a></li>
+								<li><a href="development/team.html">Project Team</a></li>
+								<li><a href="devguide.html">Development Guide</a></li>
+								<li><a href="release-guide.html">Release Guide</a></li>
+              </ul>
+            </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Releases <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="download.html">Download</a></li>
+								<li><a href="history.html">Release History</a></li>
+              </ul>
+            </li>
+<!-- Example:
 						<li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -85,6 +106,8 @@
               </ul>
             </li>
 -->
+						<li><a href="sitemap.xml">Sitemap</a></li>
+						<li><a href="feed.xml">Subscribe</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -97,17 +120,29 @@
 				<h1>About</h1>
 			</div>
 
-			<p><em>2013-09-24</em></p>
+			<p><em>2016-12-18</em></p>
 
 			<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel diam purus. Curabitur ut nisi lacus.
-Nam id nisl quam. Donec a lorem sit amet libero pretium vulputate vel ut purus. Suspendisse leo arcu,
-mattis et imperdiet luctus, pulvinar vitae mi. Quisque fermentum sollicitudin feugiat. Mauris nec leo
-ligula. Vestibulum tristique odio ut risus ultricies a hendrerit quam iaculis. Duis tempor elit sit amet
-ligula vehicula et iaculis sem placerat. Fusce dictum, metus at volutpat lacinia, elit massa auctor risus,
-id auctor arcu enim eu augue. Donec ultrices turpis in mi imperdiet ac venenatis sapien sodales. In
-consequat imperdiet nunc quis bibendum. Nulla semper, erat quis ornare tristique, lectus massa posuere
-libero, ut vehicula lectus nunc ut lorem. Aliquam erat volutpat.
+Tamaya provides a flexible and powerful Configuration Solution for Java developers using Java SE as well as for more complex usage scenarios like Cloud or Java EE. It provides a modern type-safe property based Configuration API combined with a powerful environment model and a flexible SPI.
+
+Rationale
+Configuration is one of the most prominent cross-cutting concerns similar to logging. Most of us already have been writing similar code again and again in each of our projects. Sometimes in a similar way but mostly always slightly different, but certainly with high coupling to your configuration backends. Given your code is reused or integrated some how, or deployed by some customers, struggling starts: not supported backends, different policies, missing combination and validation mechanisms and so on. Tamaya solves all this by defining a common API and backend SPI. Your code is decoupled from the configuration backend. There is no difference if your code is deployed on your dev box or in a clustered Docker environment in production, it stays the same!
+
+Features
+Unified Configuration API
+Pluggable Configuration Backends
+Enforceable Configuration Policies
+Configuration Validation and Documentation
+Seemless Enterprise Integration
+
+Quickstart
+Using Apache Tamaya is simple:
+
+Add org.apache.tamaya:tamaya-core:0.2-incubating to your dependencies.
+Add your config to META-INF/javaconfiguration.properties
+Access your configuration by ConfigurationProvider.getConfiguration() and use it.
+Look at the extension modules to customize your setup!
+Enjoy!
 </p>
 
 			<hr />
@@ -120,7 +155,7 @@ libero, ut vehicula lectus nunc ut lorem. Aliquam erat volutpat.
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
-							at <span>2016-11-27</span>
+							at <span>2016-12-19</span>
 						</p>
 						<p>
 								<b>Disclaimer</b>
