@@ -1,0 +1,1050 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	    <meta charset="utf-8"/>
+	    <title>Tamaya Incubator</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	    <meta name="description" content=""/>
+	    <meta name="author" content=""/>
+	    <meta name="keywords" content=""/>
+	    <meta name="generator" content="'JBake '+'${version}"/>
+
+	    <!-- Le styles -->
+	    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+	    <link href="css/asciidoctor.css" rel="stylesheet"/>
+	    <link href="css/base.css" rel="stylesheet"/>
+	    <link href="css/prettify.css" rel="stylesheet"/>
+
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	      <script src="js/html5shiv.min.js"></script>
+	    <![endif]-->
+
+	    <!-- Fav and touch icons from ASF -->
+			<link rel="shortcut icon" href="favicon.ico"/>
+			<link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-touch-icon-57x57.png"/>
+		  <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-touch-icon-60x60.png"/>
+		  <link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-touch-icon-72x72.png"/>
+		  <link rel="apple-touch-icon" sizes="76x76" href="favicons/apple-touch-icon-76x76.png"/>
+		  <link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-touch-icon-114x114.png"/>
+		  <link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-touch-icon-120x120.png"/>
+		  <link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-touch-icon-144x144.png"/>
+		  <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png"/>
+		  <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png"/>
+		  <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32"/>
+		  <link rel="icon" type="image/png" href="favicons/favicon-194x194.png" sizes="194x194"/>
+		  <link rel="icon" type="image/png" href="favicons/favicon-96x96.png" sizes="96x96"/>
+		  <link rel="icon" type="image/png" href="favicons/android-chrome-192x192.png" sizes="192x192"/>
+		  <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16"/>
+		  <link rel="manifest" href="favicons/manifest.json"/>
+		  <link rel="shortcut icon" href="favicons/favicon.ico"/>
+		  <meta name="msapplication-TileColor" content="#603cba"/>
+		  <meta name="msapplication-TileImage" content="favicons/mstile-144x144.png"/>
+		  <meta name="msapplication-config" content="favicons/browserconfig.xml"/>
+		  <meta name="theme-color" content="#303284"/>
+	</head>
+	<body onload="prettyPrint()">
+	<div id="wrap">
+		<div>
+
+	  <!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="">Apache Tamaya (incubating)</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+						<li><a href="index.html">Home</a></li>
+						<li><a href="quickstart.html">Quickstart</a></li>
+						<li><a href="index.html">Documentation</a></li>
+						<li><a href="/apidocs/index.html">API</a></li>
+						<li><a href="index.html">Development</a></li>
+						<li><a href="index.html">Releases</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="sitemap.xml">Sitemap</a></li>
+            <li><a href="feed.xml">Subscribe</a></li>
+<!--
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+-->
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+	</div>
+		<div class="container">
+
+			<div class="page-header">
+				<h1></h1>
+			</div>
+
+			<p><em>2016-11-28</em></p>
+
+			<p><div class="sect1">
+<h2 id="_apache_tamaya_use_cases_and_requirements">Apache Tamaya: Use Cases and Requirements</h2>
+<div class="sectionbody">
+<!-- toc disabled -->
+</div>
+</div>
+<div class="sect1">
+<h2 id="_use_cases">Use Cases</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_simple_access">Simple Access</h3>
+<div class="paragraph">
+<p>Users want to be able to access configuration in a unified way both in SE and EE. EE may provide additional
+mechanism, such as injection, but the SE mechanisms should work as well, so any code written in SE is fully
+portable to EE as well.
+This can only be achieved by providing a static accessor, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration config = Configuration.current();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The call above should work exactly the same in EE. To enable this the static call must be delegated in the
+internals of the singleton, depending on the runtime. In EE the executing component can behave contextually,
+or even be loaded within the CDI environment (at least for post loading, application runtime aspects, but not earlier).</p>
+</div>
+<div class="paragraph">
+<p>Additionally in EE it should also be possible to inject Configuration, which gives you the same results as the call
+above:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Inject
+private Configuration cfg;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_simple_lookup_of_properties">Simple Lookup of Properties</h3>
+<div class="paragraph">
+<p>Users just want to create a configuration ad hoc, from given property files. The
+files could be locally in the file system, on the classpath.</p>
+</div>
+<div class="paragraph">
+<p>Tamaya should provide a simple Java API for accessing key/value based configuration. Hereby users want to access
+properties as simple String values.</p>
+</div>
+<div class="paragraph">
+<p>Hereby returning Java 8 Optional values must be considered as well, instead of returning null.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_value_placeholders">Value Placeholders</h3>
+<div class="paragraph">
+<p>Users just want to to be able to add placeholders to the values of configuration (not the keys). The mechanisms for
+resolving the placeholders hereby should be not constraint to one single lanmguage like EL. Instead of different
+replacement strategies should be selectable, e.g. by prefixing an expression with the name of the resolver that
+should do the work (eg "blabla ${env:HOME} using Java version ${sys:java.version}.".
+This allows resolution mechanism to be isolated easily and also allows to use simpler mechanisms, if no more complex
+ones like EL are required. This is especially useful to deal with low resource environment like ME.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_type_safe_properties">Type Safe Properties</h3>
+<div class="paragraph">
+<p>Users just want to access properties not only as Strings, but let Tamaya do the conversion to the required
+or the configred target type. By defauklt all java.ui.lang wrapper and primitive types should be supported, but also
+other common types like date/time types, math numeric types and more.</p>
+</div>
+<div class="paragraph">
+<p>It must be possible that users can register their own custom types.</p>
+</div>
+<div class="paragraph">
+<p>Finally users also want to be able to dynamically provide or override type adaption (conversion), when reading a value,
+for a certain key/value pair.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration_templates">Configuration Templates</h3>
+<div class="paragraph">
+<p>Users want to be able to let Tamaya implement an interface template based on configuration.
+This use case is pretty similar to the injection use case. Basically the values are not injected,
+but cached within the template proxy returned, e.g. as DynamicValue.
+Similarly it could even be possible to define callback methods (default methods)
+or register listeners to DynamicValue instances returned.</p>
+</div>
+<div class="paragraph">
+<p>Templates hereby can easily be managed, but provide a excellent mechanism to provide type-safe configuration
+to clients in a very transparent way. Details can be controlled by using the same annotations as for
+normal configuration injection.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_java_8_functional_support">Java 8 Functional Support</h3>
+<div class="paragraph">
+<p>Users want to be able to benefit from the new programming styles introduced with Java 8. Configuration
+should provide extension points for different aspects, where additional code can be hooked in easily.
+In short: were possible functional interfaces should be modelled.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>code that converts a configuration to another kind of configuration: UnaryOperator&lt;Configuration&gt;</p>
+</li>
+<li>
+<p>code that creates any kind of result based on a configuration: Function&lt;Configuration,T&gt;</p>
+</li>
+<li>
+<p>Adapters for type conversion are defined as Function&lt;String,T&gt;</p>
+</li>
+<li>
+<p>Key, value filters ccan be modelled as BiFunction&lt;String,String,String&gt;</p>
+</li>
+<li>
+<p>etc.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration_locations">Configuration Locations</h3>
+<div class="paragraph">
+<p>Users want to be able to</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>read configuration from different locations.</p>
+</li>
+<li>
+<p>By default classpath and file resources are
+supported. But similarly remote access using a JSON ReST call should be possible.</p>
+</li>
+<li>
+<p>Tamaya should define a JSON and XML format for configuration.</p>
+</li>
+<li>
+<p>Configuration locations should be scannable using ant-styled resource patterns, if possible.</p>
+</li>
+<li>
+<p>Scanning and reading logic can be modularized by using a ConfigReader interface.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration_formats">Configuration Formats</h3>
+<div class="paragraph">
+<p>Users want to be able to use the format they prefer.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>properties, xml-properties and ini-format should be supported by default</p>
+</li>
+<li>
+<p>Other/custom formats should be easily addable by registering or providing the format on configuration evaluation (read).</p>
+</li>
+<li>
+<p>When possible Tamaya should figure out which format to be used and how the InputStream should be correctly
+interpreted.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_multiple_configurations">Multiple Configurations</h3>
+<div class="paragraph">
+<p>When systems grow they must be modularized to keep control. Whereas that sounds not really fancy, it leads to additional
+aspects to be considered by a configuration system.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Different code modules, libraries, plugins or products want to have their "own" separated configuration.</p>
+</li>
+<li>
+<p>Similar it should be possible to add fully specific additional configurations.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The default configuration hereby should always be present, whereas additional configurations are optional.
+Users want to be able to check the availability of such an additional configuration.</p>
+</div>
+<div class="paragraph">
+<p>Of course, additional configuration must be identifiable. The best way to do is to be discussed, nevertheless the
+mechanism must not depend on Java EE and the identifying keys must be serializable easily.
+Basically simple names are sufficient and woukld provide exact this required functionality.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_external_configuration">External Configuration</h3>
+<div class="paragraph">
+<p>Users want to be able to replace, override, extend or adapt any parts or all of an existing configuration from
+external sources.
+This also must be the case for multi-context environments, where the context identifiers are
+the only way to link to the correct remote configuration.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_context_dependent_configuration">Context Dependent Configuration</h3>
+<div class="paragraph">
+<p>In multi tenancy setups or complex systems a hierarchical/graph model of contexts for configurations is required, or different runtime contexts are executed in parallel
+within the same VN. What sounds normal for EE also may be the case for pure SE environments:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Users want to be able to model different layers of runtime context</p>
+</li>
+<li>
+<p>Users want to identify the current layer, so configuration used may be adapted.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dynamic_provisioning_uc8">Dynamic Provisioning (UC8)</h3>
+<div class="paragraph">
+<p>In Cloud Computing, especially the PaaS and SaaS areas a typical use case would be that an application (or server)
+is deployed, configured and started dynamically. Typically things are controlled by some "active controller components",
+which are capable of</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>creating new nodes (using IaaS services)</p>
+</li>
+<li>
+<p>deploying and starting the required runtime platform , e.g. as part of a PaaS solution.</p>
+</li>
+<li>
+<p>deploying and starting the application modules.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All these steps require some kind of configuration. As of today required files are often created on the target node
+before the systems are started, using proprietary formats and mechanism. Similarly accessing the configuration in place
+may require examining the file system or using again proprietary management functions. Of course, a configuration
+solution should not try to solve that, but it can provide a significant bunch of functionality useful in such scenarios:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>provide remote capabilities for configuration</p>
+</li>
+<li>
+<p>allow configuration to be updated remotely.</p>
+</li>
+<li>
+<p>allow client code to listen for configuration changes and react as needed.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_minimal_property_source_spi">Minimal Property Source SPI</h3>
+<div class="paragraph">
+<p>Users expect that implementing an additional configuration property source is as easy as possible.
+So there should be an SPI defined that allows any kind of data source to be used for providing configuration data.
+The interface to be implemented is expected to be minimal to reduce the implementation burden. Default
+methods should be used where possible, so only a few methods are expected to be required to implement.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_scannable_properties">Scannable Properties</h3>
+<div class="paragraph">
+<p>If possible configuration should be scannable, meaning it should be possible to evaluate the keys available.
+The corresponding capabilities should be accessible by a isScannable() method.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_combine_configurations">Combine Configurations</h3>
+<div class="paragraph">
+<p>Users want to be able to combine different configurations to a new configuration instance.
+Hereby the resulting configuration can be</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a union of both, ignoring duplicates (and optionally log them)</p>
+</li>
+<li>
+<p>a union of both, duplicates are ignored</p>
+</li>
+<li>
+<p>a union of both, conflicts are thrown as ConfigException</p>
+</li>
+<li>
+<p>an intersection of both, containing only keys present and equal in both configurations</p>
+</li>
+<li>
+<p>an arbitrary mapping or filter, modelled by an CombinationPolicy, which basically can be modelled
+as BiFunction&lt;String, String, String&gt;, hereby</p>
+<div class="ulist">
+<ul>
+<li>
+<p>a result of null will remove the key</p>
+</li>
+<li>
+<p>any other result will use the value returned as final value of the combination.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mx_rest_management">MX/ReST Management</h3>
+<div class="paragraph">
+<p>Users want to be have comprehensive management support, which should allow</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>to change configuration</p>
+</li>
+<li>
+<p>to remove configuration</p>
+</li>
+<li>
+<p>to view configuration and its provider details</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_adaptable_service_context">Adaptable Service Context</h3>
+<div class="paragraph">
+<p>Tamaya should support an adaptable ServiceContext to resolve any kind of implememntation services, both API services as core
+framework services. The ServiceContext should be dynamically replecable by configuring an alternate instance of
+using the Java *ServiceContet+.</p>
+</div>
+<div class="paragraph">
+<p>This decouples component usage from its load and management part and als greatly simplifies integration with
+new/alternate runtime environments.
+The service context is exptected to provide</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>single singleton instances: these service can be cached.</p>
+</li>
+<li>
+<p>access to multiple instances which implement some commons SPI interface.</p>
+</li>
+<li>
+<p>as useful priorization of components is done by the model itself.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration_injection">Configuration Injection</h3>
+<div class="paragraph">
+<p>Users want to be able to polulate configured items by injecting configured values. Hereby</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the lifecycle of the instances is not managed by Tamaya</p>
+</li>
+<li>
+<p>all references to items configured are managed as weak references, to prevent memoryleaks.</p>
+</li>
+<li>
+<p>Injection should if possible evaluate the properties by defaults. Even properties without
+any annotations are possible.</p>
+</li>
+<li>
+<p>Users expect to exclude certain properties from calculation</p>
+</li>
+<li>
+<p>Beside injection of properties it is also possible to call setter methods with one parameter similarly.</p>
+</li>
+<li>
+<p>Basically injection is performed, when the instance is passed to the Tamaya configuration system. It should also
+be possible to inject/provide final values, especially Strings. Changes on configured values should be
+reflected in the current value. Setters methods similarly can be called again, with the new values, on changes.</p>
+</li>
+<li>
+<p>Users expect to control dynamic values and recall of setter methods, basically the following strategies should be
+supported:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>inject only once and ignore further changes.</p>
+</li>
+<li>
+<p>reinject/reinitialize on each change</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Dynamic Values can easily be modeled as ConfiguredValue instances, which should have the following functionality:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>access the current value</p>
+</li>
+<li>
+<p>access the new value</p>
+</li>
+<li>
+<p>access the latest value access time in ms</p>
+</li>
+<li>
+<p>access the latest value update time in ms</p>
+</li>
+<li>
+<p>evaluate easily if the value has changed since the last access</p>
+</li>
+<li>
+<p>accept the change</p>
+<div class="ulist">
+<ul>
+<li>
+<p>as a shortcut it should be possible to accept the change on access of the value implicitly, hereby always accessing
+the latest valid value.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>ignore the change</p>
+</li>
+<li>
+<p>register Consumer&lt;DynamicValue&gt; liasteners to listen on the changes (ans also removing them later again).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All observing functionality can be done completely asynchronously and in parallel.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Requirements">Requirements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_core_configuration_requirements">Core Configuration Requirements</h3>
+<div class="sect3">
+<h4 id="_general">General</h4>
+<div class="paragraph">
+<p>Tamaya must provide a Java SE API for accessing key/value based configuration. Hereby</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Configuration is modelled by an interface</p>
+</li>
+<li>
+<p>Configuration is organized as key/value pairs, using a subset of functionality present on Map&lt;String,String&gt; as
+follows:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>access a value by key (get)</p>
+</li>
+<li>
+<p>check if a value is present (containsKey)</p>
+</li>
+<li>
+<p>get a set of all defined keys (keySet)</p>
+</li>
+<li>
+<p>a configuration must be convertible to a Map, by calling toMap()</p>
+</li>
+<li>
+<p>a configuration must provide access to its meta information.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Configuration value access methods must never return null.</p>
+</li>
+<li>
+<p>The API must support undefined values.</p>
+</li>
+<li>
+<p>The API must support passing default values, to be returned if a value is undefined.</p>
+</li>
+<li>
+<p>The API must allow to throw exceptions, when a value is undefined. Customized exceptions hereby should be supported.</p>
+</li>
+<li>
+<p>Properties can be stored in the classpath, on a file or accessible by URL.</p>
+</li>
+<li>
+<p>Properties can be stored minimally in properties, xml-properties or ini-format.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_minimalistic_property_source">Minimalistic Property Source</h4>
+<div class="paragraph">
+<p>For enabling easy integration of custom built configuration sources a minimalistic API/SPI must be defined, that</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>is modelled by an interface</p>
+</li>
+<li>
+<p>is a minimal subset of Configuration necessary to implement a configuration.</p>
+</li>
+<li>
+<p>must be convertible to a "Configuration+.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_extension_points">Extension Points</h4>
+<div class="paragraph">
+<p>For supporting more complex scenarios, Configuration</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>must implement the composite pattern, meaning new Configuration instances can be created by combining existing
+configurations.</p>
+</li>
+<li>
+<p>must be adaptable, by creating a new configuration by applying a UnaryOperator&lt;COnfiguration&gt; to it.</p>
+</li>
+<li>
+<p>must be queryable, by passing a ConfigQuery to an Configuration instance.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_type_safety">Type Safety</h4>
+<div class="paragraph">
+<p>Besides Strings Configuration should also support the following types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Primitive types</p>
+</li>
+<li>
+<p>Wrapper types</p>
+</li>
+<li>
+<p>All other types (by using a PropertyAdapter</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Hereby type conversion should be done as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check if for the given target type an explicit adapter is registered, if so, use the registered adapter.</p>
+</li>
+<li>
+<p>If no adapter is present, check if the target type T has static methods called T of(String), T getInstance(String), T valueOf(String), T from(String). If so
+use this method to create the non value of T.</p>
+</li>
+<li>
+<p>Check if the target type has a constructor T(String). If so, try to instantiate an instance using the constructor.</p>
+</li>
+<li>
+<p>Give up, throw a IllegalArgument exception.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration_fomats">Configuration Fomats</h3>
+<div class="paragraph">
+<p>By default Tamaya support the following configuration formats:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>.properties</p>
+</li>
+<li>
+<p>.xml properties</p>
+</li>
+<li>
+<p>.ini files</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It must be possible to add additional formats by registering them with the current ServiceContext.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mutability">Mutability</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Configurations can be mutable, mutability can be accessed as a property.</p>
+</li>
+<li>
+<p>Configuration can be changed by collecting the changes into a ConfigCHangeSet and apply this set to the
+given Configuration instance.</p>
+</li>
+<li>
+<p>Besides the points above, Configuration is immutable.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_serializability_and_immutability_of_configuration">Serializability and Immutability of Configuration</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Configuration is modelled as a service. Therefore serialization may not work. This can be mitigated by adding
+a freeze feature, where the know key/value pairs are extracted into an immutable and serializable form.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration_combination_requirements">Configuration Combination Requirements</h3>
+<div class="paragraph">
+<p>At least the following composition policies must be supported:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>override: subsequent entries override existing ones.</p>
+</li>
+<li>
+<p>aggregate-exception: key/values were added, in case of conflicts a ConfigException must be thrown.</p>
+</li>
+<li>
+<p>aggregate-ignore-duplicates: similar to union, whereas duplicates are ignored (leaving the initial value loaded).</p>
+</li>
+<li>
+<p>aggregate-combine: conflicting entries were resolved by adding them both to the target configuration by
+redefining partial keys.</p>
+</li>
+<li>
+<p>custom: any function determining the key/values to be kept must be possible</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When combining configuration it must also be possible to override (file/classpath) configuration by</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>system properties.</p>
+</li>
+<li>
+<p>command line arguments.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration_injection_2">Configuration Injection</h3>
+<div class="paragraph">
+<p>As metnioned configuration can be injected by passing a unconfigured instance of an annotated class to the
+Configuration.configure static method:</p>
+</div>
+<div class="listingblock">
+<div class="title">Configuring a POJO</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">MyPojo instance = new MyPojo();
+Configuration.configure(instance);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hereby
+* It must be possible to define default values to be used, if no valid value is present.
+* It must be possible to define dynamic expressions, at least for default values.
+* The values configured can be reinjected, if the underlying configuration changes. This should also be the case
+  for final classes, such as Strings.
+* Reinjection should be controllable by an loading policy.
+* It must be possible to evaluate multiple keys, e.g. current keys, and as a backup deprecated keys
+  from former application releases.
+* It must be possible to evaluate multiple configurations.
+* The type conversion of the properties injected must be configurable, by defining a PropertyAdapter.
+* The value evaluated for a property (before type conversion) must be adaptable as well.
+* It must be possible to observe configuration changes.</p>
+</div>
+<div class="paragraph">
+<p>The following annotations must be present at least:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>@ConfiguredProperty</strong> defining the key of the property to be evaluated. It takes an optional value, defining the
+property name. It must be possible to add multiple annotations of this kind to define an order of evaluation
+of possible keys.</p>
+</li>
+<li>
+<p><strong>@DefaultValue</strong> (optional) defines a default String value, to be used, when no other key is present.</p>
+</li>
+<li>
+<p><strong>@WithConfig</strong> (optional) defines the name of the configuration to be used. Similar to @ConfiguredProperty multiple
+configuration can be defined for lookup.</p>
+</li>
+<li>
+<p><strong>@WithConfigOperator</strong> allows to adapt the String value evaluated, <strong>before</strong> it is passed as input to injection or
+type conversion.</p>
+</li>
+<li>
+<p><strong>@WithPropertyAdapter</strong> allows to adapt the conversion to the required target type, hereby overriding any default
+conversion in place.</p>
+</li>
+<li>
+<p><strong>@WithLoadPolicy</strong> allows to define the policy for (re)injection of configured values.</p>
+</li>
+<li>
+<p><strong>@ObservesConfigChange</strong> allows to annotate methods that should be called on configuration changes.</p>
+</li>
+<li>
+<p>*@DefaultAreas" allows to define a key prefix key to be used for the configured key, if no absolute key
+is defined.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration_templates_2">Configuration Templates</h3>
+<div class="paragraph">
+<p>For type safe configuration clients should be able to define an interface and let it implement by the
+configuration system based on Configuration available:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Clients define an interface and annotate it as required (similar to above)</p>
+</li>
+<li>
+<p>The interface methods must not take any arguments</p>
+</li>
+<li>
+<p>The configuration system can be called to return such an interface implementation.</p>
+</li>
+<li>
+<p>The configuration system returns a proxy hereby providing type-safe access the values required.</p>
+</li>
+<li>
+<p>Similar to configured types also templates support multiple values and custom adapters.</p>
+</li>
+<li>
+<p>It is possible to listen on configuration changes for templates, so users of the templates
+may react on configuration changes.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following snippet illustrates the requirements:</p>
+</div>
+<div class="listingblock">
+<div class="title">Type Safe Configuration Template Example</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface MyConfig {
+
+  @ConfiguredProperty("myCurrency")
+  @DefaultValue("CHF")
+  String getCurrency();
+
+  @ConfiguredProperty("myCurrencyRate")
+  Long getCurrencyRate();
+
+  @ConfigChange
+  default configChanged(ConfigChange event){
+     ...
+  }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Templates can be accessed by calling the Configuration.current(Class) method:</p>
+</div>
+<div class="listingblock">
+<div class="title">Accessing a type safe Configuration Template</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">MyConfig config = Configuration.current(MyConfig.class);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="RequirementsServer">Server Configuration Requirements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Ensure Configuration can be transferred over the network easily.</p>
+</li>
+<li>
+<p>Beside serializability text based formats for serialization in XML and JSON must be defined.</p>
+</li>
+<li>
+<p>A management API must be defined, which allows to inspect the configuration in place, e.g. using
+JMX or REST services.</p>
+</li>
+</ul>
+</div>
+<div id="RequirementsJavaEE" class="paragraph">
+<p>Java EE leads to the following requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Configuration must be contextual, depending on the current runtime context (e.g. boot level, ear, war, &#8230;&#8203;).</p>
+</li>
+<li>
+<p>Hereby contextual aspects can even exceed the levels described above, e.g. for SaaS scenarios.</p>
+</li>
+<li>
+<p>Resources can be unloaded, e.g. wars, ears can be restarted.</p>
+</li>
+<li>
+<p>The different contextual levels can also be used for overriding, e.g. application specific configuration
+may override ear or system configuration.</p>
+</li>
+<li>
+<p>Configuration may be read from different sources (different classloaders, files, databases, remote locations).</p>
+</li>
+<li>
+<p>Configuration may be read in different formats (deployment descriptors, ServiceLoader configuration, alt-DD feature, &#8230;&#8203;)</p>
+</li>
+<li>
+<p>JSF also knows the concept of stages.</p>
+</li>
+<li>
+<p>Many SPI&#8217;s of Java EE require the implementation of some well defined Java interface, so it would be useful if the
+configuration solution supports easy implementation of such instances.</p>
+</li>
+<li>
+<p>In general it would be useful to model the Environment explicitly.</p>
+</li>
+<li>
+<p>Configuration used as preferences is writable as well. This requires mutability to be modelled in way, without the
+need of synchronization.</p>
+</li>
+<li>
+<p>JNDI can be used for configuration as well.</p>
+</li>
+</ul>
+</div>
+<div id="RequirementsMultitenancy" class="paragraph">
+<p>Configurations made in the tenant or user layer override the default app configuration etc., so</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It must be possible to structure Configuration in layers that can override/extend each other.</p>
+</li>
+<li>
+<p>The current environment must be capable of mapping tenant, user and other aspects, so a corresponding configuration
+(or layer) can be derived.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="RequirementsExtensions">Extensions Requirements</h3>
+<div class="paragraph">
+<p>It must be possible to easily add additional functionality by implementing external functional interfaces operating
+on Configuration.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>UnaryOperator&lt;Configuration&gt; for converting into other version of Configuration.</p>
+</li>
+<li>
+<p>ConfigQuery&lt;T&gt; extending Function&lt;T, Configuration&gt;.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="RequirementsNonFunctional">Non Functional Requirements</h3>
+<div class="paragraph">
+<p>THe following non-functional requirements must be met:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>tbd</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></p>
+
+			<hr />
+		</div>
+	</div>
+	<div>
+			<div id="push"></div>
+
+		    <div id="footer">
+		      <div class="container">
+		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
+							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
+							at <span>2016-12-12</span>
+						</p>
+						<p>
+								<b>Disclaimer</b>
+                    Apache Tamaya (incubating) is an effort undergoing
+                    incubation at
+                    The Apache Software Foundation (ASF), sponsored by
+                    the name of Apache Incubator. Incubation is required of
+                    all newly accepted projects until a further review indicates
+                    that the infrastructure, communications, and decision making
+                    process have stabilized in a manner consistent with other
+                    successful ASF projects. While incubation status is not
+                    necessarily a reflection of the completeness or stability of
+                    the code, it does indicate that the project has yet to
+                    be fully endorsed by the ASF.<br />
+                    <a href="http://incubator.apache.org/guides/website.html" style="border:0px;" target="_target"><img class="incubator-logo" src="logos/egg-logo2.png"/></a>
+							</p>
+		      </div>
+		    </div>
+
+		    <!-- Le javascript
+		    ================================================== -->
+		    <!-- Placed at the end of the document so the pages load faster -->
+		    <script src="js/jquery-1.11.1.min.js"></script>
+		    <script src="js/bootstrap.min.js"></script>
+		    <script src="js/prettify.js"></script>
+
+    	</div>
+    </body>
+</html>
