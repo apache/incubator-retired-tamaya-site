@@ -3,21 +3,54 @@
 
 :sectnums: yes
 
-= Apache Tamaya: Sources
+= Apache Tamaya: Source code repositories
 
-== Source Code Repositories
-
-The current source code can be found at:
-
-    - http://git-wip-us.apache.org/repos/asf/incubator-tamaya.git (read-only)
-    - https://git-wip-us.apache.org/repos/asf/incubator-tamaya.git
-
-Alternatively there is also a GitHub read-only mirror at
-https://github.com/apache/incubator-tamaya[https://github.com/apache/incubator-tamaya^].
-
-The GitHub mirror also provides the project as downloadable zip archive.
+Apart from the ASF source code repositories we do provide read-only mirrors at GitHub.
+In case you want to contribute file an issue in our https://issues.apache.org/jira/browse/TAMAYA[bugtracker]. At the moment we cannot integrate any GitHub pull requests directly.
 
 == Contributions
 
-If you like to contribute to Apache Tamaya please also refer also to our
-<<devguide.adoc#contributing-workflow,section on contributing to Apache Tamaya>>.
+If you would like to contribute to Apache Tamaya please also refer also to our
+<<../devguide.adoc#contributing-workflow,section on contributing to Apache Tamaya>>.
+
+== Repository locations
+
+=== Apache Tamaya
+
+The repository locations are:
+
+    - http://git-wip-us.apache.org/repos/asf/incubator-tamaya.git (read-only)
+    - https://git-wip-us.apache.org/repos/asf/incubator-tamaya.git
+    - https://github.com/apache/incubator-tamaya[https://github.com/apache/incubator-tamaya^] GitHub read-only mirror
+
+The GitHub mirror also provides the project as downloadable zip archive.
+
+=== Apache Tamaya Extensions
+
+The repository locations are:
+
+    - http://git-wip-us.apache.org/repos/asf/incubator-tamaya-extensions.git (read-only)
+    - https://git-wip-us.apache.org/repos/asf/incubator-tamaya-extensions.git
+    - https://github.com/apache/incubator-tamaya-extensions[https://github.com/apache/incubator-tamaya-extensions^] GitHub read-only mirror
+
+The GitHub mirror also provides the project as downloadable zip archive.
+
+=== Apache Tamaya Extensions
+
+The repository locations are:
+
+    - http://git-wip-us.apache.org/repos/asf/incubator-tamaya-extensions.git (read-only)
+    - https://git-wip-us.apache.org/repos/asf/incubator-tamaya-extensions.git
+    - https://github.com/apache/incubator-tamaya-extensions[https://github.com/apache/incubator-tamaya-extensions^] GitHub read-only mirror
+
+The GitHub mirror also provides the project as downloadable zip archive.
+
+=== Apache Tamaya Website
+
+The website is build with http://jbake.org/[jBake^]. Its contents is located in the master branch of:
+
+    - http://git-wip-us.apache.org/repos/asf/incubator-tamaya-site.git (read-only)
+    - https://git-wip-us.apache.org/repos/asf/incubator-tamaya-site.git
+    - https://github.com/apache/incubator-tamaya-site[https://github.com/apache/incubator-tamaya-site^] GitHub read-only mirror
+
+The generated page is in the asf-site branch of above project.
