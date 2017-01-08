@@ -72,7 +72,7 @@
 								<li><a href="../../documentation/core.html">Core</a></li>
 								<li><a href="../../documentation/extensions.html">Extension Guide</a></li>
 								<li class="divider"></li>
-								<li><a href="../../apidocs/index.html">Javadoc {tamaya_version} (external)</a></li>
+								<li><a href="../../apidocs/index.html">Javadoc null (external)</a></li>
               </ul>
             </li>
 						<li class="dropdown">
@@ -124,7 +124,7 @@
 				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extensions: OSGI Integrations</h1>
 			</div>
 
-			<p><em>2016-12-19</em></p>
+			<p><em>2016-12-29</em></p>
 
 			<p><div id="preamble">
 <div class="sectionbody">
@@ -137,71 +137,30 @@
 <div class="sect2">
 <h3 id="_overview">Overview</h3>
 <div class="paragraph">
-<p>Tamaya provides also support for integration with OSGI. Hereby several options are available how Tamaya can be used in
-an OSGI context:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>All Tamaya modules, its API and core library are actually valid OSGI bundles. So adding them into your OSGI modules
-and using Tamaya is basically directly supported. Nevertheless OSGI works rather differently from a class- and
-resource loading perspective. As long as you rely on Tamaya&#8217;s mechanisms for resource loading things should work
-out of the box. In the back Tamaya&#8217;s core module actually comes with implicit OSGI support, which is automatically
-activated, if Tamaya is running in an OSGI context. This support actually</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Listens on deployed bundles and actively reads all resources configured as java.util.ServiceLoader services and
-registers them as OSGI services. Hereby integration is complete meaning you can also register Tamaya services
-as normal OSGI services, e.g. your own PropertySource instances.</p>
-</li>
-<li>
-<p>Uses the OSGI bundle to resolve for resources, because accessing them from the classloader directly
-typically fails in an OSGI context.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Adding Tamaya&#8217;s OSGI integration module replaces the existing OSGI ConfigAdmin service with an istance based on
-Tamaya. Hereby several aspects can be configured using system properties:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>org.tamaya.integration.osgi.cm.ranking (int) allows to configure the OSGI service ranking used by the Tamaya
-BundleActivator to register Tamaya&#8217;s ConfigAdmin service. In OSGI higher ranking precede lower rankings. By default
-Tamaya&#8217;s OSGI extending service registration mechanism is reusing any annotated @Priority priority values as
-corresponsing rankings.</p>
-</li>
-<li>
-<p>org.tamaya.integration.osgi.cm.override (boolean) allows to configure if Tamaya is overriding any existing
-values from the default ConfigAdmin instance, or only extending them. In other words this setting allows you to
-define, which configuration subsystem has precedence for evaluating the final values, either Tamaya based
-configuration (default) or the configuration mechanisms provided by default from your OSGI container (when this flag
-is set to false).</p>
-</li>
-<li>
-<p>org.tamaya.integration.osgi.cm.inject allows you to deactivate injection of configuration values into your
-OSGI services (by default injection is enabled). In all cases accessing the OSGI ConfigAdmin service to
-read your configuration is working as usual. But Tamaya adds additional injection functionality, which allows
-to inject typed configuration as described by the Tamaya injection api.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>It is also possible to combine things, e.g. when you only define a low ranking for Tamaya&#8217;s configuration service and
-the same time allow injection to be active, you will have Tamaya&#8217;s injection support based on your default
-OSGI configuration.</p>
+<p>Tamaya provides also support for integration with OSGI. Hereby Tamaya implements the OSGI ConfigAdmin service,
+which is the OSGI basic component providing configuration. Tamaya by default overrides the OSGI default configuration
+but can also be configured to extend it.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_compatibility">Compatibility</h3>
 <div class="paragraph">
 <p>All module described are based on Java 7, so it will run on Java 7 and beyond.
-The modules are built against OSGI Compendium version 5.0.</p>
+The modules are built against OSGI Compendium version 5.0. Tamaya OSGI support is tested against the following OSGI
+runtimes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Apache Karaf, version 4.0.7</p>
+</li>
+<li>
+<p>tbd: Apache Felix, version x.x.x.</p>
+</li>
+<li>
+<p>tbd: Eclipse Equinox, version x.x.x.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -214,50 +173,86 @@ environment:</p>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-listing" data-lang="listing"># API and core
 org.apache.tamaya:tamaya-api:{tamaya_version}
-org.apache.tamaya:tamaya-core:{tamaya_version}
 org.apache.geronimo.specs:geronimo-annotation_1.2_spec:1.0-alpha-1
-# injection API. SE injection module and dependencies
-org.apache.tamaya.ext:tamaya-injection-api:{tamaya_version}
-org.apache.tamaya.ext:tamaya-injection:{tamaya_version}
-org.apache.geronimo.specs:geronimo-atinject_1.0_spec:1.0
-org.apache.geronimo.specs:geronimo-el_2.2_spec:1.0.4
-org.apache.geronimo.specs:geronimo-interceptor_1.1_spec:1.0
-org.apache.geronimo.specs:geronimo-jcdi_1.1_spec:1.0
-# OSGI integration and dependencies
-org.apache.tamaya.ext:tamaya-osgi:{tamaya_version}
-org.apache.tamaya.ext:tamaya-functions:{tamaya_version}</code></pre>
+org.apache.tamaya:tamaya-core:{tamaya_version}
+org.apache.tamaya.ext:tamaya-functions:{tamaya_version}
+org.apache.tamaya.ext:tamaya-osgi:{tamaya_version}</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_usage">Usage</h3>
+<h3 id="_how_tamaya_deals_with_osgi_specialities">How Tamaya deals with OSGI Specialities</h3>
 <div class="paragraph">
-<p>As an example, what is possible you can implement an OSGI service as a normal POJO and publish it as an OSGI service.
-Given that configuration can be injected very easily:</p>
+<p>Important to know is that within OSGI class- and resource loading is not compatible with standard Java SE. Also bundle can
+be loaded or unloaded at any time, so Tamaya&#8217;s logic should not assume a stable non changing environment.
+These constraints are handled by Tamaya (implemented in tamaya-core and tamaya-psgi) as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Tamaya registers a ServiceListener which reads all java.util.ServiceLoader configurations and
+registers them as OSGI services. Hereby integration is two-way: The core module contains an
+OSGI Activator that replaces the default ServiceContext with an OSGI based ServiceContext that
+will consume all services through the OSGI service API. Consequently you can also register Tamaya extensions
+as OSGI services yourself (e.g. your own PropertySource instances).</p>
+</li>
+<li>
+<p>Tamaya&#8217;s ServiceContext SPI does not only provide a facade to the OSGI service mechanism it also provides
+an API for loading of (classpath) resources. In OSGI it delegates to the bundle&#8217;s getEntry(String) method.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Finally by adding Tamaya&#8217;s OSGI integration module (tamaya-osgi) Tamaya replaces the existing OSGI ConfigAdmin service
+with an istance based on Tamaya. Hereby Tamaya can use the existing ConfigAdmin component as a fallback
+or override source (see configuration options explained later). This does not interfere with any existing
+injection mechanism already in place in your existing OSGI environment.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_how_tamaya_integrates_with_the_existing_configadmin_service">Configuring how Tamaya integrates with the existing ConfigAdmin service</h3>
+<div class="paragraph">
+<p>Tamaya provides several options that define how it combines it&#8217;s values with the values provided
+from the additionally installed ConfigAdmin service:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>org.tamaya.integration.osgi.cm.ranking (int) allows to configure the OSGI service ranking used by the Tamaya
+BundleActivator to register Tamaya&#8217;s ConfigAdmin service. In OSGI higher ranking precede lower rankings.
+By default Tamaya&#8217;s OSGI extending service registration mechanism is reusing any annotated @Priority priority
+values as corresponsing rankings.</p>
+</li>
+<li>
+<p>org.tamaya.integration.osgi.cm.override (boolean) allows to configure if Tamaya is overriding any existing
+values from the default ConfigAdmin instance, or only extending them. In other words this setting allows you to
+define, which configuration subsystem has precedence for evaluating the final values, either Tamaya based
+configuration (default) or the configuration mechanisms provided by default from your OSGI container (when this flag
+is set to false).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mapping_of_pids_and_factorypids">Mapping of pids and factoryPids</h3>
+<div class="paragraph">
+<p>When accessing configuration from the OSGI ConfigAdmin a pid, or factoryPid is passed additionally to
+tell the configuration service, for which bundle configuration is requested. Tamaya, by default, maps
+the OSGI pid or factory pid to a corresponding root section in Tamaya&#8217;s configuration:</p>
 </div>
 <div class="listingblock">
+<div class="title">OSGI default pid mapping</div>
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public class HelloServiceImpl implements HelloService{
+<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing"># OSGI parameters
+pid=myBundle
+key=common.net.port
 
-    @Config("example.message")
-    @ConfigDefault("A Tamaya default.")
-    private String message;
-
-    @Override
-    public String sayHello() {
-        System.err.println("HELLO: " + message);
-        return message;
-    }
-}</code></pre>
+# Tamaya key
+[myBundle]common.net.port</code></pre>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_spi">SPI</h3>
 <div class="paragraph">
-<p>By default the OSGI pid or factory pid is mapped to a corresponding root section in Tamaya&#8217;s configuration. We are
-well aware that this might not always be the desired approach. Therefore there as an SPI service provided that allows
-to determine this mapping:</p>
+<p>This mapping can be adapted if needed by implementing and registering the following OSGI service:</p>
 </div>
 <div class="listingblock">
 <div class="title">OSGIConfigRootMapper</div>
@@ -268,10 +263,55 @@ to determine this mapping:</p>
 }</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tamaya_based_injection">Tamaya based Injection</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_2">Overview</h3>
 <div class="paragraph">
-<p>Registering your own implementation as an OSGI service allows you to redefine the key mapping.
-By default a configuration mapping for pid/factoryPid==myBundle is mapped to [bundle:myBundle].
-This mapping is used as a prefix when collecting the corresponding entries for the OSGI configuration.</p>
+<p>OSGI itself already provides injection and configuration mechanism. Since Tamaya is working in the back
+you can continue to use the mechanism of your choice. Nevertheless Tamaya also supports enabling Tamaya
+specific configuration injection.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installation_2">Installation</h3>
+<div class="paragraph">
+<p>To benefit from Tamaya&#8217;s injection mechanism in your OSGI services you need additionally to the basic
+OSGI support described earlier in this document:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">org.apache.geronimo.specs:geronimo-atinject_1.0_spec:1.0
+org.apache.tamaya.ext:tamaya-inject-api:{tamaya_version}
+org.apache.tamaya.ext:tamaya-inject-se:{tamaya_version}
+org.apache.tamaya.ext:tamaya-inject-osgi:{tamaya_version}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_example">Example</h3>
+<div class="paragraph">
+<p>As an example, what is possible you can implement and register an OSGI service and use Tamaya&#8217;s injection
+API for configuring it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public class HelloServiceImpl implements HelloService{
+
+    @Config(value={"example.message"}, defaultValue="A Tamaya default.")
+    private String message;
+
+    @Override
+    public String sayHello() {
+        System.err.println("HELLO: " + message);
+        return message;
+    }
+}</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -287,7 +327,7 @@ This mapping is used as a prefix when collecting the corresponding entries for t
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
-							at <span>2016-12-19</span>
+							at <span>2017-01-08</span>
 						</p>
 						<p>
 								<b>Disclaimer</b>
