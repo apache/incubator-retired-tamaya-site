@@ -146,5 +146,5 @@ The Tamaya API is compatible with Java 7 and beyond.
 
 == Further Documentation
 
-Being here we recommend to have a look at the more detailed documentation of Tamaya's link:API.html[API and SPI],
-and of its current available link:extensions.html[modules].
+Being here we recommend to have a look at the more detailed documentation of Tamaya's link:documentation/api.html[API and SPI],
+and of its current available link:documentation/extensions.html[modules].

@@ -38,7 +38,7 @@ Quickstart
 
 Using Apache Tamaya is simple:
 
-1. Add `{tamaya_mvn_group_id}:tamaya-core:{tamaya_version}` to your dependencies.
+1. Add `{configuration.tamaya_mvn_group_id}:tamaya-core:${configuration.tamaya_version}` to your dependencies.
 2. Add your config to `META-INF/javaconfiguration.properties`
 3. Access your configuration by `ConfigurationProvider.getConfiguration()` and use it.
 4. Look at the [extension modules](extensions.html) to customize your setup!
