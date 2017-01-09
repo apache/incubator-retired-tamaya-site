@@ -9,8 +9,7 @@
 === Overview
 
 Tamaya Resolver is an extension module. Refer to the
-// @todo Fix the link to the modules documentation
-link:modules.html[extensions documentation]
+link:../extensions.html[extensions documentation]
 for further details about modules.
 
 Tamaya Resolver provides a dynamic resolution mechanism, which allows to use UNIX-styled (+${...}+ placeholder

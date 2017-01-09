@@ -8,8 +8,7 @@
 === Overview
 
 Tamaya Resources is an extension module. Refer to the
-// @todo Fix the link to the modules page
-link:modules.html[extensions documentation] for further details
+link:../extensions.html[extensions documentation] for further details
 about modules.
 
 Tamaya Resources defines some additional tools to locate resources in your classpath or file system based on descriptive

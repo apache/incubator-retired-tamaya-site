@@ -14,7 +14,7 @@ Tamaya JodaTime is an extension module to support the usage of http://www.joda.o
 in conjunction with Tamaya. Tamaya JodaTime defines some additional property
 converters to retrieve Joda-Time types from a given configuration.
 
-Refer to the link:modules.html[extensions documentation] for further details
+Refer to the link:../extensions.html[extensions documentation] for further details
 about modules.
 
 tools to locate resources in your classpath or file system based on descriptive
