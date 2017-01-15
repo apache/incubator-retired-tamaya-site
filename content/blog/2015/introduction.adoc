@@ -1,0 +1,11 @@
+title=Introduction to configuration (German)
+date=2015-07-01
+type=post
+tags=blog, asciidoc
+status=published
+~~~~~~
+= Introduction to configuration (German)
+
+Anatole and Thorben Janssen wrote an introduction about configuration and motivation to pursuit work on Apache Tamaya:
+
+* https://jaxenter.de/konfiguration-in-java-20526[Konfiguration in Java (German article)]

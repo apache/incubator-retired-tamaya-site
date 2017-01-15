@@ -1,0 +1,11 @@
+title=Introduction to Apache Tamaya Incubating (German)
+date=2014-12-15
+type=post
+tags=blog, asciidoc
+status=published
+~~~~~~
+= Introduction to Apache Tamaya Incubating (German)
+
+This article, written by Michael Thomas, gives an overview of Apache Tamaya Incubating, its concepts and motivation as a portable configuration system for Java SE, ME, EE-deployments.
+
+* https://jaxenter.de/was-ist-apache-tamaya-171[Was ist Apache Tamaya? (German article)]

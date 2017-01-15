@@ -1,0 +1,12 @@
+title=Java EE 8 without any configuration JSR (German)
+date=2014-09-03
+type=post
+tags=blog, asciidoc
+status=published
+~~~~~~
+= Java EE 8 without any configuration JSR (German)
+
+Anatole wrote a blog post explaining that there will not be a configuration JSR in Java EE8.
+
+* https://jaxenter.de/ruckzieher-java-ee-8-ohne-konfigurations-jsr-678[German news article at JAXenter]
+* http://javaeeconfig.blogspot.de/2014/09/no-java-ee-configuration-for-ee8-dear.html[original blog post]
