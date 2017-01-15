@@ -16,7 +16,7 @@ powerful environment model and a flexible SPI.
 * Pluggable Configuration Backends
 * Enforceable Configuration Policies
 * Configuration Validation and Documentation
-* Seemless Enterprise Integration
+* Seamless Enterprise Integration
 
 == Documentation
 
