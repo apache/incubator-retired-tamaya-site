@@ -1,1 +1,3 @@
 output/**
+# Local object store of jbake
+cache/**
