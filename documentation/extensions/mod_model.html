@@ -1,0 +1,796 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	    <meta charset="utf-8"/>
+	    <title>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Model Documentation and Validation</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	    <meta name="description" content=""/>
+	    <meta name="author" content=""/>
+	    <meta name="keywords" content=""/>
+	    <meta name="generator" content="'JBake '+'${version}"/>
+
+	    <!-- Le styles -->
+	    <link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+	    <link href="../../css/asciidoctor.css" rel="stylesheet"/>
+	    <link href="../../css/base.css" rel="stylesheet"/>
+	    <link href="../../css/prettify.css" rel="stylesheet"/>
+
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	      <script src="../../js/html5shiv.min.js"></script>
+	    <![endif]-->
+
+	    <!-- Fav and touch icons from ASF -->
+			<link rel="shortcut icon" href="../../favicon.ico"/>
+			<link rel="apple-touch-icon" sizes="57x57" href="../../favicons/apple-touch-icon-57x57.png"/>
+		  <link rel="apple-touch-icon" sizes="60x60" href="../../favicons/apple-touch-icon-60x60.png"/>
+		  <link rel="apple-touch-icon" sizes="72x72" href="../../favicons/apple-touch-icon-72x72.png"/>
+		  <link rel="apple-touch-icon" sizes="76x76" href="../../favicons/apple-touch-icon-76x76.png"/>
+		  <link rel="apple-touch-icon" sizes="114x114" href="../../favicons/apple-touch-icon-114x114.png"/>
+		  <link rel="apple-touch-icon" sizes="120x120" href="../../favicons/apple-touch-icon-120x120.png"/>
+		  <link rel="apple-touch-icon" sizes="144x144" href="../../favicons/apple-touch-icon-144x144.png"/>
+		  <link rel="apple-touch-icon" sizes="152x152" href="../../favicons/apple-touch-icon-152x152.png"/>
+		  <link rel="apple-touch-icon" sizes="180x180" href="../../favicons/apple-touch-icon-180x180.png"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-32x32.png" sizes="32x32"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-194x194.png" sizes="194x194"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-96x96.png" sizes="96x96"/>
+		  <link rel="icon" type="image/png" href="../../favicons/android-chrome-192x192.png" sizes="192x192"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-16x16.png" sizes="16x16"/>
+		  <link rel="manifest" href="../../favicons/manifest.json"/>
+		  <link rel="shortcut icon" href="../../favicons/favicon.ico"/>
+		  <meta name="msapplication-TileColor" content="#603cba"/>
+		  <meta name="msapplication-TileImage" content="../../favicons/mstile-144x144.png"/>
+		  <meta name="msapplication-config" content="../../favicons/browserconfig.xml"/>
+		  <meta name="theme-color" content="#303284"/>
+	</head>
+	<body onload="prettyPrint()">
+	<div id="wrap">
+		<div>
+
+	  <!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../index.html">Apache Tamaya (incubating)</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+						<li><a href="../../start.html">Tamaya in 5 minutes</a></li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="../../documentation/usecases.html">Use Cases and Requirements</a></li>
+								<li><a href="../../documentation/quickstart.html">Quickstart</a></li>
+								<li><a href="../../documentation/api.html">API</a></li>
+								<li><a href="../../documentation/core.html">Core</a></li>
+								<li><a href="../../documentation/extensions.html">Extension Guide</a></li>
+								<li class="divider"></li>
+								<li><a href="../../apidocs/index.html">Javadoc 0.3-incubating-SNAPSHOT (external)</a></li>
+              </ul>
+            </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="../../development/source.html">Sources</a></li>
+								<li><a href="../../development/community.html">Community</a></li>
+								<li><a href="../../development/team.html">Project Team</a></li>
+								<li><a target="_blank" href="https://builds.apache.org/view/S-Z/view/Tamaya/">CI / ASF Jenkins</a></li>
+								<li><a target="_blank" href="https://issues.apache.org/jira/browse/TAMAYA">Issues / ASF Jira</a></li>
+								<li><a href="../../devguide.html">Development Guide</a></li>
+								<li><a href="../../release-guide.html">Release Guide</a></li>
+								<li class="divider"></li>
+								<li><a href="../../development/possible-contributions.html">Possible Contributions</a></li>
+              </ul>
+            </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Releases <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="../../download.html">Download</a></li>
+								<li><a href="../../history.html">Release History</a></li>
+              </ul>
+            </li>
+<!-- Example:
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+-->
+						<li><a href="../../sitemap.xml">Sitemap</a></li>
+						<li><a href="../../feed.xml">Subscribe</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+	</div>
+		<div class="container">
+
+			<div class="page-header">
+				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Model Documentation and Validation</h1>
+			</div>
+
+			<p><em>2017-01-10</em></p>
+
+			<p><div id="preamble">
+<div class="sectionbody">
+<!-- toc disabled -->
+</div>
+</div>
+<div class="sect1">
+<h2 id="ExtModel">Tamaya Model Documentation and Validation (Extension Module)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview">Overview</h3>
+<div class="paragraph">
+<p>The Tamaya model module provides support for documenting configuration and validating configuration read and processed
+against this model. Documentation and config models can be provided in different ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>as separate meta-model documents</p>
+</li>
+<li>
+<p>by providers that check classes/packages for configuration annotations (planned)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compatibility">Compatibility</h3>
+<div class="paragraph">
+<p>The module is based on Java 7, so it will not run on Java 7 and beyond.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installation">Installation</h3>
+<div class="paragraph">
+<p>To benefit from configuration builder support you only must add the corresponding dependency to your module:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
+  &lt;artifactId&gt;tamaya-model&lt;/artifactId&gt;
+  &lt;version&gt;{tamaya_version}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_describing_the_configuration_meta_model">Describing the Configuration Meta-Model</h3>
+<div class="paragraph">
+<p>Basically configuration is modelled using key, value-pairs. Looking at a keys
+a.b.c.param1 and a.b.c.param2 the following concepts can be used to defined/describe
+configuration:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>the <em>configuration section:</em> In our case this equals to a.b.c, which itself also includes the
+transitive entries a.b and a.</p>
+</li>
+<li>
+<p>the <em>configuration parameter:</em> Basically parameters are adressed using their fully qualified names,
+which equals to the containing section name and the relative parameter name, separated by the dor separator.
+In the above example a.b.c.param1 and a.b.c.param2 are the fully qualified parameter names.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Now with only these 2 concepts a simple configuration meta-model can be defined as</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a meta-model&#8217;s name, used just for grouping different meta-models and entries to better separate
+descriptions, e.g. in a management console or generated configuration documentation site.</p>
+</li>
+<li>
+<p>a set of sections.</p>
+</li>
+<li>
+<p>a set of parameters.</p>
+</li>
+<li>
+<p>Both, sections (.model.target=Section) as well as parameter models (.model.target=Parameter)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>can be modelled by a meta-data entry, by default _my.config.key.model.</p>
+</li>
+<li>
+<p>may be required, or optional (.model.required=true|false)</p>
+</li>
+<li>
+<p>may have an optional description</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Parameters additionally have</p>
+<div class="ulist">
+<ul>
+<li>
+<p>a <em>type</em> (.model.type=Classname), described by the fully qualified class name, into which any configured (String)
+value must be convertable into. If no type is configured java.ui.lang.String is assumed as default.</p>
+</li>
+<li>
+<p>an optional regular expression that can be used to validate the String values returned from a
+configuration (.model.expression=regexpression).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given these concepts a configuration can be fully described. Entries that are not contained in one of the given
+sections (or its children), or parameters not described or marked as valid (e.g. for dynamic configModels of
+a section), are called <em>undefined</em>. Undefined parameters should be grouped with its parent section. Each section, as
+well as all parent sections, including transitive) of any parametet read, should similarly marked as undefined, if and
+only if</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>the section itself is (directly) <em>undefined</em></p>
+</li>
+<li>
+<p>the section is not a <em>super section</em> of a defined section.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>As en example the section definition of a.b.c also implicitly includes the sections a.b and a to be defined
+sections, despite the fact that section properties, such as description and custom configModels are not inherited to
+its parent, or child section.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defining_meta_configuration_model">Defining Meta-Configuration Model</h3>
+<div class="paragraph">
+<p>The configuration meta-model is defined by simple configuration meta-data entries. The section for all model
+configuration by default is called model, which results in entries such as _my.config.key.model.target=Section.
+Within this section fully qualified configuration keys defines
+which part of the configuration is targeted by certain entries.</p>
+</div>
+<div class="sect3">
+<h4 id="_defining_sections">Defining Sections</h4>
+<div class="paragraph">
+<p>First we start to define some configuration sections, the example below starts with the most important
+variants supported:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing"># Metamodel information
+_model.provider=ConfigModel Extension
+
+# org.mycompany.root (optional section)
+_org.mycompany.root.model.target=Section
+_org.mycompany.root.model.description=Root section defining my company configuration.
+
+# org.mycompany.security (required section)
+_org.mycompany.security.model.target=Section
+_org.mycompany.security.model.required=true
+_org.mycompany.security.model.description=Security related settings.\
+         refer for further details to XXX.
+
+# minmal section
+_minimal.model.target=Section
+
+# custom validated section
+_validated.model.target=Section
+_validated.model.validator=org.apache.tamaya.model.TestValidator</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Above org.mycompany.root transitively defines 3 sections:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>org</p>
+</li>
+<li>
+<p>org.mycompany</p>
+</li>
+<li>
+<p>org.mycompany.root</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All sections are optional. Additionally the model above also defines a required section org.mycompany.security.
+Required sections are checked so the section is not empty. It is not checked for any specific parameter hereby,
+only the existance of any child parameter is validated.</p>
+</div>
+<div class="paragraph">
+<p>The <em>class</em> attribute has to be defined for any section definition, because if not set a model entry is, by default,
+defined to be a parameter configModel entry. Given above the entry for the section minimal shows such a minimal
+entry.</p>
+</div>
+<div class="paragraph">
+<p>validated defines a section, which is validated through a customizable validator. Hereby an ordered list of validators
+can be provided, separated by commas.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_defining_parameters">Defining Parameters</h4>
+<div class="paragraph">
+<p>Similarly parameters also can be defined:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing"># org.mycompany.root.name (required parameter)
+_org.mycompany.root.name.model.target=Parameter
+_org.mycompany.root.name.model.required=true
+_org.mycompany.root.name.model.description=The company's name, also used in the application's main header.
+
+# org.mycompany.security (required parameters)
+_org.mycompany.security.uid.model.required=true
+_org.mycompany.security.uid.model.description=The user id.
+_org.mycompany.security.realm.model.required=true
+_org.mycompany.security.realm.model.validator=org.apache.tamaya.model.RealmValidator
+_org.mycompany.security.realm.model.description=The security realm required.
+_org.mycompany.security.tokenid.model.description=The token id, if the token service is used (optional).
+
+# A minmal parameter
+_minimalClass.model.target=Class</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Similarly as when defining section also parameter entries define transitively its containing sections. E.g.
+the entry above for org.mycompany.security.realm also defines the following sections (as optional).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>org</p>
+</li>
+<li>
+<p>org.mycompany</p>
+</li>
+<li>
+<p>org.mycompany.security</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Additional entries for section, e.g. configModels to be done, can be added as described in the previous section,
+but are optional.</p>
+</div>
+<div class="paragraph">
+<p>Since the parameter is the default type for model entries, a minmal parameter model entry only only needs it&#8217;s
+parameter type to be defined. In the example above we define a parameter minimalClass of type Class.
+Types hereby are fully qualified class names, whereas as 'java.ui.lang' for built-in language types can be
+ommitted.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_model_locations">Model Locations</h4>
+<div class="paragraph">
+<p>By default the configuration model can be defined at the following locations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>classpath*:META-INF/configmodel.properties, separate to the current Configuration. This functionality is enabled
+by default, but can be disabled by adding org.apache.tamaya.model.default.enabled=false to your current
+Configuration.</p>
+</li>
+<li>
+<p>implicitly as part of the current +Configuration. THis can be disabled by setting
+the org.apache.tamaya.model.integrated.enabled configuration poarameter to false.</p>
+</li>
+<li>
+<p>customized by configuring the org.apache.tamaya.model.resources in the current Configuration. This
+parameter allows to define the locations from where the model extension is trying to read the
+model configuration. If the <em>resources extension</em> is available in your system it is used to
+evaluate the locations. If not the default Classloader.getResources command is issued. Also it
+is required that the <em>formats extension</em> is available, since this is used to effectively read the
+data. This extension also allows you to use alternate representation formats such as ini, xml, yml, json.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tracking_configuration_access">Tracking Configuration Access</h3>
+<div class="paragraph">
+<p>The model module also allows tracking which code accesses configuration properties or configuration parameters.
+It checks the stacktrace to evaluate the calling code location, hereby any unwanted packages can be implicitly
+ommitted from the stacktrace. Also the maximal length of the stacktrace retained can be constraint in length.
+The usages are recorded as Usage instances. Hereby for each parameter accessed a corresponding Usage
+instance is created. It can be accessed by calling Usage ConfigUsageStats.getUsage(String key). Usage
+statistics for calling Configuration.getProperties() can be obtained calling Usage getUsageAllProps();.</p>
+</div>
+<div class="paragraph">
+<p>Usage tracking is disabled by default. It can be enabled by calling ConfigUsageStats.enableUsageTracking(true);.
+ConfigUsageStats.isUsageTrackingEnabled() returns the current tracking status.</p>
+</div>
+<div class="paragraph">
+<p>The Usage class itself provides access to further fainer grained usage data (AccessDetail) containing:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the access point (fqn.ClassName#method(line: xxx)).</p>
+</li>
+<li>
+<p>the number of accesses</p>
+</li>
+<li>
+<p>the first an last access</p>
+</li>
+<li>
+<p>the values read</p>
+</li>
+<li>
+<p>the access stacktrace (filtered by ignored packages).</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public final class Usage {
+    [...]
+    public String getKey();
+    public void clearMetrics();
+    public int getReferenceCount();
+    public int getUsageCount();
+    public Collection&lt;AccessDetail&gt; getAccessDetails(Class type);
+    public Collection&lt;AccessDetail&gt; getAccessDetails(Package pack);
+    public Collection&lt;AccessDetail&gt; getAccessDetails(String lookupExpression);
+    public Collection&lt;AccessDetail&gt; getAccessDetails();
+    public void trackUsage(String value);
+    public void trackUsage(String value, int maxTraceLength);
+
+
+    public static final class AccessDetail {
+        [...]
+        public void clearStats();
+        public long trackAccess(String value);
+        public long getAccessCount();
+        public String getAccessPoint();
+        public long getFirstAccessTS();
+        public long getLastAccessTS();
+        public String[] getStackTrace();
+        public Map&lt;Long, String&gt; getTrackedValues();
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With ConfigUsageStats.clearUsageStats() the collected statistics can be reset at any time. Summarizing the main
+singleton for configuration statistics is defined as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public final class ConfigUsageStats{
+    public static Set&lt;String&gt; getIgnoredUsagePackages();
+    public static void addIgnoredUsagePackages(String... packageName);
+    public static void enableUsageTracking(boolean enabled);
+    public static Usage getUsage(String key);
+    public static Collection&lt;Usage&gt; getUsages();
+    public static void clearUsageStats();
+    public static Usage getUsageAllProperties();
+    public static boolean isUsageTrackingEnabled();
+    public static String getUsageInfo();
+}</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_customizing_the_stacktrage_for_usage_reporting">Customizing the Stacktrage for Usage Reporting</h4>
+<div class="paragraph">
+<p>The stacktrace tracked by the system can be customized in several ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ConfigUsageStats.addIgnoredPackageNames(String...) allows to add additional ignored package names.</p>
+</li>
+<li>
+<p>With Usage.setMaxTraceLength(int) the maximal size of the stacktraces logged can be set. Setting a
+negative value will disable stacktrace logging completelely.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_accessing_usage_statistics">Accessing Usage Statistics</h3>
+<div class="paragraph">
+<p>Bascially usage statistics are available in two forms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The Usage/AccessDetail object tree can be accessed programmatically from the ConfigUsageStats
+singleton.</p>
+</li>
+<li>
+<p>With ConfigUsageStats.getUsageInfo() also a textual representation of the usage statistics
+can be obtained, as illustrated below (a snipped from the current test output):</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">Apache Tamaya Configuration Usage Metrics
+=========================================
+DATE: Sat Apr 30 21:51:09 CEST 2016
+
+220    &lt;&lt;all&gt;&gt;:
+  - 220   &lt;unknown/filtered/internal&gt;                       , first=Sat Apr 30 21:51:09 CEST 2016, last=Sat Apr 30 21:51:09 CEST 2016
+3      java.version:
+  - 2     test.model.TestConfigAccessor#readProperty(line:43), first=Sat Apr 30 21:51:09 CEST 2016, last=Sat Apr 30 21:51:09 CEST 2016
+  - 1     &lt;unknown/filtered/internal&gt;                       , first=Sat Apr 30 21:51:09 CEST 2016, last=Sat Apr 30 21:51:09 CEST 2016</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_programmatic_api">Programmatic API</h4>
+<div class="paragraph">
+<p>Basically the configModel module provides a simple API to access the defined ConfigModel instances and
+validating the current Configuration against the models as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public final class ConfigModelManager {
+
+    private ConfigModelManager() {}
+
+    public static Collection&lt;ConfigModel&gt; getModels();
+    public static Collection&lt;ConfigModel&gt; findModels(ModelType type, String namePattern);
+    public static &lt;T extends ConfigModel&gt; T getModel(String name, Class&lt;T&gt; modelType);
+    public static Collection&lt;ConfigModel&gt; findModels(String namePattern);
+
+    public static Collection&lt;ValidationResult&gt; validate();
+    public static Collection&lt;ValidationResult&gt; validate(boolean showUndefined);
+    public static Collection&lt;ValidationResult&gt; validate(Configuration config);
+    public static Collection&lt;ValidationResult&gt; validate(Configuration config, boolean showUndefined);
+
+    public static void registerMBean();
+    public static void registerMBean(String context);
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This singleton allows to validate the current or any Configuration instance. All the ConfigModels read also are
+available from the getModels method. This models can be used to provide documentation, e.g. as part of a CLI interface
+or shown on a documentation web server.</p>
+</div>
+<div class="paragraph">
+<p>A ConfigModel hereby is defined as one single part of configuration, typically corresponding to a specific concern
+of your system. As an example you can define different models for different modules or products plugged together.
+With resolution mechanism in place you can also define a shared module that is targeted by multiple modules as a
+single configuration source (e.g. for configuring the machine&#8217;s IP address and subnet settings only once.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface ConfigModel {
+
+    ModelTarget getType();
+    String getName();
+    String getProvider();
+    boolean isRequired();
+    String getDescription();
+    Collection&lt;ValidationResult&gt; validate(Configuration config);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hereby ModelTarget defines more details on the kind of model:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public enum ModelTarget {
+    /**
+     * A configuration section.
+     */
+    Section,
+    /**
+     * A configuration paramter.
+     */
+    Parameter,
+    /**
+     * ConfigModel that is a container of other validations.
+     */
+    Group
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A ValidationResult models one validation executed by a ConfigModel on a certain Configuration instance:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public final class ValidationResult {
+
+    public static ValidationResult ofValid(ConfigModel configModel);
+    public static ValidationResult ofMissing(ConfigModel configModel);
+    public static ValidationResult ofMissing(ConfigModel configModel, String message);
+    public static ValidationResult ofError(ConfigModel configModel, String error);
+    public static ValidationResult ofWarning(ConfigModel configModel, String warning);
+    public static ValidationResult ofDeprecated(ConfigModel configModel, String alternateUsage);
+    public static ValidationResult ofDeprecated(ConfigModel configModel);
+    public static ValidationResult ofUndefined(final String key);
+    public static ValidationResult of(ConfigModel configModel, ValidationState result, String message);
+
+    public ConfigModel getConfigModel();
+    public ValidationState getResult();
+    public String getMessage(),
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The result of a complete validation on a concrete Configuration instance finally is mapped as a
+Collection&lt;ValidationResult&gt;, refer to the methods on ConfigModelManager.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_auto_documentation_of_classes_with_configuration_injection">Auto-Documentation of Classes with Configuration Injection</h3>
+<div class="paragraph">
+<p>A special feature of this module is that it observes ConfigEvent published through Tamaya&#8217;as event channel
+(tamaya-events module). If no metaconfiguration model is found the model manager by default automatically creates
+models for all injected instances on the fly. In the case of CDI integration this happens typically during deployment
+time, since CDI initializes during deployment time. Other runtime platforms, such as OSGI, may have rather different
+behaviour. Nevertheless this means that after your system has been started you should have access to a complete
+set of ConfigModel instances that automatically document all the classes in your system that consume configuration
+(through injection).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_spi">Model SPI</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_registering_configuration_models">Registering Configuration Models</h3>
+<div class="paragraph">
+<p>The model extension also provides an SPI where customized functionality can be added. The main abstraction hereby is
+the ModelProviderSpi interface, which allows any kind of additional config models to be added to the system:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface ModelProviderSpi {
+
+    Collection&lt;ConfigModel&gt; getConfigModels();
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>New instances implementing this interface must be registered into the current ServiceContext, by default the
+ServiceLoader is used.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_configusagestatsspi">The ConfigUsageStatsSpi</h3>
+<div class="paragraph">
+<p>The methods for managing and tracking of configuration changes are similarly delegated to an
+implementation of the org.apache.tamaya.model.spi.ConfigUsageStatsSpi SPI.
+By implementing this SPI and registerting it with the ServiceContext the usage tracking
+logic can be adapted or replaced.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_other_utility_classes">Other Utility Classes</h3>
+<div class="paragraph">
+<p>The module also provides further utility classes that may be useful for implementing models or testing:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>AbstractModel provides a base class that can be extended, when implementing ConfigModel.</p>
+</li>
+<li>
+<p>AreaConfigModel provides a ConfigModel implementation (with a corresponding Builder) to model the
+requirement of certain configuration sections being present, or opionally present, in the model.</p>
+</li>
+<li>
+<p>ParameterModel provides an implementation base class for validating parameters on existence and compliance
+with a regular expression.</p>
+</li>
+<li>
+<p>ConfigDocumentationMBean is the MBean registered that models similar functionality as ConfigModelManager.</p>
+</li>
+<li>
+<p>ConfigModelGroup provides a ConfigModel that groups several child models.</p>
+</li>
+<li>
+<p>ConfigModelReader allows to read ConfigModels from properties files as described at the beginning of this
+document.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_switches_to_enable_disable_functionality">Switches to enable/disable functionality</h3>
+<div class="paragraph">
+<p>The model module provides different switches that can be used to activate or deactivate features:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>tamaya.model.integrated.enabled allows to deactivate reading inline metaconfiguration delivered with
+the normal Tamaya Configuration. By default inline entries (_.abcd.model.*) are evaluated.</p>
+</li>
+<li>
+<p>tamaya.model.default.enabled allows to deactivate reading metamodel information from
+classpath:META-INF/configmodel.properties. By default it is active.</p>
+</li>
+<li>
+<p>tamaya.model.resources allows to define additional resources (loaded through the resources extension),
+that can be used to read metamodel information in any format using Tamaya&#8217;s format module.</p>
+</li>
+<li>
+<p>the system property tamaya.model.autoModelEvents allows to activate/deactivate the automatic
+documentation of classes configured and published by Tamaya ConfiguredType event instances (e.g. published by
+Tamaya&#8217;s injection modules).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></p>
+
+			<hr />
+		</div>
+	</div>
+	<div>
+			<div id="push"></div>
+
+		    <div id="footer">
+		      <div class="container">
+		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
+							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
+							at <span>2017-01-15</span>
+						</p>
+						<p>
+								<b>Disclaimer</b>
+                    Apache Tamaya (incubating) is an effort undergoing
+                    incubation at
+                    The Apache Software Foundation (ASF), sponsored by
+                    the name of Apache Incubator. Incubation is required of
+                    all newly accepted projects until a further review indicates
+                    that the infrastructure, communications, and decision making
+                    process have stabilized in a manner consistent with other
+                    successful ASF projects. While incubation status is not
+                    necessarily a reflection of the completeness or stability of
+                    the code, it does indicate that the project has yet to
+                    be fully endorsed by the ASF.<br />
+                    <a href="http://incubator.apache.org/guides/website.html" style="border:0px;" target="_target"><img class="incubator-logo" src="../../logos/egg-logo2.png"/></a>
+							</p>
+		      </div>
+		    </div>
+
+		    <!-- Le javascript
+		    ================================================== -->
+		    <!-- Placed at the end of the document so the pages load faster -->
+		    <script src="../../js/jquery-1.11.1.min.js"></script>
+		    <script src="../../js/bootstrap.min.js"></script>
+		    <script src="../../js/prettify.js"></script>
+
+    	</div>
+    </body>
+</html>

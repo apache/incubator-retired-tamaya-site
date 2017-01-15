@@ -1,0 +1,558 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	    <meta charset="utf-8"/>
+	    <title>Apache Tamaya: Release Guide</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	    <meta name="description" content=""/>
+	    <meta name="author" content=""/>
+	    <meta name="keywords" content=""/>
+	    <meta name="generator" content="'JBake '+'${version}"/>
+
+	    <!-- Le styles -->
+	    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+	    <link href="css/asciidoctor.css" rel="stylesheet"/>
+	    <link href="css/base.css" rel="stylesheet"/>
+	    <link href="css/prettify.css" rel="stylesheet"/>
+
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	      <script src="js/html5shiv.min.js"></script>
+	    <![endif]-->
+
+	    <!-- Fav and touch icons from ASF -->
+			<link rel="shortcut icon" href="favicon.ico"/>
+			<link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-touch-icon-57x57.png"/>
+		  <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-touch-icon-60x60.png"/>
+		  <link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-touch-icon-72x72.png"/>
+		  <link rel="apple-touch-icon" sizes="76x76" href="favicons/apple-touch-icon-76x76.png"/>
+		  <link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-touch-icon-114x114.png"/>
+		  <link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-touch-icon-120x120.png"/>
+		  <link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-touch-icon-144x144.png"/>
+		  <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png"/>
+		  <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png"/>
+		  <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32"/>
+		  <link rel="icon" type="image/png" href="favicons/favicon-194x194.png" sizes="194x194"/>
+		  <link rel="icon" type="image/png" href="favicons/favicon-96x96.png" sizes="96x96"/>
+		  <link rel="icon" type="image/png" href="favicons/android-chrome-192x192.png" sizes="192x192"/>
+		  <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16"/>
+		  <link rel="manifest" href="favicons/manifest.json"/>
+		  <link rel="shortcut icon" href="favicons/favicon.ico"/>
+		  <meta name="msapplication-TileColor" content="#603cba"/>
+		  <meta name="msapplication-TileImage" content="favicons/mstile-144x144.png"/>
+		  <meta name="msapplication-config" content="favicons/browserconfig.xml"/>
+		  <meta name="theme-color" content="#303284"/>
+	</head>
+	<body onload="prettyPrint()">
+	<div id="wrap">
+		<div>
+
+	  <!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Apache Tamaya (incubating)</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+						<li><a href="start.html">Tamaya in 5 minutes</a></li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="documentation/usecases.html">Use Cases and Requirements</a></li>
+								<li><a href="documentation/quickstart.html">Quickstart</a></li>
+								<li><a href="documentation/api.html">API</a></li>
+								<li><a href="documentation/core.html">Core</a></li>
+								<li><a href="documentation/extensions.html">Extension Guide</a></li>
+								<li class="divider"></li>
+								<li><a href="apidocs/index.html">Javadoc 0.3-incubating-SNAPSHOT (external)</a></li>
+              </ul>
+            </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="development/source.html">Sources</a></li>
+								<li><a href="development/community.html">Community</a></li>
+								<li><a href="development/team.html">Project Team</a></li>
+								<li><a target="_blank" href="https://builds.apache.org/view/S-Z/view/Tamaya/">CI / ASF Jenkins</a></li>
+								<li><a target="_blank" href="https://issues.apache.org/jira/browse/TAMAYA">Issues / ASF Jira</a></li>
+								<li><a href="devguide.html">Development Guide</a></li>
+								<li><a href="release-guide.html">Release Guide</a></li>
+								<li class="divider"></li>
+								<li><a href="development/possible-contributions.html">Possible Contributions</a></li>
+              </ul>
+            </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Releases <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="download.html">Download</a></li>
+								<li><a href="history.html">Release History</a></li>
+              </ul>
+            </li>
+<!-- Example:
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+-->
+						<li><a href="sitemap.xml">Sitemap</a></li>
+						<li><a href="feed.xml">Subscribe</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+	</div>
+		<div class="container">
+
+			<div class="page-header">
+				<h1>Apache Tamaya: Release Guide</h1>
+			</div>
+
+			<p><em>2017-01-10</em></p>
+
+			<p><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Performing a release requires several steps. This document describes each step, so everybody in the committer&#8217;s
+team should be able to perform the release procedure.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tell_the_others_you_would_proceed_with_the_release_procedure">1. Tell the others you would proceed with the release procedure</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>first steps for the next release
+
+Hi @ all,
+
+If there are no objections, I'll start with the first steps for
+the next release (review, documentation,...).
+It would be great to start with the release procedure next week.
+
+Best regards,
+[name]</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_check_everything_is_ready">2. Check everything is ready</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Check the jenkins builds.</p>
+</li>
+<li>
+<p>Ensure all JIRA-tickets targeting the release are resolved. If not, get in contact with the ticket
+owner/assignee to check</p>
+<div class="ulist">
+<ul>
+<li>
+<p>if the ticket can be postponed for the next release</p>
+</li>
+<li>
+<p>how long it takes to resolve it and if one can help.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prepare_the_release">3. Prepare the release</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Create release notes and commit them to <code>tamaya/readme/</code> (format <code>ReleaseNotes-[version].html</code>)</p>
+</li>
+<li>
+<p>Create a release branch in git and switch to this branch:</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_using_the_release_plugin">3.1. Using the Release Plugin</h3>
+<div class="paragraph">
+<p>For performing the release you can use the maven release plugin:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ git checkout -b vote-tamaya-[release version]
+$ export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=200m"
+$ mvn release:prepare -DdryRun=true -DperformRelease=true
+# optionally pass GPG params for signing with: -Darguments="-Dgpg.keyname=1336D3E6 -Dgpg.passphrase=XXXXXX"
+# copy prepared workspace (to continue faster if an upload fails in the next step)</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If something fails you may switch to the master branch, fix whatever is needed and rebase your release branch to
+accommodate the latest changes done.</p>
+</li>
+<li>
+<p>On success you can check the release packages from <code>dist/target</code>.</p>
+</li>
+<li>
+<p>If everything looks good you can proceed with the release:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=200m"
+$ mvn release:prepare -DperformRelease=true
+$ mvn release:perform -DperformRelease=true</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_preparing_the_release_without_the_release_plugin">3.2. Preparing the release without the Release Plugin</h3>
+<div class="paragraph">
+<p>The release plugin is great, but in some cases it breaks even, when release:prepare -DdryRun=true was successful.
+Preparing the release vote without the release plugin is stright forward:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>As described checkout a release branch of the current head</p>
+</li>
+<li>
+<p>Then us maven and git commands to prepare the release:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ git checkout -b vote-tamaya-[release version]
+$ export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=200m"
+$ mvn versions:set versions:commit -DnewVersion=[release version] -DperformRelease=true
+# build the release locally and sign it with your certs
+$ mvn clean install -DperformRelease=true -Dgpg.keyname=1336D3E6 -Dgpg.passphrase=XXXXXX</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Check if everything is in place and correct, when finished you can tag and deploy the release&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ mvn deploy -DperformRelease=true -Dgpg.keyname=1336D3E6 -Dgpg.passphrase=XXXXXX</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>check the created commits including user-name and email</p>
+</li>
+<li>
+<p>login to <a href="https://repository.apache.org/" class="bare" target="_blank">https://repository.apache.org/</a> and go to "Staging Repositories"</p>
+</li>
+<li>
+<p>check the contents of the newly created tamaya staging repository</p>
+</li>
+<li>
+<p><em>close</em> the repository to let Nexus do its validations</p>
+</li>
+<li>
+<p>On success:</p>
+</li>
+<li>
+<p>push the release-branch to the git repo</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ git add -A
+$ git commit -m "Release Prepare: Set release version."
+$ git tag vote01-[release-version]
+$ git push --tags</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally open the next development version:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># example: newVersion=0.3-incubating-SNAPSHOT
+$ mvn version:set versions:commit -DnewVersion=[development-version]
+$ git add -A
+$ git commit -m "Release Prepare: Open new development version."</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add the distribution artifacts to the dev repositories:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ svn co https://dist.apache.org/repos/dist/dev/incubator/tamaya/
+$ mkdir [version]
+$ set RELEASE_HOME='pwd'/[version]
+$ cd PROJECT_ROOT
+$ cp DISCLAIMER $RELEASE_HOME
+$ cp NOTICE $RELEASE_HOME
+$ cp LICENCE $RELEASE_HOME
+$ cp rat.txt $RELEASE_HOME
+# Copy everything from
+#  $STAGING_REPO/distribution/0.2-incubating/tamaya-distribution-[version]-distribution-* into $RELEASE_HOME
+$ svn add [version]
+$ svn commit --username &lt;apacheId&gt;</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Check contents on <a href="https://dist.apache.org/repos/dist/dev/incubator/tamaya/">version</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_start_the_vote">4. Start the vote</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>[VOTE] Release of Apache Tamaya [version]
+
+Hi,
+
+I was running the needed tasks to get the [version] release of Apache Tamaya out.
+The artifacts are deployed to Nexus [1] (and [2]) and releases [4].
+
+The tag is available at [3] and will renamed once the vote passed.
+
+Please take a look at the artifacts and vote!
+
+Please note:
+This vote is a "majority approval" with a minimum of three +1 votes (see [5]).
+
+------------------------------------------------
+[ ] +1 for community members who have reviewed the bits
+[ ] +0
+[ ] -1 for fatal flaws that should cause these bits not to be released, and why..............
+------------------------------------------------
+
+Thanks,
+[name]
+
+[1] https://repository.apache.org/content/repositories/...
+[2] https://repository.apache.org/content/repositories/org/apache/tamaya/tamaya-distribution/[version]/tamaya-[version]-source-release.zip
+    https://repository.apache.org/content/repositories/org/apache/tamaya/tamaya-distribution/[version]/tamaya-[version]-bin-release.zip
+[3] https://git1-us-west.apache.org/repos/asf?p=incubator-tamaya.git;a=commit;h=2910da468fce16210e6dd77d8ba23ddbdd434efe
+[4] https://dist.apache.org/repos/dist/dev/incubator/tamaya/[release-version]
+[5] http://www.apache.org/foundation/voting.html#ReleaseVotes</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Announce the Vote</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a short link to the release at <a href="http://s.apache.org" class="bare">http://s.apache.org</a> (format Tamaya_[version])</p>
+</li>
+<li>
+<p>Tweet about the vote via <em>@TamayaConf</em></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>After 72 hours close the vote write a reult email, e.g.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[Result] (was: Re: [VOTE] Release of Apache Tamaya [version])
+
+Thank you for voting!
+
+X binding +1 votes (pmc):
+[list]
+
+Y non-binding +1 votes:
+[list]
+
+Z -1 votes
+[list]</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>After the vote on the PPMC has been finished and is successful, repeat the voting process on the
+incubator mailing list.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_perform_the_release">5. Perform the release</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If the binding majority approved the vote on both lists continue:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Login to <a href="https://repository.apache.org/" class="bare">https://repository.apache.org/</a> and <em>release</em> the repository</p>
+</li>
+<li>
+<p>Rename the vote branch:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ git branch -m vote01-tamaya-[release-version] tamaya-[release-version]</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add a release tag:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ git tag -a tamaya-[release-version]</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Merge master with the new prepared version:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ git checkout master
+$ git merge tamaya-[release-version]
+$ git push origin tamaya-[release-version]
+$ git push origin master</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Close the release and corresponding tickets at JIRA</p>
+</li>
+<li>
+<p>Wait some minutes and check <a href="http://repo2.maven.org/maven2/org/apache/tamaya" class="bare" target="_blank">http://repo2.maven.org/maven2/org/apache/tamaya</a></p>
+</li>
+<li>
+<p>Upload the distribution Artifacts</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ svn co https://dist.apache.org/repos/dist/release/incubator/tamaya/
+$ mkdir [version]
+# add and commit the artifacts (*source-release.zip, *bin-release.zip + asc, md5, sha1)
+# use the artifacts from:
+# http://repo1.maven.org/maven2/org/apache/tamaya/tamaya-distribution/[version]/</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_updating_the_tamaya_project_site">6. Updating the Tamaya Project Site</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Basically the new site should be directly deployable, just execute</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ mvn site site:deploy</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_announce_the_new_version">7. Announce the new version</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Announce the new version on @TamayaConf and other social media channels.
+Also drop a short mail on the mailing list.</p>
+</div>
+</div>
+</div></p>
+
+			<hr />
+		</div>
+	</div>
+	<div>
+			<div id="push"></div>
+
+		    <div id="footer">
+		      <div class="container">
+		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
+							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
+							at <span>2017-01-15</span>
+						</p>
+						<p>
+								<b>Disclaimer</b>
+                    Apache Tamaya (incubating) is an effort undergoing
+                    incubation at
+                    The Apache Software Foundation (ASF), sponsored by
+                    the name of Apache Incubator. Incubation is required of
+                    all newly accepted projects until a further review indicates
+                    that the infrastructure, communications, and decision making
+                    process have stabilized in a manner consistent with other
+                    successful ASF projects. While incubation status is not
+                    necessarily a reflection of the completeness or stability of
+                    the code, it does indicate that the project has yet to
+                    be fully endorsed by the ASF.<br />
+                    <a href="http://incubator.apache.org/guides/website.html" style="border:0px;" target="_target"><img class="incubator-logo" src="logos/egg-logo2.png"/></a>
+							</p>
+		      </div>
+		    </div>
+
+		    <!-- Le javascript
+		    ================================================== -->
+		    <!-- Placed at the end of the document so the pages load faster -->
+		    <script src="js/jquery-1.11.1.min.js"></script>
+		    <script src="js/bootstrap.min.js"></script>
+		    <script src="js/prettify.js"></script>
+
+    	</div>
+    </body>
+</html>

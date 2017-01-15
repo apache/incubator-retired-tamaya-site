@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apache Incubator Tamaya</title>
+    <link>https://tamaya.incubator.apache.org</link>
+    <atom:link href="https://tamaya.incubator.apache.org/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Apache Tamaya RSS feed template</description>
+    <language>en-gb</language>
+    <pubDate>So, 15 Jan 2017 21:44:06 +0100</pubDate>
+    <lastBuildDate>So, 15 Jan 2017 21:44:06 +0100</lastBuildDate>
+
+    <item>
+      <title>Introduction to configuration (German)</title>
+      <link>https://tamaya.incubator.apache.org/blog/2015/introduction.html</link>
+      <pubDate>Mi, 1 Jul 2015 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">blog/2015/introduction.html</guid>
+      <description>&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;Anatole and Thorben Janssen wrote an introduction about configuration and motivation to pursuit work on Apache Tamaya:&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;ulist&amp;quot;&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;https://jaxenter.de/konfiguration-in-java-20526&amp;quot;&amp;gt;Konfiguration in Java (German article)&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;</description>
+    </item><item>
+      <title>Introduction to Apache Tamaya Incubating (German)</title>
+      <link>https://tamaya.incubator.apache.org/blog/2014/whatistamaya.html</link>
+      <pubDate>Mo, 15 Dez 2014 00:00:00 +0100</pubDate>
+      <guid isPermaLink="false">blog/2014/whatistamaya.html</guid>
+      <description>&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;This article, written by Michael Thomas, gives an overview of Apache Tamaya Incubating, its concepts and motivation as a portable configuration system for Java SE, ME, EE-deployments.&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;ulist&amp;quot;&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;https://jaxenter.de/was-ist-apache-tamaya-171&amp;quot;&amp;gt;Was ist Apache Tamaya? (German article)&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;</description>
+    </item><item>
+      <title>Java EE 8 without any configuration JSR (German)</title>
+      <link>https://tamaya.incubator.apache.org/blog/2014/no-jsr-in-javaee8.html</link>
+      <pubDate>Mi, 3 Sep 2014 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">blog/2014/no-jsr-in-javaee8.html</guid>
+      <description>&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;Anatole wrote a blog post explaining that there will not be a configuration JSR in Java EE8.&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;ulist&amp;quot;&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;https://jaxenter.de/ruckzieher-java-ee-8-ohne-konfigurations-jsr-678&amp;quot;&amp;gt;German news article at JAXenter&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;http://javaeeconfig.blogspot.de/2014/09/no-java-ee-configuration-for-ee8-dear.html&amp;quot;&amp;gt;original blog post&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;</description>
+    </item>
+  </channel>
+</rss>
