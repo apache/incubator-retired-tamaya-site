@@ -1,1 +1,8 @@
+howto/**
 output/**
+# Local object store of jbake
+cache/**
+
+.idea/**
+*.iml
+
