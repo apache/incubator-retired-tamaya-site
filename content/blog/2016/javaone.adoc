@@ -1,0 +1,13 @@
+title=JavaOne 2016 - Configure once and run everywhere
+date=2016-09-27
+type=post
+tags=blog, asciidoc
+status=published
+~~~~~~
+= JavaOne 2016: Hackergarten & Configure once and run everywhere
+
+Anatole held a talk about Tamaya at JavaOne and took part in the Hackergarten:
+
+* https://community.oracle.com/docs/DOC-997220[Hackergarten schedule]
+* https://blogs.oracle.com/java/java-community-at-javaone[Java Community at JavaOne]
+* http://www.slideshare.net/AnatoleTresch/configure-once-run-everywhere-2016[Anatole's presentation]

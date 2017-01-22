@@ -1,0 +1,9 @@
+title=JUG St. Gallen - Introduction to Apache Tamaya (German)
+date=2016-01-26
+type=post
+tags=blog, asciidoc
+status=published
+~~~~~~
+= JUG St.Gallen
+
+Anatole is going to talk about "Konfiguration mit Apache Tamaya" at Java Usergroup meeting in St. Gallen.
