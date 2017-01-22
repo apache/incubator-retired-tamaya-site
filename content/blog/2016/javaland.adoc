@@ -8,6 +8,7 @@ status=published
 
 Anatole held a talk about Tamaya at Javaland 2016:
 
+* https://www.javaland.eu/[Javaland]
 * https://www.javaland.eu/en/archive-2016/[Javaland conference, Brühl, Germany, 2016-03-08 - 2016-03-10]
 * https://www.javaland.eu/en/archive-2016/downloads/[conference presentations, Topic: Configuring Containers]
 * https://www.doag.org/konferenz/konferenzplaner/b.php?id=499959&locS=1[Conference planer 2016]

@@ -7,3 +7,5 @@ status=published
 = JUG St.Gallen
 
 Anatole is going to talk about "Konfiguration mit Apache Tamaya" at Java Usergroup meeting in St. Gallen.
+
+* http://www.jug.ch/html/events/2016/apache_tamaya_bs.html[JUG details]
