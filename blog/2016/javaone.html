@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 	    <meta charset="utf-8"/>
-	    <title>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Staged PropertySources</title>
+	    <title>JavaOne 2016 - Configure once and run everywhere</title>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	    <meta name="description" content=""/>
 	    <meta name="author" content=""/>
@@ -121,97 +121,26 @@
 		<div class="container">
 
 			<div class="page-header">
-				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Staged PropertySources</h1>
+				<h1>JavaOne 2016 - Configure once and run everywhere</h1>
 			</div>
 
-			<p><em>2017-01-15</em></p>
+			<p><em>2016-09-27</em></p>
 
-			<p><div id="preamble">
-<div class="sectionbody">
-<!-- toc disabled -->
-</div>
-</div>
-<div class="sect1">
-<h2 id="Remote">Tamaya Metamodel: Staged PropertySources (Extension Module)</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_overview">Overview</h3>
-<div class="paragraph">
-<p>The Tamaya Staged PropertySources extension provides a base class and default implementation for loading
-multistaged configuration easily from a common configuration location.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_compatibility">Compatibility</h3>
-<div class="paragraph">
-<p>The module is based on Java 7, so it will run on Java 7 and beyond.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_installation">Installation</h3>
-<div class="paragraph">
-<p>To benefit from Tamaya CDI integration you only must add the corresponding dependency to your module:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
-  &lt;groupId&gt;org.apache.tamaya.ext.metamodels&lt;/groupId&gt;
-  &lt;artifactId&gt;tamaya-metamodel.staged&lt;/artifactId&gt;
-  &lt;version&gt;{tamaya_version}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The component will not register any components. The component basically provides the following options:</p>
+			<p><div class="paragraph">
+<p>Anatole held a talk about Tamaya at JavaOne and took part in the Hackergarten:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Use it as default configuration extension. Hereby you should define your stages in use by setting the
-env.STAGE system property with the stages to be loaded in order of precedence (most significant last),
-e.g. sys-env,DEFAULTS,TEST,DEVELOPMENT. _Additionally_ you must register
-+org.apache.tamaya.staged.StagedConfigPropertiesProvider as in</p>
+<p><a href="https://community.oracle.com/docs/DOC-997220">Hackergarten schedule</a></p>
+</li>
+<li>
+<p><a href="https://blogs.oracle.com/java/java-community-at-javaone">Java Community at JavaOne</a></p>
+</li>
+<li>
+<p><a href="http://www.slideshare.net/AnatoleTresch/configure-once-run-everywhere-2016">Anatole&#8217;s presentation</a></p>
 </li>
 </ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>META-INF
-|_service
-  |_org.apache.tamaya.spi.PropertySourceProvider</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Tamaya will then load .properties files from System.getenv(),
-classpath:DEFAULTS.properties, classpath:TEST.properties and
-classpath:DEVELOPMENT.properties</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>For more advanced requirements, such as alternate locations, patterns or formats, you can also extend one of the
-provided classes (org.apache.tamaya.staged.StagedConfigPropertiesProvider,</p>
-<div class="ulist">
-<ul>
-<li>
-<p>BaseStagedPropertySourceProvider). Extending provides features such as:</p>
-</li>
-<li>
-<p>Defining a prefix for all entries provided/loaded.</p>
-</li>
-<li>
-<p>Using alternate locations or formats.</p>
-</li>
-<li>
-<p>Defining the ordinals used.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
 </div></p>
 
 			<hr />
