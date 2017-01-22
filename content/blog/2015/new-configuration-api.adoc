@@ -1,0 +1,11 @@
+title=Tamaya the new configuration API
+date=2015-09-07
+type=post
+tags=blog, asciidoc
+status=published
+~~~~~~
+= Tamaya the new configuration API
+
+Anatole wrote a blog post about Tamaya and its API:
+
+* http://javaeeconfig.blogspot.ch/2015/09/apache-tamaya-new-configuration-api.html[Blog post]
