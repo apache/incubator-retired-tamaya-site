@@ -32,6 +32,8 @@ Mature extensions have a stable API and SPI, similar to the API and Implementati
 |+org.apache.tamaya.ext:tamaya-spring+      | Integration for Spring / Spring Boot.        | link:extensions/mod_spring.html[Documentation]
 |=======
 
+NOTE: The former Tamaya _Builder_ extension module has been removed. The corresponding methods were integrated into
+Tamaya's main API's +ConfigurationContextBuilder+ API.
 
 === Extensions Sandbox
 
