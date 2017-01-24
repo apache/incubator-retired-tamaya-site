@@ -3,12 +3,14 @@
 
 = Apache Tamaya -- Extension: Resolver
 
-[[Core]]
+[[Resolver]]
 == Tamaya Resolver (Extension Module)
 
-=== Overview
+Tamaya _Resolver_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
-Tamaya Resolver is an extension module. Refer to the
+=== What functionality this module provides ?
+
+Tamaya _Resolver_ is an extension module. Refer to the
 link:../extensions.html[extensions documentation]
 for further details about modules.
 

@@ -6,11 +6,14 @@
 toc::[]
 
 
-[[Core]]
+[[UsageTracker]]
 == Tamaya Usage Tracking (Extension Module)
-=== Overview
 
-Tamaya Usage Tracking allows to record and count the configuration access and consumer locations in your local
+Tamaya _UsageTracker_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
+=== What functionality this module provides ?
+
+Tamaya _UsageTracker_ allows to record and count the configuration access and consumer locations in your local
 VM.
 
 === Compatibility

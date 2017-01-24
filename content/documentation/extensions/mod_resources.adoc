@@ -3,15 +3,14 @@
 
 = Apache Tamaya -- Extension: Resources
 
-[[Core]]
+[[Resources]]
 == Tamaya Resources (Extension Module)
-=== Overview
 
-Tamaya Resources is an extension module. Refer to the
-link:../extensions.html[extensions documentation] for further details
-about modules.
+Tamaya _Resources_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
-Tamaya Resources defines some additional tools to locate resources in your classpath or file system based on descriptive
+=== What functionality this module provides ?
+
+Tamaya _Resources_ defines some additional tools to locate resources in your classpath or file system based on descriptive
 ant-styled resource patterns. To use this module add the following dependency:
 
 [source, listing, subs="verbatim,attributes"]
@@ -22,7 +21,6 @@ ant-styled resource patterns. To use this module add the following dependency:
   <version>{tamaya_version}</version>
 </dependency>
 -----------------------------------------------
-
 
 The module's main entry point is the singleton class +org.apache.tamaya.resource.ConfigResources+. This class
 provides access to a +ResourceResolver+ instance:

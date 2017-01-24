@@ -6,18 +6,20 @@
 toc::[]
 
 
-[[Remote]]
+[[Server]]
 == Tamaya Configuration Server (Extension Module)
-=== Overview
 
-The Tamaya server module provides support for providing scoped configuration using a http server serving JSON formatted
+Tamaya _Server_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
+=== What functionality this module provides ?
+
+The Tamaya _Server_ module provides support for providing scoped configuration using a http server serving JSON formatted
 configuration properties.
 
 
 === Compatibility
 
 The module is based on Java 7, so it will not run on Java 7 and beyond.
-
 
 === Installation
 
@@ -31,7 +33,6 @@ To benefit from configuration server support you only must add the corresponding
   <version>{tamaya_version}</version>
 </dependency>
 -----------------------------------------------
-
 
 === Providing configuration using the Tamaya Built-in Configuration Server
 
@@ -256,7 +257,6 @@ Configuration:
 -----------------------------------------------
 
 === SPI
-
 ==== Scopes
 
 As mentioned earlier in this document scopes can be used to define the exact configuration tree to be returned, e.g.

@@ -6,11 +6,14 @@
 toc::[]
 
 
-[[Remote]]
+[[Spring]]
 == Tamaya Spring Integration (Extension Module)
-=== Overview
 
-Apache Tamaya currently provides two implementations also full integration for Spring:
+Tamaya _Spring_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
+=== What functionality this module provides ?
+
+Tamaya _Spring_ currently provides two implementations also full integration for Spring:
 
 * A Spring +@Configuration+ implementation that also provides a Tamaya based version of
   +org.springframework.context.support.PropertySourcesPlaceholderConfigurer+.

@@ -8,9 +8,12 @@ toc::[]
 
 [[Remote]]
 == Tamaya Metamodel: Staged PropertySources (Extension Module)
+
+Tamaya _Staged_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
 === Overview
 
-The Tamaya Staged PropertySources extension provides a base class and default implementation for loading
+Tamaya _Staged_ PropertySources extension provides a base class and default implementation for loading
 multistaged configuration easily from a common configuration location.
 
 

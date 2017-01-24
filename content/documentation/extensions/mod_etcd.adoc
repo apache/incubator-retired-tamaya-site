@@ -6,11 +6,13 @@
 toc::[]
 
 
-[[Optional]]
+[[Etcd]]
 == Integration with etcd (Extension Module)
-=== Overview
+Tamaya _Etcd_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
-The Tamaya etcd integration module provides different artifacts which allows integration of Apachae Tamaya
+=== What functionality this module provides ?
+
+Tamaya _Etcd_ provides different artifacts which allows integration of Apachae Tamaya
 configuration with etcd. Basically the module supports read-only integration (as a +EtcdPropertySource+ as well
 as a support for +MutableConfiguration+ as defined by the +tamaya-mutable-config+ extension module.
 

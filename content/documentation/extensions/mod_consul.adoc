@@ -6,11 +6,14 @@
 toc::[]
 
 
-[[Optional]]
+[[Consul]]
 == Integration with consul (Extension Module)
-=== Overview
 
-The Tamaya consul integration module provides different artifacts which allows integration of Apachae Tamaya
+Tamaya _Consul_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
+=== What functionality this module provides ?
+
+Tamaya _Consul_ provides different artifacts which allows integration of Apachae Tamaya
 configuration with consul. Basically the module supports read-only integration (as a +ConsulPropertySource+ as well
 as a support for +MutableConfiguration+ as defined by the +tamaya-mutable-config+ extension module.
 

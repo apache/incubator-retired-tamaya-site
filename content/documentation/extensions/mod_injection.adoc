@@ -6,14 +6,14 @@
 toc::[]
 
 
-[[Core]]
+[[Injection]]
 == Tamaya Injection (Extension Module)
-=== Overview
 
-Tamaya Injection is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details
-about modules.
+Tamaya _Injection_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
-Tamaya Injection provides functionality for injecting configured values into beans, or creating configuration
+=== What functionality this module provides ?
+
+Tamaya _Injection_ provides functionality for injecting configured values into beans, or creating configuration
 template instances.
 
 Inversion of Control (aka IoC/the Hollywood Principle) has proven to be very useful and effective in avoiding boilerplate

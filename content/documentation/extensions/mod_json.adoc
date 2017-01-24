@@ -6,12 +6,13 @@
 toc::[]
 
 
-[[BuilderCore]]
+[[JSON]]
 == Tamaya JSON (Extension Module)
-=== Overview
+Tamaya _JSON_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
-The Tamaya json module provides support for reading configuration using JSON format:
+=== What functionality this module provides ?
 
+Tamaya _JSON_ provides support for reading configuration using JSON format:
 
 === Compatibility
 

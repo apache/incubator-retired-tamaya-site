@@ -5,9 +5,12 @@
 
 toc::[]
 
-[[Optional]]
-== Tamaya Collection Support (Extension Module)
-=== Overview
+[[Collections]]
+== Tamaya Collections Support (Extension Module)
+
+Tamaya _Collections_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
+=== What functionality this module provides ?
 
 All configuration in Tamaya is expressed as simple key, value pairs. Nevertheless this concept allows similarly
 the modelling of collection typed values such as lists, sets, maps or simple collections of things. The Tamaya

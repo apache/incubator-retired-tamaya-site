@@ -6,13 +6,15 @@
 toc::[]
 
 
-[[Core]]
+[[Formats]]
 == Tamaya Formats (Extension Module)
-=== Overview
 
-Tamaya Formats is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+Tamaya _Formats_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
-Tamaya Formats provides an abstraction for configuration formats provding the following benefits:
+
+=== What functionality this module provides ?
+
+Tamaya _Formats_ provides an abstraction for configuration formats provding the following benefits:
 
 * Parsing of resources in can be implemented separately from interpreting the different aspects/parts parsed. As an
   example a file format can define different sections. Depending on the company specific semantics of the sections

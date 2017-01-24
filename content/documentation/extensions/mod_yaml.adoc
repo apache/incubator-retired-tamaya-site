@@ -6,11 +6,14 @@
 toc::[]
 
 
-[[BuilderCore]]
+[[YAML]]
 == Tamaya YAML (Extension Module)
+
+Tamaya _YAML_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
 === Overview
 
-The Tamaya YAML module provides support for reading configuration using the YAML format (yaml.org). YAML hereby
+Tamaya _YAML_ provides support for reading configuration using the YAML format (yaml.org). YAML hereby
 use intendation for expressing hierarchy, which makes yaml configuration files very easily readable and compact.
 
 

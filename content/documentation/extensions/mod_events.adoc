@@ -6,14 +6,24 @@
 toc::[]
 
 
-[[Core]]
+[[Events]]
 == Tamaya Events (Extension Module)
-=== Overview
 
-Tamaya Events is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details
-about modules.
+Tamaya _Events_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
-Tamaya Events provides an abstraction for events like change events, when configuration has been changed.
+=== What functionality this module provides ?
+
+Tamaya _Events_ provides a mechanism to publish and subscribe to +ConfigEvent<T>+ instances.
+This module implements +ConfigChange+ or +PropertySourceChange+ as possible payloads, but
+the module itself is not constraint to this payload types.
+These payload types describe detected changes of key/values of a +Configuration+ or a +PropertySource+.
+The extension also provides a _Singleton accessor_ which allows to register/unregister
+listeners for changes and the period, when configuration should be scanned for
+any changes.
+
+Summarizing with the events module you can easily observe configuration changes, record the
+state of any configuration and compare configuration states to create and publish related
+change events.
 
 === Compatibility
 
@@ -31,20 +41,6 @@ To benefit from configuration event support you only must add the corresponding 
   <version>{tamaya_version}</version>
 </dependency>
 -----------------------------------------------
-
-=== What does this module do?
-
-The Tamaya _events_-extension provides a mechanism to publish and subscribe to +ConfigEvent<T>+ instances.
-This module implements +ConfigChange+ or +PropertySourceChange+ as possible payloads, but
-the module itself is not constraint to this payload types.
-These payload types describe detected changes of key/values of a +Configuration+ or a +PropertySource+.
-The extension also provides a _Singleton accessor_ which allows to register/unregister
-listeners for changes and the period, when configuration should be scanned for
-any changes.
-
-Summarizing with the events module you can easily observe configuration changes, record the
-state of any configuration and compare configuration states to create and publish related
-change events.
 
 
 === Core Architecture

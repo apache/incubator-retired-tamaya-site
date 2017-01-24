@@ -7,10 +7,13 @@ toc::[]
 
 
 [[Optional]]
-== Tamaya Optional Configuration (Extension Module)
-=== Overview
+== Tamaya Optional (Extension Module)
 
-The Tamaya optional module provides contains three types only. It is for projects that want to benefit from Tamaya
+Tamaya _Optional_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
+=== What functionality this module provides ?
+
+Tamaya _Optional_ provides contains three types only. It is for projects that want to benefit from Tamaya
 configuration optionally only. E.g. doing an OSS project you can declare to support configuration with Tamaya as
 an optional extension. This module can be added as a hard dependency to your code, hereby adding only three artofacts.
 It automatically checks the availability of Tamaya on the classpath and only if available tries to access it for
@@ -39,7 +42,7 @@ To benefit from configuration builder support you only must add the correspondin
 
 === Reading configuration using the Tamaya Optional Module
 
-The optional module allows reading configuration with a small subset of functionality only. For extended of full
+Tamaya _Optional_ allows reading configuration with a small subset of functionality only. For extended of full
 featured config please consider using the Apache Tamaya as a full configuration backend.
 
 [source, java]

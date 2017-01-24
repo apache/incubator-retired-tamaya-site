@@ -6,14 +6,16 @@
 toc::[]
 
 
-[[Optional]]
+[[OSGI]]
 == Tamaya OSGI Support
-=== Overview
 
-Tamaya provides also support for integration with OSGI. Hereby Tamaya implements the OSGI +ConfigAdmin+ service,
+Tamaya _OSGI_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
+=== What functionality this module provides ?
+
+Tamaya _OSGI_ provides also support for integration with OSGI. Hereby Tamaya implements the OSGI +ConfigAdmin+ service,
 which is the OSGI basic component providing configuration. Tamaya by default overrides the OSGI default configuration
 but can also be configured to extend it.
-
 
 === Compatibility
 
@@ -24,7 +26,6 @@ runtimes:
 * Apache Karaf, version 4.0.7
 * tbd: Apache Felix, version x.x.x.
 * tbd: Eclipse Equinox, version x.x.x.
-
 
 === Installation
 
@@ -40,7 +41,6 @@ org.apache.tamaya:tamaya-core:{tamaya_version}
 org.apache.tamaya.ext:tamaya-functions:{tamaya_version}
 org.apache.tamaya.ext:tamaya-osgi:{tamaya_version}
 -----------------------------------------------
-
 
 === How Tamaya deals with OSGI Specialities
 
@@ -107,9 +107,17 @@ public interface OSGIConfigRootMapper {
 -----------------------------------------------
 
 
+=== Special OSGI Platform support
+
+==== Apache Karaf
+
+Apache Tamaya provides a Karaf feature with all required dependencies
+as
+
+
 == Tamaya based Injection
 
-=== Overview
+=== What functionality ir provided ?
 
 OSGI itself already provides injection and configuration mechanism. Since Tamaya is working in the back
 you can continue to use the mechanism of your choice. Nevertheless Tamaya also supports enabling Tamaya
@@ -125,7 +133,7 @@ OSGI support described earlier in this document:
 -----------------------------------------------
 org.apache.geronimo.specs:geronimo-atinject_1.0_spec:1.0
 org.apache.tamaya.ext:tamaya-inject-api:{tamaya_version}
-org.apache.tamaya.ext:tamaya-inject-se:{tamaya_version}
+org.apache.tamaya.ext:tamaya-inject:{tamaya_version}
 org.apache.tamaya.ext:tamaya-inject-osgi:{tamaya_version}
 -----------------------------------------------
 

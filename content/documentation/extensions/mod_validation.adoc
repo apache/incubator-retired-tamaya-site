@@ -6,11 +6,14 @@
 toc::[]
 
 
-[[Remote]]
+[[Validation]]
 == Tamaya Validation: Validating Configuration (Extension Module)
+
+Tamaya _Validation_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
 === Overview
 
-The Tamaya Validation extension adds support to validate a configuration against a set of rules
+Tamaya _Validation_ adds support to validate a configuration against a set of rules
 defined in a Tamaya Metaconfiguration XML file.
 
 === Compatibility

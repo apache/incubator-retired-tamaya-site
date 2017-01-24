@@ -6,9 +6,12 @@
 toc::[]
 
 
-[[Remote]]
+[[CDI]]
 == Tamaya CDI Integration (Extension Modules)
-=== Overview
+
+Tamaya _CDI_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
+=== What functionality this module provides ?
 
 Apache Tamaya currently provides two implementations for integration with CDI extensions implementing similar
 functionality as described in this document:

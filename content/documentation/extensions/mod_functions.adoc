@@ -5,13 +5,15 @@
 
 toc::[]
 
-[[Core]]
+[[Functions]]
 == Tamaya Functions (Extension Module)
-=== Overview
 
-Tamaya Functions is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+Tamaya _Functions_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
-Tamaya Functions provides several functional extensions using the +ConfigOperator,ConfigQuery+ extension points. Most
+
+=== What functionality this module provides ?
+
+Tamaya _Functions_ provides several functional extensions using the +ConfigOperator,ConfigQuery+ extension points. Most
 functional extension are accessible from the +ConfigurationFunction+ singleton. When importing its methods statically
 one can use the methods to achieve some interesting effects, e.g.
 

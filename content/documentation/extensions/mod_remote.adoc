@@ -8,17 +8,18 @@ toc::[]
 
 [[Remote]]
 == Tamaya Remote Configuration (Extension Module)
-=== Overview
 
-The Tamaya remote module provides support for reading configuration from remote resources. It provides
+Tamaya _Remote_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
+=== What functionality this module provides ?
+
+Tamaya _Remote_ provides support for reading configuration from remote resources. It provides
 especially out-of-the-box support for reading scoped configuration from a configuration server as
 provided with the _Tamaya server module_ .
-
 
 === Compatibility
 
 The module is based on Java 7, so it will not run on Java 7 and beyond.
-
 
 === Installation
 

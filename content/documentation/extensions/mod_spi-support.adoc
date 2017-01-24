@@ -8,9 +8,12 @@ toc::[]
 
 [[SPISupport]]
 == Tamaya SPI Support (Extension Module)
-=== Overview
 
-The Tamaya SPI support module provides a few helpful base classes that can be used to implement some of the often
+Tamaya _SPI Support_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
+=== What functionality this module provides ?
+
+Tamaya _SPI Support_ provides a few helpful base classes that can be used to implement some of the often
 used SPI parts in Tamaya:
 
 * +BasePropertySource+ provides an abstract base class for implementation of your own PropertySources.

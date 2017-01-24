@@ -5,11 +5,14 @@
 
 toc::[]
 
-[[Remote]]
+[[Classloader]]
 == Tamaya Classloader Aware ServiceContext (Extension Module)
-=== Overview
 
-The Tamaya classloader support provides an alternative implementation of +java.util.ServiceLoader+, which is aware
+Tamaya _Classloader_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
+=== What functionality this module provides ?
+
+The Tamaya _Classloader_ support provides an alternative implementation of +java.util.ServiceLoader+, which is aware
 of classloaders, hereby preventing multiple loading of components within a classloader hierarchy.
 
 

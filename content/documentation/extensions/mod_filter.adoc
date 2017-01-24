@@ -6,11 +6,15 @@
 toc::[]
 
 
-[[Optional]]
+[[Filter]]
 == User Filtering (Extension Module)
-=== Overview
 
-The Tamaya filter module provides a simple singleton accessor that allows to explicitly add +PropertyFilter+ instances
+Tamaya _Filter_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
+
+=== What functionality this module provides ?
+
+Tamaya _Filter_ provides a simple singleton accessor that allows to explicitly add +PropertyFilter+ instances
 active on the current thread only. This can be very useful in many scenarios. Additionally this module adds
 standard filters that hide metadata entries when the full configuration map is accessed. When keys are accessed
 explicitily no filtering is applied and everything is visible.

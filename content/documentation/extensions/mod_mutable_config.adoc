@@ -6,11 +6,14 @@
 toc::[]
 
 
-[[Core]]
+[[MutableConfiguration]]
 == Tamaya Mutable Configuration (Extension Module)
-=== Overview
 
-Tamaya Configuration by default is read-only, which covers must of the use cases. But there are many legit scenarios
+Tamaya _Mutable Configuration_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
+=== What functionality this module provides ?
+
+Tamaya +Configuration+ by default is read-only, which covers must of the use cases. But there are many legit scenarios
 where configuration should be written back to some backend systems or the local file system. This module adds this
 functionality.
 

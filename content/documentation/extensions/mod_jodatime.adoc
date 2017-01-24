@@ -5,17 +5,15 @@
 
 toc::[]
 
-[[Core]]
+[[JodaTime]]
 == Tamaya JodaTime (Extension Module)
+Tamaya _JodaTime_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
-=== Overview
+=== What functionality this module provides ?
 
-Tamaya JodaTime is an extension module to support the usage of http://www.joda.org/joda-time/[Joda-Time]
+Tamaya _JodaTime_ is an extension module to support the usage of http://www.joda.org/joda-time/[Joda-Time]
 in conjunction with Tamaya. Tamaya JodaTime defines some additional property
 converters to retrieve Joda-Time types from a given configuration.
-
-Refer to the link:../extensions.html[extensions documentation] for further details
-about modules.
 
 tools to locate resources in your classpath or file system based on descriptive
 ant-styled resource patterns. To use this module add the following dependency:
