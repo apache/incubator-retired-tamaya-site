@@ -24,7 +24,7 @@ The modules are built against OSGI Compendium version 5.0. Tamaya OSGI support i
 runtimes:
 
 * Apache Karaf, version 4.0.7
-* tbd: Apache Felix, version x.x.x.
+* Apache Felix, version 5.6.1.
 * tbd: Eclipse Equinox, version x.x.x.
 
 === Installation
@@ -34,13 +34,17 @@ environment:
 
 [source, listing]
 -----------------------------------------------
+# Runtime with OSGI ConfigAdmin support, e.g.
+org.apache.felix:org.apache.felix.configadmin:{felix_version}
 # API and core
+org.apache.geronimo.specs:geronimo-annotation_1.2_spec:1.0
 org.apache.tamaya:tamaya-api:{tamaya_version}
-org.apache.geronimo.specs:geronimo-annotation_1.2_spec:1.0-alpha-1
 org.apache.tamaya:tamaya-core:{tamaya_version}
+org.apache.tamaya:tamaya-spisupport:{tamaya_version}
 org.apache.tamaya.ext:tamaya-functions:{tamaya_version}
 org.apache.tamaya.ext:tamaya-osgi:{tamaya_version}
 -----------------------------------------------
+
 
 === How Tamaya deals with OSGI Specialities
 
@@ -112,49 +116,6 @@ public interface OSGIConfigRootMapper {
 ==== Apache Karaf
 
 Apache Tamaya provides a Karaf feature with all required dependencies
-as
+as +org.apache.tamaya.ext:tamaya-karaf-features:{tamaya-version}:features:xml+.
 
-
-== Tamaya based Injection
-
-=== What functionality ir provided ?
-
-OSGI itself already provides injection and configuration mechanism. Since Tamaya is working in the back
-you can continue to use the mechanism of your choice. Nevertheless Tamaya also supports enabling Tamaya
-specific configuration injection.
-
-
-=== Installation
-
-To benefit from Tamaya's injection mechanism in your OSGI services you need additionally to the basic
-OSGI support described earlier in this document:
-
-[source, listing]
------------------------------------------------
-org.apache.geronimo.specs:geronimo-atinject_1.0_spec:1.0
-org.apache.tamaya.ext:tamaya-inject-api:{tamaya_version}
-org.apache.tamaya.ext:tamaya-inject:{tamaya_version}
-org.apache.tamaya.ext:tamaya-inject-osgi:{tamaya_version}
------------------------------------------------
-
-
-=== Example
-
-As an example, what is possible you can implement and register an OSGI service and use Tamaya's injection
-API for configuring it:
-
-[source, java]
------------------------------------------------
-public class HelloServiceImpl implements HelloService{
-
-    @Config(value={"example.message"}, defaultValue="A Tamaya default.")
-    private String message;
-
-    @Override
-    public String sayHello() {
-        System.err.println("HELLO: " + message);
-        return message;
-    }
-}
------------------------------------------------
 
