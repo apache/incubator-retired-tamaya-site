@@ -1,12 +1,12 @@
-title=ApacheCon 2016 - Vancouver
+title=ApacheCon North America 2016 - Vancouver, Canada
 date=2016-05-11
 type=post
 tags=blog, asciidoc
 status=published
 ~~~~~~
-= ApacheCon 2016 - Vancouver
+= ApacheCon 2016 - Vancouver, Canada
 
-Anatole took part in ApacheCon Vancouver from 2016-05-11 until 2016-05-13:
+Anatole took part in ApacheCon Vancouver from 2016-05-11 to 2016-05-13:
 
-* http://events.linuxfoundation.org/events/archive/2016/apachecon-north-america[AapcheCon 2016 Vancouver]
+* http://events.linuxfoundation.org/events/archive/2016/apachecon-north-america[ApacheCon 2016 Vancouver]
 * http://de.slideshare.net/AnatoleTresch/configure-your-projects-with-apache-tamaya[Anatole's slides]
