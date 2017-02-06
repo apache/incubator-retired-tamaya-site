@@ -1,0 +1,13 @@
+title=ApacheCon Europe 2016 - Seville, Spain: Configure Once, run everyhere! Configuration with Apache Tamaya
+date=2016-11-16
+type=post
+tags=blog, asciidoc
+status=published
+~~~~~~
+= ApacheCon Europe 2016 - Configure Once, run everyhere! Configuration with Apache Tamaya
+
+Anatole took part in ApacheCon Europe in Seville from 2016-11-16 to 2016-11-18:
+
+* http://events.linuxfoundation.org/events/apache-big-data-europe[ApacheCon BigData Europe 2016 Seville]
+* http://events.linuxfoundation.org/events/apachecon-europe[ApacheCon Europe 2016 Seville]
+* http://events.linuxfoundation.org/sites/events/files/slides/ConfigureOnceRunEverywhere_JavaOne2016.pdf[Anatole's slides]

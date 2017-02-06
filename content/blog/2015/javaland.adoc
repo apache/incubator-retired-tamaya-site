@@ -1,0 +1,13 @@
+title=JavaLand 2015 - Slides of talk about Java coniguration
+date=2015-03-24
+type=post
+tags=blog, asciidoc
+status=published
+~~~~~~
+= JavaLand 2015 - Slides of talk "Java Configuration / Java SE, EE and Apache Tamaya"
+
+Anatole held a talk about Tamaya at JavaLand 2015:
+
+* http://www.javaland.eu/en/home/[JavaLand conference page - only current year]
+* https://www.doag.org/formes/servlet/DocNavi?action=getFile&did=6796393&key=[Anatole's presentation]
+* https://opensource.com/event/javaland-2015[JavaLand 2015 event information]

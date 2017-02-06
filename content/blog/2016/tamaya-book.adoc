@@ -1,0 +1,13 @@
+title=German e-book - Apache Tamaya
+date=2016-01-11
+type=post
+tags=blog, asciidoc
+status=published
+~~~~~~
+= German e-book: Apache Tamaya: Einstieg in die Konfiguration in Java
+
+Anatole Tresch and Thorben Janssen authored a German ebook about Tamaya that derived from a JavaMagzin article series:
+
+* https://entwickler.de/press/apache-tamaya-196233.html[entwickler.de - e-book]
+* https://books.google.ch/books?id=SMN-DAAAQBAJ&printsec=frontcover&hl=de#v=onepage&q&f=false[Google book preview]
+* https://www.amazon.de/Apache-Tamaya-Einstieg-Konfiguration-shortcuts-ebook/dp/B01AIJ7QMM?tag=tendoryuberlin[Apache Tamaya: Einstieg in die Konfiguration in Java (shortcuts 168) Kindle Edition at amazon.de]

@@ -1,0 +1,11 @@
+title=Voxxed Days Zürich - Configuration with Apache Tamaya
+date=2016-03-03
+type=post
+tags=blog, asciidoc
+status=published
+~~~~~~
+= Voxxed Days Zürich 2016: Configuration with Apache Tamaya
+
+Anatole took part in Voxxed Days Zürich, a recording of his talk is:
+
+* https://www.youtube.com/watch?v=wgWeDAFET0o[Anatole's talk (YouTube)]

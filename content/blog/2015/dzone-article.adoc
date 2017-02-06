@@ -1,0 +1,11 @@
+title=DZone-article - Configure Once, Run Everywhere: Decoupling Configuration and Runtime
+date=2015-09-17
+type=post
+tags=blog, asciidoc
+status=published
+~~~~~~
+= DZone-article: Apache Tamaya Configuration
+
+Anatole wrote an article about Tamaya at DZone:
+
+* https://dzone.com/articles/apache-tamaya-configuration[Anatole's article]

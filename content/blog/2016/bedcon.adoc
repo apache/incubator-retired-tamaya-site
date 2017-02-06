@@ -1,0 +1,12 @@
+title=BedCon 2016 - Slides of talk "Apache Tamaya Configuring your Containers"
+date=2016-09-06
+type=post
+tags=blog, asciidoc
+status=published
+~~~~~~
+= BedCon 2016 - Slides of talk "Apache Tamaya Configuring your Containers"
+
+Anatole held a talk about Tamaya at BedCon2016:
+
+* http://bed-con.org/2016/[BedCon 2016 conference page]
+* http://bed-con.org/2016/files/slides/Configuration_v3_BedCon.pdf[Anatole's presentation]

@@ -1,0 +1,11 @@
+title=InnoQ-article - Configure Once, Run Everywhere: Decoupling Configuration and Runtime
+date=2016-06-17
+type=post
+tags=blog, asciidoc
+status=published
+~~~~~~
+= InnoQ-article: Configure Once, Run Everywhere: Decoupling Configuration and Runtime
+
+Anatole wrote an article about Tamaya at InnoQ:
+
+* https://www.infoq.com/articles/Apache-Tamaya-Configure-Once-Run-Everywhere[Anatole's article]

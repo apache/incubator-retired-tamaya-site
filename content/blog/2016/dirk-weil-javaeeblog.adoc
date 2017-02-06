@@ -1,0 +1,11 @@
+title=Blog post (German) - Dirk Weil: Anwendungskonfiguration mit Apache Tamaya
+date=2016-12-01
+type=post
+tags=blog, asciidoc
+status=published
+~~~~~~
+= Dirk Weil: Anwendungskonfiguration mit Apache Tamaya
+
+Dirk Weil wrote an article about Tamaya on his blog:
+
+* https://javaeeblog.wordpress.com/2016/12/01/anwendungskonfiguration-mit-apache-tamaya/amp/[JavaEEBlog: Dirk's article]

@@ -1,0 +1,11 @@
+title=Java2Days (Sofia, Bulgaria) - Configuration for Java EE / Config JSR
+date=2016-11-16
+type=post
+tags=blog, asciidoc
+status=published
+~~~~~~
+= Configuration for Java EE: Config JSR and Tamaya at Java2Days, Sofia, Bulgaria - Dmitry Kornilov, Werner Keil
+
+Werner and Dmitry (Oracle) presented the concepts and ideas of Tamaya at the conference in Bulgaria:
+
+* http://www.slideshare.net/DmitryKornilov/configuration-for-java-ee-config-jsr-and-tamaya[Slides]
