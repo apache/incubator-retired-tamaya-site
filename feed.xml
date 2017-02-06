@@ -6,10 +6,61 @@
     <atom:link href="https://tamaya.incubator.apache.org/feed.xml" rel="self" type="application/rss+xml" />
     <description>Apache Tamaya RSS feed template</description>
     <language>en-gb</language>
-    <pubDate>Mo, 30 Jan 2017 20:40:44 +0100</pubDate>
-    <lastBuildDate>Mo, 30 Jan 2017 20:40:44 +0100</lastBuildDate>
+    <pubDate>Mo, 6 Feb 2017 22:26:34 +0100</pubDate>
+    <lastBuildDate>Mo, 6 Feb 2017 22:26:34 +0100</lastBuildDate>
 
     <item>
+      <title>Blog post (German) - Dirk Weil: Anwendungskonfiguration mit Apache Tamaya</title>
+      <link>https://tamaya.incubator.apache.org/blog/2016/dirk-weil-javaeeblog.html</link>
+      <pubDate>Do, 1 Dez 2016 00:00:00 +0100</pubDate>
+      <guid isPermaLink="false">blog/2016/dirk-weil-javaeeblog.html</guid>
+      <description>&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;Dirk Weil wrote an article about Tamaya on his blog:&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;ulist&amp;quot;&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;https://javaeeblog.wordpress.com/2016/12/01/anwendungskonfiguration-mit-apache-tamaya/amp/&amp;quot;&amp;gt;JavaEEBlog: Dirk&amp;amp;#8217;s article&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;</description>
+    </item><item>
+      <title>ApacheCon Europe 2016 - Seville, Spain: Configure Once, run everyhere! Configuration with Apache Tamaya</title>
+      <link>https://tamaya.incubator.apache.org/blog/2016/apachecon-seville.html</link>
+      <pubDate>Mi, 16 Nov 2016 00:00:00 +0100</pubDate>
+      <guid isPermaLink="false">blog/2016/apachecon-seville.html</guid>
+      <description>&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;Anatole took part in ApacheCon Europe in Seville from 2016-11-16 to 2016-11-18:&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;ulist&amp;quot;&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;http://events.linuxfoundation.org/events/apache-big-data-europe&amp;quot;&amp;gt;ApacheCon BigData Europe 2016 Seville&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;http://events.linuxfoundation.org/events/apachecon-europe&amp;quot;&amp;gt;ApacheCon Europe 2016 Seville&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;http://events.linuxfoundation.org/sites/events/files/slides/ConfigureOnceRunEverywhere_JavaOne2016.pdf&amp;quot;&amp;gt;Anatole&amp;amp;#8217;s slides&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;</description>
+    </item><item>
+      <title>Java2Days (Sofia, Bulgaria) - Configuration for Java EE / Config JSR</title>
+      <link>https://tamaya.incubator.apache.org/blog/2016/java2days-sofia.html</link>
+      <pubDate>Mi, 16 Nov 2016 00:00:00 +0100</pubDate>
+      <guid isPermaLink="false">blog/2016/java2days-sofia.html</guid>
+      <description>&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;Werner and Dmitry (Oracle) presented the concepts and ideas of Tamaya at the conference in Bulgaria:&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;ulist&amp;quot;&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;http://www.slideshare.net/DmitryKornilov/configuration-for-java-ee-config-jsr-and-tamaya&amp;quot;&amp;gt;Slides&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;</description>
+    </item><item>
       <title>JavaOne 2016 - Configure once and run everywhere</title>
       <link>https://tamaya.incubator.apache.org/blog/2016/javaone.html</link>
       <pubDate>Di, 27 Sep 2016 00:00:00 +0200</pubDate>
@@ -31,17 +82,50 @@
 &amp;lt;/ul&amp;gt;
 &amp;lt;/div&amp;gt;</description>
     </item><item>
-      <title>ApacheCon 2016 - Vancouver</title>
-      <link>https://tamaya.incubator.apache.org/blog/2016/apachecon-vancouver.html</link>
-      <pubDate>Mi, 11 Mai 2016 00:00:00 +0200</pubDate>
-      <guid isPermaLink="false">blog/2016/apachecon-vancouver.html</guid>
+      <title>BedCon 2016 - Slides of talk &quot;Apache Tamaya Configuring your Containers&quot;</title>
+      <link>https://tamaya.incubator.apache.org/blog/2016/bedcon.html</link>
+      <pubDate>Di, 6 Sep 2016 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">blog/2016/bedcon.html</guid>
       <description>&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
-&amp;lt;p&amp;gt;Anatole took part in ApacheCon Vancouver from 2016-05-11 until 2016-05-13:&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;Anatole held a talk about Tamaya at BedCon2016:&amp;lt;/p&amp;gt;
 &amp;lt;/div&amp;gt;
 &amp;lt;div class=&amp;quot;ulist&amp;quot;&amp;gt;
 &amp;lt;ul&amp;gt;
 &amp;lt;li&amp;gt;
-&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;http://events.linuxfoundation.org/events/archive/2016/apachecon-north-america&amp;quot;&amp;gt;AapcheCon 2016 Vancouver&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;http://bed-con.org/2016/&amp;quot;&amp;gt;BedCon 2016 conference page&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;http://bed-con.org/2016/files/slides/Configuration_v3_BedCon.pdf&amp;quot;&amp;gt;Anatole&amp;amp;#8217;s presentation&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;</description>
+    </item><item>
+      <title>InnoQ-article - Configure Once, Run Everywhere: Decoupling Configuration and Runtime</title>
+      <link>https://tamaya.incubator.apache.org/blog/2016/infoq-article.html</link>
+      <pubDate>Fr, 17 Jun 2016 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">blog/2016/infoq-article.html</guid>
+      <description>&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;Anatole wrote an article about Tamaya at InnoQ:&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;ulist&amp;quot;&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;https://www.infoq.com/articles/Apache-Tamaya-Configure-Once-Run-Everywhere&amp;quot;&amp;gt;Anatole&amp;amp;#8217;s article&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;</description>
+    </item><item>
+      <title>ApacheCon North America 2016 - Vancouver, Canada</title>
+      <link>https://tamaya.incubator.apache.org/blog/2016/apachecon-vancouver.html</link>
+      <pubDate>Mi, 11 Mai 2016 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">blog/2016/apachecon-vancouver.html</guid>
+      <description>&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;Anatole took part in ApacheCon Vancouver from 2016-05-11 to 2016-05-13:&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;ulist&amp;quot;&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;http://events.linuxfoundation.org/events/archive/2016/apachecon-north-america&amp;quot;&amp;gt;ApacheCon 2016 Vancouver&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
 &amp;lt;/li&amp;gt;
 &amp;lt;li&amp;gt;
 &amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;http://de.slideshare.net/AnatoleTresch/configure-your-projects-with-apache-tamaya&amp;quot;&amp;gt;Anatole&amp;amp;#8217;s slides&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
@@ -76,6 +160,21 @@
 &amp;lt;/ul&amp;gt;
 &amp;lt;/div&amp;gt;</description>
     </item><item>
+      <title>Voxxed Days Zürich - Configuration with Apache Tamaya</title>
+      <link>https://tamaya.incubator.apache.org/blog/2016/voxxed-days-zurich.html</link>
+      <pubDate>Do, 3 Mär 2016 00:00:00 +0100</pubDate>
+      <guid isPermaLink="false">blog/2016/voxxed-days-zurich.html</guid>
+      <description>&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;Anatole took part in Voxxed Days Zürich, a recording of his talk is:&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;ulist&amp;quot;&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;https://www.youtube.com/watch?v=wgWeDAFET0o&amp;quot;&amp;gt;Anatole&amp;amp;#8217;s talk (YouTube)&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;</description>
+    </item><item>
       <title>JUG Basel - Introduction to Apache Tamaya (German)</title>
       <link>https://tamaya.incubator.apache.org/blog/2016/jug-basel.html</link>
       <pubDate>Mi, 2 Mär 2016 00:00:00 +0100</pubDate>
@@ -106,6 +205,42 @@
 &amp;lt;/ul&amp;gt;
 &amp;lt;/div&amp;gt;</description>
     </item><item>
+      <title>German e-book - Apache Tamaya</title>
+      <link>https://tamaya.incubator.apache.org/blog/2016/tamaya-book.html</link>
+      <pubDate>Mo, 11 Jan 2016 00:00:00 +0100</pubDate>
+      <guid isPermaLink="false">blog/2016/tamaya-book.html</guid>
+      <description>&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;Anatole Tresch and Thorben Janssen authored a German ebook about Tamaya that derived from a JavaMagzin article series:&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;ulist&amp;quot;&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;https://entwickler.de/press/apache-tamaya-196233.html&amp;quot;&amp;gt;entwickler.de - e-book&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;https://books.google.ch/books?id=SMN-DAAAQBAJ&amp;amp;amp;printsec=frontcover&amp;amp;amp;hl=de#v=onepage&amp;amp;amp;q&amp;amp;amp;f=false&amp;quot;&amp;gt;Google book preview&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;https://www.amazon.de/Apache-Tamaya-Einstieg-Konfiguration-shortcuts-ebook/dp/B01AIJ7QMM?tag=tendoryuberlin&amp;quot;&amp;gt;Apache Tamaya: Einstieg in die Konfiguration in Java (shortcuts 168) Kindle Edition at amazon.de&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;</description>
+    </item><item>
+      <title>DZone-article - Configure Once, Run Everywhere: Decoupling Configuration and Runtime</title>
+      <link>https://tamaya.incubator.apache.org/blog/2015/dzone-article.html</link>
+      <pubDate>Do, 17 Sep 2015 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">blog/2015/dzone-article.html</guid>
+      <description>&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;Anatole wrote an article about Tamaya at DZone:&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;ulist&amp;quot;&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;https://dzone.com/articles/apache-tamaya-configuration&amp;quot;&amp;gt;Anatole&amp;amp;#8217;s article&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;</description>
+    </item><item>
       <title>Tamaya the new configuration API</title>
       <link>https://tamaya.incubator.apache.org/blog/2015/new-configuration-api.html</link>
       <pubDate>Mo, 7 Sep 2015 00:00:00 +0200</pubDate>
@@ -132,6 +267,27 @@
 &amp;lt;ul&amp;gt;
 &amp;lt;li&amp;gt;
 &amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;https://jaxenter.de/konfiguration-in-java-20526&amp;quot;&amp;gt;Konfiguration in Java (German article)&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;</description>
+    </item><item>
+      <title>JavaLand 2015 - Slides of talk about Java coniguration</title>
+      <link>https://tamaya.incubator.apache.org/blog/2015/javaland.html</link>
+      <pubDate>Di, 24 Mär 2015 00:00:00 +0100</pubDate>
+      <guid isPermaLink="false">blog/2015/javaland.html</guid>
+      <description>&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;Anatole held a talk about Tamaya at JavaLand 2015:&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;ulist&amp;quot;&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;http://www.javaland.eu/en/home/&amp;quot;&amp;gt;JavaLand conference page - only current year&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;https://www.doag.org/formes/servlet/DocNavi?action=getFile&amp;amp;amp;did=6796393&amp;amp;amp;key=&amp;quot;&amp;gt;Anatole&amp;amp;#8217;s presentation&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;https://opensource.com/event/javaland-2015&amp;quot;&amp;gt;JavaLand 2015 event information&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
 &amp;lt;/li&amp;gt;
 &amp;lt;/ul&amp;gt;
 &amp;lt;/div&amp;gt;</description>
