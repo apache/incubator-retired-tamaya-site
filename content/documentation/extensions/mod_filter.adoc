@@ -15,7 +15,8 @@ Tamaya _Filter_ is an extension module. Refer to the link:../extensions.html[ext
 === What functionality this module provides ?
 
 Tamaya _Filter_ provides a simple singleton accessor that allows to explicitly add +PropertyFilter+ instances
-active on the current thread only. This can be very useful in many scenarios. Additionally this module adds
+active on the current thread only. This can be very useful in many scenarios, especially within
+Java EE web filters or similar. Additionally this module adds
 standard filters that hide metadata entries when the full configuration map is accessed. When keys are accessed
 explicitily no filtering is applied and everything is visible.
 
@@ -26,7 +27,7 @@ The module is based on Java 7, so it will not run on Java 7 and beyond.
 
 === Installation
 
-To benefit from configuration builder support you only must add the corresponding dependency to your module:
+To benefit from filter support you only must add the corresponding dependency to your module:
 
 [source, xml]
 -----------------------------------------------
@@ -48,7 +49,7 @@ instances on the current thread.
  an underscore ('_'), when a full property map is accessed.
 
 
-=== The ConfigurationFilter
+==== The ConfigurationFilter
 
 The accessor mentioned implements the API for for adding +PropertyFilters+ to the current thread (as thread local):
 

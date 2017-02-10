@@ -45,13 +45,13 @@ To benefit from configuration event support you only must add the corresponding 
 
 === Core Architecture
 
-The core of the module are the +ConfigEventListener+ interface and the +ConfigEvent+ class, which defines an abstraction
-for event handling and observation:
+The core of the module are the +ConfigEventListener+ and the +ConfigEvent+ interfaces,
+which defines an abstraction for event handling and observation:
 
 [source,java]
 .ConfigEvent
 --------------------------------------------
-public final interface ConfigEvent<T> {
+public interface ConfigEvent<T> {
 
     Class<T> getResourceType();
     T getResource();
@@ -78,7 +78,44 @@ Google _Guava_ library. But users can replace this mechanism as needed. For
 more details refer to the SPI section later in this guide.
 
 
-=== Modelling Changes
+=== The ConfigEventManager Singleton
+
+Main entry point of the events module is the +ConfigEventManager+ singleton class, which provides static accessor
+methods to the extension's functionality:
+
+* _Adding/removing_ of +ConfigChangeListener+ instances, either globally or per event type.
+* _Firing configuration events_ synchronously or asyncronously (mostly called by framework code).
+* _Configuring the monitor_ that periodically checks for changes on the global +Configuration+ provided
+  by +ConfigurationProvider.getConfiguration()+.
+
+[source,java]
+-------------------------------------------------------
+public final class ConfigEventManager {
+
+    private ConfigEventManager() {}
+
+    public static void addListener(ConfigEventListener l);
+    public static <T extends ConfigEvent> void addListener(ConfigEventListener l, Class<T> eventType);
+    public static void removeListener(ConfigEventListener l);
+    public static <T extends ConfigEvent> void removeListener(ConfigEventListener l, Class<T> eventType);
+    public static <T extends ConfigEvent>
+        Collection<? extends ConfigEventListener> getListeners();
+    public static <T extends ConfigEvent>
+        Collection<? extends ConfigEventListener> getListeners(Class<T> type);
+
+    public static <T> void fireEvent(ConfigEvent<?> event);
+    public static <T> void fireEventAsynch(ConfigEvent<?> event);
+
+    public static void enableChangeMonitoring(boolean enable);
+    public static boolean isChangeMonitoring();
+    public long getChangeMonitoringPeriod();
+    public void setChangeMonitoringPeriod(long millis);
+
+}
+-------------------------------------------------------
+
+
+=== Modelling configuration changes as events
 
 This module provides a serializable and thread-safe abstraction modelling a
 configuration change, which is anything of the following
@@ -200,47 +237,10 @@ e.g. by a configuration file edited on the fly. This is similarly to a
 PropertySourceChangeBuilder+.
 
 
-=== The ConfigEventManager Singleton
-
-Main entry point of the events module is the +ConfigEventManager+ singleton class, which provides static accessor
-methods to the extension's functionality:
-
-* _Adding/removing_ of +ConfigChangeListener+ instances, either globally or per event type.
-* _Firing configuration events_ synchronously or asyncronously (mostly called by framework code).
-* _Configuring the monitor_ that periodically checks for changes on the global +Configuration+ provided
-  by +ConfigurationProvider.getConfiguration()+.
-
-[source,java]
--------------------------------------------------------
-public final class ConfigEventManager {
-
-    private ConfigEventManager() {}
-
-    public static void addListener(ConfigEventListener l);
-    public static <T extends ConfigEvent> void addListener(ConfigEventListener l, Class<T> eventType);
-    public static void removeListener(ConfigEventListener l);
-    public static <T extends ConfigEvent> void removeListener(ConfigEventListener l, Class<T> eventType);
-    public static <T extends ConfigEvent>
-        Collection<? extends ConfigEventListener> getListeners();
-    public static <T extends ConfigEvent>
-        Collection<? extends ConfigEventListener> getListeners(Class<T> type);
-
-    public static <T> void fireEvent(ConfigEvent<?> event);
-    public static <T> void fireEventAsynch(ConfigEvent<?> event);
-
-    public static void enableChangeMonitoring(boolean enable);
-    public static boolean isChangeMonitoring();
-    public long getChangeMonitoringPeriod();
-    public void setChangeMonitoringPeriod(long millis);
-
-}
--------------------------------------------------------
-
-
 ==== Monitoring of configuration changes
 
-The +ConfigEventManager+ also supports active monitoring of the current configuration to trigger corresponding change
-events to listeners registered. This feature is deactivated by default, but can be enabled by calling
+The +ConfigEventManager+ supports *active monitoring of the current configuration* to trigger corresponding change
+events to listeners registered. *This feature is deactivated by default*, but can be enabled by calling
 +ConfigEventManager.enableChangeMonitoring(true);+. This feature avoids regularly polling your local +Configuration+ for
 any kind of changes. If a change has been encountered Tamaya identifies it and triggers corresponding
 +ConfigurationChange+ events automatically.

@@ -28,7 +28,7 @@ The module is based on Java 7, so it can be used with Java 7 and beyond.
 
 === Installation
 
-To benefit from dynamic value resolution you only must add the corresponding dependency to your module:
+To use the formats module you only must add the corresponding dependency to your module:
 
 [source, xml]
 -----------------------------------------------
@@ -40,10 +40,17 @@ To benefit from dynamic value resolution you only must add the corresponding dep
 -----------------------------------------------
 
 
-=== The Idea
+=== Basic Concept
 
 Formats should be reusable, meaning you should have to write a format parser only once and then be able to map the data read into whatever
-data structure (in our cases: property sources).
+data structure (in our cases: property sources). So it is useful to separate concerns into
+
+* an arbitrary configuration format (textual or binary)
+* a parser (+ConfigurationFormat+) that transfers a given format into an intermediate
+  representation (+ConfigurationData+).
+* an optional customization, implemented by a _factory method pattern_ to adapt the mapping of +ConfigurationData+ read
+  to a collection of +PropertySources+ (they can have different ordinal semantics).
+
 
 ==== ConfigurationData
 
@@ -105,7 +112,7 @@ public interface ConfigurationFormat {
 -------------------------------------------------------
 
 
-=== How to tranform ConfigurationData into a PropertySource
+=== Customize how ConfigurationData maps to PropertySource
 
 For for the conversion of +ConfigurationData+ into a +PropertySource+ different approaches can be useful:
 
@@ -136,6 +143,20 @@ names may be mapped into different ordinals instead of using them as key prefixe
 with a 'default', 'main', and 'overrides' sections). For such more complex or custom cases no simple mapping
 can be defined. Consequently the functionality mapping the normalized +ConfigurationData+ read to the
 appropriate collection of +PropertySource+ instances must be implemented.
+
+For this scenario the +BaseFormatPropertySourceProvider+ can be used, defining the following mapping
+function that mus be implemented:
+
+[source,java]
+-------------------------------------------------------
+/**
+ * Method to create a {@link org.apache.tamaya.spi.PropertySource} based on the given entries read.
+ *
+ * @param data the configuration data, not null.
+ * @return the {@link org.apache.tamaya.spi.PropertySource} instance ready to be registered.
+ */
+protected abstract Collection<PropertySource> getPropertySources(ConfigurationData data);
+-------------------------------------------------------
 
 
 === Examples
