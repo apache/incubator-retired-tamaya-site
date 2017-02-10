@@ -1,7 +1,7 @@
 :jbake-type: page
 :jbake-status: published
 
-= Apache Tamaya -- Extension: Classloader Isolation Support
+= Apache Tamaya -- Extension: CDI Support
 
 toc::[]
 
@@ -11,6 +11,7 @@ toc::[]
 
 Tamaya _CDI_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
+
 === What functionality this module provides ?
 
 Apache Tamaya currently provides two implementations for integration with CDI extensions implementing similar
@@ -18,6 +19,7 @@ functionality as described in this document:
 
 * Loading of CDI managed SPI components as configuration extensions such as +PropertySources, PropertySourceProviders,
   PropertyFilters, etc+. This also includes SPI defined by any Tamaya submodules.
+  This is useful when Tamaya is used as an application module managed by the CDI implementation.
 * Implement and enable Tamaya's configuration injection services with CDI.
 
 Hereby there are two implementations provided:
@@ -32,7 +34,7 @@ Hereby there are two implementations provided:
 
 The annotations used for all injection functionality in Tamaya is defined as a separate module. This allows you to
 code against the injection API without dependency on the concrete injection implementation. As a consequence your
-components will be compatible regardless if deployed in a pure SE, a Java EE (CDI) or OSGI or Spring environment:
+components will be compatible regardless if deployed in a pure SE or as Java EE (CDI) or Spring environment:
 
 -----------------------------------------------
 <dependency>
@@ -45,7 +47,7 @@ components will be compatible regardless if deployed in a pure SE, a Java EE (CD
 
 === Compatibility
 
-Both modules are based on Java 7, so they will not run on Java 7 and beyond.
+All modules are based on Java 7, so they will not run on Java 7 and beyond.
 
 
 === Installation
@@ -53,7 +55,7 @@ Both modules are based on Java 7, so they will not run on Java 7 and beyond.
 To benefit from Tamaya CDI integration you only must one of the following dependencies to your module. Ensure that
 you never have installed both CDI extensions at the same time because this may be lead to unforseen side-effects.
 
-.CDI Pure Application Configuration
+.CDI Java EE Application Configuration
 [source, xml]
 -----------------------------------------------
 <dependency>
@@ -63,7 +65,7 @@ you never have installed both CDI extensions at the same time because this may b
 </dependency>
 -----------------------------------------------
 
-.CDI enhanced with Tamaya SE Application Configuration
+.CDI injection based on Tamaya SE Application Configuration
 [source, xml]
 -----------------------------------------------
 <dependency>
@@ -78,6 +80,61 @@ register CDI extensions that implement Configuration injection as described befo
 
 IMPORTANT: Never install Tamaya's +tamaya-cdi-se+ and +tamaya-cdi-ee+ on the same system, since unpredictable side
            effects could occur.
+
+
+For working with a pure non Java EE environment have a look at the link:mod_injection.html[tamaya-injection module].
+
+Additionally you have to register Tamaya's CDI extension modules into your `beans-xml`:
+
+Contents of `META-INF/services/javax.enterprise.inject.spi.Extension`:
+[source, properties]
+-----------------------------------------------
+# Register Tamaya to perform injection
+org.apache.tamaya.integration.cdi.ConfigurationExtension
+-----------------------------------------------
+
+
+
+=== Annotating your Classes
+
+Basically annotating your classes is stright forward. +@Config+ defines an additional CDI qualifier that is, depending
+on the module deployed, handled by a CDI producer (+tamaya-cdi-ee+) or the Tamaya SE injection mechanism $
+(+tamaya-cdi-se+). All types injected by this module are injected using _dependent scope_.
+
+
+[source, java]
+--------------------------------------------------------
+@RequestScoped
+public class ConfiguredClass{
+
+    @Config
+    private String testProperty;
+
+    @Config({"a.b.c.key1","a.b.c.key2","a.b.c.key3"})
+    @ConfigDefault("The current \\${JAVA_HOME} env property is ${env:JAVA_HOME}.")
+    String value1;
+
+    @Config({"foo","a.b.c.key2"})
+    private String value2;
+
+    @Config
+    @ConfigDefault("N/A")
+    private String runtimeVersion;
+
+    @Config
+    @ConfigDefault("${sys:java.version}")
+    private String javaVersion2;
+
+    @Config
+    @ConfigDefault("5")
+    private Integer int1;
+
+    ...
+
+}
+--------------------------------------------------------
+
+
 
 === Registering CDI managed components into the Application's ConfigurationContext
 
@@ -126,49 +183,16 @@ public class TestPropertySource implements PropertySource{
 }
 --------------------------------------------------------
 
-Note that for many SPI's there is a priority mechanism using +@Priority+ annotations in place.
-The +ServiceContext+ implementation combines the components registered with the ones loaded from the +ServiceLoader+
-mechanism hereby considering classloaser hierarchies.
+To enable this (optional) feature you must replace Tamaya's +ServiceContext+ with the
+CDI aware implementation:
 
+Contents of `META-INF/services/org.apache.tamaya.spi.ServiceContext`:
+[source, properties]
+-----------------------------------------------
+# Registering a CDI aware service context
+org.apache.tamaya.integration.cdi.CDIAwareServiceContext
+-----------------------------------------------
 
-=== Annotating your Classes
-
-Basically annotating your classes is stright forward. +@Config+ defines an additional CDI qualifier that is, depending
-on the module deployed, handled by a CDI producer (+tamaya-cdi-ee+) or the Tamaya SE injection mechanism $
-(+tamaya-cdi-se+). All types injected by this module are injected using _dependent scope_.
-
-
-[source, java]
---------------------------------------------------------
-@RequestScoped
-public class ConfiguredClass{
-
-    @Config
-    private String testProperty;
-
-    @Config({"a.b.c.key1","a.b.c.key2","a.b.c.key3"})
-    @ConfigDefault("The current \\${JAVA_HOME} env property is ${env:JAVA_HOME}.")
-    String value1;
-
-    @Config({"foo","a.b.c.key2"})
-    private String value2;
-
-    @Config
-    @ConfigDefault("N/A")
-    private String runtimeVersion;
-
-    @Config
-    @ConfigDefault("${sys:java.version}")
-    private String javaVersion2;
-
-    @Config
-    @ConfigDefault("5")
-    private Integer int1;
-
-    ...
-
-}
---------------------------------------------------------
 
 === Advanced Use Cases
 

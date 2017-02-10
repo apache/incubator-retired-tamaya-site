@@ -36,7 +36,7 @@ To benefit from configuration builder support you only must add the correspondin
 -----------------------------------------------
 
 
-=== The Extensions Provided
+=== The Functionality Provided
 
 Camel integration comes basically with three artifacts:
 

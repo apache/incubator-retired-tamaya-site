@@ -34,9 +34,10 @@ To benefit from configuration server support you only must add the corresponding
 </dependency>
 -----------------------------------------------
 
-The component will auto.register its components and override the default +ServicceContext+ in use by default
-with an instance of type +org.apache.tamaya.clsupport.internal.CLAwareServiceContext+. This implementation returns
-a priority of +10+.
+The component will auto.register its components and override the default +ServiceContext+ in use by default
+with an instance of type +org.apache.tamaya.clsupport.internal.CLAwareServiceContext+ with a precendence value
+(component priority) of +10+.
+
 
 === How it works
 

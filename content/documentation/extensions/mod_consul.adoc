@@ -13,9 +13,11 @@ Tamaya _Consul_ is an extension module. Refer to the link:../extensions.html[ext
 
 === What functionality this module provides ?
 
-Tamaya _Consul_ provides different artifacts which allows integration of Apachae Tamaya
-configuration with consul. Basically the module supports read-only integration (as a +ConsulPropertySource+ as well
-as a support for +MutableConfiguration+ as defined by the +tamaya-mutable-config+ extension module.
+Tamaya _Consul_ provides different artifacts which allows use of
+link:http://www.consul.io[Consul from Hashicorp] as configuration backend. Basically the
+module supports read-only integration (as a +ConsulPropertySource+ as well
+as a writing configuration changes back (based on Tamaya's +MutableConfiguration+ API
+defined by the link:mod_mutable_config.html[tamaya-mutable-config] extension module.
 
 
 === Compatibility
@@ -25,7 +27,7 @@ The module is based on Java 7, so it will not run on Java 7 and beyond.
 
 === Installation
 
-To benefit from configuration builder support you only must add the corresponding dependency to your module:
+To use _tamaya-consul_ you only must add the corresponding dependency to your module:
 
 [source, xml]
 -----------------------------------------------
@@ -41,10 +43,12 @@ To benefit from configuration builder support you only must add the correspondin
 
 Consul integration comes basically with 2 artifacts:
 
-* The +org.apache.tamaya.etcd.ConsulPropertySource+ is a +PropertySource+ with a default ordinal of 100 and the name
-  'consul', which is automatically registered.
+* The +org.apache.tamaya.etcd.ConsulPropertySource+ is a +PropertySource+ with a default
+  ordinal of 100 and the name 'consul', which is automatically registered.
 * If the +tamaya-mutable-config+ module is loaded it is possible to write property values back into the consul cluster,
   by accessing a +MutableConfiguration+ using the URI +config:consul+.
+
+Access of consul key/value pairs is through the normal Tamaya API.
 
 
 === The ConsulPropertySource
@@ -53,10 +57,10 @@ The +ConsulPropertySource+ is automatically registered and allows the consul ser
 enables to use e.g. in Docker environments the docker environment configuration mechanisms to configure Tamaya running
 in microservice containers to connect with the according consul cluster:
 
-* The property source reads the +tamaya.consul.urls+ system and environment property to evaluate possible etcd servers
-  (comma separated), which can be connected to. On error the API just performs a Round-Robin through the list of
+* The property source reads the +tamaya.consul.urls+ system and environment property to evaluate possible consul servers
+  (comma separated), which can be connected to. On failure the API just performs a Round-Robin through the list of
   configured servers. Without any configuration +http://127.0.0.1:2400+ is used. If no connection to any consul
   server can be established a warning will be logged, but deployment will not fail.
 * The +ConsulPropertySource+ finally also allows the values read from the consul cluster to be mapped to prefixed
-  context. This can be activated by setting the +-Dtamaya.consul.prefix=<PREFIX>+ system property. E.g. when the prefix is
-  set to +cluster-config.+ a consul key of +host:known/all+ is mapped to +cluster-config.host:known/all+.
+  context. This can be activated by setting the `-Dtamaya.consul.prefix=<PREFIX>` system property. E.g. when the prefix is
+  set to `cluster-config.` a consul key of `host:known/all` is mapped to `cluster-config.host:known/all`.

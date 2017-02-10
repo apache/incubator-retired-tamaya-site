@@ -10,11 +10,13 @@ toc::[]
 
 Tamaya _Collections_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
+
 === What functionality this module provides ?
 
 All configuration in Tamaya is expressed as simple key, value pairs. Nevertheless this concept allows similarly
 the modelling of collection typed values such as lists, sets, maps or simple collections of things. The Tamaya
 Collections extension adds this functionality to the Tamaya eco-system.
+
 
 === Compatibility
 
@@ -38,7 +40,7 @@ To use Tamaya collection support you only must add the corresponding dependency 
 === Overview
 
 Tamaya Collections adds +PropertyConverter+ implementations that are able to access configuration data
-as lists, maps or sets. By default this works out of the box as easy as accessing any other type of
+as _lists, maps_ or _sets_. By default this works out of the box as easy as accessing any other type of
 configuration data, e.g.
 
 [source, java]
@@ -63,14 +65,14 @@ Additionally the module allows adding additional meta-entries, which allows to t
 inner-workings, e.g.
 
 * using your own +PropertyConverter+ implementation for parsing entries.
-* specifying a custom separator String to be used to split the items (default is {{','}}.
-* specifying a custom separator String to be used to split key/value paris when parsing map entries.
-* specifying the implementation type of the collection instance to be returned.
-* specifying if the resulting collection should be returned as a modifiable collection.
+* specifying a custom separator to split the items (default is {{','}}.
+* specifying a custom separator to split key/value pairs when parsing map entries.
+* specifying the implementation type of the collection item to be returned.
+* specifying the implementation type of the collection to be returned.
 
 === Supported Types
 
-This module supports the following types:
+This module currently supports the following types:
 
 * +java.util.Collection+
 * +java.util.List+
@@ -85,13 +87,19 @@ This module supports the following types:
 * +java.util.HashMap+
 * +java.util.TreeMap+
 
-Hereby the type is determined primarly by the parameter type accessed, e.g.
+Hereby the collection type is determined by the parameter type accessed, e.g.
 +config.get("mylist", ArrayList.class)+ will always return an +ArrayList+
 as result.
 
+NOTE: This means that depending on your use case you can access different
+collection types based on the same configuration values, as long as their is
+a +PropertyConverter+ that can convert the _raw configuration value_ to the
+required target type.
+
+
 ==== Configuring the target implementation type
 
-Tamaya Collections allows you to configure the target collection type by adding the
+Tamaya Collections allows you to configure the _default_ target collection type by adding the
 following meta-configuration entry (shown for the +mylist+ entry). Hereby the package part +java.util.+
 can be ommitted:
 
@@ -116,9 +124,9 @@ the most significant configuration entry is used. In case of collections (and ma
 overriding is not always the mechanism of choice. E.g. when you want to have all entries added to your
 configuration to be *combined* to a new entry containing all values provided by any property sources.
 
-Therefore Tamaya Collections also provides a more sophistiated +CombinationPolicy+ (automatically configured)
+Therefore _Tamaya Collections_ also provides a more sophistiated +CombinationPolicy+ (automatically configured)
 that allows to adapt the way how configuration entries are combined. All you must do is declaring
-the mechanism to be applied by an according meta-configuration parameter, e.g. for +my.list+ your config may
+the mechanism to be applied by an according _meta-configuration_ parameter, e.g. for +my.list+ your config may
 look as follows:
 
 [source, properties]
@@ -126,7 +134,7 @@ look as follows:
 # from PropertSource 1
 my.list=1,2,3
 
-# from PropertSource 2
+# from PropertSource 2, with higher precedence
 my.list=4,5,6
 
 # without any additional meta-info these entries would be combined to
@@ -140,7 +148,7 @@ With Tamaya Collections you can now configure the combination policy as follows:
 # use one of the default policies: override / collect
 _my.list.combination-policy=collect
 
-# use an custom CombinationPolicy to combine the values
+# or use your own custom CombinationPolicy to combine the values
 _my.list.combination-policy=com.mycomp.app.MyCombincationPolicy
 -----------------------------------------------
 
@@ -175,6 +183,7 @@ list=1,2,3,4,5,6
 # a map, using the default format
 map=a::b, c::d
 -----------------------------------------------
+
 
 ==== Trimming of entries
 
