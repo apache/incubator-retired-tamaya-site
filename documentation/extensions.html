@@ -124,7 +124,7 @@
 				<h1></h1>
 			</div>
 
-			<p><em>2017-02-06</em></p>
+			<p><em>2017-02-11</em></p>
 
 			<p><div class="sect1">
 <h2 id="_apache_tamaya_extension_modules">Apache Tamaya: Extension Modules</h2>
@@ -249,7 +249,7 @@
 </td>
 <td class="content">
 The former Tamaya <em>Builder</em> extension module has been removed. The corresponding methods were integrated into
-Tamaya&#8217;s main API&#8217;s ConfigurationContextBuilder API.
+Tamaya&#8217;s main API&#8217;s ConfigurationContextBuilder interface.
 </td>
 </tr>
 </table>
@@ -259,8 +259,8 @@ Tamaya&#8217;s main API&#8217;s ConfigurationContextBuilder API.
 <h3 id="_extensions_sandbox">Extensions Sandbox</h3>
 <div class="paragraph">
 <p>Extensions in <em>draft state</em> rather experimental or not yet very mature. API changes may occurr at any time
-and the may also have severe issues. So use at your own risk or join and help us getting them stable and
-well tested!</p>
+and the may also have severe issues or even not work at all. So use at your own risk or join and help
+us getting them stable and well tested!</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -290,7 +290,7 @@ All extensions currently run on Java 7 as well as on Java 8.
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-commons</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Combines Tamaya&#8217;s Format Abstraction with Apache Commons.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integration Support for Apache Commons.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
@@ -300,7 +300,7 @@ All extensions currently run on Java 7 as well as on Java 8.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-classloader-support</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Manages Tamaya configuration and services considering classloading hierarchies.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configuration services considering classloaderas.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_classloader_support.html">Documentation</a></p></td>
 </tr>
 <tr>
@@ -310,27 +310,27 @@ All extensions currently run on Java 7 as well as on Java 8.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-metamodel</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Provides support defining configuration using XML based meta-configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides an XML API for building configuration.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_metamodel-staged.html">Documentation</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-validation</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Provides support for XML based meta-configuration allowing to validate configuration read.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides an XML API for validating configuration.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_validation.html">Documentation</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-usagetracker</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Provides support tracking of configuration usage and the consumer locations consuming configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows tracking of configuration usage.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_usagetracker.html">Documentation</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-camel</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Integration for Apache Camel.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integration with Apache Camel.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_camel.html">Documentation</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-osgi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Integration for OSGI containers.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integration with OSGI containers.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_osgi.html">Documentation</a></p></td>
 </tr>
 <tr>
@@ -344,24 +344,29 @@ All extensions currently run on Java 7 as well as on Java 8.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_etcd.html">Documentation</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">????org.apache.tamaya.ext:tamaya-configured-sysprops</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows Tamaya to integrate with System.getProperties().</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-hazelcast</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integration with Hazelcast datagrids.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_hazelcast.html">Documentation</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-configured-sysprops</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tamaya configuration to be provided as System.getProperties().</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_sysprops.html">Documentation</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-remote</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Provides remote configuration support.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Remote configuration support using the server API.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_remote.html">Documentation</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-server</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lets a Tamaya configuration instance provide scoped configuration as a REST service.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Publishes configuration as a REST service.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_server.html">Documentation</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">????org.apache.tamaya.ext:tamaya-ui</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.tamaya.ext:tamaya-ui</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Provides a web UI for a VM running Tamaya.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="extensions/mod_ui.html">Documentation</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -379,7 +384,7 @@ All extensions currently run on Java 7 as well as on Java 8.
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
-							at <span>2017-02-09</span>
+							at <span>2017-02-11</span>
 						</p>
 						<p>
 								<b>Disclaimer</b>

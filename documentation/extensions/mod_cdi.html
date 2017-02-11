@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 	    <meta charset="utf-8"/>
-	    <title>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Classloader Isolation Support</title>
+	    <title>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: CDI Support</title>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	    <meta name="description" content=""/>
 	    <meta name="author" content=""/>
@@ -121,10 +121,10 @@
 		<div class="container">
 
 			<div class="page-header">
-				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Classloader Isolation Support</h1>
+				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: CDI Support</h1>
 			</div>
 
-			<p><em>2017-02-06</em></p>
+			<p><em>2017-02-11</em></p>
 
 			<p><div id="preamble">
 <div class="sectionbody">
@@ -147,7 +147,8 @@ functionality as described in this document:</p>
 <ul>
 <li>
 <p>Loading of CDI managed SPI components as configuration extensions such as PropertySources, PropertySourceProviders,
-PropertyFilters, etc. This also includes SPI defined by any Tamaya submodules.</p>
+PropertyFilters, etc. This also includes SPI defined by any Tamaya submodules.
+This is useful when Tamaya is used as an application module managed by the CDI implementation.</p>
 </li>
 <li>
 <p>Implement and enable Tamaya&#8217;s configuration injection services with CDI.</p>
@@ -177,7 +178,7 @@ ConfigurationInjector), which is not available, when using the purely Java EE ba
 <div class="paragraph">
 <p>The annotations used for all injection functionality in Tamaya is defined as a separate module. This allows you to
 code against the injection API without dependency on the concrete injection implementation. As a consequence your
-components will be compatible regardless if deployed in a pure SE, a Java EE (CDI) or OSGI or Spring environment:</p>
+components will be compatible regardless if deployed in a pure SE or as Java EE (CDI) or Spring environment:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -192,7 +193,7 @@ components will be compatible regardless if deployed in a pure SE, a Java EE (CD
 <div class="sect2">
 <h3 id="_compatibility">Compatibility</h3>
 <div class="paragraph">
-<p>Both modules are based on Java 7, so they will not run on Java 7 and beyond.</p>
+<p>All modules are based on Java 7, so they will not run on Java 7 and beyond.</p>
 </div>
 </div>
 <div class="sect2">
@@ -202,7 +203,7 @@ components will be compatible regardless if deployed in a pure SE, a Java EE (CD
 you never have installed both CDI extensions at the same time because this may be lead to unforseen side-effects.</p>
 </div>
 <div class="listingblock">
-<div class="title">CDI Pure Application Configuration</div>
+<div class="title">CDI Java EE Application Configuration</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
@@ -212,7 +213,7 @@ you never have installed both CDI extensions at the same time because this may b
 </div>
 </div>
 <div class="listingblock">
-<div class="title">CDI enhanced with Tamaya SE Application Configuration</div>
+<div class="title">CDI injection based on Tamaya SE Application Configuration</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
@@ -237,6 +238,61 @@ Never install Tamaya&#8217;s tamaya-cdi-se and tamaya-cdi-ee on the same system,
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>For working with a pure non Java EE environment have a look at the <a href="mod_injection.html">tamaya-injection module</a>.</p>
+</div>
+<div class="paragraph">
+<p>Additionally you have to register Tamaya&#8217;s CDI extension modules into your <code>beans-xml</code>:</p>
+</div>
+<div class="paragraph">
+<p>Contents of <code>META-INF/services/javax.enterprise.inject.spi.Extension</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># Register Tamaya to perform injection
+org.apache.tamaya.integration.cdi.ConfigurationExtension</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_annotating_your_classes">Annotating your Classes</h3>
+<div class="paragraph">
+<p>Basically annotating your classes is stright forward. @Config defines an additional CDI qualifier that is, depending
+on the module deployed, handled by a CDI producer (tamaya-cdi-ee) or the Tamaya SE injection mechanism $
+(tamaya-cdi-se). All types injected by this module are injected using <em>dependent scope</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@RequestScoped
+public class ConfiguredClass{
+
+    @Config
+    private String testProperty;
+
+    @Config({"a.b.c.key1","a.b.c.key2","a.b.c.key3"})
+    @ConfigDefault("The current \\${JAVA_HOME} env property is ${env:JAVA_HOME}.")
+    String value1;
+
+    @Config({"foo","a.b.c.key2"})
+    private String value2;
+
+    @Config
+    @ConfigDefault("N/A")
+    private String runtimeVersion;
+
+    @Config
+    @ConfigDefault("${sys:java.version}")
+    private String javaVersion2;
+
+    @Config
+    @ConfigDefault("5")
+    private Integer int1;
+
+    ...
+
+}</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -288,48 +344,16 @@ public class TestPropertySource implements PropertySource{
 </div>
 </div>
 <div class="paragraph">
-<p>Note that for many SPI&#8217;s there is a priority mechanism using @Priority annotations in place.
-The ServiceContext implementation combines the components registered with the ones loaded from the ServiceLoader
-mechanism hereby considering classloaser hierarchies.</p>
+<p>To enable this (optional) feature you must replace Tamaya&#8217;s ServiceContext with the
+CDI aware implementation:</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_annotating_your_classes">Annotating your Classes</h3>
 <div class="paragraph">
-<p>Basically annotating your classes is stright forward. @Config defines an additional CDI qualifier that is, depending
-on the module deployed, handled by a CDI producer (tamaya-cdi-ee) or the Tamaya SE injection mechanism $
-(tamaya-cdi-se). All types injected by this module are injected using <em>dependent scope</em>.</p>
+<p>Contents of <code>META-INF/services/org.apache.tamaya.spi.ServiceContext</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@RequestScoped
-public class ConfiguredClass{
-
-    @Config
-    private String testProperty;
-
-    @Config({"a.b.c.key1","a.b.c.key2","a.b.c.key3"})
-    @ConfigDefault("The current \\${JAVA_HOME} env property is ${env:JAVA_HOME}.")
-    String value1;
-
-    @Config({"foo","a.b.c.key2"})
-    private String value2;
-
-    @Config
-    @ConfigDefault("N/A")
-    private String runtimeVersion;
-
-    @Config
-    @ConfigDefault("${sys:java.version}")
-    private String javaVersion2;
-
-    @Config
-    @ConfigDefault("5")
-    private Integer int1;
-
-    ...
-
-}</code></pre>
+<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># Registering a CDI aware service context
+org.apache.tamaya.integration.cdi.CDIAwareServiceContext</code></pre>
 </div>
 </div>
 </div>
@@ -418,7 +442,7 @@ default section parts.</p>
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
-							at <span>2017-02-09</span>
+							at <span>2017-02-11</span>
 						</p>
 						<p>
 								<b>Disclaimer</b>

@@ -124,7 +124,7 @@
 				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Events</h1>
 			</div>
 
-			<p><em>2017-02-06</em></p>
+			<p><em>2017-02-11</em></p>
 
 			<p><div id="preamble">
 <div class="sectionbody">
@@ -178,13 +178,13 @@ change events.</p>
 <div class="sect2">
 <h3 id="_core_architecture">Core Architecture</h3>
 <div class="paragraph">
-<p>The core of the module are the ConfigEventListener interface and the ConfigEvent class, which defines an abstraction
-for event handling and observation:</p>
+<p>The core of the module are the ConfigEventListener and the ConfigEvent interfaces,
+which defines an abstraction for event handling and observation:</p>
 </div>
 <div class="listingblock">
 <div class="title">ConfigEvent</div>
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public final interface ConfigEvent&lt;T&gt; {
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface ConfigEvent&lt;T&gt; {
 
     Class&lt;T&gt; getResourceType();
     T getResource();
@@ -214,7 +214,54 @@ more details refer to the SPI section later in this guide.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_modelling_changes">Modelling Changes</h3>
+<h3 id="_the_configeventmanager_singleton">The ConfigEventManager Singleton</h3>
+<div class="paragraph">
+<p>Main entry point of the events module is the ConfigEventManager singleton class, which provides static accessor
+methods to the extension&#8217;s functionality:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Adding/removing</em> of ConfigChangeListener instances, either globally or per event type.</p>
+</li>
+<li>
+<p><em>Firing configuration events</em> synchronously or asyncronously (mostly called by framework code).</p>
+</li>
+<li>
+<p><em>Configuring the monitor</em> that periodically checks for changes on the global Configuration provided
+by ConfigurationProvider.getConfiguration().</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public final class ConfigEventManager {
+
+    private ConfigEventManager() {}
+
+    public static void addListener(ConfigEventListener l);
+    public static &lt;T extends ConfigEvent&gt; void addListener(ConfigEventListener l, Class&lt;T&gt; eventType);
+    public static void removeListener(ConfigEventListener l);
+    public static &lt;T extends ConfigEvent&gt; void removeListener(ConfigEventListener l, Class&lt;T&gt; eventType);
+    public static &lt;T extends ConfigEvent&gt;
+        Collection&lt;? extends ConfigEventListener&gt; getListeners();
+    public static &lt;T extends ConfigEvent&gt;
+        Collection&lt;? extends ConfigEventListener&gt; getListeners(Class&lt;T&gt; type);
+
+    public static &lt;T&gt; void fireEvent(ConfigEvent&lt;?&gt; event);
+    public static &lt;T&gt; void fireEventAsynch(ConfigEvent&lt;?&gt; event);
+
+    public static void enableChangeMonitoring(boolean enable);
+    public static boolean isChangeMonitoring();
+    public long getChangeMonitoringPeriod();
+    public void setChangeMonitoringPeriod(long millis);
+
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_modelling_configuration_changes_as_events">Modelling configuration changes as events</h3>
 <div class="paragraph">
 <p>This module provides a serializable and thread-safe abstraction modelling a
 configuration change, which is anything of the following</p>
@@ -376,58 +423,11 @@ e.g. by a configuration file edited on the fly. This is similarly to a
 ConfigurationChange reflected by the classes PropertySourceChange,
 PropertySourceChangeBuilder.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_the_configeventmanager_singleton">The ConfigEventManager Singleton</h3>
-<div class="paragraph">
-<p>Main entry point of the events module is the ConfigEventManager singleton class, which provides static accessor
-methods to the extension&#8217;s functionality:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><em>Adding/removing</em> of ConfigChangeListener instances, either globally or per event type.</p>
-</li>
-<li>
-<p><em>Firing configuration events</em> synchronously or asyncronously (mostly called by framework code).</p>
-</li>
-<li>
-<p><em>Configuring the monitor</em> that periodically checks for changes on the global Configuration provided
-by ConfigurationProvider.getConfiguration().</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public final class ConfigEventManager {
-
-    private ConfigEventManager() {}
-
-    public static void addListener(ConfigEventListener l);
-    public static &lt;T extends ConfigEvent&gt; void addListener(ConfigEventListener l, Class&lt;T&gt; eventType);
-    public static void removeListener(ConfigEventListener l);
-    public static &lt;T extends ConfigEvent&gt; void removeListener(ConfigEventListener l, Class&lt;T&gt; eventType);
-    public static &lt;T extends ConfigEvent&gt;
-        Collection&lt;? extends ConfigEventListener&gt; getListeners();
-    public static &lt;T extends ConfigEvent&gt;
-        Collection&lt;? extends ConfigEventListener&gt; getListeners(Class&lt;T&gt; type);
-
-    public static &lt;T&gt; void fireEvent(ConfigEvent&lt;?&gt; event);
-    public static &lt;T&gt; void fireEventAsynch(ConfigEvent&lt;?&gt; event);
-
-    public static void enableChangeMonitoring(boolean enable);
-    public static boolean isChangeMonitoring();
-    public long getChangeMonitoringPeriod();
-    public void setChangeMonitoringPeriod(long millis);
-
-}</code></pre>
-</div>
-</div>
 <div class="sect3">
 <h4 id="_monitoring_of_configuration_changes">Monitoring of configuration changes</h4>
 <div class="paragraph">
-<p>The ConfigEventManager also supports active monitoring of the current configuration to trigger corresponding change
-events to listeners registered. This feature is deactivated by default, but can be enabled by calling
+<p>The ConfigEventManager supports <strong>active monitoring of the current configuration</strong> to trigger corresponding change
+events to listeners registered. <strong>This feature is deactivated by default</strong>, but can be enabled by calling
 ConfigEventManager.enableChangeMonitoring(true);. This feature avoids regularly polling your local Configuration for
 any kind of changes. If a change has been encountered Tamaya identifies it and triggers corresponding
 ConfigurationChange events automatically.</p>
@@ -525,7 +525,7 @@ active (by default using the Java ServiceLoader mechanism).</p>
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
-							at <span>2017-02-09</span>
+							at <span>2017-02-11</span>
 						</p>
 						<p>
 								<b>Disclaimer</b>

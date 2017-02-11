@@ -124,7 +124,7 @@
 				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Collection Support</h1>
 			</div>
 
-			<p><em>2017-02-06</em></p>
+			<p><em>2017-02-11</em></p>
 
 			<p><div id="preamble">
 <div class="sectionbody">
@@ -170,7 +170,7 @@ Collections extension adds this functionality to the Tamaya eco-system.</p>
 <h3 id="_overview">Overview</h3>
 <div class="paragraph">
 <p>Tamaya Collections adds PropertyConverter implementations that are able to access configuration data
-as lists, maps or sets. By default this works out of the box as easy as accessing any other type of
+as <em>lists, maps</em> or <em>sets</em>. By default this works out of the box as easy as accessing any other type of
 configuration data, e.g.</p>
 </div>
 <div class="listingblock">
@@ -202,16 +202,16 @@ inner-workings, e.g.</p>
 <p>using your own PropertyConverter implementation for parsing entries.</p>
 </li>
 <li>
-<p>specifying a custom separator String to be used to split the items (default is {{','}}.</p>
+<p>specifying a custom separator to split the items (default is {{','}}.</p>
 </li>
 <li>
-<p>specifying a custom separator String to be used to split key/value paris when parsing map entries.</p>
+<p>specifying a custom separator to split key/value pairs when parsing map entries.</p>
 </li>
 <li>
-<p>specifying the implementation type of the collection instance to be returned.</p>
+<p>specifying the implementation type of the collection item to be returned.</p>
 </li>
 <li>
-<p>specifying if the resulting collection should be returned as a modifiable collection.</p>
+<p>specifying the implementation type of the collection to be returned.</p>
 </li>
 </ul>
 </div>
@@ -219,7 +219,7 @@ inner-workings, e.g.</p>
 <div class="sect2">
 <h3 id="_supported_types">Supported Types</h3>
 <div class="paragraph">
-<p>This module supports the following types:</p>
+<p>This module currently supports the following types:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -262,14 +262,29 @@ inner-workings, e.g.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Hereby the type is determined primarly by the parameter type accessed, e.g.
+<p>Hereby the collection type is determined by the parameter type accessed, e.g.
 config.get("mylist", ArrayList.class) will always return an ArrayList
 as result.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+This means that depending on your use case you can access different
+collection types based on the same configuration values, as long as their is
+a PropertyConverter that can convert the <em>raw configuration value</em> to the
+required target type.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect3">
 <h4 id="_configuring_the_target_implementation_type">Configuring the target implementation type</h4>
 <div class="paragraph">
-<p>Tamaya Collections allows you to configure the target collection type by adding the
+<p>Tamaya Collections allows you to configure the <em>default</em> target collection type by adding the
 following meta-configuration entry (shown for the mylist entry). Hereby the package part java.util.
 can be ommitted:</p>
 </div>
@@ -299,9 +314,9 @@ overriding is not always the mechanism of choice. E.g. when you want to have all
 configuration to be <strong>combined</strong> to a new entry containing all values provided by any property sources.</p>
 </div>
 <div class="paragraph">
-<p>Therefore Tamaya Collections also provides a more sophistiated CombinationPolicy (automatically configured)
+<p>Therefore <em>Tamaya Collections</em> also provides a more sophistiated CombinationPolicy (automatically configured)
 that allows to adapt the way how configuration entries are combined. All you must do is declaring
-the mechanism to be applied by an according meta-configuration parameter, e.g. for my.list your config may
+the mechanism to be applied by an according <em>meta-configuration</em> parameter, e.g. for my.list your config may
 look as follows:</p>
 </div>
 <div class="listingblock">
@@ -309,7 +324,7 @@ look as follows:</p>
 <pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># from PropertSource 1
 my.list=1,2,3
 
-# from PropertSource 2
+# from PropertSource 2, with higher precedence
 my.list=4,5,6
 
 # without any additional meta-info these entries would be combined to
@@ -324,7 +339,7 @@ my.list=4,5,6</code></pre>
 <pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># use one of the default policies: override / collect
 _my.list.combination-policy=collect
 
-# use an custom CombinationPolicy to combine the values
+# or use your own custom CombinationPolicy to combine the values
 _my.list.combination-policy=com.mycomp.app.MyCombincationPolicy</code></pre>
 </div>
 </div>
@@ -441,7 +456,7 @@ _redefined-map.item-separator=|</code></pre>
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
-							at <span>2017-02-09</span>
+							at <span>2017-02-11</span>
 						</p>
 						<p>
 								<b>Disclaimer</b>

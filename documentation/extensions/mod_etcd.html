@@ -124,7 +124,7 @@
 				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Integration with etcd (Core OS)</h1>
 			</div>
 
-			<p><em>2017-02-06</em></p>
+			<p><em>2017-02-11</em></p>
 
 			<p><div id="preamble">
 <div class="sectionbody">
@@ -140,9 +140,10 @@
 <div class="sect2">
 <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
 <div class="paragraph">
-<p>Tamaya <em>Etcd</em> provides different artifacts which allows integration of Apachae Tamaya
-configuration with etcd. Basically the module supports read-only integration (as a EtcdPropertySource as well
-as a support for MutableConfiguration as defined by the tamaya-mutable-config extension module.</p>
+<p>Tamaya <em>Etcd</em> provides different artifacts which allows using <a href="https://github.com/coreos/etcd">etcd</a> as a
+configuration backend. Basically the module adds a read-only property source (EtcdPropertySource). If
+the <em>tamaya-mutable-config</em> extension is loaded it is alos possible to write configuration
+changes to <em>etcd</em> using MutableConfiguration.</p>
 </div>
 </div>
 <div class="sect2">
@@ -154,7 +155,8 @@ as a support for MutableConfiguration as defined by the tamaya-mutable-config ex
 <div class="sect2">
 <h3 id="_installation">Installation</h3>
 <div class="paragraph">
-<p>To benefit from configuration builder support you only must add the corresponding dependency to your module:</p>
+<p>To use <em>etcd</em> as a configuration backend you only must add the corresponding dependency to
+your module:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -169,14 +171,14 @@ as a support for MutableConfiguration as defined by the tamaya-mutable-config ex
 <div class="sect2">
 <h3 id="_the_extensions_provided">The Extensions Provided</h3>
 <div class="paragraph">
-<p>ETcd integration comes basically with 2 artifacts:</p>
+<p>Tamaya&#8217;s <em>etcd</em> integration provides basically the following artifacts:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The org.apache.tamaya.etcd.EtcdAccessor can be configured with a an url targeting an etcd server&#8217;s REST endpoint root.
-(org.apache.tamaya.etcd.EtcdAccessor). The accessor basically provides a simple Java API for communicating
-with etcd server. The accessor hereby allows reading of single properties, or whole subtrees. Also the basic non
+<p>The org.apache.tamaya.etcd.EtcdAccessor can be configured with a an url targeting an etcd server&#8217;s REST endpoint
+root. The accessor basically provides a simple Java API for communicating with the <em>etcd</em> server. The
+accessor hereby allows reading of single properties, or whole subtrees. Also the basic non
 atomic write methods are implemented.</p>
 </li>
 <li>
@@ -193,10 +195,10 @@ by accessing a MutableConfiguration using the URI config:etcd.</p>
 <div class="sect2">
 <h3 id="_the_etcdaccessor">The EtcdAccessor</h3>
 <div class="paragraph">
-<p>The accessor mentioned implements the basic read and write API for communicating with an etcd configuration cluster.
-Hereby the accessor also provides etcd specific data such as createdIndex, modifiedIndex, ttl in the Map
-returned. Hereby the concept of etcd is used where keys starting with an '_' will be hidden from the overall
-properties map, being only directly/explicitly accessible:</p>
+<p>The accessor implements the basic read and write API for communicating with an <em>etcd</em> server.
+Hereby the accessor also provides <em>etcd</em> specific data such as createdIndex, modifiedIndex, ttl in the Map
+returned. Hereby the concept of <em>etcd</em> is used where keys starting with an '_' represent meta-configuration
+that will be hidden from the overall properties map, being only directly/explicitly accessible:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -318,7 +320,7 @@ properties map, being only directly/explicitly accessible:</p>
 <div class="sect2">
 <h3 id="_the_etcdpropertysource">The EtcdPropertySource</h3>
 <div class="paragraph">
-<p>The EtcdPropertySource is automatically registered and allows to configure the etcd servers to be used. This
+<p>The EtcdPropertySource is automatically registered and allows to configure the <em>etcd</em> servers to be used. This
 enables to use e.g. in Docker environments the docker environment configuration mechanisms to configure Tamaya running
 in microservice containers to connect with the according etcd cluster:</p>
 </div>
@@ -331,14 +333,13 @@ configured servers. Without any configuration http://127.0.0.1:4001 is used. If 
 server can be established a warning will be logged, but deployment will not fail.</p>
 </li>
 <li>
-<p>Additinoally also the
-accessor allows to configure the socket/connection timeouts by setting tamaya.etcd.timeout in seconds either as
-system or environment property.</p>
+<p>Additionally also the accessor allows to configure the socket/connection timeouts by setting
+tamaya.etcd.timeout in seconds either as system or environment property.</p>
 </li>
 <li>
-<p>The EtcdPropertySource finally also allows the values read from the etcd cluster to be mapped to prefixed
+<p>The EtcdPropertySource finally also allows the values read from the <em>etcd</em> cluster to be mapped to prefixed
 context. This can be activated by setting the -Dtamaya.etcd.prefix=&lt;PREFIX&gt; system property. E.g. when the prefix is
-set to cluster-config. a etcd key of host:known/all is mapped to cluster-config.host:known/all.</p>
+set to <code>cluster-config.</code> a etcd key of <code>host:known/all</code> is mapped to <code>cluster-config.host:known/all</code>.</p>
 </li>
 </ul>
 </div>
@@ -356,7 +357,7 @@ set to cluster-config. a etcd key of host:known/all is mapped to cluster-config.
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
-							at <span>2017-02-09</span>
+							at <span>2017-02-11</span>
 						</p>
 						<p>
 								<b>Disclaimer</b>

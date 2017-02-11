@@ -124,7 +124,7 @@
 				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Injection</h1>
 			</div>
 
-			<p><em>2017-02-06</em></p>
+			<p><em>2017-02-11</em></p>
 
 			<p><div id="preamble">
 <div class="sectionbody">
@@ -188,13 +188,10 @@ according injection services. This module adds this functionality to Tamaya.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Spring, Spring Boot</p>
+<p><a href="mod_spring.html">Spring, Spring Boot</a></p>
 </li>
 <li>
-<p>Java EE/CDI</p>
-</li>
-<li>
-<p>OSGI, Apache Felix/Apache Karaf</p>
+<p><a href="mod_CDI.html">Java EE/CDI</a></p>
 </li>
 </ul>
 </div>
@@ -302,41 +299,13 @@ with CDI, Spring or within an OSGI container. For further details refer also to 
 documentation.
 
 
-=== The Annotations in detail
 ==== The ConfigurationInjector
 
 The +ConfigurationInjector+ interface provides methods that allow any kind of instances to be configured
 by passing the instances to +T ConfigurationInjector.getInstance().configure(T);+. The classes passed
-hereby must not be annotated with +@Config+ for being configurable. By default Tamaya
-tries to determine configuration for each property of an instance passed, using the following resolution policy:
+hereby must not be annotated with +@Config+ for being configurable.
 
-Given a class +a.b.MyClass+ and a field +myField+ it would try to look up the following keys:
-[source, listing]</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>a.b.MyClass.myField
-a.b.MyClass.my-field
-MyClass.myField
-MyClass.my-field
-myField
-my-field</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>So given the following properties:
-
-[source, properties]</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>a.b.Tenant.id=1234
-Tenant.description=Any kind of tenant.
-name=&lt;unnamed&gt;</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>==== Accessing Supplier instances
+==== Accessing Supplier instances
 
 In many cases you want to create a supplier that simply creates instances that are correctly configured as defined
 by the current context. This can be done using +Suppliers+:
@@ -368,6 +337,7 @@ by the current context. This can be done using +Suppliers+:
 <pre>Hereby this annotation can be used in multiple ways and combined with other annotations such as
 +@WithLoadPolicy+, +@WithConfigOperator+, +@WithPropertyConverter+.
 
+
 ==== Minimal Example
 
 To illustrate the mechanism below the most simple variant of a configured class is given:
@@ -393,9 +363,87 @@ the following is happening:
 * if not successful, an error is thrown (+ConfigException+)
 * On success, since no type conversion is involved, the value is injected.
 
-==== Using @DefaultValue
 
-In the next example we explicitly define the property value:
+=== The Annotations in detail
+
+==== Using `@Config`
+
+This is the main annotation targeting a field in a class for configuration injection.
+
+===== Evaluating of _configuration keys_
+
+By default Tamaya tries to determine configuration for each property of an instance
+passed, using the following resolution policy:
+
+* Given a class +a.b.MyClass+ and a field +myField+ it would try to look up the
+  following keys:
+
+[source, listing]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>a.b.MyClass.myField
+a.b.MyClass.my-field
+MyClass.myField
+MyClass.my-field
+myField
+my-field</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>This behaviour can be adapted, e.g. by using the `@ConfigDefaultSections` annotation on the
+declaring type:</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>@ConfigDefaultSections("a.b.c", "deprecated")
+pubic class MyClass{
+  @Config
+  private String myField;
+}</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>This will result in a modified lookup chain as illustrated below:
+
+[source, listing]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>a.b.c.myField
+a.b.c.my-field
+deprecated.myField
+deprecated.my-field</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>This helps to reduce redundancy when referring to you configuration keys. Additionally
+it is also possible to define absolute key entries, e.g.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>@ConfigDefaultSections("a.b.c")
+pubic class MyClass{
+  @Config("myField" /* relative */, "[absolute.key]")
+  private String myField;
+}</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>This will result in a lookup chain as illustrated below:
+
+[source, listing]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>a.b.c.myField
+absolute.key # default sections are ignored</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>===== Using defaults
+
+In the next example we explicitly define the _default_ property value:
 [source,java]</pre>
 </div>
 </div>
@@ -411,7 +459,99 @@ In the next example we explicitly define the property value:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>==== Inject a DynamicValue Property
+<pre>==== Automatically inject all items using `@ConfigAutoInject`
+
+Using `@ConfigAutoInject` allows you to automatically select all properties found for
+configuration injection:
+
+[source,java]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>@ConfigAutoInject
+pubic class ConfiguredItem{</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>private transient int sum;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  private String a;
+  private String b;
+  Private String c;
+}</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Adding the `@NoConfig` annotation prevents a field or method to be auto-injected from
+configuration. This is especially useful, if a type is annotated as @ConfigAutoInject with auto-confiuration
+turned on as follows:
+
+[source,java]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>@NoConfig
+private transient int sum;</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>In this case the fields +a,b,c+ are configured, whereas the field +sum+ is ignored regarding
+configuration.
+
+
+==== Adding custom operators using `@WithConfigOperator`
+
+The @WithConfigOperator annotation allows you define a class of type +ConfigOperator+, to being applied
+to the final +Configuration+, BEFORE the value is injected. This can be used for various use cases, e.g.
+filtering or validating the visible properties for a certain use case.
+
+[source,java]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>@WithConfigOperator(MyConfigView.class)
+pubic class ConfiguredItem{</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>@Config
+private String a;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>}</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>==== Adding custom property converters using `@WithPropertyConverter`
+
+The @WithPropertyConverter annotation allows you to define a class of type +PropertyConverter+, to be applied
+on a property configured to convert the String value to the expected injected type. This can be used for
+various use cases, e.g. adding custom formats, config models, decryption.
+
+[source,java]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>pubic class ConfiguredItem{</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>@WithPropertyConverter(MyPropertyConverter.class)
+@Config
+private String a;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>}</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>==== Inject a `DynamicValue`
 
 Within this example we evaluate a dynamic value. This mechanism allows you to listen for configuration changes and to
 commit new values exactly, when convenient for you.
@@ -438,16 +578,6 @@ commit new values exactly, when convenient for you.
 </div>
 <div class="paragraph">
 <p>public interface DynamicValue&lt;T&gt; {</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>enum UpdatePolicy{
-    IMMEDIATE,
-    EXPLCIT,
-    NEVER,
-    LOG_AND_DISCARD
-}</pre>
-</div>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -480,20 +610,28 @@ T orElse(T other);
 <div class="paragraph">
 <p>}</p>
 </div>
+<div class="paragraph">
+<p>public enum UpdatePolicy{
+    IMMEDIATE,
+    EXPLCIT,
+    NEVER,
+    LOG_AND_DISCARD
+}</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre>Summarizing this class looks somehow similar to the new +Optional+ class added with Java 8. It provides
-a wrapper class around a configured instance. Additionally this class provides functionality that gives
-active control, to manage a configured value based on a ++LoadingPolicy+:
-
-* +IMMEDEATE+ means that when the configuration system detects a change on the underlying value, the new value
-  is automatically applied without any further notice.
-* +EXPLICIT+ means that a new configuration value is signalled by setting the +newValue+ property. if +getNewValue()+
-  returns a non null value, the new value can be applied by calling +commit()+. You can always access the newest value,
-  hereby implicitly applying it, by accessing it via +commitAndGet()+. Also it is possible ti ignore a change by calling
-  +discard()+.
-* +NEVER+ means the configured value is evaluated once and never updated. All changes are silently discarded.
-* +LOG_AND_DISCARD+ similar to +NEVER+, but changes are logged before they are discarded.
+<pre>//Summarizing +DynamicValue+ looks somehow similar to the new +Optional+ class added with Java 8. It provides
+//a wrapper class around a configured instance. Additionally this class provides functionality that gives
+//active control, to manage a configured value based on a ++LoadingPolicy+:
+//
+//* +IMMEDEATE+ means that when the configuration system detects a change on the underlying value, the new value
+//  is automatically applied without any further notice.
+//* +EXPLICIT+ means that a new configuration value is signalled by setting the +newValue+ property. if +getNewValue()+
+//  returns a non null value, the new value can be applied by calling +commit()+. You can always access the newest value,
+//  hereby implicitly applying it, by accessing it via +commitAndGet()+. Also it is possible ti ignore a change by calling
+//  +discard()+.
+//* +NEVER+ means the configured value is evaluated once and never updated. All changes are silently discarded.
+//* +LOG_AND_DISCARD+ similar to +NEVER+, but changes are logged before they are discarded.
 
 Summarizing a +DynamicValue+ allows you
 
@@ -505,111 +643,40 @@ Dynamic values also allow on-the-fly reevaluation of the value by calling +evalu
 instance is not changed.
 
 
-==== Ommitting Injection using @NoConfig
+===== The Loading policy enum
 
-Adding the @NoConfig annotation prevents a field or method to be auto-injected from
-configuration. This is especially useful, if a type is annotated as @ConfigAutoInject with auto-confiuration
-turned on as follows:
-
-[source,java]</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>@ConfigAutoInject
-pubic class ConfiguredItem{</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>@NoConfig
-private transient int sum;</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>  private String a;
-  private String b;
-  Private String c;
-}</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>In this case the fields +a,b,c+ are configured, whereas the field +sum+ is ignored regarding
-configuration.
-
-==== Adding custom operators using @WithConfigOperator
-
-The @WithConfigOperator annotation allows you define a class of type +ConfigOperator+, to being applied
-to the final +Configuration+, BEFORE the value is injected. This can be used for various use cases, e.g.
-filtering or validating the visible properties for a certain use case.
+The +LoadPolicy+ enum defines different configuration loading behaviour
+to be applied:
 
 [source,java]</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>@WithConfigOperator(MyConfigView.class)
-pubic class ConfiguredItem{</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>@Config
-private String a;</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>}</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>==== Adding custom property converters using @WithPropertyConverter
-
-The @WithPropertyConverter annotation allows you to define a class of type +PropertyConverter+, to be applied
-on a property configured to convert the String value to the expected injected type. This can be used for
-various use cases, e.g. adding custom formats, config models, decryption.
-
-[source,java]</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>pubic class ConfiguredItem{</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>@WithPropertyConverter(MyPropertyConverter.class)
-@Config
-private String a;</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>}</p>
+<p>@Deprecated
+public enum LoadPolicy {
+    /<strong>
+     * The configuration keys is evaluated once, when the owning component is loaded/configured, but never updated later.
+     <strong>/
+    INITIAL,
+    /</strong>
+     * The configuration keys is evaluated exactly once on its first access/use lazily, but never updated later.
+     * @see DynamicValue#get()
+     * @see DynamicValue#commitAndGet()
+     */
+    LAZY,
+    /</strong>*
+     * The configuration value is evaluated every time it is accessed.
+     */
+    ALWAYS
+}</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>==== Defining the loading policy to be applied to configured values using @WithLoadPolicy
+<pre>This enum type currently is used only internally, so avoid using it as of
+now in your code is recommended.
 
-The @WithLoadPolicy annotation allows to define the loading behaviour to be applied. The +LoadPolicy+
-enum hereby defines the various loading modes.
 
-[source,java]</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>@WithLoadPolicy(LoadPolicy.NEVER)
-pubic class BootTimeStableConfig{</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>@WithPropertyConverter(MyPropertyConverter.class)
-@Config
-private String a;</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>}</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>=== Configuration Events
+=== Configuration Events
 
 Similar to CDI Tamaya publishes Configuration events, when instances were configured. It depends on the effective
 event backend in use, if and how events are published:
@@ -671,7 +738,7 @@ The event published is very simple:
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
-							at <span>2017-02-09</span>
+							at <span>2017-02-11</span>
 						</p>
 						<p>
 								<b>Disclaimer</b>

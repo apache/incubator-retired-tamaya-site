@@ -124,7 +124,7 @@
 				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Classloader Isolation Support</h1>
 			</div>
 
-			<p><em>2017-02-06</em></p>
+			<p><em>2017-02-11</em></p>
 
 			<p><div id="preamble">
 <div class="sectionbody">
@@ -165,9 +165,9 @@ of classloaders, hereby preventing multiple loading of components within a class
 </div>
 </div>
 <div class="paragraph">
-<p>The component will auto.register its components and override the default ServicceContext in use by default
-with an instance of type org.apache.tamaya.clsupport.internal.CLAwareServiceContext. This implementation returns
-a priority of 10.</p>
+<p>The component will auto.register its components and override the default ServiceContext in use by default
+with an instance of type org.apache.tamaya.clsupport.internal.CLAwareServiceContext with a precendence value
+(component priority) of 10.</p>
 </div>
 </div>
 <div class="sect2">
@@ -254,7 +254,7 @@ hierarchies:</p>
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-2016 Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
-							at <span>2017-02-09</span>
+							at <span>2017-02-11</span>
 						</p>
 						<p>
 								<b>Disclaimer</b>
