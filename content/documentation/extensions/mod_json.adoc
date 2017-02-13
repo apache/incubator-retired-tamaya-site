@@ -12,7 +12,30 @@ Tamaya _JSON_ is an extension module. Refer to the link:../extensions.html[exten
 
 === What functionality this module provides ?
 
-Tamaya _JSON_ provides support for reading configuration using JSON format:
+Tamaya _JSON_ provides support for reading configuration using JSON
+format:
+
+[source, json]
+-----------------------------------------------
+{
+  "a.b"{
+    "key1": "blabla",
+    "key2": true,
+  }
+}
+-----------------------------------------------
+
+Hereby the hierarchical structure of the JSON document will be mapped to a
+flat key-value pairs of type `String`, e.g. the bove will be mapped to
+
+[source, properties]
+-----------------------------------------------
+a.b.key1=blabla
+a.b.key2=true
+-----------------------------------------------
+
+This extension uses SPI defined by the +tamaya.formats+ extension module.
+
 
 === Compatibility
 
@@ -21,7 +44,7 @@ The module is based on Java 7, so it will run on Java 7 and beyond.
 
 === Installation
 
-To benefit from configuration builder support you only must add the corresponding dependency to your module:
+To use the JSON extension module you only must add the corresponding dependency to your module:
 
 [source, xml]
 -----------------------------------------------
@@ -34,9 +57,11 @@ To benefit from configuration builder support you only must add the correspondin
 
 This extension also transitively requires the +tamaya.formats+ module.
 
+
 === Reading configuration in JSON
 
-For reading JSON based onfiguration most easily a +JSONFormat+ can be provided:
+For reading JSON based onfiguration most easily a +JSONFormat+ can be
+used:
 
 [source, java]
 -----------------------------------------------
@@ -44,20 +69,13 @@ ConfigurationData dataRead = ConfigurationFormats.readConfig(
     getClassLoader().getResource("myFileConfig.json"), new JSONFormat()));
 -----------------------------------------------
 
-=== Examples
+Or, if you are fine with the _default_ mapping you can directly create a
++PropertySource+ using the _formats_ API (this works since this module
+registers the _json_ format automatically using the `ServiceContext`):
 
-The JSON module adds instances of +ConfigurationFormat+ so JSON configuration can be read and mapped to the
-according property maps. E.g. the following file is a simple and correct JSON configuration:
+[source, java]
+-----------------------------------------------
+PropertySource ps = ConfigurationFormats.createPropertySource(
+    getClassLoader().getResource("myFileConfig.json"));
+-----------------------------------------------
 
-[source,listing]
-----------------------------------------------------------------
-{
-  "a" : "A",
-  "b" : "B",
-  "c" : "C",
-  "d" : {
-      "o" : "O",
-      "p" : "P"
-    }
-}
-----------------------------------------------------------------

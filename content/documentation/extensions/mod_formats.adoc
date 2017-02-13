@@ -111,6 +111,69 @@ public interface ConfigurationFormat {
 }
 -------------------------------------------------------
 
+=== Creating a default PropertySource for a ConfigurationFormat
+
+The module defines a singleton +ConfigurationFormats+ which provides
+an easy to use API for creating +ConfigurationData+ and +PropertySources+
+using abstract +ConfigurationFormat+ implementations:
+
+[source,java]
+-------------------------------------------------------
+public final class ConfigurationFormats {
+
+    public static List<ConfigurationFormat> getFormats();
+    public static List<ConfigurationFormat> getFormats(String... formatNames);
+    public static List<ConfigurationFormat> getFormats(final URL url);
+
+    public static ConfigurationData readConfigurationData(final URL url)
+    throws IOException;
+    public static ConfigurationData readConfigurationData(URL url, ConfigurationFormat... formats)
+    throws IOException;
+    public static ConfigurationData readConfigurationData(URL url, Collection<ConfigurationFormat> formats)
+    throws IOException;
+    public static Collection<ConfigurationData> readConfigurationData(Collection<URL> urls, ConfigurationFormat... formats);
+    public static Collection<ConfigurationData> readConfigurationData(Collection<URL> urls, Collection<ConfigurationFormat> formats);
+    public static ConfigurationData readConfigurationData(String resource, InputStream inputStream,
+                                                          ConfigurationFormat... formats)
+    throws IOException;
+    public static ConfigurationData readConfigurationData(String resource, InputStream inputStream,
+                                                          Collection<ConfigurationFormat> formats)
+    throws IOException;
+
+    public static PropertySource createPropertySource(URL url, ConfigurationFormat... formats)
+    throws IOException;
+    public static PropertySource createPropertySource(URL url, Collection<ConfigurationFormat> formats)
+    throws IOException;
+    public static PropertySource createPropertySource(String resource, InputStream inputStream,
+                                                      ConfigurationFormat... formats);
+    public static PropertySource createPropertySource(String resource, InputStream inputStream,
+                                                       Collection<ConfigurationFormat> formats);
+}
+-------------------------------------------------------
+
+* +getFormats()+ returns all registered formats.
+* +getFormats(String...)+ allows to access all formats with a given name.
+* +getFormats(URL url)+ allows to access all formats that declare that can optionally read an input from
+  a given `URL`.
+* +readConfigurationData(...)+ reads data from an input and creates a corresponding +ConfigurationData+,
+  either trying all known formats that declare its compatibility with the given input or the formats
+  passed explicitly.
+* +createPropertySource(...)+ allows to create a +PropertySource+ reading a given input and the formats
+  to be used or known. Hereby a default property mapping is applied.
+
+So creating a +PropertySource+ from a resource is basically a one liner:
+
+[source,java]
+-------------------------------------------------------
+URL url = ...;
+PropertySource propertySource = ConfigurationFormats.createPropertySource(url);
+
+// constraining the formats to be used (assumption: json and yaml extensions are loaded)
+PropertySource propertySource = ConfigurationFormats.createPropertySource(
+                                    url,
+                                    ConfigurationFormats.getFormats("json", "yaml"));
+-------------------------------------------------------
+
 
 === Customize how ConfigurationData maps to PropertySource
 
@@ -124,17 +187,18 @@ For for the conversion of +ConfigurationData+ into a +PropertySource+ different 
 . In all other cases a custom mapping is useful, which can be acomplished by using the +MappedConfigurationDataPropertySource+
   and overriding the +Map<String,String> populateData(ConfigurationData data)+ method.
 
-In most cases the usage of a +FlattenedDefaultPropertySource+, is a good choice to start. This class
+In most cases the usage of a +MappedConfigurationDataPropertySource+, is a good choice to start. This class
 provides a convenient default mapping and also allows to customized the mapping easily:
 
 [source,java]
 -------------------------------------------------------
 ConfigurationData data = ...;
-FlattenedDefaultPropertySource ps = new FlattenedDefaultPropertySource(data){
-  protected Map<String, String> populateData(ConfigurationData data) {
-    ...
-  }
-};
+MappedConfigurationDataPropertySource ps =
+  new MappedConfigurationDataPropertySource(data){
+    protected Map<String, String> populateData(ConfigurationData data) {
+      ...
+    }
+  };
 -------------------------------------------------------
 
 Nevertheless, depending on the context, where a configuration source was read (classloader, time, source etc.) the
@@ -158,15 +222,28 @@ function that mus be implemented:
 protected abstract Collection<PropertySource> getPropertySources(ConfigurationData data);
 -------------------------------------------------------
 
+When using Java 8 these mappings can be asily passed as parameters to the +createPropertySource+
+methods.
 
-=== Examples
 
-==== Mapping ini-Files
+=== Predefined formats
 
-Consider the following ini-file:
+The _formats_ module ships with 3 predefined formats:
+
+* `.ini` files, commonly known from Microsoft based systems, registered as `ini`.
+* `.properties` files, as defined by `java.util.Properties`, registered as `properties`.
+* `.xml` properties files, as defined by `java.util.Properties`, registered as `xml-properties`.
+
+
+==== ini Configuration File Mapping
+
+This module implements the ini file format with the class
++org.apache.tamaya.format.formats.IniConfigurationFormat+.
+
+The default mapping is bext illustrated by a small example, so consider the
+following `.ini` file:
 
 [source,listing]
-.Example.ini
 -------------------------------------------------------
 a=valA
 a.b=valB
@@ -179,10 +256,9 @@ aa.b.c=SectionValC
 a=val2Section2
 -------------------------------------------------------
 
-This file content coud be mapped to the following structure:
+This file content by default is mapped to the following Tamaya properties:
 
 [source,listing]
-.Mapping of Example.ini
 -------------------------------------------------------
 a=valA
 a.b=valB
@@ -191,39 +267,25 @@ section1::a.b.c=SectionValC
 section2::a=val2Section2
 -------------------------------------------------------
 
-Nevertheless from the +ConfigurationData+ instance a more complex algorithm can access all the different parts:
+Summarizing
 
-* the_default_ properties (a, a.b)
+* entries without a section are mapped to the _default_ section.
+* entries with a section are mapped to a corresponding section, hereby everything between
+  the brackets is used as section name (trimmed).
+* section names are separated using a double colon (`::`).
+
++ConfigurationData+ allows to access all the different parts:
+
+* the _default_ properties (a, a.b)
 * the section +section1+, with properties +aa, aa.b.c+
-* the section +section2+, qith properties +a+
+* the section +section2+, with properties +a+
 
 
-==== Mapping xml-Files
+==== XML Property and ordinary Property Files
 
-The same concept can also be applied to xml-files. Consider the following configuration file:
+This module also ships with +ConfigurationFormat+ implementations that reuse the parsing
+functionality provided with +java.util.Properties+:
 
-[source,xml]
-.Example.conf
--------------------------------------------------------
-<config>
-  <default>
-    <a>valA</a>
-    <a.b>valB</a.B>
-  </default>
+* `org.apache.tamaya.format.formats.PropertiesFormat` uses `Properties.read(InputStream)`.
+* `org.apache.tamaya.format.formats.PropertiesXmlFormat` uses `Properties.readFromXml(InputStream)`.
 
-  <section id="section1">
-    <param id="aa">sectionValA</aa>
-    <param id="aa.b.c">SectionValC</aa.b.c>
-  </section>
-  <section id="section2">
-    <param id="a">val2Section2</aa>
-  </section>
-</config>
--------------------------------------------------------
-
-This file basically describes the same configuration as the ini-based version we have seen before. The formats
-module hereby ships with 3 format classes:
-
-* +PropertiesFormat+ providing support for .properties files.
-* +PropertiesXmlFormat+ providing support for xml.property files.
-* +IniConfiguratonFormat+ providing support for xml.property files.
