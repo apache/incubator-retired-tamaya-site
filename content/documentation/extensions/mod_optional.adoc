@@ -13,12 +13,13 @@ Tamaya _Optional_ is an extension module. Refer to the link:../extensions.html[e
 
 === What functionality this module provides ?
 
-Tamaya _Optional_ provides contains three types only. It is for projects that want to benefit from Tamaya
-configuration optionally only. E.g. doing an OSS project you can declare to support configuration with Tamaya as
-an optional extension. This module can be added as a hard dependency to your code, hereby adding only three artofacts.
-It automatically checks the availability of Tamaya on the classpath and only if available tries to access it for
-configuration evaluation. Additionally an EvaluationPolicy lets you define the precedence of configured values
-(yours, or Tamaya ones if present).
+Tamaya _Optional_  is for projects that want to benefit from Tamaya configuration optionally only.
+E.g. doing an OSS project you can declare to support configuration with Tamaya as
+an optional extension. This module can be added as a hard dependency to your code, hereby adding only
+three artifacts. The _optional_ module automatically checks the availability of Tamaya on the
+classpath and only if available it tries to access it for configuration evaluation.
+Additionally an +EvaluationPolicy+ lets you define the precedence of configured values
+(yours, or Tamaya ones, if present).
 
 
 === Compatibility
@@ -28,7 +29,7 @@ The module is based on Java 7, so it will not run on Java 7 and beyond.
 
 === Installation
 
-To benefit from configuration builder support you only must add the corresponding dependency to your module:
+To use Tamaya _optional_ you only must add the corresponding dependency to your module:
 
 [source, xml]
 -----------------------------------------------
@@ -42,8 +43,11 @@ To benefit from configuration builder support you only must add the correspondin
 
 === Reading configuration using the Tamaya Optional Module
 
-Tamaya _Optional_ allows reading configuration with a small subset of functionality only. For extended of full
-featured config please consider using the Apache Tamaya as a full configuration backend.
+Tamaya _Optional_ allows reading configuration with a small subset of functionality only. For more
+ advanced use cases consider using the Apache Tamaya as your main configuration API. When
+ creating your +OptionalConfiguration+ instance you also pass the logic to access a value
+ with your own configuration logic. Tamaya Optional will delegate to your logic as needed
+ (depending on the `EvaluationPolicy`).
 
 [source, java]
 -----------------------------------------------

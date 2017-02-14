@@ -11,15 +11,18 @@ toc::[]
 
 Tamaya _Mutable Configuration_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
+
 === What functionality this module provides ?
 
 Tamaya +Configuration+ by default is read-only, which covers must of the use cases. But there are many legit scenarios
-where configuration should be written back to some backend systems or the local file system. This module adds this
+where configuration should be written back to backend systems or the local file system. This module adds this
 functionality.
+
 
 === Compatibility
 
 The module is based on Java 7, so it can be used with Java 7 and beyond.
+
 
 === Installation
 
@@ -34,19 +37,21 @@ To benefit from configuration mutability support you only must add the correspon
 </dependency>
 -----------------------------------------------
 
+
 === Core Architecture
 
 ==== Accessing MutableConfiguration
 
 The core of the module is the +MutableConfigurationProvider+ singleton, which provides access to +MutableConfiguration+
 instance, which extends +Configuration+. This interface adds additional methods to add/update or remove property values.
-Hereby changes applied are managed in a transaction like context, called +ConfigChangeContext+. Each context defines
+Hereby each +MutableConfiguration+ manages a transaction like context, which includes
 a UUID that identifes a change.
-Backends for writing changes applied are of type +MutablePropertySource+, similarly extending the +PropertySource+
-SPI with methods for writing changes back. Registrations and ordering policies are like with ordinary property sources,
-with one important difference. Mutable property source can be targeted by write operations.
+Backends for writing changes applied umst implement +MutablePropertySource+, which extends +PropertySource+.
+Registrations and ordering policies are exact the same as with ordinary property sources, but
+mutable property sources can be targeted by config write operations.
 
-The example below shows how a +MutableConfiguration+ can be obtained the simplest way:
+The example below shows how a +MutableConfiguration+ can be obtained ,values added, removed and
+finally changes written back to the backend:
 
 [source,java]
 .Accessing and changing configuration
@@ -59,7 +64,7 @@ config.put("newKey", "newValue")
       .store();
 --------------------------------------------
 
-In the above scenario we use the overall system's configuration as the backend to be used.
+In the above scenario we use the system's _default_ configuration as the backend to be used.
 We can also pass any +Configuration+ to render it into a mutable instance, e.g.
 
 [source,java]
@@ -71,11 +76,12 @@ MutableConfiguration config = MutableConfigurationProvider
 --------------------------------------------
 
 NOTE: If a configuration does not contain any +MutablePropertySource+ instances,
-      a +MutableConfiguration+ built from it will not be able to accept any changes.
+      a +ConfigurationException+ is thrown since it would not be able to accept
+      any changes.
 
 
-Following you see the options how to create a +MutableConfiguration+ using the
-+MutableConfigurationProvider+ singleton:
+Following we show the possible methods you can use to create a +MutableConfiguration+.
+We will show in the following sections more details on the options provided...
 
 [source, java]
 ---------------------------------------------
@@ -95,7 +101,7 @@ public final class MutableConfigurationProvider {
 }
 ---------------------------------------------
 
-Hereby +MutableConfiguration+ is defined as follows:
+As we have not yet shown it, +MutableConfiguration+ is defined as follows:
 
 [source, java]
 ---------------------------------------------
@@ -115,18 +121,18 @@ public interface MutableConfiguration extends Configuration {
 ---------------------------------------------
 
 
-==== Targeting the right MutablePropertySources
+===== Targeting specific MutablePropertySources
 
-A +Configuration+ may have multiple +MutablePropertySource+ instances present. These are members of Tamaya's oredered list of
+A +Configuration+ may have multiple +MutablePropertySource+ instances present. These are members of Tamaya's ordered list of
 +PropertySources+ to evaluate the configuration. Nevertheless writing back changes requires additional aspects to
 be considered:
-* Should changes being written back to all mutable property sources? Or should a key that could be added or removed
-  on a more significant instance not be written/removed on less significant property source instances?
-* Should a change be applied only to a specific mutable property source, regardless its position in the
+* Should changes written target all mutable property sources? Or should a change only
+  target the most significant instance (hereby not writing the change to less significant property sources)?
+* Or should a change be applied only to specific mutable property source(s), regardless its position in the
   processing chain?
 
-Therefore a +ChangePropagationPolicy+ can be set on a +MutableConfiguration+ instance, which allows to control
-this aspect:
+Therefore a _default_ +ChangePropagationPolicy+ can be applied on a +MutableConfiguration+ instance, which allows to
+control this aspect:
 
 [source,java]
 .Explicitly passing the backing configuration
@@ -134,7 +140,7 @@ this aspect:
 public interface ChangePropagationPolicy {
     /**
      * Method being called when a multiple key/value pairs are added or updated.
-     * @param propertySources the property sources, including readable property sources of the current configuration,
+     * @param propertySources all property sources, including read-only property sources, of the current configuration,
      *                        never null.
      * @param configChange the configuration change, not null.
      */
@@ -142,10 +148,11 @@ public interface ChangePropagationPolicy {
 }
 --------------------------------------------
 
-By default, changes are applied to all registered +MutablePropertySources+ similarly.
+By default, changes are applied to all registered +MutablePropertySource+ instances
+similarly.
 
-
-Also the +MutableConfigurationProvider+ provides access to the most commonly used change propagation policies:
+The +MutableConfigurationProvider+ singleton also provides the most common
+change propagation policy implementations:
 
 [source, java]
 ---------------------------------------------
@@ -177,17 +184,7 @@ be sometimes a bit tricky to be predicted, since it depends on several aspects:
 . can the changes applied be committed at all?
 
 So it is part of your application configuration design to clearly define, which property sources may be read-only, which
-may be mutable, how overriding should work and to which backends finally any changes should be written back. Nevertheless
-changing or adding value is very easy:
-
-[source,java]
-.Changing a configuration
---------------------------------------------
-MutableConfiguration config = MutableConfigurationProvider.createMutableConfiguration();
-config.put("newKey", "newValue");
-config.remove("mycluster.myapp.myKey");
-config.store();
---------------------------------------------
+may be mutable, how overriding should work and to which backends finally any changes should be written back.
 
 
 === Configuration Changes
@@ -203,8 +200,8 @@ several ways, e.g. by:
 
 === Supported Backends
 
-Multiple backends are supported. E.g. the _etcd_ integration module of Tamaya also registers
-corresponding SPI implementations/backends. By default this module comes with
+Multiple backends are supported. E.g. _tamaya-etcd_ also registers
+corresponding SPI implementations/backends. This module comes with
 the following +MutablePropertySource+ implementations:
 
 * +MutablePropertySource+ resources, targeting local +.properties+ files, using the +java.util.Properties+
@@ -212,37 +209,6 @@ the following +MutablePropertySource+ implementations:
 * +MutableXmlPropertySource+ resources, targeting local +.xml+ property files, using the +java.util.Properties+
   XML format.
 
-==== Refreshable Property Sources
-
-Somehow similar to configuration changes applied explicitly is the case, where values of underlying
-configuration backends change and must be reflected in the new configuration tree. Examples are:
-
-* Configuration files being edited, added or removed.
-* Changes on remote servers like etcd, consul
-* etc.
-
-For having a common API for refreshable items a +Refreshable+ interface is defined:
-
-[source,java]
-.Refreshable interface
---------------------------------------------
-/**
- * Interface to be implemented by items that can be refreshed. By default
- * these are property sources, but more types may be supported at a later
- * point in time.
- */
-public interface Refreshable {
-
-    /**
-     * Refreshes the item by reloading its internal state.
-     */
-    void refresh();
-
-}
---------------------------------------------
-
-
-==== Refreshable Property Sources
 
 === SPIs
 

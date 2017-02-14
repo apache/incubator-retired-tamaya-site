@@ -11,6 +11,7 @@ toc::[]
 
 Tamaya _Spring_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
+
 === What functionality this module provides ?
 
 Tamaya _Spring_ currently provides two implementations also full integration for Spring:
@@ -76,6 +77,7 @@ following lines somewhere into one of your application context configuration fil
 <bean id="tamayaConfigProvider" name="tamayaConfigProvider" class="org.apache.tamaya.integration.spring.TamayaSpringConfig"/>
 --------------------------------------------------------
 
+
 === Configuring your Context
 
 Done so enables you to use Tamaya as a backend for property resolution, e.g. +propertyValue+ as illustrated below
@@ -87,6 +89,7 @@ is resolved from the current Tamaya configuration.
     <property name="message" value="${propertyValue}"/>
 </bean>
 --------------------------------------------------------
+
 
 === Configuring your Beans
 
@@ -134,4 +137,5 @@ public class ConfiguredSpringBean {
 }
 --------------------------------------------------------
 
-Summarizing you get all the nice features of Tamaya out of the box running with your Spring code.
+Summarizing you get all the nice features of Tamaya out of the box running
+with your Spring code.

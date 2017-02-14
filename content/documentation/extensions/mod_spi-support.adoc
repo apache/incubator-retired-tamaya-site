@@ -11,6 +11,7 @@ toc::[]
 
 Tamaya _SPI Support_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
+
 === What functionality this module provides ?
 
 Tamaya _SPI Support_ provides a few helpful base classes that can be used to implement some of the often
@@ -44,7 +45,7 @@ The module is based on Java 7, so it will run on Java 7 and beyond.
 
 === Installation
 
-To benefit from Tamaya CDI integration you only must add the corresponding dependency to your module:
+To use Tamaya's _spisupport_ you only must add the corresponding dependency to your module:
 
 [source, xml]
 -----------------------------------------------

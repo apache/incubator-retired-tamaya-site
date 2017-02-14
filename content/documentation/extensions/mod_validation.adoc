@@ -11,10 +11,12 @@ toc::[]
 
 Tamaya _Validation_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
+
 === Overview
 
 Tamaya _Validation_ adds support to validate a configuration against a set of rules
 defined in a Tamaya Metaconfiguration XML file.
+
 
 === Compatibility
 
@@ -23,7 +25,7 @@ The module is based on Java 7, so it will run on Java 7 and beyond.
 
 === Installation
 
-To benefit from Tamaya Metamodel feature you only must add the corresponding dependency to your module:
+To activate configuration _validation_ you only must add the corresponding dependency to your module:
 
 [source, xml]
 -----------------------------------------------
@@ -49,6 +51,7 @@ are supported:
 ./tamaya-validation-*.xml         // file
 META-INF/tamaya-validation-*.xml  // classpath (multiple entries-possible)
 -----------------------------------------------
+
 
 === The Validation XML Format
 
@@ -78,6 +81,7 @@ The configuration validation is defined by simple configuration meta-data entrie
    <validator class="a,b,c,MyGlobalValidator"/>
 </configuration-validation>
 -----------------------------------------------
+
 
 ==== The Example Explained
 

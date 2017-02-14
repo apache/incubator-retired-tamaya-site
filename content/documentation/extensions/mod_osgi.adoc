@@ -11,26 +11,28 @@ toc::[]
 
 Tamaya _OSGI_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
+
 === What functionality this module provides ?
 
-Tamaya _OSGI_ provides also support for integration with OSGI. Hereby Tamaya implements the OSGI +ConfigAdmin+ service,
+Tamaya _OSGI_ provides support for integration with OSGI. Hereby Tamaya implements the OSGI +ConfigAdmin+ service,
 which is the OSGI basic component providing configuration. Tamaya by default overrides the OSGI default configuration
-but can also be configured to extend it.
+but can also be configured to extend it instead.
+
 
 === Compatibility
 
 All module described are based on Java 7, so it will run on Java 7 and beyond.
-The modules are built against OSGI Compendium version 5.0. Tamaya OSGI support is tested against the following OSGI
-runtimes:
+The modules are built against *OSGI Compendium version 5.0*. Tamaya OSGI support
+is tested against the following OSGI runtimes:
 
-* Apache Karaf, version 4.0.7
-* Apache Felix, version 5.6.1.
+* Apache Karaf, version 4.0.7 (tbc)
+* Apache Felix, version 5.6.1
 * tbd: Eclipse Equinox, version x.x.x.
 
 === Installation
 
-To benefit from Tamaya in an OSGI context you must deploy at least the following modules to your OSGI runtime
-environment:
+To benefit from Tamaya in an OSGI context you must deploy at least the following modules to
+your OSGI runtime environment:
 
 [source, listing]
 -----------------------------------------------

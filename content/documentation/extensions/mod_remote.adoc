@@ -11,19 +11,22 @@ toc::[]
 
 Tamaya _Remote_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
+
 === What functionality this module provides ?
 
 Tamaya _Remote_ provides support for reading configuration from remote resources. It provides
-especially out-of-the-box support for reading scoped configuration from a configuration server as
-provided with the _Tamaya server module_ .
+out-of-the-box support for reading scoped configuration from a Tamaya configuration server as
+provided with the Tamaya _server_ module .
+
 
 === Compatibility
 
 The module is based on Java 7, so it will not run on Java 7 and beyond.
 
+
 === Installation
 
-To benefit from configuration builder support you only must add the corresponding dependency to your module:
+To use remote support you only must add the corresponding dependency to your module:
 
 [source, xml]
 -----------------------------------------------
@@ -37,7 +40,7 @@ To benefit from configuration builder support you only must add the correspondin
 
 === Reading Remote configuration from a Tamaya Configuration Server
 
-The remote module allows reading JSON formatted configuration as provided by the _Tamaya server extension_ . The JSON
+The remote module allows reading JSON formatted configuration as provided by the Tamaya _server_ extension . The JSON
 format used looks as follows:
 
 [source, json]
@@ -64,35 +67,27 @@ format used looks as follows:
   "sun.jnu.encoding": "Cp1252",
   "sun.management.compiler": "HotSpot 64-Bit Tiered Compilers",
   "sun.os.patch.level": "",
-  "{meta}class": "org.apache.tamaya.functions.FilteredConfiguration",
-  "{meta}info.filter": "java.v,sun",
-  "{meta}info.format": "application/json",
-  "{meta}info.timestamp": "1441463200571",
-  "{meta}timestamp": "1441463200571",
-  "{meta}type": "Configuration"
+  "_class": "org.apache.tamaya.functions.FilteredConfiguration",
+  "_info.filter": "java.v,sun",
+  "_info.format": "application/json",
+  "_info.timestamp": "1441463200571",
+  "_timestamp": "1441463200571",
+  "_type": "Configuration"
 }
 -----------------------------------------------
 
 Basically there are no constraints about they keys provided. By default Tamaya uses keys prefixed with
-+{xxx}+ to identify meta-data entries, but this is not a required precondition.
++'_'+ to identify meta-data entries, but this is not a required precondition.
 
 Finally such a remote configuration can be easily integrated by inheriting from the provided base
 class. Hereby a default ordinal must be defined and the +protected Collection<URL> getAccessURLs()+
 method must be implemented to define the URL from where the configuration should be accessible. Hereby
 multiple URLs can be provided, which are accesed in order as provided by the collection's iterator. The
-first URL that is successfully accessed determines the configuration read and imported into the
-+PropertySource+.
+first accessible URL determines the configuration read.
 
 [source, java]
 -----------------------------------------------
 public class RemotePropertySource extends BaseRemotePropertySource{
-    /** Current remote property source default ordinal. */
-    private static final int REMOTE_ORDINAL = 15000;
-
-    @Override
-    public int getDefaultOrdinal(){
-        return REMOTE_ORDINAL;
-    }
 
     @Override
     protected Collection<URL> getAccessURLs() {

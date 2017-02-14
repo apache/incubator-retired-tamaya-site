@@ -11,18 +11,21 @@ toc::[]
 
 Tamaya _UsageTracker_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
+
 === What functionality this module provides ?
 
 Tamaya _UsageTracker_ allows to record and count the configuration access and consumer locations in your local
 VM.
 
+
 === Compatibility
 
 The module is based on Java 7, so it can be used with Java 7 and beyond.
 
+
 === Installation
 
-To benefit from configuration mutability support you only must add the corresponding dependency to your module:
+To use Tamaya _usagetracker_ you only must add the corresponding dependency to your module:
 
 [source, xml]
 -----------------------------------------------
@@ -103,7 +106,8 @@ public final class ConfigUsageStats{
 }
 -----------------------------------------------------------
 
-==== Customizing the Stacktrage for Usage Reporting
+
+==== Customizing the Stacktrace for Usage Reporting
 
 The stacktrace tracked by the system can be customized in several ways:
 

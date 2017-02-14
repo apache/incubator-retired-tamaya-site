@@ -8,19 +8,21 @@
 
 Tamaya _Resolver_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
+
 === What functionality this module provides ?
 
-Tamaya _Resolver_ is an extension module. Refer to the
-link:../extensions.html[extensions documentation]
+Tamaya _Resolver_ is an extension module. Refer to the link:../extensions.html[extensions documentation]
 for further details about modules.
 
 Tamaya Resolver provides a dynamic resolution mechanism, which allows to use UNIX-styled (+${...}+ placeholder
 expressions in your configuration values. The resolver hereby supports transitive resolution and also prevents
 cycles to loop endlessly.
 
+
 === Compatibility
 
 The module is based on Java 7, so it can be used with Java 7 and beyond.
+
 
 === Installation
 
@@ -38,9 +40,10 @@ To benefit from dynamic value resolution you only must add the corresponding dep
 The module automatically registers an according +PropertyFilter+ that is automatically called, whenever a value
 is accessed.
 
+
 === Available Resolvers
 
-Currently the module defined the following resolvers:
+Currently the module defines the following resolvers:
 
 .Available Resolvers
 [cols="<.1,<.2,<.1"]
@@ -67,9 +70,10 @@ Currently the module defined the following resolvers:
 
 |=======
 
+
 === SPI: Implementing your own Resolvers
 
-The module also provides an easy but powerful SPI for adding your own resolver implementations. Basically the
+The module also provides a small but powerful SPI for adding your own resolver implementations. Basically the
 first and most important thing to do is implementing the +ExpressionResolver+ interface:
 
 .Implementing a Custom Resolver
@@ -123,5 +127,5 @@ public interface ExpressionEvaluator {
 }
 -----------------------------------------------
 
-Implementing and registering this interface gives you full control, but in most cases yhou should be fine with
+Implementing and registering this interface gives you full control, but in most cases you should be fine with
 the default implementation in place.

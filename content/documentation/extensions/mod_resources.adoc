@@ -8,10 +8,21 @@
 
 Tamaya _Resources_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
+
 === What functionality this module provides ?
 
-Tamaya _Resources_ defines some additional tools to locate resources in your classpath or file system based on descriptive
-ant-styled resource patterns. To use this module add the following dependency:
+Tamaya _Resources_ defines some additional tools to locate resources in your classpath or file system based on
+descriptive ant-styled resource patterns.
+
+
+=== Compatibility
+
+The module is based on Java 7, so it can be used with Java 7 and beyond.
+
+
+=== Installation
+
+To use this module add the following dependency:
 
 [source, listing, subs="verbatim,attributes"]
 -----------------------------------------------
@@ -21,6 +32,9 @@ ant-styled resource patterns. To use this module add the following dependency:
   <version>{tamaya_version}</version>
 </dependency>
 -----------------------------------------------
+
+
+=== Usage
 
 The module's main entry point is the singleton class +org.apache.tamaya.resource.ConfigResources+. This class
 provides access to a +ResourceResolver+ instance:
@@ -50,7 +64,8 @@ So by default resources can be looked up
 * from the classpath
 * optionally ant-styled expressions can be used.
 
-=== Valid Expression Examples
+
+=== Examples
 
 There are numerous ways how a resource pattern can be defined. Following the most important variants
 are listed:

@@ -11,6 +11,7 @@ toc::[]
 
 Tamaya _YAML_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
+
 === Overview
 
 Tamaya _YAML_ provides support for reading configuration using the YAML format (yaml.org). YAML hereby
@@ -24,7 +25,7 @@ The YAML module is based on Java 7, so it will run on Java 7 and beyond.
 
 === Installation
 
-To benefit from configuration builder support you only must add the corresponding dependency to your module:
+To use YAML as configuration format you must add the corresponding dependency to your module:
 
 [source, xml]
 -----------------------------------------------
@@ -37,15 +38,17 @@ To benefit from configuration builder support you only must add the correspondin
 
 This extension also transitively requires the +tamaya.formats+ module.
 
+
 === Reading configuration in YAML
 
 For reading YAML based onfiguration most easily a +YAMLFormat+ can be provided:
 
 [source, java]
 -----------------------------------------------
-ConfigurationData dataRead = ConfigurationFormats.readConfig(
+PropertySource ps = ConfigurationFormats.createPropertySource(
     getClassLoader().getResource("myFileConfig.yaml"), new YAMLFormat()));
 -----------------------------------------------
+
 
 === Examples
 
