@@ -1,0 +1,903 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	    <meta charset="utf-8"/>
+	    <title>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Metamodel (Configuration of Tamaya)</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	    <meta name="description" content=""/>
+	    <meta name="author" content=""/>
+	    <meta name="keywords" content=""/>
+	    <meta name="generator" content="'JBake '+'${version}"/>
+
+	    <!-- Le styles -->
+	    <link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+	    <link href="../../css/asciidoctor.css" rel="stylesheet"/>
+	    <link href="../../css/base.css" rel="stylesheet"/>
+	    <link href="../../css/prettify.css" rel="stylesheet"/>
+
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	      <script src="../../js/html5shiv.min.js"></script>
+	    <![endif]-->
+
+	    <!-- Fav and touch icons from ASF -->
+			<link rel="shortcut icon" href="../../favicon.ico"/>
+			<link rel="apple-touch-icon" sizes="57x57" href="../../favicons/apple-touch-icon-57x57.png"/>
+		  <link rel="apple-touch-icon" sizes="60x60" href="../../favicons/apple-touch-icon-60x60.png"/>
+		  <link rel="apple-touch-icon" sizes="72x72" href="../../favicons/apple-touch-icon-72x72.png"/>
+		  <link rel="apple-touch-icon" sizes="76x76" href="../../favicons/apple-touch-icon-76x76.png"/>
+		  <link rel="apple-touch-icon" sizes="114x114" href="../../favicons/apple-touch-icon-114x114.png"/>
+		  <link rel="apple-touch-icon" sizes="120x120" href="../../favicons/apple-touch-icon-120x120.png"/>
+		  <link rel="apple-touch-icon" sizes="144x144" href="../../favicons/apple-touch-icon-144x144.png"/>
+		  <link rel="apple-touch-icon" sizes="152x152" href="../../favicons/apple-touch-icon-152x152.png"/>
+		  <link rel="apple-touch-icon" sizes="180x180" href="../../favicons/apple-touch-icon-180x180.png"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-32x32.png" sizes="32x32"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-194x194.png" sizes="194x194"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-96x96.png" sizes="96x96"/>
+		  <link rel="icon" type="image/png" href="../../favicons/android-chrome-192x192.png" sizes="192x192"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-16x16.png" sizes="16x16"/>
+		  <link rel="manifest" href="../../favicons/manifest.json"/>
+		  <link rel="shortcut icon" href="../../favicons/favicon.ico"/>
+		  <meta name="msapplication-TileColor" content="#603cba"/>
+		  <meta name="msapplication-TileImage" content="../../favicons/mstile-144x144.png"/>
+		  <meta name="msapplication-config" content="../../favicons/browserconfig.xml"/>
+		  <meta name="theme-color" content="#303284"/>
+	</head>
+	<body onload="prettyPrint()">
+	<div id="wrap">
+		<div>
+
+	  <!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../index.html">Apache Tamaya (incubating)</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+						<li><a href="../../start.html">Tamaya in 5 minutes</a></li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="../../documentation/usecases.html">Use Cases and Requirements</a></li>
+								<li><a href="../../documentation/quickstart.html">Quickstart</a></li>
+								<li><a href="../../documentation/api.html">API</a></li>
+								<li><a href="../../documentation/core.html">Core</a></li>
+								<li><a href="../../documentation/extensions.html">Extension Guide</a></li>
+								<li class="divider"></li>
+								<li><a href="../../apidocs/index.html">Javadoc 0.3-incubating-SNAPSHOT (external)</a></li>
+              </ul>
+            </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="../../development/source.html">Sources</a></li>
+								<li><a href="../../development/community.html">Community</a></li>
+								<li><a href="../../development/team.html">Project Team</a></li>
+								<li><a target="_blank" href="https://builds.apache.org/view/S-Z/view/Tamaya/">CI / ASF Jenkins</a></li>
+								<li><a target="_blank" href="https://issues.apache.org/jira/browse/TAMAYA">Issues / ASF Jira</a></li>
+								<li><a href="../../devguide.html">Development Guide</a></li>
+								<li><a href="../../release-guide.html">Release Guide</a></li>
+								<li class="divider"></li>
+								<li><a href="../../development/possible-contributions.html">Possible Contributions</a></li>
+              </ul>
+            </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Releases <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="../../download.html">Download</a></li>
+								<li><a href="../../history.html">Release History</a></li>
+              </ul>
+            </li>
+<!-- Example:
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+-->
+						<li><a href="../../sitemap.xml">Sitemap</a></li>
+						<li><a href="../../feed.xml">Subscribe</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+	</div>
+		<div class="container">
+
+			<div class="page-header">
+				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Metamodel (Configuration of Tamaya)</h1>
+			</div>
+
+			<p><em>2017-02-16</em></p>
+
+			<p><div id="preamble">
+<div class="sectionbody">
+<!-- toc disabled -->
+</div>
+</div>
+<div class="sect1">
+<h2 id="Model">Tamaya Metamodel (Configuration of Tamaya) (Extension Module)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tamaya <em>metamodel</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
+</div>
+<div class="sect2">
+<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
+<div class="paragraph">
+<p>The Tamaya <em>metamodel</em> module provides support for configuring the Tamaya system itself. It
+allows, like a logging configuration, to configure how your configuration framework should
+work, where to find configuration and how it is combined using overrides, filters etc.</p>
+</div>
+<div class="paragraph">
+<p>By default it uses an XML based configuration format as illustrated below:</p>
+</div>
+<div class="listingblock">
+<div class="title">Extract from <code>tamaya-config.xml</code></div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;configuration&gt;
+    &lt;!-- Context is evaluated first. --&gt;
+    &lt;context&gt;
+        &lt;context-entry name="stage"&gt;${properties:system:STAGE?default=DEV}&lt;/context-entry&gt;
+        &lt;context-entry name="configdir"&gt;${properties:system:configdir?default=.}&lt;/context-entry&gt;
+        &lt;context-entry name="app"&gt;${properties:system.APP?default=NONE}&lt;/context-entry&gt;
+        &lt;context-entry name="context"&gt;${java:org.apache.tamaya.context.Context#id()}&lt;/context-entry&gt;
+        &lt;context-entry name="company"&gt;Trivadis&lt;/context-entry&gt;
+        &lt;context-entry name="default-formats"&gt;yaml,json&lt;/context-entry&gt;
+        &lt;context-entry name="default-refresh-period"&gt;5 SECOND&lt;/context-entry&gt;
+    &lt;/context&gt;
+
+    &lt;!-- combinationPolicy type="" / --&gt;
+
+    &lt;!-- Configuration definition. --&gt;
+
+    &lt;property-sources&gt;
+       &lt;source enabled="${stage=TEST || stage=PTA || stage=PROD}"
+           type="env-properties"&gt;
+           &lt;filter type="PropertyMapping"&gt;
+               &lt;param name="mapTarget"&gt;ENV.&lt;/param&gt;
+           &lt;/filter&gt;
+           &lt;filter type="AccessMask"&gt;
+               &lt;param name="roles"&gt;admin,power-user&lt;/param&gt;
+               &lt;param name="policy"&gt;mask&lt;/param&gt;
+               &lt;param name="mask"&gt;*****&lt;/param&gt;
+               &lt;param name="matchExpression"&gt;SEC_&lt;/param&gt;
+           &lt;/filter&gt;
+       &lt;/source&gt;
+       &lt;source type="sys-properties" &gt;
+           &lt;filter type="ImmutablePropertySource" /&gt;
+       &lt;/source&gt;
+       &lt;source type="file" refreshable="true"&gt;
+           &lt;name&gt;config.json&lt;/name&gt;
+           &lt;param name="location"&gt;config.json&lt;/param&gt;
+       &lt;/source&gt;
+       ...
+    &lt;/property-sources&gt;
+&lt;/configuration&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The module basically provides an XML representation to the ConfigurationContextBuilder API.
+It creates a corresponding ConfigurationContext and registers the corresponding Configuration
+as the system&#8217;s <em>default</em> configuration (accessible from <code>ConfigurationProvider.getConfiguration()</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compatibility">Compatibility</h3>
+<div class="paragraph">
+<p>The module is based on Java 7, so it will not run on Java 7 and beyond.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installation">Installation</h3>
+<div class="paragraph">
+<p>To use <em>metamodel</em> features you only must add the corresponding dependency to your module:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
+  &lt;artifactId&gt;tamaya-model&lt;/artifactId&gt;
+  &lt;version&gt;{tamaya_version}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_a_configuration_using_meta_configuration">Creating a Configuration using Meta-Configuration</h3>
+<div class="paragraph">
+<p>The basic feature of this module is the capability of creating a Configuration completely
+based on a meta-configuration file. For this the MetaConfiguration main singleton
+provides different methods:</p>
+</div>
+<div class="paragraph">
+<p>[source, java)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>public final class MetaConfiguration {
+    public static void configure();
+    public static void configure(URL metaConfig);
+    public static ConfigurationContextBuilder createContextBuilder(URL metaConfig);
+    public static Configuration createConfiguration(URL metaConfig);</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you have supplied your meta-configuration at <code>META-INF/tamaya-config.xml</code> you simply
+call MetaConfiguration.configure();. This will read the meta-configuration and
+configure Tamaya&#8217;s <em>default</em> configuration. Alternatively you can choose your own
+metaconfiguration location by passing an alternate <code>URL</code> ro read from.</p>
+</li>
+<li>
+<p>With MetaConfiguration.createContextBuilder() you can stop a step earlier: a new
+instance of ConfigurationContextBuilder is created and configured with all the
+entries found in your meta-configuration. Also here you can optionally pass your
+custom location for the meta-configuration resouce.</p>
+</li>
+<li>
+<p>Finally MetaConfiguration.createConfiguration(URL) allows you to create an
+arbitrary Configuration instance using a meta-configuration file. The <code>Configuration</code>
+instance is completely independent and not registered as <em>default</em> configuration, so
+it&#8217;s lifecycle and usage is completely under your control.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_metacontext">MetaContext</h3>
+<div class="paragraph">
+<p>When thinking what are the various input parameters for determining a correct configuration, there
+might be different things relevant in different scenarios, especially for developers in different
+companies. A good example of such an input parameter is the current <code>STAGE</code>. All these kinf od inputs
+can be summarized in some sort of meta-configuration, commonly known as a <em>context</em>. So
+the metamodel extension ships with a MetaContext class that allows to define a common meta-context,
+that can be accessed by components as needed to determine the correct settings to be applied:</p>
+</div>
+<div class="paragraph">
+<p>[source, java)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>public final class MetaContext {
+
+    ...
+
+    public static MetaContext getInstance(String contextName);
+
+    /**
+     * Access the default context. Contexts are managed as weak references in this class. If no
+     * such context exists, a new instance is created.
+     * @return the context instance, never null.
+     */
+    public static MetaContext getDefaultInstance();
+
+    /**
+     * Access a context by name. Contexts are managed as weak references in this class. If no
+     * such valid context exists, a new instance is created, using the given {@code validSupplier}.
+     * @param contextName the context name, not null.
+     * @return the context instance, never null.
+     */
+    public static MetaContext getInstance(String contextName, Supplier&lt;Boolean&gt; validSupplier);
+
+    /**
+     * Access the thread-based context. If no such context
+     * exists a new one will be created.
+     * @param reinit if true, clear's the thread's context.
+     * @return the corresponding context, never null.
+     */
+    public static MetaContext getThreadInstance(boolean reinit);
+
+    /**
+     * Access the current context, which actually is the current context, combined with the thread based
+     * context (overriding).
+     * @return the corresponding context, never null.
+     */
+    public MetaContext getCurrentInstance();
+
+     /**
+     * Access the current context, which actually is the current context, combined with the thread based
+     * context (overriding).
+     * @param reinit if true, clear's the thread's context.
+     * @return the corresponding context, never null.
+     */
+    public MetaContext getCurrentInstance(boolean reinit);
+
+
+    /**
+     * Method to evaluate if a context is valid. This basically depends on the
+     * {@code validSupplier}, if any is set. If no supplier is present the context is valid.
+     *
+     * @return true, if this context is valid.
+     */
+    public boolean isValid();
+
+    /**
+     * Combine this context with the other contexts given, hereby only contexts are included
+     * which are {@code valid}, see {@link #isValid()}.
+     * @param contexts the context to merge with this context.
+     * @return the newly created Context.
+     */
+    public MetaContext combineWith(MetaContext... contexts);
+
+    /**
+     * Access the given context property.
+     * @param key the key, not null
+     * @return the value, or null.
+     */
+    public String getProperty(String key);
+
+    /**
+     * Access the given context property.
+     * @param key the key, not the default value.
+     * @param defaultValue the default value to be returned, if no value is defined, or the
+     *                     stored value's TTL has been reached.
+     * @return the value, default value or null.
+     */
+    public String getProperty(String key, String defaultValue);
+
+    /**
+     * Sets the given context property.
+     * @param key the key, not null.
+     * @param value the value, not null.
+     * @return the porevious value, or null.
+     */
+    public String setProperty(String key, String value);
+
+    /**
+     * Sets the given context property.
+     * @param key the key, not null.
+     * @param value the value, not null.
+     * @param ttl the time to live. Zero or less than zero means, no timeout.
+     * @param unit the target time unit.
+     * @return the porevious value, or null.
+     */
+    public String setProperty(String key, String value, int ttl, TimeUnit unit);
+
+    /**
+     * Sets the given property unless there is already a value defined.
+     * @param key the key, not null.
+     * @param value the value, not null.
+     */
+    public void setPropertyIfAbsent(String key, String value);
+
+    /**
+     * Sets the given property unless there is already a value defined.
+     * @param key the key, not null.
+     * @param value the value, not null.
+     * @param ttl the time to live. Zero or less than zero means, no timeout.
+     * @param unit the target time unit.
+     */
+    public void setPropertyIfAbsent(String key, String value, long ttl, TimeUnit unit);
+
+    /**
+     * Adds all properties given, overriding any existing properties.
+     * @param properties the properties, not null.
+     */
+    public void setProperties(Map&lt;String,String&gt; properties);
+
+    /**
+     * Adds all properties given, overriding any existing properties.
+     * @param properties the properties, not null.
+     * @param ttl the time to live. Zero or less than zero means, no timeout.
+     * @param unit the target time unit.
+     */
+    public void setProperties(Map&lt;String,String&gt; properties, long ttl, TimeUnit unit);
+
+    /**
+     * Checks if all the given properties are present.
+     * @param keys the keys to check, not null.
+     * @return true, if all the given keys are existing.
+     */
+    public boolean checkProperties(String... keys);
+
+    /**
+     * Access all the current context properties.
+     * @return the properties, never null.
+     */
+    public Map&lt;String,String&gt; getProperties();
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you see, a MetaContext has the following aspects:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>there are multiple context&#8217;s possible, identified by their name.</p>
+</li>
+<li>
+<p>Accessing an instance that does not yet exist, will create a new one.</p>
+</li>
+<li>
+<p>there is one shared <em>default</em> instance.</p>
+</li>
+<li>
+<p>they store ordinary <code>String,String</code> key, value pairs.</p>
+</li>
+<li>
+<p>they can be <em>combined</em> into a overriging hierarchy</p>
+</li>
+<li>
+<p>accessing the <em>default</em> MetaContext returns the global instance combined with
+a threaded override instance. Passing <code>reinit</code> will clear the thread instance&#8217;s
+data.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_configuring_metacontexts">Configuring MetaContexts</h4>
+<div class="paragraph">
+<p><code>MetaContext</code> instances can be configured in the <em>meta-configuration</em> in the first
+<code>meta-context</code> section as illustrated below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;!-- Configuring the default context --&gt;
+&lt;context&gt;
+    &lt;context-entry name="stage"&gt;${properties:system:STAGE?default=DEV}&lt;/context-entry&gt;
+    &lt;context-entry name="configdir"&gt;${properties:system:configdir?default=.}&lt;/context-entry&gt;
+    &lt;context-entry name="app"&gt;${properties:system.APP?default=NONE}&lt;/context-entry&gt;
+    &lt;context-entry name="context"&gt;${java:org.apache.tamaya.context.Context#id()}&lt;/context-entry&gt;
+    &lt;context-entry name="company"&gt;Trivadis&lt;/context-entry&gt;
+    &lt;context-entry name="default-formats"&gt;yaml,json&lt;/context-entry&gt;
+    &lt;context-entry name="default-refresh-period"&gt;5 SECOND&lt;/context-entry&gt;
+&lt;/context&gt;
+&lt;!-- Configuring a context named 'APP' --&gt;
+&lt;context name="APP"&gt;
+    &lt;context-entry name="application"&gt;someAppName&lt;/context-entry&gt;
+&lt;/context&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As shown above multiple contexts can be configured. Keys and values are of type <code>String</code>.</p>
+</div>
+<div class="sect4">
+<h5 id="_using_expressions">Using Expressions</h5>
+<div class="paragraph">
+<p>As shown before, it is possible to add simple expressions, enclosed in <code>${}</code>. Hereby the
+contents must be formatted as <code>evaluator:expression</code>, which then internally must be interpreted by
+the org.apache.tamaya.metamodel.internal.SimpleResolver, which effectively reads and
+applied context entries.</p>
+</div>
+<div class="paragraph">
+<p>Currently the following placeholders for context entries are provided:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>properties - mapping to system properties (<code>properties:sys:KEY</code>) or
+environment properties (<code>properties:env:KEY</code>) or other MetaContext
+ entries initialized already (<code>properties:ctx[:CTXNAME]:KEY</code>)</p>
+</li>
+<li>
+<p>java - mapping to a static method or field, returning a <code>String</code> value.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_general_extensions">General Extensions</h3>
+<div class="paragraph">
+<p>Working with meta-models requires additional aspects to be generalized to separate
+concerns and reuse some of the common functionality. These concepts are shown in the following
+subsections.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_enabled">Enabled</h3>
+<div class="paragraph">
+<p>Things can be dynamically enabled or disabled, e.g. based on context. This can be
+modelled by the Enabled interface:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface Enabled {
+
+    /**
+     * Returns the enabled property.
+     * @return the enabled value.
+     */
+    boolean isEnabled();
+
+    /**
+     * Enables/disables this property source.
+     * @param enabled the enabled value.
+     */
+    void setEnabled(boolean enabled);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Enabled can be used as a mixin-logic, e.g. for decorating property sources,
+property source providers, filters and converters. The decorator can also, if not
+set explicitly, evaluate the <em>enabled</em> property based on the current runtime
+context.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_refreshable">Refreshable</h3>
+<div class="paragraph">
+<p>Similar to <em>Enabled</em> things can also be refreshable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface Refreshable {
+
+    /**
+     * Refreshes the given instance.
+     */
+    void refresh();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This can be used to define a common API for refreshing artifctas. Similar to
+<em>Enabled</em> this can be applied as a decorator/mix-in interface to property
+sources and property source providers. This property also is supported in the
+XML metaconfiguration, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;property-sources&gt;
+    &lt;source type="file" refreshable="true"&gt;
+       &lt;name&gt;config.json&lt;/name&gt;
+       &lt;param name="location"&gt;config.json&lt;/param&gt;
+    &lt;/source&gt;
+&lt;/property-sources&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_metaconfiguration_xml_structure">The MetaConfiguration XML Structure</h3>
+<div class="paragraph">
+<p>In general the <code>tamaya-config.xml</code> file does never apply an XML schema or
+similar. Nevertheless there is a common DSL structure, which can be extended
+as well (see next chapter).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;configuration&gt;
+    &lt;!-- PART ONE: Contexts initialization. --&gt;
+    &lt;context&gt;
+        &lt;context-entry name="stage"&gt;${properties:system:STAGE?default=DEV}&lt;/context-entry&gt;
+        &lt;context-entry name="configdir"&gt;${properties:system:configdir?default=.}&lt;/context-entry&gt;
+        ...
+    &lt;/context&gt;
+    &lt;context name="APP"&gt;
+        &lt;context-entry name="application"&gt;someAppName&lt;/context-entry&gt;
+    &lt;/context&gt;
+
+    &lt;!-- PART TWO: Global settings of ConfigurationContext. --&gt;
+    &lt;!-- combinationPolicy type="" / --&gt;
+
+    &lt;!-- PART THREE: Configuration definition. --&gt;
+
+    &lt;property-sources&gt;
+       &lt;source enabled="${stage=TEST || stage=PTA || stage=PROD}"
+           type="env-properties"&gt;
+           &lt;filter type="PropertyMapping"&gt;
+               &lt;param name="mapTarget"&gt;ENV.&lt;/param&gt;
+           &lt;/filter&gt;
+           &lt;filter type="AccessMask"&gt;
+               &lt;param name="roles"&gt;admin,power-user&lt;/param&gt;
+               &lt;param name="policy"&gt;mask&lt;/param&gt;
+               &lt;param name="mask"&gt;*****&lt;/param&gt;
+               &lt;param name="matchExpression"&gt;SEC_&lt;/param&gt;
+           &lt;/filter&gt;
+       &lt;/source&gt;
+       &lt;source type="sys-properties" &gt;
+           &lt;filter type="ImmutablePropertySource" /&gt;
+       &lt;/source&gt;
+       &lt;source type="file" refreshable="true"&gt;
+           &lt;name&gt;config.json&lt;/name&gt;
+           &lt;param name="location"&gt;config.json&lt;/param&gt;
+       &lt;/source&gt;
+        &lt;source type="file" refreshable="true"&gt;
+            &lt;name&gt;config.xml&lt;/name&gt;
+            &lt;param name="location"&gt;config.xml&lt;/param&gt;
+            &lt;param name="formats"&gt;xml-properties&lt;/param&gt;
+        &lt;/source&gt;
+       &lt;source-provider type="resource"&gt;
+           &lt;name&gt;classpath:application-config.yml&lt;/name&gt;
+           &lt;param name="location"&gt;/META-INF/application-config.yml&lt;/param&gt;
+       &lt;/source-provider&gt;
+       &lt;source type="ch.mypack.MyClassSource" /&gt;
+       &lt;!--&lt;include enabled="${stage==TEST}"&gt;TEST-config.xml&lt;/include&gt;--&gt;
+       &lt;source-provider type="resource" enabled="${configdir != null}"&gt;
+           &lt;name&gt;config-dir&lt;/name&gt;
+           &lt;param name="location"&gt;/${configdir}/**/*.json&lt;/param&gt;
+       &lt;/source-provider&gt;
+       &lt;source type="url" refreshable="true"&gt;
+           &lt;name&gt;remote&lt;/name&gt;
+           &lt;param name="location"&gt;https://www.confdrive.com/cfg/customerId=1234&lt;/param&gt;
+           &lt;param name="formats"&gt;json&lt;/param&gt;
+           &lt;filter type="CachedPropertySource"&gt;
+               &lt;param name="ttl"&gt;30 SECOND&lt;/param&gt;
+           &lt;/filter&gt;
+       &lt;/source&gt;
+    &lt;/property-sources&gt;
+    &lt;property-filters&gt;
+        &lt;filter type="UsageTrackerFilter"/&gt;
+        &lt;filter type="AccessControl"&gt;
+            &lt;param name="roles"&gt;admin,power-user&lt;/param&gt;
+            &lt;param name="policy"&gt;hide&lt;/param&gt;
+            &lt;param name="expression"&gt;*.secret&lt;/param&gt;
+        &lt;/filter&gt;
+        &lt;filter type="Cache"&gt;
+            &lt;param name="ttl"&gt;30000&lt;/param&gt;
+            &lt;param name="expression"&gt;cached.*&lt;/param&gt;
+        &lt;/filter&gt;
+    &lt;/property-filters&gt;
+    &lt;property-converters&gt;
+    &lt;!--&lt;converter type="AllInOneConverter"/&gt;--&gt;
+        &lt;default-converters/&gt;
+    &lt;/property-converters&gt;
+&lt;/configuration&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The different parts in fact are not hardcoded, but implemented
+as independent components, where each of them gets access to the
+XML DOM tree to read the configuration aspects of interest.
+Instances related must implement the ++ interface and register it to
+the <code>ServiceContext</code>. Reading order is mapped using <code>@Priority</code>
+annotations.
+For further details refer to the SPI section in this document.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_spi">Model SPI</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_extending_the_xml_dsl">Extending the XML DSL</h3>
+<div class="paragraph">
+<p>The XML DSL can be extended in various ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Basically adding a new feature maps to adding a new section to the
+meta-config XML. This can be easily done, by implementing MetaConfigurationReader
+and do whatever is appropriate for your use case.</p>
+</li>
+<li>
+<p>For adding new expression capabilities for `MetaContext`entries SimpleResolver must
+be implemented.</p>
+</li>
+<li>
+<p>For allowing customized parameterization of artifacts, e.g. property sources,
+property source providers, converters and filters etc. you may implement ItemFactory
+instances.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_metaconfigurationreader">MetaConfigurationReader</h3>
+<div class="paragraph">
+<p>XML metaconfiguration is effectively processed by instances of
+type org.apache.tamaya.metamodel.spi.MetaConfigurationReader:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface MetaConfigurationReader {
+
+     /**
+      * Reads meta-configuration from the given document and configures the current
+      * context builder. The priority of readers is determined by the priorization policy
+      * implemented by the {@link org.apache.tamaya.spi.ServiceContext},
+      * @param document the meta-configuration document
+      * @param contextBuilder the context builder to use.
+      */
+     void read(Document document, ConfigurationContextBuilder contextBuilder);
+
+ }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hereby we also see that an instance of <code>ConfigurationContextBuilder</code> is passed.
+Remember, we mentioned earlier that meta-configuration basically is a XML
+API to the building a configuration using a ConfigurationContextBuilder. So
+all you can do with the meta-config XML can also be done programmatically using
+the Java API.</p>
+</div>
+<div class="paragraph">
+<p>This module provides instances of this class for reading of meta-context,
+property-sources, property source providers, converters, filters and more.
+Look into the org.apache.tamaya.metamodel.internal package for further details.</p>
+</div>
+<div class="paragraph">
+<p>New instances implementing this interface must be registered into the current
+ServiceContext, by default the ServiceLoader is used.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_itemfactory">ItemFactory</h3>
+<div class="paragraph">
+<p>Instances of ItemFactory allow to configure artifacts using XML data:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface ItemFactory&lt;T&gt; {
+
+    /**
+     * Get the factory name.
+     * @return the factory name, not null.
+     */
+    String getName();
+
+    /**
+     * Create a new instance.
+     * @param parameters the parameters for configuring the instance.
+     * @return the new instance, not null.
+     */
+    T create(Map&lt;String,String&gt; parameters);
+
+    /**
+     * Get the target type created by this factory. This can be used to
+     * assign the factory to an acording item base type, e.g. a PropertySource,
+     * PropertySourceProvider, PropertyFilter etc.
+     * @return the target type, not null.
+     */
+    Class&lt;? extends T&gt; getType();
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The factory&#8217;s name hereby is used as a short cut, e.g. have a look at the following
+XML snippet defining a <code>PropertySource</code> to be added:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;source type="file" refreshable="true"&gt;
+   &lt;name&gt;config.json&lt;/name&gt;
+   &lt;param name="location"&gt;config.json&lt;/param&gt;
+&lt;/source&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above snippet <em>file</em> equals to the factory name, which provides the user
+a simple to use short name, instead of adding the fully qualified classname
+(which is always possible).</p>
+</div>
+<div class="paragraph">
+<p>The <em>location</em> paramter with its value is passed as <code>Map</code> to the <code>create</code> method.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_itemfactorymanager">ItemFactoryManager</h3>
+<div class="paragraph">
+<p>This singleton class manages the <em>ItemFactory</em> instances found, hereby allowing
+accessing and registering instances. This singleton is actually used by the
+component parsers (type <code>MetaConfigurationReader</code>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public final class ItemFactoryManager {
+
+    ...
+
+    public static ItemFactoryManager getInstance();
+
+    public &lt;T&gt; List&lt;ItemFactory&lt;T&gt;&gt; getFactories(Class&lt;T&gt; type);
+    public &lt;T&gt; ItemFactory&lt;T&gt; getFactory(Class&lt;T&gt; type, String id);
+
+    public &lt;T&gt; void registerItemFactory(ItemFactory&lt;T&gt; factory);
+
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_extended_implementations">Extended Implementations</h3>
+<div class="paragraph">
+<p>The package org.apache.tamaya.metamodel.ext contains a few useful
+implementations that also can be used in your meta-configuration and
+show how mixin-functionality can be added without touching property source
+implementations.</p>
+</div>
+<div class="paragraph">
+<p>As of now the package contains</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>EnabledPropertySource: a decorator for a <code>PropertySource</code>
+adding the capability to <em>enable/disable</em> the property source.</p>
+</li>
+<li>
+<p>EnabledPropertySourceProvider a decorator for a <code>PropertySourceProvider</code>
+adding the capability to <em>enable/disable</em> the property source provider.</p>
+</li>
+<li>
+<p>RefreshablePropertySource: a decorator for a <code>PropertySource</code>
+adding the capability to <em>refresh</em> the property source.</p>
+</li>
+<li>
+<p>EnabledPropertySourceProvider a decorator for a <code>PropertySourceProvider</code>
+adding the capability to <em>refresh</em> the property source provider.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Not yet implemented but planned are implementations to add the following
+functionality:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>caching</em> of entries for a given time.</p>
+</li>
+<li>
+<p><em>immutability</em> of entries, so a configuration data (or parts of it) will
+never change later.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></p>
+
+			<hr />
+		</div>
+	</div>
+	<div>
+			<div id="push"></div>
+
+		    <div id="footer">
+		      <div class="container">
+		        <p class="muted credit">&copy; 2014-<span>2017</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
+							| Baked with <a href="http://jbake.org">JBake <span>v2.5.0</span></a>
+							at <span>2017-02-17</span>
+						</p>
+						<p>
+								<b>Disclaimer</b>
+                    Apache Tamaya (incubating) is an effort undergoing
+                    incubation at
+                    The Apache Software Foundation (ASF), sponsored by
+                    the name of Apache Incubator. Incubation is required of
+                    all newly accepted projects until a further review indicates
+                    that the infrastructure, communications, and decision making
+                    process have stabilized in a manner consistent with other
+                    successful ASF projects. While incubation status is not
+                    necessarily a reflection of the completeness or stability of
+                    the code, it does indicate that the project has yet to
+                    be fully endorsed by the ASF.<br />
+                    <a href="http://incubator.apache.org/guides/website.html" style="border:0px;" target="_target"><img class="incubator-logo" src="../../logos/egg-logo2.png"/></a>
+							</p>
+		      </div>
+		    </div>
+
+		    <!-- Le javascript
+		    ================================================== -->
+		    <!-- Placed at the end of the document so the pages load faster -->
+		    <script src="../../js/jquery-1.11.1.min.js"></script>
+		    <script src="../../js/bootstrap.min.js"></script>
+		    <script src="../../js/prettify.js"></script>
+
+    	</div>
+    </body>
+</html>
