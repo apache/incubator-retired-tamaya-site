@@ -10,111 +10,122 @@ and building blocks for supporting SPI implementations.
 
 Tamaya Core contains the following artifacts:
 
-* Implementations of +Configuration, ConfigurationContext, ConfigurationContextBuilder+ ConfigurationProviderSpi+
+* Implementations of +Configuration, ConfigurationContext, ConfigurationContextBuilder, ConfigurationProviderSpi+
 * A +java.util.ServiceLoader+ based +ServiceContext+ implementation. Hereby it implements component priorization based
   on the +@Priority+ annotations.
-* A PropertyConverterManager+ that loads and stores references to all the preconfigured +PropertyConverter+ instances
-hereby providing type conversion for all important types.
+* A +PropertyConverterManager+ that loads and stores references to all the preconfigured +PropertyConverter+ instances
+  hereby providing type conversion for all important types.
 * A simple default configuration setup using the current classpath and an optional staging variable.
 * It collects all +PropertySource+ and +PropertySourceProvider+ instances registered with the +ServiceLoader+ and
   registers them in the global +ConfigurationContext+
-* It provides a +ConfigurationContextBuilder+ implementation (class +DefaultConfigurationContextBuilder+) and allows
+* It provides a +ConfigurationContextBuilder+ implementation (+DefaultConfigurationContextBuilder+) and allows
   changing the current +ConfigurationContext+.
 
 The overall size of the library is very small. All required components are implemented and registered, so basically the
 Core module is a complete configuration solution. Nevertheless it is also very minimalistic, but fortunately is flexible
 enough to be extended/accommodated with additional features as needed, such as
 
-* placeholder and resolution mechanisms
-* dynamic resource path lookup, e.g. with ant styled patterns
-* configuration injection and configuration templates
-* abstraction for reusable formats
-* integration with other existing solutions
-* configuration and configuration isolation targeting Java EE
-* dynamic configuration and configuration updates
-* Configuration management extensions
-* remote configuration
+* placeholder and resolution mechanisms (+org.apache.tamaya.ext:tamaya-resolver+)
+* dynamic resource path lookup, e.g. with ant styled patterns (+org.apache.tamaya.ext:tamaya-resources+)
+* configuration injection and configuration templates (+org.apache.tamaya.ext:tamaya-injcetion-api+)
+* abstraction for reusable formats (+org.apache.tamaya.ext:tamaya-formats+)
+* integration with other existing solutions (e.g. +org.apache.tamaya.ext:tamaya-spring+)
+* configuration and configuration isolation targeting Java EE (+org.apache.tamaya.ext:tamaya-injection-ee+)
+* dynamic configuration and configuration updates (+org.apache.tamaya.ext:tamaya-events+)
+* remote configuration (+org.apache.tamaya.ext:tamaya-etcd, org.apache.tamaya.ext:tamaya-consul,
+  org.apache.tamaya.ext:tamaya-hazelcast+)
 * and more
 
 For details about the extension modules available and  their functionality refer to the link:extensions.html[extension user guide].
 
 
 [[CorePropertyConverters]]
-=== Default PropertyConverters in Core
+=== Default PropertyConverters
 
-As mentioned the Core module delivers several default +PropertyConverter+ instances out of the box. Find below the
+The _Core_ module provides several +PropertyConverter+ implementations by default. Find below the
 listing of converters automatically registered with the Core module:
 
 [width="100%",frame="1",options="header",grid="all"]
 |=======
-|_Target Type_             |_Class Name_              |_Supported Formats_
-|java.math.BigDecimal    |BigDecimalConverter     |1.2345, 0xFF
-|java.math.BigInteger    |BigIntegerConverter     |0xFF, 1234
-|java.ui.lang.Boolean       |BooleanConverter        |true, false, T, F, 1 ,0
-|java.ui.lang.Byte          |ByteConverter           |0xFF, MIN_VALUE, MAX_VALUE, 123
-|java.ui.lang.Character     |CharConverter           |0xFF, 'a', 'H', 123
-|java.ui.lang.Class         |ClassConverter          |<fully qualified class name>
-|java.util.Currency      |CurrencyConverter       |CHF, 123
-|java.ui.lang.Double        |DoubleConverter         |1, 0xFF, 1.2334, NaN, NEGATIVE_INFITIY, POSITIVE_INFINITY, MIN_VALUE, MAX_VALUE
-|_Enums_                 |EnumConverter           |<Enum item name>
-|java.ui.lang.Float         |FloatConverter          |1, 0xFF, 1.2334, NaN, NEGATIVE_INFITIY, POSITIVE_INFINITY, MIN_VALUE, MAX_VALUE
-|java.ui.lang.Integer       |IntegerConverter        |1, 0xD3, MIN_VALUE, MAX_VALUE
-|LocalDate               |LocalDateConverter      |<Date as defined by LocalDate.parse(String)
-|LocalTime               |LocalTimeConverter      |<Time as defined by LocalTime.parse(String)
-|LocalDateTime           |LocalDateTimeConverter  |<LocalDateTime as defined by LocalDateTime.parse(String)>
-|java.ui.lang.Long          |LongConverter           |1, 0xD3, MIN_VALUE, MAX_VALUE
-|java.ui.lang.Number        |NumberConverter         |1, 0xFF, 1.2334, NaN, NEGATIVE_INFITIY, POSITIVE_INFINITY
-|java.ui.lang.Short         |ShortConverter          |1, 0xD3, MIN_VALUE, MAX_VALUE
-|java.net.URI            |URIConverter            |http://localhost:2020/testresource?api=true
-|java.net.URL            |URLConverter            |http://localhost:2020/testresource?api=true
-|ZoneId                  |ZoneIdConverter         |Europe/Zurich
+|_Target Type_              |_Class Name_              |_Supported Formats_
+|java.math.BigDecimal       |BigDecimalConverter       |1.2345, 0xFF
+|java.math.BigInteger       |BigIntegerConverter       |0xFF, 1234
+|java.ui.lang.Boolean       |BooleanConverter          |true, false, T, F, 1 ,0
+|java.ui.lang.Byte          |ByteConverter             |0xFF, MIN_VALUE, MAX_VALUE, 123
+|java.ui.lang.Character     |CharConverter             |0xFF, 'a', 'H', 123
+|java.ui.lang.Class         |ClassConverter            |<fully qualified class name>
+|java.util.Currency         |CurrencyConverter         |CHF, 123
+|java.ui.lang.Double        |DoubleConverter           |1, 0xFF, 1.2334, NaN, NEGATIVE_INFITIY, POSITIVE_INFINITY, MIN_VALUE, MAX_VALUE
+|_Enums_                    |EnumConverter             |<Enum item name>
+|java.ui.lang.Float         |FloatConverter            |1, 0xFF, 1.2334, NaN, NEGATIVE_INFITIY, POSITIVE_INFINITY, MIN_VALUE, MAX_VALUE
+|java.ui.lang.Integer       |IntegerConverter          |1, 0xD3, MIN_VALUE, MAX_VALUE
+|LocalDate                  |LocalDateConverter        |<Date as defined by LocalDate.parse(String)
+|LocalTime                  |LocalTimeConverter        |<Time as defined by LocalTime.parse(String)
+|LocalDateTime              |LocalDateTimeConverter    |<LocalDateTime as defined by LocalDateTime.parse(String)>
+|java.ui.lang.Long          |LongConverter             |1, 0xD3, MIN_VALUE, MAX_VALUE
+|java.ui.lang.Number        |NumberConverter           |1, 0xFF, 1.2334, NaN, NEGATIVE_INFITIY, POSITIVE_INFINITY
+|java.ui.lang.Short         |ShortConverter            |1, 0xD3, MIN_VALUE, MAX_VALUE
+|java.net.URI               |URIConverter              |http://localhost:2020/testresource?api=true
+|java.net.URL               |URLConverter              |http://localhost:2020/testresource?api=true
+|ZoneId                     |ZoneIdConverter           |Europe/Zurich
 |=======
 
 
 === Registering PropertyConverters
 
-Additional +PropertyConverters+ can be implemented easily. It is recommended to register then using the +java.util.ServiceLoader+,
-meaning you add a file under +META-INF/service/org.apache.tamaya.spi.PropertyConverter+ containing the fully qualified
-class names of the converters to be registered (one line per each).
+Additional +PropertyConverters+ can be implemented easily. It is recommended to register them using
+the +java.util.ServiceLoader+, meaning you add a file under +META-INF/service/org.apache.tamaya.spi.PropertyConverter+ containing the fully qualified
+class names of the converters to be registered (one line each).
 
-Alternatively you can also use a +ConfigurationContextBuilder+ to add additional converters programmatically.
-
-NOTE: API Implementations can be read-only thus not allowing adding additional converters programmatically.
+Alternatively you can also use a +ConfigurationContextBuilder+ to add additional converters
+programmatically.
 
 
 [[ComponentLoadingAndPriorization]]
 === Component Loading and Priorization
 
-Tamaya Core in general loads all components using the +java.util.ServiceLoader+ mechanism. This means that new components
-must be registered by adding a file under +META-INF/service/<myInterfaceName>+ containing the fully qualified
-implementation class names of the components to be registered (one line per each).
-The +ServiceLoader+ itself does not provide any functionality for overriding or ordering of components. Tamaya
-core adds this functionality by the possibility to add +@Priority+ annotations to the components registered.
-By default, and if no annotation is added +0+ is used as priority. Hereby higher values preceed lower values, meaning
+Tamaya _Core_ in general loads all components by default using the +java.util.ServiceLoader+ mechanism. This means that new components
+must be registered by adding a file under +META-INF/service/<myInterfaceName>+ containing the fully
+qualified implementation class names of the components to be registered (one line per each).
+The +ServiceLoader+ itself does not provide any functionality for overriding or ordering of
+components. Tamaya _Core_ adds such a functionality with the possibility to add +@Priority+
+annotations to the components registered. By default, and if no annotation is added +0+ is assumed
+as priority. Hereby higher values preceed lower values, meaning
 
-* if a singleton component is accessed from the current +ServiceContext+ the component with the higher value
-  effectively _overrides/replaces_ any component with lower values.
-* if a collection of components is obtained from the +ServiceContext+ the components are ordered in order, where the
-  ones with higher priority are before components with lower priority.
-* if priorities match Tamaya Core additionally sorts them using the simple class name. This ensures that ordering is
-  still defined and predictable in almost all scenarios.
+* if a _singleton_ component is accessed from the current +ServiceContext+ the component with the
+  higher value effectively _overrides/replaces_ any component with lower values.
+* if a _collection_ of components is obtained from the +ServiceContext+ the components are _ordered_
+  based on their priorities, where the ones with higher priority are before components with lower
+  priority.
+* if priorities _match_ Tamaya _Core_ additionally sorts them using the _simple class name_.
+  This ensures that ordering is still defined and predictable in all scenarios.
 
-NOTE: Sorting the property sources based on their ordinal value is only the default ordering principle applied. By implementing
-      your own implementation of +ConfigurationProviderSpi+ you can apply a different logic:
+NOTE: Sorting the property sources based on their ordinal value is only the default ordering
+      principle applied. By implementing your own implementation of +ConfigurationProviderSpi+
+      you can apply a different logic:
 
 
 [[RegisteringPropertySources]]
 === Registering Property Sources
 
-PropertySources that provide configuration properties are registered as ordinary components as described in the previous
-section. Nevertheless the priority is not managed based on +@Priority+ annotations, but based on an explicit
-+int getOrdinal()+ method. This allows to define the ordinal/priority of a +PropertySource+ explicitly. This is useful
-due to several reasons:
++PropertySource+ implementations that provide configuration properties are registered as components as described in the previous
+section. Hereby the precedence (ordering) of property sources is not hard-coded. Instead a +Comparator<PropertySource>+
+can be passed to a +ConfigurationContextBuilder+ to perform automatic ordering of the property sources
+registered. The default implementation hereby implements the following logic:
 
-* it allows to define the ordinal as part of the configuration, thus allowing new overriding property sources being
-  added easily.
-* it allows to define the ordinal dynamically, e.g. based on the configuration location, the time of loading or
-  whatever may be appropriate.
+. It checks for an property entry +tamaya.ordinal+ if present the value is parsed into an +int+ value and used as
+  the ordinal val value.
+. It checks for an explicit method +int getOrdinal()+, if found its value is taken as an ordinal.
+. It checks for a +@Priority+ annotation, if present the priority value is used as an ordinal.
+. If none of the above works, +0+ is assumed as ordinal value.
+. If multiple +PropertySource+ instances share the same ordinal value, they are ordered based on their fully qualified
+  class names.
+
+Custom implementations of the property source comparator can be applied by calling
++ConfigurationContextBuilder.sortPropertySources(Comparator<PropertySource>)+. The default comparator can be replaced
+by passing the fully qualified comparator class name as system property:
+
++-Dproperty-source-comparator=a.b.c.MyComparatorClass+
 
 
 [[CorePropertySources]]
@@ -191,23 +202,24 @@ public class MyPropertySource extends BasePropertySource{
 }
 --------------------------------------------
 
-By default the ordinal of the property sources will be 1000, unless the key +tamaya.ordinal+ asdefined in
-+PropertySource.TAMAYA_ORDINAL+ is present in the current +PropertySource+. Of course it is also possible to override
-the inherited +protected void initializeOrdinal(final int defaultOrdinal)+, or directly +int getOrdinal()+.
+By default the ordinal of the property sources will be 1000, unless the key +tamaya.ordinal+
+as defined in +PropertySource.TAMAYA_ORDINAL+ is present in the current +PropertySource+. Of course
+it is also possible to override the inherited +protected void initializeOrdinal(final int defaultOrdinal)+,
+or directly +int getOrdinal()+.
 
 
 [[CorePropertySourceProviders]]
 === Default PropertySourceProvider in Core
 
 With +org.apache.tamaya.core.provider.JavaConfigurationProvider+ there is also a default +PropertySourceProvider+
-present that loads all .properties files found at +META-INF/javaconfiguration.properties+
+present that loads all +.properties+ files found at +META-INF/javaconfiguration.properties+
 and +META-INF/javaconfiguration.xml+.
 
 
 [[Extensions]]
 == Adding Extensions
 
-The Core module only implements the link:api.html[API]. Many users require/wish additional functionality from a
+Tamaya _Core_ only implements the link:api.html[API]. Many users require/wish additional functionality from a
 configuration system. Fortunately there are numerous extensions available that add further functionality.
 Loading extensions hereby is trivial: you only are required to add the corresponding dependency to the classpath.
 

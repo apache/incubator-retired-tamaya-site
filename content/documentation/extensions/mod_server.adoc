@@ -39,75 +39,54 @@ To benefit from configuration server support you only must add the corresponding
 
 === Providing configuration using the Tamaya Built-in Configuration Server
 
-THe most simple way for providing onfiguration ist to start the internal server:
+The most simple way for providing configuration is to start the internal server:
 
 [source, java]
 -----------------------------------------------
-Server server = org.apache.tamaya.server.ConfigServer.createServer();
-server.start(port);
+// using context path: '/', port 8085
+org.apache.tamaya.server.Server.start();
+
+// optionally pass the root context path and/or port:
+// org.apache.tamaya.server.Server.start(8088);
+// org.apache.tamaya.server.Server.start("/appconf", 7787);
 -----------------------------------------------
 
 This will start a simple server instance that serves the following URL patterns:
 
-* +GET /config+ provides access to the full configuration tree.
-* +GET /config/filtered/${path}+ let you filter the configuration returned using regular expression (comma separated).
-  E.g. +/config/filtered/java,sun+ will return all configuration entries starting with _java_ and _sun_.
+* +GET ${CONTEXT}/config+ provides access to the full configuration tree.
+* +GET ${CONTEXT}/config/filtered/${path}+ let you filter the configuration returned using regular expression (comma separated).
+  E.g. +${CONTEXT}/config/filtered/java,sun+ will return all configuration entries starting with _java_ and _sun_.
 
 Additionally the server module has the following options implemented, which can be passed as additional, optional
 parameters:
 
 * +format+ allows to define the target format. By default the +ACCEPT+ header of the http request is checked, but this
-  setting can be explicitly controlled by passing tis parameter explicitly. The value is the expected MIME type to be
-  returned. By default the service supports the following types (refer to the SPI section later in this document for
-  options to adapt this):
+  setting can be explicitly controlled by passing this parameter explicitly. The value is the expected MIME type to be
+  returned. By default the service supports the following types:
   ** text/html
   ** text/plain
   ** application/xml
-  ** text/json
-
-* +scope,scopeId+ allows to use a server-side preconfigured filter/combination policy to be applied for
-  evaluating the entries to be returned. Hereby the +scopeId+ paramter allows to address a certain scope.
-  As an example think of a scope +?scope=CLIENT&scopeId=client1+ to be passed as request parameters. This
-  tells the server module to lookup a configured scope named 'CLIENT' and access a +ConfigOperator+ for the
-  given scopeId 'client1'. The returned operator then can filter and combine any kind of entries to the
-  required client configuration (for client1). Refer to the scopes section for more details.
+  ** application/json
 
 
 === Using the Configuration Servlets
 
-Additionally to the fully built-in solution, it is also possible to integrate the Tamaya server module with a standard
-Java EE servlet container. Tamaya provides 2 servlet implementations:
-
-* the servlet +org.apache.tamaya.server.FilteredConfigServlet+ can be used to register access to configurations
-  that also support filtering of the keys. The URL looks like
+You can also register a servlet, e.g. as follows;
 
 ----------------------------------------------------------
-http(s)://HOST/SERVLET_CONTEXT/PATHS?params
-
-where
-  HOST            = host name incl port, e.g. 127.0.0.2:234
-  SERVLET_CONTEXT = the base context and servlet context, e.g. /client/config/filtered
-  PATHS           = A comma separated number of key paths to be filtered for being returned, e.g.
-                    java,sun,client
-  params          = the optional parameters (scope, scopeId and format)
-----------------------------------------------------------
-
-* the servlet +org.apache.tamaya.server.FullConfigServlet+ can be used to register access to configurations
-  that alwyas returns all items known. The URL looks like
-
-----------------------------------------------------------
-http(s)://HOST/SERVLET_CONTEXT?params
-
-where
-  HOST            = host name incl port, e.g. 127.0.0.2:234
-  SERVLET_CONTEXT = the base context and servlet context, e.g. /client/config/filtered
-  params          = the optional parameters (scope, scopeId and format)
+<servlet>
+  <servlet-name>config-servlet</servlet-name>
+  <servlet-class>org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet</servlet-class>
+  <init-params>
+    <init-param key="javax.ws.rs.Application">org.apache.tamaya.server.Server$ResourceLoader</init-param>
+  </init-params>
+</servlet>
 ----------------------------------------------------------
 
 
 ==== Formatting used by Default
 
-The server module formats the configuration returned by default in thw following variants:
+The server module formats the configuration returned by default in the following variants:
 
 .Formatting for +text/json+
 
@@ -135,12 +114,12 @@ The server module formats the configuration returned by default in thw following
   "sun.jnu.encoding": "Cp1252",
   "sun.management.compiler": "HotSpot 64-Bit Tiered Compilers",
   "sun.os.patch.level": "",
-  "{meta}class": "org.apache.tamaya.functions.FilteredConfiguration",
-  "{meta}info.filter": "java.v,sun",
-  "{meta}info.format": "application/json",
-  "{meta}info.timestamp": "1441463200571",
-  "{meta}timestamp": "1441463200571",
-  "{meta}type": "Configuration"
+  "_class": "org.apache.tamaya.functions.FilteredConfiguration",
+  "_info.filter": "java.v,sun",
+  "_info.format": "application/json",
+  "_info.timestamp": "1441463200571",
+  "_timestamp": "1441463200571",
+  "_type": "Configuration"
 }
 -----------------------------------------------
 
@@ -171,12 +150,12 @@ The server module formats the configuration returned by default in thw following
   <entry key="sun.jnu.encoding">Cp1252</entry>
   <entry key="sun.management.compiler">HotSpot 64-Bit Tiered Compilers</entry>
   <entry key="sun.os.patch.level"></entry>
-  <entry key="{meta}class">org.apache.tamaya.functions.FilteredConfiguration</entry>
-  <entry key="{meta}info.filter">java.v,sun</entry>
-  <entry key="{meta}info.format">application/xml</entry>
-  <entry key="{meta}info.timestamp">1441463383687</entry>
-  <entry key="{meta}timestamp">1441463383687</entry>
-  <entry key="{meta}type">Configuration</entry>
+  <entry key="_class">org.apache.tamaya.functions.FilteredConfiguration</entry>
+  <entry key="_info.filter">java.v,sun</entry>
+  <entry key="_info.format">application/xml</entry>
+  <entry key="_info.timestamp">1441463383687</entry>
+  <entry key="_timestamp">1441463383687</entry>
+  <entry key="_type">Configuration</entry>
 </configuration>
 -----------------------------------------------
 
@@ -208,12 +187,12 @@ Configuration:
   sun.jnu.encoding: Cp1252,
   sun.management.compiler: HotSpot 64-Bit Tiered Compilers,
   sun.os.patch.level: ,
-  {meta}class: org.apache.tamaya.functions.FilteredConfiguration,
-  {meta}info.filter: java.v,sun,
-  {meta}info.format: text/plain,
-  {meta}info.timestamp: 1441463082020,
-  {meta}timestamp: 1441463082021,
-  {meta}type: Configuration
+  _class: org.apache.tamaya.functions.FilteredConfiguration,
+  _info.filter: java.v,sun,
+  _info.format: text/plain,
+  _info.timestamp: 1441463082020,
+  _timestamp: 1441463082021,
+  _type: Configuration
 -----------------------------------------------
 
 
@@ -254,120 +233,10 @@ Configuration:
   _info.timestamp: 1441463459653,
   _timestamp: 1441463459654,
   _type: Configuration
-
 </pre>
 </body>
 </html>
 -----------------------------------------------
 
-=== SPI
-==== Scopes
 
-As mentioned earlier in this document scopes can be used to define the exact configuration tree to be returned, e.g.
-as a result of combining multiple sub trees. Following an example of the code to be written to return a configuration
-that combines common client default entries with client specific entries:
-
-[source, java]
------------------------------------------------
-public class ClientScopeProvider implements ScopeProvider{
-
-    /**
-     * Access the unique scope name.
-     * @return the unique scope name.
-     */
-    public String getScopeType(){
-            return "CLIENT";
-    }
-
-    @Override
-    public ConfigOperator getScope(String scopeId) {
-        return c ->
-                ConfigurationFunctions.combine("Scoped Config CLIENT="+scopeId,
-                        c.with(ConfigurationFunctions.sectionRecursive(true, "client.default")),
-                        c.with(ConfigurationFunctions.sectionRecursive(true, "client." + scopeId))
-                );
-    }
-}
------------------------------------------------
-
-This class can be registered using the +ServiceContext+ in place. By default the +ServiceLoader+ is used, so you will
-have to add the following to +META-INF/services/org.apache.tamaya.server.spi.ScopeProvider+:
-
-[source, listing]
------------------------------------------------
-my.full.packagename.ClientScopeProvider
------------------------------------------------
-
-
-==== Adapting the Way Configuration is Derived
-
-Finally the effective reading and configuration handling logic can also be replaced or improved. This can be
-done by registering your own implementation of the interface +ConfigProviderService+:
-
-[source, java]
-------------------------------------------------
-public interface ConfigProviderService {
-    String getConfigurationWithPath(String path, String format, String scope, String scopeId, HttpServletRequest request);
-    String getConfiguration(String format, String scope, String scopeId, HttpServletRequest request);
-    void updateConfiguration(String payload, HttpServletRequest request);
-    void deleteConfiguration(String paths, HttpServletRequest request);
-}
-------------------------------------------------
-
-By default the +ServiceContextManager+ uses the +java.util.ServiceLoader+ for component loading, so to replace the
-default server code you must register a higher +@Priority+ implementation.
-
-
-==== Replacing the Built-In Server
-
-We have seen earlier that starting a configuration server is pretty easy:
-
-[source, java]
------------------------------------------------
-Server server = org.apache.tamaya.server.ConfigServer.createServer();
-server.start(port);
------------------------------------------------
-
-Nevertheless one may want to replace the used implementation of +Server+. This can be done easily by simply
-registering an overriding implementation if the corresponding interface:
-
-[source, java]
------------------------------------------------
-public interface Server {
-    void start(int port);
-    boolean isStarted();
-    void stop();
-    void destroy();
-}
------------------------------------------------
-
-
-==== The ScopeManager Singleton
-
-Finally whe implementing your own server, you might also benefit from the +ScopeManager+ singleton. Basically this
-class loads all registered +ScopeProvider+ and manages the configured scope instances:
-
-[source, java]
------------------------------------------------
-public final class ScopeManager {
-    ...
-
-    private ScopeManager(){}
-
-    /**
-     * Get the scope given its name.
-     * @param scopeId the scope name
-     * @return the scope matching
-     * @throws ConfigException, if nos such scope is defined.
-     */
-    public static ConfigOperator getScope(String scopeId, String target);
-
-    /**
-     * Get the defined scope names.
-     * @return the defined scope names, never null.
-     */
-    public static Set<String> getScopes();
-
-}
------------------------------------------------
 

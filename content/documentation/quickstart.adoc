@@ -5,9 +5,10 @@
 
 
 The fastest way to start with Tamaya is just using the _Core_ implementation,
-implementing the **API** in small, minimalistic way. For that add the following
+implementing the **API** in a minimalistic way. For that add the following
 Maven dependency to your project:
 
+=== Adding the Tamaya Dependency
 
 [source,xml,subs="verbatim,attributes"]
 ----
@@ -18,50 +19,88 @@ Maven dependency to your project:
 </dependency>
 ----
 
-Given that you can add your configuration properties to the following locations in your classpath:
+=== Start Coding
+
+In your Java code you can directly access configuration from the API. In most cases it is recommended
+to provide the default values when accessing the configuration:
+
+[source,java]
+----
+Configuration config = ConfigurationProvider.getConfiguration();
+
+String aTextValue = config.getOrDefault("my.value.key", "N/A");
+int aNumericValue = config.getOrDefault("my.numValueKey", Integer.class, 15 /* default */);
+BigDecimal bdValue = config.getOrDefault("my.BD.value", BigDecimal.class, BigDecimal.valueOf(120));
+----
+
+With Java 8 you can, of course, also use +Optional+, e.g.
+
+[source,java]
+----
+Configuration config = ConfigurationProvider.getConfiguration();
+
+String aTextValue = Optional.ofNullable(config.getOrDefault("my.value.key").orElse("N/A");
+----
+
+=== Add/define your configuration data
+
+As seen you can immedeatly start working with your configuration backend, without adding any kind of
+default configuration. Nevertheless the _core_ implementation also comes with a _default_ mechanism,
+where you can store your configuration as +.properties+ in your classpath:
 
 [source]
 ----
 META-INF/javaconfiguration.properties
 ----
 
-Additionally also system properties are taken into account, hereby overriding the default properties. Overall
-Tamaya by default defines the following configuration model per default (most significant first):
+Additionally also system properties are taken into account, hereby overriding the _default_ properties.
+Overall Tamaya by default defines the following configuration model per default (most significant first):
 
 . System Properties
 . `META-INF/javaconfiguration.properties`
 
-There many modules that extend the capabilities of Tamaya.
-These modules doe not depend on core, so alternative
-implementations of the Tamaya API should work similarly.
 
+== Advanced Topics
 
 === Multiple configuration files
 
 By default you can provide multiple `javaconfig.properties` files, e.g. as part
-of multiple jars loaded into your system. The system internally creates one
+of multiple jars loaded into your system. The system creates one
 `PropertySource` for each file found on the classpath. All `PropertySource`
-instances created are ordered by their ordinal value (an int).
+instances created are ordered by their precedence.
 
-Tamaya Core defines the following default ordinals (used, if no custom ordinal is defined):
+By default the precendence of a +PropertySource+ is evaluated based on an _ordinal_ value
+calculated as follows:
+
+. the systems checks for a `tamaya.ordinal` configuration value and tries to convert to
+  an `int` ordinal value.
+. the systems checks if the property source has a method +int getOrdinal()+. If present
+  the result is used as ordinal.
+. the systems checks if the property source has a `@Priority` annotation and uses the
+  annotation's value as ordinal.
+. if all of the above fails, +0+ is assumed as ordinal.
+
+NOTE: Since evaluation of the `tamaya.ordinal` is always done first, it is possible to change
+      the ordinal value by adding a corresponding configuration entry to a property source.
+
+Tamaya Core uses the following default ordinals:
 
 [width=70]
 [cols="3,1", option="headers"]
 |===
-| Source                            | Ordinal
-| System Properties                 | 400
-| Environment Variables             | 300
-| Java Configuration Properties     | 100
+| Source                                                   | Ordinal
+| System Properties                                        | 400
+| Environment Properties                                   | 300
+| Properties from `META-INF/javaconfiguration.properties`  | 100
 |===
 
 That means that the value of a configuration variable `x` overhanded via `-Dx=yes` has
-a higher precedence then the entry for configuration variable `x` specified in a `javaconfig.properties`
-as `x=no`.
+a higher precedence then the entry for configuration variable `x` specified in
+`META-INF/javaconfig.properties` as `x=no`.
 
 These ordinal values can be either hardcoded, or be dynamically
 configurable as key within each configuration resource. The ladder can be done by defining a special
 Tamaya ordinal value as follows:
-
 
 [source]
 ----
@@ -69,14 +108,17 @@ Tamaya ordinal value as follows:
 tamaya.ordinal=123
 ----
 
-This assigns an ordinal of 123 to each entry in that configuration resource.
+This assigns an ordinal of 123 to each entry in that property source providing this configuration
+properties.
 
 === Using additional features of Tamaya
 
 There many modules that extend the capabilities of
 Tamaya. These modules doe not depend on core, so alternative
 implementations of the Tamaya API should work similarly. Following a
-small extract of most important modules available (or available soon):
+small extract of most important modules available (or available soon).
+Refer to link:extensions/extensions.html[this list] for a complete
+overview.
 
 ==== Dynamic Resolution and Value Placeholders
 
@@ -89,7 +131,7 @@ small extract of most important modules available (or available soon):
 </dependency>
 ----
 
-// @todo Auf Modulliste verweisen für vollständigen Überblick
+
 With that it is possible to define values with Unix styled placeholders that are
 resolved on configuration access, e.g.
 `mykey=my${dynamicValue}´. For further details refer to the module documentation.
@@ -145,7 +187,7 @@ Corresponding configuration:
 [source,xml,subs="verbatim,attributes"]
 ----
 public class MyType {
-   @ConfiguredProperty("name")
+   @Config("my.key")
    private String typeName;
 
    public String getName() {
@@ -162,7 +204,7 @@ Or the same as template:
 [source,xml,subs="verbatim,attributes"]
 ----
 public interface MyTypeTemplate {
-   @ConfiguredProperty("name")
+   @Config("my.key")
    public String getName();
 }
 

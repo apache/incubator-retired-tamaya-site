@@ -114,7 +114,7 @@ public class PathBasedPropertySourceProvider implements PropertySourceProvider {
     @Override
     public Collection<PropertySource> getPropertySources() {
         List<PropertySource> propertySources = new ArrayList<>();
-        Collection<URL> resources = Resources.getResourceResolver().getResources("META-INF/cfg/**/*.properties");
+        Collection<URL> resources = ConfigResources.getResourceResolver().getResources("META-INF/cfg/**/*.properties");
         for(URL url:resources){
             Properties props = new Properties();
             try(InputStream is = url.openStream()){

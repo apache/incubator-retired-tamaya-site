@@ -293,7 +293,8 @@ identified to be necessary:
 [source,java]
 --------------------------------------------
 public interface PropertySource{
-      int getOrdinal(); // This feature is under discussion
+      // This feature is under discussion
+      // int getOrdinal();
       String getName();
       String get(String key);
       boolean isScannable();
