@@ -9,7 +9,8 @@
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span th:text='${#dates.format(published_date,"yyyy")}'>published_date</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span th:text='${version}'>version</span></a>
-							at <span th:text='${#dates.format(published_date,"yyyy-MM-dd")}'>published_date</span>
+							at <span th:text='${#dates.format(published_date,"yyyy-MM-dd")}'>published_date</span> |
+							 <a href="https://twitter.com/tamayaconf" class="twitter-follow-button" data-show-count="false">Follow @TamayaConf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>
 								<b>Disclaimer</b>
@@ -35,7 +36,6 @@
 		    <script th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:src="${rootpath} + 'js/jquery-1.11.1.min.js'"></script>
 		    <script th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:src="${rootpath} + 'js/bootstrap.min.js'"></script>
 		    <script th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:src="${rootpath} + 'js/prettify.js'"></script>
-
     	</div>
   	</body>
 </html>
