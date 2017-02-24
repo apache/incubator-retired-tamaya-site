@@ -1,145 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
-        <loc>https://tamaya.incubator.apache.org/history.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/release-guide.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/start.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_etcd.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_events.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_filter.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_formats.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_functions.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_injection.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_jodatime.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_json.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_management.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_metamodel.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_mutable_config.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_optional.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_osgi.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_remote.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_resolver.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_resources.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_server.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_spi-support.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_spring.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_usagetracker.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_validation.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_yaml.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/quickstart.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/documentation/usecases.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/download.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/examples.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/highleveldesign.html</loc>
-        <lastmod>2017-02-17</lastmod>
+        <loc>https://tamaya.incubator.apache.org/development/source.html</loc>
+        <lastmod>2017-02-24</lastmod>
     </url><url>
         <loc>https://tamaya.incubator.apache.org/apidocs/index.html</loc>
-        <lastmod>2017-02-17</lastmod>
+        <lastmod>2017-02-24</lastmod>
     </url><url>
         <loc>https://tamaya.incubator.apache.org/development/community.html</loc>
-        <lastmod>2017-02-17</lastmod>
+        <lastmod>2017-02-24</lastmod>
     </url><url>
         <loc>https://tamaya.incubator.apache.org/development/possible-contributions.html</loc>
-        <lastmod>2017-02-17</lastmod>
-    </url><url>
-        <loc>https://tamaya.incubator.apache.org/development/source.html</loc>
-        <lastmod>2017-02-17</lastmod>
+        <lastmod>2017-02-24</lastmod>
     </url><url>
         <loc>https://tamaya.incubator.apache.org/development/team.html</loc>
-        <lastmod>2017-02-17</lastmod>
+        <lastmod>2017-02-24</lastmod>
     </url><url>
         <loc>https://tamaya.incubator.apache.org/devguide.html</loc>
-        <lastmod>2017-02-17</lastmod>
+        <lastmod>2017-02-24</lastmod>
     </url><url>
         <loc>https://tamaya.incubator.apache.org/documentation/api.html</loc>
-        <lastmod>2017-02-17</lastmod>
+        <lastmod>2017-02-24</lastmod>
     </url><url>
         <loc>https://tamaya.incubator.apache.org/documentation/core.html</loc>
-        <lastmod>2017-02-17</lastmod>
+        <lastmod>2017-02-24</lastmod>
     </url><url>
         <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_camel.html</loc>
-        <lastmod>2017-02-17</lastmod>
+        <lastmod>2017-02-24</lastmod>
     </url><url>
         <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_cdi.html</loc>
-        <lastmod>2017-02-17</lastmod>
+        <lastmod>2017-02-24</lastmod>
     </url><url>
         <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_classloader_support.html</loc>
-        <lastmod>2017-02-17</lastmod>
+        <lastmod>2017-02-24</lastmod>
     </url><url>
         <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_collections.html</loc>
-        <lastmod>2017-02-17</lastmod>
+        <lastmod>2017-02-24</lastmod>
     </url><url>
         <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_consul.html</loc>
-        <lastmod>2017-02-17</lastmod>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_etcd.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_events.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_filter.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_formats.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_functions.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_injection.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_jodatime.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_json.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_management.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_metamodel.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_mutable_config.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_optional.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_osgi.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_remote.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_resolver.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_resources.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_server.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_spi-support.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_spring.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_usagetracker.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_validation.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/extensions/mod_yaml.html</loc>
+        <lastmod>2017-02-24</lastmod>
     </url><url>
         <loc>https://tamaya.incubator.apache.org/documentation/extensions.html</loc>
-        <lastmod>2017-02-17</lastmod>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/quickstart.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/documentation/usecases.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/download.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/examples.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/highleveldesign.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/history.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/release-guide.html</loc>
+        <lastmod>2017-02-24</lastmod>
+    </url><url>
+        <loc>https://tamaya.incubator.apache.org/start.html</loc>
+        <lastmod>2017-02-24</lastmod>
     </url><url>
         <loc>https://tamaya.incubator.apache.org/blog/2016/dirk-weil-javaeeblog.html</loc>
         <lastmod>2016-12-01</lastmod>
     </url><url>
-        <loc>https://tamaya.incubator.apache.org/blog/2016/java2days-sofia.html</loc>
+        <loc>https://tamaya.incubator.apache.org/blog/2016/apachecon-seville.html</loc>
         <lastmod>2016-11-16</lastmod>
     </url><url>
-        <loc>https://tamaya.incubator.apache.org/blog/2016/apachecon-seville.html</loc>
+        <loc>https://tamaya.incubator.apache.org/blog/2016/java2days-sofia.html</loc>
         <lastmod>2016-11-16</lastmod>
     </url><url>
         <loc>https://tamaya.incubator.apache.org/blog/2016/javaone.html</loc>
