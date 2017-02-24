@@ -6,8 +6,8 @@
     <atom:link href="https://tamaya.incubator.apache.org/feed.xml" rel="self" type="application/rss+xml" />
     <description>Apache Tamaya RSS feed template</description>
     <language>en-gb</language>
-    <pubDate>Fr, 24 Feb 2017 21:26:04 +0100</pubDate>
-    <lastBuildDate>Fr, 24 Feb 2017 21:26:04 +0100</lastBuildDate>
+    <pubDate>Fr, 24 Feb 2017 22:17:25 +0100</pubDate>
+    <lastBuildDate>Fr, 24 Feb 2017 22:17:25 +0100</lastBuildDate>
 
     <item>
       <title>Blog post (German) - Dirk Weil: Anwendungskonfiguration mit Apache Tamaya</title>
@@ -21,6 +21,21 @@
 &amp;lt;ul&amp;gt;
 &amp;lt;li&amp;gt;
 &amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;https://javaeeblog.wordpress.com/2016/12/01/anwendungskonfiguration-mit-apache-tamaya/amp/&amp;quot;&amp;gt;JavaEEBlog: Dirk&amp;amp;#8217;s article&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;</description>
+    </item><item>
+      <title>Java2Days (Sofia, Bulgaria) - Configuration for Java EE / Config JSR</title>
+      <link>https://tamaya.incubator.apache.org/blog/2016/java2days-sofia.html</link>
+      <pubDate>Mi, 16 Nov 2016 00:00:00 +0100</pubDate>
+      <guid isPermaLink="false">blog/2016/java2days-sofia.html</guid>
+      <description>&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;Werner and Dmitry (Oracle) presented the concepts and ideas of Tamaya at the conference in Bulgaria:&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;ulist&amp;quot;&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;http://www.slideshare.net/DmitryKornilov/configuration-for-java-ee-config-jsr-and-tamaya&amp;quot;&amp;gt;Slides&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
 &amp;lt;/li&amp;gt;
 &amp;lt;/ul&amp;gt;
 &amp;lt;/div&amp;gt;</description>
@@ -42,21 +57,6 @@
 &amp;lt;/li&amp;gt;
 &amp;lt;li&amp;gt;
 &amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;http://events.linuxfoundation.org/sites/events/files/slides/ConfigureOnceRunEverywhere_JavaOne2016.pdf&amp;quot;&amp;gt;Anatole&amp;amp;#8217;s slides&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
-&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
-&amp;lt;/div&amp;gt;</description>
-    </item><item>
-      <title>Java2Days (Sofia, Bulgaria) - Configuration for Java EE / Config JSR</title>
-      <link>https://tamaya.incubator.apache.org/blog/2016/java2days-sofia.html</link>
-      <pubDate>Mi, 16 Nov 2016 00:00:00 +0100</pubDate>
-      <guid isPermaLink="false">blog/2016/java2days-sofia.html</guid>
-      <description>&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
-&amp;lt;p&amp;gt;Werner and Dmitry (Oracle) presented the concepts and ideas of Tamaya at the conference in Bulgaria:&amp;lt;/p&amp;gt;
-&amp;lt;/div&amp;gt;
-&amp;lt;div class=&amp;quot;ulist&amp;quot;&amp;gt;
-&amp;lt;ul&amp;gt;
-&amp;lt;li&amp;gt;
-&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;http://www.slideshare.net/DmitryKornilov/configuration-for-java-ee-config-jsr-and-tamaya&amp;quot;&amp;gt;Slides&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
 &amp;lt;/li&amp;gt;
 &amp;lt;/ul&amp;gt;
 &amp;lt;/div&amp;gt;</description>
@@ -271,7 +271,7 @@
 &amp;lt;/ul&amp;gt;
 &amp;lt;/div&amp;gt;</description>
     </item><item>
-      <title>JavaLand 2015 - Slides of talk about Java coniguration</title>
+      <title>JavaLand 2015 - Slides of talk about Java configuration</title>
       <link>https://tamaya.incubator.apache.org/blog/2015/javaland.html</link>
       <pubDate>Di, 24 Mär 2015 00:00:00 +0100</pubDate>
       <guid isPermaLink="false">blog/2015/javaland.html</guid>
