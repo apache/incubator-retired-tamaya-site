@@ -1,4 +1,4 @@
-title=JavaLand 2015 - Slides of talk about Java coniguration
+title=JavaLand 2015 - Slides of talk about Java configuration
 date=2015-03-24
 type=post
 tags=blog, asciidoc
