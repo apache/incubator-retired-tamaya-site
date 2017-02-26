@@ -23,7 +23,7 @@ The repository locations are:
     - https://git-wip-us.apache.org/repos/asf/incubator-tamaya.git
     - https://github.com/apache/incubator-tamaya[https://github.com/apache/incubator-tamaya^] GitHub read-only mirror
 
-The GitHub mirror also provides the project as downloadable zip archive.
+The GitHub mirror also provides the project as a downloadable zip archive.
 
 === Apache Tamaya Extensions
 
@@ -33,17 +33,17 @@ The repository locations are:
     - https://git-wip-us.apache.org/repos/asf/incubator-tamaya-extensions.git
     - https://github.com/apache/incubator-tamaya-extensions[https://github.com/apache/incubator-tamaya-extensions^] GitHub read-only mirror
 
-The GitHub mirror also provides the project as downloadable zip archive.
+The GitHub mirror also provides the project as a downloadable zip archive.
 
-=== Apache Tamaya Extensions
+=== Apache Tamaya Sandbox 
 
 The repository locations are:
 
-    - http://git-wip-us.apache.org/repos/asf/incubator-tamaya-extensions.git (read-only)
-    - https://git-wip-us.apache.org/repos/asf/incubator-tamaya-extensions.git
-    - https://github.com/apache/incubator-tamaya-extensions[https://github.com/apache/incubator-tamaya-extensions^] GitHub read-only mirror
+    - http://git-wip-us.apache.org/repos/asf/incubator-tamaya-sandbox.git (read-only)
+    - https://git-wip-us.apache.org/repos/asf/incubator-tamaya-sandbox.git
+    - https://github.com/apache/incubator-tamaya-sandbox[https://github.com/apache/incubator-tamaya-sandbox^] GitHub read-only mirror
 
-The GitHub mirror also provides the project as downloadable zip archive.
+The GitHub mirror also provides the project as a downloadable zip archive.
 
 === Apache Tamaya Website
 
