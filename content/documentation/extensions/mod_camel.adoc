@@ -13,7 +13,7 @@ Tamaya _Camel_ is an extension module. Refer to the link:../extensions.html[exte
 
 === What functionality this module provides ?
 
-The Tamaya _Camel_ integration module provides different artifacts which allows integration of Apachae Tamaya
+The Tamaya _Camel_ module provides different artifacts which allows integration of Apachae Tamaya
 configuration with Apache Camel.
 
 
@@ -38,13 +38,13 @@ To benefit from configuration builder support you only must add the correspondin
 
 === The Functionality Provided
 
-Camel integration comes basically with three artifacts:
+Tamaya Camel comes basically with three artifacts:
 
 * A Camel +ResolverFunction+ implementation adding explicit property resolution
-  (+org.apache.tamaya.integration.camel.TamayaPropertyResolver+).
+  (+org.apache.tamaya.camel.TamayaPropertyResolver+).
 * A Camel +PropertiesComponent+ implementation, which allows implicitly preconfigures the resolvers from above and
   additionally allows using Tamaya configuration as Camel _overrides_
-  (+org.apache.tamaya.integration.camel.TamayaPropertiesComponent+).
+  (+org.apache.tamaya.camel.TamayaPropertiesComponent+).
 
 
 === Configuring using Camel Java DSL
@@ -53,7 +53,7 @@ Camel integration using Java DSL is basically simple:
 
 [source, java]
 -----------------------------------------------
-import org.apache.tamaya.integration.camel.TamayaPropertiesComponent;
+import org.apache.tamaya.camel.TamayaPropertiesComponent;
 
 camelContext.addComponent("properties", new TamayaPropertiesComponent());
 -----------------------------------------------
@@ -124,7 +124,7 @@ again use Tamaya as the main configuration solutions only using Camel's default 
         </route>
     </routeContext>
 
-    <bean id="properties" class="org.apache.tamaya.integration.camel.TamayaPropertiesComponent">
+    <bean id="properties" class="org.apache.tamaya.camel.TamayaPropertiesComponent">
         <property name="tamayaOverrides" value="true"/>
     </bean>
 
