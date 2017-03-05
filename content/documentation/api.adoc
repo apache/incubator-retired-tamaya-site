@@ -33,7 +33,9 @@ The API provides the artifacts as described in the link:../highleveldesign.html[
      +PropertySource+
      *** provides String based property access for single key/value pairs in _raw_ format (meaning no postprocessing
          is applied yet).
-     *** can _optionally_ provide access to a +Map<String,String>+, providing all its properties at once.
+     *** can _optionally_ provide access to a +Iterable<PropertyValue>+, providing all its properties at once.
+     *** defines the default ordinal to be used for establishing the order of significance among all
+         auto-discovered property sources.
   ** _PropertySourceProvider:_ allows to automatically register multiple property sources, e.g. all config files found in
      a file system folder..
   ** +ConfigurationProviderSpi+ defines the interface to be implemented by the delegating bean that is implementing the
@@ -293,12 +295,11 @@ identified to be necessary:
 [source,java]
 --------------------------------------------
 public interface PropertySource{
-      // This feature is under discussion
-      // int getOrdinal();
+      int getOrdinal();
       String getName();
-      String get(String key);
+      PropertyValue get(String key);
       boolean isScannable();
-      Map<String, String> getProperties();
+      Iterable<PropertyValue> getProperties();
 }
 --------------------------------------------
 
@@ -312,13 +313,14 @@ Hereby
   properties. If a +PropertySource+ is defined as non scannable accesses to
   +getProperties()+ may not return all key/value pairs that would be available when accessed directly using the
   +String get(String)+ method. The fact if a +PropertySource+ is _scannable_ can be determined by calling +isScannable()+.
-* TODO Feature is in question: +getOrdinal()+ defines the ordinal of the +PropertySource+. Property sources are managed in an ordered chain, where
-  property sources with higher ordinals override the ones with lower ordinals. If ordinal are the same, the natural
-  ordering of the fulloy qualified class names of the property source implementations are used. The reason for
-  not using +@Priority+ annotations is that property sources can define dynamically their ordinals, e.g. based on
-  a property contained with the configuration itself.
-* Finally +getName()+ returns a (unique) name that identifies the +PropertySource+ within the current
-  +ConfigurationContext+.
+* +int getOrdinal()+ defines the ordinal of the +PropertySource+. Property sources are managed in an ordered chain, where
+  property sources with higher ordinals override ones with lower ordinals. If the ordinal of two property sources is
+  the same, the natural ordering of the fully qualified class names of the property source implementations is used.
+  The reason for not using +@Priority+ annotations is that property sources can define dynamically their ordinals,
+  e.g. based on a property contained with the configuration itself.
+  Implementations of this API may provide additional functionality to adapt the default ordinal of auto-discovered
+  property sources.
+* Finally +getName()+ returns a (unique) name that identifies the +PropertySource+ within its containing +ConfigurationContext+.
 
 This interface can be implemented by any kind of logic. It could be a simple in memory map, a distributed configuration
 provided by a data grid, a database, the JNDI tree or other resources. Or it can be a combination of multiple
@@ -403,22 +405,20 @@ public interface PropertyValueCombinationPolicy{
    PropertyValueCombinationPolicy DEFAULT_OVERRIDING_COLLECTOR =
      new PropertyValueCombinationPolicy(){
        @Override
-       public Map<String,String> collect(Map<String,String> currentValue, String key,
+       public PropertyValue collect(PropertyValue currentValue, String key,
                                          PropertySource propertySource) {
            PropertyValue value = propertySource.get(key);
-           return value!=null?value.getConfigEntries():currentValue;
+           return value!=null?value:currentValue;
        }
    };
 
-   Map<String,String> collect(Map<String,String> currentValue currentValue, String key,
+   PropertyValue collect(PropertyValue currentValue, String key,
                   PropertySource propertySource);
 
 }
 --------------------------------------------
 
-Looking at the +collect+ method's signature it may be surprising to find a +Map+ for the return type.
-This is because returning a +Map+ allows also to filter/combine/use meta entries (by default entries starting
-with an '_').
+Looking at the +collect+ method's signature, returning a +PropertyValue+ allows also to filter/combine/use meta entries.
 
 
 [[ConfigurationContext]]

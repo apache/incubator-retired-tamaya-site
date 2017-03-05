@@ -35,7 +35,13 @@ used SPI parts in Tamaya:
   easy to use high level API.
 + +PropertySourceComparator+ provides an implementation that compares +PropertySources+ based on their +getOrdinal()+
   values and their class names.
++ The default configuration implementation also allows to replace the raw value evaluation
+  logic using a +ConfigValueEvaluator+, similar to Tamaya's core implementation.
 
+NOTE: It is highly recommended that you read also the link:../core.html[documentation] of Tamaya's
+      implementation core, since this describes the abstrations in use in more
+      detail. This module allows to reuse Tamaya's implementation artifacts but
+      still allow alternate implementations of the core API to be used.
 
 
 === Compatibility

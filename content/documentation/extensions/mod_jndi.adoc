@@ -60,6 +60,9 @@ will return an empty map instance. After calling `setScannable(true);` a call to
 `getProperties()` will return a String representation of the JNDI tree. Hereby
 leaves of the tree are converted using `String.valueOf(leaveObject)`.
 
+This module automatically registers an instance of +JNDIPropertySource+ with a
+default ordinal of +200+.
+
 You can extend this class or manually instantiate it, e.g. as part of a
 +PropertySourceProvider+. If no `Context` is passed explicitly, a new
 +InitialContext+ is created, without any environment parameters set.

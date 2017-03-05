@@ -127,6 +127,9 @@ by passing the fully qualified comparator class name as system property:
 
 +-Dproperty-source-comparator=a.b.c.MyComparatorClass+
 
+The ladder allows to adapt the ordering of auto-discovered property sources, even if the value returned by
++int getOrdinal()+ cannot be changed.
+
 
 [[CorePropertySources]]
 == Configuration Setup in Core
@@ -148,11 +151,14 @@ registered. They are all in the package +org.apache.tamaya.core.propertysource+ 
 [width="100%",frame="1",options="header",grid="all"]
 |=======
 |_Type_                                   |_Class Name_                   |_Ordinal Used_
-|META-INF/javaconfiguration.properties    |JavaConfigurationProvider      |0
-|META-INF/javaconfiguration.xml           |JavaConfigurationProvider      |0
+|META-INF/javaconfiguration.properties    |JavaConfigurationProvider      |100
+|META-INF/javaconfiguration.xml           |JavaConfigurationProvider      |100
+|JNDI Entries                             |JNDIPropertySource             |200
 |Environment Properties                   |EnvironmentPropertySource      |300
-|System Properties                        |SystemPropertySource           |400
+|System Properties                        |SystemPropertySource           |1000
 |=======
+
+NOTE: +JNDIPropertySource+ is provided by the `tamaya-jndi` extension module.
 
 
 === Abstract Class PropertiesFilePropertySource
@@ -214,6 +220,52 @@ or directly +int getOrdinal()+.
 With +org.apache.tamaya.core.provider.JavaConfigurationProvider+ there is also a default +PropertySourceProvider+
 present that loads all +.properties+ files found at +META-INF/javaconfiguration.properties+
 and +META-INF/javaconfiguration.xml+.
+
+
+=== Replacing the property value evaluation policy
+
+Tamaya's core implementation allows to replace the complete logic how a configuration value or the current configuration
+properties are calculated from a given +ConfigurationContext+ by implementing the +ConfigValueEvaluator+
+interface:
+
+[source,java]
+--------------------------------------------
+/**
+ * Component SPI which encapsulates the evaluation of a single or full <b>raw</b>value
+ * for a {@link ConfigurationContext}.
+ */
+public interface ConfigValueEvaluator {
+
+    /**
+     * Evaluates single value using a {@link ConfigurationContext}.
+     * @param key the config key, not null.
+     * @param context the context, not null.
+     * @return the value, or null.
+     */
+    PropertyValue evaluteRawValue(String key, ConfigurationContext context);
+
+    /**
+     * Evaluates all property values from a {@link ConfigurationContext}.
+     * @param context the context, not null.
+     * @return the value, or null.
+     */
+    Iterable<PropertyValue> evaluateRawValues(ConfigurationContext context);
+
+}
+--------------------------------------------
+
+The default implementation +DefaultConfigValueEvaluator+ implements the following logic:
+
+. Collect all +PropertySources+ from the context.
+. Access +PropertyValue get(String)+ (single key access)/ +Map<String,PropertyValue> getProperties()+
+  (config map access) from each property source and combine the previous with the next value using
+  the +PropertyValueCombinationPolicy+ in place.
+
+The resulting _raw_ value(s) are then finally handed over to the registered filters and finally
+converted to +String/Map<String,String>+ as required by the user API.
+
+To replace this default behaviour you must register your implementation with the current
++ServiceContext+.
 
 
 [[Extensions]]
