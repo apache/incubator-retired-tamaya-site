@@ -31,9 +31,10 @@ The API provides the artifacts as described in the link:../highleveldesign.html[
      the configuration data provided is managed locally, remotedely. There is even no
      requirement that the configuration data is always fully available. Summarizing a
      +PropertySource+
-     *** provides String based property access for single key/value pairs in _raw_ format (meaning no postprocessing
-         is applied yet).
-     *** can _optionally_ provide access to a +Iterable<PropertyValue>+, providing all its properties at once.
+     *** provides property access for single key/value pairs in _raw_ format (meaning no postprocessing
+         is applied yet). A single property hereby is modelled as +PropertyValue+, which also includes
+         its source and additional arbitrary metadata entries.
+     *** can _optionally_ provide access to a +Map<String,PropertyValue>+, providing all its properties at once.
      *** defines the default ordinal to be used for establishing the order of significance among all
          auto-discovered property sources.
   ** _PropertySourceProvider:_ allows to automatically register multiple property sources, e.g. all config files found in
@@ -278,6 +279,88 @@ The class +ConfigException+ models the base *runtime* exception used by the conf
 [[SPI]]
 == SPI
 
+[[PropertyValue]]
+=== PropertyValue, PropertyValueBuilder
+
+On the API properties are represented as Strings only, whereas in the SPI value are represented as +ProeprtyValue+,
+which contain
+
+* the property's _key_ (String)
+* the property's _value_ (String)
+* the property's _source_ (String, typically equals to the property source's name)
+* any additional meta-data represented as _Map<String,String>_
+
+This helps to kepp all value relevant data together in one place and also allows to choose any kind of
+representation for meta-data entries. The +PropertyValue+ itself is a final and _serializable_ data container,
+which also has a powerful builder API (e.g. for using within filters):
+
+[source,java]
+----------------------------------------------------------------
+public final class PropertyValue implements Serializable{
+    [...]
+
+    public static PropertyValue of(String key, String value, String source);
+
+    public String getKey();
+    public String getSource();
+    public String getValue();
+    public Map<String, String> getMetaEntries();
+    public String getMetaEntry(String key);
+    public PropertyValueBuilder toBuilder();
+
+    public static PropertyValueBuilder builder(String key, String source);
+    public static PropertyValueBuilder builder(String key, String value, String source);
+
+    /**
+     * Maps a map of {@code Map<String,String>} to a {@code Map<String,PropertyValue>}.
+     * @param config the String based map, not null.
+     * @param source the source name, not null.
+     * @return the corresponding value based map.
+     */
+    public static Map<String,PropertyValue> map(Map<String, String> config, String source);
+
+    /**
+     * Maps a map of {@code Map<String,String>} to a {@code Map<String,PropertyValue>}.
+     * @param config the String based map, not null.
+     * @param source the source name, not null.
+     * @param metaData additional metadata, not null.
+     * @return the corresponding value based map.
+     */
+    public static Map<String,PropertyValue> map(Map<String, String> config, String source,
+                                                Map<String,String> metaData);
+}
+----------------------------------------------------------------
+
+When writing your own datasource you can easily create your own +PropertyValues+:
+
+[source,java]
+----------------------------------------------------------------
+PropertyValue val = PropertyValue.of("key","value","source");
+----------------------------------------------------------------
+
+If you want to add additional metadata in most cases you would use the builder API:
+
+[source,java]
+----------------------------------------------------------------
+PropertyValue val = PropertyValue.builder("key","value","source")
+                     .addMetaEntry("figured", "true")
+                     .build();
+----------------------------------------------------------------
+
++PropertyValues+ are type safe value objects. To change a value you have to create a
+new instance using a builder:
+
+[source,java]
+----------------------------------------------------------------
+PropertyValue val = PropertyValue.builder("key","value","source")
+                     .addMetaEntry("figured", "true")
+                     .build();
+PropertyValue newVal = val.toBuilder().setValue("anotehrValue")
+                     .addMetaEntry("remote", "true")
+                     .removeMetaEntry("figured")
+                     .build();
+----------------------------------------------------------------
+
 [[PropertySource]]
 === Interface PropertySource
 
@@ -299,20 +382,20 @@ public interface PropertySource{
       String getName();
       PropertyValue get(String key);
       boolean isScannable();
-      Iterable<PropertyValue> getProperties();
+      Map<String,PropertyValue> getProperties();
 }
 --------------------------------------------
 
 Hereby
 
 * +get+ looks similar to the methods on +Map+. It may return +null+ in case no such entry is available.
-* +getProperties+ allows to extract all property data to a +Map<String,String>+. Other methods like +containsKey,
+* +getProperties+ allows to extract all property data to a +Map<String,PropertyValue>+. Other methods like +containsKey,
   keySet+ as well as streaming operations then can be applied on the returned +Map+ instance.
 * But not in all scenarios a property source is able to provide all values at once (aka to be _scannable_), e.g.
   when looking up keys is very inefficient, it may not make sense to iterate over all keys to collect the corresponding
   properties. If a +PropertySource+ is defined as non scannable accesses to
   +getProperties()+ may not return all key/value pairs that would be available when accessed directly using the
-  +String get(String)+ method. The fact if a +PropertySource+ is _scannable_ can be determined by calling +isScannable()+.
+  +PropertyValue get(String)+ method. The fact if a +PropertySource+ is _scannable_ can be determined by calling +isScannable()+.
 * +int getOrdinal()+ defines the ordinal of the +PropertySource+. Property sources are managed in an ordered chain, where
   property sources with higher ordinals override ones with lower ordinals. If the ordinal of two property sources is
   the same, the natural ordering of the fully qualified class names of the property source implementations is used.
@@ -374,7 +457,7 @@ A +PropertyFilter+ is defined as follows:
 --------------------------------------------
 // Functional Interface
 public interface PropertyFilter{
-    String filterProperty(String value, FilterContext context);
+    PropertyValue filterProperty(PropertyValue value, FilterContext context);
 }
 --------------------------------------------
 
@@ -384,7 +467,7 @@ Hereby:
 * non null values are used as the current value of the key. Nevertheless for resolving multi-step dependencies
   filter evaluation has to be continued as long as filters are still changing some of the values to be returned.
   To prevent possible endless loops after a defined number of loops evaluation is stopped.
-* +FilterContext+ provides additional metdata, including the key accessed, which is useful in many use cases.
+* +FilterContext+ provides additional metdata, including the property accessed, which is useful in many use cases.
 
 This method is called each time a single entry is accessed, and for each property in a full properties result.
 
