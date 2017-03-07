@@ -124,7 +124,7 @@
 				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Configuration Server</h1>
 			</div>
 
-			<p><em>2017-02-24</em></p>
+			<p><em>2017-03-07</em></p>
 
 			<p><div id="preamble">
 <div class="sectionbody">
@@ -168,12 +168,16 @@ configuration properties.</p>
 <div class="sect2">
 <h3 id="_providing_configuration_using_the_tamaya_built_in_configuration_server">Providing configuration using the Tamaya Built-in Configuration Server</h3>
 <div class="paragraph">
-<p>THe most simple way for providing onfiguration ist to start the internal server:</p>
+<p>The most simple way for providing configuration is to start the internal server:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Server server = org.apache.tamaya.server.ConfigServer.createServer();
-server.start(port);</code></pre>
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">// using context path: '/', port 8085
+org.apache.tamaya.server.Server.start();
+
+// optionally pass the root context path and/or port:
+// org.apache.tamaya.server.Server.start(8088);
+// org.apache.tamaya.server.Server.start("/appconf", 7787);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -182,11 +186,11 @@ server.start(port);</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>GET /config provides access to the full configuration tree.</p>
+<p>GET ${CONTEXT}/config provides access to the full configuration tree.</p>
 </li>
 <li>
-<p>GET /config/filtered/${path} let you filter the configuration returned using regular expression (comma separated).
-E.g. /config/filtered/java,sun will return all configuration entries starting with <em>java</em> and <em>sun</em>.</p>
+<p>GET ${CONTEXT}/config/filtered/${path} let you filter the configuration returned using regular expression (comma separated).
+E.g. ${CONTEXT}/config/filtered/java,sun will return all configuration entries starting with <em>java</em> and <em>sun</em>.</p>
 </li>
 </ul>
 </div>
@@ -198,9 +202,8 @@ parameters:</p>
 <ul>
 <li>
 <p>format allows to define the target format. By default the ACCEPT header of the http request is checked, but this
-setting can be explicitly controlled by passing tis parameter explicitly. The value is the expected MIME type to be
-returned. By default the service supports the following types (refer to the SPI section later in this document for
-options to adapt this):</p>
+setting can be explicitly controlled by passing this parameter explicitly. The value is the expected MIME type to be
+returned. By default the service supports the following types:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -213,18 +216,10 @@ options to adapt this):</p>
 <p>application/xml</p>
 </li>
 <li>
-<p>text/json</p>
+<p>application/json</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>scope,scopeId allows to use a server-side preconfigured filter/combination policy to be applied for
-evaluating the entries to be returned. Hereby the scopeId paramter allows to address a certain scope.
-As an example think of a scope ?scope=CLIENT&amp;scopeId=client1 to be passed as request parameters. This
-tells the server module to lookup a configured scope named 'CLIENT' and access a ConfigOperator for the
-given scopeId 'client1'. The returned operator then can filter and combine any kind of entries to the
-required client configuration (for client1). Refer to the scopes section for more details.</p>
 </li>
 </ul>
 </div>
@@ -232,51 +227,23 @@ required client configuration (for client1). Refer to the scopes section for mor
 <div class="sect2">
 <h3 id="_using_the_configuration_servlets">Using the Configuration Servlets</h3>
 <div class="paragraph">
-<p>Additionally to the fully built-in solution, it is also possible to integrate the Tamaya server module with a standard
-Java EE servlet container. Tamaya provides 2 servlet implementations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>the servlet org.apache.tamaya.server.FilteredConfigServlet can be used to register access to configurations
-that also support filtering of the keys. The URL looks like</p>
-</li>
-</ul>
+<p>You can also register a servlet, e.g. as follows;</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>http(s)://HOST/SERVLET_CONTEXT/PATHS?params
-
-where
-  HOST            = host name incl port, e.g. 127.0.0.2:234
-  SERVLET_CONTEXT = the base context and servlet context, e.g. /client/config/filtered
-  PATHS           = A comma separated number of key paths to be filtered for being returned, e.g.
-                    java,sun,client
-  params          = the optional parameters (scope, scopeId and format)</pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>the servlet org.apache.tamaya.server.FullConfigServlet can be used to register access to configurations
-that alwyas returns all items known. The URL looks like</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>http(s)://HOST/SERVLET_CONTEXT?params
-
-where
-  HOST            = host name incl port, e.g. 127.0.0.2:234
-  SERVLET_CONTEXT = the base context and servlet context, e.g. /client/config/filtered
-  params          = the optional parameters (scope, scopeId and format)</pre>
+<pre>&lt;servlet&gt;
+  &lt;servlet-name&gt;config-servlet&lt;/servlet-name&gt;
+  &lt;servlet-class&gt;org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet&lt;/servlet-class&gt;
+  &lt;init-params&gt;
+    &lt;init-param key="javax.ws.rs.Application"&gt;org.apache.tamaya.server.Server$ResourceLoader&lt;/init-param&gt;
+  &lt;/init-params&gt;
+&lt;/servlet&gt;</pre>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_formatting_used_by_default">Formatting used by Default</h4>
 <div class="paragraph">
-<p>The server module formats the configuration returned by default in thw following variants:</p>
+<p>The server module formats the configuration returned by default in the following variants:</p>
 </div>
 <div class="listingblock">
 <div class="title">Formatting for text/json</div>
@@ -303,12 +270,12 @@ where
   "sun.jnu.encoding": "Cp1252",
   "sun.management.compiler": "HotSpot 64-Bit Tiered Compilers",
   "sun.os.patch.level": "",
-  "{meta}class": "org.apache.tamaya.functions.FilteredConfiguration",
-  "{meta}info.filter": "java.v,sun",
-  "{meta}info.format": "application/json",
-  "{meta}info.timestamp": "1441463200571",
-  "{meta}timestamp": "1441463200571",
-  "{meta}type": "Configuration"
+  "_class": "org.apache.tamaya.functions.FilteredConfiguration",
+  "_info.filter": "java.v,sun",
+  "_info.format": "application/json",
+  "_info.timestamp": "1441463200571",
+  "_timestamp": "1441463200571",
+  "_type": "Configuration"
 }</code></pre>
 </div>
 </div>
@@ -337,12 +304,12 @@ where
   &lt;entry key="sun.jnu.encoding"&gt;Cp1252&lt;/entry&gt;
   &lt;entry key="sun.management.compiler"&gt;HotSpot 64-Bit Tiered Compilers&lt;/entry&gt;
   &lt;entry key="sun.os.patch.level"&gt;&lt;/entry&gt;
-  &lt;entry key="{meta}class"&gt;org.apache.tamaya.functions.FilteredConfiguration&lt;/entry&gt;
-  &lt;entry key="{meta}info.filter"&gt;java.v,sun&lt;/entry&gt;
-  &lt;entry key="{meta}info.format"&gt;application/xml&lt;/entry&gt;
-  &lt;entry key="{meta}info.timestamp"&gt;1441463383687&lt;/entry&gt;
-  &lt;entry key="{meta}timestamp"&gt;1441463383687&lt;/entry&gt;
-  &lt;entry key="{meta}type"&gt;Configuration&lt;/entry&gt;
+  &lt;entry key="_class"&gt;org.apache.tamaya.functions.FilteredConfiguration&lt;/entry&gt;
+  &lt;entry key="_info.filter"&gt;java.v,sun&lt;/entry&gt;
+  &lt;entry key="_info.format"&gt;application/xml&lt;/entry&gt;
+  &lt;entry key="_info.timestamp"&gt;1441463383687&lt;/entry&gt;
+  &lt;entry key="_timestamp"&gt;1441463383687&lt;/entry&gt;
+  &lt;entry key="_type"&gt;Configuration&lt;/entry&gt;
 &lt;/configuration&gt;</code></pre>
 </div>
 </div>
@@ -371,12 +338,12 @@ where
   sun.jnu.encoding: Cp1252,
   sun.management.compiler: HotSpot 64-Bit Tiered Compilers,
   sun.os.patch.level: ,
-  {meta}class: org.apache.tamaya.functions.FilteredConfiguration,
-  {meta}info.filter: java.v,sun,
-  {meta}info.format: text/plain,
-  {meta}info.timestamp: 1441463082020,
-  {meta}timestamp: 1441463082021,
-  {meta}type: Configuration</code></pre>
+  _class: org.apache.tamaya.functions.FilteredConfiguration,
+  _info.filter: java.v,sun,
+  _info.format: text/plain,
+  _info.timestamp: 1441463082020,
+  _timestamp: 1441463082021,
+  _type: Configuration</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -409,137 +376,15 @@ Configuration:
   sun.jnu.encoding: Cp1252,
   sun.management.compiler: HotSpot 64-Bit Tiered Compilers,
   sun.os.patch.level: ,
-  {meta}class: org.apache.tamaya.functions.FilteredConfiguration,
-  {meta}info.filter: java.v,sun,
-  {meta}info.format: text/html,
-  {meta}info.timestamp: 1441463459653,
-  {meta}timestamp: 1441463459654,
-  {meta}type: Configuration
-
+  _class: org.apache.tamaya.functions.FilteredConfiguration,
+  _info.filter: java.v,sun,
+  _info.format: text/html,
+  _info.timestamp: 1441463459653,
+  _timestamp: 1441463459654,
+  _type: Configuration
 &lt;/pre&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_spi">SPI</h3>
-<div class="sect3">
-<h4 id="_scopes">Scopes</h4>
-<div class="paragraph">
-<p>As mentioned earlier in this document scopes can be used to define the exact configuration tree to be returned, e.g.
-as a result of combining multiple sub trees. Following an example of the code to be written to return a configuration
-that combines common client default entries with client specific entries:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public class ClientScopeProvider implements ScopeProvider{
-
-    /**
-     * Access the unique scope name.
-     * @return the unique scope name.
-     */
-    public String getScopeType(){
-            return "CLIENT";
-    }
-
-    @Override
-    public ConfigOperator getScope(String scopeId) {
-        return c -&gt;
-                ConfigurationFunctions.combine("Scoped Config CLIENT="+scopeId,
-                        c.with(ConfigurationFunctions.sectionRecursive(true, "client.default")),
-                        c.with(ConfigurationFunctions.sectionRecursive(true, "client." + scopeId))
-                );
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This class can be registered using the ServiceContext in place. By default the ServiceLoader is used, so you will
-have to add the following to META-INF/services/org.apache.tamaya.server.spi.ScopeProvider:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">my.full.packagename.ClientScopeProvider</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_adapting_the_way_configuration_is_derived">Adapting the Way Configuration is Derived</h4>
-<div class="paragraph">
-<p>Finally the effective readong and configuration handling logic can also be replaced or improved. This can be
-done by registering your own implementation of the interface ConfigProviderService:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface ConfigProviderService {
-    String getConfigurationWithPath(String path, String format, String scope, String scopeId, HttpServletRequest request);
-    String getConfiguration(String format, String scope, String scopeId, HttpServletRequest request);
-    void updateConfiguration(String payload, HttpServletRequest request);
-    void deleteConfiguration(String paths, HttpServletRequest request);
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>By default the ServiceContextManager uses the java.util.ServiceLoader for component loading, so to replace the
-default server code you must register a higher @Priority implementation.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_replacing_the_built_in_server">Replacing the Built-In Server</h4>
-<div class="paragraph">
-<p>We have seen earlier that starting a configuration server is pretty easy:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Server server = org.apache.tamaya.server.ConfigServer.createServer();
-server.start(port);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Nevertheless one may want to replace the used implementation of Server. This can be done easily by simply
-registering an overriding implementation if the corresponding interface:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface Server {
-    void start(int port);
-    boolean isStarted();
-    void stop();
-    void destroy();
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_the_scopemanager_singleton">The ScopeManager Singleton</h4>
-<div class="paragraph">
-<p>Finally whe implementing your own server, you might also benefit from the ScopeManager singleton. Basically this
-class loads all registered ScopeProvider and manages the configured scope instances:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public final class ScopeManager {
-    ...
-
-    private ScopeManager(){}
-
-    /**
-     * Get the scope given its name.
-     * @param scopeId the scope name
-     * @return the scope matching
-     * @throws ConfigException, if nos such scope is defined.
-     */
-    public static ConfigOperator getScope(String scopeId, String target);
-
-    /**
-     * Get the defined scope names.
-     * @return the defined scope names, never null.
-     */
-    public static Set&lt;String&gt; getScopes();
-
-}</code></pre>
 </div>
 </div>
 </div>
@@ -557,7 +402,7 @@ class loads all registered ScopeProvider and manages the configured scope instan
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2017</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2017-02-24</span> |
+							at <span>2017-03-07</span> |
 							 <a href="https://twitter.com/tamayaconf" class="twitter-follow-button" data-show-count="false">Follow @TamayaConf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

@@ -124,7 +124,7 @@
 				<h1></h1>
 			</div>
 
-			<p><em>2017-02-24</em></p>
+			<p><em>2017-03-07</em></p>
 
 			<p><div class="sect1">
 <h2 id="CoreDesign">Apache Tamaya: API</h2>
@@ -195,11 +195,16 @@ requirement that the configuration data is always fully available. Summarizing a
 PropertySource</p>
 </li>
 <li>
-<p>provides String based property access for single key/value pairs in <em>raw</em> format (meaning no postprocessing
-is applied yet).</p>
+<p>provides property access for single key/value pairs in <em>raw</em> format (meaning no postprocessing
+is applied yet). A single property hereby is modelled as PropertyValue, which also includes
+its source and additional arbitrary metadata entries.</p>
 </li>
 <li>
-<p>can <em>optionally</em> provide access to a Map&lt;String,String&gt;, providing all its properties at once.</p>
+<p>can <em>optionally</em> provide access to a Map&lt;String,PropertyValue&gt;, providing all its properties at once.</p>
+</li>
+<li>
+<p>defines the default ordinal to be used for establishing the order of significance among all
+auto-discovered property sources.</p>
 </li>
 </ul>
 </div>
@@ -543,6 +548,104 @@ ConfigSecurity is an arbitrary class only for demonstration purposes.
 <h2 id="SPI">SPI</h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="PropertyValue">PropertyValue, PropertyValueBuilder</h3>
+<div class="paragraph">
+<p>On the API properties are represented as Strings only, whereas in the SPI value are represented as ProeprtyValue,
+which contain</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the property&#8217;s <em>key</em> (String)</p>
+</li>
+<li>
+<p>the property&#8217;s <em>value</em> (String)</p>
+</li>
+<li>
+<p>the property&#8217;s <em>source</em> (String, typically equals to the property source&#8217;s name)</p>
+</li>
+<li>
+<p>any additional meta-data represented as <em>Map&lt;String,String&gt;</em></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This helps to kepp all value relevant data together in one place and also allows to choose any kind of
+representation for meta-data entries. The PropertyValue itself is a final and <em>serializable</em> data container,
+which also has a powerful builder API (e.g. for using within filters):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public final class PropertyValue implements Serializable{
+    [...]
+
+    public static PropertyValue of(String key, String value, String source);
+
+    public String getKey();
+    public String getSource();
+    public String getValue();
+    public Map&lt;String, String&gt; getMetaEntries();
+    public String getMetaEntry(String key);
+    public PropertyValueBuilder toBuilder();
+
+    public static PropertyValueBuilder builder(String key, String source);
+    public static PropertyValueBuilder builder(String key, String value, String source);
+
+    /**
+     * Maps a map of {@code Map&lt;String,String&gt;} to a {@code Map&lt;String,PropertyValue&gt;}.
+     * @param config the String based map, not null.
+     * @param source the source name, not null.
+     * @return the corresponding value based map.
+     */
+    public static Map&lt;String,PropertyValue&gt; map(Map&lt;String, String&gt; config, String source);
+
+    /**
+     * Maps a map of {@code Map&lt;String,String&gt;} to a {@code Map&lt;String,PropertyValue&gt;}.
+     * @param config the String based map, not null.
+     * @param source the source name, not null.
+     * @param metaData additional metadata, not null.
+     * @return the corresponding value based map.
+     */
+    public static Map&lt;String,PropertyValue&gt; map(Map&lt;String, String&gt; config, String source,
+                                                Map&lt;String,String&gt; metaData);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When writing your own datasource you can easily create your own PropertyValues:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">PropertyValue val = PropertyValue.of("key","value","source");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to add additional metadata in most cases you would use the builder API:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">PropertyValue val = PropertyValue.builder("key","value","source")
+                     .addMetaEntry("figured", "true")
+                     .build();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>PropertyValues are type safe value objects. To change a value you have to create a
+new instance using a builder:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">PropertyValue val = PropertyValue.builder("key","value","source")
+                     .addMetaEntry("figured", "true")
+                     .build();
+PropertyValue newVal = val.toBuilder().setValue("anotehrValue")
+                     .addMetaEntry("remote", "true")
+                     .removeMetaEntry("figured")
+                     .build();</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="PropertySource">Interface PropertySource</h3>
 <div class="paragraph">
 <p>We have seen that constraining configuration aspects to simple literal key/value pairs provides us with an easy to
@@ -561,11 +664,11 @@ identified to be necessary:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface PropertySource{
-      int getOrdinal(); // This feature is under discussion
+      int getOrdinal();
       String getName();
-      String get(String key);
+      PropertyValue get(String key);
       boolean isScannable();
-      Map&lt;String, String&gt; getProperties();
+      Map&lt;String,PropertyValue&gt; getProperties();
 }</code></pre>
 </div>
 </div>
@@ -578,7 +681,7 @@ identified to be necessary:</p>
 <p>get looks similar to the methods on Map. It may return null in case no such entry is available.</p>
 </li>
 <li>
-<p>getProperties allows to extract all property data to a Map&lt;String,String&gt;. Other methods like containsKey,
+<p>getProperties allows to extract all property data to a Map&lt;String,PropertyValue&gt;. Other methods like containsKey,
 keySet as well as streaming operations then can be applied on the returned Map instance.</p>
 </li>
 <li>
@@ -586,18 +689,19 @@ keySet as well as streaming operations then can be applied on the returned Map i
 when looking up keys is very inefficient, it may not make sense to iterate over all keys to collect the corresponding
 properties. If a PropertySource is defined as non scannable accesses to
 getProperties() may not return all key/value pairs that would be available when accessed directly using the
-String get(String) method. The fact if a PropertySource is <em>scannable</em> can be determined by calling isScannable().</p>
+PropertyValue get(String) method. The fact if a PropertySource is <em>scannable</em> can be determined by calling isScannable().</p>
 </li>
 <li>
-<p>TODO Feature is in question: getOrdinal() defines the ordinal of the PropertySource. Property sources are managed in an ordered chain, where
-property sources with higher ordinals override the ones with lower ordinals. If ordinal are the same, the natural
-ordering of the fulloy qualified class names of the property source implementations are used. The reason for
-not using @Priority annotations is that property sources can define dynamically their ordinals, e.g. based on
-a property contained with the configuration itself.</p>
+<p>int getOrdinal() defines the ordinal of the PropertySource. Property sources are managed in an ordered chain, where
+property sources with higher ordinals override ones with lower ordinals. If the ordinal of two property sources is
+the same, the natural ordering of the fully qualified class names of the property source implementations is used.
+The reason for not using @Priority annotations is that property sources can define dynamically their ordinals,
+e.g. based on a property contained with the configuration itself.
+Implementations of this API may provide additional functionality to adapt the default ordinal of auto-discovered
+property sources.</p>
 </li>
 <li>
-<p>Finally getName() returns a (unique) name that identifies the PropertySource within the current
-ConfigurationContext.</p>
+<p>Finally getName() returns a (unique) name that identifies the PropertySource within its containing ConfigurationContext.</p>
 </li>
 </ul>
 </div>
@@ -670,7 +774,7 @@ class level @Priority annotations (assuming 0 if none is present).</p>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-java" data-lang="java">// Functional Interface
 public interface PropertyFilter{
-    String filterProperty(String value, FilterContext context);
+    PropertyValue filterProperty(PropertyValue value, FilterContext context);
 }</code></pre>
 </div>
 </div>
@@ -688,7 +792,7 @@ filter evaluation has to be continued as long as filters are still changing some
 To prevent possible endless loops after a defined number of loops evaluation is stopped.</p>
 </li>
 <li>
-<p>FilterContext provides additional metdata, including the key accessed, which is useful in many use cases.</p>
+<p>FilterContext provides additional metdata, including the property accessed, which is useful in many use cases.</p>
 </li>
 </ul>
 </div>
@@ -711,23 +815,21 @@ public interface PropertyValueCombinationPolicy{
    PropertyValueCombinationPolicy DEFAULT_OVERRIDING_COLLECTOR =
      new PropertyValueCombinationPolicy(){
        @Override
-       public Map&lt;String,String&gt; collect(Map&lt;String,String&gt; currentValue, String key,
+       public PropertyValue collect(PropertyValue currentValue, String key,
                                          PropertySource propertySource) {
            PropertyValue value = propertySource.get(key);
-           return value!=null?value.getConfigEntries():currentValue;
+           return value!=null?value:currentValue;
        }
    };
 
-   Map&lt;String,String&gt; collect(Map&lt;String,String&gt; currentValue currentValue, String key,
+   PropertyValue collect(PropertyValue currentValue, String key,
                   PropertySource propertySource);
 
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Looking at the collect method&#8217;s signature it may be surprising to find a Map for the return type.
-This is because returning a Map allows also to filter/combine/use meta entries (by default entries starting
-with an '_').</p>
+<p>Looking at the collect method&#8217;s signature, returning a PropertyValue allows also to filter/combine/use meta entries.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1125,7 +1227,7 @@ further details.</p>
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2017</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2017-02-24</span> |
+							at <span>2017-03-07</span> |
 							 <a href="https://twitter.com/tamayaconf" class="twitter-follow-button" data-show-count="false">Follow @TamayaConf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

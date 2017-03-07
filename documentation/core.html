@@ -124,7 +124,7 @@
 				<h1></h1>
 			</div>
 
-			<p><em>2017-02-24</em></p>
+			<p><em>2017-03-07</em></p>
 
 			<p><div class="sect1">
 <h2 id="Core">Tamaya Core Implementation</h2>
@@ -141,14 +141,14 @@ and building blocks for supporting SPI implementations.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Implementations of Configuration, ConfigurationContext, ConfigurationContextBuilder ConfigurationProviderSpi+</p>
+<p>Implementations of Configuration, ConfigurationContext, ConfigurationContextBuilder, ConfigurationProviderSpi</p>
 </li>
 <li>
 <p>A java.util.ServiceLoader based ServiceContext implementation. Hereby it implements component priorization based
 on the @Priority annotations.</p>
 </li>
 <li>
-<p>A PropertyConverterManager+ that loads and stores references to all the preconfigured PropertyConverter instances
+<p>A PropertyConverterManager that loads and stores references to all the preconfigured PropertyConverter instances
 hereby providing type conversion for all important types.</p>
 </li>
 <li>
@@ -159,7 +159,7 @@ hereby providing type conversion for all important types.</p>
 registers them in the global ConfigurationContext</p>
 </li>
 <li>
-<p>It provides a ConfigurationContextBuilder implementation (class DefaultConfigurationContextBuilder) and allows
+<p>It provides a ConfigurationContextBuilder implementation (DefaultConfigurationContextBuilder) and allows
 changing the current ConfigurationContext.</p>
 </li>
 </ul>
@@ -172,31 +172,29 @@ enough to be extended/accommodated with additional features as needed, such as</
 <div class="ulist">
 <ul>
 <li>
-<p>placeholder and resolution mechanisms</p>
+<p>placeholder and resolution mechanisms (org.apache.tamaya.ext:tamaya-resolver)</p>
 </li>
 <li>
-<p>dynamic resource path lookup, e.g. with ant styled patterns</p>
+<p>dynamic resource path lookup, e.g. with ant styled patterns (org.apache.tamaya.ext:tamaya-resources)</p>
 </li>
 <li>
-<p>configuration injection and configuration templates</p>
+<p>configuration injection and configuration templates (org.apache.tamaya.ext:tamaya-injcetion-api)</p>
 </li>
 <li>
-<p>abstraction for reusable formats</p>
+<p>abstraction for reusable formats (org.apache.tamaya.ext:tamaya-formats)</p>
 </li>
 <li>
-<p>integration with other existing solutions</p>
+<p>integration with other existing solutions (e.g. org.apache.tamaya.ext:tamaya-spring)</p>
 </li>
 <li>
-<p>configuration and configuration isolation targeting Java EE</p>
+<p>configuration and configuration isolation targeting Java EE (org.apache.tamaya.ext:tamaya-injection-ee)</p>
 </li>
 <li>
-<p>dynamic configuration and configuration updates</p>
+<p>dynamic configuration and configuration updates (org.apache.tamaya.ext:tamaya-events)</p>
 </li>
 <li>
-<p>Configuration management extensions</p>
-</li>
-<li>
-<p>remote configuration</p>
+<p>remote configuration (org.apache.tamaya.ext:tamaya-etcd, org.apache.tamaya.ext:tamaya-consul,
+org.apache.tamaya.ext:tamaya-hazelcast)</p>
 </li>
 <li>
 <p>and more</p>
@@ -208,9 +206,9 @@ enough to be extended/accommodated with additional features as needed, such as</
 </div>
 </div>
 <div class="sect2">
-<h3 id="CorePropertyConverters">Default PropertyConverters in Core</h3>
+<h3 id="CorePropertyConverters">Default PropertyConverters</h3>
 <div class="paragraph">
-<p>As mentioned the Core module delivers several default PropertyConverter instances out of the box. Find below the
+<p>The <em>Core</em> module provides several PropertyConverter implementations by default. Find below the
 listing of converters automatically registered with the Core module:</p>
 </div>
 <table class="tableblock frame-1 grid-all spread">
@@ -333,49 +331,40 @@ listing of converters automatically registered with the Core module:</p>
 <div class="sect2">
 <h3 id="_registering_propertyconverters">Registering PropertyConverters</h3>
 <div class="paragraph">
-<p>Additional PropertyConverters can be implemented easily. It is recommended to register then using the java.util.ServiceLoader,
-meaning you add a file under META-INF/service/org.apache.tamaya.spi.PropertyConverter containing the fully qualified
-class names of the converters to be registered (one line per each).</p>
+<p>Additional PropertyConverters can be implemented easily. It is recommended to register them using
+the java.util.ServiceLoader, meaning you add a file under META-INF/service/org.apache.tamaya.spi.PropertyConverter containing the fully qualified
+class names of the converters to be registered (one line each).</p>
 </div>
 <div class="paragraph">
-<p>Alternatively you can also use a ConfigurationContextBuilder to add additional converters programmatically.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-API Implementations can be read-only thus not allowing adding additional converters programmatically.
-</td>
-</tr>
-</table>
+<p>Alternatively you can also use a ConfigurationContextBuilder to add additional converters
+programmatically.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="ComponentLoadingAndPriorization">Component Loading and Priorization</h3>
 <div class="paragraph">
-<p>Tamaya Core in general loads all components using the java.util.ServiceLoader mechanism. This means that new components
-must be registered by adding a file under META-INF/service/&lt;myInterfaceName&gt; containing the fully qualified
-implementation class names of the components to be registered (one line per each).
-The ServiceLoader itself does not provide any functionality for overriding or ordering of components. Tamaya
-core adds this functionality by the possibility to add @Priority annotations to the components registered.
-By default, and if no annotation is added 0 is used as priority. Hereby higher values preceed lower values, meaning</p>
+<p>Tamaya <em>Core</em> in general loads all components by default using the java.util.ServiceLoader mechanism. This means that new components
+must be registered by adding a file under META-INF/service/&lt;myInterfaceName&gt; containing the fully
+qualified implementation class names of the components to be registered (one line per each).
+The ServiceLoader itself does not provide any functionality for overriding or ordering of
+components. Tamaya <em>Core</em> adds such a functionality with the possibility to add @Priority
+annotations to the components registered. By default, and if no annotation is added 0 is assumed
+as priority. Hereby higher values preceed lower values, meaning</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>if a singleton component is accessed from the current ServiceContext the component with the higher value
-effectively <em>overrides/replaces</em> any component with lower values.</p>
+<p>if a <em>singleton</em> component is accessed from the current ServiceContext the component with the
+higher value effectively <em>overrides/replaces</em> any component with lower values.</p>
 </li>
 <li>
-<p>if a collection of components is obtained from the ServiceContext the components are ordered in order, where the
-ones with higher priority are before components with lower priority.</p>
+<p>if a <em>collection</em> of components is obtained from the ServiceContext the components are <em>ordered</em>
+based on their priorities, where the ones with higher priority are before components with lower
+priority.</p>
 </li>
 <li>
-<p>if priorities match Tamaya Core additionally sorts them using the simple class name. This ensures that ordering is
-still defined and predictable in almost all scenarios.</p>
+<p>if priorities <em>match</em> Tamaya <em>Core</em> additionally sorts them using the <em>simple class name</em>.
+This ensures that ordering is still defined and predictable in all scenarios.</p>
 </li>
 </ul>
 </div>
@@ -386,8 +375,9 @@ still defined and predictable in almost all scenarios.</p>
 <div class="title">Note</div>
 </td>
 <td class="content">
-Sorting the property sources based on their ordinal value is only the default ordering principle applied. By implementing
-      your own implementation of ConfigurationProviderSpi you can apply a different logic:
+Sorting the property sources based on their ordinal value is only the default ordering
+      principle applied. By implementing your own implementation of ConfigurationProviderSpi
+      you can apply a different logic:
 </td>
 </tr>
 </table>
@@ -396,22 +386,43 @@ Sorting the property sources based on their ordinal value is only the default or
 <div class="sect2">
 <h3 id="RegisteringPropertySources">Registering Property Sources</h3>
 <div class="paragraph">
-<p>PropertySources that provide configuration properties are registered as ordinary components as described in the previous
-section. Nevertheless the priority is not managed based on @Priority annotations, but based on an explicit
-int getOrdinal() method. This allows to define the ordinal/priority of a PropertySource explicitly. This is useful
-due to several reasons:</p>
+<p>PropertySource implementations that provide configuration properties are registered as components as described in the previous
+section. Hereby the precedence (ordering) of property sources is not hard-coded. Instead a Comparator&lt;PropertySource&gt;
+can be passed to a ConfigurationContextBuilder to perform automatic ordering of the property sources
+registered. The default implementation hereby implements the following logic:</p>
 </div>
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>it allows to define the ordinal as part of the configuration, thus allowing new overriding property sources being
-added easily.</p>
+<p>It checks for an property entry tamaya.ordinal if present the value is parsed into an int value and used as
+the ordinal val value.</p>
 </li>
 <li>
-<p>it allows to define the ordinal dynamically, e.g. based on the configuration location, the time of loading or
-whatever may be appropriate.</p>
+<p>It checks for an explicit method int getOrdinal(), if found its value is taken as an ordinal.</p>
 </li>
-</ul>
+<li>
+<p>It checks for a @Priority annotation, if present the priority value is used as an ordinal.</p>
+</li>
+<li>
+<p>If none of the above works, 0 is assumed as ordinal value.</p>
+</li>
+<li>
+<p>If multiple PropertySource instances share the same ordinal value, they are ordered based on their fully qualified
+class names.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Custom implementations of the property source comparator can be applied by calling
+ConfigurationContextBuilder.sortPropertySources(Comparator&lt;PropertySource&gt;). The default comparator can be replaced
+by passing the fully qualified comparator class name as system property:</p>
+</div>
+<div class="paragraph">
+<p>-Dproperty-source-comparator=a.b.c.MyComparatorClass</p>
+</div>
+<div class="paragraph">
+<p>The ladder allows to adapt the ordering of auto-discovered property sources, even if the value returned by
+int getOrdinal() cannot be changed.</p>
 </div>
 </div>
 </div>
@@ -458,12 +469,17 @@ org.apache.tamaya.core.provider:</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">META-INF/javaconfiguration.properties</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">JavaConfigurationProvider</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">META-INF/javaconfiguration.xml</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">JavaConfigurationProvider</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JNDI Entries</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JNDIPropertySource</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Environment Properties</p></td>
@@ -473,10 +489,22 @@ org.apache.tamaya.core.provider:</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">System Properties</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SystemPropertySource</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">400</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1000</p></td>
 </tr>
 </tbody>
 </table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+JNDIPropertySource is provided by the <code>tamaya-jndi</code> extension module.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_abstract_class_propertiesfilepropertysource">Abstract Class PropertiesFilePropertySource</h3>
@@ -528,9 +556,10 @@ one method to implemented:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>By default the ordinal of the property sources will be 1000, unless the key tamaya.ordinal asdefined in
-PropertySource.TAMAYA_ORDINAL is present in the current PropertySource. Of course it is also possible to override
-the inherited protected void initializeOrdinal(final int defaultOrdinal), or directly int getOrdinal().</p>
+<p>By default the ordinal of the property sources will be 1000, unless the key tamaya.ordinal
+as defined in PropertySource.TAMAYA_ORDINAL is present in the current PropertySource. Of course
+it is also possible to override the inherited protected void initializeOrdinal(final int defaultOrdinal),
+or directly int getOrdinal().</p>
 </div>
 </div>
 </div>
@@ -542,13 +571,70 @@ present that loads all .properties files found at META-INF/javaconfiguration.pro
 and META-INF/javaconfiguration.xml.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_replacing_the_property_value_evaluation_policy">Replacing the property value evaluation policy</h3>
+<div class="paragraph">
+<p>Tamaya&#8217;s core implementation allows to replace the complete logic how a configuration value or the current configuration
+properties are calculated from a given ConfigurationContext by implementing the ConfigValueEvaluator
+interface:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">/**
+ * Component SPI which encapsulates the evaluation of a single or full &lt;b&gt;raw&lt;/b&gt;value
+ * for a {@link ConfigurationContext}.
+ */
+public interface ConfigValueEvaluator {
+
+    /**
+     * Evaluates single value using a {@link ConfigurationContext}.
+     * @param key the config key, not null.
+     * @param context the context, not null.
+     * @return the value, or null.
+     */
+    PropertyValue evaluteRawValue(String key, ConfigurationContext context);
+
+    /**
+     * Evaluates all property values from a {@link ConfigurationContext}.
+     * @param context the context, not null.
+     * @return the value, or null.
+     */
+    Iterable&lt;PropertyValue&gt; evaluateRawValues(ConfigurationContext context);
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The default implementation DefaultConfigValueEvaluator implements the following logic:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Collect all PropertySources from the context.</p>
+</li>
+<li>
+<p>Access PropertyValue get(String) (single key access)/ Map&lt;String,PropertyValue&gt; getProperties()
+(config map access) from each property source and combine the previous with the next value using
+the PropertyValueCombinationPolicy in place.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The resulting <em>raw</em> value(s) are then finally handed over to the registered filters and finally
+converted to String/Map&lt;String,String&gt; as required by the user API.</p>
+</div>
+<div class="paragraph">
+<p>To replace this default behaviour you must register your implementation with the current
+ServiceContext.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="Extensions">Adding Extensions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Core module only implements the <a href="api.html">API</a>. Many users require/wish additional functionality from a
+<p>Tamaya <em>Core</em> only implements the <a href="api.html">API</a>. Many users require/wish additional functionality from a
 configuration system. Fortunately there are numerous extensions available that add further functionality.
 Loading extensions hereby is trivial: you only are required to add the corresponding dependency to the classpath.</p>
 </div>
@@ -568,7 +654,7 @@ Loading extensions hereby is trivial: you only are required to add the correspon
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2017</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2017-02-24</span> |
+							at <span>2017-03-07</span> |
 							 <a href="https://twitter.com/tamayaconf" class="twitter-follow-button" data-show-count="false">Follow @TamayaConf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

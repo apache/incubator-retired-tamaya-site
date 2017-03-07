@@ -124,7 +124,7 @@
 				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: Mutable Configuration</h1>
 			</div>
 
-			<p><em>2017-02-24</em></p>
+			<p><em>2017-03-07</em></p>
 
 			<p><div id="preamble">
 <div class="sectionbody">
@@ -141,7 +141,7 @@
 <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
 <div class="paragraph">
 <p>Tamaya Configuration by default is read-only, which covers must of the use cases. But there are many legit scenarios
-where configuration should be written back to some backend systems or the local file system. This module adds this
+where configuration should be written back to backend systems or the local file system. This module adds this
 functionality.</p>
 </div>
 </div>
@@ -173,14 +173,15 @@ functionality.</p>
 <div class="paragraph">
 <p>The core of the module is the MutableConfigurationProvider singleton, which provides access to MutableConfiguration
 instance, which extends Configuration. This interface adds additional methods to add/update or remove property values.
-Hereby changes applied are managed in a transaction like context, called ConfigChangeContext. Each context defines
+Hereby each MutableConfiguration manages a transaction like context, which includes
 a UUID that identifes a change.
-Backends for writing changes applied are of type MutablePropertySource, similarly extending the PropertySource
-SPI with methods for writing changes back. Registrations and ordering policies are like with ordinary property sources,
-with one important difference. Mutable property source can be targeted by write operations.</p>
+Backends for writing changes applied umst implement MutablePropertySource, which extends PropertySource.
+Registrations and ordering policies are exact the same as with ordinary property sources, but
+mutable property sources can be targeted by config write operations.</p>
 </div>
 <div class="paragraph">
-<p>The example below shows how a MutableConfiguration can be obtained the simplest way:</p>
+<p>The example below shows how a MutableConfiguration can be obtained ,values added, removed and
+finally changes written back to the backend:</p>
 </div>
 <div class="listingblock">
 <div class="title">Accessing and changing configuration</div>
@@ -194,7 +195,7 @@ config.put("newKey", "newValue")
 </div>
 </div>
 <div class="paragraph">
-<p>In the above scenario we use the overall system&#8217;s configuration as the backend to be used.
+<p>In the above scenario we use the system&#8217;s <em>default</em> configuration as the backend to be used.
 We can also pass any Configuration to render it into a mutable instance, e.g.</p>
 </div>
 <div class="listingblock">
@@ -213,14 +214,15 @@ MutableConfiguration config = MutableConfigurationProvider
 </td>
 <td class="content">
 If a configuration does not contain any MutablePropertySource instances,
-      a MutableConfiguration built from it will not be able to accept any changes.
+      a ConfigurationException is thrown since it would not be able to accept
+      any changes.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Following you see the options how to create a MutableConfiguration using the
-MutableConfigurationProvider singleton:</p>
+<p>Following we show the possible methods you can use to create a MutableConfiguration.
+We will show in the following sections more details on the options provided&#8230;&#8203;</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -241,7 +243,7 @@ MutableConfigurationProvider singleton:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Hereby MutableConfiguration is defined as follows:</p>
+<p>As we have not yet shown it, MutableConfiguration is defined as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -260,21 +262,20 @@ MutableConfigurationProvider singleton:</p>
 }</code></pre>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_targeting_the_right_mutablepropertysources">Targeting the right MutablePropertySources</h4>
+<div class="sect4">
+<h5 id="_targeting_specific_mutablepropertysources">Targeting specific MutablePropertySources</h5>
 <div class="paragraph">
-<p>A Configuration may have multiple MutablePropertySource instances present. These are members of Tamaya&#8217;s oredered list of
+<p>A Configuration may have multiple MutablePropertySource instances present. These are members of Tamaya&#8217;s ordered list of
 PropertySources to evaluate the configuration. Nevertheless writing back changes requires additional aspects to
 be considered:
-* Should changes being written back to all mutable property sources? Or should a key that could be added or removed
-  on a more significant instance not be written/removed on less significant property source instances?
-* Should a change be applied only to a specific mutable property source, regardless its position in the
+* Should changes written target all mutable property sources? Or should a change only
+  target the most significant instance (hereby not writing the change to less significant property sources)?
+* Or should a change be applied only to specific mutable property source(s), regardless its position in the
   processing chain?</p>
 </div>
 <div class="paragraph">
-<p>Therefore a ChangePropagationPolicy can be set on a MutableConfiguration instance, which allows to control
-this aspect:</p>
+<p>Therefore a <em>default</em> ChangePropagationPolicy can be applied on a MutableConfiguration instance, which allows to
+control this aspect:</p>
 </div>
 <div class="listingblock">
 <div class="title">Explicitly passing the backing configuration</div>
@@ -282,7 +283,7 @@ this aspect:</p>
 <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface ChangePropagationPolicy {
     /**
      * Method being called when a multiple key/value pairs are added or updated.
-     * @param propertySources the property sources, including readable property sources of the current configuration,
+     * @param propertySources all property sources, including read-only property sources, of the current configuration,
      *                        never null.
      * @param configChange the configuration change, not null.
      */
@@ -291,10 +292,12 @@ this aspect:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>By default, changes are applied to all registered MutablePropertySources similarly.</p>
+<p>By default, changes are applied to all registered MutablePropertySource instances
+similarly.</p>
 </div>
 <div class="paragraph">
-<p>Also the MutableConfigurationProvider provides access to the most commonly used change propagation policies:</p>
+<p>The MutableConfigurationProvider singleton also provides the most common
+change propagation policy implementations:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -307,6 +310,7 @@ this aspect:</p>
     public static ChangePropagationPolicy getApplySelectiveChangePolicy(String... propertySourceNames);
     public static ChangePropagationPolicy getApplyNonePolicy();
 }</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -341,17 +345,7 @@ accordingly. Finally values also can be marked as immutable or being cached.</p>
 </div>
 <div class="paragraph">
 <p>So it is part of your application configuration design to clearly define, which property sources may be read-only, which
-may be mutable, how overriding should work and to which backends finally any changes should be written back. Nevertheless
-changing or adding value is very easy:</p>
-</div>
-<div class="listingblock">
-<div class="title">Changing a configuration</div>
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">MutableConfiguration config = MutableConfigurationProvider.createMutableConfiguration();
-config.put("newKey", "newValue");
-config.remove("mycluster.myapp.myKey");
-config.store();</code></pre>
-</div>
+may be mutable, how overriding should work and to which backends finally any changes should be written back.</p>
 </div>
 </div>
 </div>
@@ -377,8 +371,8 @@ PropertySourceProvider instances about the changes applied.</p>
 <div class="sect2">
 <h3 id="_supported_backends">Supported Backends</h3>
 <div class="paragraph">
-<p>Multiple backends are supported. E.g. the <em>etcd</em> integration module of Tamaya also registers
-corresponding SPI implementations/backends. By default this module comes with
+<p>Multiple backends are supported. E.g. <em>tamaya-etcd</em> also registers
+corresponding SPI implementations/backends. This module comes with
 the following MutablePropertySource implementations:</p>
 </div>
 <div class="ulist">
@@ -392,51 +386,6 @@ format.</p>
 XML format.</p>
 </li>
 </ul>
-</div>
-<div class="sect3">
-<h4 id="_refreshable_property_sources">Refreshable Property Sources</h4>
-<div class="paragraph">
-<p>Somehow similar to configuration changes applied explicitly is the case, where values of underlying
-configuration backends change and must be reflected in the new configuration tree. Examples are:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Configuration files being edited, added or removed.</p>
-</li>
-<li>
-<p>Changes on remote servers like etcd, consul</p>
-</li>
-<li>
-<p>etc.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>For having a common API for refreshable items a Refreshable interface is defined:</p>
-</div>
-<div class="listingblock">
-<div class="title">Refreshable interface</div>
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">/**
- * Interface to be implemented by items that can be refreshed. By default
- * these are property sources, but more types may be supported at a later
- * point in time.
- */
-public interface Refreshable {
-
-    /**
-     * Refreshes the item by reloading its internal state.
-     */
-    void refresh();
-
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_refreshable_property_sources_2">Refreshable Property Sources</h4>
-
 </div>
 </div>
 <div class="sect2">
@@ -480,7 +429,7 @@ singleton accessor:</p>
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2017</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2017-02-24</span> |
+							at <span>2017-03-07</span> |
 							 <a href="https://twitter.com/tamayaconf" class="twitter-follow-button" data-show-count="false">Follow @TamayaConf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>
