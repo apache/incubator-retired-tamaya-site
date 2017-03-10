@@ -64,4 +64,5 @@ NOTE: All extensions currently run on Java 7 as well as on Java 8.
 |+org.apache.tamaya.ext:tamaya-ui+          |Provides a web UI for a VM running Tamaya.            |link:extensions/mod_ui.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-usagetracker+ |Allows tracking of configuration usage.              |link:extensions/mod_usagetracker.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-validation+  |Provides an XML API for validating configuration.     |link:extensions/mod_validation.html[Documentation]
+|+org.apache.tamaya.ext:tamaya-vertx-alpha+ |Provides Vertx integration.                           |link:extensions/mod_vertx.html[Documentation]
 |=======
