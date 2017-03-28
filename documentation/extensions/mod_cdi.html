@@ -124,7 +124,7 @@
 				<h1>Apache Tamaya&amp;#8201;&amp;#8212;&amp;#8201;Extension: CDI Support</h1>
 			</div>
 
-			<p><em>2017-02-24</em></p>
+			<p><em>2017-03-28</em></p>
 
 			<p><div id="preamble">
 <div class="sectionbody">
@@ -140,8 +140,7 @@
 <div class="sect2">
 <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
 <div class="paragraph">
-<p>Apache Tamaya currently provides two implementations for integration with CDI extensions implementing similar
-functionality as described in this document:</p>
+<p>Apache <em>CDI</em> provides integration with CDI:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -151,7 +150,8 @@ PropertyFilters, etc. This also includes SPI defined by any Tamaya submodules.
 This is useful when Tamaya is used as an application module managed by the CDI implementation.</p>
 </li>
 <li>
-<p>Implement and enable Tamaya&#8217;s configuration injection services with CDI.</p>
+<p>Implement and enable Tamaya&#8217;s configuration injection services (either using CDI injection or
+Tamaya&#8217;s standalone injection module.</p>
 </li>
 </ul>
 </div>
@@ -161,17 +161,17 @@ This is useful when Tamaya is used as an application module managed by the CDI i
 <div class="ulist">
 <ul>
 <li>
-<p>tamaya-cdi-ee implements injection by using CDI&#8217;s injection mechanism to inject configuration values into the
+<p>tamaya-injection-cdi implements injection by using CDI&#8217;s injection mechanism to inject configuration values into the
 beans managed by the CDI systems.</p>
 </li>
 <li>
-<p>tamaya-cdi-se implements injection by integrating the tamaya-injection SE based injection module (also used
+<p>tamaya-injection-standalone implements injection by integrating the tamaya-injection SE based injection module (also used
 for Spring and OSGI injection) with CDI. Injection hereby is performed by the Tamaya SE module, whereas
 beans and injection control overall are still managed by CDI.</p>
 </li>
 <li>
-<p>One difference, of course, is that tamaya-se also provides an SE compatible API (ConfigurationInjection,
-ConfigurationInjector), which is not available, when using the purely Java EE based variant.</p>
+<p>One difference, of course, is that tamaya-injection-standalone also provides an SE compatible API (ConfigurationInjection,
+ConfigurationInjector), which is not available, when using the purely CDI based variant.</p>
 </li>
 </ul>
 </div>
@@ -207,17 +207,21 @@ you never have installed both CDI extensions at the same time because this may b
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
-  &lt;artifactId&gt;tamaya-cdi-ee&lt;/artifactId&gt;
+  &lt;artifactId&gt;tamaya-cdi&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<div class="title">To use Tamaya&#8217;s <em>standalone injection support</em>, you additionally should add the</div>
+<p>following dependency. If this dependency is missing injection is purely based on
+CDI injection features.</p>
+</div>
 <div class="listingblock">
-<div class="title">CDI injection based on Tamaya SE Application Configuration</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
-  &lt;artifactId&gt;tamaya-cdi-se&lt;/artifactId&gt;
+  &lt;artifactId&gt;tamaya-injection-standalone&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
@@ -226,21 +230,8 @@ you never have installed both CDI extensions at the same time because this may b
 <p>Both components will auto-register its components and override the default ServicceContext in use. Additionally they
 register CDI extensions that implement Configuration injection as described before.</p>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Important</div>
-</td>
-<td class="content">
-Never install Tamaya&#8217;s tamaya-cdi-se and tamaya-cdi-ee on the same system, since unpredictable side
-           effects could occur.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
-<p>For working with a pure non Java EE environment have a look at the <a href="mod_injection.html">tamaya-injection module</a>.</p>
+<p>For working with a pure non Java EE environment have a look at the <a href="mod_injection-standalone.html">tamaya-injection-standalone module</a>.</p>
 </div>
 <div class="paragraph">
 <p>Additionally you have to register Tamaya&#8217;s CDI extension modules into your <code>beans-xml</code>:</p>
@@ -251,8 +242,21 @@ Never install Tamaya&#8217;s tamaya-cdi-se and tamaya-cdi-ee on the same system,
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># Register Tamaya to perform injection
-org.apache.tamaya.integration.cdi.ConfigurationExtension</code></pre>
+# org.apache.tamaya.cdi.TamayaCDIInjectionExtension
+# org.apache.tamaya.cdi.TamayaSEInjectionExtension
+org.apache.tamaya.cdi.TamayaCDIAccessor</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>If you want to use CDI standard injection (using @Inject @Config), activate
+org.apache.tamaya.cdi.TamayaCDIInjectionExtension as a CDI extension.</p>
+</div>
+<div class="paragraph">
+<p>If you want to use SE based injection (using @Config <strong>without</strong> @Inject),
+activate org.apache.tamaya.cdi.TamayaSEInjectionExtension instead of.</p>
+</div>
+<div class="paragraph">
+<p>Though not recommended, it is possible to activate both extension at the same time.</p>
 </div>
 </div>
 <div class="sect2">
@@ -270,8 +274,8 @@ public class ConfiguredClass{
     @Config
     private String testProperty;
 
-    @Config({"a.b.c.key1","a.b.c.key2","a.b.c.key3"})
-    @ConfigDefault("The current \\${JAVA_HOME} env property is ${env:JAVA_HOME}.")
+    @Config({"a.b.c.key1","a.b.c.key2","a.b.c.key3"},
+           defaultValue="The current \\${JAVA_HOME} env property is ${env:JAVA_HOME}.")
     String value1;
 
     @Config({"foo","a.b.c.key2"})
@@ -281,12 +285,10 @@ public class ConfiguredClass{
     @ConfigDefault("N/A")
     private String runtimeVersion;
 
-    @Config
-    @ConfigDefault("${sys:java.version}")
+    @Config(defdaultValue="${sys:java.version}")
     private String javaVersion2;
 
-    @Config
-    @ConfigDefault("5")
+    @Config(defaultValue="5")
     private Integer int1;
 
     ...
@@ -353,7 +355,7 @@ CDI aware implementation:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># Registering a CDI aware service context
-org.apache.tamaya.integration.cdi.CDIAwareServiceContext</code></pre>
+CDIAwareServiceContext</code></pre>
 </div>
 </div>
 </div>
@@ -442,7 +444,7 @@ default section parts.</p>
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2017</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2017-03-07</span> |
+							at <span>2017-03-28</span> |
 							 <a href="https://twitter.com/tamayaconf" class="twitter-follow-button" data-show-count="false">Follow @TamayaConf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

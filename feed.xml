@@ -6,10 +6,31 @@
     <atom:link href="https://tamaya.incubator.apache.org/feed.xml" rel="self" type="application/rss+xml" />
     <description>Apache Tamaya RSS feed template</description>
     <language>en-gb</language>
-    <pubDate>Di, 7 Mär 2017 21:53:28 +0100</pubDate>
-    <lastBuildDate>Di, 7 Mär 2017 21:53:28 +0100</lastBuildDate>
+    <pubDate>Di, 28 Mär 2017 22:34:39 +0200</pubDate>
+    <lastBuildDate>Di, 28 Mär 2017 22:34:39 +0200</lastBuildDate>
 
     <item>
+      <title>Javaland - Configuration beyond Java EE8</title>
+      <link>https://tamaya.incubator.apache.org/blog/2017/03/javaland.html</link>
+      <pubDate>Di, 28 Mär 2017 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">blog/2017/03/javaland.html</guid>
+      <description>&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;Anatole held a talk about Tamaya at Javaland 2017:&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;ulist&amp;quot;&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;https://www.javaland.eu/&amp;quot;&amp;gt;Javaland&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;https://www.slideshare.net/AnatoleTresch/configuration-beyond-java-ee-8&amp;quot;&amp;gt;Anatole&amp;amp;#8217;s slides&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;The talk was attended by roughly 30 people and lively discussions about Tamaya and Microprofile.io followed. Currently Tamaya seems in good shape to tackle the future of configuration in Java.&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;</description>
+    </item><item>
       <title>Blog post (German) - Dirk Weil: Anwendungskonfiguration mit Apache Tamaya</title>
       <link>https://tamaya.incubator.apache.org/blog/2016/dirk-weil-javaeeblog.html</link>
       <pubDate>Do, 1 Dez 2016 00:00:00 +0100</pubDate>
