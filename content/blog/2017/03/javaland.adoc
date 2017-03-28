@@ -1,0 +1,14 @@
+title=Javaland - Configuration beyond Java EE8
+date=2017-03-28
+type=post
+tags=blog, asciidoc
+status=published
+~~~~~~
+= Configuration beyond Java EE8
+
+Anatole held a talk about Tamaya at Javaland 2017:
+
+* https://www.javaland.eu/[Javaland]
+* https://www.slideshare.net/AnatoleTresch/configuration-beyond-java-ee-8[Anatole's slides]
+
+The talk was attended by roughly 30 people and lively discussions about Tamaya and Microprofile.io followed. Currently Tamaya seems in good shape to tackle the future of configuration in Java.
