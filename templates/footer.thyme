@@ -24,8 +24,11 @@
                     successful ASF projects. While incubation status is not
                     necessarily a reflection of the completeness or stability of
                     the code, it does indicate that the project has yet to
-                    be fully endorsed by the ASF.<br />
-                    <a href="http://incubator.apache.org/guides/website.html" style="border:0px;" target="_target"><img th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" class="incubator-logo" th:src="${rootpath} + 'logos/egg-logo2.png'"/></a>
+                    be fully endorsed by the ASF.
+										Apache, Apache Tamaya, and the Apache Tamaya logo are registered trademarks or trademarks of The Apache Software Foundation in the U.S. and/or other countries.<br />
+                    <a href="https://incubator.apache.org/guides/website.html" style="border:0px;" target="_target">
+											<img th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" class="incubator-logo" th:src="${rootpath} + 'logos/apache-incubator.png'"/>
+										</a>
 							</p>
 		      </div>
 		    </div>
