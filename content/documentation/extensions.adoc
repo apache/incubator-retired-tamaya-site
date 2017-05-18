@@ -20,7 +20,7 @@ Mature extensions have a stable API and SPI, similar to the API and Implementati
 |+org.apache.tamaya.ext:tamaya-formats+       |Provides an abstract model for configuration formats   |link:extensions/mod_formats.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-functions+     |Provides several functional extension points.          |link:extensions/mod_functions.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-injection-api+ |Provides Tamaya's injection annotations API.           |link:extensions/mod_injection.html[Documentation]
-|+org.apache.tamaya.ext:tamaya-injection+     |Provides configuration injection services and congiruation template support.  |link:extensions/mod_injection.html[Documentation]
+|+org.apache.tamaya.ext:tamaya-injection+     |Provides configuration injection services and configuration template support.  |link:extensions/mod_injection.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-injection-cdi+ | Java EE/standalone compliant CDI integration using CDI for injection. | link:extensions/mod_cdi.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-jndi+          |Provides a JNDI based PropertySource.                  |link:extensions/mod_jndi.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-json+          |Provides format support for JSON based configuration.  |link:extensions/mod_json.html[Documentation]
