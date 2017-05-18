@@ -1,7 +1,7 @@
 :jbake-type: page
 :jbake-status: published
 
-= Apache Tamaya -- Extensions: OSGI Integrations
+= Apache Tamaya - Extensions: OSGI Integrations
 
 toc::[]
 
@@ -119,5 +119,3 @@ public interface OSGIConfigRootMapper {
 
 Apache Tamaya provides a Karaf feature with all required dependencies
 as +org.apache.tamaya.ext:tamaya-karaf-features:{tamaya-version}:features:xml+.
-
-

@@ -1,7 +1,7 @@
 :jbake-type: page
 :jbake-status: published
 
-= Apache Tamaya -- Extension: Usage Tracking
+= Apache Tamaya - Extension: Usage Tracking
 
 toc::[]
 
@@ -159,4 +159,3 @@ The methods for managing and tracking of configuration changes are similarly del
 implementation of the +org.apache.tamaya.model.spi.ConfigUsageStatsSpi+ SPI.
 By implementing this SPI and registerting it with the +ServiceContext+ the usage tracking
 logic can be adapted or replaced.
-

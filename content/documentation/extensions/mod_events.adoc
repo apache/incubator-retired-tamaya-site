@@ -1,7 +1,7 @@
 :jbake-type: page
 :jbake-status: published
 
-= Apache Tamaya -- Extension: Events
+= Apache Tamaya - Extension: Events
 
 toc::[]
 
@@ -306,6 +306,3 @@ public interface ConfigEventManagerSpi {
         void enableChangeMonitor(boolean enable);
 }
 --------------------------------------------------
-
-
-

@@ -1,7 +1,7 @@
 :jbake-type: page
 :jbake-status: published
 
-= Apache Tamaya -- Extension: Integration with JNDI
+= Apache Tamaya - Extension: Integration with JNDI
 
 toc::[]
 

@@ -1,7 +1,7 @@
 :jbake-type: page
 :jbake-status: published
 
-= Apache Tamaya -- Extension: Builder
+= Apache Tamaya - Extension: Builder
 
 toc::[]
 
@@ -78,4 +78,3 @@ registers the _json_ format automatically using the `ServiceContext`):
 PropertySource ps = ConfigurationFormats.createPropertySource(
     getClassLoader().getResource("myFileConfig.json"));
 -----------------------------------------------
-

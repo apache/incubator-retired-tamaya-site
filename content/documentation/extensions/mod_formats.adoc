@@ -1,7 +1,7 @@
 :jbake-type: page
 :jbake-status: published
 
-= Apache Tamaya -- Extension: Formats
+= Apache Tamaya - Extension: Formats
 
 toc::[]
 
@@ -288,4 +288,3 @@ functionality provided with +java.util.Properties+:
 
 * `org.apache.tamaya.format.formats.PropertiesFormat` uses `Properties.read(InputStream)`.
 * `org.apache.tamaya.format.formats.PropertiesXmlFormat` uses `Properties.readFromXml(InputStream)`.
-

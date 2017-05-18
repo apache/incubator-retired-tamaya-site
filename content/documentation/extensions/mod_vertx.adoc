@@ -1,7 +1,7 @@
 :jbake-type: page
 :jbake-status: published
 
-= Apache Tamaya -- Extension: Integration for Vertx
+= Apache Tamaya - Extension: Integration for Vertx
 
 toc::[]
 
@@ -186,4 +186,3 @@ private String mapBusTarget;
 @Config(value = "tamaya.vertx.config.value", defaultValue = "CONFIG-VAL")
 private String valBusTarget;
 -----------------------------------------------
-

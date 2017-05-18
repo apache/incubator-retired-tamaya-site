@@ -1,7 +1,7 @@
 :jbake-type: page
 :jbake-status: published
 
-= Apache Tamaya -- Extension: JodaTime
+= Apache Tamaya - Extension: JodaTime
 
 toc::[]
 
@@ -78,5 +78,3 @@ Currently the following types are supported:
                                      |  _second-element_ = ':' ss [_fraction_]
                                      |  _fraction_       = ('.' _or_ ',') digit+`
 |================================================================
-
-

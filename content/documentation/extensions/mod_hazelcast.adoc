@@ -1,7 +1,7 @@
 :jbake-type: page
 :jbake-status: published
 
-= Apache Tamaya -- Extension: Integration with Hazelcast
+= Apache Tamaya - Extension: Integration with Hazelcast
 
 toc::[]
 
@@ -117,4 +117,3 @@ b.addPropertySource(ps);
 // build and use the configuration
 Configuration config = b.build();
 -----------------------------------------------
-

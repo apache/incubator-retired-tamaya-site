@@ -1,7 +1,7 @@
 :jbake-type: page
 :jbake-status: published
 
-= Apache Tamaya -- Extension: Resources
+= Apache Tamaya - Extension: Resources
 
 [[Resources]]
 == Tamaya Resources (Extension Module)

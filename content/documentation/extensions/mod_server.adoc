@@ -1,7 +1,7 @@
 :jbake-type: page
 :jbake-status: published
 
-= Apache Tamaya -- Extension: Configuration Server
+= Apache Tamaya - Extension: Configuration Server
 
 toc::[]
 
@@ -237,6 +237,3 @@ Configuration:
 </body>
 </html>
 -----------------------------------------------
-
-
-

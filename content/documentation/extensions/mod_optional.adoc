@@ -1,7 +1,7 @@
 :jbake-type: page
 :jbake-status: published
 
-= Apache Tamaya -- Extension: Optional Tamaya Configuration
+= Apache Tamaya - Extension: Optional Tamaya Configuration
 
 toc::[]
 

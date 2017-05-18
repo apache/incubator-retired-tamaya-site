@@ -1,7 +1,7 @@
 :jbake-type: page
 :jbake-status: published
 
-= Apache Tamaya -- Extension: Mutable Configuration
+= Apache Tamaya - Extension: Mutable Configuration
 
 toc::[]
 
