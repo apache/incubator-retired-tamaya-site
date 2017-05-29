@@ -37,12 +37,13 @@ The following people are active contributors:
 
 These people used to help with the development of the project but are not active anymore:
 
-.Members
+.Members (alphabetically ordered)
 [width="60%",frame="topbot",options="header"]
 |======================
-|Id         |Name             |E-Mail                 |Role(s)    |Time Zone
-|struberg   |Mark Struberg    |struberg[at]apache.org | PMC       | +1
-|gpetracek  |Gerhard Petracek |gpetracek[at]apache.org| PMC       | +1
+|Id           |Name               |E-Mail                     |Role(s)    |Time Zone
+|gpetracek    |Gerhard Petracek   |gpetracek[at]apache.org    | PMC       | +1
+|struberg     |Mark Struberg      |struberg[at]apache.org     | PMC       | +1
+|rmannibucau  |Romain Manni-Bucau |rmannibucau[at]apache.org  | PMC       | +1
 |======================
 
 Thanks for all your help!
