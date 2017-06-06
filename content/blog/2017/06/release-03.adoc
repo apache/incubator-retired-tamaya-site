@@ -7,6 +7,7 @@ status=published
 = Release candidate Tamaya Core 0.3-incubating
 
 After a long and sweaty journey a new release candidate passed the internal vote:
+
 * https://repository.apache.org/content/repositories/orgapachetamaya-1026/[Maven staging repository]
 
 An official release announcement will follow as well as migration information :-) Stay tuned!
