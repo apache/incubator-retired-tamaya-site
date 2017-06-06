@@ -6,8 +6,8 @@
     <atom:link href="https://tamaya.incubator.apache.org/feed.xml" rel="self" type="application/rss+xml" />
     <description>Apache Tamaya RSS feed template</description>
     <language>en-gb</language>
-    <pubDate>Di, 6 Jun 2017 20:20:30 +0200</pubDate>
-    <lastBuildDate>Di, 6 Jun 2017 20:20:30 +0200</lastBuildDate>
+    <pubDate>Di, 6 Jun 2017 20:29:41 +0200</pubDate>
+    <lastBuildDate>Di, 6 Jun 2017 20:29:41 +0200</lastBuildDate>
 
     <item>
       <title>Tamaya 0.3-incubating release candidate</title>
@@ -15,8 +15,14 @@
       <pubDate>Di, 6 Jun 2017 00:00:00 +0200</pubDate>
       <guid isPermaLink="false">blog/2017/06/release-03.html</guid>
       <description>&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
-&amp;lt;p&amp;gt;After a long and sweaty journey a new release candidate passed the internal vote:
-* &amp;lt;a href=&amp;quot;https://repository.apache.org/content/repositories/orgapachetamaya-1026/&amp;quot;&amp;gt;Maven staging repository&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;After a long and sweaty journey a new release candidate passed the internal vote:&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;ulist&amp;quot;&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;https://repository.apache.org/content/groups/public/org/apache/tamaya/tamaya-all/0.3-incubating/&amp;quot;&amp;gt;Maven repository&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
 &amp;lt;/div&amp;gt;
 &amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
 &amp;lt;p&amp;gt;An official release announcement will follow as well as migration information :-) Stay tuned!&amp;lt;/p&amp;gt;
