@@ -6,10 +6,22 @@
     <atom:link href="https://tamaya.incubator.apache.org/feed.xml" rel="self" type="application/rss+xml" />
     <description>Apache Tamaya RSS feed template</description>
     <language>en-gb</language>
-    <pubDate>Mo, 29 Mai 2017 20:42:42 +0200</pubDate>
-    <lastBuildDate>Mo, 29 Mai 2017 20:42:42 +0200</lastBuildDate>
+    <pubDate>Di, 6 Jun 2017 20:20:30 +0200</pubDate>
+    <lastBuildDate>Di, 6 Jun 2017 20:20:30 +0200</lastBuildDate>
 
     <item>
+      <title>Tamaya 0.3-incubating release candidate</title>
+      <link>https://tamaya.incubator.apache.org/blog/2017/06/release-03.html</link>
+      <pubDate>Di, 6 Jun 2017 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">blog/2017/06/release-03.html</guid>
+      <description>&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;After a long and sweaty journey a new release candidate passed the internal vote:
+* &amp;lt;a href=&amp;quot;https://repository.apache.org/content/repositories/orgapachetamaya-1026/&amp;quot;&amp;gt;Maven staging repository&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;An official release announcement will follow as well as migration information :-) Stay tuned!&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;</description>
+    </item><item>
       <title>Javaland - Configuration beyond Java EE8</title>
       <link>https://tamaya.incubator.apache.org/blog/2017/03/javaland.html</link>
       <pubDate>Di, 28 Mär 2017 00:00:00 +0200</pubDate>
