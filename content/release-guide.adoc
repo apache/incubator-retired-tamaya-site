@@ -3,27 +3,62 @@
 
 :sectnums: yes
 
-= Apache Tamaya: Release Guide
+= Apache Tamaya Release Guide
 
-Performing a release requires several steps. This document describes each step, so everybody in the committer's
-team should be able to perform the release procedure.
+This document describes how to perform a release of Apache Tamaya during
+its incubation. It contains a step by step description of each step,
+so everybody in the commiters's team will be able to perform
+the release procedure during the incubation phase.
 
 
-== Tell the others you would proceed with the release procedure
+#Performing a release requires several steps. This document describes each
+#step, so everybody in the committer's
+#team should be able to perform the release procedure.
 
+== Prerequisites
+
+This section describes the prerequisite which must be given to
+perform the release procedure.
+
+["upperroman"]
+
+. Subversion client, needed to upload the source distribution.
+. Git
+. A valid GPG key, needed to sign all artifacts created during
+  the release process.
+
+
+=== Performing the release
+
+=== Tell the others you would proceed with the release procedure
+
+The first step is to announce on developer mailing list that
+you plan to release a new version of Tamaya API&Core as well
+as of the Tamaya Extensions.
+
+Take the mail template below, adapt it if necessary, an send it
+to mailto:dev@tamaya.incubator.apache.org[dev@tamaya.incubator.apache.org].
+
+
+.Announcement of an upcomming release.
 [listing,text]
 ----
-first steps for the next release
-
-Hi @ all,
+Dear all,
 
 If there are no objections, I'll start with the first steps for
 the next release (review, documentation,...).
 It would be great to start with the release procedure next week.
 
 Best regards,
-[name]
+<<your name>>
 ----
+
+Don't expect that everyone will response immediately as we all are very
+busy. So be patient with you team members.
+
+---
+Rewritten until here
+---
 
 == Check everything is ready
 
