@@ -63,19 +63,28 @@ Don't expect that everyone will response immediately as we all are very
 busy. So be patient with you team members. Meanwhile you can
 proceed with the release preparations.
 
+=== Check if everything is ready
+
+The following items must be done before you can start with the
+actual release process.
+
+. Check if the build chains
+  https://builds.apache.org/view/Tamaya/[Apache's Jenkins^]
+  of the project in to be released are fine and where are
+  no problems with the build and quality of the project.
+. Ensure that all
+  https://issues.apache.org/jira/projects/TAMAYA[JIRA^] issues
+  targeting the upcomming release are resolved.
+  If not, get in contact with the issue assignee or the reporter to
+  check
+  .. if the issue can be postponed for the next release
+  .. how long it takes to resolve it and if someone can help.
 
 ---
+
 Rewritten until here
+
 ---
-
-== Check everything is ready
-
-* Check the jenkins builds.
-* Ensure all JIRA-tickets targeting the release are resolved. If not, get in contact with the ticket
-  owner/assignee to check
-  ** if the ticket can be postponed for the next release
-  ** how long it takes to resolve it and if one can help.
-
 
 == Prepare the release
 
