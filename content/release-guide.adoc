@@ -28,7 +28,7 @@ perform the release procedure.
   the release process.
 
 
-=== Performing the release
+== Performing the release
 
 === Tell the others you would proceed with the release procedure
 
@@ -40,13 +40,19 @@ Take the mail template below, adapt it if necessary, an send it
 to mailto:dev@tamaya.incubator.apache.org[dev@tamaya.incubator.apache.org].
 
 
-.Announcement of an upcomming release.
+
+.Subject of the announcement of an upcomming release
+----
+Starting with the preparation of the next release of <<project>>
+----
+
+.Body of the announcement of an upcomming release.
 [listing,text]
 ----
 Dear all,
 
 If there are no objections, I'll start with the first steps for
-the next release (review, documentation,...).
+the next release of <<project>> (review, documentation,...).
 It would be great to start with the release procedure next week.
 
 Best regards,
@@ -54,7 +60,9 @@ Best regards,
 ----
 
 Don't expect that everyone will response immediately as we all are very
-busy. So be patient with you team members.
+busy. So be patient with you team members. Meanwhile you can
+proceed with the release preparations.
+
 
 ---
 Rewritten until here
