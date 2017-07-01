@@ -68,7 +68,7 @@ proceed with the release preparations.
 The following items must be done before you can start with the
 actual release process.
 
-. Check if the build chains
+. Check if the build chains in
   https://builds.apache.org/view/Tamaya/[Apache's Jenkins^]
   of the project in to be released are fine and where are
   no problems with the build and quality of the project.
