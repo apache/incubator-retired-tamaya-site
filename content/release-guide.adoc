@@ -141,31 +141,6 @@ Rewritten until here
 
 
 
-=== Using the Release Plugin
-
-For performing the release you can use the maven release plugin:
-
-[listing,text]
-----
-$ git checkout -b vote-tamaya-[release version]
-$ export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=200m"
-$ mvn release:prepare -DdryRun=true -DperformRelease=true
-# optionally pass GPG params for signing with: -Darguments="-Dgpg.keyname=1336D3E6 -Dgpg.passphrase=XXXXXX"
-# copy prepared workspace (to continue faster if an upload fails in the next step)
-----
-
-* If something fails you may switch to the master branch, fix whatever is needed and rebase your release branch to
-  accommodate the latest changes done.
-* On success you can check the release packages from `dist/target`.
-* If everything looks good you can proceed with the release:
-
-[listing,text]
-----
-$ export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=200m"
-$ mvn release:prepare -DperformRelease=true
-$ mvn release:perform -DperformRelease=true
-----
-
 === Preparing the release without the Release Plugin
 
 The release plugin is great, but in some cases it breaks even, when release:prepare -DdryRun=true was successful.
