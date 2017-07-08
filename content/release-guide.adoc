@@ -95,12 +95,46 @@ actual release process.
 // Oliver B. Fischer, 2017-07-08
 //
 
----
 
+=== Preparing the vote of the PPMC on the release
+
+If you are sure that everything is ready for the
+next release you can start the vote of the PPMC
+on the proposed release.
+
+[IMPORTANT]
+====
+Keep in mind that preparing the release
+really means only to prepare the release by
+uploading it to the dev area of the
+https://dist.apache.org[distribution
+server of the Apache project^] and to a staging
+repository of https://repository.apache.org[Apache's Nexus^].
+
+You must not publish the artifacts created during
+the preparation of the release until the IPMC as well
+as the PPMC of Apache Tamaya have approved the release.
+====
+
+Before you can present the proposed release to the
+IPMC of the Apache Incubator, the proposd release must be
+approved by the PPMC of the Tamaya project.
+
+Therefore you must run a vote on the proposed release
+by creating a vote candidat in the Git repository of
+the project, uploading the source distribution
+to the dev area of the distribution server of the Apache
+project and uploading the Maven artifacts to a staging
+repository in Apache's Nexus. This sounds complicated
+but it isn't that complicated if you follow the steps
+of this guide.
+
+---
 Rewritten until here
-
 ---
 
+
+//==== Creating a vote candidat in the Git repository
 
 
 * Create a release branch in git and switch to this branch:
