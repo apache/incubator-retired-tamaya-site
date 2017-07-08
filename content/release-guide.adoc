@@ -81,19 +81,20 @@ actual release process.
   .. how long it takes to resolve it and if someone can help.
 
 
-== Prepare the release notes
+=== Prepare the release notes
 
 * Create release notes and commit them to the `/readme/`
   directory of the project. The file name of the release
   notes document should be `ReleaseNotes-[version].html`.
 
-# Question: How to handle the problem that we actually have
-# to distributions? One is API&Core and the second is the
-# extension distribution? At the moment the release notes
-# are part of API&Core. The Extensions contain only a
-# reference to API&Core
-# Oliver B. Fischer, 2017-07-08
-#
+// Question: How to handle the problem that we actually have
+// to distributions? One is API&Core and the second is the
+// extension distribution? At the moment the release notes
+// are part of API&Core. The Extensions contain only a
+// reference to API&Core
+// Oliver B. Fischer, 2017-07-08
+//
+
 ---
 
 Rewritten until here
