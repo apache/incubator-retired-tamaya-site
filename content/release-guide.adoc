@@ -3,17 +3,19 @@
 
 :sectnums: yes
 
+# to read before
+# https://incubator.apache.org/guides/releasemanagement.html
+
 = Apache Tamaya Release Guide
 
-This document describes how to perform a release of Apache Tamaya during
+[abstract]
+This document describes how to perform a release of Apache Tamaya
+API&Core and Apache Tamaya Extensions during
 its incubation. It contains a step by step description of each step,
 so everybody in the commiters's team will be able to perform
 the release procedure during the incubation phase.
-
-
-#Performing a release requires several steps. This document describes each
-#step, so everybody in the committer's
-#team should be able to perform the release procedure.
+Differences in the procedure between Tamaya API&Core and Tamaya
+Extensions are mentioned.
 
 == Prerequisites
 
@@ -87,14 +89,13 @@ actual release process.
   directory of the project. The file name of the release
   notes document should be `ReleaseNotes-[version].html`.
 
-// Question: How to handle the problem that we actually have
-// to distributions? One is API&Core and the second is the
-// extension distribution? At the moment the release notes
-// are part of API&Core. The Extensions contain only a
-// reference to API&Core
-// Oliver B. Fischer, 2017-07-08
-//
-
+[TIP]
+====
+Ensure that you include only notes an the release notes
+which affect the project you are releasing.
+For instance a notes on an issues which affects Tamaya Extensions
+should not be included in the release notes of Tamaya API&Core.
+====
 
 === Preparing the vote of the PPMC on the release
 
