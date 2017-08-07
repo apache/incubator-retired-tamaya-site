@@ -82,12 +82,13 @@ $ ./copy-site.sh
 $ git checkout asf-site
 $ cp -r pathToTamayaCoreRepo/target/site/apidocs .
 ```
+1. If you do not want to change the already published Javadoc, make sure that your commit does not change the base index.html, that renders https://tamaya.incubator.apache.org/apidocs/index.html
 1. Push your changes
 ```
 $ git push
 ```
 1. Wait a couple of minutes for the gitpubsub to happen.
-1. Go to https://tamaya.incubator.apache.org/jbake/ in your browser
+1. Go to https://tamaya.incubator.apache.org/ in your browser
 
 #### Jenkins / CI integration
 
