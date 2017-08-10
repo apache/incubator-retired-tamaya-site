@@ -3,8 +3,6 @@
 
 :sectnums: yes
 
-# to read before
-# https://incubator.apache.org/guides/releasemanagement.html
 // to read before
 // https://incubator.apache.org/guides/releasemanagement.html
 // http://www.apache.org/legal/release-policy.html
@@ -121,7 +119,7 @@ as the PPMC of Apache Tamaya have approved the release.
 ====
 
 Before you can present the proposed release to the
-IPMC of the Apache Incubator, the proposd release must be
+IPMC of the Apache Incubator, the proposed release must be
 approved by the PPMC of the Tamaya project.
 
 Therefore you must run a vote on the proposed release
@@ -132,6 +130,13 @@ project and uploading the Maven artifacts to a staging
 repository in Apache's Nexus. This sounds complicated
 but it isn't that complicated if you follow the steps
 of this guide.
+
+In case the vote candidate does not pass the vote of
+the PPMC or the IPMC you can choose between
+canceling the current attempt for the next release
+or you try to fix the issues which hinders people to
+vote with yes. If you have choosen the second
+way then you have to prepare a new vote candidat.
 
 ---
 Rewritten until here
@@ -147,74 +152,154 @@ Rewritten until here
 
 === Preparing the release without the Release Plugin
 
-The release plugin is great, but in some cases it breaks even, when release:prepare -DdryRun=true was successful.
-Preparing the release vote without the release plugin is stright forward:
+[NOTE]
+====
+We tried to use the http://maven.apache.org/maven-release/maven-release-plugin/[Maven Release Plugin^]
+to increase the level of automatisation of the release process, but
+we were not able to get the Maven Release Plugin working as we
+need it for our release process. Therefore we decided not to use
+it.
+====
 
-* As described checkout a release branch of the current head
-* Then us maven and git commands to prepare the release:
+The first step is to create a separate branch for the release canidate.
+The name should consist of the release version and the number of the
+voting candidate.
 
-[listing,text]
+For example if you would like to run a vote for the 1.0 release of
+Tamaya API&Core during its incubation for the second time, the usual
+branch name would be `vote-1.0-incubating-02`.
+
+Follow the instructions below to create the branch for the vote
+and to build the vote candidate.
+
+[code,text]
+.Creating the vote branch and building the vote candidat
 ----
-$ git checkout -b vote-tamaya-[release version]
+$ git checkout -b vote-[release version]-[attempt]                                       <1> <2>
 $ export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=200m"
 $ mvn versions:set versions:commit -DnewVersion=[release version] -DperformRelease=true
-# build the release locally and sign it with your certs
-$ mvn clean install -DperformRelease=true -Dgpg.keyname=1336D3E6 -Dgpg.passphrase=XXXXXX
-----
+$ mvn clean install -DperformRelease=true -Dgpg.keyname=[key] -Dgpg.passphrase=[passphrase] <3> <4>
 
-* Check if everything is in place and correct, when finished you can tag and deploy the release...
+----
+<1> The version number of the planed release, e.g. `0.4-incubating`
+<2> The number of the current vote, e.g. `03`
+<3> The id of your GPG key.
+<4> The passphrase of you GPG key.
+
+Now you can check the source distribution and the Maven artifacts created
+during the build.
+
+If everything is correct, deploy them to a staging repository on Apache's
+Nexus.
 
 [listing,text]
+.Deploying the vote candidate to Apache's Nexus'
 ----
-$ mvn deploy -DperformRelease=true -Dgpg.keyname=1336D3E6 -Dgpg.passphrase=XXXXXX
+$ mvn deploy
 ----
 
-* check the created commits including user-name and email
-* login to https://repository.apache.org/[^] and go to "Staging Repositories"
-* check the contents of the newly created tamaya staging repository
-* _close_ the repository to let Nexus do its validations
-* On success:
-* push the release-branch to the git repo
+// Check if these commandline parameters are needed
+// -DperformRelease=true -Dgpg.keyname=[key] -Dgpg.passphrase=[passphrase] <1> <2>
+
+After deploying the artifacts you have to check the staging repository
+created in Apache's Nexus:
+
+1. Login to https://repository.apache.org/[^] and go to _Staging Repositories_.
+2. Check the Contents of the newly create staging repository for you release.
+3. Close the staging repository to let Nexus do its validations on the deployed
+   artifacts.
+
+IMPORTANT: Do not release the content of the stating repository right now.
+           Releasing means to publish the artifacts. This will be done
+           after a successful vote of the IPMC.
+
+
+If everything is correct until now, commit your local changes, create a tag for
+the voting candidate and push the tag and your commits to the Git
+repository.
+
 
 [listing,text]
+.Commiting the changes done for the vote candidate
 ----
 $ git add -A
 $ git commit -m "Release Prepare: Set release version."
-$ git tag vote01-[release-version]
+$ git tag vote-[release version]-[attempt]
 $ git push --tags
 ----
 
-Finally open the next development version:
+<1> The version number of the planed release, e.g. `0.4-incubating`
+<2> The number of the current vote, e.g. `03`
+
+Finally open the next development version of the project.
 
 [listing,text]
+.Set next development version of the project
 ----
-# example: newVersion=0.3-incubating-SNAPSHOT
-$ mvn version:set versions:commit -DnewVersion=[development-version]
+$ mvn version:set versions:commit -DnewVersion=[development version]  <1>
 $ git add -A
 $ git commit -m "Release Prepare: Open new development version."
 ----
+<1> Next development version, e.g. `0.83-incubating-SNAPSHOT`
 
+After setting the new development version you have to add the source
+distribution to the distribution repository at https://dist.apache.org/repos/dist/[^].
 
+IMPORTANT: The source distribution and all required artifacts must be added
+           to the development directory of Apache's distribution server.
+           After the approvement of the release candidate by the PPMC and
+           the IPMC they will be moved to the release directory.
 
-* Add the distribution artifacts to the dev repositories:
 
 [listing,text]
+.Adding all needed artifacts to distribution repository
 ----
 $ svn co https://dist.apache.org/repos/dist/dev/incubator/tamaya/
-$ mkdir [version]
-$ set RELEASE_HOME='pwd'/[version]
-$ cd PROJECT_ROOT
+$ mkdir [release version]/[project]                                          <1>
+$ set RELEASE_HOME=`pwd`/[release version]/[project]
+$ set PROJECT_ROOT=[repository of the project]                               <2>
+$ cd $PROJECT_ROOT
 $ cp DISCLAIMER $RELEASE_HOME
 $ cp NOTICE $RELEASE_HOME
 $ cp LICENCE $RELEASE_HOME
-$ cp rat.txt $RELEASE_HOME
-# Copy everything from
-#  $STAGING_REPO/distribution/0.2-incubating/tamaya-distribution-[version]-distribution-* into $RELEASE_HOME
+$ cp keys/KEYS $RELEASE_HOME
+$ cp $PROJECT_ROOT/cp distribution/target/*{.tar.gz,.zip,.asc} $RELEASE_HOME <3>
 $ svn add [version]
-$ svn commit --username <apacheId>
+$ svn add [version]/[project]
+----
+<1> We store the artifacts of Tamaya API&Core and Tamaya Extensions always
+    in different subdirectories. So _project_ can be either
+    `apiandcore` or `extensions`.
+<2> `PROJECT_ROOT` is the Git repository of the project which you want to
+    release.
+<3> This command copies both distribution archives to `$RELEASE_HOME`.
+
+Additionally there must be a SHA-1 and MD5 sigature file for each distribution
+archive and its GPG signature (`.asc`). To generate them you need programs
+like `md5` and `shasum`. The name of these programs might vary from system to system.
+
+
+[listing,text]
+.Generating the required SHA-1 and MD5 signatures
+----
+$ cd $RELEASE_HOME
+$ for f in $(ls *{.tar.gz,.zip,.asc}); do shasum -a 1 $f > ${f}.sha1; md5 $f > ${f}.md5; done
 ----
 
-* Check contents on https://dist.apache.org/repos/dist/dev/incubator/tamaya/[version]
+After generating the signature files you can add and commit all files and artifacts
+of the source distribution.
+
+[listing,text]
+.Adding and commiting the source distribution
+----
+$ cd $RELEASE_HOME
+$ svn add [project]
+$ svn add [version]
+$ svn commit --username [Apache ID]
+----
+
+All commited files and artifacts should be now available via
+https://dist.apache.org/repos/dist/dev/incubator/tamaya/[https://dist.apache.org/repos/dist/dev/incubator/tamaya/&#91;version&#93;/&#91;project&#93;^].
 
 
 == Start the vote
