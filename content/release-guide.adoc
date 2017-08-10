@@ -5,10 +5,13 @@
 
 # to read before
 # https://incubator.apache.org/guides/releasemanagement.html
+// to read before
+// https://incubator.apache.org/guides/releasemanagement.html
+// http://www.apache.org/legal/release-policy.html
 
 = Apache Tamaya Release Guide
 
-[abstract]
+[.lead]
 This document describes how to perform a release of Apache Tamaya
 API&Core and Apache Tamaya Extensions during
 its incubation. It contains a step by step description of each step,
