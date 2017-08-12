@@ -302,65 +302,120 @@ All commited files and artifacts should be now available via
 https://dist.apache.org/repos/dist/dev/incubator/tamaya/[https://dist.apache.org/repos/dist/dev/incubator/tamaya/&#91;version&#93;/&#91;project&#93;^].
 
 
-== Start the vote
+== Run the vote on the release candidate
+
+=== Run the internally
+
+The next step is to prepare the vote on mailto:dev@tamaya.incubator.apache.org[^].
+The mail must contain serveral links, e.g. a link to the source distribution
+and a link to the tag in the Git repository.
+
+The following links are needed for the mail:
+
+1. A link to the source distribution in the dev section of the distribution repository
+   at https://dist.apache.org/repos/dist/dev/incubator/tamaya/[^].
+2. A link to the tag of the release candidate, taken from
+   https://git1-us-west.apache.org/repos/asf?p=incubator-tamaya.git;a=summary[^].
+3. A link to the staging repository for the release candidate of the intended
+   relase at http://repository.apache.org/content/repositories[^].
+4. A link to to the http://www.apache.org/foundation/voting.html#ReleaseVotes[rules for release votes^]
+   in the _Apache Voting Process_ document.
+
+Take the mail template below, insert the links, an send it
+to mailto:dev@tamaya.incubator.apache.org[dev@tamaya.incubator.apache.org].
 
 [listing,text]
+.Subject of the vote on the release candidate
 ----
-[VOTE] Release of Apache Tamaya [version]
+[Vote] Release of [project] [version] <1> <2>
+----
+<1> Replace _project_ by either Apache Tamaya API&amp;Core or Apache Tamaya Extensions
+<2> Replace _version_ by the version number of the release
+
+[listing,text]
+.mm
+----
+[VOTE] Release of [project] [version]                                         <1> <2>
 
 Hi,
 
-I was running the needed tasks to get the [version] release of Apache Tamaya out.
-The artifacts are deployed to Nexus [1] (and [2]) and releases [4].
+I was running the needed tasks to get the [version] release of [project] out. <1> <2>
+The artifacts available via the Apache distribution repository [1] and
+also via Apache's Nexus [2].
 
-The tag is available at [3] and will renamed once the vote passed.
-
+The tag for this release candidate is available at [3] and will be renamed
+once the vote passed.
 Please take a look at the artifacts and vote!
 
 Please note:
-This vote is a "majority approval" with a minimum of three +1 votes (see [5]).
+This vote is a "majority approval" with a minimum of three +1 votes (see [4]).
 
 ------------------------------------------------
 [ ] +1 for community members who have reviewed the bits
 [ ] +0
-[ ] -1 for fatal flaws that should cause these bits not to be released, and why..............
+[ ] -1 for fatal flaws that should cause these bits not to be released, and why ...
 ------------------------------------------------
 
 Thanks,
 [name]
 
-[1] https://repository.apache.org/content/repositories/...
-[2] https://repository.apache.org/content/repositories/org/apache/tamaya/tamaya-distribution/[version]/tamaya-[version]-source-release.zip
-    https://repository.apache.org/content/repositories/org/apache/tamaya/tamaya-distribution/[version]/tamaya-[version]-bin-release.zip
-[3] https://git1-us-west.apache.org/repos/asf?p=incubator-tamaya.git;a=commit;h=2910da468fce16210e6dd77d8ba23ddbdd434efe
-[4] https://dist.apache.org/repos/dist/dev/incubator/tamaya/[release-version]
-[5] http://www.apache.org/foundation/voting.html#ReleaseVotes
+[1] [link to the source distribution]                                         <3>
+[2] [link to the staging repository at Apache's Nexus]                        <4>
+[3] [link to the tag in the Git repository]                                   <5>
+[4] http://www.apache.org/foundation/voting.html#ReleaseVotes
 ----
+<1> Replace _project_ by the name of the project to be release, which can be
+    _Apache Tamaya API&amp;Core_ or _Apache Tamaya Extensions_.
+<2> Replease _version_ by the version number of the intended release.
+<3> Insert here the link to the source distribution of the project
+    in the dev section of distribution repository
+    at https://dist.apache.org/repos/dist/dev/incubator/tamaya/[^].
+<4> Insert here the link to the staging repository for the release candidate
+    at http://repository.apache.org/content/repositories[^].
+<5> Insert here the link to the tag created for the release candidate
+    in the Git repository.
 
-* Announce the Vote
-  ** Create a short link to the release at http://s.apache.org (format Tamaya_[version])
-  ** Tweet about the vote via _@TamayaConf_
+Wait at least 72 hours before you close the result. If there is not enough attention
+at the mailing list to vote, send a nice reminder to the list. Please keep in mind
+that people might be simple to busy to respond on your vote.
 
-* After 72 hours close the vote write a reult email, e.g.
+To close the vote count all single votes and send the result as reply to your
+initial mail to the mailinglist by using the templates below.
 
 [listing,text]
+.Subject of the mail with the result of the vote
 ----
-[Result] (was: Re: [VOTE] Release of Apache Tamaya [version])
+[Result] (was: Re: [VOTE] Release of [project] [version]) <1> <2>
+----
+<1> Replace _project_ by the name of the project to be release, which can be
+    _Apache Tamaya API&amp;Core_ or _Apache Tamaya Extensions_.
+<2> Replease _version_ by the version number of the intended release.
 
+[listing,text]
+.Body of the mail with the result of the vote
+----
 Thank you for voting!
 
-X binding +1 votes (pmc):
-[list]
+X binding +1 votes (PPMC):    <1>
+[list]                        <2>
 
-Y non-binding +1 votes:
-[list]
+Y non-binding +1 votes:       <3>
+[list]                        <4>
 
-Z -1 votes
-[list]
+Z -1 votes:                   <5>
+[list]                        <6>
 ----
+<1> Replace _X_ by the number of positive votes by PPMC members
+<2> Replace _list_ by the names of PPMC members with a positive vote
+<3> Replace _Y_ by the number of non-binding positive votes by
+    non-PPMC members
+<4> Replace _list_ by the names of non-PPMC members with a positive vote
+<5> Replace _Z_ by the number of negative votes by PPMC members
+<6> Replace _list_ by the names of PPMC members with a negative vote
 
-* After the vote on the PPMC has been finished and is successful, repeat the voting process on the
-  incubator mailing list.
+
+After the vote on the PPMC has been finished and is successful,
+repeat the voting process on the incubator mailing list.
 
 
 == Perform the release
