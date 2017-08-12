@@ -418,6 +418,124 @@ After the vote on the PPMC has been finished and is successful,
 repeat the voting process on the incubator mailing list.
 
 
+=== Let the IPMC vote on the release candidate
+
+During the incubation phase of Tamaya, each release must be approved
+by the IPMC.
+
+The first step is to subscribe to the mailinglist
+general@incubator.apache.org.
+More information and how to do this can be found on
+https://incubator.apache.org/guides/lists.html[^].
+
+:x: https://lists.apache.org/list.html?dev@tamaya.apache.org
+
+The mail, which must be send to the list, is quite similar
+to the one for the PPMC, but it must also contain a link
+to the mail thread of the successful vote of the PPMC.
+The archive of the developers mailinglist of Apache Tamaya
+can be found at https://lists.apache.org[^].
+
+The mail to the IPMC can be composed by using these both
+templates:
+
+[listing,text]
+.Subject of the vote on the release candidate
+----
+[Vote] Release of [project] [version] <1> <2>
+----
+<1> Replace _project_ by either Apache Tamaya API&amp;Core or Apache Tamaya Extensions
+<2> Replace _version_ by the version number of the release
+
+[listing,text]
+.Body of the vote on the release candidate
+----
+[VOTE] Release of [project] [version]                                         <1> <2>
+
+Dear IPMC members,
+
+The Apache Tamaya project was running the needed tasks to get
+the [version] release of [project] out.                                       <1> <2>
+
+The artifacts available via the Apache distribution repository [1] and
+also via Apache's Nexus [2].
+
+The tag for this release candidate is available at [3]
+
+The mail thread of the vote can be found at [4].
+
+Please take a look at the artifacts and vote!
+
+Please note:
+This vote is a "majority approval" with a minimum of three +1 votes (see [5]).
+
+------------------------------------------------
+[ ] +1 for IPMC members who approve this release
+[ ] +0 for IPMC members with no opinion on this release
+[ ] -1 for IPMC members who reject this release, and why ...
+------------------------------------------------
+
+Thanks,
+[name]
+
+[1] [link to the source distribution]                                         <3>
+[2] [link to the staging repository at Apache's Nexus]                        <4>
+[3] [link to the tag in the Git repository]                                   <5>
+[4] [link to the thread of the vote by the PPMC.]                             <6>
+[5] http://www.apache.org/foundation/voting.html#ReleaseVotes
+----
+<1> Replace _project_ by the name of the project to be release, which can be
+    _Apache Tamaya API&amp;Core_ or _Apache Tamaya Extensions_.
+<2> Replease _version_ by the version number of the intended release.
+<3> Insert here the link to the source distribution of the project
+    in the dev section of distribution repository
+    at https://dist.apache.org/repos/dist/dev/incubator/tamaya/[^].
+<4> Insert here the link to the staging repository for the release candidate
+    at http://repository.apache.org/content/repositories[^].
+<5> Insert here the link to the tag created for the release candidate
+    in the Git repository.
+<6> Insert here the link to vote thread on Tamaya's developer mailinglist
+    for this release candidate
+
+Send the mail to pass:macro[general@incubator.apache.org] and let
+the vote run for at least 72 hours.
+
+To close the vote count all single votes and send the result as reply
+to your initial mail to the mailinglist by using the templates below:
+
+[listing,text]
+.Subject of the mail with the result of the vote
+----
+[Result] (was: Re: [VOTE] Release of [project] [version]) <1> <2>
+----
+<1> Replace _project_ by the name of the project to be release, which can be
+    _Apache Tamaya API&amp;Core_ or _Apache Tamaya Extensions_.
+<2> Replease _version_ by the version number of the intended release.
+
+[listing,text]
+.Body of the mail with the result of the vote
+----
+Thank you for voting!
+
+X binding +1 votes (PPMC):    <1>
+[list]                        <2>
+
+Y non-binding +1 votes:       <3>
+[list]                        <4>
+
+Z -1 votes:                   <5>
+[list]                        <6>
+----
+<1> Replace _X_ by the number of positive votes by IPMC members
+<2> Replace _list_ by the names of IPMC members with a positive vote
+<3> Replace _Y_ by the number of non-binding positive votes by
+    non-IPMC members
+<4> Replace _list_ by the names of non-PPMC members with a positive vote
+<5> Replace _Z_ by the number of negative votes by IPMC members
+<6> Replace _list_ by the names of IPMC members with a negative vote
+
+
+
 == Perform the release
 
 If the binding majority approved the vote on both lists continue:
