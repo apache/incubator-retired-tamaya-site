@@ -333,7 +333,7 @@ to mailto:dev@tamaya.incubator.apache.org[dev@tamaya.incubator.apache.org].
 <2> Replace _version_ by the version number of the release
 
 [listing,text]
-.mm
+.Body of the vote on the release candidate
 ----
 [VOTE] Release of [project] [version]                                         <1> <2>
 
