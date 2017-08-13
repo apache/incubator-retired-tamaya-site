@@ -536,61 +536,134 @@ Z -1 votes:                   <5>
 
 
 
-== Perform the release
+== Performing the release
 
-If the binding majority approved the vote on both lists continue:
+The actually release process can be started if the binding majority
+of IPMC members have approved the release candidate.
 
-* Login to https://repository.apache.org/ and _release_ the repository
-* Rename the vote branch:
+The first task is to create branch for the new release
+out of the branch, created for the vote on the release candidate.
+
+=== Tag and branch for the release
+
+Creating this branch requires multiple commands, as Git does not
+allow to simply rename a remote branch. The listing below shows
+which commands are needed to create a branch for the new release
+
+[listing,shell]
+.Renaming the branch of the release candidate
+----
+$ git checkout master                                                  <1>
+$ git branch release-[version] vote-[version]-[attempt]                <2> <3> <4>
+$ git push origin release-[version]:refs/heads/release-[version]       <5>
+$ git push origin :vote-[version]-[attempt]                            <6>
+$ git branch -D vote-[version]-[attempt]                               <7>
+$ git checkout -b release-[version] --track origin/release-[version]   <8>
+----
+<1> Switching back to `master`
+<2> Creating a release branch out of the vote branch
+<3> Replace _version_ by the version number of the release
+<4> Replace _attempt_ by the number of the successful vote attempt
+<5> Pushing the new branch under the same name to the blessed repository
+<6> Delete the vote branch in the blessed remote repository
+<7> Delete the branch locally
+<8> Checkout the new release branch and set the corresponding
+    remote branch as upstream branch
+
+
+Now create a new tag for the release based on the exsting tag
+for the release candidate and delete the tag made for
+the release candidate:
+
+[listing,shell]
+----
+$ git tag release-[version] vote-[version]-[attempt]                   <1> <2> <3>
+$ git tag -d vote-[version]-[attempt]                                  <4>
+$ git push origin :vote-[version]-[attempt]                            <5>
+$ git push --tags origin                                               <6>
+----
+<1> Creating a release tag for the release
+<2> Replace _version_ by the version number of the release
+<3> Replace _attempt_ by the number of the successful vote attempt
+<4> Delete the tag made for the vote locally
+<5> Delete tag tag mode for the vote in the blessed remote repository
+<6> Push the new tag to the remote repository
+
+Now you can merge the new release branch with the prepared
+development version to master.
 
 [listing,text]
-----
-$ git branch -m vote01-tamaya-[release-version] tamaya-[release-version]
-----
-
-* Add a release tag:
-
-----
-$ git tag -a tamaya-[release-version]
-----
-
-* Merge master with the new prepared version:
-
-[listing,text]
+.Merging the release branch to `master`
 ----
 $ git checkout master
-$ git merge tamaya-[release-version]
-$ git push origin tamaya-[release-version]
+$ git merge release-[version]
 $ git push origin master
 ----
 
-* Close the release and corresponding tickets at JIRA
+=== Cleanup Jira
 
-* Wait some minutes and check http://repo2.maven.org/maven2/org/apache/tamaya[^]
+Login into https://issues.apache.org/jira/browse/tamaya[Apache's Jira] and
+close all issues in the
+https://issues.apache.org/jira/browse/tamaya[Tamaya project^].
 
-* Upload the distribution Artifacts
+=== Release the staging repository
+
+Login into https://repository.apache.org/[Apaches Nexus^] and
+release to staging repository for the new release.
+
+Then wait some minutes and check if the artifacts have become
+available at http://repo2.maven.org/maven2/org/apache/tamaya[^].
+
+=== Releasing the distribution artifacts
+
+The source distribution of the release candidate must now be
+moved from the dev section of the distribution repository
+to the release section.
+
+An easy way to achive this is to use the `svn mv` command
+only with remote URLs. Before you move the distribution artifacts,
+make sure the the directory for the version of the projects exists.
 
 [listing,text]
+.Checking if the target directory exists in SVN
 ----
-$ svn co https://dist.apache.org/repos/dist/release/incubator/tamaya/
-$ mkdir [version]
-# add and commit the artifacts (*source-release.zip, *bin-release.zip + asc, md5, sha1)
-# use the artifacts from:
-# http://repo1.maven.org/maven2/org/apache/tamaya/tamaya-distribution/[version]/
+$ svn ls https://dist.apache.org/repos/dist/release/incubator/tamaya
 ----
 
-
-== Updating the Tamaya Project Site
-
-Basically the new site should be directly deployable, just execute
+If the directory does not exists, create it.
 
 [listing,text]
+.Creating the directory for the version of the release
 ----
-$ mvn site site:deploy
+$ svn mkdir https://dist.apache.org/repos/dist/release/incubator/tamaya/[versio]    <1>
+----
+<1> Replace _version_ by the version number of the release.
+
+Now move all distribution artifacts from the dev section to the release
+section.
+
+[listing,text]
+.Moving the source distribution to the release section with SVN
+----
+$ svn mv \
+    https://dist.apache.org/repos/dist/dev/incubator/tamaya/[version]/[project] \   <1> <2>
+    https://dist.apache.org/repos/dist/release/incubator/tamaya/[version]/[project]
+----
+<1> Replace _version_ by the version number of the release.
+<2> Replace _project_ by the name of the project.
+
+To be sure that everything wents well, perform a checkout of the SVN
+repository for the release section and check if everything is there.
+
+[listing,shell]
+----
+$ svn checkout https://dist.apache.org/repos/dist/release/incubator/tamaya
+$ cd tamaya
+$ ls -Rlah
 ----
 
 
-== Announce the new version
+== Updating the website and announcing the release
 
-Announce the new version on @TamayaConf and other social media channels.
-Also drop a short mail on the mailing list.
+Coordindate on the developers mailinglist the update of the website
+for the new version and the announcement of the new version.
