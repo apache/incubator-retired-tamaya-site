@@ -138,18 +138,6 @@ or you try to fix the issues which hinders people to
 vote with yes. If you have choosen the second
 way then you have to prepare a new vote candidat.
 
----
-Rewritten until here
----
-
-
-//==== Creating a vote candidat in the Git repository
-
-
-* Create a release branch in git and switch to this branch:
-
-
-
 === Preparing the release without the Release Plugin
 
 [NOTE]
@@ -175,7 +163,7 @@ and to build the vote candidate.
 [code,text]
 .Creating the vote branch and building the vote candidat
 ----
-$ git checkout -b vote-[release version]-[attempt]                                       <1> <2>
+$ git checkout -b vote-[release version]-[attempt]                                         <1> <2>
 $ export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=200m"
 $ mvn versions:set versions:commit -DnewVersion=[release version] -DperformRelease=true
 $ mvn clean install -DperformRelease=true -Dgpg.keyname=[key] -Dgpg.passphrase=[passphrase] <3> <4>
