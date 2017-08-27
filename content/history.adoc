@@ -8,13 +8,19 @@
 
 Overview of all released versions of Apache Tamaya.
 
-[width="70"]
-[cols="2,3,3,3", options="headers", frame="all"]
+[width="75"]
+[cols="2,2,4,4", options="headers", frame="all"]
 |===
 | Version
 | Release date
 | Release Notes
 | Download
+
+| 0.3-incubating
+| 2017-08-13
+| https://git-wip-us.apache.org/repos/asf?p=incubator-tamaya.git;a=blob_plain;f=readme/ReleaseNotes-0.3-incubating.html;h=e27e86095bc9a0ef3665bf8a52e26ae3e371c03f;hb=0ebb2d69cd88ed0c23abdcdb9714c889494e7b5a[Release Notes for 0.3 incubating^]
+| http://www.apache.org/dist/incubator/tamaya/0.3-incubating/apiandcore/[Download of API&amp;Core 0.3 incubating^] +
+  http://www.apache.org/dist/incubator/tamaya/0.3-incubating/extensions/[Download of Extensions 0.3 incubating^]
 
 | 0.2-incubating
 | 2016-04-06
