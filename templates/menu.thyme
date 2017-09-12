@@ -28,7 +28,8 @@
 								<li><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'documentation/core.html'">Core</a></li>
 								<li><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'documentation/extensions.html'">Extension Guide</a></li>
 								<li class="divider"></li>
-								<li><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'apidocs/index.html'" th:text="'Javadoc '+ ${config.tamaya_version} +' (external)'"></a></li>
+								<li><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'apidocs/stable/index.html'" th:text="'Javadoc '+ ${config.tamaya_version_released} +' (release/stable)'"></a></li>
+								<li><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'apidocs/development/index.html'" th:text="'Javadoc '+ ${config.tamaya_version} +' (development)'"></a></li>
               </ul>
             </li>
 						<li class="dropdown">
