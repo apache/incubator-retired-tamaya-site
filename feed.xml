@@ -6,10 +6,29 @@
     <atom:link href="https://tamaya.incubator.apache.org/feed.xml" rel="self" type="application/rss+xml" />
     <description>Apache Tamaya RSS feed template</description>
     <language>en-gb</language>
-    <pubDate>Di, 12 Sep 2017 22:05:32 +0200</pubDate>
-    <lastBuildDate>Di, 12 Sep 2017 22:05:32 +0200</lastBuildDate>
+    <pubDate>Di, 12 Sep 2017 22:14:27 +0200</pubDate>
+    <lastBuildDate>Di, 12 Sep 2017 22:14:27 +0200</lastBuildDate>
 
     <item>
+      <title>Homepage improvements - multiple APIs are linked now</title>
+      <link>https://tamaya.incubator.apache.org/blog/2017/09/new-api-links.html</link>
+      <pubDate>Di, 12 Sep 2017 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">blog/2017/09/new-api-links.html</guid>
+      <description>&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;The homepage allows multiple API versions to be linked - you can find multiple versions of our API now.&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;The most current released version - considered stable - can be found here:
+&amp;lt;a href=&amp;quot;https://tamaya.incubator.apache.org/apidocs/stable/index.html&amp;quot; class=&amp;quot;bare&amp;quot;&amp;gt;https://tamaya.incubator.apache.org/apidocs/stable/index.html&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;While the current development version - considered unstable - is:
+&amp;lt;a href=&amp;quot;https://tamaya.incubator.apache.org/apidocs/development/index.html&amp;quot; class=&amp;quot;bare&amp;quot;&amp;gt;https://tamaya.incubator.apache.org/apidocs/development/index.html&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;paragraph&amp;quot;&amp;gt;
+&amp;lt;p&amp;gt;Happy hacking :-)&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;</description>
+    </item><item>
       <title>Tamaya 0.3-incubating release candidate</title>
       <link>https://tamaya.incubator.apache.org/blog/2017/06/release-03.html</link>
       <pubDate>Di, 6 Jun 2017 00:00:00 +0200</pubDate>
