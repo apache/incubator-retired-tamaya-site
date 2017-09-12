@@ -1,0 +1,17 @@
+title=Homepage improvements - multiple APIs are linked now
+date=2017-09-12
+type=post
+tags=blog, asciidoc
+status=published
+~~~~~~
+= Release version and current development API Javadocs are linked now
+
+The homepage allows multiple API versions to be linked - you can find multiple versions of our API now.
+
+The most current released version - considered stable - can be found here:
+https://tamaya.incubator.apache.org/apidocs/stable/index.html
+
+While the current development version - considered unstable - is:
+https://tamaya.incubator.apache.org/apidocs/development/index.html
+
+Happy hacking :-)
