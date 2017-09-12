@@ -5,13 +5,9 @@ We are using jBake to generate a static page. It is enhanced by maven-generated 
 
 ## Current status
 
-### 2016-09: plan to migrate
-* As of 2016-09 we started to migrate to a jbake setup since the maven-generated site was based on a deprecated maven skin and had SSL problems.
-* Current working status: https://issues.apache.org/jira/browse/TAMAYA-178
-
-### 2017-01
-
-All old static pages are regenerated. Ready to add current contents and blog posts about the past of the project :-)
+The repository is linked to the live web page at
+https://tamaya.incubator.apache.org/
+after migration started in 2016-09.
 
 ## Available branches
 ### Master branch
@@ -69,6 +65,8 @@ You need write access to this repository and have to generate the javadoc manual
 1. Generate Javadoc for Tamaya Core
 ```
 $ cd tamaya
+$ git checkout master (to generate the current development version) OR
+$ git checkout 0.3-incubating (to generate the a stable release version)
 $ mvn site
 (since javadoc:javadoc does not generate a full report)
 ```
@@ -80,15 +78,16 @@ $ ./copy-site.sh
 1. Make sure you are on branch asf-site! Copy the generated Javadoc into apidocs
 ```
 $ git checkout asf-site
-$ cp -r pathToTamayaCoreRepo/target/site/apidocs .
+$ cd apidocs
+$ cp -r pathToTamayaCoreRepo/target/site/apidocs/* ./development/ - for current master version OR
+$ cp -r pathToTamayaCoreRepo/target/site/apidocs/* ./stable/ - for released/stable version
 ```
-1. If you do not want to change the already published Javadoc, make sure that your commit does not change the base index.html, that renders https://tamaya.incubator.apache.org/apidocs/index.html
 1. Push your changes
 ```
 $ git push
 ```
 1. Wait a couple of minutes for the gitpubsub to happen.
-1. Go to https://tamaya.incubator.apache.org/ in your browser
+1. Go to https://tamaya.incubator.apache.org/jbake/ in your browser
 
 #### Jenkins / CI integration
 
