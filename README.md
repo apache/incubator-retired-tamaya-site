@@ -73,7 +73,7 @@ $ mvn site
 1. Launch the bash script to generate the homepage and switch the the asf branch:
 ```
 $ git checkout master
-$ ./copy-site.sh
+$ ./copysite.sh
 ```
 1. Make sure you are on branch asf-site! Copy the generated Javadoc into apidocs
 ```
