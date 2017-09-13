@@ -16,15 +16,19 @@ Overview of all released versions of Apache Tamaya.
 | Release Notes
 | Download
 
+| 0.3-incubating
+| 2016-09-12
+| n/a
+| https://www.apache.org/dist/incubator/tamaya/0.3-incubating/[Download of 0.3 incubating^]
+
 | 0.2-incubating
 | 2016-04-06
-| http://www.apache.org/dist/incubator/tamaya/0.2-incubating/ReleaseNotes-0.2-incubating.html[Release Notes for 0.2 incubating^]
-| http://www.apache.org/dist/incubator/tamaya/0.2-incubating/[Download of 0.2 incubating^]
-
+| https://www.apache.org/dist/incubator/tamaya/0.2-incubating/ReleaseNotes-0.2-incubating.html[Release Notes for 0.2 incubating^]
+| https://www.apache.org/dist/incubator/tamaya/0.2-incubating/[Download of 0.2 incubating^]
 
 | 0.1-incubating
 | 2015-08-22
-| http://www.apache.org/dist/incubator/tamaya/0.1-incubating/ReleaseNotes-0.1-incubating.html[Release Notes for 0.1 incubating^]
-| http://www.apache.org/dist/incubator/tamaya/0.1-incubating/[Download of 0.1 incubating^]
+| https://www.apache.org/dist/incubator/tamaya/0.1-incubating/ReleaseNotes-0.1-incubating.html[Release Notes for 0.1 incubating^]
+| https://www.apache.org/dist/incubator/tamaya/0.1-incubating/[Download of 0.1 incubating^]
 
 |===
