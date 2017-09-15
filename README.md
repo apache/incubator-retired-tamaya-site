@@ -87,7 +87,7 @@ $ cp -r pathToTamayaCoreRepo/target/site/apidocs/* ./stable/ - for released/stab
 $ git push
 ```
 1. Wait a couple of minutes for the gitpubsub to happen.
-1. Go to https://tamaya.incubator.apache.org/jbake/ in your browser
+1. Go to https://tamaya.incubator.apache.org in your browser
 
 #### Jenkins / CI integration
 
