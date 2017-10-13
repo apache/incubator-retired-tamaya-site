@@ -111,6 +111,7 @@ Similarly you can also combine these options the other way round:
   ** by setting +tamaya-enabled=false+ in the OSGI Configuration for the given bundle.
   ** by adding +Tamaya-Enabled: false+ to the bundle's MANIFEST.
 
+
 ==== Controlling How Tamaya changes your OSGI Configuration
 
 Tamaya supports different policies that define how Tamaya is changing the OSGI configuration:
@@ -132,6 +133,60 @@ Hereby, _POLICY_ must be one of +OVERRIDE, EXTEND, UPDATE_ONLY+.
 * You can also configure the policy individually for a bundle by
   ** by setting +tamaya-policy=POLICY+ in the OSGI Configuration for the given bundle.
   ** by adding +Tamaya-Policy: POLICY+ to the bundle's MANIFEST.
+
+==== Mapping OSGI PIDs to Tamaya Configuration
+
+Tamaya configuration is a single +Map<String,String> with String keys and String values. Whereas OSGI configuration are
+multiple +Dictionary<String,?>+ (for several PIDs). The Tamaya OSGI extension implements the following mapping:
+
+As an example refer to the followinf Tamaya configuration entries:
+
+[source, listing]
+.Tamaya configuration for PID 'MyPlugin'
+-----------------------------------------------
+[MyPlugin]ch.base.pack.Main.customer=Native Inc
+[MyPlugin]ch.base.pack.Main.use=234
+[MyPlugin]ch.base.pack.Main.encoding=UTF-8
+-----------------------------------------------
+
+The OSGI Configuration Plugin now provides the following configuration for PID:
+
+[source, listing]
+.OSGI configuration for PID 'MyPlugin'
+-----------------------------------------------
+ch.base.pack.Main.use=100        (Integer)
+ch.base.pack.Main.switch=on      (Boolean)
+ch.base.pack.Main.customer=NONE  (String)
+-----------------------------------------------
+
+Now using +Policy.OVERRIDE+ (as desribed in the previous section), Tamaya will change the OSGI configuration
+as follows:
+
+[source, listing]
+.OSGI configuration after Tamaya update for PID 'MyPlugin'
+-----------------------------------------------
+ch.base.pack.Main.use=234                   (Integer)
+ch.base.pack.Main.switch=on                 (Boolean)
+ch.base.pack.Main.customer=Native Inc       (String)
+[MyPlugin]ch.base.pack.Main.encoding=UTF-8  (String)
+-----------------------------------------------
+
+So Tamaya configuration mapping can be summarized as follows:
+
+* The OSGI PID is mapped to a Tamaya prefix +[PID]+.
+* The OSGI keys are the exact same keys as from Tamaya with the _[PID]_ prefix removed.
+* New entries are added (depending on the +Policy+) as +String+ values.
+* Types of existing entries are preserved on update (this requires the Tamaya entries to be convertable into
+  the required target types. Refer to Tamaya's core documentation for supported types and how
+  to add custom converters).
+
+Finally, the mapping of the OSGI _PID_ to the Tamaya _[PID]_ prefix also can be customized by
+
+* adding +tamaya-config-root+ as an OSGI configuration property to the OSGI configuration.
+* adding +Tamaya-Config-Root+ as a MANIFEST entry to the bundle.
+
+The root will replace the default _[PID]_ prefix with the value configured.
+
 
 ==== OSGI Configuration Backup
 
@@ -382,22 +437,257 @@ to your OSGI runtime. The extension will add the following commands to your Kara
 
 [width="100%",frame="1",options="header",grid="all"]
 |=======
-|_Artifact_
-|_Description_
-|_Options_
+|_Artifact_ |_Description_ |_Options_
+
+| +tm_apply_config+
+| Show the current Tamaya configuration.
+| +++
+<pre>
+<b>SYNTAX</b>
+tamaya:tm_apply_config [options] pid
+<b>ARGUMENTS</b>
+<i>pid</i>  The target OSGI component PID.
+<b>OPTIONS</b>
+<i>operationMode, -m, --opmode</i> Explicitly set (override) the operation mode to use.
+<i>dryRun, -d, --dryrun</i> If set to true no OSGI configuration gets changed.
+</pre>
++++
+
+| +tm_backup_create+
+| Creates a backup of a current OSGI configuration.
+| +++
+<pre>
+<b>SYNTAX</b>
+tamaya:tm_backup_create [options] pid
+<b>ARGUMENTS</b>
+<i>pid</i>  The target pid to backup.
+<b>OPTIONS</b>
+<i>--force, -f</i>  Forces to (over)write a backup, even if one already exists.
+</pre>
++++
+
+| +tm_backup_delete+
+| Deletes the OSGI configuration backup  of Tamya.
+| +++
+<pre>
+<b>SYNTAX</b>
+tamaya:tm_backup_delete pid
+<b>ARGUMENTS</b>
+<i>pid</i>  Allows to filter on the given PID. '*' removes all backups.
+</pre>
++++
+
+| +tm_backup_list+
+| List the backed-up OSGI configuration before Tamya applied changes.
+| +++
+<pre>
+<b>SYNTAX</b>
+tamaya:tm_backup_list [pid]
+<b>ARGUMENTS</b>
+<i>pid</i>  Allows to filter on the given PID.
+</pre>
++++
+
+| +tm_backup_restore+
+| Restores the OSGI configuration backup of Tamya and disabled the PID for Tamaya configuration.
+| +++
+<pre>
+<b>SYNTAX</b>
+tamaya:tm_backup_restore pid
+<b>ARGUMENTS</b>
+<i>pid</i> The target PID. '*' restores all backups.
+</pre>
++++
+
+| +tm_config+
+| Show the current Tamaya configuration.
+| +++
+<pre>
+<b>SYNTAX</b>
+tamaya:tm_config [options]
+<b>OPTIONS</b>
+<i>pi, -p, --pid</i> Apply filtering for the given OSGI component PID.
+<i>section, -s, --section</i> A starting expression selecting the section to be filtered.
+</pre>
++++
+
+| +tm_enable+
+| Enables or disable Tamaya by default for all bundles/services (default: enabled=false). Disabling still allows to explicitly enable
+  bundles using 'tamaya-enable' manifest or OSGI config entries.
+| +++
+<pre>
+<b>SYNTAX</b>
+tamaya:tm_enable enabled
+<b>ARGUMENTS</b>
+<i>enabled</i> The boolean value to enabled/disable Tamaya by default.
+</pre>
++++
+
+| +tm_enabled+
+| Check if Tamaya is currently by default enabled for all bundles/services (default: enabled=false). If disabled still Tamaya allows to
+  explicitly enable bundles using 'tamaya-enable' manifest or OSGI config entries.
+| +++
+<pre>
+<b>SYNTAX</b>
+tamaya:tm_enabled
+</pre>
++++
+
+| +tm_history+
+| Gets the getHistory of changes Tamaya applied to the OSGI configuration.
+| +++
+<pre>
+<b>SYNTAX</b>
+tamaya:tm_history [options] [pid]
+<b>ARGUMENTS</b>
+<i>pid</i> Allows to filter on the given PID.
+<i>--type, -t</i> Allows to filter the events types shown.
+</pre>
++++
+
+| +tm_history_delete+
+| Deletes the getHistory of changes Tamaya applied to the OSGI configuration.
+| +++
+<pre>
+<b>SYNTAX</b>
+tamaya:tm_history_delete pid
+<b>ARGUMENTS</b>
+<i>pid</i> Allows to filter on the given PID.
+</pre>
++++
+
+| +tm_history_delete_all+
+| Deletes the full getHistory of changes Tamaya applied to the OSGI configuration.
+| +++
+<pre>
+<b>SYNTAX</b>
+tamaya:tm_history_delete_all
+</pre>
++++
+
+
+| +tm_history_maxsize+
+| Gets the maximal size of stored getHistory entries.
+| +++
+<pre>
+<b>SYNTAX</b>
+tamaya:tm_history_maxsize
+</pre>
++++
+
+| +tm_history_maxsize_set+
+| Sets the maximal size of Tamaya getHistory entries.
+| +++
+<pre>
+<b>SYNTAX</b>
+tamaya:tm_history_maxsize_set size
+<b>ARGUMENTS</b>
+<i>size</i>: The maximum number of entries in the getHistory.
++++
 
 | +tm_info+
-| Gives an overview on the current loaded default configuration.
-| -
+| Show he current Tamaya status.
+| +++
+<pre>
+<b>SYNTAX</b>
+tamaya:tm_info
+</pre>
++++
 
-| +tm_info+
-| Gives an overview on the current loaded default configuration.
-| -
+| +tm_osgi_config+
+| Show the current OSGI configuration.
+| +++
+<pre>
+<b>SYNTAX</b>
+tamaya:tm_osgi_config [options] pid
+<b>ARGUMENTS</b>
+<i>pid</i> The target OSGI component PID.
+<b>OPTIONS</b>
+<i>section, -s, --section</i>: A starting expression selecting the keys to be filtered.
+</pre>
++++
+
+| +tm_policy+
+| Get the current Tamaya overriding policy.
+| +++
+<pre>
+<b>SYNTAX</b>
+tamaya:tm_policy
+</pre>
++++
+
+| +tm_policy_set+
+| Sets the current Tamaya operation policy.
+| +++
+<pre>
+<b>SYNTAX</b>
+tamaya:tm_policy_set tm_policy_set
+<b>ARGUMENTS</b>
+<i>tm_policy_set</i>: The operation policy how Tamaya intercepts OSGI configuration.
++++
+
+| +tm_propagate_updates+
+| Flag if Tamaya is automatically triggering OSGI config updates, when according Tamaya configuration changes.
+| +++
+<pre>
+<b>SYNTAX</b>
+tm_propagate_updates
++++
+
+| +tm_propagate_updates_set+
+| Configure if Tamaya is automatically triggering OSGI config updates, when according Tamaya configuration changes.
+| +++
+<pre>
+<b>SYNTAX</b>
+tamaya:tm_propagate_updates_set enabled
+<b>ARGUMENTS</b>
+<i>enabled</i>: Set to true to enable Tamaya's updating trigger.
+</pre>
++++
+
+| +tm_property+
+| Get a Tamaya property.
+| +++
+<pre><b>SYNTAX</b>
+tamaya:tm_property [options] [key]
+<b>ARGUMENTS</b>
+<i>key</i>: The target property source id.
+<b>OPTIONS</b>
+<i>extended,e</i>: Also print extended property value attributes.
+<i>propertysource, ps</i>: The target property source id.
+</pre>
++++
+
+| +tm_propertysource+
+| Show the current Tamaya entries of a propertysource.
+| +++
+<pre><b>SYNTAX</b>
+tamaya:tm_propertysource [propertysource]
+<b>ARGUMENTS</b>
+<i>propertysource</i>: The target property source id.
++++
+
+| +tm_propertysources+
+| Get a list of currently registered propertysources.
+| +++
+<pre>
+<b>SYNTAX</b>
+tamaya:tm_propertysources
+</pre>
++++
+
 |=======
-
-tbd...
 
 ==== Apache Karaf Ferature
 
 Apache Tamaya provides a Karaf feature with all required dependencies
 as +org.apache.tamaya.ext:tamaya-karaf-features:{tamaya-version}:features:xml+.
+
+
+
+==== Apache Felix Gogo Console
+
+Apache Tamaya also provides the same commands as described for _Karaf_, but executable in
+plaing Gogo console as used by Apache Felix and Equinox as
++org.apache.tamaya.ext:tamaya-gogo-shell:{tamaya-version}+. Refer to the previous sections for
+a detailed command description.
