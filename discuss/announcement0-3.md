@@ -49,11 +49,6 @@ Main features
 *
 *
 
-Compatibility
-=============
-The API is still backwards compatible to version 0.1 and 0.2
-(TODO: is that so?)
-
 Project structure
 =================
 The slim Tamaya API and core implementation is enhanced by different kinds of production-ready extensions modules, while a sandbox contains different alpha-grade modules.
