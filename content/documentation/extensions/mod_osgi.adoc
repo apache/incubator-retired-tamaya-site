@@ -187,7 +187,6 @@ Finally, the mapping of the OSGI _PID_ to the Tamaya _[PID]_ prefix also can be 
 
 The root will replace the default _[PID]_ prefix with the value configured.
 
-
 ==== OSGI Configuration Backup
 
 Before Tamaya changes any OSGI configuration it creates a _Backup_ of the existing OSGI
@@ -426,6 +425,127 @@ public interface TamayaConfigService{
 }
 -----------------------------------------------
 
+
+==== The Tamaya OSGI Configuration Service
+
+Finally Tamaya also provides support for using Tamaya's injection API with your OSGI project. To enable injection
+you must install a few additional bundles:
+
+[source, xml]
+-----------------------------------------------
+<dependency>
+   <groupId>org.apache.tamaya.ext</groupId>
+   <artifactId>tamaya-osgi-injection</artifactId>
+   <version>${tamaya.version}</version>
+</dependency>
+<dependency>
+   <groupId>org.apache.tamaya.ext</groupId>
+   <artifactId>tamaya-injection</artifactId>
+   <version>${tamaya.version}</version>
+</dependency>
+<dependency>
+   <groupId>org.apache.tamaya.ext</groupId>
+   <artifactId>injection-api</artifactId>
+   <version>${tamaya.version}</version>
+</dependency>
+-----------------------------------------------
+
+Given that you can inject configuration entries
+
+* on your services by
+  ** setting +tamaya-config-inject=true+ in your service properties.
+  ** setting +Tamaya-Config-Inject: true+ in your bundle's manifest.
+* or by using the registered +ConfigInjectionService+:
+
+[source, java]
+-----------------------------------------------
+public interface ConfigInjectionService {
+    /** The manifest entry to enable Tamaya injection. */
+    String TAMAYA_INJECTION_ENABLED_MANIFEST = "Tamaya-Config-Inject";
+    /** The OSGI config entry to enable Tamaya injection. */
+    String TAMAYA_INJECTION_ENABLED_PROP = "tamaya-config-inject";
+
+    /**
+     * Checks if injection is enabled on the given service.
+     * @param reference the service reference, not null.
+     * @return true, if enjection is enabled.
+     */
+    boolean isInjectionEnabled(ServiceReference reference);
+
+    /**
+     * Checks if injection is enabled on the given service.
+     * @param bundle the bundle, not null.
+     * @return true, if enjection is enabled.
+     */
+    boolean isInjectionEnabled(Bundle bundle);
+
+    /**
+     * Configures the passed instance.
+     * @param instance the instance, not null.
+     * @param <T> the input and return type.
+     * @param pid the target PID, not null.
+     * @param location the optional location
+     * @return the configured instance.
+     */
+    <T> T configure(String pid, String location, T instance);
+
+    /**
+     * Creates a suzpplier, which supplies events as created by the basic supplier, which are
+     * automatically configured, when supplying.
+     * @param supplier the base supplier, not null.
+     * @param pid the target PID, not null.
+     * @param location the optional location
+     * @param <T> the type
+     * @return a configuring supplier.
+     */
+    <T> Supplier<T> getConfiguredSupplier(String pid, String location, java.util.function.Supplier<T> supplier);
+
+    /**
+     * Creates a template implementing the annotated methods based on current configuration data.
+     *
+     * @param <T> the type of the template.
+     * @param templateType the type of the template to be created.
+     * @param pid the target PID, not null.
+     * @param location the optional location
+     * @return the configured template.
+     */
+    <T> T createTemplate(String pid, String location, Class<T> templateType);
+
+    /**
+     * Configures the passed instance.
+     * @param instance the instance, not null.
+     * @param <T> the input and return type.
+     * @param bundle the target bundle, not null.
+     * @return the configured instance.
+     */
+    <T> T configure(Bundle bundle, T instance);
+
+    /**
+     * Creates a suzpplier, which supplies events as created by the basic supplier, which are
+     * automatically configured, when supplying.
+     * @param supplier the base supplier, not null.
+     * @param bundle the target bundle, not null.
+     * @param <T> the type
+     * @return a configuring supplier.
+     */
+    <T> Supplier<T> getConfiguredSupplier(Bundle bundle, java.util.function.Supplier<T> supplier);
+
+    /**
+     * Creates a template implementing the annotated methods based on current configuration data.
+     *
+     * @param <T> the type of the template.
+     * @param templateType the type of the template to be created.
+     * @param bundle the target bundle, not null.
+     * @return the configured template.
+     */
+    <T> T createTemplate(Bundle bundle, Class<T> templateType);
+}
+-----------------------------------------------
+
+NOTE: Injection hereby is based on the OSGI ConfigAdmin values only. To use Tamaya configuration you have to additionally
+install the Tamaya common OSGI support as described in the previous sections.
+
+More details on Tamaya's injection API can be found in the corresponding link:mod_injection.html[API documentation].
 
 === Special OSGI Platform support
 
