@@ -41,9 +41,8 @@ Please do not check in the `output` directory as it contains the baked homepage!
 ### ASF-site branch
 
 Is linked to
-https://issues.apache.org/jira/browse/INFRA-12814
-://tamaya.incubator.apache.org/jbake/
-as requested via ttps://issues.apache.org/jira/browse/INFRA-12814
+https://tamaya.incubator.apache.org/jbake/
+as requested via https://issues.apache.org/jira/browse/INFRA-12814
 
 ### How to generate a new page
 
@@ -80,7 +79,7 @@ $ ./copysite.sh
 $ git checkout asf-site
 $ cd apidocs
 $ cp -r pathToTamayaCoreRepo/target/site/apidocs/* ./development/ - for current master version OR
-$ cp -r pathToTamayaCoreRepo/target/site/apidocs/* ./stable/ - for released/stable version
+$ cp -r pathToTamayaCoreRepo/target/site/apidocs/* ./stable/ - for released/stable version(s)
 ```
 1. Push your changes
 ```
