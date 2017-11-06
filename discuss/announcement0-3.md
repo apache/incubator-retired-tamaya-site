@@ -45,23 +45,23 @@ This release is the first with a new repository structure and our new project ho
 
 Main features
 =============
-* We have fixed lots of bugs.
-* We reduced the log "noise" on sturtup.
+* We fixed a lot of bugs.
+* We reduced the log "noise" on startup.
 * We introduced PropertyValue as a SPI artifact to support meta-entries.
-* We integrated the builder extension with the existing builder API.
+* We integrated the builder extension within the existing builder API.
 * We simplified a couple of APIs so working with explicit builders is as straightforward as using auto-discovery features.
-* It is now possible to inject configuration values into any kind of beans/templates, also without being annotated at all.
+* It is now possible to inject configuration values into any kind of beans/templates, without being annotated at all as well.
 * We resolved possible license issues by replacing corresponding dependencies with Apache variants.
 * We added converters for File and Path.
 * We removed the binary distribution package in favour of the source distribution and the uploaded maven artifacts.
 
 Project structure
 =================
-With this release we also separated the homepage code completely from the project code, so independent lifecycles are possible.
 
 The slim Tamaya API and core implementation is enhanced by different kinds of production-ready extensions modules, while a sandbox contains different alpha-grade modules.
 
 Details on how to use Tamaya can be found on our site: http://tamaya.incubator.apache.org/
+With this release we also separated the homepage code completely from the project code, to ease independent lifecycles.
 
 You may download the release via:
 http://www.apache.org/dyn/closer.cgi/incubator/tamaya/0.3-incubating
