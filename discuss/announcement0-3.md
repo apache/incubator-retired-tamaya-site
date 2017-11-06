@@ -45,12 +45,20 @@ This release is the first with a new repository structure and our new project ho
 
 Main features
 =============
-* TBD!
-*
-*
+* We have fixed lots of bugs.
+* We reduced the log "noise" on sturtup.
+* We introduced PropertyValue as a SPI artifact to support meta-entries.
+* We integrated the builder extension with the existing builder API.
+* We simplified a couple of APIs so working with explicit builders is as straightforward as using auto-discovery features.
+* It is now possible to inject configuration values into any kind of beans/templates, also without being annotated at all.
+* We resolved possible license issues by replacing corresponding dependencies with Apache variants.
+* We added converters for File and Path.
+* We removed the binary distribution package in favour of the source distribution and the uploaded maven artifacts.
 
 Project structure
 =================
+With this release we also separated the homepage code completely from the project code, so independent lifecycles are possible.
+
 The slim Tamaya API and core implementation is enhanced by different kinds of production-ready extensions modules, while a sandbox contains different alpha-grade modules.
 
 Details on how to use Tamaya can be found on our site: http://tamaya.incubator.apache.org/
