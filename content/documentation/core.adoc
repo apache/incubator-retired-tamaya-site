@@ -10,7 +10,10 @@ and building blocks for supporting SPI implementations.
 
 Tamaya Core contains the following artifacts:
 
-* Implementations of +Configuration, ConfigurationContext, ConfigurationContextBuilder, ConfigurationProviderSpi+
+* *tamaya-spisupport* provides implementations and base classes for different API artifacts such as +Configuration,
+  ConfigurationContext, ConfigurationContextBuilder, ConfigurationProviderSpi, BasePropertySource+ and more. It is
+  built as independent core module, which also can be used with other implementations. The *tamaya-core*
+  implementation leverages these base classes to a build up a full API implementation.
 * A +java.util.ServiceLoader+ based +ServiceContext+ implementation. Hereby it implements component priorization based
   on the +@Priority+ annotations.
 * A +PropertyConverterManager+ that loads and stores references to all the preconfigured +PropertyConverter+ instances
@@ -42,8 +45,8 @@ For details about the extension modules available and  their functionality refer
 [[CorePropertyConverters]]
 === Default PropertyConverters
 
-The _Core_ module provides several +PropertyConverter+ implementations by default. Find below the
-listing of converters automatically registered with the Core module:
+The _SPI_ base module provides several +PropertyConverter+ implementations, which are automatically registered by the
+_Core_ module. Find below the listing of converters automatically registered with the Core module:
 
 [width="100%",frame="1",options="header",grid="all"]
 |=======
@@ -74,8 +77,9 @@ listing of converters automatically registered with the Core module:
 === Registering PropertyConverters
 
 Additional +PropertyConverters+ can be implemented easily. It is recommended to register them using
-the +java.util.ServiceLoader+, meaning you add a file under +META-INF/service/org.apache.tamaya.spi.PropertyConverter+ containing the fully qualified
-class names of the converters to be registered (one line each).
+the +java.util.ServiceLoader+, meaning you add a file under +META-INF/service/org.apache.tamaya.spi.PropertyConverter+
+containing the fully qualified class names of the converters to be registered (one line each) to enable
+auto-discovery.
 
 Alternatively you can also use a +ConfigurationContextBuilder+ to add additional converters
 programmatically.
@@ -84,8 +88,8 @@ programmatically.
 [[ComponentLoadingAndPriorization]]
 === Component Loading and Priorization
 
-Tamaya _Core_ in general loads all components by default using the +java.util.ServiceLoader+ mechanism. This means that new components
-must be registered by adding a file under +META-INF/service/<myInterfaceName>+ containing the fully
+Tamaya _Core_ in general loads all components by default using the +java.util.ServiceLoader+ mechanism. This means that
+new components must be registered by adding a file under +META-INF/service/<myInterfaceName>+ containing the fully
 qualified implementation class names of the components to be registered (one line per each).
 The +ServiceLoader+ itself does not provide any functionality for overriding or ordering of
 components. Tamaya _Core_ adds such a functionality with the possibility to add +@Priority+
@@ -108,8 +112,8 @@ NOTE: Sorting the property sources based on their ordinal value is only the defa
 [[RegisteringPropertySources]]
 === Registering Property Sources
 
-+PropertySource+ implementations that provide configuration properties are registered as components as described in the previous
-section. Hereby the precedence (ordering) of property sources is not hard-coded. Instead a +Comparator<PropertySource>+
++PropertySource+ implementations that provide configuration properties are registered as components as described in the
+previous section. Hereby the precedence (ordering) of property sources is not hard-coded. Instead a +Comparator<PropertySource>+
 can be passed to a +ConfigurationContextBuilder+ to perform automatic ordering of the property sources
 registered. The default implementation hereby implements the following logic:
 
@@ -145,7 +149,7 @@ applications already easily. Basically configuration is built  up by default as 
 === Overview of Registered Default Property Sources and Providers
 
 The Tamaya Core implementation provides a couple of default +PropertySource+ implementations, which are automatically
-registered. They are all in the package +org.apache.tamaya.core.propertysource+ and
+registered. They are all in the package +org.apache.tamaya.spisupport.propertysource+ and
 +org.apache.tamaya.core.provider+:
 
 [width="100%",frame="1",options="header",grid="all"]
@@ -157,6 +161,9 @@ registered. They are all in the package +org.apache.tamaya.core.propertysource+ 
 |Environment Properties                   |EnvironmentPropertySource      |300
 |System Properties                        |SystemPropertySource           |1000
 |=======
+
+NOTE: Similarly to property converters the property sources shown here are defined within the "tamaya-spisupport* module
+      and automatically registered with the *tamaya-core* implementation using Tamaya's auto-discovery mechanisms.
 
 NOTE: +JNDIPropertySource+ is provided by the `tamaya-jndi` extension module.
 
