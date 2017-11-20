@@ -125,7 +125,7 @@
 				<h1>Apache Tamaya - Extension: Spring Integration</h1>
 			</div>
 
-			<p><em>2017-09-12</em></p>
+			<p><em>2017-11-20</em></p>
 
 			<p><div id="preamble">
 <div class="sectionbody">
@@ -141,7 +141,7 @@
 <div class="sect2">
 <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
 <div class="paragraph">
-<p>Tamaya <em>Spring</em> currently provides two implementations also full integration for Spring:</p>
+<p>Tamaya <em>Spring</em> currently provides full integration for Spring and Spring Boot:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -166,7 +166,7 @@ which adds all the full fledged Tamaya configuration capabilities to Spring.</p>
 <div class="sect2">
 <h3 id="_compatibility">Compatibility</h3>
 <div class="paragraph">
-<p>Both modules are based on Java 7, so they will run on Java 7 and beyond. The extension shown here works similarly
+<p>Both modules are based on Java 8, so they will run on Java 8 and beyond. The extension shown here works similarly
 with Spring Framework as well as Spring Boot.</p>
 </div>
 </div>
@@ -189,7 +189,23 @@ with Spring Framework as well as Spring Boot.</p>
 <h3 id="_registering_tamaya_spring_configuration">Registering Tamaya Spring Configuration</h3>
 <div class="paragraph">
 <p>Basically to activate the Tamaya Spring support the most simple thing is to a enable the Tamaya package for being
-scanned for Spring components, e.g.</p>
+scanned for Spring components, e.g. using annotations:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@SpringBootApplication
+@ComponentScan({"org.apache.tamaya.integration.spring"})
+public class SampleWebFreeMarkerApplication {
+
+	public static void main(String[] args) throws Exception {
+		SpringApplication.run(SampleWebFreeMarkerApplication.class, args);
+	}
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Of course, you can still use Spring&#8217;s XML configuration variant similarly:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -206,21 +222,9 @@ scanned for Spring components, e.g.</p>
 &lt;/beans&gt;</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-Of course you can also use the newer @ComponentScan annotation as described by the Spring documentation.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
-<p>Similarly if you dont want to use component scanning you can configure things using plain old XML. Simply add the
-following lines somewhere into one of your application context configuration files.</p>
+<p>Though not recommended you can explicitly register the Tamaya related beans manually as well in your context configuration
+files:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -242,6 +246,9 @@ is resolved from the current Tamaya configuration.</p>
 &lt;/bean&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Similarly</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_configuring_your_beans">Configuring your Beans</h3>
@@ -253,46 +260,94 @@ is resolved from the current Tamaya configuration.</p>
 <pre class="prettyprint highlight"><code class="language-java" data-lang="java">**
  * Created by Anatole on 25.09.2015.
  */
-@ConfigDefaultSections
+@ConfigDefaultSections("app.root") // optional <b class="conum">(1)</b>
+@Component
 public class ConfiguredSpringBean {
 
+    @Value("${application.message:Hello World}")  <b class="conum">(2)</b>
     private String message;
 
     @Autowired
     private Environment env;
 
+    @Config(value = "alternateMessage", required = false) <b class="conum">(3)</b>
+    private String anotherMessage = "N/A";
+
     @Config("java.version")
     private String javaVersion;
 
-    @Config
-    @ConfigDefault("23")
+    @Config(value={"number", "testNum", "[notavailable]"}, defaultValue="23") <b class="conum">(4)</b><b class="conum">(5)</b>
     private int testNumber;
 
-    public String getJavaVersion(){
-        return javaVersion;
-    }
-
-    public int getTestNumber(){
-        return testNumber;
-    }
-
-    public Environment getEnv(){
-        return env;
-    }
-
-    public void setMessage(String message){
-        this.message = message;
-    }
-
-    public String getMessage() {
-        return message;
-    }
+    ...
 }</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>You can configure default section prefixes. This is an optional feature.</p>
+</li>
+<li>
+<p>Tamaya does not require you to change your code. You can still work with
+Spring injection for your configuration, but Tamaya will override Spring
+configuration by default.</p>
+</li>
+<li>
+<p>You can also define entries as not required, which allows you to perform
+default inialization using Java idoms.</p>
+</li>
+<li>
+<p>Tamaya allows you to define an ordered list of key candidates, which are
+combined with the section prefix, if present, to the full keys. Keys added
+in brackets ([]) are interpreted as absolute keys, so the example above
+the key candidate list evaluates to app.root.number", "app.root.testNum",
+"notavailable".</p>
+</li>
+<li>
+<p>You can configure default values used, if no other value could be evaluated
+for the given keyset.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>Summarizing you get all the nice features of Tamaya out of the box running
 with your Spring code.</p>
+</div>
+<div class="paragraph">
+<p>This also includes for example support for <em>dynamic values</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Config(value = "foreground.color", required = false, defaultValue = "#DDDDDD")
+private DynamicValue&lt;Color&gt; foregroundColor;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Dynamic values are a very flexible mechanism for managing configuration changes.
+You can even use an update policy to define how you want to handle configuration
+changes four your value:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">foregroundColor.setUpdatePolicy(UpdatePolicy.IMMEDEATE);
+foregroundColor.addPropertyChangeListener(() -&gt; {
+   System.out.println("New forground color: " + foregroundColor.get();
+});</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+For a full description of Tamaya&#8217;s injection API please
+           refer to the <a href="extensions/mod_injection.html">corresponding documentation</a>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -308,7 +363,7 @@ with your Spring code.</p>
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2017</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2017-09-12</span> |
+							at <span>2017-11-20</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>
