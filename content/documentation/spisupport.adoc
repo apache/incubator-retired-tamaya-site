@@ -9,22 +9,23 @@ toc::[]
 [[SPISupport]]
 == Tamaya SPI Support (Extension Module)
 
-Tamaya _SPI Support_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+Tamaya _SPI Support_ is an core module only dependong on the API. It implements lots of API and SPI related
+artifacts in portable way. Tamaya's core module reuses this functionality to build up a full fledged
+Tamaya API implementatation.
 
 
 === What functionality this module provides ?
 
-Tamaya _SPI Support_ provides a few helpful base classes that can be used to implement some of the often
-used SPI parts in Tamaya:
+Tamaya _SPI Support_ provides a few helpful base classes that can be used to implement aspects of Tamaya:
 
-* +BasePropertySource+ provides an abstract base class for implementation of your own PropertySources.
+* +BasePropertySource+ provides an abstract *base class* for implementation of your own PropertySources.
 * +DefaultConfiguration+ provides you with a simple implementation of the +Configuration+ interface based on a
   +ConfigurationContext+ provided. This is also very useful for mocking configuration during test execution, but
   not only constraint to that use case.
 * +DefaultConfigurationContext+ provides you with a working implementation of the +ConfigurationContext+.
-* +EnumConverter+ is a converter implementation that can automatically select the currect enumeration values based
+* Numerous *converters*, including an +EnumConverter+ is a converter implementation that can automatically select the currect enumeration values based
   on a configured entry.
-* +MapPropertySource+ implements a static property source based on +java.util.Map+.
+* +MapPropertySource+ implements a property source based on +java.util.Map+.
 * +PriorityServiceComparator+ compares arbitrary services based on their +@Priority+ annotations (also handling the
   case, where no such annotation is present).
 * +PropertiesResourcePropertySource+ is an implementation of a +PropertySource+ based on a +Properties+ instance,
@@ -46,7 +47,7 @@ NOTE: It is highly recommended that you read also the link:../core.html[document
 
 === Compatibility
 
-The module is based on Java 7, so it will run on Java 7 and beyond.
+The module is based on Java 8, so it will run on Java 8 and beyond.
 
 
 === Installation
@@ -56,7 +57,7 @@ To use Tamaya's _spisupport_ you only must add the corresponding dependency to y
 [source, xml]
 -----------------------------------------------
 <dependency>
-  <groupId>org.apache.tamaya.ext</groupId>
+  <groupId>org.apache.tamaya</groupId>
   <artifactId>tamaya-spisupport</artifactId>
   <version>{tamaya_version}</version>
 </dependency>
