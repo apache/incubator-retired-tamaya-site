@@ -84,14 +84,33 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.apache.tamaya">org.apache.tamaya</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">This package contains the Apache Tamaya API.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.apache.tamaya.core.internal">org.apache.tamaya.core.internal</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Contains implementations of different property sources for supporting
+ CLI, Environment and System Properties as well as simple properties
+ based on the formats defined by <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util"><code>Properties</code></a>.</div>
+</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><a href="#org.apache.tamaya.examples.minimal">org.apache.tamaya.examples.minimal</a></td>
+<td class="colLast">
+<div class="block">Example to show the simplest ways to use Tamaya with
+ the standard configuration file.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.apache.tamaya.spi">org.apache.tamaya.spi</a></td>
+<td class="colLast">
+<div class="block">This package contains the Apache Tamaya SPI artifacts.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#org.apache.tamaya.spisupport">org.apache.tamaya.spisupport</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
 </tbody>
@@ -163,8 +182,8 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContext.html" title="class in org.apache.tamaya.core.internal">DefaultConfigurationContext</a></span></code>
-<div class="block">Default implementation of a simple ConfigurationContext.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/CoreConfigurationContext.html" title="class in org.apache.tamaya.core.internal">CoreConfigurationContext</a></span></code>
+<div class="block">Default implementation of <a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContextBuilder</code></a>.</div>
 </td>
 </tr>
 </tbody>
@@ -178,19 +197,15 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#build--">build</a></span>()</code>
-<div class="block">Builds a new configuration based on the configuration of this builder instance.</div>
-</td>
+<td class="colLast"><span class="typeNameLabel">CoreConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/CoreConfigurationContextBuilder.html#build--">build</a></span>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a></code></td>
 <td class="colLast"><span class="typeNameLabel">DefaultConfigurationProvider.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationProvider.html#getConfigurationContext--">getConfigurationContext</a></span>()</code>
-<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">use <a href="../../../../../org/apache/tamaya/Configuration.html#getContext--"><code>Configuration.getContext()</code></a> instead.</span></div>
+</div>
 </td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfiguration.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfiguration.html#getContext--">getContext</a></span>()</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -202,54 +217,29 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
-<td class="colLast"><span class="typeNameLabel">PropertyFiltering.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/PropertyFiltering.html#applyFilter-org.apache.tamaya.spi.PropertyValue-org.apache.tamaya.spi.ConfigurationContext-">applyFilter</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&nbsp;value,
-           <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
-<div class="block">Filters a single value.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">PropertyFiltering.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/PropertyFiltering.html#applyFilters-java.util.Map-org.apache.tamaya.spi.ConfigurationContext-">applyFilters</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;&nbsp;rawProperties,
-            <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
-<div class="block">Filters all properties.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></code></td>
 <td class="colLast"><span class="typeNameLabel">DefaultConfigurationProvider.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationProvider.html#createConfiguration-org.apache.tamaya.spi.ConfigurationContext-">createConfiguration</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">ConfigValueEvaluator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/ConfigValueEvaluator.html#evaluateRawValues-org.apache.tamaya.spi.ConfigurationContext-">evaluateRawValues</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
 <div class="block">Evaluates all property values from a <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a>.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigValueEvaluator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigValueEvaluator.html#evaluateRawValues-org.apache.tamaya.spi.ConfigurationContext-">evaluateRawValues</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigValueEvaluator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/ConfigValueEvaluator.html#evaluteRawValue-java.lang.String-org.apache.tamaya.spi.ConfigurationContext-">evaluteRawValue</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+<td class="colLast"><span class="typeNameLabel">ConfigValueEvaluator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/ConfigValueEvaluator.html#evaluteRawValue-java.lang.String-org.apache.tamaya.spi.ConfigurationContext-">evaluteRawValue</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
                <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
 <div class="block">Evaluates single value using a <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a>.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigValueEvaluator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigValueEvaluator.html#evaluteRawValue-java.lang.String-org.apache.tamaya.spi.ConfigurationContext-">evaluteRawValue</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-               <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>&nbsp;</td>
-</tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">DefaultConfigurationProvider.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationProvider.html#setConfigurationContext-org.apache.tamaya.spi.ConfigurationContext-">setConfigurationContext</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
-<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">the context should be given upon creation of the <a href="../../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya"><code>Configuration</code></a></span></div>
+</div>
 </td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#setContext-org.apache.tamaya.spi.ConfigurationContext-">setContext</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -260,14 +250,27 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfiguration.html#DefaultConfiguration-org.apache.tamaya.spi.ConfigurationContext-">DefaultConfiguration</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;configurationContext)</code>
-<div class="block">Constructor.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/CoreConfigurationContextBuilder.html#CoreConfigurationContextBuilder-org.apache.tamaya.spi.ConfigurationContext-">CoreConfigurationContextBuilder</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
+<div class="block">Creates a new builder instance initializing it with the given context.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#DefaultConfigurationContextBuilder-org.apache.tamaya.spi.ConfigurationContext-">DefaultConfigurationContextBuilder</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
-<div class="block">Creates a new builder instance.</div>
-</td>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.apache.tamaya.examples.minimal">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a> in <a href="../../../../../org/apache/tamaya/examples/minimal/package-summary.html">org.apache.tamaya.examples.minimal</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/apache/tamaya/examples/minimal/package-summary.html">org.apache.tamaya.examples.minimal</a> with parameters of type <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></code></td>
+<td class="colLast"><span class="typeNameLabel">TestConfigProvider.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/examples/minimal/TestConfigProvider.html#createConfiguration-org.apache.tamaya.spi.ConfigurationContext-">createConfiguration</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -294,7 +297,7 @@
 <td class="colLast"><span class="typeNameLabel">ConversionContext.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConversionContext.html#getConfigurationContext--">getConfigurationContext</a></span>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a></code></td>
+<td class="colFirst"><code>default <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a></code></td>
 <td class="colLast"><span class="typeNameLabel">ConfigurationProviderSpi.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationProviderSpi.html#getConfigurationContext--">getConfigurationContext</a></span>()</code>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
 <div class="block"><span class="deprecationComment">Will be removed in favour of <a href="../../../../../org/apache/tamaya/Configuration.html#getContext--"><code>Configuration.getContext()</code></a>.</span></div>
@@ -329,7 +332,7 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>void</code></td>
+<td class="colFirst"><code>default void</code></td>
 <td class="colLast"><span class="typeNameLabel">ConfigurationProviderSpi.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationProviderSpi.html#setConfigurationContext-org.apache.tamaya.spi.ConfigurationContext-">setConfigurationContext</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
 <div class="block"><span class="deprecationComment">use <a href="../../../../../org/apache/tamaya/spi/ConfigurationProviderSpi.html#setConfiguration-org.apache.tamaya.Configuration-"><code>ConfigurationProviderSpi.setConfiguration(Configuration)</code></a></span></div>
@@ -353,7 +356,7 @@
 <tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConversionContext.Builder.html#Builder-org.apache.tamaya.Configuration-org.apache.tamaya.spi.ConfigurationContext-java.lang.String-org.apache.tamaya.TypeLiteral-">Builder</a></span>(<a href="../../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a>&nbsp;configuration,
        <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;configurationContext,
-       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+       <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
        <a href="../../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;&nbsp;targetType)</code>
 <div class="block">Creates a new Builder instance.</div>
 </td>
@@ -367,10 +370,132 @@
 </tr>
 <tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/FilterContext.html#FilterContext-org.apache.tamaya.spi.PropertyValue-java.util.Map-org.apache.tamaya.spi.ConfigurationContext-">FilterContext</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&nbsp;value,
-             <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;&nbsp;configEntries,
+             <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;&nbsp;configEntries,
              <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
 <div class="block">Creates a new FilterContext, for filtering of a multi value access
  using <a href="../../../../../org/apache/tamaya/Configuration.html#getProperties--"><code>Configuration.getProperties()</code></a>.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.apache.tamaya.spisupport">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a> in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> that implement <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContext.html" title="class in org.apache.tamaya.spisupport">DefaultConfigurationContext</a></span></code>
+<div class="block">Default implementation of a simple ConfigurationContext.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> that return <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#build--">build</a></span>()</code>
+<div class="block">Builds a new configuration based on the configuration of this builder instance.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfiguration.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfiguration.html#getContext--">getContext</a></span>()</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> with parameters of type <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PropertyFiltering.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/PropertyFiltering.html#applyFilter-org.apache.tamaya.spi.PropertyValue-org.apache.tamaya.spi.ConfigurationContext-">applyFilter</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&nbsp;value,
+           <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
+<div class="block">Filters a single value.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">PropertyFiltering.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/PropertyFiltering.html#applyFilters-java.util.Map-org.apache.tamaya.spi.ConfigurationContext-">applyFilters</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;&nbsp;rawProperties,
+            <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
+<div class="block">Filters all properties.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigValueEvaluator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigValueEvaluator.html#evaluateRawValues-org.apache.tamaya.spi.ConfigurationContext-">evaluateRawValues</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigValueEvaluator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/ConfigValueEvaluator.html#evaluateRawValues-org.apache.tamaya.spi.ConfigurationContext-">evaluateRawValues</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
+<div class="block">Evaluates all property values from a <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a>.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigValueEvaluator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigValueEvaluator.html#evaluteRawValue-java.lang.String-org.apache.tamaya.spi.ConfigurationContext-">evaluteRawValue</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+               <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigValueEvaluator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/ConfigValueEvaluator.html#evaluteRawValue-java.lang.String-org.apache.tamaya.spi.ConfigurationContext-">evaluteRawValue</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+               <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
+<div class="block">Evaluates single value using a <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a>.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#resetWithConfigurationContext-org.apache.tamaya.spi.ConfigurationContext-">resetWithConfigurationContext</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;configurationContext)</code>
+<div class="block">Allows to reset configuration context during unit tests.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#setContext-org.apache.tamaya.spi.ConfigurationContext-">setContext</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#setContext-org.apache.tamaya.spi.ConfigurationContext-">setContext</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html#setContext-org.apache.tamaya.spi.ConfigurationContext-">setContext</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
+<div class="block">Init this builder instance with the given <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a> instance.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
+<caption><span>Constructors in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> with parameters of type <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfiguration.html#DefaultConfiguration-org.apache.tamaya.spi.ConfigurationContext-">DefaultConfiguration</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;configurationContext)</code>
+<div class="block">Constructor.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#DefaultConfigurationContextBuilder-org.apache.tamaya.spi.ConfigurationContext-">DefaultConfigurationContextBuilder</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
+<div class="block">Creates a new builder instance initializing it with the given context.</div>
 </td>
 </tr>
 </tbody>

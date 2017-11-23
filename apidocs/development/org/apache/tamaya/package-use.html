@@ -84,14 +84,33 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.apache.tamaya">org.apache.tamaya</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">This package contains the Apache Tamaya API.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.apache.tamaya.core.internal">org.apache.tamaya.core.internal</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Contains implementations of different property sources for supporting
+ CLI, Environment and System Properties as well as simple properties
+ based on the formats defined by <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util"><code>Properties</code></a>.</div>
+</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><a href="#org.apache.tamaya.examples.minimal">org.apache.tamaya.examples.minimal</a></td>
+<td class="colLast">
+<div class="block">Example to show the simplest ways to use Tamaya with
+ the standard configuration file.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.apache.tamaya.spi">org.apache.tamaya.spi</a></td>
+<td class="colLast">
+<div class="block">This package contains the Apache Tamaya SPI artifacts.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#org.apache.tamaya.spisupport">org.apache.tamaya.spisupport</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
 </tbody>
@@ -142,26 +161,29 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colOne"><a href="../../../org/apache/tamaya/class-use/ConfigOperator.html#org.apache.tamaya.core.internal">ConfigOperator</a>
-<div class="block">Models a function that maps a given <a href="../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya"><code>Configuration</code></a> to another <a href="../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya"><code>Configuration</code></a>.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><a href="../../../org/apache/tamaya/class-use/ConfigQuery.html#org.apache.tamaya.core.internal">ConfigQuery</a>
-<div class="block">Models a function that maps a given <a href="../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya"><code>Configuration</code></a> to something else.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colOne"><a href="../../../org/apache/tamaya/class-use/Configuration.html#org.apache.tamaya.core.internal">Configuration</a>
 <div class="block">A configuration models a aggregated set current properties, identified by
  a unique key, but adds higher level access functions to
  a <a href="../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a>.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colOne"><a href="../../../org/apache/tamaya/class-use/TypeLiteral.html#org.apache.tamaya.core.internal">TypeLiteral</a>
-<div class="block">Class for instantiation of objects that represent parameterized types
- with current parameters.</div>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.apache.tamaya.examples.minimal">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../org/apache/tamaya/package-summary.html">org.apache.tamaya</a> used by <a href="../../../org/apache/tamaya/examples/minimal/package-summary.html">org.apache.tamaya.examples.minimal</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../org/apache/tamaya/class-use/Configuration.html#org.apache.tamaya.examples.minimal">Configuration</a>
+<div class="block">A configuration models a aggregated set current properties, identified by
+ a unique key, but adds higher level access functions to
+ a <a href="../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a>.</div>
 </td>
 </tr>
 </tbody>
@@ -185,6 +207,41 @@
 </tr>
 <tr class="rowColor">
 <td class="colOne"><a href="../../../org/apache/tamaya/class-use/TypeLiteral.html#org.apache.tamaya.spi">TypeLiteral</a>
+<div class="block">Class for instantiation of objects that represent parameterized types
+ with current parameters.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.apache.tamaya.spisupport">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../org/apache/tamaya/package-summary.html">org.apache.tamaya</a> used by <a href="../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../org/apache/tamaya/class-use/ConfigOperator.html#org.apache.tamaya.spisupport">ConfigOperator</a>
+<div class="block">Models a function that maps a given <a href="../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya"><code>Configuration</code></a> to another <a href="../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya"><code>Configuration</code></a>.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../org/apache/tamaya/class-use/ConfigQuery.html#org.apache.tamaya.spisupport">ConfigQuery</a>
+<div class="block">Models a function that maps a given <a href="../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya"><code>Configuration</code></a> to something else.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><a href="../../../org/apache/tamaya/class-use/Configuration.html#org.apache.tamaya.spisupport">Configuration</a>
+<div class="block">A configuration models a aggregated set current properties, identified by
+ a unique key, but adds higher level access functions to
+ a <a href="../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a>.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../org/apache/tamaya/class-use/TypeLiteral.html#org.apache.tamaya.spisupport">TypeLiteral</a>
 <div class="block">Class for instantiation of objects that represent parameterized types
  with current parameters.</div>
 </td>

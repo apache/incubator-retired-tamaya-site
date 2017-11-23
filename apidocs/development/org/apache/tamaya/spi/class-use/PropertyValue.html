@@ -84,19 +84,31 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.apache.tamaya.core.internal">org.apache.tamaya.core.internal</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Contains implementations of different property sources for supporting
+ CLI, Environment and System Properties as well as simple properties
+ based on the formats defined by <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util"><code>Properties</code></a>.</div>
+</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#org.apache.tamaya.core.propertysource">org.apache.tamaya.core.propertysource</a></td>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><a href="#org.apache.tamaya.examples.custompropertysource">org.apache.tamaya.examples.custompropertysource</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#org.apache.tamaya.spi">org.apache.tamaya.spi</a></td>
+<td class="colLast">
+<div class="block">This package contains the Apache Tamaya SPI artifacts.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#org.apache.tamaya.spisupport">org.apache.tamaya.spisupport</a></td>
 <td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#org.apache.tamaya.spisupport.propertysource">org.apache.tamaya.spisupport.propertysource</a></td>
+<td class="colLast">
+<div class="block">Contains internal implementations artifacts registered as services.</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -115,23 +127,11 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
-<td class="colLast"><span class="typeNameLabel">PropertyFiltering.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/PropertyFiltering.html#applyFilter-org.apache.tamaya.spi.PropertyValue-org.apache.tamaya.spi.ConfigurationContext-">applyFilter</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&nbsp;value,
-           <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
-<div class="block">Filters a single value.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigValueEvaluator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/ConfigValueEvaluator.html#evaluteRawValue-java.lang.String-org.apache.tamaya.spi.ConfigurationContext-">evaluteRawValue</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+<td class="colLast"><span class="typeNameLabel">ConfigValueEvaluator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/ConfigValueEvaluator.html#evaluteRawValue-java.lang.String-org.apache.tamaya.spi.ConfigurationContext-">evaluteRawValue</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
                <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
 <div class="block">Evaluates single value using a <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a>.</div>
 </td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigValueEvaluator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigValueEvaluator.html#evaluteRawValue-java.lang.String-org.apache.tamaya.spi.ConfigurationContext-">evaluteRawValue</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-               <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -143,108 +143,10 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">PropertyFiltering.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/PropertyFiltering.html#applyFilters-java.util.Map-org.apache.tamaya.spi.ConfigurationContext-">applyFilters</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;&nbsp;rawProperties,
-            <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
-<div class="block">Filters all properties.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">ConfigValueEvaluator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/ConfigValueEvaluator.html#evaluateRawValues-org.apache.tamaya.spi.ConfigurationContext-">evaluateRawValues</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
 <div class="block">Evaluates all property values from a <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a>.</div>
 </td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigValueEvaluator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigValueEvaluator.html#evaluateRawValues-org.apache.tamaya.spi.ConfigurationContext-">evaluateRawValues</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../org/apache/tamaya/core/internal/package-summary.html">org.apache.tamaya.core.internal</a> with parameters of type <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
-<td class="colLast"><span class="typeNameLabel">PropertyFiltering.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/PropertyFiltering.html#applyFilter-org.apache.tamaya.spi.PropertyValue-org.apache.tamaya.spi.ConfigurationContext-">applyFilter</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&nbsp;value,
-           <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
-<div class="block">Filters a single value.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Method parameters in <a href="../../../../../org/apache/tamaya/core/internal/package-summary.html">org.apache.tamaya.core.internal</a> with type arguments of type <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">PropertyFiltering.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/PropertyFiltering.html#applyFilters-java.util.Map-org.apache.tamaya.spi.ConfigurationContext-">applyFilters</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;&nbsp;rawProperties,
-            <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
-<div class="block">Filters all properties.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="org.apache.tamaya.core.propertysource">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a> in <a href="../../../../../org/apache/tamaya/core/propertysource/package-summary.html">org.apache.tamaya.core.propertysource</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../org/apache/tamaya/core/propertysource/package-summary.html">org.apache.tamaya.core.propertysource</a> that return <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
-<td class="colLast"><span class="typeNameLabel">SystemPropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/propertysource/SystemPropertySource.html#get-java.lang.String-">get</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
-<td class="colLast"><span class="typeNameLabel">BasePropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/propertysource/BasePropertySource.html#get-java.lang.String-">get</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
-<td class="colLast"><span class="typeNameLabel">EnvironmentPropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/propertysource/EnvironmentPropertySource.html#get-java.lang.String-">get</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../org/apache/tamaya/core/propertysource/package-summary.html">org.apache.tamaya.core.propertysource</a> that return types with arguments of type <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">SystemPropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/propertysource/SystemPropertySource.html#getProperties--">getProperties</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">SimplePropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/propertysource/SimplePropertySource.html#getProperties--">getProperties</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">CLIPropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/propertysource/CLIPropertySource.html#getProperties--">getProperties</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">EnvironmentPropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/propertysource/EnvironmentPropertySource.html#getProperties--">getProperties</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">JavaConfigurationPropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/propertysource/JavaConfigurationPropertySource.html#getProperties--">getProperties</a></span>()</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -261,7 +163,7 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">SimplePropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/examples/custompropertysource/SimplePropertySource.html#getProperties--">getProperties</a></span>()</code>&nbsp;</td>
 </tr>
 </tbody>
@@ -287,7 +189,7 @@
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
 <td class="colLast"><span class="typeNameLabel">PropertyValueCombinationPolicy.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html#collect-org.apache.tamaya.spi.PropertyValue-java.lang.String-org.apache.tamaya.spi.PropertySource-">collect</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&nbsp;currentValue,
-       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+       <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
        <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>
 <div class="block">Method that is called for each value evaluated by a PropertySource for the given key.</div>
 </td>
@@ -301,7 +203,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
-<td class="colLast"><span class="typeNameLabel">PropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/PropertySource.html#get-java.lang.String-">get</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
+<td class="colLast"><span class="typeNameLabel">PropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/PropertySource.html#get-java.lang.String-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
 <div class="block">Access a property.</div>
 </td>
 </tr>
@@ -313,9 +215,9 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
-<td class="colLast"><span class="typeNameLabel">PropertyValue.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html#of-java.lang.String-java.lang.String-java.lang.String-">of</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-  <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;value,
-  <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;source)</code>
+<td class="colLast"><span class="typeNameLabel">PropertyValue.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html#of-java.lang.String-java.lang.String-java.lang.String-">of</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+  <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;value,
+  <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;source)</code>
 <div class="block">Creates a new PropertyValue without any metadata..</div>
 </td>
 </tr>
@@ -329,7 +231,7 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">FilterContext.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/FilterContext.html#getConfigEntries--">getConfigEntries</a></span>()</code>
 <div class="block">This map contains the following keys:
  
@@ -337,23 +239,23 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">PropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/PropertySource.html#getProperties--">getProperties</a></span>()</code>
 <div class="block">Access the current properties as Set.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">PropertyValue.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html#map-java.util.Map-java.lang.String-">map</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;config,
-   <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;source)</code>
+<td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">PropertyValue.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html#map-java.util.Map-java.lang.String-">map</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;config,
+   <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;source)</code>
 <div class="block">Maps a map of <code>Map&lt;String,String&gt;</code> to a <code>Map&lt;String,PropertyValue&gt;</code>.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">PropertyValue.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html#map-java.util.Map-java.lang.String-java.util.Map-">map</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;config,
-   <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;source,
-   <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;metaData)</code>
+<td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">PropertyValue.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html#map-java.util.Map-java.lang.String-java.util.Map-">map</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;config,
+   <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;source,
+   <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;metaData)</code>
 <div class="block">Maps a map of <code>Map&lt;String,String&gt;</code> to a <code>Map&lt;String,PropertyValue&gt;</code>.</div>
 </td>
 </tr>
@@ -369,7 +271,7 @@
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
 <td class="colLast"><span class="typeNameLabel">PropertyValueCombinationPolicy.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html#collect-org.apache.tamaya.spi.PropertyValue-java.lang.String-org.apache.tamaya.spi.PropertySource-">collect</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&nbsp;currentValue,
-       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+       <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
        <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>
 <div class="block">Method that is called for each value evaluated by a PropertySource for the given key.</div>
 </td>
@@ -398,7 +300,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/FilterContext.html#FilterContext-org.apache.tamaya.spi.PropertyValue-java.util.Map-org.apache.tamaya.spi.ConfigurationContext-">FilterContext</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&nbsp;value,
-             <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;&nbsp;configEntries,
+             <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;&nbsp;configEntries,
              <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
 <div class="block">Creates a new FilterContext, for filtering of a multi value access
  using <a href="../../../../../org/apache/tamaya/Configuration.html#getProperties--"><code>Configuration.getProperties()</code></a>.</div>
@@ -414,10 +316,214 @@
 <tbody>
 <tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/FilterContext.html#FilterContext-org.apache.tamaya.spi.PropertyValue-java.util.Map-org.apache.tamaya.spi.ConfigurationContext-">FilterContext</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&nbsp;value,
-             <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;&nbsp;configEntries,
+             <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;&nbsp;configEntries,
              <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
 <div class="block">Creates a new FilterContext, for filtering of a multi value access
  using <a href="../../../../../org/apache/tamaya/Configuration.html#getProperties--"><code>Configuration.getProperties()</code></a>.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.apache.tamaya.spisupport">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a> in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> that return <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PropertyFiltering.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/PropertyFiltering.html#applyFilter-org.apache.tamaya.spi.PropertyValue-org.apache.tamaya.spi.ConfigurationContext-">applyFilter</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&nbsp;value,
+           <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
+<div class="block">Filters a single value.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfiguration.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfiguration.html#evaluteRawValue-java.lang.String-">evaluteRawValue</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
+<div class="block">Evaluates the raw value using the context's PropertyValueCombinationPolicy.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigValueEvaluator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigValueEvaluator.html#evaluteRawValue-java.lang.String-org.apache.tamaya.spi.ConfigurationContext-">evaluteRawValue</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+               <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigValueEvaluator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/ConfigValueEvaluator.html#evaluteRawValue-java.lang.String-org.apache.tamaya.spi.ConfigurationContext-">evaluteRawValue</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+               <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
+<div class="block">Evaluates single value using a <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a>.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
+<td class="colLast"><span class="typeNameLabel">RegexPropertyFilter.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/RegexPropertyFilter.html#filterProperty-org.apache.tamaya.spi.PropertyValue-org.apache.tamaya.spi.FilterContext-">filterProperty</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&nbsp;valueToBeFiltered,
+              <a href="../../../../../org/apache/tamaya/spi/FilterContext.html" title="class in org.apache.tamaya.spi">FilterContext</a>&nbsp;context)</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> that return types with arguments of type <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">PropertyFiltering.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/PropertyFiltering.html#applyFilters-java.util.Map-org.apache.tamaya.spi.ConfigurationContext-">applyFilters</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;&nbsp;rawProperties,
+            <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
+<div class="block">Filters all properties.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigValueEvaluator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigValueEvaluator.html#evaluateRawValues-org.apache.tamaya.spi.ConfigurationContext-">evaluateRawValues</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigValueEvaluator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/ConfigValueEvaluator.html#evaluateRawValues-org.apache.tamaya.spi.ConfigurationContext-">evaluateRawValues</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
+<div class="block">Evaluates all property values from a <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a>.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> with parameters of type <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PropertyFiltering.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/PropertyFiltering.html#applyFilter-org.apache.tamaya.spi.PropertyValue-org.apache.tamaya.spi.ConfigurationContext-">applyFilter</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&nbsp;value,
+           <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
+<div class="block">Filters a single value.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
+<td class="colLast"><span class="typeNameLabel">RegexPropertyFilter.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/RegexPropertyFilter.html#filterProperty-org.apache.tamaya.spi.PropertyValue-org.apache.tamaya.spi.FilterContext-">filterProperty</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&nbsp;valueToBeFiltered,
+              <a href="../../../../../org/apache/tamaya/spi/FilterContext.html" title="class in org.apache.tamaya.spi">FilterContext</a>&nbsp;context)</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Method parameters in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> with type arguments of type <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">PropertyFiltering.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/PropertyFiltering.html#applyFilters-java.util.Map-org.apache.tamaya.spi.ConfigurationContext-">applyFilters</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;&nbsp;rawProperties,
+            <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
+<div class="block">Filters all properties.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.apache.tamaya.spisupport.propertysource">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a> in <a href="../../../../../org/apache/tamaya/spisupport/propertysource/package-summary.html">org.apache.tamaya.spisupport.propertysource</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/apache/tamaya/spisupport/propertysource/package-summary.html">org.apache.tamaya.spisupport.propertysource</a> that return <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
+<td class="colLast"><span class="typeNameLabel">SystemPropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/SystemPropertySource.html#get-java.lang.String-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
+<td class="colLast"><span class="typeNameLabel">EnvironmentPropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/EnvironmentPropertySource.html#get-java.lang.String-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
+<td class="colLast"><span class="typeNameLabel">BuildablePropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/BuildablePropertySource.html#get-java.lang.String-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
+<td class="colLast"><span class="typeNameLabel">BasePropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/BasePropertySource.html#get-java.lang.String-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/apache/tamaya/spisupport/propertysource/package-summary.html">org.apache.tamaya.spisupport.propertysource</a> that return types with arguments of type <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">SystemPropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/SystemPropertySource.html#getProperties--">getProperties</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">SimplePropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/SimplePropertySource.html#getProperties--">getProperties</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">MapPropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/MapPropertySource.html#getProperties--">getProperties</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">JavaConfigurationPropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/JavaConfigurationPropertySource.html#getProperties--">getProperties</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">EnvironmentPropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/EnvironmentPropertySource.html#getProperties--">getProperties</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">CLIPropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/CLIPropertySource.html#getProperties--">getProperties</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">BuildablePropertySource.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/BuildablePropertySource.html#getProperties--">getProperties</a></span>()</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/apache/tamaya/spisupport/propertysource/package-summary.html">org.apache.tamaya.spisupport.propertysource</a> with parameters of type <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/propertysource/BuildablePropertySource.Builder.html" title="class in org.apache.tamaya.spisupport.propertysource">BuildablePropertySource.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">BuildablePropertySource.Builder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/BuildablePropertySource.Builder.html#withProperties-org.apache.tamaya.spi.PropertyValue...-">withProperties</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>...&nbsp;values)</code>
+<div class="block">With properties builder.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Method parameters in <a href="../../../../../org/apache/tamaya/spisupport/propertysource/package-summary.html">org.apache.tamaya.spisupport.propertysource</a> with type arguments of type <a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/propertysource/BuildablePropertySource.Builder.html" title="class in org.apache.tamaya.spisupport.propertysource">BuildablePropertySource.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">BuildablePropertySource.Builder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/BuildablePropertySource.Builder.html#withProperties-java.util.Map-">withProperties</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;&nbsp;properties)</code>
+<div class="block">With properties builder.</div>
 </td>
 </tr>
 </tbody>

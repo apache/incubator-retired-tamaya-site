@@ -53,7 +53,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li>Prev&nbsp;Class</li>
-<li><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfiguration.html" title="class in org.apache.tamaya.core.internal"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../org/apache/tamaya/core/internal/CoreConfigurationContext.html" title="class in org.apache.tamaya.core.internal"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?org/apache/tamaya/core/internal/ConfigValueEvaluator.html" target="_top">Frames</a></li>
@@ -102,10 +102,6 @@ var activeTableTab = "activeTableTab";
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
-<dl>
-<dt>All Known Implementing Classes:</dt>
-<dd><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigValueEvaluator.html" title="class in org.apache.tamaya.core.internal">DefaultConfigValueEvaluator</a></dd>
-</dl>
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">ConfigValueEvaluator</span></pre>
@@ -130,14 +126,14 @@ var activeTableTab = "activeTableTab";
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/ConfigValueEvaluator.html#evaluateRawValues-org.apache.tamaya.spi.ConfigurationContext-">evaluateRawValues</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
 <div class="block">Evaluates all property values from a <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a>.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/ConfigValueEvaluator.html#evaluteRawValue-java.lang.String-org.apache.tamaya.spi.ConfigurationContext-">evaluteRawValue</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/ConfigValueEvaluator.html#evaluteRawValue-java.lang.String-org.apache.tamaya.spi.ConfigurationContext-">evaluteRawValue</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
                <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
 <div class="block">Evaluates single value using a <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a>.</div>
 </td>
@@ -163,7 +159,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>evaluteRawValue</h4>
-<pre><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&nbsp;evaluteRawValue(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+<pre><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&nbsp;evaluteRawValue(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
                               <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</pre>
 <div class="block">Evaluates single value using a <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a>.</div>
 <dl>
@@ -181,7 +177,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockListLast">
 <li class="blockList">
 <h4>evaluateRawValues</h4>
-<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;&nbsp;evaluateRawValues(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&gt;&nbsp;evaluateRawValues(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</pre>
 <div class="block">Evaluates all property values from a <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -220,7 +216,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li>Prev&nbsp;Class</li>
-<li><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfiguration.html" title="class in org.apache.tamaya.core.internal"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../org/apache/tamaya/core/internal/CoreConfigurationContext.html" title="class in org.apache.tamaya.core.internal"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?org/apache/tamaya/core/internal/ConfigValueEvaluator.html" target="_top">Frames</a></li>

@@ -45,7 +45,7 @@
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../../org/apache/tamaya/core/internal/package-summary.html">Prev&nbsp;Package</a></li>
-<li><a href="../../../../../../org/apache/tamaya/core/propertysource/package-summary.html">Next&nbsp;Package</a></li>
+<li><a href="../../../../../../org/apache/tamaya/examples/custompropertysource/package-summary.html">Next&nbsp;Package</a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../../index.html?org/apache/tamaya/core/internal/converters/package-summary.html" target="_top">Frames</a></li>
@@ -72,6 +72,10 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <div class="header">
 <h1 title="Package" class="title">Package&nbsp;org.apache.tamaya.core.internal.converters</h1>
+<div class="docSummary">
+<div class="block">Contains implementations of the converters provided by default.</div>
+</div>
+<p>See:&nbsp;<a href="#package.description">Description</a></p>
 </div>
 <div class="contentContainer">
 <ul class="blockList">
@@ -182,9 +186,9 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../../../org/apache/tamaya/core/internal/converters/EnumConverter.html" title="class in org.apache.tamaya.core.internal.converters">EnumConverter</a>&lt;T&gt;</td>
+<td class="colFirst"><a href="../../../../../../org/apache/tamaya/core/internal/converters/DurationConverter.html" title="class in org.apache.tamaya.core.internal.converters">DurationConverter</a></td>
 <td class="colLast">
-<div class="block">Converter, converting from String to tge given enum type.</div>
+<div class="block">Converter, converting from String to Boolean.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -201,6 +205,12 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="../../../../../../org/apache/tamaya/core/internal/converters/InstantConverter.html" title="class in org.apache.tamaya.core.internal.converters">InstantConverter</a></td>
+<td class="colLast">
+<div class="block">Converter, converting from String to Boolean.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="../../../../../../org/apache/tamaya/core/internal/converters/IntegerConverter.html" title="class in org.apache.tamaya.core.internal.converters">IntegerConverter</a></td>
 <td class="colLast">
 <div class="block">Converter, converting from String to Integer, the supported format is one of the following:
@@ -218,6 +228,24 @@
      MAX_VALUE (ignoring case)
      MAX (ignoring case)
  </div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="../../../../../../org/apache/tamaya/core/internal/converters/LocalDateConverter.html" title="class in org.apache.tamaya.core.internal.converters">LocalDateConverter</a></td>
+<td class="colLast">
+<div class="block">Converter, converting from String to Boolean.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="../../../../../../org/apache/tamaya/core/internal/converters/LocalDateTimeConverter.html" title="class in org.apache.tamaya.core.internal.converters">LocalDateTimeConverter</a></td>
+<td class="colLast">
+<div class="block">Converter, converting from String to Boolean.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="../../../../../../org/apache/tamaya/core/internal/converters/LocalTimeConverter.html" title="class in org.apache.tamaya.core.internal.converters">LocalTimeConverter</a></td>
+<td class="colLast">
+<div class="block">Converter, converting from String to Boolean.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -247,12 +275,30 @@
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><a href="../../../../../../org/apache/tamaya/core/internal/converters/OffsetDateTimeConverter.html" title="class in org.apache.tamaya.core.internal.converters">OffsetDateTimeConverter</a></td>
+<td class="colLast">
+<div class="block">Converter, converting from String to Boolean.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="../../../../../../org/apache/tamaya/core/internal/converters/OffsetTimeConverter.html" title="class in org.apache.tamaya.core.internal.converters">OffsetTimeConverter</a></td>
+<td class="colLast">
+<div class="block">Converter, converting from String to Boolean.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="../../../../../../org/apache/tamaya/core/internal/converters/OptionalConverter.html" title="class in org.apache.tamaya.core.internal.converters">OptionalConverter</a></td>
+<td class="colLast">
+<div class="block">Converter, converting from String to Boolean.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../../../../org/apache/tamaya/core/internal/converters/PathConverter.html" title="class in org.apache.tamaya.core.internal.converters">PathConverter</a></td>
 <td class="colLast">
 <div class="block">Converter, converting from String to URI, using new URL(value).</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../../../../../../org/apache/tamaya/core/internal/converters/ShortConverter.html" title="class in org.apache.tamaya.core.internal.converters">ShortConverter</a></td>
 <td class="colLast">
 <div class="block">Converter, converting from String to Short, the supported format is one of the following:
@@ -272,6 +318,12 @@
  </div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="../../../../../../org/apache/tamaya/core/internal/converters/SupplierConverter.html" title="class in org.apache.tamaya.core.internal.converters">SupplierConverter</a></td>
+<td class="colLast">
+<div class="block">Converter, converting from String to Boolean.</div>
+</td>
+</tr>
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../../../org/apache/tamaya/core/internal/converters/URIConverter.html" title="class in org.apache.tamaya.core.internal.converters">URIConverter</a></td>
 <td class="colLast">
@@ -288,6 +340,11 @@
 </table>
 </li>
 </ul>
+<a name="package.description">
+<!--   -->
+</a>
+<h2 title="Package org.apache.tamaya.core.internal.converters Description">Package org.apache.tamaya.core.internal.converters Description</h2>
+<div class="block">Contains implementations of the converters provided by default.</div>
 </div>
 <!-- ======= START OF BOTTOM NAVBAR ====== -->
 <div class="bottomNav"><a name="navbar.bottom">
@@ -311,7 +368,7 @@
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../../org/apache/tamaya/core/internal/package-summary.html">Prev&nbsp;Package</a></li>
-<li><a href="../../../../../../org/apache/tamaya/core/propertysource/package-summary.html">Next&nbsp;Package</a></li>
+<li><a href="../../../../../../org/apache/tamaya/examples/custompropertysource/package-summary.html">Next&nbsp;Package</a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../../index.html?org/apache/tamaya/core/internal/converters/package-summary.html" target="_top">Frames</a></li>

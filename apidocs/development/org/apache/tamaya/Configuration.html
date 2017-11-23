@@ -25,8 +25,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":18,"i9":18};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -108,7 +108,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><a href="../../../org/apache/tamaya/core/internal/DefaultConfiguration.html" title="class in org.apache.tamaya.core.internal">DefaultConfiguration</a></dd>
+<dd><a href="../../../org/apache/tamaya/spisupport/DefaultConfiguration.html" title="class in org.apache.tamaya.spisupport">DefaultConfiguration</a></dd>
 </dl>
 <hr>
 <br>
@@ -129,7 +129,7 @@ var activeTableTab = "activeTableTab";
   <li>Immutable</li>
  </ul>
 
- <p>It is not recommended that implementations also are serializable, since the any configuration can be <i>freezed</i>
+ <p>It is not recommended that implementations also are serializable, since the any configuration can be <i>frozen</i>
  by reading out its complete configuration map into a serializable and remotable structure. This helps significantly
  simplifying the development current this interface, e.g. for being backed up by systems and stores that are not part current
  this library at all.</p></div>
@@ -146,27 +146,27 @@ var activeTableTab = "activeTableTab";
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t5" class="tableTab"><span><a href="javascript:show(16);">Default Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/apache/tamaya/Configuration.html#get-java.lang.String-">get</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/apache/tamaya/Configuration.html#get-java.lang.String-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
 <div class="block">Access a property.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/apache/tamaya/Configuration.html#get-java.lang.String-java.lang.Class-">get</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-   <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/apache/tamaya/Configuration.html#get-java.lang.String-java.lang.Class-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+   <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type)</code>
 <div class="block">Get the property keys as type T.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/apache/tamaya/Configuration.html#get-java.lang.String-org.apache.tamaya.TypeLiteral-">get</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/apache/tamaya/Configuration.html#get-java.lang.String-org.apache.tamaya.TypeLiteral-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
    <a href="../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type)</code>
 <div class="block">Get the property keys as type T.</div>
 </td>
@@ -179,41 +179,41 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/apache/tamaya/Configuration.html#getOrDefault-java.lang.String-java.lang.Class-T-">getOrDefault</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-            <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/apache/tamaya/Configuration.html#getOrDefault-java.lang.String-java.lang.Class-T-">getOrDefault</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+            <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
             T&nbsp;defaultValue)</code>
 <div class="block">Get the property keys as type T.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/apache/tamaya/Configuration.html#getOrDefault-java.lang.String-java.lang.String-">getOrDefault</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-            <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;defaultValue)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/apache/tamaya/Configuration.html#getOrDefault-java.lang.String-java.lang.String-">getOrDefault</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+            <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;defaultValue)</code>
 <div class="block">Access a property.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/apache/tamaya/Configuration.html#getOrDefault-java.lang.String-org.apache.tamaya.TypeLiteral-T-">getOrDefault</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/apache/tamaya/Configuration.html#getOrDefault-java.lang.String-org.apache.tamaya.TypeLiteral-T-">getOrDefault</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
             <a href="../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type,
             T&nbsp;defaultValue)</code>
 <div class="block">Get the property keys as type T.</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/apache/tamaya/Configuration.html#getProperties--">getProperties</a></span>()</code>
 <div class="block">Access all currently known configuration properties as a full <code>Map&lt;String,String&gt;</code>.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
+<td class="colFirst"><code>default &lt;T&gt;&nbsp;T</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/apache/tamaya/Configuration.html#query-org.apache.tamaya.ConfigQuery-">query</a></span>(<a href="../../../org/apache/tamaya/ConfigQuery.html" title="interface in org.apache.tamaya">ConfigQuery</a>&lt;T&gt;&nbsp;query)</code>
 <div class="block">Query a configuration.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
-<td class="colFirst"><code><a href="../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></code></td>
+<td class="colFirst"><code>default <a href="../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/apache/tamaya/Configuration.html#with-org.apache.tamaya.ConfigOperator-">with</a></span>(<a href="../../../org/apache/tamaya/ConfigOperator.html" title="interface in org.apache.tamaya">ConfigOperator</a>&nbsp;operator)</code>
 <div class="block">Extension point for adjusting configuration.</div>
 </td>
@@ -239,13 +239,13 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>get</h4>
-<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;get(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;get(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</pre>
 <div class="block">Access a property.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - the property's key, not <code>null</code>.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the property's keys.</dd>
+<dd>the property's value.</dd>
 </dl>
 </li>
 </ul>
@@ -255,8 +255,8 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>getOrDefault</h4>
-<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getOrDefault(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-                    <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;defaultValue)</pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getOrDefault(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+                    <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;defaultValue)</pre>
 <div class="block">Access a property.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -275,8 +275,8 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>getOrDefault</h4>
-<pre>&lt;T&gt;&nbsp;T&nbsp;getOrDefault(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-                   <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
+<pre>&lt;T&gt;&nbsp;T&nbsp;getOrDefault(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+                   <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
                    T&nbsp;defaultValue)</pre>
 <div class="block">Get the property keys as type T. This will implicitly require a corresponding <a href="../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi"><code>PropertyConverter</code></a> to be available that is capable current providing type T
  fromMap the given String keys.</div>
@@ -301,8 +301,8 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>get</h4>
-<pre>&lt;T&gt;&nbsp;T&nbsp;get(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-          <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type)</pre>
+<pre>&lt;T&gt;&nbsp;T&nbsp;get(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+          <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type)</pre>
 <div class="block">Get the property keys as type T. This will implicitly require a corresponding <a href="../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi"><code>PropertyConverter</code></a> to be available that is capable current providing type T
  fromMap the given String keys.</div>
 <dl>
@@ -325,7 +325,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>get</h4>
-<pre>&lt;T&gt;&nbsp;T&nbsp;get(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+<pre>&lt;T&gt;&nbsp;T&nbsp;get(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
           <a href="../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type)</pre>
 <div class="block">Get the property keys as type T. This will implicitly require a corresponding <a href="../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi"><code>PropertyConverter</code></a> to be available that is capable current providing type T
  fromMap the given String keys.</div>
@@ -351,7 +351,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>getOrDefault</h4>
-<pre>&lt;T&gt;&nbsp;T&nbsp;getOrDefault(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+<pre>&lt;T&gt;&nbsp;T&nbsp;getOrDefault(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
                    <a href="../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type,
                    T&nbsp;defaultValue)</pre>
 <div class="block">Get the property keys as type T. This will implicitly require a corresponding <a href="../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi"><code>PropertyConverter</code></a> to be available that is capable current providing type T
@@ -377,7 +377,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>getProperties</h4>
-<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;getProperties()</pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;getProperties()</pre>
 <div class="block">Access all currently known configuration properties as a full <code>Map&lt;String,String&gt;</code>.
  Be aware that entries from non scannable parts of the registered <a href="../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a>
  instances may not be contained in the result, but nevertheless be accessible calling one of the
@@ -394,7 +394,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>with</h4>
-<pre><a href="../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a>&nbsp;with(<a href="../../../org/apache/tamaya/ConfigOperator.html" title="interface in org.apache.tamaya">ConfigOperator</a>&nbsp;operator)</pre>
+<pre>default&nbsp;<a href="../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a>&nbsp;with(<a href="../../../org/apache/tamaya/ConfigOperator.html" title="interface in org.apache.tamaya">ConfigOperator</a>&nbsp;operator)</pre>
 <div class="block">Extension point for adjusting configuration.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -411,7 +411,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>query</h4>
-<pre>&lt;T&gt;&nbsp;T&nbsp;query(<a href="../../../org/apache/tamaya/ConfigQuery.html" title="interface in org.apache.tamaya">ConfigQuery</a>&lt;T&gt;&nbsp;query)</pre>
+<pre>default&nbsp;&lt;T&gt;&nbsp;T&nbsp;query(<a href="../../../org/apache/tamaya/ConfigQuery.html" title="interface in org.apache.tamaya">ConfigQuery</a>&lt;T&gt;&nbsp;query)</pre>
 <div class="block">Query a configuration.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>

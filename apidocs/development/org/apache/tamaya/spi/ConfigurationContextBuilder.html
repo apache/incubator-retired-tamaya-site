@@ -123,7 +123,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><a href="../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html" title="class in org.apache.tamaya.core.internal">DefaultConfigurationContextBuilder</a></dd>
+<dd><a href="../../../../org/apache/tamaya/core/internal/CoreConfigurationContextBuilder.html" title="class in org.apache.tamaya.core.internal">CoreConfigurationContextBuilder</a>, <a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html" title="class in org.apache.tamaya.spisupport">DefaultConfigurationContextBuilder</a></dd>
 </dl>
 <hr>
 <br>
@@ -178,7 +178,7 @@ var activeTableTab = "activeTableTab";
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#addPropertyConverters-org.apache.tamaya.TypeLiteral-java.util.Collection-">addPropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
-                     <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</code>
+                     <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</code>
 <div class="block">This method can be used for adding <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi"><code>PropertyConverter</code></a>s.</div>
 </td>
 </tr>
@@ -191,7 +191,7 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#addPropertyFilters-java.util.Collection-">addPropertyFilters</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;filters)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#addPropertyFilters-java.util.Collection-">addPropertyFilters</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;filters)</code>
 <div class="block">Adds the given PropertyFilter instances, hereby the instances are added
  to the end of the list with highest priority.</div>
 </td>
@@ -205,7 +205,7 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#addPropertySources-java.util.Collection-">addPropertySources</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#addPropertySources-java.util.Collection-">addPropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>
 <div class="block">This method can be used for programmatically adding <a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a>s.</div>
 </td>
 </tr>
@@ -229,19 +229,19 @@ var activeTableTab = "activeTableTab";
 </td>
 </tr>
 <tr id="i11" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;?&gt;&gt;&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;,<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;?&gt;&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#getPropertyConverter--">getPropertyConverter</a></span>()</code>
 <div class="block">Access the current registered property converters.</div>
 </td>
 </tr>
 <tr id="i12" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#getPropertyFilters--">getPropertyFilters</a></span>()</code>
 <div class="block">Access the current chain of property filters.</div>
 </td>
 </tr>
 <tr id="i13" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#getPropertySources--">getPropertySources</a></span>()</code>
 <div class="block">Access the current chain of property sources.</div>
 </td>
@@ -277,7 +277,7 @@ var activeTableTab = "activeTableTab";
 <tr id="i18" class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-java.util.Collection-">removePropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
-                        <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</code>
+                        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</code>
 <div class="block">Removes the given PropertyConverter instances for the given type,
  if existing.</div>
 </td>
@@ -292,7 +292,7 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i20" class="altColor">
 <td class="colFirst"><code><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#removePropertyFilters-java.util.Collection-">removePropertyFilters</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;filters)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#removePropertyFilters-java.util.Collection-">removePropertyFilters</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;filters)</code>
 <div class="block">Removes the given PropertyFilter instances, if existing.</div>
 </td>
 </tr>
@@ -304,7 +304,7 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i22" class="altColor">
 <td class="colFirst"><code><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#removePropertySources-java.util.Collection-">removePropertySources</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#removePropertySources-java.util.Collection-">removePropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>
 <div class="block">Removes the given property sources, if existing.</div>
 </td>
 </tr>
@@ -329,13 +329,13 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i26" class="altColor">
 <td class="colFirst"><code><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#sortPropertyFilter-java.util.Comparator-">sortPropertyFilter</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;comparator)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#sortPropertyFilter-java.util.Comparator-">sortPropertyFilter</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;comparator)</code>
 <div class="block">Sorts the current registered property filters using the given comparator.</div>
 </td>
 </tr>
 <tr id="i27" class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#sortPropertySources-java.util.Comparator-">sortPropertySources</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;comparator)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#sortPropertySources-java.util.Comparator-">sortPropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;comparator)</code>
 <div class="block">Sorts the current registered property sources using the given comparator.</div>
 </td>
 </tr>
@@ -390,7 +390,7 @@ var activeTableTab = "activeTableTab";
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>this builder, for chaining, never null.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If a property source with a given name already
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If a property source with a given name already
  exists.</dd>
 </dl>
 </li>
@@ -401,7 +401,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>addPropertySources</h4>
-<pre><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a>&nbsp;addPropertySources(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</pre>
+<pre><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a>&nbsp;addPropertySources(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</pre>
 <div class="block">This method can be used for programmatically adding <a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a>s.
  Hereby the property source is added to the tail of property sources with
  lowest priority regardless of its current ordinal value. To sort the property
@@ -412,7 +412,7 @@ var activeTableTab = "activeTableTab";
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>this builder, for chaining, never null.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If a property source with a given name already
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If a property source with a given name already
  exists.</dd>
 </dl>
 </li>
@@ -456,7 +456,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>removePropertySources</h4>
-<pre><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a>&nbsp;removePropertySources(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</pre>
+<pre><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a>&nbsp;removePropertySources(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</pre>
 <div class="block">Removes the given property sources, if existing. The existing order of property
  sources is preserved.</div>
 <dl>
@@ -473,7 +473,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>getPropertySources</h4>
-<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;getPropertySources()</pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;getPropertySources()</pre>
 <div class="block">Access the current chain of property sources. Items at the end of the list have
  precedence/more significance.</div>
 <dl>
@@ -488,7 +488,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>getPropertyFilters</h4>
-<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;getPropertyFilters()</pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;getPropertyFilters()</pre>
 <div class="block">Access the current chain of property filters. Items at the end of the list have
  precedence/more significance.</div>
 <dl>
@@ -503,7 +503,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>getPropertyConverter</h4>
-<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;?&gt;&gt;&gt;&nbsp;getPropertyConverter()</pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;,<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;?&gt;&gt;&gt;&nbsp;getPropertyConverter()</pre>
 <div class="block">Access the current registered property converters.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -527,7 +527,7 @@ var activeTableTab = "activeTableTab";
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the builder for chaining.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If no such property source exists in the current
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If no such property source exists in the current
  chain.</dd>
 </dl>
 </li>
@@ -548,7 +548,7 @@ var activeTableTab = "activeTableTab";
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the builder for chaining.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If no such property source exists in the current
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If no such property source exists in the current
  chain.</dd>
 </dl>
 </li>
@@ -570,7 +570,7 @@ var activeTableTab = "activeTableTab";
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the builder for chaining.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If no such property source exists in the current
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If no such property source exists in the current
  chain.</dd>
 </dl>
 </li>
@@ -592,7 +592,7 @@ var activeTableTab = "activeTableTab";
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the builder for chaining.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If no such property source exists in the current
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If no such property source exists in the current
  chain.</dd>
 </dl>
 </li>
@@ -622,7 +622,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>addPropertyFilters</h4>
-<pre><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a>&nbsp;addPropertyFilters(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;filters)</pre>
+<pre><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a>&nbsp;addPropertyFilters(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;filters)</pre>
 <div class="block">Adds the given PropertyFilter instances, hereby the instances are added
  to the end of the list with highest priority. The ordering of existing
  property filters remains unchanged. To sort the property
@@ -672,7 +672,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>removePropertyFilters</h4>
-<pre><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a>&nbsp;removePropertyFilters(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;filters)</pre>
+<pre><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a>&nbsp;removePropertyFilters(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;filters)</pre>
 <div class="block">Removes the given PropertyFilter instances, if existing. The order of the remaining
  filters is preserved.</div>
 <dl>
@@ -713,7 +713,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>addPropertyConverters</h4>
 <pre>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a>&nbsp;addPropertyConverters(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
-                                                      <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</pre>
+                                                      <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</pre>
 <div class="block">This method can be used for adding <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi"><code>PropertyConverter</code></a>s.
  Converters are added at the end after any existing converters.
  For converters already registered for the current target type the
@@ -771,7 +771,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>removePropertyConverters</h4>
 <pre>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a>&nbsp;removePropertyConverters(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
-                                                         <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</pre>
+                                                         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</pre>
 <div class="block">Removes the given PropertyConverter instances for the given type,
  if existing.</div>
 <dl>
@@ -808,7 +808,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>sortPropertySources</h4>
-<pre><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a>&nbsp;sortPropertySources(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;comparator)</pre>
+<pre><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a>&nbsp;sortPropertySources(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;comparator)</pre>
 <div class="block">Sorts the current registered property sources using the given comparator.
 
  NOTE: property sources at the beginning have minimal significance.</div>
@@ -826,7 +826,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>sortPropertyFilter</h4>
-<pre><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a>&nbsp;sortPropertyFilter(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;comparator)</pre>
+<pre><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a>&nbsp;sortPropertyFilter(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;comparator)</pre>
 <div class="block">Sorts the current registered property filters using the given comparator.
 
  NOTE: property filters at the beginning have minimal significance.</div>

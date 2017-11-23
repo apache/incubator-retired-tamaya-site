@@ -104,11 +104,16 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><a href="../../../../org/apache/tamaya/examples/custompropertysource/SimplePropertySourceProvider.html" title="class in org.apache.tamaya.examples.custompropertysource">SimplePropertySourceProvider</a></dd>
+<dd><a href="../../../../org/apache/tamaya/spisupport/propertysource/BuildablePropertySourceProvider.html" title="class in org.apache.tamaya.spisupport.propertysource">BuildablePropertySourceProvider</a>, <a href="../../../../org/apache/tamaya/examples/custompropertysource/SimplePropertySourceProvider.html" title="class in org.apache.tamaya.examples.custompropertysource">SimplePropertySourceProvider</a></dd>
+</dl>
+<dl>
+<dt>Functional Interface:</dt>
+<dd>This is a functional interface and can therefore be used as the assignment target for a lambda expression or method reference.</dd>
 </dl>
 <hr>
 <br>
-<pre>public interface <span class="typeNameLabel">PropertySourceProvider</span></pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/FunctionalInterface.html?is-external=true" title="class or interface in java.lang">@FunctionalInterface</a>
+public interface <span class="typeNameLabel">PropertySourceProvider</span></pre>
 <div class="block"><p>Implement this interfaces to provide a PropertySource provider which
  is able to register multiple PropertySources. This is e.g. needed if
  there are multiple property files of a given config file name.</p>
@@ -118,7 +123,7 @@ var activeTableTab = "activeTableTab";
  expose a <a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a>.</p>
 
  <p>A PropertySourceProvider will get picked up via the
- <a href="http://docs.oracle.com/javase/7/docs/api/java/util/ServiceLoader.html?is-external=true" title="class or interface in java.util"><code>ServiceLoader</code></a> mechanism and must get registered via
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html?is-external=true" title="class or interface in java.util"><code>ServiceLoader</code></a> mechanism and must get registered via
  META-INF/services/org.apache.tamaya.spi.PropertySourceProvider</p></div>
 </li>
 </ul>
@@ -160,7 +165,7 @@ var activeTableTab = "activeTableTab";
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/PropertySourceProvider.html#getPropertySources--">getPropertySources</a></span>()</code>&nbsp;</td>
 </tr>
 </table>
@@ -202,7 +207,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getPropertySources</h4>
-<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;getPropertySources()</pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;getPropertySources()</pre>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>For each e.g. property file, we return a single PropertySource

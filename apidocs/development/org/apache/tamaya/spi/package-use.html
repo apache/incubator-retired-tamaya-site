@@ -84,27 +84,50 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.apache.tamaya">org.apache.tamaya</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">This package contains the Apache Tamaya API.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.apache.tamaya.core.internal">org.apache.tamaya.core.internal</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Contains implementations of different property sources for supporting
+ CLI, Environment and System Properties as well as simple properties
+ based on the formats defined by <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util"><code>Properties</code></a>.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.apache.tamaya.core.internal.converters">org.apache.tamaya.core.internal.converters</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Contains implementations of the converters provided by default.</div>
+</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#org.apache.tamaya.core.propertysource">org.apache.tamaya.core.propertysource</a></td>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><a href="#org.apache.tamaya.examples.custompropertysource">org.apache.tamaya.examples.custompropertysource</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#org.apache.tamaya.examples.minimal">org.apache.tamaya.examples.minimal</a></td>
+<td class="colLast">
+<div class="block">Example to show the simplest ways to use Tamaya with
+ the standard configuration file.</div>
+</td>
+</tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.apache.tamaya.spi">org.apache.tamaya.spi</a></td>
+<td class="colLast">
+<div class="block">This package contains the Apache Tamaya SPI artifacts.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#org.apache.tamaya.spisupport">org.apache.tamaya.spisupport</a></td>
 <td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#org.apache.tamaya.spisupport.propertysource">org.apache.tamaya.spisupport.propertysource</a></td>
+<td class="colLast">
+<div class="block">Contains internal implementations artifacts registered as services.</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -157,31 +180,6 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/PropertyConverter.html#org.apache.tamaya.core.internal">PropertyConverter</a>
-<div class="block">Interface for an property that converts a configured String into something else.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/PropertyFilter.html#org.apache.tamaya.core.internal">PropertyFilter</a>
-<div class="block">Interface for filtering the current map of properties during the evaluation of the chain of PropertySources.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/PropertySource.html#org.apache.tamaya.core.internal">PropertySource</a>
-<div class="block">This interface models a provider that serves configuration properties.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/PropertyValue.html#org.apache.tamaya.core.internal">PropertyValue</a>
-<div class="block">Class modelling the result of a request for a property value.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/PropertyValueCombinationPolicy.html#org.apache.tamaya.core.internal">PropertyValueCombinationPolicy</a>
-<div class="block">Policy that determines how the final value of a configuration entry is evaluated.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/ServiceContext.html#org.apache.tamaya.core.internal">ServiceContext</a>
 <div class="block">This class models the component that is managing the lifecycle current the
  services used by the Configuration API.</div>
@@ -212,28 +210,6 @@
 </tbody>
 </table>
 </li>
-<li class="blockList"><a name="org.apache.tamaya.core.propertysource">
-<!--   -->
-</a>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../org/apache/tamaya/spi/package-summary.html">org.apache.tamaya.spi</a> used by <a href="../../../../org/apache/tamaya/core/propertysource/package-summary.html">org.apache.tamaya.core.propertysource</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Class and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/PropertySource.html#org.apache.tamaya.core.propertysource">PropertySource</a>
-<div class="block">This interface models a provider that serves configuration properties.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/PropertyValue.html#org.apache.tamaya.core.propertysource">PropertyValue</a>
-<div class="block">Class modelling the result of a request for a property value.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
 <li class="blockList"><a name="org.apache.tamaya.examples.custompropertysource">
 <!--   -->
 </a>
@@ -252,6 +228,34 @@
 <td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/PropertySourceProvider.html#org.apache.tamaya.examples.custompropertysource">PropertySourceProvider</a>
 <div class="block">Implement this interfaces to provide a PropertySource provider which
  is able to register multiple PropertySources.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.apache.tamaya.examples.minimal">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../org/apache/tamaya/spi/package-summary.html">org.apache.tamaya.spi</a> used by <a href="../../../../org/apache/tamaya/examples/minimal/package-summary.html">org.apache.tamaya.examples.minimal</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/ConfigurationContext.html#org.apache.tamaya.examples.minimal">ConfigurationContext</a>
+<div class="block">Central SPI for programmatically dealing with the setup of the configuration system.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/ConfigurationContextBuilder.html#org.apache.tamaya.examples.minimal">ConfigurationContextBuilder</a>
+<div class="block">A builder for creating new or adapting instances of <a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a>.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/ConfigurationProviderSpi.html#org.apache.tamaya.examples.minimal">ConfigurationProviderSpi</a>
+<div class="block">SPI that must be implemented to provide the component that manages all <a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya"><code>Configuration</code></a>
+ instances in a system.</div>
 </td>
 </tr>
 </tbody>
@@ -337,6 +341,97 @@
 <td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/ServiceContext.html#org.apache.tamaya.spi">ServiceContext</a>
 <div class="block">This class models the component that is managing the lifecycle current the
  services used by the Configuration API.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.apache.tamaya.spisupport">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../org/apache/tamaya/spi/package-summary.html">org.apache.tamaya.spi</a> used by <a href="../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/ConfigurationContext.html#org.apache.tamaya.spisupport">ConfigurationContext</a>
+<div class="block">Central SPI for programmatically dealing with the setup of the configuration system.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/ConfigurationContextBuilder.html#org.apache.tamaya.spisupport">ConfigurationContextBuilder</a>
+<div class="block">A builder for creating new or adapting instances of <a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a>.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/ConversionContext.html#org.apache.tamaya.spisupport">ConversionContext</a>
+<div class="block">A conversion context containing all the required values for implementing conversion.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/FilterContext.html#org.apache.tamaya.spisupport">FilterContext</a>
+<div class="block">A filter context containing all the required values for implementing filtering.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/PropertyConverter.html#org.apache.tamaya.spisupport">PropertyConverter</a>
+<div class="block">Interface for an property that converts a configured String into something else.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/PropertyFilter.html#org.apache.tamaya.spisupport">PropertyFilter</a>
+<div class="block">Interface for filtering the current map of properties during the evaluation of the chain of PropertySources.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/PropertySource.html#org.apache.tamaya.spisupport">PropertySource</a>
+<div class="block">This interface models a provider that serves configuration properties.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/PropertyValue.html#org.apache.tamaya.spisupport">PropertyValue</a>
+<div class="block">Class modelling the result of a request for a property value.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/PropertyValueCombinationPolicy.html#org.apache.tamaya.spisupport">PropertyValueCombinationPolicy</a>
+<div class="block">Policy that determines how the final value of a configuration entry is evaluated.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/ServiceContext.html#org.apache.tamaya.spisupport">ServiceContext</a>
+<div class="block">This class models the component that is managing the lifecycle current the
+ services used by the Configuration API.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.apache.tamaya.spisupport.propertysource">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../org/apache/tamaya/spi/package-summary.html">org.apache.tamaya.spi</a> used by <a href="../../../../org/apache/tamaya/spisupport/propertysource/package-summary.html">org.apache.tamaya.spisupport.propertysource</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/PropertySource.html#org.apache.tamaya.spisupport.propertysource">PropertySource</a>
+<div class="block">This interface models a provider that serves configuration properties.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/PropertySourceProvider.html#org.apache.tamaya.spisupport.propertysource">PropertySourceProvider</a>
+<div class="block">Implement this interfaces to provide a PropertySource provider which
+ is able to register multiple PropertySources.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../org/apache/tamaya/spi/class-use/PropertyValue.html#org.apache.tamaya.spisupport.propertysource">PropertyValue</a>
+<div class="block">Class modelling the result of a request for a property value.</div>
 </td>
 </tr>
 </tbody>

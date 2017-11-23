@@ -84,14 +84,33 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.apache.tamaya">org.apache.tamaya</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">This package contains the Apache Tamaya API.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.apache.tamaya.core.internal">org.apache.tamaya.core.internal</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Contains implementations of different property sources for supporting
+ CLI, Environment and System Properties as well as simple properties
+ based on the formats defined by <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util"><code>Properties</code></a>.</div>
+</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><a href="#org.apache.tamaya.examples.minimal">org.apache.tamaya.examples.minimal</a></td>
+<td class="colLast">
+<div class="block">Example to show the simplest ways to use Tamaya with
+ the standard configuration file.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.apache.tamaya.spi">org.apache.tamaya.spi</a></td>
+<td class="colLast">
+<div class="block">This package contains the Apache Tamaya SPI artifacts.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#org.apache.tamaya.spisupport">org.apache.tamaya.spisupport</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
 </tbody>
@@ -132,7 +151,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html" title="class in org.apache.tamaya.core.internal">DefaultConfigurationContextBuilder</a></span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/CoreConfigurationContextBuilder.html" title="class in org.apache.tamaya.core.internal">CoreConfigurationContextBuilder</a></span></code>
 <div class="block">Default implementation of <a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContextBuilder</code></a>.</div>
 </td>
 </tr>
@@ -147,111 +166,29 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#addDefaultPropertyFilters--">addDefaultPropertyFilters</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#addDefaultPropertySources--">addDefaultPropertySources</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#addPropertyConverters-org.apache.tamaya.TypeLiteral-java.util.Collection-">addPropertyConverters</a></span>(<a href="../../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type,
-                     <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#addPropertyConverters-org.apache.tamaya.TypeLiteral-org.apache.tamaya.spi.PropertyConverter...-">addPropertyConverters</a></span>(<a href="../../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type,
-                     <a href="../../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;...&nbsp;propertyConverters)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#addPropertyFilters-java.util.Collection-">addPropertyFilters</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;filters)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#addPropertyFilters-org.apache.tamaya.spi.PropertyFilter...-">addPropertyFilters</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>...&nbsp;filters)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#addPropertySources-java.util.Collection-">addPropertySources</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;sources)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#addPropertySources-org.apache.tamaya.spi.PropertySource...-">addPropertySources</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>...&nbsp;sources)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#decreasePriority-org.apache.tamaya.spi.PropertySource-">decreasePriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
 <td class="colLast"><span class="typeNameLabel">DefaultConfigurationProvider.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationProvider.html#getConfigurationContextBuilder--">getConfigurationContextBuilder</a></span>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#highestPriority-org.apache.tamaya.spi.PropertySource-">highestPriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
-</tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#increasePriority-org.apache.tamaya.spi.PropertySource-">increasePriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">CoreConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/CoreConfigurationContext.html#toBuilder--">toBuilder</a></span>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#loadDefaults--">loadDefaults</a></span>()</code>&nbsp;</td>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.apache.tamaya.examples.minimal">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a> in <a href="../../../../../org/apache/tamaya/examples/minimal/package-summary.html">org.apache.tamaya.examples.minimal</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/apache/tamaya/examples/minimal/package-summary.html">org.apache.tamaya.examples.minimal</a> that return <a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#lowestPriority-org.apache.tamaya.spi.PropertySource-">lowestPriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-">removePropertyConverters</a></span>(<a href="../../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;&nbsp;typeToConvert)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-java.util.Collection-">removePropertyConverters</a></span>(<a href="../../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
-                        <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;converters)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-org.apache.tamaya.spi.PropertyConverter...-">removePropertyConverters</a></span>(<a href="../../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
-                        <a href="../../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;...&nbsp;converters)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#removePropertyFilters-java.util.Collection-">removePropertyFilters</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;filters)</code>&nbsp;</td>
-</tr>
+<tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#removePropertyFilters-org.apache.tamaya.spi.PropertyFilter...-">removePropertyFilters</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>...&nbsp;filters)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#removePropertySources-java.util.Collection-">removePropertySources</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#removePropertySources-org.apache.tamaya.spi.PropertySource...-">removePropertySources</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>...&nbsp;propertySources)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#setContext-org.apache.tamaya.spi.ConfigurationContext-">setContext</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#setPropertyValueCombinationPolicy-org.apache.tamaya.spi.PropertyValueCombinationPolicy-">setPropertyValueCombinationPolicy</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi">PropertyValueCombinationPolicy</a>&nbsp;combinationPolicy)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#sortPropertyFilter-java.util.Comparator-">sortPropertyFilter</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;comparator)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#sortPropertySources-java.util.Comparator-">sortPropertySources</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;comparator)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContext.html#toBuilder--">toBuilder</a></span>()</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">TestConfigProvider.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/examples/minimal/TestConfigProvider.html#getConfigurationContextBuilder--">getConfigurationContextBuilder</a></span>()</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -288,7 +225,7 @@
 <tr class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
 <td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#addPropertyConverters-org.apache.tamaya.TypeLiteral-java.util.Collection-">addPropertyConverters</a></span>(<a href="../../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
-                     <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</code>
+                     <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</code>
 <div class="block">This method can be used for adding <a href="../../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi"><code>PropertyConverter</code></a>s.</div>
 </td>
 </tr>
@@ -301,7 +238,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#addPropertyFilters-java.util.Collection-">addPropertyFilters</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;filters)</code>
+<td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#addPropertyFilters-java.util.Collection-">addPropertyFilters</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;filters)</code>
 <div class="block">Adds the given PropertyFilter instances, hereby the instances are added
  to the end of the list with highest priority.</div>
 </td>
@@ -315,7 +252,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#addPropertySources-java.util.Collection-">addPropertySources</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>
+<td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#addPropertySources-java.util.Collection-">addPropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>
 <div class="block">This method can be used for programmatically adding <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a>s.</div>
 </td>
 </tr>
@@ -369,7 +306,7 @@
 <tr class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
 <td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-java.util.Collection-">removePropertyConverters</a></span>(<a href="../../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
-                        <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</code>
+                        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</code>
 <div class="block">Removes the given PropertyConverter instances for the given type,
  if existing.</div>
 </td>
@@ -384,7 +321,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#removePropertyFilters-java.util.Collection-">removePropertyFilters</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;filters)</code>
+<td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#removePropertyFilters-java.util.Collection-">removePropertyFilters</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;filters)</code>
 <div class="block">Removes the given PropertyFilter instances, if existing.</div>
 </td>
 </tr>
@@ -396,7 +333,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#removePropertySources-java.util.Collection-">removePropertySources</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>
+<td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#removePropertySources-java.util.Collection-">removePropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>
 <div class="block">Removes the given property sources, if existing.</div>
 </td>
 </tr>
@@ -421,13 +358,13 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#sortPropertyFilter-java.util.Comparator-">sortPropertyFilter</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;comparator)</code>
+<td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#sortPropertyFilter-java.util.Comparator-">sortPropertyFilter</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;comparator)</code>
 <div class="block">Sorts the current registered property filters using the given comparator.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#sortPropertySources-java.util.Comparator-">sortPropertySources</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;comparator)</code>
+<td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#sortPropertySources-java.util.Comparator-">sortPropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;comparator)</code>
 <div class="block">Sorts the current registered property sources using the given comparator.</div>
 </td>
 </tr>
@@ -435,6 +372,158 @@
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
 <td class="colLast"><span class="typeNameLabel">ConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html#toBuilder--">toBuilder</a></span>()</code>
 <div class="block">Creates a <a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContextBuilder</code></a> preinitialized with the data from this instance.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.apache.tamaya.spisupport">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a> in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> that implement <a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html" title="class in org.apache.tamaya.spisupport">DefaultConfigurationContextBuilder</a></span></code>
+<div class="block">Default implementation of <a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContextBuilder</code></a>.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> that return <a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#addDefaultPropertyFilters--">addDefaultPropertyFilters</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#addDefaultPropertySources--">addDefaultPropertySources</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#addPropertyConverters-org.apache.tamaya.TypeLiteral-java.util.Collection-">addPropertyConverters</a></span>(<a href="../../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type,
+                     <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#addPropertyConverters-org.apache.tamaya.TypeLiteral-org.apache.tamaya.spi.PropertyConverter...-">addPropertyConverters</a></span>(<a href="../../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type,
+                     <a href="../../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;...&nbsp;propertyConverters)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#addPropertyFilters-java.util.Collection-">addPropertyFilters</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;filters)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#addPropertyFilters-org.apache.tamaya.spi.PropertyFilter...-">addPropertyFilters</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>...&nbsp;filters)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#addPropertySources-java.util.Collection-">addPropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;sources)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#addPropertySources-org.apache.tamaya.spi.PropertySource...-">addPropertySources</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>...&nbsp;sources)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#decreasePriority-org.apache.tamaya.spi.PropertySource-">decreasePriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#highestPriority-org.apache.tamaya.spi.PropertySource-">highestPriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#increasePriority-org.apache.tamaya.spi.PropertySource-">increasePriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected <a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#loadDefaults--">loadDefaults</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#lowestPriority-org.apache.tamaya.spi.PropertySource-">lowestPriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-">removePropertyConverters</a></span>(<a href="../../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;&nbsp;typeToConvert)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-java.util.Collection-">removePropertyConverters</a></span>(<a href="../../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
+                        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;converters)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-org.apache.tamaya.spi.PropertyConverter...-">removePropertyConverters</a></span>(<a href="../../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
+                        <a href="../../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;...&nbsp;converters)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#removePropertyFilters-java.util.Collection-">removePropertyFilters</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;filters)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#removePropertyFilters-org.apache.tamaya.spi.PropertyFilter...-">removePropertyFilters</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>...&nbsp;filters)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#removePropertySources-java.util.Collection-">removePropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#removePropertySources-org.apache.tamaya.spi.PropertySource...-">removePropertySources</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>...&nbsp;propertySources)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#resetWithConfigurationContext-org.apache.tamaya.spi.ConfigurationContext-">resetWithConfigurationContext</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;configurationContext)</code>
+<div class="block">Allows to reset configuration context during unit tests.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#setContext-org.apache.tamaya.spi.ConfigurationContext-">setContext</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#setPropertyValueCombinationPolicy-org.apache.tamaya.spi.PropertyValueCombinationPolicy-">setPropertyValueCombinationPolicy</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi">PropertyValueCombinationPolicy</a>&nbsp;combinationPolicy)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#sortPropertyFilter-java.util.Comparator-">sortPropertyFilter</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi">PropertyFilter</a>&gt;&nbsp;comparator)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#sortPropertySources-java.util.Comparator-">sortPropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;comparator)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContext.html#toBuilder--">toBuilder</a></span>()</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
+<caption><span>Constructors in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> with parameters of type <a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#DefaultConfigurationBuilder-org.apache.tamaya.spi.ConfigurationContextBuilder-">DefaultConfigurationBuilder</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a>&nbsp;contextBuilder)</code>
+<div class="block">Creates a new builder instance.</div>
 </td>
 </tr>
 </tbody>

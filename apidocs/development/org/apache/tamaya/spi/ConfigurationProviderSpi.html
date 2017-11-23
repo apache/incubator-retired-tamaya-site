@@ -27,8 +27,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":38,"i3":6,"i4":38,"i5":6,"i6":6,"i7":38};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],32:["t6","Deprecated Methods"]};
+var methods = {"i0":6,"i1":6,"i2":50,"i3":6,"i4":50,"i5":6,"i6":6,"i7":50};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"],32:["t6","Deprecated Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -110,7 +110,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><a href="../../../../org/apache/tamaya/core/internal/DefaultConfigurationProvider.html" title="class in org.apache.tamaya.core.internal">DefaultConfigurationProvider</a></dd>
+<dd><a href="../../../../org/apache/tamaya/core/internal/DefaultConfigurationProvider.html" title="class in org.apache.tamaya.core.internal">DefaultConfigurationProvider</a>, <a href="../../../../org/apache/tamaya/examples/minimal/TestConfigProvider.html" title="class in org.apache.tamaya.examples.minimal">TestConfigProvider</a></dd>
 </dl>
 <hr>
 <br>
@@ -132,7 +132,7 @@ var activeTableTab = "activeTableTab";
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t6" class="tableTab"><span><a href="javascript:show(32);">Deprecated Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t5" class="tableTab"><span><a href="javascript:show(16);">Default Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t6" class="tableTab"><span><a href="javascript:show(32);">Deprecated Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
@@ -150,7 +150,7 @@ var activeTableTab = "activeTableTab";
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a></code></td>
+<td class="colFirst"><code>default <a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationProviderSpi.html#getConfigurationContext--">getConfigurationContext</a></span>()</code>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
 <div class="block"><span class="deprecationComment">Will be removed in favour of <a href="../../../../org/apache/tamaya/Configuration.html#getContext--"><code>Configuration.getContext()</code></a>.</span></div>
@@ -164,7 +164,7 @@ var activeTableTab = "activeTableTab";
 </td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
+<td class="colFirst"><code>default boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationProviderSpi.html#isConfigurationContextSettable--">isConfigurationContextSettable</a></span>()</code>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
 <div class="block"><span class="deprecationComment">use <a href="../../../../org/apache/tamaya/spi/ConfigurationProviderSpi.html#isConfigurationSettable--"><code>isConfigurationSettable()</code></a></span></div>
@@ -186,7 +186,7 @@ var activeTableTab = "activeTableTab";
 </td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code>void</code></td>
+<td class="colFirst"><code>default void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationProviderSpi.html#setConfigurationContext-org.apache.tamaya.spi.ConfigurationContext-">setConfigurationContext</a></span>(<a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
 <div class="block"><span class="deprecationComment">use <a href="../../../../org/apache/tamaya/spi/ConfigurationProviderSpi.html#setConfiguration-org.apache.tamaya.Configuration-"><code>setConfiguration(Configuration)</code></a></span></div>
@@ -269,7 +269,7 @@ var activeTableTab = "activeTableTab";
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>config</code> - the new Configuration to be applied.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang">UnsupportedOperationException</a></code> - if the current provider is read-only.</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang">UnsupportedOperationException</a></code> - if the current provider is read-only.</dd>
 </dl>
 </li>
 </ul>
@@ -297,8 +297,8 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>getConfigurationContext</h4>
-<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
-<a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;getConfigurationContext()</pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+default&nbsp;<a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;getConfigurationContext()</pre>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">Will be removed in favour of <a href="../../../../org/apache/tamaya/Configuration.html#getContext--"><code>Configuration.getContext()</code></a>.</span></div>
 <div class="block">Get access to the current <a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a>.</div>
 <dl>
@@ -313,8 +313,8 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>setConfigurationContext</h4>
-<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
-void&nbsp;setConfigurationContext(<a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+default&nbsp;void&nbsp;setConfigurationContext(<a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</pre>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">use <a href="../../../../org/apache/tamaya/spi/ConfigurationProviderSpi.html#setConfiguration-org.apache.tamaya.Configuration-"><code>setConfiguration(Configuration)</code></a></span></div>
 <div class="block">This method allows to replace the current <a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a> with a new
  instance. This can be used to update the context with a new one, e.g. because some of the configuration
@@ -325,7 +325,7 @@ void&nbsp;setConfigurationContext(<a href="../../../../org/apache/tamaya/spi/Con
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>context</code> - the new ConfigurationContext to be applied.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang">UnsupportedOperationException</a></code> - if the current provider is read-only.</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang">UnsupportedOperationException</a></code> - if the current provider is read-only.</dd>
 </dl>
 </li>
 </ul>
@@ -335,8 +335,8 @@ void&nbsp;setConfigurationContext(<a href="../../../../org/apache/tamaya/spi/Con
 <ul class="blockListLast">
 <li class="blockList">
 <h4>isConfigurationContextSettable</h4>
-<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
-boolean&nbsp;isConfigurationContextSettable()</pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+default&nbsp;boolean&nbsp;isConfigurationContextSettable()</pre>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">use <a href="../../../../org/apache/tamaya/spi/ConfigurationProviderSpi.html#isConfigurationSettable--"><code>isConfigurationSettable()</code></a></span></div>
 <div class="block">Method that allows to determine if a new <a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a> can be applied
  programmatically.</div>

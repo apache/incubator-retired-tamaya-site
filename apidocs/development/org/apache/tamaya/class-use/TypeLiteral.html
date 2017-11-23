@@ -84,14 +84,18 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.apache.tamaya">org.apache.tamaya</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">This package contains the Apache Tamaya API.</div>
+</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#org.apache.tamaya.core.internal">org.apache.tamaya.core.internal</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><a href="#org.apache.tamaya.spi">org.apache.tamaya.spi</a></td>
+<td class="colLast">
+<div class="block">This package contains the Apache Tamaya SPI artifacts.</div>
+</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="#org.apache.tamaya.spi">org.apache.tamaya.spi</a></td>
+<td class="colFirst"><a href="#org.apache.tamaya.spisupport">org.apache.tamaya.spisupport</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
 </tbody>
@@ -112,7 +116,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>static &lt;R&gt;&nbsp;<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;R&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">TypeLiteral.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/TypeLiteral.html#of-java.lang.reflect.Type-">of</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/reflect/Type.html?is-external=true" title="class or interface in java.lang.reflect">Type</a>&nbsp;type)</code>
+<td class="colLast"><span class="typeNameLabel">TypeLiteral.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/TypeLiteral.html#of-java.lang.reflect.Type-">of</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html?is-external=true" title="class or interface in java.lang.reflect">Type</a>&nbsp;type)</code>
 <div class="block">Creates a new TypeLiteral based on a given type.</div>
 </td>
 </tr>
@@ -127,134 +131,18 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
-<td class="colLast"><span class="typeNameLabel">Configuration.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/Configuration.html#get-java.lang.String-org.apache.tamaya.TypeLiteral-">get</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+<td class="colLast"><span class="typeNameLabel">Configuration.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/Configuration.html#get-java.lang.String-org.apache.tamaya.TypeLiteral-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
    <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type)</code>
 <div class="block">Get the property keys as type T.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
-<td class="colLast"><span class="typeNameLabel">Configuration.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/Configuration.html#getOrDefault-java.lang.String-org.apache.tamaya.TypeLiteral-T-">getOrDefault</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+<td class="colLast"><span class="typeNameLabel">Configuration.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/Configuration.html#getOrDefault-java.lang.String-org.apache.tamaya.TypeLiteral-T-">getOrDefault</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
             <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type,
             T&nbsp;defaultValue)</code>
 <div class="block">Get the property keys as type T.</div>
 </td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="org.apache.tamaya.core.internal">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a> in <a href="../../../../org/apache/tamaya/core/internal/package-summary.html">org.apache.tamaya.core.internal</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../org/apache/tamaya/core/internal/package-summary.html">org.apache.tamaya.core.internal</a> that return types with arguments of type <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;?&gt;&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#getPropertyConverter--">getPropertyConverter</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;?&gt;&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/DefaultConfigurationContext.html#getPropertyConverters--">getPropertyConverters</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;?&gt;&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">PropertyConverterManager.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/PropertyConverterManager.html#getPropertyConverters--">getPropertyConverters</a></span>()</code>
-<div class="block">Get a map of all property converters currently registered.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../org/apache/tamaya/core/internal/package-summary.html">org.apache.tamaya.core.internal</a> with parameters of type <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;void</code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/DefaultConfigurationContext.html#addPropertyConverter-org.apache.tamaya.TypeLiteral-org.apache.tamaya.spi.PropertyConverter-">addPropertyConverter</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
-                    <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&nbsp;propertyConverter)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#addPropertyConverters-org.apache.tamaya.TypeLiteral-java.util.Collection-">addPropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type,
-                     <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#addPropertyConverters-org.apache.tamaya.TypeLiteral-org.apache.tamaya.spi.PropertyConverter...-">addPropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type,
-                     <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;...&nbsp;propertyConverters)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected &lt;T&gt;&nbsp;T</code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfiguration.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/DefaultConfiguration.html#convertValue-java.lang.String-java.lang.String-org.apache.tamaya.TypeLiteral-">convertValue</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-            <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;value,
-            <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected &lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">PropertyConverterManager.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/PropertyConverterManager.html#createDefaultPropertyConverter-org.apache.tamaya.TypeLiteral-">createDefaultPropertyConverter</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;targetType)</code>
-<div class="block">Creates a dynamic PropertyConverter for the given target type.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfiguration.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/DefaultConfiguration.html#get-java.lang.String-org.apache.tamaya.TypeLiteral-">get</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-   <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type)</code>
-<div class="block">Accesses the current String value for the given key and tries to convert it
- using the <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi"><code>PropertyConverter</code></a> instances provided by the current
- <a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a>.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfiguration.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/DefaultConfiguration.html#getOrDefault-java.lang.String-org.apache.tamaya.TypeLiteral-T-">getOrDefault</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-            <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type,
-            T&nbsp;defaultValue)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/DefaultConfigurationContext.html#getPropertyConverters-org.apache.tamaya.TypeLiteral-">getPropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;targetType)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">PropertyConverterManager.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/PropertyConverterManager.html#getPropertyConverters-org.apache.tamaya.TypeLiteral-">getPropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;targetType)</code>
-<div class="block">Get the list of all current registered converters for the given target type.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><span class="typeNameLabel">PropertyConverterManager.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/PropertyConverterManager.html#isTargetTypeSupported-org.apache.tamaya.TypeLiteral-">isTargetTypeSupported</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;&nbsp;targetType)</code>
-<div class="block">Allows to evaluate if a given target type is supported.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;void</code></td>
-<td class="colLast"><span class="typeNameLabel">PropertyConverterManager.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/PropertyConverterManager.html#register-org.apache.tamaya.TypeLiteral-org.apache.tamaya.spi.PropertyConverter-">register</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;targetType,
-        <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&nbsp;converter)</code>
-<div class="block">Registers a ew converter instance.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-">removePropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;&nbsp;typeToConvert)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-java.util.Collection-">removePropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
-                        <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;converters)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-org.apache.tamaya.spi.PropertyConverter...-">removePropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
-                        <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;...&nbsp;converters)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -286,13 +174,13 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;?&gt;&gt;&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;,<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;?&gt;&gt;&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#getPropertyConverter--">getPropertyConverter</a></span>()</code>
 <div class="block">Access the current registered property converters.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;?&gt;&gt;&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;,<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;?&gt;&gt;&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">ConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html#getPropertyConverters--">getPropertyConverters</a></span>()</code>
 <div class="block">
  This method returns the Map of registered PropertyConverters
@@ -320,7 +208,7 @@
 <tr class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
 <td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#addPropertyConverters-org.apache.tamaya.TypeLiteral-java.util.Collection-">addPropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
-                     <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</code>
+                     <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</code>
 <div class="block">This method can be used for adding <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi"><code>PropertyConverter</code></a>s.</div>
 </td>
 </tr>
@@ -332,7 +220,7 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;</code></td>
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">ConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html#getPropertyConverters-org.apache.tamaya.TypeLiteral-">getPropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type)</code>
 <div class="block">
  This method returns the registered PropertyConverters for a given type.</div>
@@ -348,7 +236,7 @@
 <tr class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
 <td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-java.util.Collection-">removePropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
-                        <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</code>
+                        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</code>
 <div class="block">Removes the given PropertyConverter instances for the given type,
  if existing.</div>
 </td>
@@ -359,6 +247,12 @@
                         <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;...&nbsp;propertyConverters)</code>
 <div class="block">Removes the given PropertyConverter instances for the given type,
  if existing.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html" title="class in org.apache.tamaya.spi">ConversionContext.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConversionContext.Builder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html#setTargetType-org.apache.tamaya.TypeLiteral-">setTargetType</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&nbsp;targetType)</code>
+<div class="block">Sets the target type explicitly.</div>
 </td>
 </tr>
 </tbody>
@@ -372,13 +266,13 @@
 <tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html#Builder-org.apache.tamaya.Configuration-org.apache.tamaya.spi.ConfigurationContext-java.lang.String-org.apache.tamaya.TypeLiteral-">Builder</a></span>(<a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a>&nbsp;configuration,
        <a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;configurationContext,
-       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+       <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
        <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;&nbsp;targetType)</code>
 <div class="block">Creates a new Builder instance.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html#Builder-java.lang.String-org.apache.tamaya.TypeLiteral-">Builder</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html#Builder-java.lang.String-org.apache.tamaya.TypeLiteral-">Builder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
        <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;&nbsp;targetType)</code>
 <div class="block">Creates a new Builder instance.</div>
 </td>
@@ -386,6 +280,210 @@
 <tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html#Builder-org.apache.tamaya.TypeLiteral-">Builder</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;&nbsp;targetType)</code>
 <div class="block">Creates a new Builder instance.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.apache.tamaya.spisupport">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a> in <a href="../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing fields, and an explanation">
+<caption><span>Fields in <a href="../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> with type parameters of type <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;,<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;?&gt;&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#propertyConverters">propertyConverters</a></span></code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> that return types with arguments of type <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>,<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#getDefaultPropertyConverters--">getDefaultPropertyConverters</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;,<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;?&gt;&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#getPropertyConverter--">getPropertyConverter</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;,<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;?&gt;&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#getPropertyConverter--">getPropertyConverter</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;,<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;?&gt;&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html#getPropertyConverter--">getPropertyConverter</a></span>()</code>
+<div class="block">Access the current registered property converters.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;,<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;?&gt;&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">PropertyConverterManager.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/PropertyConverterManager.html#getPropertyConverters--">getPropertyConverters</a></span>()</code>
+<div class="block">Get a map of all property converters currently registered.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;,<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;?&gt;&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationContext.html#getPropertyConverters--">getPropertyConverters</a></span>()</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> with parameters of type <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;void</code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationContext.html#addPropertyConverter-org.apache.tamaya.TypeLiteral-org.apache.tamaya.spi.PropertyConverter-">addPropertyConverter</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
+                    <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&nbsp;propertyConverter)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#addPropertyConverters-org.apache.tamaya.TypeLiteral-java.util.Collection-">addPropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type,
+                     <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#addPropertyConverters-org.apache.tamaya.TypeLiteral-java.util.Collection-">addPropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type,
+                     <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html#addPropertyConverters-org.apache.tamaya.TypeLiteral-java.util.Collection-">addPropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
+                     <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</code>
+<div class="block">This method can be used for adding <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi"><code>PropertyConverter</code></a>s.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#addPropertyConverters-org.apache.tamaya.TypeLiteral-org.apache.tamaya.spi.PropertyConverter...-">addPropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type,
+                     <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;...&nbsp;propertyConverters)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#addPropertyConverters-org.apache.tamaya.TypeLiteral-org.apache.tamaya.spi.PropertyConverter...-">addPropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type,
+                     <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;...&nbsp;propertyConverters)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html#addPropertyConverters-org.apache.tamaya.TypeLiteral-org.apache.tamaya.spi.PropertyConverter...-">addPropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
+                     <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;...&nbsp;propertyConverters)</code>
+<div class="block">This method can be used for adding <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi"><code>PropertyConverter</code></a>s.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected &lt;T&gt;&nbsp;T</code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfiguration.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfiguration.html#convertValue-java.lang.String-java.lang.String-org.apache.tamaya.TypeLiteral-">convertValue</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+            <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;value,
+            <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected &lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">PropertyConverterManager.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/PropertyConverterManager.html#createDefaultPropertyConverter-org.apache.tamaya.TypeLiteral-">createDefaultPropertyConverter</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;targetType)</code>
+<div class="block">Creates a dynamic PropertyConverter for the given target type.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfiguration.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfiguration.html#get-java.lang.String-org.apache.tamaya.TypeLiteral-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+   <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type)</code>
+<div class="block">Accesses the current String value for the given key and tries to convert it
+ using the <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi"><code>PropertyConverter</code></a> instances provided by the current
+ <a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a>.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfiguration.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfiguration.html#getOrDefault-java.lang.String-org.apache.tamaya.TypeLiteral-T-">getOrDefault</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+            <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;type,
+            T&nbsp;defaultValue)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">PropertyConverterManager.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/PropertyConverterManager.html#getPropertyConverters-org.apache.tamaya.TypeLiteral-">getPropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;targetType)</code>
+<div class="block">Get the list of all current registered converters for the given target type.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationContext.html#getPropertyConverters-org.apache.tamaya.TypeLiteral-">getPropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;targetType)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><span class="typeNameLabel">PropertyConverterManager.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/PropertyConverterManager.html#isTargetTypeSupported-org.apache.tamaya.TypeLiteral-">isTargetTypeSupported</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;&nbsp;targetType)</code>
+<div class="block">Allows to evaluate if a given target type is supported.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;void</code></td>
+<td class="colLast"><span class="typeNameLabel">PropertyConverterManager.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/PropertyConverterManager.html#register-org.apache.tamaya.TypeLiteral-org.apache.tamaya.spi.PropertyConverter-">register</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;targetType,
+        <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&nbsp;converter)</code>
+<div class="block">Registers a new converters instance.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-">removePropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;&nbsp;typeToConvert)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-">removePropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;&nbsp;typeToConvert)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-">removePropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;&nbsp;typeToConvert)</code>
+<div class="block">Removes all converters for the given type, which actually renders a given type
+ unsupported for type conversion.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-java.util.Collection-">removePropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
+                        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;converters)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-java.util.Collection-">removePropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
+                        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;converters)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-java.util.Collection-">removePropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
+                        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;&gt;&nbsp;propertyConverters)</code>
+<div class="block">Removes the given PropertyConverter instances for the given type,
+ if existing.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-org.apache.tamaya.spi.PropertyConverter...-">removePropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
+                        <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;...&nbsp;converters)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-org.apache.tamaya.spi.PropertyConverter...-">removePropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
+                        <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;...&nbsp;converters)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html#removePropertyConverters-org.apache.tamaya.TypeLiteral-org.apache.tamaya.spi.PropertyConverter...-">removePropertyConverters</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;T&gt;&nbsp;typeToConvert,
+                        <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&lt;T&gt;...&nbsp;propertyConverters)</code>
+<div class="block">Removes the given PropertyConverter instances for the given type,
+ if existing.</div>
 </td>
 </tr>
 </tbody>

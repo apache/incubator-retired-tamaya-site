@@ -10,6 +10,7 @@
 <meta name="keywords" content="setConfiguration()">
 <meta name="keywords" content="setConfigurationContext()">
 <meta name="keywords" content="setAnnotatedElement()">
+<meta name="keywords" content="setTargetType()">
 <meta name="keywords" content="addSupportedFormats()">
 <meta name="keywords" content="build()">
 <meta name="keywords" content="toString()">
@@ -26,7 +27,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -105,7 +106,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
-<li><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
 <li>org.apache.tamaya.spi.ConversionContext.Builder</li>
@@ -122,7 +123,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public static final class <span class="typeNameLabel">ConversionContext.Builder</span>
-extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
+extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">Builder to create new instances of <a href="../../../../org/apache/tamaya/spi/ConversionContext.html" title="class in org.apache.tamaya.spi"><code>ConversionContext</code></a>.</div>
 </li>
 </ul>
@@ -144,13 +145,13 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html#Builder-org.apache.tamaya.Configuration-org.apache.tamaya.spi.ConfigurationContext-java.lang.String-org.apache.tamaya.TypeLiteral-">Builder</a></span>(<a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a>&nbsp;configuration,
        <a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;configurationContext,
-       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+       <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
        <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;&nbsp;targetType)</code>
 <div class="block">Creates a new Builder instance.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html#Builder-java.lang.String-org.apache.tamaya.TypeLiteral-">Builder</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html#Builder-java.lang.String-org.apache.tamaya.TypeLiteral-">Builder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
        <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;&nbsp;targetType)</code>
 <div class="block">Creates a new Builder instance.</div>
 </td>
@@ -177,8 +178,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html" title="class in org.apache.tamaya.spi">ConversionContext.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html#addSupportedFormats-java.lang.Class-java.lang.String...-">addSupportedFormats</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&gt;&nbsp;converterType,
-                   <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>...&nbsp;formatDescriptors)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html#addSupportedFormats-java.lang.Class-java.lang.String...-">addSupportedFormats</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&gt;&nbsp;converterType,
+                   <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>...&nbsp;formatDescriptors)</code>
 <div class="block">Add the formats provided by a <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi"><code>PropertyConverter</code></a>.</div>
 </td>
 </tr>
@@ -190,7 +191,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html" title="class in org.apache.tamaya.spi">ConversionContext.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html#setAnnotatedElement-java.lang.reflect.AnnotatedElement-">setAnnotatedElement</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/reflect/AnnotatedElement.html?is-external=true" title="class or interface in java.lang.reflect">AnnotatedElement</a>&nbsp;annotatedElement)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html#setAnnotatedElement-java.lang.reflect.AnnotatedElement-">setAnnotatedElement</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/reflect/AnnotatedElement.html?is-external=true" title="class or interface in java.lang.reflect">AnnotatedElement</a>&nbsp;annotatedElement)</code>
 <div class="block">Sets the annotated element, when configuration is injected.</div>
 </td>
 </tr>
@@ -208,12 +209,18 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html" title="class in org.apache.tamaya.spi">ConversionContext.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html#setKey-java.lang.String-">setKey</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html#setKey-java.lang.String-">setKey</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
 <div class="block">Sets the key.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colFirst"><code><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html" title="class in org.apache.tamaya.spi">ConversionContext.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html#setTargetType-org.apache.tamaya.TypeLiteral-">setTargetType</a></span>(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&nbsp;targetType)</code>
+<div class="block">Sets the target type explicitly.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
 </table>
@@ -221,8 +228,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
 </ul>
 </li>
 </ul>
@@ -258,7 +265,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>Builder</h4>
-<pre>public&nbsp;Builder(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+<pre>public&nbsp;Builder(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
                <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;&nbsp;targetType)</pre>
 <div class="block">Creates a new Builder instance.</div>
 <dl>
@@ -276,7 +283,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <h4>Builder</h4>
 <pre>public&nbsp;Builder(<a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a>&nbsp;configuration,
                <a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;configurationContext,
-               <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+               <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
                <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;&nbsp;targetType)</pre>
 <div class="block">Creates a new Builder instance.</div>
 <dl>
@@ -302,7 +309,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>setKey</h4>
-<pre>public&nbsp;<a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html" title="class in org.apache.tamaya.spi">ConversionContext.Builder</a>&nbsp;setKey(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</pre>
+<pre>public&nbsp;<a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html" title="class in org.apache.tamaya.spi">ConversionContext.Builder</a>&nbsp;setKey(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</pre>
 <div class="block">Sets the key.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -350,7 +357,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>setAnnotatedElement</h4>
-<pre>public&nbsp;<a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html" title="class in org.apache.tamaya.spi">ConversionContext.Builder</a>&nbsp;setAnnotatedElement(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/reflect/AnnotatedElement.html?is-external=true" title="class or interface in java.lang.reflect">AnnotatedElement</a>&nbsp;annotatedElement)</pre>
+<pre>public&nbsp;<a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html" title="class in org.apache.tamaya.spi">ConversionContext.Builder</a>&nbsp;setAnnotatedElement(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/reflect/AnnotatedElement.html?is-external=true" title="class or interface in java.lang.reflect">AnnotatedElement</a>&nbsp;annotatedElement)</pre>
 <div class="block">Sets the annotated element, when configuration is injected.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -360,14 +367,31 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
+<a name="setTargetType-org.apache.tamaya.TypeLiteral-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setTargetType</h4>
+<pre>public&nbsp;<a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html" title="class in org.apache.tamaya.spi">ConversionContext.Builder</a>&nbsp;setTargetType(<a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&nbsp;targetType)</pre>
+<div class="block">Sets the target type explicitly. This is required in some rare cases, e.g. injection of <code>Provider</code>
+ instances, where the provider's result type must be produced.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>targetType</code> - the</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the builder for chaining.</dd>
+</dl>
+</li>
+</ul>
 <a name="addSupportedFormats-java.lang.Class-java.lang.String...-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>addSupportedFormats</h4>
-<pre>public&nbsp;<a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html" title="class in org.apache.tamaya.spi">ConversionContext.Builder</a>&nbsp;addSupportedFormats(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&gt;&nbsp;converterType,
-                                                     <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>...&nbsp;formatDescriptors)</pre>
+<pre>public&nbsp;<a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html" title="class in org.apache.tamaya.spi">ConversionContext.Builder</a>&nbsp;addSupportedFormats(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi">PropertyConverter</a>&gt;&nbsp;converterType,
+                                                     <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>...&nbsp;formatDescriptors)</pre>
 <div class="block">Add the formats provided by a <a href="../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi"><code>PropertyConverter</code></a>. This method should be called by each converter
  performing/trying conversion, so the user can be given feedback on the supported formats on failure.</div>
 <dl>
@@ -399,10 +423,10 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockListLast">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;toString()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;toString()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
 </dl>
 </li>
 </ul>

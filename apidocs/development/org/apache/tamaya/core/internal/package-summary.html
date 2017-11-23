@@ -72,6 +72,12 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <div class="header">
 <h1 title="Package" class="title">Package&nbsp;org.apache.tamaya.core.internal</h1>
+<div class="docSummary">
+<div class="block">Contains implementations of different property sources for supporting
+ CLI, Environment and System Properties as well as simple properties
+ based on the formats defined by <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util"><code>Properties</code></a>.</div>
+</div>
+<p>See:&nbsp;<a href="#package.description">Description</a></p>
 </div>
 <div class="contentContainer">
 <ul class="blockList">
@@ -102,31 +108,19 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfiguration.html" title="class in org.apache.tamaya.core.internal">DefaultConfiguration</a></td>
-<td class="colLast">
-<div class="block">Implementation of the Configuration API.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContext.html" title="class in org.apache.tamaya.core.internal">DefaultConfigurationContext</a></td>
-<td class="colLast">
-<div class="block">Default implementation of a simple ConfigurationContext.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html" title="class in org.apache.tamaya.core.internal">DefaultConfigurationContextBuilder</a></td>
+<td class="colFirst"><a href="../../../../../org/apache/tamaya/core/internal/CoreConfigurationContext.html" title="class in org.apache.tamaya.core.internal">CoreConfigurationContext</a></td>
 <td class="colLast">
 <div class="block">Default implementation of <a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContextBuilder</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationProvider.html" title="class in org.apache.tamaya.core.internal">DefaultConfigurationProvider</a></td>
+<td class="colFirst"><a href="../../../../../org/apache/tamaya/core/internal/CoreConfigurationContextBuilder.html" title="class in org.apache.tamaya.core.internal">CoreConfigurationContextBuilder</a></td>
 <td class="colLast">
-<div class="block">Implementation of the Configuration API.</div>
+<div class="block">Default implementation of <a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContextBuilder</code></a>.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigValueEvaluator.html" title="class in org.apache.tamaya.core.internal">DefaultConfigValueEvaluator</a></td>
+<td class="colFirst"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationProvider.html" title="class in org.apache.tamaya.core.internal">DefaultConfigurationProvider</a></td>
 <td class="colLast">
 <div class="block">Implementation of the Configuration API.</div>
 </td>
@@ -135,7 +129,7 @@
 <td class="colFirst"><a href="../../../../../org/apache/tamaya/core/internal/DefaultServiceContext.html" title="class in org.apache.tamaya.core.internal">DefaultServiceContext</a></td>
 <td class="colLast">
 <div class="block">This class implements the (default) <a href="../../../../../org/apache/tamaya/spi/ServiceContext.html" title="interface in org.apache.tamaya.spi"><code>ServiceContext</code></a> interface and hereby uses the JDK
- <a href="http://docs.oracle.com/javase/7/docs/api/java/util/ServiceLoader.html?is-external=true" title="class or interface in java.util"><code>ServiceLoader</code></a> to load the services required.</div>
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html?is-external=true" title="class or interface in java.util"><code>ServiceLoader</code></a> to load the services required.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -147,49 +141,21 @@
 <tr class="rowColor">
 <td class="colFirst"><a href="../../../../../org/apache/tamaya/core/internal/OSGIServiceLoader.html" title="class in org.apache.tamaya.core.internal">OSGIServiceLoader</a></td>
 <td class="colLast">
-<div class="block">An bundle listener that registers services defined in META-INF/services, when a bundle is starting.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../../org/apache/tamaya/core/internal/PriorityServiceComparator.html" title="class in org.apache.tamaya.core.internal">PriorityServiceComparator</a></td>
-<td class="colLast">
-<div class="block">Comparator implementation for odering services loaded based on their increasing priority values.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../../org/apache/tamaya/core/internal/PropertyConverterManager.html" title="class in org.apache.tamaya.core.internal">PropertyConverterManager</a></td>
-<td class="colLast">
-<div class="block">Manager that deals with <a href="../../../../../org/apache/tamaya/spi/PropertyConverter.html" title="interface in org.apache.tamaya.spi"><code>PropertyConverter</code></a> instances.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../../org/apache/tamaya/core/internal/PropertyFilterComparator.html" title="class in org.apache.tamaya.core.internal">PropertyFilterComparator</a></td>
-<td class="colLast">
-<div class="block">Comparator for PropertyFilters based on their priority annotations.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../../org/apache/tamaya/core/internal/PropertyFiltering.html" title="class in org.apache.tamaya.core.internal">PropertyFiltering</a></td>
-<td class="colLast">
-<div class="block">Implementation of the Configuration API.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../../org/apache/tamaya/core/internal/PropertySourceComparator.html" title="class in org.apache.tamaya.core.internal">PropertySourceComparator</a></td>
-<td class="colLast">
-<div class="block">Comparator for ordering of PropertySources based on their ordinal method and class name.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../../org/apache/tamaya/core/internal/ReflectionUtil.html" title="class in org.apache.tamaya.core.internal">ReflectionUtil</a></td>
-<td class="colLast">
-<div class="block">Small utility class used by other parts.</div>
+<div class="block">A bundle listener that registers services defined in META-INF/services, when
+ a bundle is starting.</div>
 </td>
 </tr>
 </tbody>
 </table>
 </li>
 </ul>
+<a name="package.description">
+<!--   -->
+</a>
+<h2 title="Package org.apache.tamaya.core.internal Description">Package org.apache.tamaya.core.internal Description</h2>
+<div class="block">Contains implementations of different property sources for supporting
+ CLI, Environment and System Properties as well as simple properties
+ based on the formats defined by <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util"><code>Properties</code></a>.</div>
 </div>
 <!-- ======= START OF BOTTOM NAVBAR ====== -->
 <div class="bottomNav"><a name="navbar.bottom">

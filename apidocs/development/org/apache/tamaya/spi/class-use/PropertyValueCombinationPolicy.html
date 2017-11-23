@@ -83,11 +83,13 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="#org.apache.tamaya.core.internal">org.apache.tamaya.core.internal</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><a href="#org.apache.tamaya.spi">org.apache.tamaya.spi</a></td>
+<td class="colLast">
+<div class="block">This package contains the Apache Tamaya SPI artifacts.</div>
+</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#org.apache.tamaya.spi">org.apache.tamaya.spi</a></td>
+<td class="colFirst"><a href="#org.apache.tamaya.spisupport">org.apache.tamaya.spisupport</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
 </tbody>
@@ -95,37 +97,6 @@
 </li>
 <li class="blockList">
 <ul class="blockList">
-<li class="blockList"><a name="org.apache.tamaya.core.internal">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi">PropertyValueCombinationPolicy</a> in <a href="../../../../../org/apache/tamaya/core/internal/package-summary.html">org.apache.tamaya.core.internal</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../org/apache/tamaya/core/internal/package-summary.html">org.apache.tamaya.core.internal</a> that return <a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi">PropertyValueCombinationPolicy</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi">PropertyValueCombinationPolicy</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContext.html#getPropertyValueCombinationPolicy--">getPropertyValueCombinationPolicy</a></span>()</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../org/apache/tamaya/core/internal/package-summary.html">org.apache.tamaya.core.internal</a> with parameters of type <a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi">PropertyValueCombinationPolicy</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#setPropertyValueCombinationPolicy-org.apache.tamaya.spi.PropertyValueCombinationPolicy-">setPropertyValueCombinationPolicy</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi">PropertyValueCombinationPolicy</a>&nbsp;combinationPolicy)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</li>
 <li class="blockList"><a name="org.apache.tamaya.spi">
 <!--   -->
 </a>
@@ -140,6 +111,14 @@
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi">PropertyValueCombinationPolicy</a></code></td>
 <td class="colLast"><span class="typeNameLabel">PropertyValueCombinationPolicy.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html#DEFAULT_OVERRIDING_COLLECTOR">DEFAULT_OVERRIDING_COLLECTOR</a></span></code>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">Use <a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html#DEFAULT_OVERRIDING_POLICY">DEFAULT_OVERRIDING_POLICY</a> instead. Will be removed in 1.0.</span></div>
+</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi">PropertyValueCombinationPolicy</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PropertyValueCombinationPolicy.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html#DEFAULT_OVERRIDING_POLICY">DEFAULT_OVERRIDING_POLICY</a></span></code>
 <div class="block">Default overriding collector, where each existing entry (<code>current</code> is overridden by a subsequent non-null
  entry evaluated by <code>propertySource.get(key)</code>.</div>
 </td>
@@ -172,6 +151,61 @@
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
 <td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#setPropertyValueCombinationPolicy-org.apache.tamaya.spi.PropertyValueCombinationPolicy-">setPropertyValueCombinationPolicy</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi">PropertyValueCombinationPolicy</a>&nbsp;policy)</code>
+<div class="block">Sets the <a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi"><code>PropertyValueCombinationPolicy</code></a> used to evaluate the final
+ property values.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.apache.tamaya.spisupport">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi">PropertyValueCombinationPolicy</a> in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing fields, and an explanation">
+<caption><span>Fields in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> declared as <a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi">PropertyValueCombinationPolicy</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi">PropertyValueCombinationPolicy</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#combinationPolicy">combinationPolicy</a></span></code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> that return <a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi">PropertyValueCombinationPolicy</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi">PropertyValueCombinationPolicy</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContext.html#getPropertyValueCombinationPolicy--">getPropertyValueCombinationPolicy</a></span>()</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> with parameters of type <a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi">PropertyValueCombinationPolicy</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#setPropertyValueCombinationPolicy-org.apache.tamaya.spi.PropertyValueCombinationPolicy-">setPropertyValueCombinationPolicy</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi">PropertyValueCombinationPolicy</a>&nbsp;combinationPolicy)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#setPropertyValueCombinationPolicy-org.apache.tamaya.spi.PropertyValueCombinationPolicy-">setPropertyValueCombinationPolicy</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi">PropertyValueCombinationPolicy</a>&nbsp;combinationPolicy)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html#setPropertyValueCombinationPolicy-org.apache.tamaya.spi.PropertyValueCombinationPolicy-">setPropertyValueCombinationPolicy</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi">PropertyValueCombinationPolicy</a>&nbsp;policy)</code>
 <div class="block">Sets the <a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html" title="interface in org.apache.tamaya.spi"><code>PropertyValueCombinationPolicy</code></a> used to evaluate the final
  property values.</div>
 </td>

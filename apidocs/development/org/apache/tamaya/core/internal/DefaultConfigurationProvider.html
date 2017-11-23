@@ -58,8 +58,8 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html" title="class in org.apache.tamaya.core.internal"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigValueEvaluator.html" title="class in org.apache.tamaya.core.internal"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../org/apache/tamaya/core/internal/CoreConfigurationContextBuilder.html" title="class in org.apache.tamaya.core.internal"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../../org/apache/tamaya/core/internal/DefaultServiceContext.html" title="class in org.apache.tamaya.core.internal"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?org/apache/tamaya/core/internal/DefaultConfigurationProvider.html" target="_top">Frames</a></li>
@@ -106,7 +106,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
-<li><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
 <li>org.apache.tamaya.core.internal.DefaultConfigurationProvider</li>
@@ -123,7 +123,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">DefaultConfigurationProvider</span>
-extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
+extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="../../../../../org/apache/tamaya/spi/ConfigurationProviderSpi.html" title="interface in org.apache.tamaya.spi">ConfigurationProviderSpi</a></pre>
 <div class="block">Implementation of the Configuration API. This class uses the current <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a> to evaluate the
  chain of <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a> and <a href="../../../../../org/apache/tamaya/spi/PropertyFilter.html" title="interface in org.apache.tamaya.spi"><code>PropertyFilter</code></a>
@@ -178,7 +178,9 @@ implements <a href="../../../../../org/apache/tamaya/spi/ConfigurationProviderSp
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationProvider.html#getConfigurationContext--">getConfigurationContext</a></span>()</code>
-<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">use <a href="../../../../../org/apache/tamaya/Configuration.html#getContext--"><code>Configuration.getContext()</code></a> instead.</span></div>
+</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
@@ -210,7 +212,9 @@ implements <a href="../../../../../org/apache/tamaya/spi/ConfigurationProviderSp
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationProvider.html#setConfigurationContext-org.apache.tamaya.spi.ConfigurationContext-">setConfigurationContext</a></span>(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>
-<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">the context should be given upon creation of the <a href="../../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya"><code>Configuration</code></a></span></div>
+</div>
 </td>
 </tr>
 </table>
@@ -218,8 +222,8 @@ implements <a href="../../../../../org/apache/tamaya/spi/ConfigurationProviderSp
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
 </ul>
 </li>
 </ul>
@@ -354,9 +358,9 @@ implements <a href="../../../../../org/apache/tamaya/spi/ConfigurationProviderSp
 <ul class="blockList">
 <li class="blockList">
 <h4>getConfigurationContext</h4>
-<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
 public&nbsp;<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;getConfigurationContext()</pre>
-<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">use <a href="../../../../../org/apache/tamaya/Configuration.html#getContext--"><code>Configuration.getContext()</code></a> instead.</span></div>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../org/apache/tamaya/spi/ConfigurationProviderSpi.html#getConfigurationContext--">ConfigurationProviderSpi</a></code></span></div>
 <div class="block">Get access to the current <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a>.</div>
 <dl>
@@ -373,9 +377,9 @@ public&nbsp;<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.h
 <ul class="blockList">
 <li class="blockList">
 <h4>setConfigurationContext</h4>
-<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
 public&nbsp;void&nbsp;setConfigurationContext(<a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</pre>
-<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">the context should be given upon creation of the <a href="../../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya"><code>Configuration</code></a></span></div>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../org/apache/tamaya/spi/ConfigurationProviderSpi.html#setConfigurationContext-org.apache.tamaya.spi.ConfigurationContext-">ConfigurationProviderSpi</a></code></span></div>
 <div class="block">This method allows to replace the current <a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi"><code>ConfigurationContext</code></a> with a new
  instance. This can be used to update the context with a new one, e.g. because some of the configuration
@@ -396,7 +400,7 @@ public&nbsp;void&nbsp;setConfigurationContext(<a href="../../../../../org/apache
 <ul class="blockListLast">
 <li class="blockList">
 <h4>isConfigurationContextSettable</h4>
-<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
 public&nbsp;boolean&nbsp;isConfigurationContextSettable()</pre>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;</div>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../org/apache/tamaya/spi/ConfigurationProviderSpi.html#isConfigurationContextSettable--">ConfigurationProviderSpi</a></code></span></div>
@@ -441,8 +445,8 @@ public&nbsp;boolean&nbsp;isConfigurationContextSettable()</pre>
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html" title="class in org.apache.tamaya.core.internal"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigValueEvaluator.html" title="class in org.apache.tamaya.core.internal"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../org/apache/tamaya/core/internal/CoreConfigurationContextBuilder.html" title="class in org.apache.tamaya.core.internal"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../../org/apache/tamaya/core/internal/DefaultServiceContext.html" title="class in org.apache.tamaya.core.internal"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?org/apache/tamaya/core/internal/DefaultConfigurationProvider.html" target="_top">Frames</a></li>

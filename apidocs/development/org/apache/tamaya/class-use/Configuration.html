@@ -84,14 +84,33 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.apache.tamaya">org.apache.tamaya</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">This package contains the Apache Tamaya API.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.apache.tamaya.core.internal">org.apache.tamaya.core.internal</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Contains implementations of different property sources for supporting
+ CLI, Environment and System Properties as well as simple properties
+ based on the formats defined by <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util"><code>Properties</code></a>.</div>
+</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><a href="#org.apache.tamaya.examples.minimal">org.apache.tamaya.examples.minimal</a></td>
+<td class="colLast">
+<div class="block">Example to show the simplest ways to use Tamaya with
+ the standard configuration file.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.apache.tamaya.spi">org.apache.tamaya.spi</a></td>
+<td class="colLast">
+<div class="block">This package contains the Apache Tamaya SPI artifacts.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#org.apache.tamaya.spisupport">org.apache.tamaya.spisupport</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
 </tbody>
@@ -129,7 +148,7 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></code></td>
+<td class="colFirst"><code>default <a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Configuration.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/Configuration.html#with-org.apache.tamaya.ConfigOperator-">with</a></span>(<a href="../../../../org/apache/tamaya/ConfigOperator.html" title="interface in org.apache.tamaya">ConfigOperator</a>&nbsp;operator)</code>
 <div class="block">Extension point for adjusting configuration.</div>
 </td>
@@ -169,21 +188,6 @@
 <!--   -->
 </a>
 <h3>Uses of <a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a> in <a href="../../../../org/apache/tamaya/core/internal/package-summary.html">org.apache.tamaya.core.internal</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../org/apache/tamaya/core/internal/package-summary.html">org.apache.tamaya.core.internal</a> that implement <a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Class and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/DefaultConfiguration.html" title="class in org.apache.tamaya.core.internal">DefaultConfiguration</a></span></code>
-<div class="block">Implementation of the Configuration API.</div>
-</td>
-</tr>
-</tbody>
-</table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
 <caption><span>Methods in <a href="../../../../org/apache/tamaya/core/internal/package-summary.html">org.apache.tamaya.core.internal</a> that return <a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
@@ -199,10 +203,6 @@
 <td class="colFirst"><code><a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></code></td>
 <td class="colLast"><span class="typeNameLabel">DefaultConfigurationProvider.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/DefaultConfigurationProvider.html#getConfiguration--">getConfiguration</a></span>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfiguration.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/DefaultConfiguration.html#with-org.apache.tamaya.ConfigOperator-">with</a></span>(<a href="../../../../org/apache/tamaya/ConfigOperator.html" title="interface in org.apache.tamaya">ConfigOperator</a>&nbsp;operator)</code>&nbsp;</td>
-</tr>
 </tbody>
 </table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
@@ -215,6 +215,41 @@
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">DefaultConfigurationProvider.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/core/internal/DefaultConfigurationProvider.html#setConfiguration-org.apache.tamaya.Configuration-">setConfiguration</a></span>(<a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a>&nbsp;config)</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.apache.tamaya.examples.minimal">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a> in <a href="../../../../org/apache/tamaya/examples/minimal/package-summary.html">org.apache.tamaya.examples.minimal</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../org/apache/tamaya/examples/minimal/package-summary.html">org.apache.tamaya.examples.minimal</a> that return <a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></code></td>
+<td class="colLast"><span class="typeNameLabel">TestConfigProvider.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/examples/minimal/TestConfigProvider.html#createConfiguration-org.apache.tamaya.spi.ConfigurationContext-">createConfiguration</a></span>(<a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;context)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></code></td>
+<td class="colLast"><span class="typeNameLabel">TestConfigProvider.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/examples/minimal/TestConfigProvider.html#getConfiguration--">getConfiguration</a></span>()</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../org/apache/tamaya/examples/minimal/package-summary.html">org.apache.tamaya.examples.minimal</a> with parameters of type <a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">TestConfigProvider.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/examples/minimal/TestConfigProvider.html#setConfiguration-org.apache.tamaya.Configuration-">setConfiguration</a></span>(<a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a>&nbsp;config)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -281,9 +316,67 @@
 <tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spi/ConversionContext.Builder.html#Builder-org.apache.tamaya.Configuration-org.apache.tamaya.spi.ConfigurationContext-java.lang.String-org.apache.tamaya.TypeLiteral-">Builder</a></span>(<a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a>&nbsp;configuration,
        <a href="../../../../org/apache/tamaya/spi/ConfigurationContext.html" title="interface in org.apache.tamaya.spi">ConfigurationContext</a>&nbsp;configurationContext,
-       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+       <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
        <a href="../../../../org/apache/tamaya/TypeLiteral.html" title="class in org.apache.tamaya">TypeLiteral</a>&lt;?&gt;&nbsp;targetType)</code>
 <div class="block">Creates a new Builder instance.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.apache.tamaya.spisupport">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a> in <a href="../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> that implement <a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfiguration.html" title="class in org.apache.tamaya.spisupport">DefaultConfiguration</a></span></code>
+<div class="block">Implementation of the Configuration API.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> that return <a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#build--">build</a></span>()</code>
+<div class="block">Builds a new configuration based on the configuration of this builder instance.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html#build--">build</a></span>()</code>
+<div class="block">Builds a new <a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya"><code>Configuration</code></a> based on the data in this builder.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfiguration.</span><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfiguration.html#with-org.apache.tamaya.ConfigOperator-">with</a></span>(<a href="../../../../org/apache/tamaya/ConfigOperator.html" title="interface in org.apache.tamaya">ConfigOperator</a>&nbsp;operator)</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
+<caption><span>Constructors in <a href="../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> with parameters of type <a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#DefaultConfigurationBuilder-org.apache.tamaya.Configuration-">DefaultConfigurationBuilder</a></span>(<a href="../../../../org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya">Configuration</a>&nbsp;configuration)</code>
+<div class="block">Creates a new builder instance initializing it with the given context.</div>
 </td>
 </tr>
 </tbody>

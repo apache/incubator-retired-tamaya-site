@@ -83,193 +83,30 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="#org.apache.tamaya.core.internal">org.apache.tamaya.core.internal</a></td>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="#org.apache.tamaya.core.propertysource">org.apache.tamaya.core.propertysource</a></td>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><a href="#org.apache.tamaya.examples.custompropertysource">org.apache.tamaya.examples.custompropertysource</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.apache.tamaya.spi">org.apache.tamaya.spi</a></td>
+<td class="colLast">
+<div class="block">This package contains the Apache Tamaya SPI artifacts.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#org.apache.tamaya.spisupport">org.apache.tamaya.spisupport</a></td>
 <td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#org.apache.tamaya.spisupport.propertysource">org.apache.tamaya.spisupport.propertysource</a></td>
+<td class="colLast">
+<div class="block">Contains internal implementations artifacts registered as services.</div>
+</td>
 </tr>
 </tbody>
 </table>
 </li>
 <li class="blockList">
 <ul class="blockList">
-<li class="blockList"><a name="org.apache.tamaya.core.internal">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a> in <a href="../../../../../org/apache/tamaya/core/internal/package-summary.html">org.apache.tamaya.core.internal</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../org/apache/tamaya/core/internal/package-summary.html">org.apache.tamaya.core.internal</a> that return <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContext.html#getPropertySource-java.lang.String-">getPropertySource</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../org/apache/tamaya/core/internal/package-summary.html">org.apache.tamaya.core.internal</a> that return types with arguments of type <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContext.html#getPropertySources--">getPropertySources</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#getPropertySources--">getPropertySources</a></span>()</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../org/apache/tamaya/core/internal/package-summary.html">org.apache.tamaya.core.internal</a> with parameters of type <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContext.html#addPropertySources-org.apache.tamaya.spi.PropertySource...-">addPropertySources</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>...&nbsp;propertySourcesToAdd)</code>
-<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#addPropertySources-org.apache.tamaya.spi.PropertySource...-">addPropertySources</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>...&nbsp;sources)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>int</code></td>
-<td class="colLast"><span class="typeNameLabel">PropertySourceComparator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/PropertySourceComparator.html#compare-org.apache.tamaya.spi.PropertySource-org.apache.tamaya.spi.PropertySource-">compare</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;source1,
-       <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;source2)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#decreasePriority-org.apache.tamaya.spi.PropertySource-">decreasePriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static int</code></td>
-<td class="colLast"><span class="typeNameLabel">PropertySourceComparator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/PropertySourceComparator.html#getOrdinal-org.apache.tamaya.spi.PropertySource-">getOrdinal</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>
-<div class="block">Evaluates an ordinal value from a <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a>, Herey the ordinal of type <code>int</code>
- is evaluated as follows:
- 
-     It evaluates the <code>String</code> value for <a href="../../../../../org/apache/tamaya/spi/PropertySource.html#TAMAYA_ORDINAL"><code>TAMAYA_ORDINAL</code></a> and tries
-     to convert it to an <code>int</code> value, using <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true#parseInt-java.lang.String-" title="class or interface in java.lang"><code>Integer.parseInt(String)</code></a>.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#highestPriority-org.apache.tamaya.spi.PropertySource-">highestPriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#increasePriority-org.apache.tamaya.spi.PropertySource-">increasePriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#lowestPriority-org.apache.tamaya.spi.PropertySource-">lowestPriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#removePropertySources-org.apache.tamaya.spi.PropertySource...-">removePropertySources</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>...&nbsp;propertySources)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Method parameters in <a href="../../../../../org/apache/tamaya/core/internal/package-summary.html">org.apache.tamaya.core.internal</a> with type arguments of type <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#addPropertySources-java.util.Collection-">addPropertySources</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;sources)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#removePropertySources-java.util.Collection-">removePropertySources</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/internal/DefaultConfigurationContextBuilder.html#sortPropertySources-java.util.Comparator-">sortPropertySources</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;comparator)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="org.apache.tamaya.core.propertysource">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a> in <a href="../../../../../org/apache/tamaya/core/propertysource/package-summary.html">org.apache.tamaya.core.propertysource</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../../org/apache/tamaya/core/propertysource/package-summary.html">org.apache.tamaya.core.propertysource</a> that implement <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Class and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/propertysource/BasePropertySource.html" title="class in org.apache.tamaya.core.propertysource">BasePropertySource</a></span></code>
-<div class="block">Abstract <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a> that allows to set a default ordinal that will be used, if no
- ordinal is provided with the config.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/propertysource/CLIPropertySource.html" title="class in org.apache.tamaya.core.propertysource">CLIPropertySource</a></span></code>
-<div class="block">PropertySource that allows to add the programs main arguments as configuration entries.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/propertysource/EnvironmentPropertySource.html" title="class in org.apache.tamaya.core.propertysource">EnvironmentPropertySource</a></span></code>
-<div class="block">This <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a> provides all properties which are set
- via
- <code>export myprop=myval</code> on UNIX Systems or
- <code>set myprop=myval</code> on Windows.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/propertysource/JavaConfigurationPropertySource.html" title="class in org.apache.tamaya.core.propertysource">JavaConfigurationPropertySource</a></span></code>
-<div class="block">Provider which reads all <a href="../../../../../org/apache/tamaya/core/propertysource/JavaConfigurationPropertySource.html#DEFAULT_SIMPLE_PROPERTIES_FILE_NAME">"META-INF/javaconfiguration.properties"</a> and
- <a href="../../../../../org/apache/tamaya/core/propertysource/JavaConfigurationPropertySource.html#DEFAULT_XML_PROPERTIES_FILE_NAME">"META-INF/javaconfiguration.xml"</a> files found in the
- classpath.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/propertysource/SimplePropertySource.html" title="class in org.apache.tamaya.core.propertysource">SimplePropertySource</a></span></code>
-<div class="block">Simple implementation of a <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a> for
- simple property files and XML property files.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/core/propertysource/SystemPropertySource.html" title="class in org.apache.tamaya.core.propertysource">SystemPropertySource</a></span></code>
-<div class="block">This <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a> manages the system properties.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
 <li class="blockList"><a name="org.apache.tamaya.examples.custompropertysource">
 <!--   -->
 </a>
@@ -282,7 +119,7 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">SimplePropertySourceProvider.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/examples/custompropertysource/SimplePropertySourceProvider.html#getPropertySources--">getPropertySources</a></span>()</code>&nbsp;</td>
 </tr>
 </tbody>
@@ -316,7 +153,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html#getPropertySource-java.lang.String-">getPropertySource</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
+<td class="colLast"><span class="typeNameLabel">ConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html#getPropertySource-java.lang.String-">getPropertySource</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Access a <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a> using its (unique) name.</div>
 </td>
 </tr>
@@ -330,17 +167,17 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">PropertySourceProvider.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/PropertySourceProvider.html#getPropertySources--">getPropertySources</a></span>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#getPropertySources--">getPropertySources</a></span>()</code>
 <div class="block">Access the current chain of property sources.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">ConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContext.html#getPropertySources--">getPropertySources</a></span>()</code>
 <div class="block">This method returns the current list of registered PropertySources ordered via their ordinal.</div>
 </td>
@@ -371,7 +208,7 @@
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a></code></td>
 <td class="colLast"><span class="typeNameLabel">PropertyValueCombinationPolicy.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/PropertyValueCombinationPolicy.html#collect-org.apache.tamaya.spi.PropertyValue-java.lang.String-org.apache.tamaya.spi.PropertySource-">collect</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertyValue.html" title="class in org.apache.tamaya.spi">PropertyValue</a>&nbsp;currentValue,
-       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+       <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
        <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>
 <div class="block">Method that is called for each value evaluated by a PropertySource for the given key.</div>
 </td>
@@ -421,20 +258,377 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#addPropertySources-java.util.Collection-">addPropertySources</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>
+<td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#addPropertySources-java.util.Collection-">addPropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>
 <div class="block">This method can be used for programmatically adding <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a>s.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#removePropertySources-java.util.Collection-">removePropertySources</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>
+<td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#removePropertySources-java.util.Collection-">removePropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>
 <div class="block">Removes the given property sources, if existing.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#sortPropertySources-java.util.Comparator-">sortPropertySources</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;comparator)</code>
+<td class="colLast"><span class="typeNameLabel">ConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html#sortPropertySources-java.util.Comparator-">sortPropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;comparator)</code>
 <div class="block">Sorts the current registered property sources using the given comparator.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.apache.tamaya.spisupport">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a> in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing fields, and an explanation">
+<caption><span>Fields in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> with type parameters of type <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#propertySources">propertySources</a></span></code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> that return <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#getPropertySource-java.lang.String-">getPropertySource</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContext.html#getPropertySource-java.lang.String-">getPropertySource</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> that return types with arguments of type <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#getPropertySources--">getPropertySources</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContext.html#getPropertySources--">getPropertySources</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#getPropertySources--">getPropertySources</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html#getPropertySources--">getPropertySources</a></span>()</code>
+<div class="block">Access the current chain of property sources.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> with parameters of type <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#addPropertySources-org.apache.tamaya.spi.PropertySource...-">addPropertySources</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>...&nbsp;sources)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContext.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContext.html#addPropertySources-org.apache.tamaya.spi.PropertySource...-">addPropertySources</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>...&nbsp;propertySourcesToAdd)</code>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#addPropertySources-org.apache.tamaya.spi.PropertySource...-">addPropertySources</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>...&nbsp;sources)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html#addPropertySources-org.apache.tamaya.spi.PropertySource...-">addPropertySources</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>...&nbsp;propertySources)</code>
+<div class="block">This method can be used for adding <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a>s.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><span class="typeNameLabel">PropertySourceComparator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/PropertySourceComparator.html#compare-org.apache.tamaya.spi.PropertySource-org.apache.tamaya.spi.PropertySource-">compare</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;source1,
+       <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;source2)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#decreasePriority-org.apache.tamaya.spi.PropertySource-">decreasePriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#decreasePriority-org.apache.tamaya.spi.PropertySource-">decreasePriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html#decreasePriority-org.apache.tamaya.spi.PropertySource-">decreasePriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>
+<div class="block">Decreases the priority of the given property source, by moving it towards the start
+ of the chain of property sources.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><span class="typeNameLabel">PropertySourceComparator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/PropertySourceComparator.html#getOrdinal-org.apache.tamaya.spi.PropertySource-">getOrdinal</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>
+<div class="block">Evaluates an ordinal value from a <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a>, Hereby the ordinal of type <code>int</code>
+ is evaluated as follows:
+ 
+     It evaluates the <code>String</code> value for <a href="../../../../../org/apache/tamaya/spi/PropertySource.html#TAMAYA_ORDINAL"><code>TAMAYA_ORDINAL</code></a> and tries
+     to convert it to an <code>int</code> value, using <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true#parseInt-java.lang.String-" title="class or interface in java.lang"><code>Integer.parseInt(String)</code></a>.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><span class="typeNameLabel">PropertySourceComparator.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/PropertySourceComparator.html#getOrdinal-org.apache.tamaya.spi.PropertySource-java.lang.String-">getOrdinal</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource,
+          <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;alternativeOrdinalKey)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#highestPriority-org.apache.tamaya.spi.PropertySource-">highestPriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#highestPriority-org.apache.tamaya.spi.PropertySource-">highestPriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html#highestPriority-org.apache.tamaya.spi.PropertySource-">highestPriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>
+<div class="block">Increases the priority of the given property source to be maximal, by moving it to
+ the tail of the of property source chain.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#increasePriority-org.apache.tamaya.spi.PropertySource-">increasePriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#increasePriority-org.apache.tamaya.spi.PropertySource-">increasePriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html#increasePriority-org.apache.tamaya.spi.PropertySource-">increasePriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>
+<div class="block">Increases the priority of the given property source, by moving it towards the end
+ of the chain of property sources.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#lowestPriority-org.apache.tamaya.spi.PropertySource-">lowestPriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#lowestPriority-org.apache.tamaya.spi.PropertySource-">lowestPriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html#lowestPriority-org.apache.tamaya.spi.PropertySource-">lowestPriority</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&nbsp;propertySource)</code>
+<div class="block">Decreases the priority of the given property source to be minimal, by moving it to
+ the start of the chain of property source chain.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#removePropertySources-org.apache.tamaya.spi.PropertySource...-">removePropertySources</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>...&nbsp;propertySources)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#removePropertySources-org.apache.tamaya.spi.PropertySource...-">removePropertySources</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>...&nbsp;propertySources)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html#removePropertySources-org.apache.tamaya.spi.PropertySource...-">removePropertySources</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>...&nbsp;propertySources)</code>
+<div class="block">Removes the given property sources, if existing.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Method parameters in <a href="../../../../../org/apache/tamaya/spisupport/package-summary.html">org.apache.tamaya.spisupport</a> with type arguments of type <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#addCorePropertyResources-java.util.List-">addCorePropertyResources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#addPropertySources-java.util.Collection-">addPropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;sources)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#addPropertySources-java.util.Collection-">addPropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;sources)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html#addPropertySources-java.util.Collection-">addPropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>
+<div class="block">This method can be used for programmatically adding <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a>s.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#removePropertySources-java.util.Collection-">removePropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#removePropertySources-java.util.Collection-">removePropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html#removePropertySources-java.util.Collection-">removePropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;propertySources)</code>
+<div class="block">Removes the given property sources, if existing.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spi/ConfigurationContextBuilder.html" title="interface in org.apache.tamaya.spi">ConfigurationContextBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationContextBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationContextBuilder.html#sortPropertySources-java.util.Comparator-">sortPropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;comparator)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DefaultConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/DefaultConfigurationBuilder.html#sortPropertySources-java.util.Comparator-">sortPropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;comparator)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html" title="interface in org.apache.tamaya.spisupport">ConfigurationBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConfigurationBuilder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/ConfigurationBuilder.html#sortPropertySources-java.util.Comparator-">sortPropertySources</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;comparator)</code>
+<div class="block">Sorts the current registered property sources using the given comparator.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.apache.tamaya.spisupport.propertysource">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a> in <a href="../../../../../org/apache/tamaya/spisupport/propertysource/package-summary.html">org.apache.tamaya.spisupport.propertysource</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../org/apache/tamaya/spisupport/propertysource/package-summary.html">org.apache.tamaya.spisupport.propertysource</a> that implement <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/BasePropertySource.html" title="class in org.apache.tamaya.spisupport.propertysource">BasePropertySource</a></span></code>
+<div class="block">Abstract <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a> that allows to set a default ordinal that will be used, if no
+ ordinal is provided with the config.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/BuildablePropertySource.html" title="class in org.apache.tamaya.spisupport.propertysource">BuildablePropertySource</a></span></code>
+<div class="block">A Buildable property source.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/CLIPropertySource.html" title="class in org.apache.tamaya.spisupport.propertysource">CLIPropertySource</a></span></code>
+<div class="block">PropertySource that allows to add the programs main arguments as configuration entries.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/EnvironmentPropertySource.html" title="class in org.apache.tamaya.spisupport.propertysource">EnvironmentPropertySource</a></span></code>
+<div class="block"><code>PropertySource</code> to access environment variables via Tamaya
+ which are set via <code>export VARIABLE=value</code> on UNIX systems or
+ <code>set VARIABLE=value</code> on Windows systems.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/JavaConfigurationPropertySource.html" title="class in org.apache.tamaya.spisupport.propertysource">JavaConfigurationPropertySource</a></span></code>
+<div class="block">Provider which reads all <a href="../../../../../org/apache/tamaya/spisupport/propertysource/JavaConfigurationPropertySource.html#DEFAULT_SIMPLE_PROPERTIES_FILE_NAME">"META-INF/javaconfiguration.properties"</a> and
+ <a href="../../../../../org/apache/tamaya/spisupport/propertysource/JavaConfigurationPropertySource.html#DEFAULT_XML_PROPERTIES_FILE_NAME">"META-INF/javaconfiguration.xml"</a> files found in the
+ classpath.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/MapPropertySource.html" title="class in org.apache.tamaya.spisupport.propertysource">MapPropertySource</a></span></code>
+<div class="block">Simple PropertySource implementation that just takes a Map and an (optional) priority.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/PropertiesResourcePropertySource.html" title="class in org.apache.tamaya.spisupport.propertysource">PropertiesResourcePropertySource</a></span></code>
+<div class="block">Simple PropertySource, with a fixed ordinal that reads a .properties file from a given URL.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/SimplePropertySource.html" title="class in org.apache.tamaya.spisupport.propertysource">SimplePropertySource</a></span></code>
+<div class="block">Simple implementation of a <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a> for
+ simple property files and XML property files.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/SystemPropertySource.html" title="class in org.apache.tamaya.spisupport.propertysource">SystemPropertySource</a></span></code>
+<div class="block">This <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi"><code>PropertySource</code></a> manages the system properties.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/apache/tamaya/spisupport/propertysource/package-summary.html">org.apache.tamaya.spisupport.propertysource</a> that return types with arguments of type <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">BuildablePropertySourceProvider.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/BuildablePropertySourceProvider.html#getPropertySources--">getPropertySources</a></span>()</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/apache/tamaya/spisupport/propertysource/package-summary.html">org.apache.tamaya.spisupport.propertysource</a> with parameters of type <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/propertysource/BuildablePropertySourceProvider.Builder.html" title="class in org.apache.tamaya.spisupport.propertysource">BuildablePropertySourceProvider.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">BuildablePropertySourceProvider.Builder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/BuildablePropertySourceProvider.Builder.html#withPropertySourcs-org.apache.tamaya.spi.PropertySource...-">withPropertySourcs</a></span>(<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>...&nbsp;propertySources)</code>
+<div class="block">With propertySources.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Method parameters in <a href="../../../../../org/apache/tamaya/spisupport/propertysource/package-summary.html">org.apache.tamaya.spisupport.propertysource</a> with type arguments of type <a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/tamaya/spisupport/propertysource/BuildablePropertySourceProvider.Builder.html" title="class in org.apache.tamaya.spisupport.propertysource">BuildablePropertySourceProvider.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">BuildablePropertySourceProvider.Builder.</span><code><span class="memberNameLink"><a href="../../../../../org/apache/tamaya/spisupport/propertysource/BuildablePropertySourceProvider.Builder.html#withPropertySourcs-java.util.Collection-">withPropertySourcs</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../org/apache/tamaya/spi/PropertySource.html" title="interface in org.apache.tamaya.spi">PropertySource</a>&gt;&nbsp;sources)</code>
+<div class="block">With property sources builder.</div>
 </td>
 </tr>
 </tbody>

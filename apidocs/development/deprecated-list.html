@@ -73,10 +73,31 @@
 <h1 title="Deprecated API" class="title">Deprecated API</h1>
 <h2 title="Contents">Contents</h2>
 <ul>
+<li><a href="#field">Deprecated Fields</a></li>
 <li><a href="#method">Deprecated Methods</a></li>
 </ul>
 </div>
-<div class="contentContainer"><a name="method">
+<div class="contentContainer"><a name="field">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<table class="deprecatedSummary" border="0" cellpadding="3" cellspacing="0" summary="Deprecated Fields table, listing deprecated fields, and an explanation">
+<caption><span>Deprecated Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Field and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="org/apache/tamaya/spi/PropertyValueCombinationPolicy.html#DEFAULT_OVERRIDING_COLLECTOR">org.apache.tamaya.spi.PropertyValueCombinationPolicy.DEFAULT_OVERRIDING_COLLECTOR</a>
+<div class="block"><span class="deprecationComment">Use <a href="org/apache/tamaya/spi/PropertyValueCombinationPolicy.html#DEFAULT_OVERRIDING_POLICY">PropertyValueCombinationPolicy.DEFAULT_OVERRIDING_POLICY</a> instead. Will be removed in 1.0.</span></div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<a name="method">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -98,7 +119,7 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><a href="org/apache/tamaya/core/internal/DefaultConfigurationContext.html#addPropertySources-org.apache.tamaya.spi.PropertySource...-">org.apache.tamaya.core.internal.DefaultConfigurationContext.addPropertySources(PropertySource...)</a></td>
+<td class="colOne"><a href="org/apache/tamaya/spisupport/DefaultConfigurationContext.html#addPropertySources-org.apache.tamaya.spi.PropertySource...-">org.apache.tamaya.spisupport.DefaultConfigurationContext.addPropertySources(PropertySource...)</a></td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><a href="org/apache/tamaya/ConfigurationProvider.html#getConfigurationContext--">org.apache.tamaya.ConfigurationProvider.getConfigurationContext()</a>
@@ -111,7 +132,9 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><a href="org/apache/tamaya/core/internal/DefaultConfigurationProvider.html#getConfigurationContext--">org.apache.tamaya.core.internal.DefaultConfigurationProvider.getConfigurationContext()</a></td>
+<td class="colOne"><a href="org/apache/tamaya/core/internal/DefaultConfigurationProvider.html#getConfigurationContext--">org.apache.tamaya.core.internal.DefaultConfigurationProvider.getConfigurationContext()</a>
+<div class="block"><span class="deprecationComment">use <a href="org/apache/tamaya/Configuration.html#getContext--"><code>Configuration.getContext()</code></a> instead.</span></div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><a href="org/apache/tamaya/spi/ConfigurationProviderSpi.html#isConfigurationContextSettable--">org.apache.tamaya.spi.ConfigurationProviderSpi.isConfigurationContextSettable()</a>
@@ -132,7 +155,9 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><a href="org/apache/tamaya/core/internal/DefaultConfigurationProvider.html#setConfigurationContext-org.apache.tamaya.spi.ConfigurationContext-">org.apache.tamaya.core.internal.DefaultConfigurationProvider.setConfigurationContext(ConfigurationContext)</a></td>
+<td class="colOne"><a href="org/apache/tamaya/core/internal/DefaultConfigurationProvider.html#setConfigurationContext-org.apache.tamaya.spi.ConfigurationContext-">org.apache.tamaya.core.internal.DefaultConfigurationProvider.setConfigurationContext(ConfigurationContext)</a>
+<div class="block"><span class="deprecationComment">the context should be given upon creation of the <a href="org/apache/tamaya/Configuration.html" title="interface in org.apache.tamaya"><code>Configuration</code></a></span></div>
+</td>
 </tr>
 </tbody>
 </table>
