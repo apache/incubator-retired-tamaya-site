@@ -3,9 +3,10 @@ type=page
 status=published
 ~~~~~~
 
-API is missing
+API overview
 --------------
 
-In case you do see this page someone forgot to generate/create the real API/Javadoc by running mvn site:site and copying this over to an apidocs subfolder inside of the asf-site branch.
+At the moment you may see multiple API versions:
 
-Come back later :-)
+* development version:
+* stable version (last release):
