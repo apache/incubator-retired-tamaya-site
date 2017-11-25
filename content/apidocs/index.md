@@ -8,5 +8,7 @@ API overview
 
 At the moment you may see multiple API versions:
 
-* development version:
-* stable version (last release):
+* development version: [0.4-SNAPSHOT](./development/index.html)
+* stable version (last release): [0.3](./stable/index.html)
+
+TODO: use placeholders from jbake and add links
