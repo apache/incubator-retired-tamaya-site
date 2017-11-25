@@ -1,0 +1,9 @@
+:jbake-type: page
+:jbake-status: published
+
+= API overview
+
+At the moment you can see multiple API versions:
+
+* stable version (latest official release): link:./stable/index.html[{tamaya_version_released}]
+* development version (upcoming release): link:./development/index.html[{tamaya_version}]
