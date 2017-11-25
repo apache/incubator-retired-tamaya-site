@@ -7,7 +7,7 @@ toc::[]
 
 
 [[SPISupport]]
-== Tamaya SPI Support (Extension Module)
+== Tamaya SPI Support
 
 Tamaya _SPI Support_ is a core module only depending on the API. It implements lots of API and SPI related
 artifacts in a portable way. Tamaya's core module reuses this functionality to build up a fully fledged

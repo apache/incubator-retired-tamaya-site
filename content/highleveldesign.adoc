@@ -142,7 +142,7 @@ of the +ServiceContext+ interface, annotating it with a +@Priority+ annotation a
 
 == Compatibility
 
-The Tamaya API is compatible with Java 7 and beyond.
+The Tamaya API is compatible with Java 8 and beyond.
 
 == Further Documentation
 
