@@ -14,7 +14,7 @@ Tamaya _Spring_ is an extension module. Refer to the link:../extensions.html[ext
 
 === What functionality this module provides ?
 
-Tamaya _Spring_ currently provides full integration for Spring and Spring Boot:
+Tamaya _Spring_ currently provides full integration with Spring and Spring Boot:
 
 * A Spring +@Configuration+ implementation that also provides a Tamaya based version of
   +org.springframework.context.support.PropertySourcesPlaceholderConfigurer+.
@@ -22,18 +22,18 @@ Tamaya _Spring_ currently provides full integration for Spring and Spring Boot:
   +Environment+ interface.
 * +TamayaSpringPropertySource+ implements an additional Spring +PropertySource+.
 * Finally +org.apache.tamaya.integration.spring.SpringConfigInjectionPostProcessor+ implements a Bean +PostProcessor+,
-  which adds all the full fledged Tamaya configuration capabilities to Spring.
+  which adds all the fully fledged Tamaya configuration capabilities to Spring.
 
 
 === Compatibility
 
-Both modules are based on Java 8, so they will run on Java 8 and beyond. The extension shown here works similarly
-with Spring Framework as well as Spring Boot.
+Both modules are based on Java 8, so they will run on Java 8 and beyond. The extension shown here works in
+Spring Framework as well as Spring Boot.
 
 
 === Installation
 
-To benefit from Tamaya Spring integration you only must one of the following dependencies to your module:
+To benefit from Tamaya Spring integration add the following dependencies to your module:
 
 [source, xml]
 -----------------------------------------------
@@ -48,7 +48,7 @@ To benefit from Tamaya Spring integration you only must one of the following dep
 === Registering Tamaya Spring Configuration
 
 Basically to activate the Tamaya Spring support the most simple thing is to a enable the Tamaya package for being
-scanned for Spring components, e.g. using annotations:
+scanned for Spring components, e.g. using by annotation:
 
 [source, java]
 --------------------------------------------------------
@@ -63,7 +63,7 @@ public class SampleWebFreeMarkerApplication {
 }
 --------------------------------------------------------
 
-Of course, you can still use Spring's XML configuration variant similarly:
+Of course, you can still use Spring's XML configuration in a similar way:
 
 [source, xml]
 --------------------------------------------------------
@@ -81,7 +81,7 @@ Of course, you can still use Spring's XML configuration variant similarly:
 --------------------------------------------------------
 
 
-Though not recommended you can explicitly register the Tamaya related beans manually as well in your context configuration
+Though not recommended you can explicitly register the Tamaya related beans in your context configuration by hand:
 files:
 
 [source, xml]
@@ -93,8 +93,8 @@ files:
 
 === Configuring your Context
 
-Done so enables you to use Tamaya as a backend for property resolution, e.g. +propertyValue+ as illustrated below
-is resolved from the current Tamaya configuration.
+After activation you can use Tamaya as a backend for property resolution, e.g. +propertyValue+ 
+is resolved from the current Tamaya configuration. See example below:
 
 [source, xml]
 --------------------------------------------------------
@@ -103,7 +103,6 @@ is resolved from the current Tamaya configuration.
 </bean>
 --------------------------------------------------------
 
-Similarly
 
 === Configuring your Beans
 
@@ -111,9 +110,6 @@ Similarly you can inject any kind of configuration as supported by Tamaya into y
 
 [source, java]
 --------------------------------------------------------
-**
- * Created by Anatole on 25.09.2015.
- */
 @ConfigDefaultSections("app.root") // optional <1>
 @Component
 public class ConfiguredSpringBean {
@@ -141,20 +137,22 @@ public class ConfiguredSpringBean {
 <2> Tamaya does not require you to change your code. You can still work with
     Spring injection for your configuration, but Tamaya will override Spring
     configuration by default.
-<3> You can also define entries as not required, which allows you to perform
+<3> You can also define entries as optional, which allows you to perform
     default inialization using Java idoms.
 <4> Tamaya allows you to define an ordered list of key candidates, which are
     combined with the section prefix, if present, to the full keys. Keys added
     in brackets ([]) are interpreted as absolute keys, so the example above
     the key candidate list evaluates to +app.root.number", "app.root.testNum",
     "notavailable"+.
-<5> You can configure default values used, if no other value could be evaluated
+<5> You can configure default values used, if no other value can be evaluated
     for the given keyset.
 
 Summarizing you get all the nice features of Tamaya out of the box running
 with your Spring code.
 
-This also includes for example support for _dynamic values_:
+=== Working with Dynamic Values
+
+Integration into Spring also includes for support for _dynamic values_:
 
 [source, java]
 --------------------------------------------------------
@@ -164,7 +162,7 @@ private DynamicValue<Color> foregroundColor;
 
 Dynamic values are a very flexible mechanism for managing configuration changes.
 You can even use an update policy to define how you want to handle configuration
-changes four your value:
+changes for your configuration parameter:
 
 [source, java]
 --------------------------------------------------------
