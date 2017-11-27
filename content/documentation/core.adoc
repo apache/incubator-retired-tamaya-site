@@ -12,17 +12,17 @@ Tamaya Core contains the following artifacts:
 
 * *tamaya-spisupport* provides implementations and base classes for different API artifacts such as +Configuration,
   ConfigurationContext, ConfigurationContextBuilder, ConfigurationProviderSpi, BasePropertySource+ and more. It is
-  built as independent core module, which also can be used with other implementations. The *tamaya-core*
-  implementation leverages these base classes to a build up a full API implementation.
-* A +java.util.ServiceLoader+ based +ServiceContext+ implementation. Hereby it implements component priorization based
+  built as an independent core module, which also can be used with other implementations. The *tamaya-core*
+  implementation leverages these base classes to build up a full API implementation.
+* A +java.util.ServiceLoader+ based +ServiceContext+ implementation. This allows component priorization based
   on the +@Priority+ annotations.
-* A +PropertyConverterManager+ that loads and stores references to all the preconfigured +PropertyConverter+ instances
-  hereby providing type conversion for all important types.
+* A +PropertyConverterManager+ that loads and stores references to all the preconfigured +PropertyConverter+ instances,
+  thus providing type conversion for all important types.
 * A simple default configuration setup using the current classpath and an optional staging variable.
 * It collects all +PropertySource+ and +PropertySourceProvider+ instances registered with the +ServiceLoader+ and
   registers them in the global +ConfigurationContext+
-* It provides a +ConfigurationContextBuilder+ implementation (+DefaultConfigurationContextBuilder+) and allows
-  changing the current +ConfigurationContext+.
+* It provides a +ConfigurationContextBuilder+ implementation (+DefaultConfigurationContextBuilder+) and allows to
+  change the current +ConfigurationContext+.
 
 The overall size of the library is very small. All required components are implemented and registered, so basically the
 Core module is a complete configuration solution. Nevertheless it is also very minimalistic, but fortunately is flexible
