@@ -43,7 +43,7 @@ Extensions in _draft state_ rather experimental or not yet very mature. API chan
 and the may also have severe issues or even not work at all. So use at your own risk or join and help
 us getting them stable and well tested!
 
-NOTE: All extensions currently run on Java 7 as well as on Java 8.
+NOTE: All extensions currently require Java 8.
 
 [width="100%",frame="1",options="header",grid="all"]
 |=======
