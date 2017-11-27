@@ -125,7 +125,7 @@
 				<h1>Apache Tamaya - Extension: Spring Integration</h1>
 			</div>
 
-			<p><em>2017-11-23</em></p>
+			<p><em>2017-11-27</em></p>
 
 			<p><div id="preamble">
 <div class="sectionbody">
@@ -141,7 +141,7 @@
 <div class="sect2">
 <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
 <div class="paragraph">
-<p>Tamaya <em>Spring</em> currently provides full integration for Spring and Spring Boot:</p>
+<p>Tamaya <em>Spring</em> currently provides full integration with Spring and Spring Boot:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -158,7 +158,7 @@ Environment interface.</p>
 </li>
 <li>
 <p>Finally org.apache.tamaya.integration.spring.SpringConfigInjectionPostProcessor implements a Bean PostProcessor,
-which adds all the full fledged Tamaya configuration capabilities to Spring.</p>
+which adds all the fully fledged Tamaya configuration capabilities to Spring.</p>
 </li>
 </ul>
 </div>
@@ -166,14 +166,14 @@ which adds all the full fledged Tamaya configuration capabilities to Spring.</p>
 <div class="sect2">
 <h3 id="_compatibility">Compatibility</h3>
 <div class="paragraph">
-<p>Both modules are based on Java 8, so they will run on Java 8 and beyond. The extension shown here works similarly
-with Spring Framework as well as Spring Boot.</p>
+<p>Both modules are based on Java 8, so they will run on Java 8 and beyond. The extension shown here works in
+Spring Framework as well as Spring Boot.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_installation">Installation</h3>
 <div class="paragraph">
-<p>To benefit from Tamaya Spring integration you only must one of the following dependencies to your module:</p>
+<p>To benefit from Tamaya Spring integration add the following dependencies to your module:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -189,7 +189,7 @@ with Spring Framework as well as Spring Boot.</p>
 <h3 id="_registering_tamaya_spring_configuration">Registering Tamaya Spring Configuration</h3>
 <div class="paragraph">
 <p>Basically to activate the Tamaya Spring support the most simple thing is to a enable the Tamaya package for being
-scanned for Spring components, e.g. using annotations:</p>
+scanned for Spring components, e.g. using by annotation:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -205,7 +205,7 @@ public class SampleWebFreeMarkerApplication {
 </div>
 </div>
 <div class="paragraph">
-<p>Of course, you can still use Spring&#8217;s XML configuration variant similarly:</p>
+<p>Of course, you can still use Spring&#8217;s XML configuration in a similar way:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -223,7 +223,7 @@ public class SampleWebFreeMarkerApplication {
 </div>
 </div>
 <div class="paragraph">
-<p>Though not recommended you can explicitly register the Tamaya related beans manually as well in your context configuration
+<p>Though not recommended you can explicitly register the Tamaya related beans in your context configuration by hand:
 files:</p>
 </div>
 <div class="listingblock">
@@ -236,8 +236,8 @@ files:</p>
 <div class="sect2">
 <h3 id="_configuring_your_context">Configuring your Context</h3>
 <div class="paragraph">
-<p>Done so enables you to use Tamaya as a backend for property resolution, e.g. propertyValue as illustrated below
-is resolved from the current Tamaya configuration.</p>
+<p>After activation you can use Tamaya as a backend for property resolution, e.g. propertyValue
+is resolved from the current Tamaya configuration. See example below:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -245,9 +245,6 @@ is resolved from the current Tamaya configuration.</p>
     &lt;property name="message" value="${propertyValue}"/&gt;
 &lt;/bean&gt;</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Similarly</p>
 </div>
 </div>
 <div class="sect2">
@@ -257,10 +254,7 @@ is resolved from the current Tamaya configuration.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">**
- * Created by Anatole on 25.09.2015.
- */
-@ConfigDefaultSections("app.root") // optional <b class="conum">(1)</b>
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@ConfigDefaultSections("app.root") // optional <b class="conum">(1)</b>
 @Component
 public class ConfiguredSpringBean {
 
@@ -294,7 +288,7 @@ Spring injection for your configuration, but Tamaya will override Spring
 configuration by default.</p>
 </li>
 <li>
-<p>You can also define entries as not required, which allows you to perform
+<p>You can also define entries as optional, which allows you to perform
 default inialization using Java idoms.</p>
 </li>
 <li>
@@ -305,7 +299,7 @@ the key candidate list evaluates to app.root.number", "app.root.testNum",
 "notavailable".</p>
 </li>
 <li>
-<p>You can configure default values used, if no other value could be evaluated
+<p>You can configure default values used, if no other value can be evaluated
 for the given keyset.</p>
 </li>
 </ol>
@@ -314,8 +308,11 @@ for the given keyset.</p>
 <p>Summarizing you get all the nice features of Tamaya out of the box running
 with your Spring code.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_working_with_dynamic_values">Working with Dynamic Values</h3>
 <div class="paragraph">
-<p>This also includes for example support for <em>dynamic values</em>:</p>
+<p>Integration into Spring also includes for support for <em>dynamic values</em>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -326,7 +323,7 @@ private DynamicValue&lt;Color&gt; foregroundColor;</code></pre>
 <div class="paragraph">
 <p>Dynamic values are a very flexible mechanism for managing configuration changes.
 You can even use an update policy to define how you want to handle configuration
-changes four your value:</p>
+changes for your configuration parameter:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -363,7 +360,7 @@ For a full description of Tamaya&#8217;s injection API please
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2017</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2017-11-25</span> |
+							at <span>2017-11-27</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>
