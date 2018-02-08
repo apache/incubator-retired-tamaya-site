@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 	    <meta charset="utf-8"/>
-	    <title>Tamaya 0.3-incubating release candidate</title>
+	    <title>Tamaya 0.3-incubating release announcement</title>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	    <meta name="description" content=""/>
 	    <meta name="author" content=""/>
@@ -122,13 +122,15 @@
 		<div class="container">
 
 			<div class="page-header">
-				<h1>Tamaya 0.3-incubating release candidate</h1>
+				<h1>Tamaya 0.3-incubating release announcement</h1>
 			</div>
 
-			<p><em>2017-06-06</em></p>
+			<p><em>2018-02-08</em></p>
 
-			<p><div class="paragraph">
-<p>After a long and sweaty journey a new release candidate passed the internal vote:</p>
+			<p><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>We are proud to announce a new version of Tamaya:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -137,8 +139,69 @@
 </li>
 </ul>
 </div>
+</div>
+</div>
+<h1 id="_main_features" class="sect0">Main features</h1>
+<div class="ulist">
+<ul>
+<li>
+<p>We fixed a lot of bugs.</p>
+</li>
+<li>
+<p>We reduced the log "noise" on startup.</p>
+</li>
+<li>
+<p>We introduced PropertyValue as a SPI artifact to support meta-entries.</p>
+</li>
+<li>
+<p>We integrated the builder extension within the existing builder API.</p>
+</li>
+<li>
+<p>We simplified a couple of APIs so working with explicit builders is as straightforward as using auto-discovery features.</p>
+</li>
+<li>
+<p>It is now possible to inject configuration values into any kind of beans/templates, without being annotated at all as well.</p>
+</li>
+<li>
+<p>We resolved possible license issues by replacing corresponding dependencies with Apache variants.</p>
+</li>
+<li>
+<p>We added converters for File and Path.</p>
+</li>
+<li>
+<p>We removed the binary distribution package in favour of the source distribution and the uploaded maven artifacts.</p>
+</li>
+</ul>
+</div>
+<h1 id="_project_structure" class="sect0">Project structure</h1>
 <div class="paragraph">
-<p>An official release announcement will follow as well as migration information :-) Stay tuned!</p>
+<p>The slim Tamaya API and core implementation is enhanced by different kinds of production-ready extensions modules, while a sandbox contains different alpha-grade modules.</p>
+</div>
+<div class="paragraph">
+<p>Details on how to use Tamaya can be found on our site: <a href="http://tamaya.incubator.apache.org/" class="bare">http://tamaya.incubator.apache.org/</a>
+With this release we also separated the homepage code completely from the project code, to ease independent lifecycles.</p>
+</div>
+<div class="paragraph">
+<p>You may download the release via:
+<a href="http://www.apache.org/dyn/closer.cgi/incubator/tamaya/0.3-incubating" class="bare">http://www.apache.org/dyn/closer.cgi/incubator/tamaya/0.3-incubating</a>
+or in your pom.xml from Maven central:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.tamaya&lt;/groupId&gt;
+    &lt;artifactId&gt;tamaya-core&lt;/artifactId&gt;
+    &lt;version&gt;0.3-incubating&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When downloading, please verify signatures using the KEYS file:
+<a href="https://www.apache.org/dist/incubator/tamaya/0.3-incubating/apiandcore/KEYS" class="bare">https://www.apache.org/dist/incubator/tamaya/0.3-incubating/apiandcore/KEYS</a></p>
+</div>
+<div class="paragraph">
+<p>The list of changes included in this release can be found at:
+<a href="https://issues.apache.org/jira/projects/TAMAYA/versions/12329052" class="bare">https://issues.apache.org/jira/projects/TAMAYA/versions/12329052</a></p>
 </div></p>
 
 			<hr />
