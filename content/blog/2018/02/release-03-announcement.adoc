@@ -1,0 +1,49 @@
+title=Tamaya 0.3-incubating release announcement
+date=2018-02-08
+type=post
+tags=blog, asciidoc
+status=published
+~~~~~~
+= Tamaya 0.3-incubating release announcement
+
+We are proud to announce a new version of Tamaya:
+
+* https://repository.apache.org/content/groups/public/org/apache/tamaya/tamaya-all/0.3-incubating/[Maven repository]
+
+Main features
+=============
+* We fixed a lot of bugs.
+* We reduced the log "noise" on startup.
+* We introduced PropertyValue as a SPI artifact to support meta-entries.
+* We integrated the builder extension within the existing builder API.
+* We simplified a couple of APIs so working with explicit builders is as straightforward as using auto-discovery features.
+* It is now possible to inject configuration values into any kind of beans/templates, without being annotated at all as well.
+* We resolved possible license issues by replacing corresponding dependencies with Apache variants.
+* We added converters for File and Path.
+* We removed the binary distribution package in favour of the source distribution and the uploaded maven artifacts.
+
+Project structure
+=================
+
+The slim Tamaya API and core implementation is enhanced by different kinds of production-ready extensions modules, while a sandbox contains different alpha-grade modules.
+
+Details on how to use Tamaya can be found on our site: http://tamaya.incubator.apache.org/
+With this release we also separated the homepage code completely from the project code, to ease independent lifecycles.
+
+You may download the release via:
+http://www.apache.org/dyn/closer.cgi/incubator/tamaya/0.3-incubating
+or in your pom.xml from Maven central:
+[source,xml,subs="verbatim,attributes"]
+----
+<dependency>
+    <groupId>org.apache.tamaya</groupId>
+    <artifactId>tamaya-core</artifactId>
+    <version>0.3-incubating</version>
+</dependency>
+----
+
+When downloading, please verify signatures using the KEYS file:
+https://www.apache.org/dist/incubator/tamaya/0.3-incubating/apiandcore/KEYS
+
+The list of changes included in this release can be found at:
+https://issues.apache.org/jira/projects/TAMAYA/versions/12329052
