@@ -1,0 +1,283 @@
+:jbake-type: page
+:jbake-status: published
+
+[[Core]]
+== Tamaya Core Implementation
+=== Overview
+
+Tamaya Core provides an implementation of the link:api.html[Configuration API] and adds additional functionality
+and building blocks for supporting SPI implementations.
+
+Tamaya contains the following core artifacts:
+
+* *tamaya-base* provides implementations and base classes for different API artifacts such as +Config,
+  ConfigContext, ConfigBuilder, BaseConfigSource+ and more. It is
+  built as an independent module, which also can be used with other implementations.
+* The *tamaya-core*
+  implementation
+  ** leverages these base classes to build up a full API implementation, adding converter
+  implementations for most common Java types.
+  ** A +java.util.ServiceLoader+ based +ServiceContext+ implementation. This allows component priorization based
+  on the +@Priority+ annotations.
+  ** A +PropertyConverterManager+ that loads and stores references to all the preconfigured +PropertyConverter+ instances,
+  thus providing type conversion for all important types.
+* A simple default configuration setup using the current classpath and an optional staging variable.
+* It collects all +ConfigSource+ and +ConfigSourceProvider+ instances registered with the +ServiceLoader+ and
+  registers them in the global +ConfigurationContext+
+* It provides a +ConfigBuilder+ implementation (+DefaultConfigBuilder+), including an extended +TamayaConfigBuilder+
+  variant.
+
+The overall size of the library is very small. All required components are implemented and registered, so basically the
+Core module is a complete configuration solution. Nevertheless it is also very minimalistic, but fortunately is flexible
+enough to be extended/accommodated with additional features as needed, such as
+
+* placeholder and resolution mechanisms (+org.apache.tamaya.ext:tamaya-resolver+)
+* dynamic resource path lookup, e.g. with ant styled patterns (+org.apache.tamaya.ext:tamaya-resources+)
+* configuration injection and configuration templates (+org.apache.tamaya.ext:tamaya-injcetion-api+)
+* abstraction for reusable formats (+org.apache.tamaya.ext:tamaya-formats+)
+* integration with other existing solutions (e.g. +org.apache.tamaya.ext:tamaya-spring+)
+* configuration and configuration isolation targeting Java EE (+org.apache.tamaya.ext:tamaya-injection-ee+)
+* dynamic configuration and configuration updates (+org.apache.tamaya.ext:tamaya-events+)
+* remote configuration (+org.apache.tamaya.ext:tamaya-etcd, org.apache.tamaya.ext:tamaya-consul,
+  org.apache.tamaya.ext:tamaya-hazelcast+)
+* and more
+
+For details about the extension modules available and  their functionality refer to the link:extensions.html[extension user guide].
+
+
+[[CoreConverters]]
+=== Default Converters
+
+The _SPI_ base module provides several +Converter+ implementations, which are automatically registered by the
+_Core_ module. Find below the listing of converters automatically registered with the Core module:
+
+[width="100%",frame="1",options="header",grid="all"]
+|=======
+|_Target Type_              |_Class Name_              |_Supported Formats_
+|java.math.BigDecimal       |BigDecimalConverter       |1.2345, 0xFF
+|java.math.BigInteger       |BigIntegerConverter       |0xFF, 1234
+|java.ui.lang.Boolean       |BooleanConverter          |true, false, T, F, 1 ,0
+|java.ui.lang.Byte          |ByteConverter             |0xFF, MIN_VALUE, MAX_VALUE, 123
+|java.ui.lang.Character     |CharConverter             |0xFF, 'a', 'H', 123
+|java.ui.lang.Class         |ClassConverter            |<fully qualified class name>
+|java.util.Currency         |CurrencyConverter         |CHF, 123
+|java.ui.lang.Double        |DoubleConverter           |1, 0xFF, 1.2334, NaN, NEGATIVE_INFITIY, POSITIVE_INFINITY, MIN_VALUE, MAX_VALUE
+|_Enums_                    |EnumConverter             |<Enum item name>
+|java.ui.lang.Float         |FloatConverter            |1, 0xFF, 1.2334, NaN, NEGATIVE_INFITIY, POSITIVE_INFINITY, MIN_VALUE, MAX_VALUE
+|java.ui.lang.Integer       |IntegerConverter          |1, 0xD3, MIN_VALUE, MAX_VALUE
+|LocalDate                  |LocalDateConverter        |<Date as defined by LocalDate.parse(String)
+|LocalTime                  |LocalTimeConverter        |<Time as defined by LocalTime.parse(String)
+|LocalDateTime              |LocalDateTimeConverter    |<LocalDateTime as defined by LocalDateTime.parse(String)>
+|java.ui.lang.Long          |LongConverter             |1, 0xD3, MIN_VALUE, MAX_VALUE
+|java.ui.lang.Number        |NumberConverter           |1, 0xFF, 1.2334, NaN, NEGATIVE_INFITIY, POSITIVE_INFINITY
+|java.ui.lang.Short         |ShortConverter            |1, 0xD3, MIN_VALUE, MAX_VALUE
+|java.net.URI               |URIConverter              |http://localhost:2020/testresource?api=true
+|java.net.URL               |URLConverter              |http://localhost:2020/testresource?api=true
+|ZoneId                     |ZoneIdConverter           |Europe/Zurich
+|=======
+
+
+=== Registering Converters
+
+Additional +Converters+ can be implemented easily. It is recommended to register them using
+the +java.util.ServiceLoader+, meaning you add a file under +META-INF/service/javax.config.spi.Converter+
+containing the fully qualified class names of the converters to be registered (one line each) to enable
+auto-discovery.
+
+Alternatively you can also use a +TamayaConfigBuilder+ to add additional converters programmatically.
+
+
+[[ComponentLoadingAndPriorization]]
+=== Component Loading and Priorization
+
+Tamaya _Core_ in general loads all components by default using the +java.util.ServiceLoader+ mechanism. This means that
+new components must be registered by adding a file under +META-INF/service/<myInterfaceName>+ containing the fully
+qualified implementation class names of the components to be registered (one line per each).
+The +ServiceLoader+ itself does not provide any functionality for overriding or ordering of
+components. Tamaya _Core_ adds such a functionality with the possibility to add +@Priority+
+annotations to the components registered. By default, and if no annotation is added +0+ is assumed
+as priority. Hereby higher values preceed lower values, meaning
+
+* if a _singleton_ component is accessed from the current +ServiceContext+ the component with the
+  higher value effectively _overrides/replaces_ any component with lower values.
+* if a _collection_ of components is obtained from the +ServiceContext+ the components are _ordered_
+  based on their priorities, where the ones with higher priority are before components with lower
+  priority.
+* if priorities _match_ Tamaya _Core_ additionally sorts them using the _simple class name_.
+  This ensures that ordering is still defined and predictable in all scenarios.
+
+NOTE: Sorting the property sources based on their ordinal value is only the default ordering
+      principle applied. By implementing your own implementation of +ConfigurationProviderSpi+
+      you can apply a different logic:
+
+
+[[RegisteringConfigSources]]
+=== Registering ConfigSources
+
++ConfigSource+ implementations that provide configuration properties are registered as components as described in the
+previous section. Hereby the precedence (ordering) of property sources is not hard-coded. Instead a +Comparator<ConfigSource>+
+can be passed to a +ConfigurationContextBuilder+ to perform automatic ordering of the property sources
+registered. The default implementation hereby uses the following logic:
+
+. It checks for an property entry +config.ordinal+ if present the value is parsed into an +int+ value and used as
+  the ordinal val value.
+. It checks for an explicit method +int getOrdinal()+, if found its value is taken as an ordinal.
+. It checks for a +@Priority+ annotation, if present the priority value is used as an ordinal.
+. If none of the above works, +0+ is assumed as ordinal value.
+. If multiple +ConfigSource+ instances share the same ordinal value, they are ordered based on their fully qualified
+  class names.
+
+Custom implementations of the config source comparator can be applied by calling
++TamayaConfigBuilder.sortSources(Comparator<ConfigSource>)+. The default comparator can be replaced
+by passing the fully qualified comparator class name as system property:
+
++-Dconfig-source-comparator=a.b.c.MyComparatorClass+
+
+The ladder allows to adapt the ordering of auto-discovered config sources, even if the value returned by
++int getOrdinal()+ cannot be changed.
+
+
+[[CoreConfigSources]]
+== Configuration Setup in Core
+
+Tamaya Core provides a minimal configuration setting, that allows you to configure SE
+applications already easily. Basically configuration is built  up by default as follows:
+
+. Read environment properties and add them prefixed with +env.+
+. Read all files found at +META-INF/javaconfig.properties+
+  and +META-INF/javaconfig.xml+
+
+
+=== Overview of Registered Default Config Sources and Providers
+
+The Tamaya Core implementation provides a couple of default +ConfigSource+ implementations, which are automatically
+registered. They are all in the package +org.apache.tamaya.base.configsource+:
+
+[width="100%",frame="1",options="header",grid="all"]
+|=======
+|_Type_                                   |_Class Name_                   |_Ordinal Used_
+|META-INF/javaconfig.properties           |JavaConfigurationProvider      |100
+|META-INF/javaconfig.xml                  |JavaConfigurationProvider      |100
+|JNDI Entries                             |JNDIConfigSource               |200
+|Environment Properties                   |EnvironmentConfigSource        |300
+|System Properties                        |SystemConfigSource             |1000
+|=======
+
+NOTE: Similarly to converters the config sources shown here are defined within the "tamaya-base* module
+      and automatically registered with the *tamaya-core* implementation using Tamaya's auto-discovery mechanisms.
+
+NOTE: +JNDIConfigSource+ is provided by the `tamaya-jndi` extension module.
+
+
+=== Abstract Class PropertiesFileConfigSource
+
+The abstract class +PropertiesFileConfigSource+ can be used for implementing a +ConfigSource+ based on a +URL+
+instance that points to a +.properites+ file. It requires a +URL+ to be passed on the constructor:
+
+[source,java]
+--------------------------------------------
+PropertiesFileConfigSource(URL url);
+--------------------------------------------
+
+
+==== Abstract Class PropertiesConfigSource
+
+The abstract class +PropertiesConfigSource+ can be used for implementing a +ConfigSource+ based on a +Properties+
+instance. It requires a +Properties+ to be passed on the constructor:
+
+[source,java]
+--------------------------------------------
+PropertiesConfigSource(Properties properties);
+--------------------------------------------
+
+
+==== Abstract Class BaseConfigSource
+
+The abstract class +BaseConfigSource+ can be used for implementing custom +ConfigSource+ classes. It requires only
+one method to implemented:
+
+[source,java]
+.Implementing a ConfigSource using BaseConfigSource
+--------------------------------------------
+public class MyConfigSource extends BaseConfigSource{
+
+    public String getName(){
+        // return a unique name for the config source, e.g. based on the underlying resource. This name also
+        // allows to access the property source later
+    }
+
+    public Map<String, String> getProperties(){
+        // Get a map with all properties provided by this config source
+    }
+
+}
+--------------------------------------------
+
+By default the ordinal of the config sources will be 1000, unless the key +config.ordinal+
+as defined in +ConfigSource.CONFIG_ORDINAL+ is present in the current +ConfigSource+. Of course
+it is also possible to override the inherited +protected void initializeOrdinal(final int defaultOrdinal)+,
+or directly +int getOrdinal()+.
+
+
+[[CoreConfigSourceProviders]]
+=== Default ConfigSourceProvider in Core
+
+With +org.apache.tamaya.core.provider.JavaConfigurationProvider+ there is also a default +ConfigSourceProvider+
+present that loads all +.properties+ files found at +META-INF/javaconfig.properties+
+and +META-INF/javaconfig.xml+.
+
+
+=== Replacing the property value evaluation policy
+
+Tamaya's core implementation allows to replace the complete logic how a configuration value or the current configuration
+properties are calculated from a given +ConfigContext+ by implementing the +ConfigValueEvaluator+
+interface:
+
+[source,java]
+--------------------------------------------
+/**
+ * Component SPI which encapsulates the evaluation of a single or full <b>raw</b>value
+ * for a {@link ConfigurationContext}.
+ */
+public interface ConfigValueEvaluator {
+
+    /**
+     * Evaluates single value using a {@link ConfigContext}.
+     * @param key the config key, not null.
+     * @param context the context, not null.
+     * @return the value, or null.
+     */
+    ConfigValue evaluteRawValue(String key, ConfigContext context);
+
+    /**
+     * Evaluates all property values from a {@link ConfigurationContext}.
+     * @param context the context, not null.
+     * @return the value, or null.
+     */
+    Iterable<ConfigValue> evaluateRawValues(ConfigContext context);
+
+}
+--------------------------------------------
+
+The default implementation +DefaultConfigValueEvaluator+ implements the following logic:
+
+. Collect all +ConfigSources+ from the context.
+. Access +String get(String)+ (single key access)/ +Map<String,String> getProperties()+
+  (config map access) from each property source and combine the previous with the next value using
+  the +ConfigValueCombinationPolicy+ in place.
+
+The resulting _raw_ value(s) are then finally handed over to the registered filters and finally
+converted to +String/Map<String,String>+ as required by the user API.
+
+To replace this default behaviour you must register your implementation with the current
++ServiceContext+.
+
+
+[[Extensions]]
+== Adding Extensions
+
+Tamaya _Core_ only implements the link:api.html[API]. Many users require/wish additional functionality from a
+configuration system. Fortunately there are numerous extensions available that add further functionality.
+Loading extensions hereby is trivial: you only are required to add the corresponding dependency to the classpath.
+
+For detailed information on the extensions available refer to the link:extensions.html[extensions documentation].
