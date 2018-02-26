@@ -5,7 +5,7 @@
 == Apache Tamaya: Configuration API
 
 Tamaya implements the Java JSR 382 Configuration API. You will find the spec link:http://jcp.org/jsr/?id=382[here].
-Also worth readingmight be Tamaya's link:../highleveldesign.html[High Level Design Documentation].
+Also worth reading might be Tamaya's link:../highleveldesign.html[High Level Design Documentation].
 
 [[API]]
 == The Configuration API
@@ -20,9 +20,9 @@ The Configuration API provides the main artifacts to access and change configura
 * The package +javax.config.spi+ provides interfaces used for extending and/or
   adapting functionality, as well as artifacts for creating
   +Config+ instances programmatically:
-  ** _ConfigSource:_ is the the interface to be implemented for adding configuration entries. A +ConfigSource+ hereby
-     *** is minimalistic and can be implemented in any way. E.g. there is no distiction that
-     the configuration data provided is managed locally, remotedely. There is even no
+  ** _ConfigSource:_ is the interface to be implemented for adding configuration entries. A +ConfigSource+ hereby
+     *** is minimalistic and can be implemented in any way. E.g. there is no distinction that
+     the configuration data provided is managed locally, remotely. There is even no
      requirement that the configuration data is always fully available. Summarizing a
      +ConfigSource+
      *** provides property access for single key/value pairs in _raw_ format (meaning no postprocessing
@@ -34,29 +34,29 @@ The Configuration API provides the main artifacts to access and change configura
      a file system folder.
   ** +ConfigProviderResolver+ defines the abstract entry point to be extended for providing configuration. It is the
      main implementation hook for an API implementation provider.
-  ** A +Config+ can also created using a +ConfigBuilder+, which can be obtained from the +ConfigProviderResolver+.
+  ** A +Config+ can also be created by using a +ConfigBuilder+, which can be obtained from the +ConfigProviderResolver+.
      It allows to build up a +Config+ by adding config sources and converters in various ways.
 
  == Tamaya Configuration API Extensions
 
  Tamaya provides a few mechanisms that extend the standard API, which have shown to be very useful:
 
-* +Filter+ allows filtering of property values prior getting returned to the caller. Filters by default are
+* +Filter+ allows filtering of property values prior before getting returned to the caller. Filters by default are
   registered as global filters, filtering _raw_ values. The final +String+ value of a configuration entry is the
   final value after all registered filters have been applied.
 * A +ConfigValueCombinationPolicy+ optionally can be registered to change the logic how key/value
   pairs from subsequent property sources in the property source chain are combined to calculate the final
   _raw_ value passed over to the filters registered.
-* Tamaya provides a much more powerful the +TamayaConfigBuilder+, which extends the default +ConfigBuilder+
+* Tamaya provides a much more powerful +TamayaConfigBuilder+, extending the default +ConfigBuilder+
   adding additional methods for managing the config source order, adding filters and multiple converters.
 * Finally Tamaya uses a flexible +ServiceContext+ and +ServiceContextManager+ to provide an abstraction to
   the underlying runtime environment, allowing different component loading and lifecycle strategies to be used.
   This is very useful since component (service) loading in Java SE, Java EE, OSGI and other runtime environments
-  may be differ significantly. In most cases even extension programmers will not have to deal with these two
+  may differ significantly. In most cases even extension programmers will not have to deal with these two
   artifacts.
 
-To integrate Tamaya module's with config implementations, the only things the implementations should do, is to
-implement the +ConfigContextSupplier+ by the implementation of +Config+. Hereby a +ConfigContext+ is the abstraction
+To integrate Tamaya modules with config implementations, the only things the implementations should do, is to
+implement the +ConfigContextSupplier+ with an implementation of +Config+. Hereby a +ConfigContext+ is the abstraction
 of the inner components (+ConfigSource, Filter, ConfigValueCombinationPolicy, Converter+) required to implement a
 +Config+. Also the ordering of the config sources, filters and converters is defined by the context.
 
@@ -68,7 +68,7 @@ policy used.
 === Excourse: Key/Value Pairs
 
 Basically configuration is a very generic concept. Therefore it should be modelled in a generic way. The most simple
-and most commonly used approach are simple literal key/value pairs. So the core building block of {name} are key/value pairs.
+and most commonly used approach is simple literal key/value pairs. So the core building block of {name} are key/value pairs.
 You can think of a common +.properties+ file, e.g.
 
 [source,properties]
@@ -96,19 +96,18 @@ val = props.getProperty("a.b.c.1");
 
 ==== Why Using Strings Only
 
-There are good reason to keep of non String-values as core storage representation of configuration. Mostly
+There are good reason for keeping non-String-values as core storage representation of configuration. Mostly
 there are several huge advantages:
 
 * Strings are simple to understand
 * Strings are human readable and therefore easy to prove for correctness
-* Strings can easily be used within different language, different VMs, files or network communications.
+* Strings can easily be used within different languages, different VMs, files or network communications.
 * Strings can easily be compared and manipulated
 * Strings can easily be searched, indexed and cached
 * It is very easy to provide Strings as configuration, which gives much flexibility for providing configuration in
   production as well in testing.
-* and more...
 
-On the other side there are also disadvantages:
+On the other hand there are also disadvantages:
 
 * Strings are inherently not type safe, they do not provide validation out of the box for special types, such as
 numbers, dates etc.
@@ -117,13 +116,13 @@ numbers, dates etc.
 * Strings are neither hierarchical nor multi-valued, so mapping hierarchical and collection structures requires some
   extra efforts.
 
-Nevertheless most of these advantages can be mitigated easily, hereby still keeping all the benefits from above:
+Nevertheless most of these disadvantages can be mitigated easily, hereby still keeping all the benefits from above:
 
-* Adding type safe adapters on top of String allow to add any type easily, that can be directly mapped out of Strings.
+* Adding type safe adapters on top of String allows to add any type easily, that can be directly mapped from String.
   This includes all common base types such as numbers, dates, time, but also timezones, formatting patterns and more.
-* Also multi-valued, complex and collection types can be defined as a corresponding +PropertyAdapter+ knows how to
+* Also multi-valued, complex and collection types can be defined. A corresponding +PropertyAdapter+ knows how to
   parse and create the target instance required.
-* String s also can be used as references pointing to other locations and formats, where configuration is
+* Strings ca also be used as references pointing to other locations and formats, where configuration is
   accessible.
 
 
@@ -131,7 +130,7 @@ Nevertheless most of these advantages can be mitigated easily, hereby still keep
 
 === Config
 
-+Config+ is the main artifact modelling configuration. It allows reading of single property values or all known
++Config+ is the main artifact modelling configuration. It allows reading single property values or all known
 properties, but also supports type safe access:
 
 [source,java]
@@ -149,9 +148,9 @@ public interface Config{
 Hereby
 
 * +<T> T getValue(String, Class<T>)+ provides type safe accessors for all basic wrapper types of the JDK. If a
-  key cannot be found an +NoSuchElementException+ is thrown.
-* +getOptionalValue+ allows to us +Optional+ for handling default values as needed.
-* +getPropertyNames()+ provides access to all keys, whereas entries from non scannable config sources may not
+  key cannot be found a +NoSuchElementException+ is thrown.
+* +getOptionalValue+ allows to use +Optional+ for handling default values as needed.
+* +getPropertyNames()+ provides access to all keys, whereas entries from non-scannable config sources may not
   be included.
 * +getConfigSources()+ allows access to the underlying config sources.
 
