@@ -1,0 +1,68 @@
+:jbake-type: page
+:jbake-status: published
+
+= Apache Tamaya - Extension: Integration with JNDI
+
+toc::[]
+
+
+[[JNDI]]
+== Integration with JNDI (Extension Module)
+Tamaya _JNDI_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
+=== What functionality this module provides ?
+
+Tamaya _JNDI_ provides a simple +PropertySource+ that reads values from a
+JNDI context.
+
+
+=== Compatibility
+
+The module is based on Java 7, so it will not run on Java 7 and beyond.
+
+
+=== Installation
+
+To use _jndi_ as a configuration backend you only must add the corresponding dependency to
+your module:
+
+[source, xml]
+-----------------------------------------------
+<dependency>
+  <groupId>org.apache.tamaya.ext</groupId>
+  <artifactId>tamaya-jndi</artifactId>
+  <version>{tamaya_version}</version>
+</dependency>
+-----------------------------------------------
+
+
+=== The Functionality Provided
+
+Main artifact is the +JNDIPropertySource+ class, which implements a
+property source based on a JNDI context:
+
+[source, java]
+-----------------------------------------------
+public class JNDIPropertySource extends BasePropertySource {
+
+    public JNDIPropertySource(String name, Context context);
+    public JNDIPropertySource(String name) throws NamingException;
+    public JNDIPropertySource() throws NamingException;
+
+    public void setScannable(boolean scannable);
+
+    [...]
+}
+-----------------------------------------------
+
+By default the property source is _non scannable_, so a call the `getProperties()`
+will return an empty map instance. After calling `setScannable(true);` a call to
+`getProperties()` will return a String representation of the JNDI tree. Hereby
+leaves of the tree are converted using `String.valueOf(leaveObject)`.
+
+This module automatically registers an instance of +JNDIPropertySource+ with a
+default ordinal of +200+.
+
+You can extend this class or manually instantiate it, e.g. as part of a
++PropertySourceProvider+. If no `Context` is passed explicitly, a new
++InitialContext+ is created, without any environment parameters set.

@@ -1,0 +1,87 @@
+:jbake-type: page
+:jbake-status: published
+
+= Apache Tamaya - Extension: Features Check
+
+toc::[]
+
+
+[[Features]]
+== Tamaya Features Check (Extension Module)
+Tamaya _Features_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
+=== What functionality this module provides ?
+
+Tamaya _Features_ provides a simple +Features+ singleton that allows to check
+which Tamaya Extensions are currently on the classpath.
+
+=== Compatibility
+
+The module is based on Java 7, so it will not run on Java 7 and beyond.
+
+
+=== Installation
+
+To use Tamaya _Features_ you only must add the corresponding dependency to
+your module:
+
+[source, xml]
+-----------------------------------------------
+<dependency>
+  <groupId>org.apache.tamaya.ext</groupId>
+  <artifactId>tamaya-features</artifactId>
+  <version>{tamaya_version}</version>
+</dependency>
+-----------------------------------------------
+
+
+=== The Functionality Provided
+
+Main artifact is the +Features+ singleton, which provides various static methods
+to check, which Tamaya extensions are currently loaded.
+
+[source, java]
+-----------------------------------------------
+public final class Features {
+
+    private Features(){}
+
+    public static boolean eventsAvailable();
+    public static boolean formatsAvailable();
+    public static boolean tamayaCoreAvailable();
+    public static boolean injectionAvailable();
+    public static boolean injectionCDIAvailable();
+    public static boolean mutableConfigAvailable();
+    public static boolean optionalAvailable();
+    public static boolean resolverAvailable();
+    public static boolean resourcesAvailable();
+    public static boolean spiSupportAvailable();
+    public static boolean filterSupportAvailable();
+    public static boolean springAvailable();
+    public static boolean jndiAvailable();
+
+    public static boolean extSpringCoreAvailable();
+    public static boolean extJndiAvailable();
+    public static boolean extOSGIAvailable();
+
+    public static boolean checkClassIsLoadable(String classname);
+}
+-----------------------------------------------
+
+* +eventsAvailable();+ checks for the link:mod_events.html[_tamaya_events_] module.
+* +formatsAvailable();+ checks for the link:mod_formats.html[_tamaya_formats_] module.
+* +tamayaCoreAvailable();+ checks if the link:core.html[_Tamaya core_] implementation is loaded.
+* +injectionAvailable();+ checks for the link:mod_injection.html[_tamaya_injection_] SE module.
+* +injectionCDIAvailable();+ checks for the link:mod_cdi.html[_tamaya CDI_] modules.
+* +mutableConfigAvailable();+ checks for the link:mod_mutableconfig.html[_tamaya_mutableconfig_] module.
+* +optionalAvailable();+ checks for the link:mod_optional.html[_tamaya_optional_] module.
+* +resolverAvailable();+ checks for the link:mod_resolver.html[_tamaya_resolver_] module.
+* +resourcesAvailable();+ checks for the link:mod_reources.html[_tamaya_resources_] module.
+* +spiSupportAvailable();+ checks for the link:mod_spisupport.html[_tamaya_spisupport_] module.
+* +filterSupportAvailable();+ checks for the link:mod_filter.html[_tamaya_filter_] module.
+* +springAvailable();+ checks for the link:mod_spring.html[_tamaya_spring_] module.
+* +jndiAvailable();+ checks for the link:mod_jndi.html[_tamaya_jndi_] module.
+* +extJndiAvailable();+ checks if creation of a new `InitialContext` is successful.
+* +extSpringCoreAvailable();+ checks if Spring Core is on the classpath.
+* +extOSGIAvailable();+ checks the OSGI framework is on the classpath.
+* Finally +checkClassIsLoaded(String)+ tries to load a class. If it fails, `false` is returned.

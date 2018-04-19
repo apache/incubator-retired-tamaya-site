@@ -1,0 +1,79 @@
+:jbake-type: page
+:jbake-status: published
+
+= Apache Tamaya - Extension: Classloader Isolation Support
+
+toc::[]
+
+[[Classloader]]
+== Tamaya Classloader Aware ServiceContext (Extension Module)
+
+Tamaya _Classloader_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
+=== What functionality this module provides ?
+
+The Tamaya _Classloader_ support provides an alternative implementation of +java.util.ServiceLoader+, which is aware
+of classloaders, hereby preventing multiple loading of components within a classloader hierarchy.
+
+
+=== Compatibility
+
+The module is based on Java 7, so it will not run on Java 7 and beyond.
+
+
+=== Installation
+
+To benefit from configuration server support you only must add the corresponding dependency to your module:
+
+[source, xml]
+-----------------------------------------------
+<dependency>
+  <groupId>org.apache.tamaya.ext</groupId>
+  <artifactId>tamaya-classloader-support</artifactId>
+  <version>{tamaya_version}</version>
+</dependency>
+-----------------------------------------------
+
+The component will auto.register its components and override the default +ServiceContext+ in use by default
+with an instance of type +org.apache.tamaya.clsupport.internal.CLAwareServiceContext+ with a precendence value
+(component priority) of +10+.
+
+
+=== How it works
+
+Basically the component manages a +Map+ of all classloaders encountered. When services are accessed, the component
+will evaluate the services as follows:
+
+* the component walks up the class loader hierarchy.
+* in a next step the hierarchy is traversed down from the parent to the current classloader. Hereby it is checked
+  if the service list for the required type has been loaded already. If not the service configuration files are
+  evaluated.
+* This configuration file evaluation will ignore all resources already loaded by any of the already traversed parent
+  classloaders.
+* For each configuration file newly visible to the classloader currently traversed, the corresponding services are
+  loaded unleyy, the same service class already has been loaded by one its parent classloaders or another file
+  loaded with this classloader.
+* Finally all services found are returned as the full collection of services valid for the given context (classloader).
+
+This ensures no service is loaded multiple times, even when it is referenced multiple times in several service
+configurations. Additionally every service is loaded on the classloader where it is also declared the first time.
+
+
+=== Control Logging
+
+The service component by default only logs errors. But it is possible to change this by reconfiguring the logging
+levels on the following logging names/path: +org.apache.tamaya.clsupport.internal.CLAwareServiceContext+
+
+* _INFO_ logs additional info on the services accessed.
+* _FINEST_ logs additional info on the services scanned and selected.
+
+
+=== Classloader Aware Configuration
+
+The mechanism above is used to provide a classloader aware implementation of +ConfigurationContext+
+(+org.apache.tamaya.clsupport.internal.CLAwareConfigurationContext+). Similarly to the service variants
+this class provides a context implementation that manages the core configuration aspects considering classloading
+hierarchies:
+
+* +PropertySource+, +PropertySourceProviders+
+* +PropertyFilters+, +PropertyCombinationPolicy+

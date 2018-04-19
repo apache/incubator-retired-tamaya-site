@@ -1,0 +1,111 @@
+:jbake-type: page
+:jbake-status: published
+
+= Apache Tamaya - Extension: Remote Configuration
+
+toc::[]
+
+
+[[Remote]]
+== Tamaya Remote Configuration (Extension Module)
+
+Tamaya _Remote_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
+
+=== What functionality this module provides ?
+
+Tamaya _Remote_ provides support for reading configuration from remote resources. It provides
+out-of-the-box support for reading scoped configuration from a Tamaya configuration server as
+provided with the Tamaya _server_ module .
+
+
+=== Compatibility
+
+The module is based on Java 7, so it will not run on Java 7 and beyond.
+
+
+=== Installation
+
+To use remote support you only must add the corresponding dependency to your module:
+
+[source, xml]
+-----------------------------------------------
+<dependency>
+  <groupId>org.apache.tamaya.ext</groupId>
+  <artifactId>tamaya-remote</artifactId>
+  <version>{tamaya_version}</version>
+</dependency>
+-----------------------------------------------
+
+
+=== Reading Remote configuration from a Tamaya Configuration Server
+
+The remote module allows reading JSON formatted configuration as provided by the Tamaya _server_ extension . The JSON
+format used looks as follows:
+
+[source, json]
+-----------------------------------------------
+{
+  "java.vendor.url": "http://java.oracle.com/",
+  "java.vendor.url.bug": "http://bugreport.sun.com/bugreport/",
+  "java.vm.info": "mixed mode",
+  "java.vm.name": "Java HotSpot(TM) 64-Bit Server VM",
+  "java.vm.specification.name": "Java Virtual Machine Specification",
+  "java.vm.specification.vendor": "Oracle Corporation",
+  "java.vm.specification.version": "1.8",
+  "java.vm.vendor": "Oracle Corporation",
+  "java.vm.version": "25.45-b02",
+  "sun.arch.data.model": "64",
+  "sun.boot.class.path": "C:\apps\jdk18\jre\lib\resources.jar;C:\apps\jdk18\jre\lib\rt.jar;C:\apps\jdk18\jre\lib\sunrsasign.jar;C:\apps\jdk18\jre\lib\jsse.jar;C:\apps\jdk18\jre\lib\jce.jar;C:\apps\jdk18\jre\lib\charsets.jar;C:\apps\jdk18\jre\lib\jfr.jar;C:\apps\jdk18\jre\classes",
+  "sun.boot.library.path": "C:\apps\jdk18\jre\bin",
+  "sun.cpu.endian": "little",
+  "sun.cpu.isalist": "amd64",
+  "sun.desktop": "windows",
+  "sun.io.unicode.encoding": "UnicodeLittle",
+  "sun.java.command": "com.intellij.rt.execution.application.AppMain org.apache.tamaya.examples.remote.server.Start",
+  "sun.java.launcher": "SUN_STANDARD",
+  "sun.jnu.encoding": "Cp1252",
+  "sun.management.compiler": "HotSpot 64-Bit Tiered Compilers",
+  "sun.os.patch.level": "",
+  "_class": "org.apache.tamaya.functions.FilteredConfiguration",
+  "_info.filter": "java.v,sun",
+  "_info.format": "application/json",
+  "_info.timestamp": "1441463200571",
+  "_timestamp": "1441463200571",
+  "_type": "Configuration"
+}
+-----------------------------------------------
+
+Basically there are no constraints about they keys provided. By default Tamaya uses keys prefixed with
++'_'+ to identify meta-data entries, but this is not a required precondition.
+
+Finally such a remote configuration can be easily integrated by inheriting from the provided base
+class. Hereby a default ordinal must be defined and the +protected Collection<URL> getAccessURLs()+
+method must be implemented to define the URL from where the configuration should be accessible. Hereby
+multiple URLs can be provided, which are accesed in order as provided by the collection's iterator. The
+first accessible URL determines the configuration read.
+
+[source, java]
+-----------------------------------------------
+public class RemotePropertySource extends BaseRemotePropertySource{
+
+    @Override
+    protected Collection<URL> getAccessURLs() {
+        try {
+            String configServerUrl = System.getenv("CONFIG_SERVER");
+            if(configServerUrl==null){
+                configServerUrl = System.getProperty("configServer");
+            }
+            if(configServerUrl==null){
+                configServerUrl = "http://localhost:8888/config?scope=CLIENT&scopeId={clientId}&format=application/json";
+            }
+            System.out.println("Reading config from " + configServerUrl.replace("{clientId}", Client.getClientId()));
+            return Arrays.asList(new URL[]{new URL(configServerUrl.replace("{clientId}", Client.getClientId()))});
+        } catch (MalformedURLException e) {
+            Logger.getLogger(getClass().getName()).log(Level.WARNING, "Failed to configure remote config location,", e);
+            return Collections.emptySet();
+        }
+    }
+
+}
+-----------------------------------------------

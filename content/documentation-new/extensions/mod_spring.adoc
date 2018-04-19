@@ -1,0 +1,176 @@
+:jbake-type: page
+:jbake-status: published
+
+= Apache Tamaya - Extension: Spring Integration
+
+toc::[]
+
+
+[[Spring]]
+== Tamaya Spring Integration (Extension Module)
+
+Tamaya _Spring_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
+
+=== What functionality this module provides ?
+
+Tamaya _Spring_ currently provides full integration with Spring and Spring Boot:
+
+* A Spring +@Configuration+ implementation that also provides a Tamaya based version of
+  +org.springframework.context.support.PropertySourcesPlaceholderConfigurer+.
+* +org.apache.tamaya.integration.spring.TamayaEnvironment+ is the Tamaya based implementation of the Spring
+  +Environment+ interface.
+* +TamayaSpringPropertySource+ implements an additional Spring +PropertySource+.
+* Finally +org.apache.tamaya.integration.spring.SpringConfigInjectionPostProcessor+ implements a Bean +PostProcessor+,
+  which adds all the fully fledged Tamaya configuration capabilities to Spring.
+
+
+=== Compatibility
+
+Both modules are based on Java 8, so they will run on Java 8 and beyond. The extension shown here works in
+Spring Framework as well as Spring Boot.
+
+
+=== Installation
+
+To benefit from Tamaya Spring integration add the following dependencies to your module:
+
+[source, xml]
+-----------------------------------------------
+<dependency>
+  <groupId>org.apache.tamaya.ext</groupId>
+  <artifactId>tamaya-spring</artifactId>
+  <version>{tamaya_version}</version>
+</dependency>
+-----------------------------------------------
+
+
+=== Registering Tamaya Spring Configuration
+
+Basically to activate the Tamaya Spring support the most simple thing is to a enable the Tamaya package for being
+scanned for Spring components, e.g. using by annotation:
+
+[source, java]
+--------------------------------------------------------
+@SpringBootApplication
+@ComponentScan({"org.apache.tamaya.integration.spring"})
+public class SampleWebFreeMarkerApplication {
+
+	public static void main(String[] args) throws Exception {
+		SpringApplication.run(SampleWebFreeMarkerApplication.class, args);
+	}
+
+}
+--------------------------------------------------------
+
+Of course, you can still use Spring's XML configuration in a similar way:
+
+[source, xml]
+--------------------------------------------------------
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config />
+    <context:component-scan base-package="org.apache.tamaya.integration.spring"/>
+
+    ...
+
+</beans>
+--------------------------------------------------------
+
+
+Though not recommended you can explicitly register the Tamaya related beans in your context configuration by hand:
+files:
+
+[source, xml]
+--------------------------------------------------------
+<bean id="tamayaInjectionProcessor" name="tamayaInjectionProcessor" class="org.apache.tamaya.integration.spring.SpringConfigInjectionPostProcessor"/>
+<bean id="tamayaConfigProvider" name="tamayaConfigProvider" class="org.apache.tamaya.integration.spring.TamayaSpringConfig"/>
+--------------------------------------------------------
+
+
+=== Configuring your Context
+
+After activation you can use Tamaya as a backend for property resolution, e.g. +propertyValue+ 
+is resolved from the current Tamaya configuration. See example below:
+
+[source, xml]
+--------------------------------------------------------
+<bean id="configuredBean" name="configuredBean" class="org.apache.tamaya.integration.spring.ConfiguredSpringBean">
+    <property name="message" value="${propertyValue}"/>
+</bean>
+--------------------------------------------------------
+
+
+=== Configuring your Beans
+
+Similarly you can inject any kind of configuration as supported by Tamaya into your Spring managed beans:
+
+[source, java]
+--------------------------------------------------------
+@ConfigDefaultSections("app.root") // optional <1>
+@Component
+public class ConfiguredSpringBean {
+
+    @Value("${application.message:Hello World}")  <2>
+    private String message;
+
+    @Autowired
+    private Environment env;
+
+    @Config(value = "alternateMessage", required = false) <3>
+    private String anotherMessage = "N/A";
+
+    @Config("java.version")
+    private String javaVersion;
+
+    @Config(value={"number", "testNum", "[notavailable]"}, defaultValue="23") <4><5>
+    private int testNumber;
+
+    ...
+}
+--------------------------------------------------------
+
+<1> You can configure default section prefixes. This is an optional feature.
+<2> Tamaya does not require you to change your code. You can still work with
+    Spring injection for your configuration, but Tamaya will override Spring
+    configuration by default.
+<3> You can also define entries as optional, which allows you to perform
+    default inialization using Java idoms.
+<4> Tamaya allows you to define an ordered list of key candidates, which are
+    combined with the section prefix, if present, to the full keys. Keys added
+    in brackets ([]) are interpreted as absolute keys, so the example above
+    the key candidate list evaluates to +app.root.number", "app.root.testNum",
+    "notavailable"+.
+<5> You can configure default values used, if no other value can be evaluated
+    for the given keyset.
+
+Summarizing you get all the nice features of Tamaya out of the box running
+with your Spring code.
+
+=== Working with Dynamic Values
+
+Integration into Spring also includes for support for _dynamic values_:
+
+[source, java]
+--------------------------------------------------------
+@Config(value = "foreground.color", required = false, defaultValue = "#DDDDDD")
+private DynamicValue<Color> foregroundColor;
+--------------------------------------------------------
+
+Dynamic values are a very flexible mechanism for managing configuration changes.
+You can even use an update policy to define how you want to handle configuration
+changes for your configuration parameter:
+
+[source, java]
+--------------------------------------------------------
+foregroundColor.setUpdatePolicy(UpdatePolicy.IMMEDEATE);
+foregroundColor.addPropertyChangeListener(() -> {
+   System.out.println("New forground color: " + foregroundColor.get();
+});
+--------------------------------------------------------
+
+IMPORTANT: For a full description of Tamaya's injection API please
+           refer to the link:extensions/mod_injection.html[corresponding documentation].
