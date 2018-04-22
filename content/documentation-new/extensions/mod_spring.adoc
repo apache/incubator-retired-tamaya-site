@@ -120,13 +120,14 @@ public class ConfiguredSpringBean {
     @Autowired
     private Environment env;
 
-    @Config(value = "alternateMessage", required = false) <3>
+    @ConfigProperty(key = "alternateMessage", required = false) <3>
     private String anotherMessage = "N/A";
 
-    @Config("java.version")
+    @ConfigProperty(key="java.version")
     private String javaVersion;
 
-    @Config(value={"number", "testNum", "[notavailable]"}, defaultValue="23") <4><5>
+    @ConfigProperty(key="number", defaultValue="23") <4>
+    @ConfigFallbackKeys=({"testNum", "[notavailable]"})  <5>
     private int testNumber;
 
     ...
@@ -156,7 +157,7 @@ Integration into Spring also includes for support for _dynamic values_:
 
 [source, java]
 --------------------------------------------------------
-@Config(value = "foreground.color", required = false, defaultValue = "#DDDDDD")
+@ConfigProperty(key = "foreground.color", required = false, defaultValue = "#DDDDDD")
 private DynamicValue<Color> foregroundColor;
 --------------------------------------------------------
 

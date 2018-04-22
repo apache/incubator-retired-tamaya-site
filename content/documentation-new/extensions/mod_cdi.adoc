@@ -16,8 +16,8 @@ Tamaya _CDI_ is an extension module. Refer to the link:../extensions.html[extens
 
 Apache _CDI_ provides integration with CDI:
 
-* Loading of CDI managed SPI components as configuration extensions such as +PropertySources, PropertySourceProviders,
-  PropertyFilters, etc+. This also includes SPI defined by any Tamaya submodules.
+* Loading of CDI managed SPI components as configuration extensions such as +ConfigSources, ConfigSourceProviders,
+  Converters, Filters, etc+. This also includes SPI defined by any Tamaya submodules.
   This is useful when Tamaya is used as an application module managed by the CDI implementation.
 * Implement and enable Tamaya's configuration injection services (either using CDI injection or
   Tamaya's standalone injection module.
@@ -32,11 +32,17 @@ Hereby there are two implementations provided:
 * One difference, of course, is that +tamaya-injection-standalone+ also provides an SE compatible API (+ConfigurationInjection,
   ConfigurationInjector+), which is not available, when using the purely CDI based variant.
 
-The annotations used for all injection functionality in Tamaya is defined as a separate module. This allows you to
-code against the injection API without dependency on the concrete injection implementation. As a consequence your
-components will be compatible regardless if deployed in a pure SE or as Java EE (CDI) or Spring environment:
+Most annotations used are defined as part of the Config JSR API, whereas Tamaya adds additional features not available
+in the JSR as separate modules. This allows you to code against the injection API without dependency on the concrete
+injection implementation. As a consequence your components will be compatible regardless if deployed in a pure SE or as
+Java EE (CDI) or Spring environment:
 
 -----------------------------------------------
+<dependency>
+  <groupId>javax.config</groupId>
+  <artifactId>config-api</artifactId>
+  <version>{config_api_version}</version>
+</dependency>
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>
   <artifactId>tamaya-injection-api</artifactId>
@@ -47,7 +53,7 @@ components will be compatible regardless if deployed in a pure SE or as Java EE 
 
 === Compatibility
 
-All modules are based on Java 7, so they will not run on Java 7 and beyond.
+All modules are based on Java 8, so they will not run on Java 8 and beyond.
 
 
 === Installation
@@ -105,9 +111,10 @@ Though not recommended, it is possible to activate both extension at the same ti
 
 === Annotating your Classes
 
-Basically annotating your classes is stright forward. +@Config+ defines an additional CDI qualifier that is, depending
-on the module deployed, handled by a CDI producer (+tamaya-cdi-ee+) or the Tamaya SE injection mechanism $
-(+tamaya-cdi-se+). All types injected by this module are injected using _dependent scope_.
+Basically annotating your classes is stright forward. Depending
+on the module deployed, your annotations are handled by a CDI producer (+tamaya-cdi-ee+) or the
+Tamaya SE injection mechanism (+tamaya-cdi-se+). All types injected by this module are injected
+using _dependent scope_.
 
 
 [source, java]
@@ -118,15 +125,14 @@ public class ConfiguredClass{
     @Config
     private String testProperty;
 
-    @Config({"a.b.c.key1","a.b.c.key2","a.b.c.key3"},
+    @Config(key="a.b.c.key1",
            defaultValue="The current \\${JAVA_HOME} env property is ${env:JAVA_HOME}.")
     String value1;
 
-    @Config({"foo","a.b.c.key2"})
+    @Config(key="foo")
     private String value2;
 
-    @Config
-    @ConfigDefault("N/A")
+    @Config(defaultValue="N/A")
     private String runtimeVersion;
 
     @Config(defdaultValue="${sys:java.version}")
@@ -152,11 +158,11 @@ the required SPI interface:
 [source, java]
 --------------------------------------------------------
 @Singleton
-public class TestPropertySource implements PropertySource{
+public class TestConfigSource implements ConfigSource{
 
     final Map<String,String> config = new HashMap<>();
 
-    public TestPropertySource(){
+    public TestConfigSource(){
         config.put("a.b.c.key1", "keys current a.b.c.key1");
         config.put("a.b.c.key2", "keys current a.b.c.key2");
         config.put("{"+getName()+"}source", getClass().getName());
@@ -182,10 +188,6 @@ public class TestPropertySource implements PropertySource{
         return config;
     }
 
-    @Override
-    public boolean isScannable() {
-        return true;
-    }
 }
 --------------------------------------------------------
 
@@ -196,7 +198,7 @@ Contents of `META-INF/services/org.apache.tamaya.spi.ServiceContext`:
 [source, properties]
 -----------------------------------------------
 # Registering a CDI aware service context
-CDIAwareServiceContext
+org.apache.tamaya.cdi.CDIAwareServiceContext
 -----------------------------------------------
 
 
@@ -205,22 +207,13 @@ CDIAwareServiceContext
 Beside basic configuration Tamaya also covers additional requirements:
 
 * _Reading multiple keys, where the first successful one is determining the value of the configuration, is
-  simply possible, by adding multiple keys to the +@Configy+ annotation.
+  simply possible, by defining additional keys with +@ConfigFallbackKeys+ annotation.
   E.g. for trying first +a.b+ and then +new.b+ you would configure it as follows:
 
 [source,java]
 --------------------------------------------------------------------------------------
-@Config({"a.b", "new.b"}
-private String value;
---------------------------------------------------------------------------------------
-
-* When you must apply a +ConfigOperator+ to your config, before reading the configuration, you can
-  configure one as follows:
-
-[source,java]
---------------------------------------------------------------------------------------
-@Config({"a.b", "new.b"}
-@WithConfigOperator(MyOperator.class)
+@Config(key="a.b")
+@ConfigFallbackKeys({"new.b"})
 private String value;
 --------------------------------------------------------------------------------------
 
@@ -229,8 +222,8 @@ private String value;
 
 [source,java]
 --------------------------------------------------------------------------------------
-@Config({"a.b", "new.b"}
-@WithPropertyConverter(MyConverter.class)
+@Config(key="a.b")
+@WithConverter(MyConverter.class)
 private MySpecialFooType value;
 --------------------------------------------------------------------------------------
 
@@ -242,7 +235,8 @@ private MySpecialFooType value;
 @ConfigDefaultSections({"aaaa", "new"});
 public class MyType{
 
-@Config({"b", "[legacy.bKey]"} // lookups: "aaaa.b", "new.b", legacy.bKey
+@Config(key="b"}
+@ConfigFallbackKeys({"[legacy.bKey]"})  // lookups: "aaaa.b", "new.b", legacy.bKey
 private String value;
 --------------------------------------------------------------------------------------
 

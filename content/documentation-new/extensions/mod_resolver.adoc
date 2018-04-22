@@ -14,14 +14,14 @@ Tamaya _Resolver_ is an extension module. Refer to the link:../extensions.html[e
 Tamaya _Resolver_ is an extension module. Refer to the link:../extensions.html[extensions documentation]
 for further details about modules.
 
-Tamaya Resolver provides a dynamic resolution mechanism, which allows to use UNIX-styled (+${...}+ placeholder
+Tamaya Resolver provides a extendible dynamic resolution mechanism. It allows to use UNIX-styled (+${...}+ placeholder
 expressions in your configuration values. The resolver hereby supports transitive resolution and also prevents
 cycles to loop endlessly.
 
 
 === Compatibility
 
-The module is based on Java 7, so it can be used with Java 7 and beyond.
+The module is based on Java 8, so it can be used with Java 8 and beyond.
 
 
 === Installation
@@ -37,7 +37,7 @@ To benefit from dynamic value resolution you only must add the corresponding dep
 </dependency>
 -----------------------------------------------
 
-The module automatically registers an according +PropertyFilter+ that is automatically called, whenever a value
+The module automatically registers an according +Filter+ that is automatically called, whenever a value
 is accessed.
 
 
@@ -73,7 +73,7 @@ Currently the module defines the following resolvers:
 
 === SPI: Implementing your own Resolvers
 
-The module also provides a small but powerful SPI for adding your own resolver implementations. Basically the
+The module also provides a small SPI for adding your own resolver implementations. Basically the
 first and most important thing to do is implementing the +ExpressionResolver+ interface:
 
 .Implementing a Custom Resolver

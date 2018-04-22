@@ -14,9 +14,9 @@ Tamaya _Events_ is an extension module. Refer to the link:../extensions.html[ext
 === What functionality this module provides ?
 
 Tamaya _Events_ provides a mechanism to publish and subscribe to +ConfigEvent<T>+ instances.
-This module implements +ConfigChange+ or +PropertySourceChange+ as possible payloads, but
+This module implements +ConfigChange+ or +ConfigSourceChange+ as possible payloads, but
 the module itself is not constraint to this payload types.
-These payload types describe detected changes of key/values of a +Configuration+ or a +PropertySource+.
+These payload types describe detected changes of key/values of a +Config+ or a +ConfigSource+.
 The extension also provides a _Singleton accessor_ which allows to register/unregister
 listeners for changes and the period, when configuration should be scanned for
 any changes.
@@ -27,7 +27,7 @@ change events.
 
 === Compatibility
 
-The module is based on Java 7, so it can be used with Java 7 and beyond.
+The module is based on Java 8, so it can be used with Java 8 and beyond.
 
 === Installation
 
@@ -59,7 +59,7 @@ public interface ConfigEvent<T> {
     long getTimestamp();
 }
 
-// @FunctionalInterface
+@FunctionalInterface
 public interface ConfigEventListener {
 
     void onConfigEvent(ConfigEvent<?> event);
@@ -127,25 +127,25 @@ configuration change, which is anything of the following
 
 A collection of changes
 
-* on a +Configuration+ is modelled by the +ConfigurationChange+ class
-* on a +PropertySource+ is modelled by the +PropertySourceChange+ class
+* on a +Config+ is modelled by the +ConfigChange+ class
+* on a +ConfigSource+ is modelled by the +ConfigSourceChange+ class
 
 
 ==== Configuration Changes
 
-A set of changes on a +Configuration+ is described by a +ConfigurationChange+
+A set of changes on a +Config+ is described by a +ConfigChange+
 as follows:
 
 [source,java]
 -------------------------------------------------------
-public final class ConfigurationChange implements ConfigEvent<Configuration>, Serializable{
+public final class ConfigChange implements ConfigEvent<Config>, Serializable{
 
-    public static ConfigurationChange emptyChangeSet(Configuration configuration);
+    public static ConfigChange emptyChangeSet(Config configuration);
 
     @Override
-    public Configuration getResource();
+    public Config getResource();
     @Override
-    public Class<Configuration> getResourceType();
+    public Class<Config> getResourceType();
     @Override
     public String getVersion();
     @Override
@@ -168,45 +168,45 @@ public final class ConfigurationChange implements ConfigEvent<Configuration>, Se
 
 -------------------------------------------------------
 
-New instances of +ConfigurationChange+ hereby can be created using a
-fluent +ConfigurationChangeBuilder+:
+New instances of +ConfignChange+ hereby can be created using a
+fluent +ConfigChangeBuilder+:
 
 [source,java]
 -------------------------------------------------------
-Configuration config = ...;
-ConfigurationChange change = ConfigurationChangeBuilder.of(config)
+Config config = ...;
+ConfigChange change = ConfigChangeBuilder.of(config)
   .addChange("MyKey", "newValue")
   .removeKeys("myRemovedKey").build();
 -------------------------------------------------------
 
-Also it is possible to directly compare 2 instances of +Configuration+,
-which results in a +ConfigurationChange+ that
+Also it is possible to directly compare 2 instances of +Config+,
+which results in a +ConfigChange+ that
 reflects the differences between the two configurations passed:
 
 [source,java]
 Comparing 2 configurations
 -------------------------------------------------------
-Configuration config = ...;
-Configuration changedConfig = ...;
-ConfigurationChange change = ConfigurationChangeBuilder.of(config)
+Config config = ...;
+Config changedConfig = ...;
+ConfigChange change = ConfigChangeBuilder.of(config)
   .addChanges(changedConfig).build();
 -------------------------------------------------------
 
-So a +ConfigurationChange+ describes all the changes detected on a +Configuration+.
+So a +ConfigChange+ describes all the changes detected on a +Config+.
 This allows you to publish instances of this class as events to all registered
 listeners (observer pattern).
-For listening to +ConfigurationChange+ events you must implement the
+For listening to +ConfigChange+ events you must implement the
 +ConfigEventListener+ functional interface:
 
 [source,java]
 .Implementing a ConfigChangeListener
 -------------------------------------------------------
-public final class MyConfigChangeListener implements ConfigEventListener<ConfigurationChange>{
+public final class MyConfigChangeListener implements ConfigEventListener<ConfigChange>{
 
-  private Configuration config = ConfigurationProvider.getConfiguration();
+  private Config config = ConfigProvider.getConfig();
 
   public void onConfigEvent(ConfigEvent<?> event){
-     if(event.getResourceType()==Configuration.class){
+     if(event.getResourceType()==Config.class){
          if(event.getConfiguration()==config){
            // do something
          }
@@ -229,51 +229,51 @@ NOTE: By default detection of configuration changes is not enabled. To enable it
 +ConfigEventManager.enableChangeMonitoring(true)+.
 
 
-=== PropertySource Changes
+=== ConfigSource Changes
 
-Beside that a whole +Configuration+ changes, also a +PropertySource+ can change,
+Beside that a whole +Config+ changes, also a +ConfigSource+ can change,
 e.g. by a configuration file edited on the fly. This is similarly to a
-+ConfigurationChange+ reflected by the classes +PropertySourceChange,
-PropertySourceChangeBuilder+.
++ConfigChange+ reflected by the classes +ConfigSourceChange,
+ConfigSourceChangeBuilder+.
 
 
 ==== Monitoring of configuration changes
 
 The +ConfigEventManager+ supports *active monitoring of the current configuration* to trigger corresponding change
 events to listeners registered. *This feature is deactivated by default*, but can be enabled by calling
-+ConfigEventManager.enableChangeMonitoring(true);+. This feature avoids regularly polling your local +Configuration+ for
++ConfigEventManager.enableChangeMonitoring(true);+. This feature avoids regularly polling your local +Config+ for
 any kind of changes. If a change has been encountered Tamaya identifies it and triggers corresponding
-+ConfigurationChange+ events automatically.
++ConfigChange+ events automatically.
 
 
-=== Freezing Configurations and PropertySources
+=== Freezing Configs and ConfigSources
 
-+Configuration+ instances as well as +PropertySources+ are explicitly not required to be serializable. To enable easy
-serialization of these types a +Configuration+'s *current state can be frozen* (e.g. for later comparison with a newly
++Config+ instances as well as +ConfigSources+ are explicitly not required to be serializable. To enable easy
+serialization of these types a +Config+'s *current state can be frozen* (e.g. for later comparison with a newly
 loaded version). Freezing hereby means
 
 * all key/values are read-out by calling the +getProperties()+ method.
 * a meta data entry is added of the form +_frozenAt=223273777652325677+, whichdefines the UTC timestamp in
   milliseconds when this instance was frozen.
-* if not already defined an +_id+ property will be added to the +Configuration+ containing the
+* if not already defined an +_id+ property will be added to the +Config+ containing the
   identifier of the configuration.
 
 In code freezing is a no-brainer:
 
 [source,java]
-.Freezing the current Configuration
+.Freezing the current Config
 --------------------------------------------------
-Configuration config = ConfigurationProvider.getConfiguration();
-Configuration frozenConfig = FrozenConfiguration.of(config);
+Config config = ConfigProvider.getConfig();
+Config frozenConfig = FrozenConfig.of(config);
 --------------------------------------------------
 
-... and similarly for a +PropertySource+:
+... and similarly for a +ConfigSource+:
 
 [source,java]
-.Freezing the current Configuration
+.Freezing a ConfigSource
 --------------------------------------------------
-PropertySource propertySource = ...;
-PropertySource frozenSource = FrozenPropertySource.of(propertySource);
+ConfigSource configSource = ...;
+ConfigSource frozenSource = FrozenConfigSource.of(configSource);
 --------------------------------------------------
 
 

@@ -39,7 +39,7 @@ By default it uses an XML based configuration format as illustrated below:
 
     <!-- Configuration definition. -->
 
-    <property-sources>
+    <sources>
        <source enabled="${stage=TEST || stage=PTA || stage=PROD}"
            type="env-properties">
            <filter type="PropertyMapping">
@@ -60,18 +60,18 @@ By default it uses an XML based configuration format as illustrated below:
            <param name="location">config.json</param>
        </source>
        ...
-    </property-sources>
+    </sources>
 </configuration>
 -----------------------------------------------
 
-The module basically provides an XML representation to the +ConfigurationContextBuilder+ API.
-It creates a corresponding +ConfigurationContext+ and registers the corresponding +Configuration+
-as the system's _default_ configuration (accessible from `ConfigurationProvider.getConfiguration()`.
+The module basically provides an XML representation to the +ConfigBuilder+ API.
+It creates and registers the corresponding +Config+
+as the system's _default_ configuration (accessible from `ConfigProvider.getConfig(ClassLoader cl)`.
 
 
 === Compatibility
 
-The module is based on Java 7, so it will not run on Java 7 and beyond.
+The module is based on Java 8, so it will not run on Java 8 and beyond.
 
 
 === Installation
@@ -90,29 +90,29 @@ To use _metamodel_ features you only must add the corresponding dependency to yo
 
 === Creating a Configuration using Meta-Configuration
 
-The basic feature of this module is the capability of creating a +Configuration+ completely
-based on a meta-configuration file. For this the +MetaConfiguration+ main singleton
+The basic feature of this module is the capability of creating a +Config+ completely
+based on a meta-configuration file. For this the +MetaConfig+ main singleton
 provides different methods:
 
 [source, java)
 -----------------------------------------------
-public final class MetaConfiguration {
+public final class MetaConfig {
     public static void configure();
     public static void configure(URL metaConfig);
-    public static ConfigurationContextBuilder createContextBuilder(URL metaConfig);
-    public static Configuration createConfiguration(URL metaConfig);
+    public static ConfigBuilder createBuilder(URL metaConfig);
+    public static Config createConfiguration(URL metaConfig);
 -----------------------------------------------
 
 * If you have supplied your meta-configuration at `META-INF/tamaya-config.xml` you simply
-  call +MetaConfiguration.configure();+. This will read the meta-configuration and
+  call +MetaConfig.configure();+. This will read the meta-configuration and
   configure Tamaya's _default_ configuration. Alternatively you can choose your own
   metaconfiguration location by passing an alternate `URL` ro read from.
 * With +MetaConfiguration.createContextBuilder()+ you can stop a step earlier: a new
-  instance of +ConfigurationContextBuilder+ is created and configured with all the
+  instance of +ConfigBuilder+ is created and configured with all the
   entries found in your meta-configuration. Also here you can optionally pass your
   custom location for the meta-configuration resouce.
-* Finally +MetaConfiguration.createConfiguration(URL)+ allows you to create an
-  arbitrary +Configuration+ instance using a meta-configuration file. The `Configuration`
+* Finally +MetaConfig.createConfig(URL)+ allows you to create an
+  arbitrary +Config+ instance using a meta-configuration file. The `Config`
   instance is completely independent and not registered as _default_ configuration, so
   it's lifecycle and usage is completely under your control.
 
@@ -378,12 +378,12 @@ XML metaconfiguration, e.g.
 
 [source, xml]
 -----------------------------------------------
-<property-sources>
+<sources>
     <source type="file" refreshable="true">
        <name>config.json</name>
        <param name="location">config.json</param>
     </source>
-</property-sources>
+</sources>
 -----------------------------------------------
 
 
@@ -411,7 +411,7 @@ as well (see next chapter).
 
     <!-- PART THREE: Configuration definition. -->
 
-    <property-sources>
+    <sources>
        <source enabled="${stage=TEST || stage=PTA || stage=PROD}"
            type="env-properties">
            <filter type="PropertyMapping">
@@ -454,8 +454,8 @@ as well (see next chapter).
                <param name="ttl">30 SECOND</param>
            </filter>
        </source>
-    </property-sources>
-    <property-filters>
+    </sources>
+    <filters>
         <filter type="UsageTrackerFilter"/>
         <filter type="AccessControl">
             <param name="roles">admin,power-user</param>
@@ -466,11 +466,11 @@ as well (see next chapter).
             <param name="ttl">30000</param>
             <param name="expression">cached.*</param>
         </filter>
-    </property-filters>
-    <property-converters>
+    </filters>
+    <converters>
     <!--<converter type="AllInOneConverter"/>-->
         <default-converters/>
-    </property-converters>
+    </converters>
 </configuration>
 -----------------------------------------------
 
@@ -505,23 +505,23 @@ type +org.apache.tamaya.metamodel.spi.MetaConfigurationReader+:
 
 [source,java]
 -----------------------------------------------------------
-public interface MetaConfigurationReader {
+public interface MetaConfigReader {
 
      /**
       * Reads meta-configuration from the given document and configures the current
       * context builder. The priority of readers is determined by the priorization policy
       * implemented by the {@link org.apache.tamaya.spi.ServiceContext},
       * @param document the meta-configuration document
-      * @param contextBuilder the context builder to use.
+      * @param configBuilder the config builder to use.
       */
-     void read(Document document, ConfigurationContextBuilder contextBuilder);
+     void read(Document document, ConfigBuilder configBuilder);
 
  }
 -----------------------------------------------------------
 
-Hereby we also see that an instance of `ConfigurationContextBuilder` is passed.
+Hereby we also see that an instance of `ConfigBuilder` is passed.
 Remember, we mentioned earlier that meta-configuration basically is a XML
-API to the building a configuration using a +ConfigurationContextBuilder+. So
+API to the building a configuration using a +ConfigBuilder+. So
 all you can do with the meta-config XML can also be done programmatically using
 the Java API.
 

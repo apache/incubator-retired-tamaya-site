@@ -39,7 +39,7 @@ This extension uses SPI defined by the +tamaya.formats+ extension module.
 
 === Compatibility
 
-The module is based on Java 7, so it will run on Java 7 and beyond.
+The module is based on Java 8, so it will run on Java 8 and beyond.
 
 
 === Installation
@@ -75,6 +75,6 @@ registers the _json_ format automatically using the `ServiceContext`):
 
 [source, java]
 -----------------------------------------------
-PropertySource ps = ConfigurationFormats.createPropertySource(
+ConfigSource ps = ConfigurationFormats.createConfigSource(
     getClassLoader().getResource("myFileConfig.json"));
 -----------------------------------------------

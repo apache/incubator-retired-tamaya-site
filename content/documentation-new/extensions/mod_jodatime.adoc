@@ -38,7 +38,7 @@ Joda-Time based values directly from a given configuration.
 
 [source,java]
 -----------------------------------------------
-Configuration configuration = ConfigurationProvider.getConfiguration();
+Config configuration = ConfigProvider.getConfig();
 
 DateTime pit = configuration.get("pointInTime", DateTime.class)
 -----------------------------------------------

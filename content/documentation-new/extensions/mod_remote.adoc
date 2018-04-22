@@ -21,7 +21,7 @@ provided with the Tamaya _server_ module .
 
 === Compatibility
 
-The module is based on Java 7, so it will not run on Java 7 and beyond.
+The module is based on Java 8, so it will not run on Java 8 and beyond.
 
 
 === Installation
@@ -87,7 +87,7 @@ first accessible URL determines the configuration read.
 
 [source, java]
 -----------------------------------------------
-public class RemotePropertySource extends BaseRemotePropertySource{
+public class RemoteConfigSource extends BaseRemoteConfigSource{
 
     @Override
     protected Collection<URL> getAccessURLs() {

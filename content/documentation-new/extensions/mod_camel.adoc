@@ -19,7 +19,7 @@ configuration with Apache Camel.
 
 === Compatibility
 
-The module is based on Java 7, so it will not run on Java 7 and beyond.
+The module is based on Java 8, so it will not run on Java 8 and beyond.
 
 
 === Installation

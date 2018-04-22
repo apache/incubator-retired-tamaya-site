@@ -12,13 +12,13 @@ Tamaya _JNDI_ is an extension module. Refer to the link:../extensions.html[exten
 
 === What functionality this module provides ?
 
-Tamaya _JNDI_ provides a simple +PropertySource+ that reads values from a
+Tamaya _JNDI_ provides a simple +ConfigySource+ that reads values from a
 JNDI context.
 
 
 === Compatibility
 
-The module is based on Java 7, so it will not run on Java 7 and beyond.
+The module is based on Java 8, so it will not run on Java 8 and beyond.
 
 
 === Installation
@@ -38,7 +38,7 @@ your module:
 
 === The Functionality Provided
 
-Main artifact is the +JNDIPropertySource+ class, which implements a
+Main artifact is the +JNDIConfigSource+ class, which implements a
 property source based on a JNDI context:
 
 [source, java]
@@ -60,9 +60,9 @@ will return an empty map instance. After calling `setScannable(true);` a call to
 `getProperties()` will return a String representation of the JNDI tree. Hereby
 leaves of the tree are converted using `String.valueOf(leaveObject)`.
 
-This module automatically registers an instance of +JNDIPropertySource+ with a
+This module automatically registers an instance of +JNDIConfigSource+ with a
 default ordinal of +200+.
 
 You can extend this class or manually instantiate it, e.g. as part of a
-+PropertySourceProvider+. If no `Context` is passed explicitly, a new
++ConfigSourceProvider+. If no `Context` is passed explicitly, a new
 +InitialContext+ is created, without any environment parameters set.

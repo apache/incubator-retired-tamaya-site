@@ -20,7 +20,7 @@ VM.
 
 === Compatibility
 
-The module is based on Java 7, so it can be used with Java 7 and beyond.
+The module is based on Java 8, so it can be used with Java 8 and beyond.
 
 
 === Installation
@@ -44,7 +44,7 @@ It checks the stacktrace to evaluate the calling code location, hereby any unwan
 ommitted from the stacktrace. Also the maximal length of the stacktrace retained can be constraint in length.
 The usages are recorded as +Usage+ instances. Hereby for each parameter accessed a corresponding +Usage+
 instance is created. It can be accessed by calling +Usage ConfigUsageStats.getUsage(String key)+. Usage
-statistics for calling +Configuration.getProperties()+ can be obtained calling +Usage getUsageAllProps();+.
+statistics for calling +Config.getPropertyNames()+ can be obtained calling +Usage getUsageAllProps();+.
 
 Usage tracking is disabled by default. It can be enabled by calling +ConfigUsageStats.enableUsageTracking(true);+.
 +ConfigUsageStats.isUsageTrackingEnabled()+ returns the current tracking status.

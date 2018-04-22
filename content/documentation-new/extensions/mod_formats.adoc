@@ -18,7 +18,7 @@ Tamaya _Formats_ provides an abstraction for configuration formats provding the 
 
 * Parsing of resources in can be implemented separately from interpreting the different aspects/parts parsed. As an
   example a file format can define different sections. Depending on the company specific semantics of the sections
-  a different set of +PropertySource+ instances must be created.
+  a different set of +ConfigSource+ instances must be created.
 * Similarly the configuration abstraction can also be used as an interface for integrating Tamaya with alternate
   frameworks that provide logic for reading configuration files, such as Apache commons.configuration.
 
@@ -49,7 +49,7 @@ data structure (in our cases: property sources). So it is useful to separate con
 * a parser (+ConfigurationFormat+) that transfers a given format into an intermediate
   representation (+ConfigurationData+).
 * an optional customization, implemented by a _factory method pattern_ to adapt the mapping of +ConfigurationData+ read
-  to a collection of +PropertySources+ (they can have different ordinal semantics).
+  to a collection of +ConfigSources+ (they can have different ordinal semantics).
 
 
 ==== ConfigurationData
@@ -111,10 +111,10 @@ public interface ConfigurationFormat {
 }
 -------------------------------------------------------
 
-=== Creating a default PropertySource for a ConfigurationFormat
+=== Creating a default ConfigSource for a ConfigurationFormat
 
 The module defines a singleton +ConfigurationFormats+ which provides
-an easy to use API for creating +ConfigurationData+ and +PropertySources+
+an easy to use API for creating +ConfigurationData+ and +ConfigSources+
 using abstract +ConfigurationFormat+ implementations:
 
 [source,java]
@@ -140,13 +140,13 @@ public final class ConfigurationFormats {
                                                           Collection<ConfigurationFormat> formats)
     throws IOException;
 
-    public static PropertySource createPropertySource(URL url, ConfigurationFormat... formats)
+    public static ConfigSource createConfigSource(URL url, ConfigurationFormat... formats)
     throws IOException;
-    public static PropertySource createPropertySource(URL url, Collection<ConfigurationFormat> formats)
+    public static ConfigSource createConfigSource(URL url, Collection<ConfigurationFormat> formats)
     throws IOException;
-    public static PropertySource createPropertySource(String resource, InputStream inputStream,
+    public static ConfigSource createConfigSource(String resource, InputStream inputStream,
                                                       ConfigurationFormat... formats);
-    public static PropertySource createPropertySource(String resource, InputStream inputStream,
+    public static ConfigSource createConfigSource(String resource, InputStream inputStream,
                                                        Collection<ConfigurationFormat> formats);
 }
 -------------------------------------------------------
@@ -158,43 +158,43 @@ public final class ConfigurationFormats {
 * +readConfigurationData(...)+ reads data from an input and creates a corresponding +ConfigurationData+,
   either trying all known formats that declare its compatibility with the given input or the formats
   passed explicitly.
-* +createPropertySource(...)+ allows to create a +PropertySource+ reading a given input and the formats
+* +createConfigSource(...)+ allows to create a +ConfigSource+ reading a given input and the formats
   to be used or known. Hereby a default property mapping is applied.
 
-So creating a +PropertySource+ from a resource is basically a one liner:
+So creating a +ConfigSource+ from a resource is basically a one liner:
 
 [source,java]
 -------------------------------------------------------
 URL url = ...;
-PropertySource propertySource = ConfigurationFormats.createPropertySource(url);
+ConfigSource configSource = ConfigurationFormats.createConfigSource(url);
 
 // constraining the formats to be used (assumption: json and yaml extensions are loaded)
-PropertySource propertySource = ConfigurationFormats.createPropertySource(
+ConfigSource configSource = ConfigurationFormats.createConfigSource(
                                     url,
                                     ConfigurationFormats.getFormats("json", "yaml"));
 -------------------------------------------------------
 
 
-=== Customize how ConfigurationData maps to PropertySource
+=== Customize how ConfigurationData maps to ConfigSource
 
-For for the conversion of +ConfigurationData+ into a +PropertySource+ different approaches can be useful:
+For for the conversion of +ConfigurationData+ into a +ConfigSource+ different approaches can be useful:
 
 . The +ConfigurationFormat+ that reads the data can provides all properties read either as sectioned properties
   or/and as default properties. The most simple cases is, where all properties have been added as 'default'
   properties. In this case the default properties can be used as the property sources properties without any change.
 . If the format did also add section based properties, the combined properties returned can be used, hereby
   replacing the '::' separator with a '.' separator.
-. In all other cases a custom mapping is useful, which can be acomplished by using the +MappedConfigurationDataPropertySource+
+. In all other cases a custom mapping is useful, which can be acomplished by using the +MappedConfigurationDataConfigSource+
   and overriding the +Map<String,String> populateData(ConfigurationData data)+ method.
 
-In most cases the usage of a +MappedConfigurationDataPropertySource+, is a good choice to start. This class
+In most cases the usage of a +MappedConfigurationDataConfigSource+, is a good choice to start. This class
 provides a convenient default mapping and also allows to customized the mapping easily:
 
 [source,java]
 -------------------------------------------------------
 ConfigurationData data = ...;
-MappedConfigurationDataPropertySource ps =
-  new MappedConfigurationDataPropertySource(data){
+MappedConfigurationDataConfigSource ps =
+  new MappedConfigurationDataConfigSource(data){
     protected Map<String, String> populateData(ConfigurationData data) {
       ...
     }
@@ -206,23 +206,23 @@ resulting properties can have different semnatics, especially different prioriti
 names may be mapped into different ordinals instead of using them as key prefixes (e.g. imagine configuration formats
 with a 'default', 'main', and 'overrides' sections). For such more complex or custom cases no simple mapping
 can be defined. Consequently the functionality mapping the normalized +ConfigurationData+ read to the
-appropriate collection of +PropertySource+ instances must be implemented.
+appropriate collection of +ConfigSource+ instances must be implemented.
 
-For this scenario the +BaseFormatPropertySourceProvider+ can be used, defining the following mapping
+For this scenario the +BaseFormatConfigSourceProvider+ can be used, defining the following mapping
 function that mus be implemented:
 
 [source,java]
 -------------------------------------------------------
 /**
- * Method to create a {@link org.apache.tamaya.spi.PropertySource} based on the given entries read.
+ * Method to create a {@link org.apache.tamaya.spi.ConfigSource} based on the given entries read.
  *
  * @param data the configuration data, not null.
- * @return the {@link org.apache.tamaya.spi.PropertySource} instance ready to be registered.
+ * @return the {@link org.apache.tamaya.spi.ConfigSource} instance ready to be registered.
  */
-protected abstract Collection<PropertySource> getPropertySources(ConfigurationData data);
+protected abstract Collection<ConfigSource> getConfigSources(ConfigurationData data);
 -------------------------------------------------------
 
-When using Java 8 these mappings can be asily passed as parameters to the +createPropertySource+
+When using Java 8 these mappings can be asily passed as parameters to the +createConfigSource+
 methods.
 
 
@@ -235,7 +235,7 @@ The _formats_ module ships with 3 predefined formats:
 * `.xml` properties files, as defined by `java.util.Properties`, registered as `xml-properties`.
 
 
-==== ini Configuration File Mapping
+==== ini Config File Mapping
 
 This module implements the ini file format with the class
 +org.apache.tamaya.format.formats.IniConfigurationFormat+.

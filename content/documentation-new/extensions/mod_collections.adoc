@@ -20,7 +20,7 @@ Collections extension adds this functionality to the Tamaya eco-system.
 
 === Compatibility
 
-The module is based on Java 7, so it will not run on Java 7 and beyond.
+The module is based on Java 8, so it will not run on Java 8 and beyond.
 
 
 === Installation
@@ -70,6 +70,7 @@ inner-workings, e.g.
 * specifying the implementation type of the collection item to be returned.
 * specifying the implementation type of the collection to be returned.
 
+
 === Supported Types
 
 This module currently supports the following types:
@@ -100,8 +101,8 @@ required target type.
 ==== Configuring the target implementation type
 
 Tamaya Collections allows you to configure the _default_ target collection type by adding the
-following meta-configuration entry (shown for the +mylist+ entry). Hereby the package part +java.util.+
-can be ommitted:
+following meta-configuration entry (shown for the +mylist+ entry). Hereby the package part
++java.util.+ can be ommitted:
 
 [ source, properties]
 -----------------------------------------------
@@ -109,9 +110,9 @@ mylist=a,b,c
 _mylist.collection-type=LinkedList
 -----------------------------------------------
 
-When calling +config.get("mylist", ArrayList.class)+ this parameter does not have any effect, so you will still
-get an +ArrayList+ as a result. However when you call +config.get("mylist", List.class)+ you will
-get a +LinkedList+ as implementation type.
+When calling +config.get("mylist", ArrayList.class)+ this parameter does not have any effect,
+so you will still get an +ArrayList+ as a result. However when you call +config.get("mylist",
+List.class)+ you will get a +LinkedList+ as implementation type.
 
 This mechanism similarly applies to all kind of collections, so you can use it similarly to define the implementation
 type returned when accessing +List+, +Map+ or +Collection+.

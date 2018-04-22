@@ -16,14 +16,14 @@ Tamaya _Hazelcast_ is an extension module. Refer to the link:../extensions.html[
 
 Tamaya _Hazelcast_ provides a property source which uses
 link:http://www.hazelcast.org[Hazelcast] as configuration backend. Hereby the
-module supports read-only integration (as a +HazelcastPropertySource+ as well
+module supports read-only integration (as a +HazelcastConfigSource+ as well
 as a writing configuration changes back (based on Tamaya's +MutableConfiguration+ API
 defined by the link:mod_mutable_config.html[tamaya-mutable-config] extension module.
 
 
 === Compatibility
 
-The module is based on Java 7, so it will not run on Java 7 and beyond.
+The module is based on Java 8, so it will not run on Java 8 and beyond.
 
 
 === Installation
@@ -44,18 +44,18 @@ To use _tamaya-hazelcast_ you only must add the corresponding dependency to your
 
 Hazelcast integration comes basically with 2 artifacts:
 
-* The +org.apache.tamaya.hazelcast.HazelcastPropertySource+ is a +PropertySource+. The property source is not automatically
+* The +org.apache.tamaya.hazelcast.HazelcastConfigSource+ is a +ConfigSource+. The property source is not automatically
   registered. Either register it using the _ServiceLoader_ yourself or implement
-  and register a corresponding `PropertySourceProvider`.
+  and register a corresponding `ConfigSourceProvider`.
 * If the +tamaya-mutable-config+ module is loaded it is possible to write property values back into the consul cluster,
   by accessing a +MutableConfiguration+ using the URI +config:hazelcast+.
 
 Access of consul key/value pairs is through the normal Tamaya API.
 
 
-=== The HazelcastPropertySource
+=== The HazelcastConfigSource
 
-The +HazelcastPropertySource+ is not automatically registered and provides different options how to integrate
+The +HazelcastConfigSource+ is not automatically registered and provides different options how to integrate
 Tamaya with Hazelcast.
 
 [source, java]
@@ -64,21 +64,21 @@ Tamaya with Hazelcast.
  * Creates a new instance, hereby using {@code "Hazelcast"} as property source name and
  * a default hazelcast backend created by calling {@link Hazelcast#newHazelcastInstance()}.
  */
-public HazelcastPropertySource();
+public HazelcastConfigSource();
 
 /**
  * Creates a new instance, hereby using {@code "Hazelcast"} as property source name and the
  * given hazelcast instance.
  * @param hazelcastInstance the hazelcast instance, not null.
  */
-public HazelcastPropertySource(HazelcastInstance hazelcastInstance);
+public HazelcastConfigSource(HazelcastInstance hazelcastInstance);
 
 /**
  * Creates a new instance, hereby using the given property source name and
  * a default hazelcast backend created by calling {@link Hazelcast#newHazelcastInstance()}.
  * @param name the property source name, not null.
  */
-public HazelcastPropertySource(String name);
+public HazelcastConfigSource(String name);
 
 /**
  * Creates a new instance, hereby using the given property source name and
@@ -86,7 +86,7 @@ public HazelcastPropertySource(String name);
  * @param config the hazelcast config, not null.
  * @param name the property source name, not null.
  */
-public HazelcastPropertySource(String name, Config config);
+public HazelcastConfigSource(String name, Config config);
 
 /**
  * Creates a new instance, hereby using the given property source name and the
@@ -94,7 +94,7 @@ public HazelcastPropertySource(String name, Config config);
  * @param name
  * @param hazelcastInstance
  */
-public HazelcastPropertySource(String name, HazelcastInstance hazelcastInstance);
+public HazelcastConfigSource(String name, HazelcastInstance hazelcastInstance);
 -----------------------------------------------
 
 To use hazelcast as a configuration backend, you simply create the corresponding Hazelcast instance
@@ -103,17 +103,16 @@ can be easily created asillustrated below:
 
 [source, java]
 -----------------------------------------------
-Config hazelcastConfig = new Config();
 // define config settings
 HazelcastInstance hazelcastInstance = Hazelcast.newInstance(hazelcastConfig);
-HazelcastPropertySource ps = new HazelcastPropertySource(hazelcastInstance);
-ps.setName("myHazelcast-config");
-ps.setOrdinal(2000);
-// Build your own configuration context
-ConfigurationContextBuilder b = ConfigurationProvider.createNewConfigurationContextBuilder();
-b.addDefaultPropertyConverters().addDefaultPropertyFilter().addDefaultPropertySources();
+HazelcastConfigSource cs = new HazelcastConfigSource(hazelcastInstance);
+cs.setName("myHazelcast-config");
+cs.setOrdinal(2000);
+// Build your own configuration
+ConfigBuilder b = ConfigProviderResolver.getInstance().getBuilder();
+b.addDiscoveredConverters().addDefaultSources().addDiscoveredSources();
 // Add the hazelcast property source (as most significant)
-b.addPropertySource(ps);
+b.awithSource(cs);
 // build and use the configuration
-Configuration config = b.build();
+Config config = b.build();
 -----------------------------------------------

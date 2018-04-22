@@ -13,14 +13,14 @@ Tamaya _Etcd_ is an extension module. Refer to the link:../extensions.html[exten
 === What functionality this module provides ?
 
 Tamaya _Etcd_ provides different artifacts which allows using link:https://github.com/coreos/etcd[etcd] as a
-configuration backend. Basically the module adds a read-only property source (+EtcdPropertySource+). If
+configuration backend. Basically the module adds a read-only property source (+EtcdConfigSource+). If
 the _tamaya-mutable-config_ extension is loaded it is alos possible to write configuration
 changes to _etcd_ using +MutableConfiguration+.
 
 
 === Compatibility
 
-The module is based on Java 7, so it will not run on Java 7 and beyond.
+The module is based on Java 8, so it will not run on Java 8 and beyond.
 
 
 === Installation
@@ -46,7 +46,7 @@ Tamaya's _etcd_ integration provides basically the following artifacts:
   root. The accessor basically provides a simple Java API for communicating with the _etcd_ server. The
   accessor hereby allows reading of single properties, or whole subtrees. Also the basic non
   atomic write methods are implemented.
-* The +org.apache.tamaya.etcd.EtcdPropertySource+ is a +PropertySource+ with a default ordinal of 100 and the name
+* The +org.apache.tamaya.etcd.EtcdConfigSource+ is a +ConfigSource+ with a default ordinal of 100 and the name
   'etcd', which is automatically registered.
 * If the +tamaya-mutable-config+ module is loaded it is possible to write property values back into the etcd cluster,
   by accessing a +MutableConfiguration+ using the URI +config:etcd+.
@@ -175,9 +175,9 @@ public class EtcdAccessor {
 -----------------------------------------------
 
 
-=== The EtcdPropertySource
+=== The EtcdConfigSource
 
-The +EtcdPropertySource+ is automatically registered and allows to configure the _etcd_ servers to be used. This
+The +EtcdConfigSource+ is automatically registered and allows to configure the _etcd_ servers to be used. This
 enables to use e.g. in Docker environments the docker environment configuration mechanisms to configure Tamaya running
 in microservice containers to connect with the according etcd cluster:
 
@@ -187,6 +187,6 @@ in microservice containers to connect with the according etcd cluster:
   server can be established a warning will be logged, but deployment will not fail.
 * Additionally also the accessor allows to configure the socket/connection timeouts by setting
   +tamaya.etcd.timeout+ in seconds either as system or environment property.
-* The +EtcdPropertySource+ finally also allows the values read from the _etcd_ cluster to be mapped to prefixed
+* The +EtcdConfigSource+ finally also allows the values read from the _etcd_ cluster to be mapped to prefixed
   context. This can be activated by setting the +-Dtamaya.etcd.prefix=<PREFIX>+ system property. E.g. when the prefix is
   set to `cluster-config.` a etcd key of `host:known/all` is mapped to `cluster-config.host:known/all`.

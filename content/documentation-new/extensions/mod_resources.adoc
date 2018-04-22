@@ -17,7 +17,7 @@ descriptive ant-styled resource patterns.
 
 === Compatibility
 
-The module is based on Java 7, so it can be used with Java 7 and beyond.
+The module is based on Java 8, so it can be used with Java 8 and beyond.
 
 
 === Installation
@@ -109,17 +109,17 @@ location, hereby traversing down all folders:
 
 [source, java]
 -------------------------------------------------------------
-public class PathBasedPropertySourceProvider implements PropertySourceProvider {
+public class PathBasedConfigSourceProvider implements ConfigSourceProvider {
 
     @Override
-    public Collection<PropertySource> getPropertySources() {
+    public Iterable<ConfigSource> getConfigSources(ClassLoader classloader) {
         List<PropertySource> propertySources = new ArrayList<>();
-        Collection<URL> resources = ConfigResources.getResourceResolver().getResources("META-INF/cfg/**/*.properties");
+        Collection<URL> resources = ConfigResources.getResourceResolver().getResources(classLoader, "META-INF/cfg/**/*.properties");
         for(URL url:resources){
             Properties props = new Properties();
             try(InputStream is = url.openStream()){
                 props.load(is);
-                propertySources.add(new PropertiesBasedPropertySource(url.toString(), props));
+                propertySources.add(new PropertiesBasedConfigSource(url.toString(), props));
             }
             catch(Exception e){
                 e.printStackTrace();
@@ -129,11 +129,11 @@ public class PathBasedPropertySourceProvider implements PropertySourceProvider {
         return propertySources;
     }
 
-    private final static class PropertiesBasedPropertySource implements PropertySource {
+    private final static class PropertiesBasedConfigSource implements ConfigSource {
         private String name;
         private Map<String,String> properties = new HashMap<>();
 
-        public PropertiesBasedPropertySource(String name, Properties props) {
+        public PropertiesBasedConfigSource(String name, Properties props) {
             this.name = name;
             props.forEach((k,v) -> this.properties.put(k.toString(), v.toString()));
         }

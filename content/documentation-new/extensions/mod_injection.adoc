@@ -16,18 +16,19 @@ Tamaya _Injection_ is an extension module. Refer to the link:../extensions.html[
 Tamaya _Injection_ provides functionality for injecting configured values into beans, or creating configuration
 template instances.
 
-Inversion of Control (aka IoC/the Hollywood Principle) has proven to be very useful and effective in avoiding boilerplate
+Inversion of Control (aka IoC/Hollywood Principle) has proven to be very useful and effective in avoiding boilerplate
 code. In Java there are different frameworks available that all provide IoC mechanisms. Unfortunately IoC is not a
 built-in language feature. So for a portable solution that works also in Java SE Tamaya itself has to provide the
 according injection services. This module adds this functionality to Tamaya.
 
 === Compatibility
 
-The module is based on Java 7, so it can be used with Java 7 and beyond.
+The module is based on Java 8, so it can be used with Java 8 and beyond.
 
 === Installation
 
-Basically Tamaya's injection API is deployed as API artifact:
+The basic injection API is defined by the configuration JSRßs API. Nevertheless Tamaya's adds some
+useful extensions. These extensions are deployed as optional API artifact:
 
 [source, xml]
 -----------------------------------------------
@@ -57,7 +58,7 @@ Similarly there are other injection implementations available, targetig platform
 
 === Core Concepts
 
-Basically you annotate fields or methods in your beans with +@Config+ to enable configuration injection. Tamaya
+Basically you annotate fields or methods in your beans with +@ConfigProperty+ to enable configuration injection. Tamaya
 additionally defines further annotations that allo you to define additional aspects such as default values, custom
 converters etc. The following example illustrates the basic functionality:
 code snippet:
@@ -73,16 +74,17 @@ public class ConfiguredClass {
     private String testProperty;
 
     // Trying to resolve mutiple keys, with a default value, if none could be resolved
-    @Config({"a.b.c.key1","a.b.legacyKey",area1.key2"}, defaultValue="The current \\${JAVA_HOME} env property is ${env:JAVA_HOME}.")
+    @ConfigProperty(key="a.b.c.key1", defaultValue="The current \\${JAVA_HOME} env property is ${env:JAVA_HOME}.")
+    @ConfigFaööbackKeys({"a.b.legacyKey",area1.key2"})
     String value1;
 
     // Typical case
-    @Config("a.b.c.key2")
+    @ConfigProperty(key="a.b.c.key2")
     private int value2;
 
     // resolved by default as foo.bar.ConfiguredClass.accessUrl
     // Using a (default) String -> URL converter
-    @Config(defaultValue="http://127.0.0.1:8080/res/api/v1/info.json")
+    @ConfigProperty(defaultValue="http://127.0.0.1:8080/res/api/v1/info.json")
     private URL accessUrl;
 
     // Config injection disabled for this property
@@ -90,8 +92,8 @@ public class ConfiguredClass {
     private Integer int1;
 
     // Overriding the String -> BigDecimal converter with a custom implementation.
-    @Config("BD")
-    @WithPropertyConverter(MyBigDecimalRoundingAdapter.class)
+    @ConfigProperty(key="BD")
+    @WithConverter(MyBigDecimalRoundingAdapter.class)
     private BigDecimal bigNumber;
 
     ...
@@ -100,19 +102,19 @@ public class ConfiguredClass {
 
 
 When configuring data or configuration classes it is also possible to auto-inject the fields identified. For activating
-this feature a class must be annotated with +@ConfigAutoInject+:
+this feature a class must be annotated with +@ConfigAutoDetect+:
 
 [source, java]
 . An autoinjected bean class
 --------------------------------------------
 package a.b;
 
-@ConfigAutoInject
+@ConfigAutoDetect
 public final class Tenant {
   private int id;
   private String name;
   private String description;
-  @NoConfig // prevents auto injection for this field
+  @NoConfig // prevents auto detection for this field
   private String id2;
 
   public int getId(){
@@ -129,7 +131,7 @@ public final class Tenant {
 
 These examples do not show all possibilities provided. Configuring instance of these
 class using Tamaya is very simple: Just pass the instance to Tamaya to let
-Tamaya inject the configuration (or throw a +ConfigException+, if this is not possible):
+Tamaya inject the configuration:
 
 [source,java]
 .Configuring the +ConfiguredClass+ Instance
@@ -150,7 +152,8 @@ documentation.
 
 The +ConfigurationInjector+ interface provides methods that allow any kind of instances to be configured
 by passing the instances to +T ConfigurationInjector.getInstance().configure(T);+. The classes passed
-hereby must not be annotated with +@Config+ for being configurable.
+hereby must not be annotated with +@ConfigProperty+ for being configurable.
+
 
 ==== Accessing Supplier instances
 
@@ -176,7 +179,7 @@ Supplier<Tenant> configuredTenantSupplier = ConfigurationInjector.getInstance().
 --------------------------------------------
 
 Hereby this annotation can be used in multiple ways and combined with other annotations such as
-+@WithLoadPolicy+, +@WithConfigOperator+, +@WithPropertyConverter+.
++@WithLoadPolicy+, +@WithConverter+.
 
 
 ==== Minimal Example
@@ -195,18 +198,19 @@ pubic class ConfiguredItem{
 When this class is configured, e.g. by passing it to +ConfigurationInjector.getInstance().configure(Object)+,
 the following is happening:
 
-* The current valid +Configuration+ is evaluated by calling +Configuration cfg = ConfigurationProvider.getConfiguration();+
-* The current property value (String) is evaluated by calling +cfg.get("aValue");+ for each possible key (mutliple
-  keys are possible).
-* if not successful, an error is thrown (+ConfigException+)
+* The current valid +Config+ is evaluated by calling +Config cfg = ConfigProvider.getConfig();+
+* The current property value (String) is evaluated by calling +cfg.getValue("aValue", Type.class);+
+  for each possible key (mutliple keys are possible).
+* if not successful, an error is thrown
 * On success, since no type conversion is involved, the value is injected.
 
 
 === The Annotations in detail
 
-==== Using `@Config`
+==== Using `@ConfigProperty`
 
-This is the main annotation targeting a field in a class for configuration injection.
+This is the main JSR annotation targeting a field in a class for configuration injection.
+
 
 ===== Evaluating of _configuration keys_
 
@@ -233,7 +237,7 @@ declaring type:
 --------------------------------------------
 @ConfigDefaultSections("a.b.c", "deprecated")
 pubic class MyClass{
-  @Config
+  @ConfigProperty
   private String myField;
 }
 --------------------------------------------
@@ -254,7 +258,8 @@ it is also possible to define absolute key entries, e.g.
 --------------------------------------------
 @ConfigDefaultSections("a.b.c")
 pubic class MyClass{
-  @Config("myField" /* relative */, "[absolute.key]")
+  @ConfigProperty("myField" /* relative */)
+  @ConfigFallbackKeys("[absolute.key]")
   private String myField;
 }
 --------------------------------------------
@@ -275,7 +280,8 @@ In the next example we explicitly define the _default_ property value:
 --------------------------------------------
 pubic class ConfiguredItem{
 
-  @Config(value={"aValue", "a.b.value","a.b.deprecated.value"}, defaultValue="${env:java.version}")
+  @ConfigProperty(key="aValue", defaultValue="${env:java.version}")
+  @ConfigFallbackKeys({"a.b.value","a.b.deprecated.value"})
   private String aValue;
 }
 --------------------------------------------
@@ -283,12 +289,12 @@ pubic class ConfiguredItem{
 
 ==== Automatically inject all items using `@ConfigAutoInject`
 
-Using `@ConfigAutoInject` allows you to automatically select all properties found for
+Using `@ConfigAutoDetect` allows you to automatically select all properties found for
 configuration injection:
 
 [source,java]
 --------------------------------------------
-@ConfigAutoInject
+@ConfigAutoDetect
 pubic class ConfiguredItem{
 
   private transient int sum;
@@ -299,8 +305,8 @@ pubic class ConfiguredItem{
 }
 --------------------------------------------
 
-Adding the `@NoConfig` annotation prevents a field or method to be auto-injected from
-configuration. This is especially useful, if a type is annotated as @ConfigAutoInject with auto-confiuration
+Adding the `@NoConfig` annotation prevents a field or method to be auto-detected from
+configuration. This is especially useful, if a type is annotated as @ConfigAutoDetect with auto-confiuration
 turned on as follows:
 
 [source,java]
@@ -313,28 +319,9 @@ In this case the fields +a,b,c+ are configured, whereas the field +sum+ is ignor
 configuration.
 
 
-==== Adding custom operators using `@WithConfigOperator`
+==== Adding custom property converters using `@WithConverter`
 
-The @WithConfigOperator annotation allows you define a class of type +ConfigOperator+, to being applied
-to the final +Configuration+, BEFORE the value is injected. This can be used for various use cases, e.g.
-filtering or validating the visible properties for a certain use case.
-
-[source,java]
---------------------------------------------
-
-@WithConfigOperator(MyConfigView.class)
-pubic class ConfiguredItem{
-
-  @Config
-  private String a;
-
-}
---------------------------------------------
-
-
-==== Adding custom property converters using `@WithPropertyConverter`
-
-The @WithPropertyConverter annotation allows you to define a class of type +PropertyConverter+, to be applied
+The @WithConverter annotation allows you to define a class of type +Converter+, to be applied
 on a property configured to convert the String value to the expected injected type. This can be used for
 various use cases, e.g. adding custom formats, config models, decryption.
 
@@ -343,8 +330,8 @@ various use cases, e.g. adding custom formats, config models, decryption.
 
 pubic class ConfiguredItem{
 
-  @WithPropertyConverter(MyPropertyConverter.class)
-  @Config
+  @WithConverter(MyPropertyConverter.class)
+  @ConfigProperty
   private String a;
 
 }
@@ -360,7 +347,7 @@ commit new values exactly, when convenient for you.
 --------------------------------------------
 pubic class ConfiguredItem{
 
-  @Config(value={"aValue", "a.b.value","a.b.deprecated.value"}, defaultValue="${env:java.version}")
+  @ConfigProperty(key="aValue", defaultValue="${env:java.version}")
   private DynamicValue aValue;
 }
 --------------------------------------------
@@ -423,7 +410,7 @@ Dynamic values also allow on-the-fly reevaluation of the value by calling +evalu
 instance is not changed.
 
 
-===== The Loading policy enum
+===== The LoadPolicy enum
 
 The +LoadPolicy+ enum defines different configuration loading behaviour
 to be applied:
@@ -467,16 +454,15 @@ The event published is very simple:
 [source,java]
 --------------------------------------------
 public interface ConfiguredType {
-    Class getArea();
+    Class getType();
     String getName();
     Collection<ConfiguredField> getConfiguredFields();
     Collection<ConfiguredMethod> getConfiguredMethods();
     void configure(Object instance, Configuration config);
 }
 
-
 public interface ConfiguredField {
-    Class<?> getArea();
+    Class<?> getType();
     Collection<String> getConfiguredKeys();
     String getName();
     String getSignature();

@@ -16,7 +16,7 @@ This can only be achieved by providing a static accessor, e.g.
 
 [source,java]
 ------------------------------------------------------------
-Configuration config = Configuration.current();
+Config config = ConfigProvider.getConfig();
 ------------------------------------------------------------
 
 The call above should work exactly the same in EE. To enable this the static call must be delegated in the
@@ -29,7 +29,7 @@ above:
 [source,java]
 ------------------------------------------------------------
 @Inject
-private Configuration cfg;
+private Config cfg;
 ------------------------------------------------------------
 
 
@@ -170,18 +170,12 @@ solution should not try to solve that, but it can provide a significant bunch of
 * allow client code to listen for configuration changes and react as needed.
 
 
-=== Minimal Property Source SPI
+=== Minimal Config Source SPI
 
-Users expect that implementing an additional configuration property source is as easy as possible.
+Users expect that implementing an additional configuration config source is as easy as possible.
 So there should be an SPI defined that allows any kind of data source to be used for providing configuration data.
 The interface to be implemented is expected to be minimal to reduce the implementation burden. Default
 methods should be used where possible, so only a few methods are expected to be required to implement.
-
-
-=== Scannable Properties
-
-If possible configuration should be scannable, meaning it should be possible to evaluate the keys available.
-The corresponding capabilities should be accessible by a +isScannable()+ method.
 
 
 === Combine Configurations
@@ -355,13 +349,13 @@ When combining configuration it must also be possible to override (file/classpat
 === Configuration Injection
 
 As metnioned configuration can be injected by passing a unconfigured instance of an annotated class to the
-+Configuration.configure+ static method:
++ConfigurationInjector.configure+ static method:
 
 [source, java]
 .Configuring a POJO
 ----------------------------------------------------
 MyPojo instance = new MyPojo();
-Configuration.configure(instance);
+ConfigurationInjector.configure(instance);
 ----------------------------------------------------
 
 Hereby
@@ -377,17 +371,17 @@ Hereby
 * The value evaluated for a property (before type conversion) must be adaptable as well.
 * It must be possible to observe configuration changes.
 
-The following annotations must be present at least:
+Similar annotations must be present at least:
 
-* *@ConfiguredProperty* defining the key of the property to be evaluated. It takes an optional value, defining the
+* *@Config* defining the key of the property to be evaluated. It takes an optional value, defining the
   property name. It must be possible to add multiple annotations of this kind to define an order of evaluation
   of possible keys.
-* *@DefaultValue* (optional) defines a default String value, to be used, when no other key is present.
-* *@WithConfig* (optional) defines the name of the configuration to be used. Similar to +@ConfiguredProperty+ multiple
+* The *@Config* annotation should also provide an optional default String value, to be used, when no other key is present.
+* *@WithConfig* (optional) defines the name of the configuration to be used. Similar to +@Config+ multiple
   configuration can be defined for lookup.
 * *@WithConfigOperator* allows to adapt the String value evaluated, *before* it is passed as input to injection or
   type conversion.
-* *@WithPropertyAdapter* allows to adapt the conversion to the required target type, hereby overriding any default
+* *@WithConverter* allows to adapt the conversion to the required target type, hereby overriding any default
   conversion in place.
 * *@WithLoadPolicy* allows to define the policy for (re)injection of configured values.
 * *@ObservesConfigChange* allows to annotate methods that should be called on configuration changes.
@@ -414,27 +408,21 @@ The following snippet illustrates the requirements:
 ----------------------------------------------------
 public interface MyConfig {
 
-  @ConfiguredProperty("myCurrency")
-  @DefaultValue("CHF")
+  @Config(key="myCurrency", defaultValue="CHF")
   String getCurrency();
 
-  @ConfiguredProperty("myCurrencyRate")
+  @Config(key="myCurrencyRate")
   Long getCurrencyRate();
-
-  @ConfigChange
-  default configChanged(ConfigChange event){
-     ...
-  }
 
 }
 ----------------------------------------------------
 
-Templates can be accessed by calling the +Configuration.current(Class)+ method:
+Templates can be accessed by calling the +ConfigInjector.createTemplate(Class)+ method:
 
 [source, java]
 .Accessing a type safe Configuration Template
 ----------------------------------------------------
-MyConfig config = Configuration.current(MyConfig.class);
+MyConfig config = ConfigInjector.createTemplate(MyConfig.class);
 ----------------------------------------------------
 
 [[RequirementsServer]]
@@ -481,8 +469,4 @@ on +Configuration+.
 * +UnaryOperator<Configuration>+ for converting into other version of +Configuration+.
 * +ConfigQuery<T>+ extending +Function<T, Configuration>+.
 
-[[RequirementsNonFunctional]]
-=== Non Functional Requirements
-THe following non-functional requirements must be met:
 
-* tbd

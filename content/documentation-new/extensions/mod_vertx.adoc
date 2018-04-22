@@ -34,16 +34,13 @@ your module:
 -----------------------------------------------
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>
-  <artifactId>tamaya-vertx-alpha</artifactId>
+  <artifactId>tamaya-vertx</artifactId>
   <version>{tamaya_version}</version>
 </dependency>
 -----------------------------------------------
 
 
 === The Functionality Provided
-
-NOTE: This module is in alpha state. Please give feedback via our JIRA, so we can improve it.
-
 
 ==== Extending AbstractConfiguredVerticle
 
@@ -180,9 +177,9 @@ see the code snippet from the implementation:
 
 [source, java]
 -----------------------------------------------
-@Config(value = "tamaya.vertx.config.map", defaultValue = "CONFIG-MAP")
+@ConfigProperty(key = "tamaya.vertx.config.map", defaultValue = "CONFIG-MAP")
 private String mapBusTarget;
 
-@Config(value = "tamaya.vertx.config.value", defaultValue = "CONFIG-VAL")
+@ConfigProperty(key = "tamaya.vertx.config.value", defaultValue = "CONFIG-VAL")
 private String valBusTarget;
 -----------------------------------------------

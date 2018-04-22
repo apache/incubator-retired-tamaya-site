@@ -15,14 +15,14 @@ Tamaya _Consul_ is an extension module. Refer to the link:../extensions.html[ext
 
 Tamaya _Consul_ provides different artifacts which allows use of
 link:http://www.consul.io[Consul from Hashicorp] as configuration backend. Basically the
-module supports read-only integration (as a +ConsulPropertySource+ as well
+module supports read-only integration (as a +ConsulonfigSource+ as well
 as a writing configuration changes back (based on Tamaya's +MutableConfiguration+ API
 defined by the link:mod_mutable_config.html[tamaya-mutable-config] extension module.
 
 
 === Compatibility
 
-The module is based on Java 7, so it will not run on Java 7 and beyond.
+The module is based on Java 8, so it will not run on Java 8 and beyond.
 
 
 === Installation
@@ -43,7 +43,7 @@ To use _tamaya-consul_ you only must add the corresponding dependency to your mo
 
 Consul integration comes basically with 2 artifacts:
 
-* The +org.apache.tamaya.etcd.ConsulPropertySource+ is a +PropertySource+ with a default
+* The +org.apache.tamaya.etcd.ConsulConfigSource+ is a +ConfigSource+ with a default
   ordinal of 100 and the name 'consul', which is automatically registered.
 * If the +tamaya-mutable-config+ module is loaded it is possible to write property values back into the consul cluster,
   by accessing a +MutableConfiguration+ using the URI +config:consul+.
@@ -51,16 +51,16 @@ Consul integration comes basically with 2 artifacts:
 Access of consul key/value pairs is through the normal Tamaya API.
 
 
-=== The ConsulPropertySource
+=== The ConsulConfigSource
 
-The +ConsulPropertySource+ is automatically registered and allows the consul servers to be used to be configured. This
+The +ConsulConfigSource+ is automatically registered and allows the consul servers to be used to be configured. This
 enables to use e.g. in Docker environments the docker environment configuration mechanisms to configure Tamaya running
 in microservice containers to connect with the according consul cluster:
 
-* The property source reads the +tamaya.consul.urls+ system and environment property to evaluate possible consul servers
+* The config source reads the +tamaya.consul.urls+ system and environment property to evaluate possible consul servers
   (comma separated), which can be connected to. On failure the API just performs a Round-Robin through the list of
   configured servers. Without any configuration +http://127.0.0.1:2400+ is used. If no connection to any consul
   server can be established a warning will be logged, but deployment will not fail.
-* The +ConsulPropertySource+ finally also allows the values read from the consul cluster to be mapped to prefixed
+* The +ConsulConfigSource+ finally also allows the values read from the consul cluster to be mapped to prefixed
   context. This can be activated by setting the `-Dtamaya.consul.prefix=<PREFIX>` system property. E.g. when the prefix is
   set to `cluster-config.` a consul key of `host:known/all` is mapped to `cluster-config.host:known/all`.
