@@ -1,0 +1,469 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	    <meta charset="utf-8"/>
+	    <title>Apache Tamaya - Extension: CDI Support</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	    <meta name="description" content=""/>
+	    <meta name="author" content=""/>
+	    <meta name="keywords" content=""/>
+	    <meta name="generator" content="'JBake '+'${version}"/>
+
+	    <!-- Le styles -->
+	    <link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+	    <link href="../../css/asciidoctor.css" rel="stylesheet"/>
+	    <link href="../../css/base.css" rel="stylesheet"/>
+	    <link href="../../css/prettify.css" rel="stylesheet"/>
+
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	      <script src="../../js/html5shiv.min.js"></script>
+	    <![endif]-->
+
+	    <!-- Fav and touch icons from ASF -->
+			<link rel="shortcut icon" href="../../favicon.ico"/>
+			<link rel="apple-touch-icon" sizes="57x57" href="../../favicons/apple-touch-icon-57x57.png"/>
+		  <link rel="apple-touch-icon" sizes="60x60" href="../../favicons/apple-touch-icon-60x60.png"/>
+		  <link rel="apple-touch-icon" sizes="72x72" href="../../favicons/apple-touch-icon-72x72.png"/>
+		  <link rel="apple-touch-icon" sizes="76x76" href="../../favicons/apple-touch-icon-76x76.png"/>
+		  <link rel="apple-touch-icon" sizes="114x114" href="../../favicons/apple-touch-icon-114x114.png"/>
+		  <link rel="apple-touch-icon" sizes="120x120" href="../../favicons/apple-touch-icon-120x120.png"/>
+		  <link rel="apple-touch-icon" sizes="144x144" href="../../favicons/apple-touch-icon-144x144.png"/>
+		  <link rel="apple-touch-icon" sizes="152x152" href="../../favicons/apple-touch-icon-152x152.png"/>
+		  <link rel="apple-touch-icon" sizes="180x180" href="../../favicons/apple-touch-icon-180x180.png"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-32x32.png" sizes="32x32"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-194x194.png" sizes="194x194"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-96x96.png" sizes="96x96"/>
+		  <link rel="icon" type="image/png" href="../../favicons/android-chrome-192x192.png" sizes="192x192"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-16x16.png" sizes="16x16"/>
+		  <link rel="manifest" href="../../favicons/manifest.json"/>
+		  <link rel="shortcut icon" href="../../favicons/favicon.ico"/>
+		  <meta name="msapplication-TileColor" content="#603cba"/>
+		  <meta name="msapplication-TileImage" content="../../favicons/mstile-144x144.png"/>
+		  <meta name="msapplication-config" content="../../favicons/browserconfig.xml"/>
+		  <meta name="theme-color" content="#303284"/>
+	</head>
+	<body onload="prettyPrint()">
+	<div id="wrap">
+		<div>
+
+	  <!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../index.html">Apache Tamaya (incubating)</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+						<li><a href="../../start.html">Tamaya in 5 minutes</a></li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="../../documentation/usecases.html">Use Cases and Requirements</a></li>
+								<li><a href="../../documentation/quickstart.html">Quickstart</a></li>
+								<li><a href="../../documentation/api.html">API</a></li>
+								<li><a href="../../documentation/core.html">Core</a></li>
+								<li><a href="../../documentation/extensions.html">Extension Guide</a></li>
+								<li class="divider"></li>
+								<li><a href="../../apidocs/stable/index.html">Javadoc 0.3-incubating (release/stable)</a></li>
+								<li><a href="../../apidocs/development/index.html">Javadoc 0.4-incubating-SNAPSHOT (development)</a></li>
+              </ul>
+            </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="../../development/source.html">Sources</a></li>
+								<li><a href="../../development/community.html">Community</a></li>
+								<li><a href="../../development/team.html">Project Team</a></li>
+								<li><a target="_blank" href="https://builds.apache.org/view/S-Z/view/Tamaya/">CI / ASF Jenkins</a></li>
+								<li><a target="_blank" href="https://issues.apache.org/jira/browse/TAMAYA">Issues / ASF Jira</a></li>
+								<li><a href="../../devguide.html">Development Guide</a></li>
+								<li><a href="../../release-guide.html">Release Guide</a></li>
+								<li class="divider"></li>
+								<li><a href="../../development/possible-contributions.html">Possible Contributions</a></li>
+              </ul>
+            </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Releases <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="../../download.html">Download</a></li>
+								<li><a href="../../history.html">Release History</a></li>
+              </ul>
+            </li>
+<!-- Example:
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+-->
+						<li><a href="../../sitemap.xml">Sitemap</a></li>
+						<li><a href="../../feed.xml">Subscribe</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+	</div>
+		<div class="container">
+
+			<div class="page-header">
+				<h1>Apache Tamaya - Extension: CDI Support</h1>
+			</div>
+
+			<p><em>2018-04-26</em></p>
+
+			<p><div id="preamble">
+<div class="sectionbody">
+<!-- toc disabled -->
+</div>
+</div>
+<div class="sect1">
+<h2 id="CDI">Tamaya CDI Integration (Extension Modules)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tamaya <em>CDI</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
+</div>
+<div class="sect2">
+<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
+<div class="paragraph">
+<p>Apache <em>CDI</em> provides integration with CDI:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Loading of CDI managed SPI components as configuration extensions such as ConfigSources, ConfigSourceProviders,
+Converters, Filters, etc. This also includes SPI defined by any Tamaya submodules.
+This is useful when Tamaya is used as an application module managed by the CDI implementation.</p>
+</li>
+<li>
+<p>Implement and enable Tamaya&#8217;s configuration injection services (either using CDI injection or
+Tamaya&#8217;s standalone injection module.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Hereby there are two implementations provided:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>tamaya-injection-cdi implements injection by using CDI&#8217;s injection mechanism to inject configuration values into the
+beans managed by the CDI systems.</p>
+</li>
+<li>
+<p>tamaya-injection-standalone implements injection by integrating the tamaya-injection SE based injection module (also used
+for Spring and OSGI injection) with CDI. Injection hereby is performed by the Tamaya SE module, whereas
+beans and injection control overall are still managed by CDI.</p>
+</li>
+<li>
+<p>One difference, of course, is that tamaya-injection-standalone also provides an SE compatible API (ConfigurationInjection,
+ConfigurationInjector), which is not available, when using the purely CDI based variant.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Most annotations used are defined as part of the Config JSR API, whereas Tamaya adds additional features not available
+in the JSR as separate modules. This allows you to code against the injection API without dependency on the concrete
+injection implementation. As a consequence your components will be compatible regardless if deployed in a pure SE or as
+Java EE (CDI) or Spring environment:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&lt;dependency&gt;
+  &lt;groupId&gt;javax.config&lt;/groupId&gt;
+  &lt;artifactId&gt;config-api&lt;/artifactId&gt;
+  &lt;version&gt;{config_api_version}&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
+  &lt;artifactId&gt;tamaya-injection-api&lt;/artifactId&gt;
+  &lt;version&gt;{tamaya_version}&lt;/version&gt;
+&lt;/dependency&gt;</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compatibility">Compatibility</h3>
+<div class="paragraph">
+<p>All modules are based on Java 8, so they will not run on Java 8 and beyond.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installation">Installation</h3>
+<div class="paragraph">
+<p>To benefit from Tamaya CDI integration you only must one of the following dependencies to your module. Ensure that
+you never have installed both CDI extensions at the same time because this may be lead to unforseen side-effects.</p>
+</div>
+<div class="listingblock">
+<div class="title">CDI Java EE Application Configuration</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
+  &lt;artifactId&gt;tamaya-cdi&lt;/artifactId&gt;
+  &lt;version&gt;{tamaya_version}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">To use Tamaya&#8217;s <em>standalone injection support</em>, you additionally should add the</div>
+<p>following dependency. If this dependency is missing injection is purely based on
+CDI injection features.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
+  &lt;artifactId&gt;tamaya-injection-standalone&lt;/artifactId&gt;
+  &lt;version&gt;{tamaya_version}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Both components will auto-register its components and override the default ServicceContext in use. Additionally they
+register CDI extensions that implement Configuration injection as described before.</p>
+</div>
+<div class="paragraph">
+<p>For working with a pure non Java EE environment have a look at the <a href="mod_injection-standalone.html">tamaya-injection-standalone module</a>.</p>
+</div>
+<div class="paragraph">
+<p>Additionally you have to register Tamaya&#8217;s CDI extension modules into your <code>beans-xml</code>:</p>
+</div>
+<div class="paragraph">
+<p>Contents of <code>META-INF/services/javax.enterprise.inject.spi.Extension</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># Register Tamaya to perform injection
+# org.apache.tamaya.cdi.TamayaCDIInjectionExtension
+# org.apache.tamaya.cdi.TamayaSEInjectionExtension
+org.apache.tamaya.cdi.TamayaCDIAccessor</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to use CDI standard injection (using @Inject @Config), activate
+org.apache.tamaya.cdi.TamayaCDIInjectionExtension as a CDI extension.</p>
+</div>
+<div class="paragraph">
+<p>If you want to use SE based injection (using @Config <strong>without</strong> @Inject),
+activate org.apache.tamaya.cdi.TamayaSEInjectionExtension instead of.</p>
+</div>
+<div class="paragraph">
+<p>Though not recommended, it is possible to activate both extension at the same time.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_annotating_your_classes">Annotating your Classes</h3>
+<div class="paragraph">
+<p>Basically annotating your classes is stright forward. Depending
+on the module deployed, your annotations are handled by a CDI producer (tamaya-cdi-ee) or the
+Tamaya SE injection mechanism (tamaya-cdi-se). All types injected by this module are injected
+using <em>dependent scope</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@RequestScoped
+public class ConfiguredClass{
+
+    @Config
+    private String testProperty;
+
+    @Config(key="a.b.c.key1",
+           defaultValue="The current \\${JAVA_HOME} env property is ${env:JAVA_HOME}.")
+    String value1;
+
+    @Config(key="foo")
+    private String value2;
+
+    @Config(defaultValue="N/A")
+    private String runtimeVersion;
+
+    @Config(defdaultValue="${sys:java.version}")
+    private String javaVersion2;
+
+    @Config(defaultValue="5")
+    private Integer int1;
+
+    ...
+
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_registering_cdi_managed_components_into_the_application_s_configurationcontext">Registering CDI managed components into the Application&#8217;s ConfigurationContext</h3>
+<div class="paragraph">
+<p>As mentioned both modules allow to provide Tamaya SPI extensions modules as ordinary CDI managed beans. By default
+extensions should be registered using @Singleton or @ApplicationScoped scope annotations. So you can define/deploy
+additional application specific PropertySources and other artifacts simply by defining a CDI managed bean implementing
+the required SPI interface:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Singleton
+public class TestConfigSource implements ConfigSource{
+
+    final Map&lt;String,String&gt; config = new HashMap&lt;&gt;();
+
+    public TestConfigSource(){
+        config.put("a.b.c.key1", "keys current a.b.c.key1");
+        config.put("a.b.c.key2", "keys current a.b.c.key2");
+        config.put("{"+getName()+"}source", getClass().getName());
+    }
+
+    @Override
+    public int getOrdinal() {
+        return 10;
+    }
+
+    @Override
+    public String getName() {
+        return getClass().getName();
+    }
+
+    @Override
+    public String get(String key) {
+        return config.get(key);
+    }
+
+    @Override
+    public Map&lt;String, String&gt; getProperties() {
+        return config;
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To enable this (optional) feature you must replace Tamaya&#8217;s ServiceContext with the
+CDI aware implementation:</p>
+</div>
+<div class="paragraph">
+<p>Contents of <code>META-INF/services/org.apache.tamaya.spi.ServiceContext</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># Registering a CDI aware service context
+org.apache.tamaya.cdi.CDIAwareServiceContext</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_advanced_use_cases">Advanced Use Cases</h3>
+<div class="paragraph">
+<p>Beside basic configuration Tamaya also covers additional requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>_Reading multiple keys, where the first successful one is determining the value of the configuration, is
+simply possible, by defining additional keys with @ConfigFallbackKeys annotation.
+E.g. for trying first a.b and then new.b you would configure it as follows:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Config(key="a.b")
+@ConfigFallbackKeys({"new.b"})
+private String value;</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When you must apply a some special conversion, or you use a type that is not registered
+for conversion, you can configure a custom converter to be applied as follows:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Config(key="a.b")
+@WithConverter(MyConverter.class)
+private MySpecialFooType value;</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Often multiple keys in a class belong to the same root section. So instead of copying this to
+every entry you can define the most common root sections in the type&#8217;s header:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@ConfigDefaultSections({"aaaa", "new"});
+public class MyType{
+
+@Config(key="b"}
+@ConfigFallbackKeys({"[legacy.bKey]"})  // lookups: "aaaa.b", "new.b", legacy.bKey
+private String value;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the example above legacy.bKey defines an absolute key, which is not combined with any defined
+default section parts.</p>
+</div>
+</div>
+</div>
+</div></p>
+
+			<hr />
+		</div>
+	</div>
+	<div>
+			<div id="push"></div>
+
+		    <div id="footer">
+		      <div class="container">
+		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
+							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
+							at <span>2018-04-26</span> |
+						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+						</p>
+						<p>
+								<b>Disclaimer</b>
+                    Apache Tamaya (incubating) is an effort undergoing
+                    incubation at
+                    The Apache Software Foundation (ASF), sponsored by
+                    the name of Apache Incubator. Incubation is required of
+                    all newly accepted projects until a further review indicates
+                    that the infrastructure, communications, and decision making
+                    process have stabilized in a manner consistent with other
+                    successful ASF projects. While incubation status is not
+                    necessarily a reflection of the completeness or stability of
+                    the code, it does indicate that the project has yet to
+                    be fully endorsed by the ASF.
+										Apache, Apache Tamaya, and the Apache Tamaya logo are registered trademarks or trademarks of The Apache Software Foundation in the U.S. and/or other countries.<br />
+                    <a href="https://incubator.apache.org/guides/website.html" style="border:0px;" target="_target">
+											<img class="incubator-logo" src="../../logos/apache-incubator.png"/>
+										</a>
+							</p>
+		      </div>
+		    </div>
+
+		    <!-- Le javascript
+		    ================================================== -->
+		    <!-- Placed at the end of the document so the pages load faster -->
+		    <script src="../../js/jquery-1.11.1.min.js"></script>
+		    <script src="../../js/bootstrap.min.js"></script>
+		    <script src="../../js/prettify.js"></script>
+    	</div>
+    </body>
+</html>

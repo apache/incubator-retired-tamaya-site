@@ -1,0 +1,396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	    <meta charset="utf-8"/>
+	    <title>Apache Tamaya - Extension: Spring Integration</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	    <meta name="description" content=""/>
+	    <meta name="author" content=""/>
+	    <meta name="keywords" content=""/>
+	    <meta name="generator" content="'JBake '+'${version}"/>
+
+	    <!-- Le styles -->
+	    <link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+	    <link href="../../css/asciidoctor.css" rel="stylesheet"/>
+	    <link href="../../css/base.css" rel="stylesheet"/>
+	    <link href="../../css/prettify.css" rel="stylesheet"/>
+
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	      <script src="../../js/html5shiv.min.js"></script>
+	    <![endif]-->
+
+	    <!-- Fav and touch icons from ASF -->
+			<link rel="shortcut icon" href="../../favicon.ico"/>
+			<link rel="apple-touch-icon" sizes="57x57" href="../../favicons/apple-touch-icon-57x57.png"/>
+		  <link rel="apple-touch-icon" sizes="60x60" href="../../favicons/apple-touch-icon-60x60.png"/>
+		  <link rel="apple-touch-icon" sizes="72x72" href="../../favicons/apple-touch-icon-72x72.png"/>
+		  <link rel="apple-touch-icon" sizes="76x76" href="../../favicons/apple-touch-icon-76x76.png"/>
+		  <link rel="apple-touch-icon" sizes="114x114" href="../../favicons/apple-touch-icon-114x114.png"/>
+		  <link rel="apple-touch-icon" sizes="120x120" href="../../favicons/apple-touch-icon-120x120.png"/>
+		  <link rel="apple-touch-icon" sizes="144x144" href="../../favicons/apple-touch-icon-144x144.png"/>
+		  <link rel="apple-touch-icon" sizes="152x152" href="../../favicons/apple-touch-icon-152x152.png"/>
+		  <link rel="apple-touch-icon" sizes="180x180" href="../../favicons/apple-touch-icon-180x180.png"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-32x32.png" sizes="32x32"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-194x194.png" sizes="194x194"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-96x96.png" sizes="96x96"/>
+		  <link rel="icon" type="image/png" href="../../favicons/android-chrome-192x192.png" sizes="192x192"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-16x16.png" sizes="16x16"/>
+		  <link rel="manifest" href="../../favicons/manifest.json"/>
+		  <link rel="shortcut icon" href="../../favicons/favicon.ico"/>
+		  <meta name="msapplication-TileColor" content="#603cba"/>
+		  <meta name="msapplication-TileImage" content="../../favicons/mstile-144x144.png"/>
+		  <meta name="msapplication-config" content="../../favicons/browserconfig.xml"/>
+		  <meta name="theme-color" content="#303284"/>
+	</head>
+	<body onload="prettyPrint()">
+	<div id="wrap">
+		<div>
+
+	  <!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../index.html">Apache Tamaya (incubating)</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+						<li><a href="../../start.html">Tamaya in 5 minutes</a></li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="../../documentation/usecases.html">Use Cases and Requirements</a></li>
+								<li><a href="../../documentation/quickstart.html">Quickstart</a></li>
+								<li><a href="../../documentation/api.html">API</a></li>
+								<li><a href="../../documentation/core.html">Core</a></li>
+								<li><a href="../../documentation/extensions.html">Extension Guide</a></li>
+								<li class="divider"></li>
+								<li><a href="../../apidocs/stable/index.html">Javadoc 0.3-incubating (release/stable)</a></li>
+								<li><a href="../../apidocs/development/index.html">Javadoc 0.4-incubating-SNAPSHOT (development)</a></li>
+              </ul>
+            </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="../../development/source.html">Sources</a></li>
+								<li><a href="../../development/community.html">Community</a></li>
+								<li><a href="../../development/team.html">Project Team</a></li>
+								<li><a target="_blank" href="https://builds.apache.org/view/S-Z/view/Tamaya/">CI / ASF Jenkins</a></li>
+								<li><a target="_blank" href="https://issues.apache.org/jira/browse/TAMAYA">Issues / ASF Jira</a></li>
+								<li><a href="../../devguide.html">Development Guide</a></li>
+								<li><a href="../../release-guide.html">Release Guide</a></li>
+								<li class="divider"></li>
+								<li><a href="../../development/possible-contributions.html">Possible Contributions</a></li>
+              </ul>
+            </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Releases <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="../../download.html">Download</a></li>
+								<li><a href="../../history.html">Release History</a></li>
+              </ul>
+            </li>
+<!-- Example:
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+-->
+						<li><a href="../../sitemap.xml">Sitemap</a></li>
+						<li><a href="../../feed.xml">Subscribe</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+	</div>
+		<div class="container">
+
+			<div class="page-header">
+				<h1>Apache Tamaya - Extension: Spring Integration</h1>
+			</div>
+
+			<p><em>2018-04-26</em></p>
+
+			<p><div id="preamble">
+<div class="sectionbody">
+<!-- toc disabled -->
+</div>
+</div>
+<div class="sect1">
+<h2 id="Spring">Tamaya Spring Integration (Extension Module)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tamaya <em>Spring</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
+</div>
+<div class="sect2">
+<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
+<div class="paragraph">
+<p>Tamaya <em>Spring</em> currently provides full integration with Spring and Spring Boot:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A Spring @Configuration implementation that also provides a Tamaya based version of
+org.springframework.context.support.PropertySourcesPlaceholderConfigurer.</p>
+</li>
+<li>
+<p>org.apache.tamaya.integration.spring.TamayaEnvironment is the Tamaya based implementation of the Spring
+Environment interface.</p>
+</li>
+<li>
+<p>TamayaSpringPropertySource implements an additional Spring PropertySource.</p>
+</li>
+<li>
+<p>Finally org.apache.tamaya.integration.spring.SpringConfigInjectionPostProcessor implements a Bean PostProcessor,
+which adds all the fully fledged Tamaya configuration capabilities to Spring.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compatibility">Compatibility</h3>
+<div class="paragraph">
+<p>Both modules are based on Java 8, so they will run on Java 8 and beyond. The extension shown here works in
+Spring Framework as well as Spring Boot.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installation">Installation</h3>
+<div class="paragraph">
+<p>To benefit from Tamaya Spring integration add the following dependencies to your module:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
+  &lt;artifactId&gt;tamaya-spring&lt;/artifactId&gt;
+  &lt;version&gt;{tamaya_version}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_registering_tamaya_spring_configuration">Registering Tamaya Spring Configuration</h3>
+<div class="paragraph">
+<p>Basically to activate the Tamaya Spring support the most simple thing is to a enable the Tamaya package for being
+scanned for Spring components, e.g. using by annotation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@SpringBootApplication
+@ComponentScan({"org.apache.tamaya.integration.spring"})
+public class SampleWebFreeMarkerApplication {
+
+	public static void main(String[] args) throws Exception {
+		SpringApplication.run(SampleWebFreeMarkerApplication.class, args);
+	}
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Of course, you can still use Spring&#8217;s XML configuration in a similar way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"&gt;
+
+    &lt;context:annotation-config /&gt;
+    &lt;context:component-scan base-package="org.apache.tamaya.integration.spring"/&gt;
+
+    ...
+
+&lt;/beans&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Though not recommended you can explicitly register the Tamaya related beans in your context configuration by hand:
+files:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;bean id="tamayaInjectionProcessor" name="tamayaInjectionProcessor" class="org.apache.tamaya.integration.spring.SpringConfigInjectionPostProcessor"/&gt;
+&lt;bean id="tamayaConfigProvider" name="tamayaConfigProvider" class="org.apache.tamaya.integration.spring.TamayaSpringConfig"/&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_your_context">Configuring your Context</h3>
+<div class="paragraph">
+<p>After activation you can use Tamaya as a backend for property resolution, e.g. propertyValue
+is resolved from the current Tamaya configuration. See example below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;bean id="configuredBean" name="configuredBean" class="org.apache.tamaya.integration.spring.ConfiguredSpringBean"&gt;
+    &lt;property name="message" value="${propertyValue}"/&gt;
+&lt;/bean&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_your_beans">Configuring your Beans</h3>
+<div class="paragraph">
+<p>Similarly you can inject any kind of configuration as supported by Tamaya into your Spring managed beans:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@ConfigDefaultSections("app.root") // optional <b class="conum">(1)</b>
+@Component
+public class ConfiguredSpringBean {
+
+    @Value("${application.message:Hello World}")  <b class="conum">(2)</b>
+    private String message;
+
+    @Autowired
+    private Environment env;
+
+    @ConfigProperty(key = "alternateMessage", required = false) <b class="conum">(3)</b>
+    private String anotherMessage = "N/A";
+
+    @ConfigProperty(key="java.version")
+    private String javaVersion;
+
+    @ConfigProperty(key="number", defaultValue="23") <b class="conum">(4)</b>
+    @ConfigFallbackKeys=({"testNum", "[notavailable]"})  <b class="conum">(5)</b>
+    private int testNumber;
+
+    ...
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>You can configure default section prefixes. This is an optional feature.</p>
+</li>
+<li>
+<p>Tamaya does not require you to change your code. You can still work with
+Spring injection for your configuration, but Tamaya will override Spring
+configuration by default.</p>
+</li>
+<li>
+<p>You can also define entries as optional, which allows you to perform
+default inialization using Java idoms.</p>
+</li>
+<li>
+<p>Tamaya allows you to define an ordered list of key candidates, which are
+combined with the section prefix, if present, to the full keys. Keys added
+in brackets ([]) are interpreted as absolute keys, so the example above
+the key candidate list evaluates to app.root.number", "app.root.testNum",
+"notavailable".</p>
+</li>
+<li>
+<p>You can configure default values used, if no other value can be evaluated
+for the given keyset.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Summarizing you get all the nice features of Tamaya out of the box running
+with your Spring code.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_working_with_dynamic_values">Working with Dynamic Values</h3>
+<div class="paragraph">
+<p>Integration into Spring also includes for support for <em>dynamic values</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@ConfigProperty(key = "foreground.color", required = false, defaultValue = "#DDDDDD")
+private DynamicValue&lt;Color&gt; foregroundColor;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Dynamic values are a very flexible mechanism for managing configuration changes.
+You can even use an update policy to define how you want to handle configuration
+changes for your configuration parameter:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">foregroundColor.setUpdatePolicy(UpdatePolicy.IMMEDEATE);
+foregroundColor.addPropertyChangeListener(() -&gt; {
+   System.out.println("New forground color: " + foregroundColor.get();
+});</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+For a full description of Tamaya&#8217;s injection API please
+           refer to the <a href="extensions/mod_injection.html">corresponding documentation</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div></p>
+
+			<hr />
+		</div>
+	</div>
+	<div>
+			<div id="push"></div>
+
+		    <div id="footer">
+		      <div class="container">
+		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
+							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
+							at <span>2018-04-26</span> |
+						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+						</p>
+						<p>
+								<b>Disclaimer</b>
+                    Apache Tamaya (incubating) is an effort undergoing
+                    incubation at
+                    The Apache Software Foundation (ASF), sponsored by
+                    the name of Apache Incubator. Incubation is required of
+                    all newly accepted projects until a further review indicates
+                    that the infrastructure, communications, and decision making
+                    process have stabilized in a manner consistent with other
+                    successful ASF projects. While incubation status is not
+                    necessarily a reflection of the completeness or stability of
+                    the code, it does indicate that the project has yet to
+                    be fully endorsed by the ASF.
+										Apache, Apache Tamaya, and the Apache Tamaya logo are registered trademarks or trademarks of The Apache Software Foundation in the U.S. and/or other countries.<br />
+                    <a href="https://incubator.apache.org/guides/website.html" style="border:0px;" target="_target">
+											<img class="incubator-logo" src="../../logos/apache-incubator.png"/>
+										</a>
+							</p>
+		      </div>
+		    </div>
+
+		    <!-- Le javascript
+		    ================================================== -->
+		    <!-- Placed at the end of the document so the pages load faster -->
+		    <script src="../../js/jquery-1.11.1.min.js"></script>
+		    <script src="../../js/bootstrap.min.js"></script>
+		    <script src="../../js/prettify.js"></script>
+    	</div>
+    </body>
+</html>

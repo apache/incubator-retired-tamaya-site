@@ -1,0 +1,1156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	    <meta charset="utf-8"/>
+	    <title>Apache Tamaya - Extensions: OSGI Integration</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	    <meta name="description" content=""/>
+	    <meta name="author" content=""/>
+	    <meta name="keywords" content=""/>
+	    <meta name="generator" content="'JBake '+'${version}"/>
+
+	    <!-- Le styles -->
+	    <link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+	    <link href="../../css/asciidoctor.css" rel="stylesheet"/>
+	    <link href="../../css/base.css" rel="stylesheet"/>
+	    <link href="../../css/prettify.css" rel="stylesheet"/>
+
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	      <script src="../../js/html5shiv.min.js"></script>
+	    <![endif]-->
+
+	    <!-- Fav and touch icons from ASF -->
+			<link rel="shortcut icon" href="../../favicon.ico"/>
+			<link rel="apple-touch-icon" sizes="57x57" href="../../favicons/apple-touch-icon-57x57.png"/>
+		  <link rel="apple-touch-icon" sizes="60x60" href="../../favicons/apple-touch-icon-60x60.png"/>
+		  <link rel="apple-touch-icon" sizes="72x72" href="../../favicons/apple-touch-icon-72x72.png"/>
+		  <link rel="apple-touch-icon" sizes="76x76" href="../../favicons/apple-touch-icon-76x76.png"/>
+		  <link rel="apple-touch-icon" sizes="114x114" href="../../favicons/apple-touch-icon-114x114.png"/>
+		  <link rel="apple-touch-icon" sizes="120x120" href="../../favicons/apple-touch-icon-120x120.png"/>
+		  <link rel="apple-touch-icon" sizes="144x144" href="../../favicons/apple-touch-icon-144x144.png"/>
+		  <link rel="apple-touch-icon" sizes="152x152" href="../../favicons/apple-touch-icon-152x152.png"/>
+		  <link rel="apple-touch-icon" sizes="180x180" href="../../favicons/apple-touch-icon-180x180.png"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-32x32.png" sizes="32x32"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-194x194.png" sizes="194x194"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-96x96.png" sizes="96x96"/>
+		  <link rel="icon" type="image/png" href="../../favicons/android-chrome-192x192.png" sizes="192x192"/>
+		  <link rel="icon" type="image/png" href="../../favicons/favicon-16x16.png" sizes="16x16"/>
+		  <link rel="manifest" href="../../favicons/manifest.json"/>
+		  <link rel="shortcut icon" href="../../favicons/favicon.ico"/>
+		  <meta name="msapplication-TileColor" content="#603cba"/>
+		  <meta name="msapplication-TileImage" content="../../favicons/mstile-144x144.png"/>
+		  <meta name="msapplication-config" content="../../favicons/browserconfig.xml"/>
+		  <meta name="theme-color" content="#303284"/>
+	</head>
+	<body onload="prettyPrint()">
+	<div id="wrap">
+		<div>
+
+	  <!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../index.html">Apache Tamaya (incubating)</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+						<li><a href="../../start.html">Tamaya in 5 minutes</a></li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="../../documentation/usecases.html">Use Cases and Requirements</a></li>
+								<li><a href="../../documentation/quickstart.html">Quickstart</a></li>
+								<li><a href="../../documentation/api.html">API</a></li>
+								<li><a href="../../documentation/core.html">Core</a></li>
+								<li><a href="../../documentation/extensions.html">Extension Guide</a></li>
+								<li class="divider"></li>
+								<li><a href="../../apidocs/stable/index.html">Javadoc 0.3-incubating (release/stable)</a></li>
+								<li><a href="../../apidocs/development/index.html">Javadoc 0.4-incubating-SNAPSHOT (development)</a></li>
+              </ul>
+            </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="../../development/source.html">Sources</a></li>
+								<li><a href="../../development/community.html">Community</a></li>
+								<li><a href="../../development/team.html">Project Team</a></li>
+								<li><a target="_blank" href="https://builds.apache.org/view/S-Z/view/Tamaya/">CI / ASF Jenkins</a></li>
+								<li><a target="_blank" href="https://issues.apache.org/jira/browse/TAMAYA">Issues / ASF Jira</a></li>
+								<li><a href="../../devguide.html">Development Guide</a></li>
+								<li><a href="../../release-guide.html">Release Guide</a></li>
+								<li class="divider"></li>
+								<li><a href="../../development/possible-contributions.html">Possible Contributions</a></li>
+              </ul>
+            </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Releases <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="../../download.html">Download</a></li>
+								<li><a href="../../history.html">Release History</a></li>
+              </ul>
+            </li>
+<!-- Example:
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+-->
+						<li><a href="../../sitemap.xml">Sitemap</a></li>
+						<li><a href="../../feed.xml">Subscribe</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+	</div>
+		<div class="container">
+
+			<div class="page-header">
+				<h1>Apache Tamaya - Extensions: OSGI Integration</h1>
+			</div>
+
+			<p><em>2018-04-26</em></p>
+
+			<p><div id="preamble">
+<div class="sectionbody">
+<!-- toc disabled -->
+</div>
+</div>
+<div class="sect1">
+<h2 id="OSGI">Tamaya OSGI Support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tamaya <em>OSGI</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
+</div>
+<div class="sect2">
+<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
+<div class="paragraph">
+<p>Tamaya <em>OSGI</em> provides support for integration with OSGI. Hereby Tamaya does actively override or extend the OSGI
+ConfigAdmin based configuration with entries stored and managed by Tamaya. Tamaya provides also shell extensions
+to enable/perform configuration loading and restoring actions.
+Optionally Tamaya also provides extension for automatically trigger configuration updates, when configuration has
+been changed and configuration injection using Tamaya&#8217;s injection API.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compatibility">Compatibility</h3>
+<div class="paragraph">
+<p>All module described are based on Java 8, so it will run on Java 8 and beyond.
+The modules are built against <strong>OSGI Compendium version 5.0</strong>. Tamaya OSGI support
+is tested against the following OSGI runtimes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Apache Karaf, version 4.0.7</p>
+</li>
+<li>
+<p>Apache Felix, version 5.6.1</p>
+</li>
+<li>
+<p>Eclipse Equinox, version x.x.x.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installation">Installation</h3>
+<div class="paragraph">
+<p>To benefit from Tamaya in an OSGI context you must deploy at least the following modules to
+your OSGI runtime environment:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing"># Runtime with OSGI ConfigAdmin support, e.g.
+org.apache.felix:org.apache.felix.configadmin:{felix_version}
+# API and core
+org.apache.geronimo.specs:geronimo-annotation_1.2_spec:1.0
+org.apache.tamaya:tamaya-api:{tamaya_version}
+org.apache.tamaya:tamaya-spisupport:{tamaya_version}
+org.apache.tamaya:tamaya-core:{tamaya_version}
+# Required extensions
+org.apache.tamaya.ext:tamaya-functions:{tamaya_version}
+org.apache.tamaya.ext:tamaya-osgi:{tamaya_version}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tamaya_service_loading_in_osgi">Tamaya Service Loading in OSGI</h3>
+<div class="paragraph">
+<p>Important to know is that within OSGI class- and resource loading is not compatible with standard Java SE. Also
+in OSGI, bundles can be loaded or unloaded at any time, so Tamaya&#8217;s logic must cope with this as well.
+These constraints are handled by Tamaya (implemented in tamaya-core and tamaya-osgi) as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Tamaya registers a OSGIServiceContext which reads all java.util.ServiceLoader configurations and
+registers them as OSGI services. Hereby integration is two-way: The core module contains an
+OSGI Activator that replaces Tamaya&#8217;s default ServiceContext with an OSGI based implementation that
+will consume all services from the OSGI service API. Consequently you can also register Tamaya extensions
+as OSGI services using standard OSGI tooling (e.g. your own PropertySource instances). Tamaya hereby
+also does not store any service references, so the dynamic nature of OSGI is fully honored.</p>
+</li>
+<li>
+<p>Tamaya&#8217;s ServiceContext SPI does additionally provide functionality for loading of (classpath)
+resources using the bundle&#8217;s getEntry(String) method.</p>
+</li>
+<li>
+<p>Tamaya similarly checks the classpath of all bundles for Tamaya SPI services to be registered thus
+implementing the ServiceLoader logic in OSGI. Hereby Tamaya will only register services with the
+org.apache.tamaya as root package.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Tamaya actually does not replace any existing ConfigAdmin component, Tamaya modifies any existing OSGI
+      configuration on changes detected and stores backups of any OSGI configuration before applying any
+      changes.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_bundles">Configuring Bundles</h3>
+<div class="sect3">
+<h4 id="_mapping_of_pids_and_factorypids">Mapping of pids and factoryPids</h4>
+<div class="paragraph">
+<p>When accessing configuration from the OSGI ConfigAdmin a pid and an optional location can be provided.
+Tamaya requires all configuration for a PID to be located in keys starting [PID]:</p>
+</div>
+<div class="listingblock">
+<div class="title">OSGI pid mapping</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing"># OSGI settings
+pid=myBundle
+key=common.net.port
+
+# Corresponding key in Tamaya configuration
+[myBundle]key=common.net.port</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_enabling_disabling_tamaya">Enabling/Disabling Tamaya</h4>
+<div class="paragraph">
+<p>By default, Tamaya doesn&#8217;t do anything, unless it is told to so so. So having installed the Tamaya OSGI plugin,
+you will see the bundles are loaded, but your OSGI environment still works the same. This is not accidentally, since
+configuration is a crucial part. This means Tamaya, by default, is disabled for all bundles. You have now several
+options to enabled Tamaya:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>you can enable Tamaya for <strong>all</strong> bundles by default by</p>
+<div class="ulist">
+<ul>
+<li>
+<p>setting the -Dtamaya-enabled=true system property.</p>
+</li>
+<li>
+<p>by setting tamaya-enabled=true in the OSGI Configuration for the PID TamayaConfigPlugin.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>you can enable Tamaya for a single bundle by</p>
+<div class="ulist">
+<ul>
+<li>
+<p>by setting tamaya-enabled=true in the OSGI Configuration for the given bundle.</p>
+</li>
+<li>
+<p>by adding Tamaya-Enabled: true to the bundle&#8217;s MANIFEST.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Similarly you can also combine these options the other way round:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can enable Tamaya by default as shown above.</p>
+</li>
+<li>
+<p>You can disable Tamaya for bundles by</p>
+<div class="ulist">
+<ul>
+<li>
+<p>by setting tamaya-enabled=false in the OSGI Configuration for the given bundle.</p>
+</li>
+<li>
+<p>by adding Tamaya-Enabled: false to the bundle&#8217;s MANIFEST.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_controlling_how_tamaya_changes_your_osgi_configuration">Controlling How Tamaya changes your OSGI Configuration</h4>
+<div class="paragraph">
+<p>Tamaya supports different policies that define how Tamaya is changing the OSGI configuration:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>EXTEND</strong>: Only add properties not existing in the OSGI configuration, but never override
+or remove existing properties.</p>
+</li>
+<li>
+<p><strong>OVERRIDE</strong>: Override existing properties and also add new properties.</p>
+</li>
+<li>
+<p><strong>UPDATE_ONLY</strong>: Only override existing properties but do not add any properties.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>By default, Tamaya uses the <em>OVERRIDE</em> policy. Also this policy can be configured in several
+ways and with different scopes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can define the <em>default</em> policy applied, by</p>
+<div class="ulist">
+<ul>
+<li>
+<p>setting the -Dtamaya-policy=POLICY system property.</p>
+</li>
+<li>
+<p>by setting tamaya-policy=POLICY in the OSGI Configuration for the PID TamayaConfigPlugin.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Hereby, <em>POLICY</em> must be one of OVERRIDE, EXTEND, UPDATE_ONLY.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can also configure the policy individually for a bundle by</p>
+<div class="ulist">
+<ul>
+<li>
+<p>by setting tamaya-policy=POLICY in the OSGI Configuration for the given bundle.</p>
+</li>
+<li>
+<p>by adding Tamaya-Policy: POLICY to the bundle&#8217;s MANIFEST.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mapping_osgi_pids_to_tamaya_configuration">Mapping OSGI PIDs to Tamaya Configuration</h4>
+<div class="paragraph">
+<p>Tamaya configuration is a single Map&lt;String,String&gt; with String keys and String values. Whereas OSGI configuration are
+multiple +Dictionary&lt;String,?&gt; (for several PIDs). The Tamaya OSGI extension implements the following mapping:</p>
+</div>
+<div class="paragraph">
+<p>As an example refer to the followinf Tamaya configuration entries:</p>
+</div>
+<div class="listingblock">
+<div class="title">Tamaya configuration for PID 'MyPlugin'</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">[MyPlugin]ch.base.pack.Main.customer=Native Inc
+[MyPlugin]ch.base.pack.Main.use=234
+[MyPlugin]ch.base.pack.Main.encoding=UTF-8</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The OSGI Configuration Plugin now provides the following configuration for PID:</p>
+</div>
+<div class="listingblock">
+<div class="title">OSGI configuration for PID 'MyPlugin'</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">ch.base.pack.Main.use=100        (Integer)
+ch.base.pack.Main.switch=on      (Boolean)
+ch.base.pack.Main.customer=NONE  (String)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now using Policy.OVERRIDE (as desribed in the previous section), Tamaya will change the OSGI configuration
+as follows:</p>
+</div>
+<div class="listingblock">
+<div class="title">OSGI configuration after Tamaya update for PID 'MyPlugin'</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">ch.base.pack.Main.use=234                   (Integer)
+ch.base.pack.Main.switch=on                 (Boolean)
+ch.base.pack.Main.customer=Native Inc       (String)
+[MyPlugin]ch.base.pack.Main.encoding=UTF-8  (String)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So Tamaya configuration mapping can be summarized as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The OSGI PID is mapped to a Tamaya prefix [PID].</p>
+</li>
+<li>
+<p>The OSGI keys are the exact same keys as from Tamaya with the <em>[PID]</em> prefix removed.</p>
+</li>
+<li>
+<p>New entries are added (depending on the Policy) as String values.</p>
+</li>
+<li>
+<p>Types of existing entries are preserved on update (this requires the Tamaya entries to be convertable into
+the required target types. Refer to Tamaya&#8217;s core documentation for supported types and how
+to add custom converters).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Finally, the mapping of the OSGI <em>PID</em> to the Tamaya <em>[PID]</em> prefix also can be customized by</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>adding tamaya-config-root as an OSGI configuration property to the OSGI configuration.</p>
+</li>
+<li>
+<p>adding Tamaya-Config-Root as a MANIFEST entry to the bundle.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The root will replace the default <em>[PID]</em> prefix with the value configured.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_osgi_configuration_backup">OSGI Configuration Backup</h4>
+<div class="paragraph">
+<p>Before Tamaya changes any OSGI configuration it creates a <em>Backup</em> of the existing OSGI
+configuration dictionary and stores it in serialized form in the plugin&#8217;s OSGI configuration.
+This allows you to restore the original OSGI configuration in case of problems. Hereby Tamaya
+automatically sets the tamaya-enabled=false property to disable Tamaya for the given
+configuration (bundle).</p>
+</div>
+<div class="paragraph">
+<p>The history can be accessed from the Tamaya Configuration Plugin Service
+(shown later).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_osgi_configuration_change_log">OSGI Configuration Change Log</h4>
+<div class="paragraph">
+<p>All changes applied by Tamaya are logged as well using
+ConfigHistory entry items. The history can be accessed from the Tamaya Configuration Plugin Service
+(shown later):</p>
+</div>
+<div class="listingblock">
+<div class="title">OSGI ConfigHistory Entry</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-Java" data-lang="Java">public final class ConfigHistory implements Serializable{
+
+    [...]
+
+    public enum TaskType{
+        PROPERTY,
+        BEGIN,
+        END,
+    }
+
+    // ***
+    // Entry = attributes
+    // ***
+
+    public TaskType getArea(){...}
+
+    public String getPid() {... }
+
+    public Object getPreviousValue() {... }
+
+    public ConfigHistory setPreviousValue(Object previousValue) {... }
+
+    public Object getValue() {...}
+
+    public ConfigHistory setValue(Object value) {...}
+
+    public String getKey() {...}
+
+    public ConfigHistory setKey(String key) {...}
+
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_the_tamaya_osgi_configuration_service">The Tamaya OSGI Configuration Service</h4>
+<div class="paragraph">
+<p>As mentioned Tamaya exposes it&#8217;s OSGI functionality, allowing programmatic access to Tamaya configuration
+logic with the TamayaConfigService OSGI service:</p>
+</div>
+<div class="listingblock">
+<div class="title">The exposed TamayaConfigService</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-Java" data-lang="Java">public interface TamayaConfigService{
+    /** The system/config property to set Tamaya's {@link Policy}. */
+    String TAMAYA_POLICY_PROP = "tamaya-policy";
+    /** The MANIFEST property to set Tamaya's {@link Policy}. */
+    String TAMAYA_POLICY_MANIFEST = "Tamaya-Policy";
+    /** The system/config property to define a customized Tamaya's configuration root, replacing the {@code [PID]} default
+     * prefix used. */
+    String TAMAYA_CUSTOM_ROOT_PROP = "tamaya-config-root";
+    /** The MANIFEST property to define a customized Tamaya's configuration root, replacing the {@code [PID]} default
+     * prefix used. */
+    String TAMAYA_CUSTOM_ROOT_MANIFEST = "Tamaya-Config-Root";
+    /** The system/config property to enable Tamaya. */
+    String TAMAYA_ENABLED_PROP = "tamaya-enabled";
+    /** The MANIFEST property to enable Tamaya. */
+    String TAMAYA_ENABLED_MANIFEST = "Tamaya-Enabled";
+    /** The system/config property to enable Tamaya automatic updates (requires Tamaya's Updater plugin to be loaded as well). */
+    String TAMAYA_AUTO_UPDATE_ENABLED_PROP = "tamaya-update-enabled";
+    /** The MANIFEST property to enable Tamaya automatic updates (requires Tamaya's Updater plugin to be loaded as well). */
+    String TAMAYA_AUTO_UPDATE_ENABLED_MANIFEST = "Tamaya-Update-Enabled";
+
+    /**
+     * Enables/disables automatic updates (requires Tamaya's Updater plugin to be loaded as well).
+     * @param enabled set to true to enable updates.
+     */
+    void setAutoUpdateEnabled(boolean enabled);
+
+    /**
+     * Enables/disables Tamaya config by default.
+     * @param enabled set to true to enable Tamaya for all bundles by default.
+     */
+    void setTamayaEnabledByDefault(boolean enabled);
+
+    /**
+     * Get the flag, if Tamaya is enabled by default for all bundles.
+     * @return true if Tamaya is enabled.
+     */
+    boolean isTamayaEnabledByDefault();
+
+    /**
+     * Get the default policy Tamaya is using for adapting OSGI configuration.
+     * @return the default policy, never null.
+     */
+    Policy getDefaultPolicy();
+
+    /**
+     * Set the default policy Tamaya is using for adapting OSGI configuration.
+     * @param policy the policy, not null.
+     */
+    void setDefaultPolicy(Policy policy);
+
+    /**
+     * Updates the given OSGI configuration with Tamaya configuration.
+     * @param pid the target PID, not null.
+     * @return the new configuration.
+     */
+    Dictionary&lt;String,Object&gt; updateConfig(String pid);
+
+    /**
+     * Updates the given OSGI configuration with Tamaya configuration.
+     * @param pid the target PID, not null.
+     * @param dryRun if true, the changes will not be applied to the OSGI configuration.
+     * @return the configuration that would be applied, has been applied.
+     */
+    Dictionary&lt;String,Object&gt; updateConfig(String pid, boolean dryRun);
+
+    /**
+     * Updates the given OSGI configuration with Tamaya configuration.
+     * @param pid the target PID, not null.
+     * @param policy the updating policy to be used, by default.
+     * @param forcePolicy if set to true, the given policy will be used, even if an alternate policy is configured
+     *                    for the given PID.
+     * @param dryRun if true, the changes will not be applied to the OSGI configuration.
+     * @return the configuration that would be applied, has been applied.
+     */
+    Dictionary&lt;String,Object&gt; updateConfig(String pid, Policy policy, boolean forcePolicy, boolean dryRun);
+
+    /**
+     * Checks if a bundle is enabled for Tamaya configuration.
+     * @param bundle the bundle, not null.
+     * @return true, if the bundle is enabled.
+     */
+    boolean isBundleEnabled(Bundle bundle);
+
+    /**
+     * Get the flag if automatic updates for config changes are enabled.
+     * @return true, if automatic updates for config changes are enabled.
+     */
+    boolean isAutoUpdateEnabled();
+
+    /**
+     * Get the backup written for a PID.
+     * @param pid the pid, not null.
+     * @return the backup, or null, if no backup is present.
+     */
+    Dictionary&lt;String,?&gt; getBackup(String pid);
+
+    /**
+     * Get all current known PIDs for which backups are registered.
+     * @return all known PIDs for which backups are registered.
+     */
+    Set&lt;String&gt; getBackupPids();
+
+    /**
+     * Restores a backup, replacing the current OSGI configuration with the backup and
+     * disabling Tamaya for this PID.
+     * @param pid the PID, not null.
+     * @return true, if a backup has been restored successfully.
+     */
+    boolean restoreBackup(String pid);
+
+    /**
+     * Stores the current OSGI configuration as a backup (only if no backup is existing).
+     * @param pid the target PID, not null.
+     * @return true, if a backup has been stored successfully.
+     */
+    boolean createBackup(String pid);
+
+    /**
+     * Deletes a backup, if existing.
+     * @param pid the target PID, not null.
+     * @return true, if a backup has been restored successfully.
+     */
+    boolean deleteBackup(String pid);
+
+    /**
+     * Sets the maximum getHistory size.
+     * @param maxHistory the max getHistory size. {@code 0} disables the getHistory function.
+     */
+    void setMaxHistorySize(int maxHistory);
+
+    /**
+     * Get the max getHistory size.
+     * @return the max getHistory size. {@code 0} means the getHistory function is disabled.
+     */
+    int getMaxHistorySize();
+
+    /**
+     * Access the current (full) change getHistory.
+     * @return the current getHistory, never null.
+     */
+    List&lt;ConfigHistory&gt; getHistory();
+
+    /**
+     * Clears the getHistory.
+     */
+    void clearHistory();
+
+    /**
+     * Clears the getHistory for a PID.
+     * @param pid the target PID, not null.
+     */
+    void clearHistory(String pid);
+
+    /**
+     * Get the getHistory for a PID.
+     * @param pid the target PID, not null.
+     * @return the PID's getHistory, never null.
+     */
+    List&lt;ConfigHistory&gt; getHistory(String pid);
+
+    /**
+     * Access the current OSGI configuration for a PID.
+     * @param pid the target PID, not null.
+     * @param section a subsection to be filter (using startsWith).
+     * @return the (optionally filtered) OSGI configuration.
+     */
+    Dictionary&lt;String,Object&gt; getOSGIConfiguration(String pid, String section);
+
+    /**
+     * Checks if a backup exists.
+     * @param pid the target PID, not null.
+     * @return true, if a backup exists.
+     */
+    boolean containsBackup(String pid);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_the_tamaya_osgi_configuration_service_2">The Tamaya OSGI Configuration Service</h4>
+<div class="paragraph">
+<p>Finally Tamaya also provides support for using Tamaya&#8217;s injection API with your OSGI project. To enable injection
+you must install a few additional bundles:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
+   &lt;artifactId&gt;tamaya-osgi-injection&lt;/artifactId&gt;
+   &lt;version&gt;${tamaya.version}&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
+   &lt;artifactId&gt;tamaya-injection&lt;/artifactId&gt;
+   &lt;version&gt;${tamaya.version}&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
+   &lt;artifactId&gt;injection-api&lt;/artifactId&gt;
+   &lt;version&gt;${tamaya.version}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Given that you can inject configuration entries</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>on your services by</p>
+<div class="ulist">
+<ul>
+<li>
+<p>setting tamaya-config-inject=true in your service properties.</p>
+</li>
+<li>
+<p>setting Tamaya-Config-Inject: true in your bundle&#8217;s manifest.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>or by using the registered ConfigInjectionService:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface ConfigInjectionService {
+    /** The manifest entry to enable Tamaya injection. */
+    String TAMAYA_INJECTION_ENABLED_MANIFEST = "Tamaya-Config-Inject";
+    /** The OSGI config entry to enable Tamaya injection. */
+    String TAMAYA_INJECTION_ENABLED_PROP = "tamaya-config-inject";
+
+    /**
+     * Checks if injection is enabled on the given service.
+     * @param reference the service reference, not null.
+     * @return true, if enjection is enabled.
+     */
+    boolean isInjectionEnabled(ServiceReference reference);
+
+    /**
+     * Checks if injection is enabled on the given service.
+     * @param bundle the bundle, not null.
+     * @return true, if enjection is enabled.
+     */
+    boolean isInjectionEnabled(Bundle bundle);
+
+    /**
+     * Configures the passed instance.
+     * @param instance the instance, not null.
+     * @param &lt;T&gt; the input and return type.
+     * @param pid the target PID, not null.
+     * @param location the optional location
+     * @return the configured instance.
+     */
+    &lt;T&gt; T configure(String pid, String location, T instance);
+
+    /**
+     * Creates a suzpplier, which supplies events as created by the basic supplier, which are
+     * automatically configured, when supplying.
+     * @param supplier the base supplier, not null.
+     * @param pid the target PID, not null.
+     * @param location the optional location
+     * @param &lt;T&gt; the type
+     * @return a configuring supplier.
+     */
+    &lt;T&gt; Supplier&lt;T&gt; getConfiguredSupplier(String pid, String location, java.util.function.Supplier&lt;T&gt; supplier);
+
+    /**
+     * Creates a template implementing the annotated methods based on current configuration data.
+     *
+     * @param &lt;T&gt; the type of the template.
+     * @param templateType the type of the template to be created.
+     * @param pid the target PID, not null.
+     * @param location the optional location
+     * @return the configured template.
+     */
+    &lt;T&gt; T createTemplate(String pid, String location, Class&lt;T&gt; templateType);
+
+    /**
+     * Configures the passed instance.
+     * @param instance the instance, not null.
+     * @param &lt;T&gt; the input and return type.
+     * @param bundle the target bundle, not null.
+     * @return the configured instance.
+     */
+    &lt;T&gt; T configure(Bundle bundle, T instance);
+
+    /**
+     * Creates a suzpplier, which supplies events as created by the basic supplier, which are
+     * automatically configured, when supplying.
+     * @param supplier the base supplier, not null.
+     * @param bundle the target bundle, not null.
+     * @param &lt;T&gt; the type
+     * @return a configuring supplier.
+     */
+    &lt;T&gt; Supplier&lt;T&gt; getConfiguredSupplier(Bundle bundle, java.util.function.Supplier&lt;T&gt; supplier);
+
+    /**
+     * Creates a template implementing the annotated methods based on current configuration data.
+     *
+     * @param &lt;T&gt; the type of the template.
+     * @param templateType the type of the template to be created.
+     * @param bundle the target bundle, not null.
+     * @return the configured template.
+     */
+    &lt;T&gt; T createTemplate(Bundle bundle, Class&lt;T&gt; templateType);
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Injection hereby is based on the OSGI ConfigAdmin values only. To use Tamaya configuration you have to additionally
+install the Tamaya common OSGI support as described in the previous sections.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>More details on Tamaya&#8217;s injection API can be found in the corresponding <a href="mod_injection.html">API documentation</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_special_osgi_platform_support">Special OSGI Platform support</h3>
+<div class="sect3">
+<h4 id="_apache_karaf_shell">Apache Karaf Shell</h4>
+<div class="paragraph">
+<p>Apache Tamaya provides a Karaf Shell Extension providing commands for performing several actions related
+to Tamaya configuration. To use them, simply add the org.apache.tamaya.ext:tamaya-osgi-karaf-shell bundle
+to your OSGI runtime. The extension will add the following commands to your Karaf conaole (with prefix tamaya):</p>
+</div>
+<table class="tableblock frame-1 grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><em>Artifact</em></th>
+<th class="tableblock halign-left valign-top"><em>Description</em></th>
+<th class="tableblock halign-left valign-top"><em>Options</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_apply_config</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Show the current Tamaya configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tamaya:tm_apply_config [options] pid
+<b>ARGUMENTS</b>
+<i>pid</i>  The target OSGI component PID.
+<b>OPTIONS</b>
+<i>operationMode, -m, --opmode</i> Explicitly set (override) the operation mode to use.
+<i>dryRun, -d, --dryrun</i> If set to true no OSGI configuration gets changed.
+</pre></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_backup_create</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Creates a backup of a current OSGI configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tamaya:tm_backup_create [options] pid
+<b>ARGUMENTS</b>
+<i>pid</i>  The target pid to backup.
+<b>OPTIONS</b>
+<i>--force, -f</i>  Forces to (over)write a backup, even if one already exists.
+</pre></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_backup_delete</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deletes the OSGI configuration backup  of Tamya.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tamaya:tm_backup_delete pid
+<b>ARGUMENTS</b>
+<i>pid</i>  Allows to filter on the given PID. '*' removes all backups.
+</pre></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_backup_list</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List the backed-up OSGI configuration before Tamya applied changes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tamaya:tm_backup_list [pid]
+<b>ARGUMENTS</b>
+<i>pid</i>  Allows to filter on the given PID.
+</pre></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_backup_restore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Restores the OSGI configuration backup of Tamya and disabled the PID for Tamaya configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tamaya:tm_backup_restore pid
+<b>ARGUMENTS</b>
+<i>pid</i> The target PID. '*' restores all backups.
+</pre></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_config</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Show the current Tamaya configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tamaya:tm_config [options]
+<b>OPTIONS</b>
+<i>pi, -p, --pid</i> Apply filtering for the given OSGI component PID.
+<i>section, -s, --section</i> A starting expression selecting the section to be filtered.
+</pre></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_enable</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables or disable Tamaya by default for all bundles/services (default: enabled=false). Disabling still allows to explicitly enable
+  bundles using 'tamaya-enable' manifest or OSGI config entries.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tamaya:tm_enable enabled
+<b>ARGUMENTS</b>
+<i>enabled</i> The boolean value to enabled/disable Tamaya by default.
+</pre></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_enabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check if Tamaya is currently by default enabled for all bundles/services (default: enabled=false). If disabled still Tamaya allows to
+  explicitly enable bundles using 'tamaya-enable' manifest or OSGI config entries.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tamaya:tm_enabled
+</pre></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_history</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gets the getHistory of changes Tamaya applied to the OSGI configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tamaya:tm_history [options] [pid]
+<b>ARGUMENTS</b>
+<i>pid</i> Allows to filter on the given PID.
+<i>--type, -t</i> Allows to filter the events types shown.
+</pre></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_history_delete</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deletes the getHistory of changes Tamaya applied to the OSGI configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tamaya:tm_history_delete pid
+<b>ARGUMENTS</b>
+<i>pid</i> Allows to filter on the given PID.
+</pre></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_history_delete_all</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deletes the full getHistory of changes Tamaya applied to the OSGI configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tamaya:tm_history_delete_all
+</pre></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_history_maxsize</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gets the maximal size of stored getHistory entries.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tamaya:tm_history_maxsize
+</pre></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_history_maxsize_set</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sets the maximal size of Tamaya getHistory entries.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tamaya:tm_history_maxsize_set size
+<b>ARGUMENTS</b>
+<i>size</i>: The maximum number of entries in the getHistory.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_info</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Show he current Tamaya status.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tamaya:tm_info
+</pre></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_osgi_config</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Show the current OSGI configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tamaya:tm_osgi_config [options] pid
+<b>ARGUMENTS</b>
+<i>pid</i> The target OSGI component PID.
+<b>OPTIONS</b>
+<i>section, -s, --section</i>: A starting expression selecting the keys to be filtered.
+</pre></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_policy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Get the current Tamaya overriding policy.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tamaya:tm_policy
+</pre></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_policy_set</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sets the current Tamaya operation policy.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tamaya:tm_policy_set tm_policy_set
+<b>ARGUMENTS</b>
+<i>tm_policy_set</i>: The operation policy how Tamaya intercepts OSGI configuration.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_propagate_updates</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flag if Tamaya is automatically triggering OSGI config updates, when according Tamaya configuration changes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tm_propagate_updates</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_propagate_updates_set</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configure if Tamaya is automatically triggering OSGI config updates, when according Tamaya configuration changes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tamaya:tm_propagate_updates_set enabled
+<b>ARGUMENTS</b>
+<i>enabled</i>: Set to true to enable Tamaya's updating trigger.
+</pre></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_property</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Get a Tamaya property.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre><b>SYNTAX</b>
+tamaya:tm_property [options] [key]
+<b>ARGUMENTS</b>
+<i>key</i>: The target property source id.
+<b>OPTIONS</b>
+<i>extended,e</i>: Also print extended property value attributes.
+<i>propertysource, ps</i>: The target property source id.
+</pre></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_propertysource</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Show the current Tamaya entries of a propertysource.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre><b>SYNTAX</b>
+tamaya:tm_propertysource [propertysource]
+<b>ARGUMENTS</b>
+<i>propertysource</i>: The target property source id.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tm_propertysources</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Get a list of currently registered propertysources.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><pre>
+<b>SYNTAX</b>
+tamaya:tm_propertysources
+</pre></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_apache_karaf_ferature">Apache Karaf Ferature</h4>
+<div class="paragraph">
+<p>Apache Tamaya provides a Karaf feature with all required dependencies
+as org.apache.tamaya.ext:tamaya-karaf-features:{tamaya-version}:features:xml.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_apache_felix_gogo_console">Apache Felix Gogo Console</h4>
+<div class="paragraph">
+<p>Apache Tamaya also provides the same commands as described for <em>Karaf</em>, but executable in
+plaing Gogo console as used by Apache Felix and Equinox as
+org.apache.tamaya.ext:tamaya-gogo-shell:{tamaya-version}. Refer to the previous sections for
+a detailed command description.</p>
+</div>
+</div>
+</div>
+</div>
+</div></p>
+
+			<hr />
+		</div>
+	</div>
+	<div>
+			<div id="push"></div>
+
+		    <div id="footer">
+		      <div class="container">
+		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
+							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
+							at <span>2018-04-26</span> |
+						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+						</p>
+						<p>
+								<b>Disclaimer</b>
+                    Apache Tamaya (incubating) is an effort undergoing
+                    incubation at
+                    The Apache Software Foundation (ASF), sponsored by
+                    the name of Apache Incubator. Incubation is required of
+                    all newly accepted projects until a further review indicates
+                    that the infrastructure, communications, and decision making
+                    process have stabilized in a manner consistent with other
+                    successful ASF projects. While incubation status is not
+                    necessarily a reflection of the completeness or stability of
+                    the code, it does indicate that the project has yet to
+                    be fully endorsed by the ASF.
+										Apache, Apache Tamaya, and the Apache Tamaya logo are registered trademarks or trademarks of The Apache Software Foundation in the U.S. and/or other countries.<br />
+                    <a href="https://incubator.apache.org/guides/website.html" style="border:0px;" target="_target">
+											<img class="incubator-logo" src="../../logos/apache-incubator.png"/>
+										</a>
+							</p>
+		      </div>
+		    </div>
+
+		    <!-- Le javascript
+		    ================================================== -->
+		    <!-- Placed at the end of the document so the pages load faster -->
+		    <script src="../../js/jquery-1.11.1.min.js"></script>
+		    <script src="../../js/bootstrap.min.js"></script>
+		    <script src="../../js/prettify.js"></script>
+    	</div>
+    </body>
+</html>
