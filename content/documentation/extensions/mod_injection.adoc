@@ -60,7 +60,6 @@ Similarly there are other injection implementations available, targetig platform
 Basically you annotate fields or methods in your beans with +@Config+ to enable configuration injection. Tamaya
 additionally defines further annotations that allo you to define additional aspects such as default values, custom
 converters etc. The following example illustrates the basic functionality:
-code snippet:
 
 [source,java]
 .Annotated Example Class
@@ -103,7 +102,7 @@ When configuring data or configuration classes it is also possible to auto-injec
 this feature a class must be annotated with +@ConfigAutoInject+:
 
 [source, java]
-. An autoinjected bean class
+.An autoinjected bean class
 --------------------------------------------
 package a.b;
 

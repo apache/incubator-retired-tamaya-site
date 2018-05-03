@@ -105,7 +105,7 @@ When configuring data or configuration classes it is also possible to auto-injec
 this feature a class must be annotated with +@ConfigAutoDetect+:
 
 [source, java]
-. An autoinjected bean class
+.An autoinjected bean class
 --------------------------------------------
 package a.b;
 
