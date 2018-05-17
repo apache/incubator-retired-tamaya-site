@@ -125,102 +125,101 @@
 				<h1>Apache Tamaya - Extension: Resolver</h1>
 			</div>
 
-			<p><em>2018-04-26</em></p>
+			<p><em>2018-05-17</em></p>
 
-			<p><div class="sect1">
-<h2 id="Resolver">Tamaya Resolver (Extension Module)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Tamaya <em>Resolver</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
-</div>
-<div class="sect2">
-<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
-<div class="paragraph">
-<p>Tamaya <em>Resolver</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a>
-for further details about modules.</p>
-</div>
-<div class="paragraph">
-<p>Tamaya Resolver provides a extendible dynamic resolution mechanism. It allows to use UNIX-styled (${...} placeholder
-expressions in your configuration values. The resolver hereby supports transitive resolution and also prevents
-cycles to loop endlessly.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_compatibility">Compatibility</h3>
-<div class="paragraph">
-<p>The module is based on Java 8, so it can be used with Java 8 and beyond.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_installation">Installation</h3>
-<div class="paragraph">
-<p>To benefit from dynamic value resolution you only must add the corresponding dependency to your module:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+			<p><div class="sect1"> 
+ <h2 id="Resolver">Tamaya Resolver (Extension Module)</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>Tamaya <em>Resolver</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3> 
+   <div class="paragraph"> 
+    <p>Tamaya <em>Resolver</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details about modules.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Tamaya Resolver provides a extendible dynamic resolution mechanism. It allows to use UNIX-styled (${...} placeholder expressions in your configuration values. The resolver hereby supports transitive resolution and also prevents cycles to loop endlessly.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_compatibility">Compatibility</h3> 
+   <div class="paragraph"> 
+    <p>The module is based on Java 8, so it can be used with Java 8 and beyond.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_installation">Installation</h3> 
+   <div class="paragraph"> 
+    <p>To benefit from dynamic value resolution you only must add the corresponding dependency to your module:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-resolver&lt;/artifactId&gt;
   &lt;version&gt;0.4-incubating-SNAPSHOT&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The module automatically registers an according Filter that is automatically called, whenever a value
-is accessed.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_available_resolvers">Available Resolvers</h3>
-<div class="paragraph">
-<p>Currently the module defines the following resolvers:</p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1. Available Resolvers</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 50%;">
-<col style="width: 25%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Expression</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Description</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Example</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">conf:&lt;configKey&gt;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reads another configKey and replaces the expression with the value found.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">conf-ref=${conf:anotherConf.entryKey}</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">resource:&lt;resourceRef&gt;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reads a resource from the current classpath and replaces the expression with the given text content.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">cp-ref=${resource:Testresource.txt}</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">file:&lt;fileRef&gt;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reads a resource from the current classpath and replaces the expression with the given text content.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">file-ref=${file:c:\myFile.txt}</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">url:&lt;url&gt;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reads an URL and replaces the expression with the given text content.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">url-ref=${url:http://www.google.com}</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_spi_implementing_your_own_resolvers">SPI: Implementing your own Resolvers</h3>
-<div class="paragraph">
-<p>The module also provides a small SPI for adding your own resolver implementations. Basically the
-first and most important thing to do is implementing the ExpressionResolver interface:</p>
-</div>
-<div class="listingblock">
-<div class="title">Implementing a Custom Resolver</div>
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public class PwdDecrypter implements ExpressionResolver {
+&lt;/dependency&gt;</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>The module automatically registers an according Filter that is automatically called, whenever a value is accessed.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_available_resolvers">Available Resolvers</h3> 
+   <div class="paragraph"> 
+    <p>Currently the module defines the following resolvers:</p> 
+   </div> 
+   <table class="tableblock frame-all grid-all spread"> 
+    <caption class="title">
+     Table 1. Available Resolvers
+    </caption> 
+    <colgroup> 
+     <col style="width: 25%;"> 
+     <col style="width: 50%;"> 
+     <col style="width: 25%;"> 
+    </colgroup> 
+    <tbody> 
+     <tr> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Expression</em></p></td> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Description</em></p></td> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Example</em></p></td> 
+     </tr> 
+     <tr> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">conf:&lt;configKey&gt;</p></td> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">Reads another configKey and replaces the expression with the value found.</p></td> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">conf-ref=${conf:anotherConf.entryKey}</p></td> 
+     </tr> 
+     <tr> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">resource:&lt;resourceRef&gt;</p></td> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">Reads a resource from the current classpath and replaces the expression with the given text content.</p></td> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">cp-ref=${resource:Testresource.txt}</p></td> 
+     </tr> 
+     <tr> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">file:&lt;fileRef&gt;</p></td> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">Reads a resource from the current classpath and replaces the expression with the given text content.</p></td> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">file-ref=${file:c:\myFile.txt}</p></td> 
+     </tr> 
+     <tr> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">url:&lt;url&gt;</p></td> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">Reads an URL and replaces the expression with the given text content.</p></td> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">url-ref=${url:http://www.google.com}</p></td> 
+     </tr> 
+    </tbody> 
+   </table> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_spi_implementing_your_own_resolvers">SPI: Implementing your own Resolvers</h3> 
+   <div class="paragraph"> 
+    <p>The module also provides a small SPI for adding your own resolver implementations. Basically the first and most important thing to do is implementing the ExpressionResolver interface:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Implementing a Custom Resolver
+    </div> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public class PwdDecrypter implements ExpressionResolver {
 
   @Override
   public String getResolverPrefix() {
@@ -235,31 +234,27 @@ first and most important thing to do is implementing the ExpressionResolver inte
   private String decrypt(String s) {
     ...
   }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Basically that is all you must do, after having registered the class with the ServiceLoader it will be found
-and loaded by the implementation. With that all expressions that start with the given prefix are passed to the
-resolver, so all the following expressions will be sent to the implementation:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">blabla ${decrypt:myname}
-blabla ${decrypt:myname} foo blabla ${decrypt:myname}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Hereby evaluation is repeated until no further change of values could be detetced. In case of a endless loop
-the evaluation is broken after a (configurable) number of cycles.</p>
-</div>
-<div class="paragraph">
-<p>Under the hood instances of ExpressionResolver are managed by an implementation of the ExpressionEvaluator
-interface:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface ExpressionEvaluator {
+}</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Basically that is all you must do, after having registered the class with the ServiceLoader it will be found and loaded by the implementation. With that all expressions that start with the given prefix are passed to the resolver, so all the following expressions will be sent to the implementation:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">blabla ${decrypt:myname}
+blabla ${decrypt:myname} foo blabla ${decrypt:myname}</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Hereby evaluation is repeated until no further change of values could be detetced. In case of a endless loop the evaluation is broken after a (configurable) number of cycles.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Under the hood instances of ExpressionResolver are managed by an implementation of the ExpressionEvaluator interface:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface ExpressionEvaluator {
     /**
      * Evaluates the current expression.
      * @param key the key, not null.
@@ -267,15 +262,14 @@ interface:</p>
      * @return the filtered/evaluated value, including null.
      */
     String evaluateExpression(String key, String value);
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Implementing and registering this interface gives you full control, but in most cases you should be fine with
-the default implementation in place.</p>
-</div>
-</div>
-</div>
+}</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Implementing and registering this interface gives you full control, but in most cases you should be fine with the default implementation in place.</p> 
+   </div> 
+  </div> 
+ </div> 
 </div></p>
 
 			<hr />
@@ -287,8 +281,8 @@ the default implementation in place.</p>
 		    <div id="footer">
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2018-05-03</span> |
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
+							at <span>2018-05-17</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

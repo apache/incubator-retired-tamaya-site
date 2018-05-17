@@ -125,258 +125,217 @@
 				<h1></h1>
 			</div>
 
-			<p><em>2018-04-26</em></p>
+			<p><em>2018-05-17</em></p>
 
-			<p><div class="sect1">
-<h2 id="_apache_tamaya_quickstart">Apache Tamaya: Quickstart</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The fastest way to start with Tamaya is just using the <em>Core</em> implementation,
-implementing the <strong>API</strong> in a minimalistic way. For that add the following
-Maven dependency to your project:</p>
-</div>
-<div class="sect2">
-<h3 id="_adding_the_tamaya_dependency">Adding the Tamaya Dependency</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+			<p><div class="sect1"> 
+ <h2 id="_apache_tamaya_quickstart">Apache Tamaya: Quickstart</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>The fastest way to start with Tamaya is just using the <em>Core</em> implementation, implementing the <strong>API</strong> in a minimalistic way. For that add the following Maven dependency to your project:</p> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_adding_the_tamaya_dependency">Adding the Tamaya Dependency</h3> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
     &lt;groupId&gt;org.apache.tamaya&lt;/groupId&gt;
     &lt;artifactId&gt;tamaya-core&lt;/artifactId&gt;
     &lt;version&gt;0.4-incubating-SNAPSHOT&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_start_coding">Start Coding</h3>
-<div class="paragraph">
-<p>In your Java code you can directly access configuration from the API. In most cases it is recommended
-to provide the default values when accessing the configuration:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration config = ConfigurationProvider.getConfiguration();
+&lt;/dependency&gt;</code></pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_start_coding">Start Coding</h3> 
+   <div class="paragraph"> 
+    <p>In your Java code you can directly access configuration from the API. In most cases it is recommended to provide the default values when accessing the configuration:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration config = ConfigurationProvider.getConfiguration();
 
 String aTextValue = config.getOrDefault("my.value.key", "N/A");
 int aNumericValue = config.getOrDefault("my.numValueKey", Integer.class, 15 /* default */);
-BigDecimal bdValue = config.getOrDefault("my.BD.value", BigDecimal.class, BigDecimal.valueOf(120));</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>With Java 8 you can, of course, also use Optional, e.g.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration config = ConfigurationProvider.getConfiguration();
+BigDecimal bdValue = config.getOrDefault("my.BD.value", BigDecimal.class, BigDecimal.valueOf(120));</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>With Java 8 you can, of course, also use Optional, e.g.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration config = ConfigurationProvider.getConfiguration();
 
-String aTextValue = Optional.ofNullable(config.getOrDefault("my.value.key").orElse("N/A");</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_add_define_your_configuration_data">Add/define your configuration data</h3>
-<div class="paragraph">
-<p>As seen you can immedeatly start working with your configuration backend, without adding any kind of
-default configuration. Nevertheless the <em>core</em> implementation also comes with a <em>default</em> mechanism,
-where you can store your configuration as .properties in your classpath:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code>META-INF/javaconfiguration.properties</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Additionally also system properties are taken into account, hereby overriding the <em>default</em> properties.
-Overall Tamaya by default defines the following configuration model per default (most significant first):</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>System Properties</p>
-</li>
-<li>
-<p><code>META-INF/javaconfiguration.properties</code></p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_advanced_topics">Advanced Topics</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_multiple_configuration_files">Multiple configuration files</h3>
-<div class="paragraph">
-<p>By default you can provide multiple <code>javaconfig.properties</code> files, e.g. as part
-of multiple jars loaded into your system. The system creates one
-<code>PropertySource</code> for each file found on the classpath. All <code>PropertySource</code>
-instances created are ordered by their precedence.</p>
-</div>
-<div class="paragraph">
-<p>By default the precendence of a PropertySource is evaluated based on an <em>ordinal</em> value
-calculated as follows:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>the systems checks for a <code>tamaya.ordinal</code> configuration value and tries to convert to
-an <code>int</code> ordinal value.</p>
-</li>
-<li>
-<p>the systems checks if the property source has a method int getOrdinal(). If present
-the result is used as ordinal.</p>
-</li>
-<li>
-<p>the systems checks if the property source has a <code>@Priority</code> annotation and uses the
-annotation&#8217;s value as ordinal.</p>
-</li>
-<li>
-<p>if all of the above fails, 0 is assumed as ordinal.</p>
-</li>
-</ol>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-Since evaluation of the <code>tamaya.ordinal</code> is always done first, it is possible to change
-      the ordinal value by adding a corresponding configuration entry to a property source.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Tamaya Core uses the following default ordinals:</p>
-</div>
-<table class="tableblock frame-all grid-all" style="width: 70%;">
-<colgroup>
-<col style="width: 75%;">
-<col style="width: 25%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Source</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ordinal</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">System Properties</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">400</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Environment Properties</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">300</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Properties from <code>META-INF/javaconfiguration.properties</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">100</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>That means that the value of a configuration variable <code>x</code> overhanded via <code>-Dx=yes</code> has
-a higher precedence then the entry for configuration variable <code>x</code> specified in
-<code>META-INF/javaconfig.properties</code> as <code>x=no</code>.</p>
-</div>
-<div class="paragraph">
-<p>These ordinal values can be either hardcoded, or be dynamically
-configurable as key within each configuration resource. The ladder can be done by defining a special
-Tamaya ordinal value as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code># override default Tamaya ordinal for property files
-tamaya.ordinal=123</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This assigns an ordinal of 123 to each entry in that property source providing this configuration
-properties.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_using_additional_features_of_tamaya">Using additional features of Tamaya</h3>
-<div class="paragraph">
-<p>There many modules that extend the capabilities of
-Tamaya. These modules doe not depend on core, so alternative
-implementations of the Tamaya API should work similarly. Following a
-small extract of most important modules available (or available soon).
-Refer to <a href="extensions/extensions.html">this list</a> for a complete
-overview.</p>
-</div>
-<div class="sect3">
-<h4 id="_dynamic_resolution_and_value_placeholders">Dynamic Resolution and Value Placeholders</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+String aTextValue = Optional.ofNullable(config.getOrDefault("my.value.key").orElse("N/A");</code></pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_add_define_your_configuration_data">Add/define your configuration data</h3> 
+   <div class="paragraph"> 
+    <p>As seen you can immedeatly start working with your configuration backend, without adding any kind of default configuration. Nevertheless the <em>core</em> implementation also comes with a <em>default</em> mechanism, where you can store your configuration as .properties in your classpath:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code>META-INF/javaconfiguration.properties</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Additionally also system properties are taken into account, hereby overriding the <em>default</em> properties. Overall Tamaya by default defines the following configuration model per default (most significant first):</p> 
+   </div> 
+   <div class="olist arabic"> 
+    <ol class="arabic"> 
+     <li> <p>System Properties</p> </li> 
+     <li> <p><code>META-INF/javaconfiguration.properties</code></p> </li> 
+    </ol> 
+   </div> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_advanced_topics">Advanced Topics</h2> 
+ <div class="sectionbody"> 
+  <div class="sect2"> 
+   <h3 id="_multiple_configuration_files">Multiple configuration files</h3> 
+   <div class="paragraph"> 
+    <p>By default you can provide multiple <code>javaconfig.properties</code> files, e.g. as part of multiple jars loaded into your system. The system creates one <code>PropertySource</code> for each file found on the classpath. All <code>PropertySource</code> instances created are ordered by their precedence.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>By default the precendence of a PropertySource is evaluated based on an <em>ordinal</em> value calculated as follows:</p> 
+   </div> 
+   <div class="olist arabic"> 
+    <ol class="arabic"> 
+     <li> <p>the systems checks for a <code>tamaya.ordinal</code> configuration value and tries to convert to an <code>int</code> ordinal value.</p> </li> 
+     <li> <p>the systems checks if the property source has a method int getOrdinal(). If present the result is used as ordinal.</p> </li> 
+     <li> <p>the systems checks if the property source has a <code>@Priority</code> annotation and uses the annotation’s value as ordinal.</p> </li> 
+     <li> <p>if all of the above fails, 0 is assumed as ordinal.</p> </li> 
+    </ol> 
+   </div> 
+   <div class="admonitionblock note"> 
+    <table> 
+     <tbody>
+      <tr> 
+       <td class="icon"> 
+        <div class="title">
+         Note
+        </div> </td> 
+       <td class="content"> Since evaluation of the <code>tamaya.ordinal</code> is always done first, it is possible to change the ordinal value by adding a corresponding configuration entry to a property source. </td> 
+      </tr> 
+     </tbody>
+    </table> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Tamaya Core uses the following default ordinals:</p> 
+   </div> 
+   <table class="tableblock frame-all grid-all" style="width: 70%;"> 
+    <colgroup> 
+     <col style="width: 75%;"> 
+     <col style="width: 25%;"> 
+    </colgroup> 
+    <tbody> 
+     <tr> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">Source</p></td> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">Ordinal</p></td> 
+     </tr> 
+     <tr> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">System Properties</p></td> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">400</p></td> 
+     </tr> 
+     <tr> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">Environment Properties</p></td> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">300</p></td> 
+     </tr> 
+     <tr> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">Properties from <code>META-INF/javaconfiguration.properties</code></p></td> 
+      <td class="tableblock halign-left valign-top"><p class="tableblock">100</p></td> 
+     </tr> 
+    </tbody> 
+   </table> 
+   <div class="paragraph"> 
+    <p>That means that the value of a configuration variable <code>x</code> overhanded via <code>-Dx=yes</code> has a higher precedence then the entry for configuration variable <code>x</code> specified in <code>META-INF/javaconfig.properties</code> as <code>x=no</code>.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>These ordinal values can be either hardcoded, or be dynamically configurable as key within each configuration resource. The ladder can be done by defining a special Tamaya ordinal value as follows:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code># override default Tamaya ordinal for property files
+tamaya.ordinal=123</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>This assigns an ordinal of 123 to each entry in that property source providing this configuration properties.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_using_additional_features_of_tamaya">Using additional features of Tamaya</h3> 
+   <div class="paragraph"> 
+    <p>There many modules that extend the capabilities of Tamaya. These modules doe not depend on core, so alternative implementations of the Tamaya API should work similarly. Following a small extract of most important modules available (or available soon). Refer to <a href="extensions/extensions.html">this list</a> for a complete overview.</p> 
+   </div> 
+   <div class="sect3"> 
+    <h4 id="_dynamic_resolution_and_value_placeholders">Dynamic Resolution and Value Placeholders</h4> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;artifactId&gt;org.apache.tamaya.ext&lt;/id&gt;
   &lt;artifactId&gt;tamaya-resolver&lt;/artifactId&gt;
   &lt;version&gt;0.4-incubating-SNAPSHOT&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>With that it is possible to define values with Unix styled placeholders that are
-resolved on configuration access, e.g.
-<code>mykey=my${dynamicValue}´. For further details refer to the module documentation.
-This module also provides a `Resolver</code> singleton:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">String myExpression = ...;
-String resolved = Resolver.evaluateExpression(myExpression);</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_ant_styled_path_resolution_of_resources">Ant-styled Path Resolution of Resources</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+&lt;/dependency&gt;</code></pre> 
+     </div> 
+    </div> 
+    <div class="paragraph"> 
+     <p>With that it is possible to define values with Unix styled placeholders that are resolved on configuration access, e.g. <code>mykey=my${dynamicValue}´. For further details refer to the module documentation. This module also provides a `Resolver</code> singleton:</p> 
+    </div> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-java" data-lang="java">String myExpression = ...;
+String resolved = Resolver.evaluateExpression(myExpression);</code></pre> 
+     </div> 
+    </div> 
+   </div> 
+   <div class="sect3"> 
+    <h4 id="_ant_styled_path_resolution_of_resources">Ant-styled Path Resolution of Resources</h4> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;artifactId&gt;org.apache.tamaya.ext&lt;/id&gt;
   &lt;artifactId&gt;tamaya-resolution&lt;/artifactId&gt;
   &lt;version&gt;0.4-incubating-SNAPSHOT&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This module provides a <code>Resolver</code> singleton that allows to
-resolve configuration resources using a ant-styled resource
-description, e.g.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">Collection&lt;URL&gt; urls = ResourceResolver.getResources("META-INF/cfg/**/*.properties");</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>For further details refer to the module documentation.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_configuration_injection">Configuration Injection</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+&lt;/dependency&gt;</code></pre> 
+     </div> 
+    </div> 
+    <div class="paragraph"> 
+     <p>This module provides a <code>Resolver</code> singleton that allows to resolve configuration resources using a ant-styled resource description, e.g.</p> 
+    </div> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">Collection&lt;URL&gt; urls = ResourceResolver.getResources("META-INF/cfg/**/*.properties");</code></pre> 
+     </div> 
+    </div> 
+    <div class="paragraph"> 
+     <p>For further details refer to the module documentation.</p> 
+    </div> 
+   </div> 
+   <div class="sect3"> 
+    <h4 id="_configuration_injection">Configuration Injection</h4> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;artifactId&gt;org.apache.tamaya.ext&lt;/id&gt;
   &lt;artifactId&gt;tamaya-inject&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version_development}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>With this extension you can let Tamaya inject configuration into instances of
-annotated classes or let Tamaya implement a configuration template.</p>
-</div>
-<div class="paragraph">
-<p>Corresponding configuration:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">public class MyType {
+&lt;/dependency&gt;</code></pre> 
+     </div> 
+    </div> 
+    <div class="paragraph"> 
+     <p>With this extension you can let Tamaya inject configuration into instances of annotated classes or let Tamaya implement a configuration template.</p> 
+    </div> 
+    <div class="paragraph"> 
+     <p>Corresponding configuration:</p> 
+    </div> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">public class MyType {
    @Config("my.key")
    private String typeName;
 
@@ -386,52 +345,52 @@ annotated classes or let Tamaya implement a configuration template.</p>
 }
 
 MyType type = new MyType();
-ConfigurationInjector.configure(type);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Or the same as template:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">public interface MyTypeTemplate {
+ConfigurationInjector.configure(type);</code></pre> 
+     </div> 
+    </div> 
+    <div class="paragraph"> 
+     <p>Or the same as template:</p> 
+    </div> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">public interface MyTypeTemplate {
    @Config("my.key")
    public String getName();
 }
 
-MyTypeTemplate type = ConfigurationInjector.createTemplate(MyTypeTemplate.class);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Currently the following resolvers are available:</p>
-</div>
-<table class="tableblock frame-all grid-all" style="width: 60%;">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Conf</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cross-reference to another configuration entry</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">URL</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Referencing a resource addressable by an URL.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">File</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to a  file, replacing the expression with the file&#8217;s text value.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Resource</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to classpath resource, replacing the expression with the resource&#8217;s text value.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
+MyTypeTemplate type = ConfigurationInjector.createTemplate(MyTypeTemplate.class);</code></pre> 
+     </div> 
+    </div> 
+    <div class="paragraph"> 
+     <p>Currently the following resolvers are available:</p> 
+    </div> 
+    <table class="tableblock frame-all grid-all" style="width: 60%;"> 
+     <colgroup> 
+      <col style="width: 20%;"> 
+      <col style="width: 80%;"> 
+     </colgroup> 
+     <tbody> 
+      <tr> 
+       <td class="tableblock halign-left valign-top"><p class="tableblock">Conf</p></td> 
+       <td class="tableblock halign-left valign-top"><p class="tableblock">Cross-reference to another configuration entry</p></td> 
+      </tr> 
+      <tr> 
+       <td class="tableblock halign-left valign-top"><p class="tableblock">URL</p></td> 
+       <td class="tableblock halign-left valign-top"><p class="tableblock">Referencing a resource addressable by an URL.</p></td> 
+      </tr> 
+      <tr> 
+       <td class="tableblock halign-left valign-top"><p class="tableblock">File</p></td> 
+       <td class="tableblock halign-left valign-top"><p class="tableblock">Reference to a file, replacing the expression with the file’s text value.</p></td> 
+      </tr> 
+      <tr> 
+       <td class="tableblock halign-left valign-top"><p class="tableblock">Resource</p></td> 
+       <td class="tableblock halign-left valign-top"><p class="tableblock">Reference to classpath resource, replacing the expression with the resource’s text value.</p></td> 
+      </tr> 
+     </tbody> 
+    </table> 
+   </div> 
+  </div> 
+ </div> 
 </div></p>
 
 			<hr />
@@ -443,8 +402,8 @@ MyTypeTemplate type = ConfigurationInjector.createTemplate(MyTypeTemplate.class)
 		    <div id="footer">
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2018-05-03</span> |
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
+							at <span>2018-05-17</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

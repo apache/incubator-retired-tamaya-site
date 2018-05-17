@@ -125,57 +125,54 @@
 				<h1>Apache Tamaya - Extension: Integration with JNDI</h1>
 			</div>
 
-			<p><em>2018-04-26</em></p>
+			<p><em>2018-05-17</em></p>
 
-			<p><div id="preamble">
-<div class="sectionbody">
-<!-- toc disabled -->
-</div>
-</div>
-<div class="sect1">
-<h2 id="JNDI">Integration with JNDI (Extension Module)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Tamaya <em>JNDI</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
-</div>
-<div class="sect2">
-<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
-<div class="paragraph">
-<p>Tamaya <em>JNDI</em> provides a simple PropertySource that reads values from a
-JNDI context.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_compatibility">Compatibility</h3>
-<div class="paragraph">
-<p>The module is based on Java 7, so it will not run on Java 7 and beyond.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_installation">Installation</h3>
-<div class="paragraph">
-<p>To use <em>jndi</em> as a configuration backend you only must add the corresponding dependency to
-your module:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+			<p><div id="preamble"> 
+ <div class="sectionbody"> 
+  <!-- toc disabled --> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="JNDI">Integration with JNDI (Extension Module)</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>Tamaya <em>JNDI</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3> 
+   <div class="paragraph"> 
+    <p>Tamaya <em>JNDI</em> provides a simple PropertySource that reads values from a JNDI context.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_compatibility">Compatibility</h3> 
+   <div class="paragraph"> 
+    <p>The module is based on Java 7, so it will not run on Java 7 and beyond.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_installation">Installation</h3> 
+   <div class="paragraph"> 
+    <p>To use <em>jndi</em> as a configuration backend you only must add the corresponding dependency to your module:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-jndi&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_the_functionality_provided">The Functionality Provided</h3>
-<div class="paragraph">
-<p>Main artifact is the JNDIPropertySource class, which implements a
-property source based on a JNDI context:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public class JNDIPropertySource extends BasePropertySource {
+&lt;/dependency&gt;</code></pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_the_functionality_provided">The Functionality Provided</h3> 
+   <div class="paragraph"> 
+    <p>Main artifact is the JNDIPropertySource class, which implements a property source based on a JNDI context:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public class JNDIPropertySource extends BasePropertySource {
 
     public JNDIPropertySource(String name, Context context);
     public JNDIPropertySource(String name) throws NamingException;
@@ -184,26 +181,20 @@ property source based on a JNDI context:</p>
     public void setScannable(boolean scannable);
 
     [...]
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>By default the property source is <em>non scannable</em>, so a call the <code>getProperties()</code>
-will return an empty map instance. After calling <code>setScannable(true);</code> a call to
-<code>getProperties()</code> will return a String representation of the JNDI tree. Hereby
-leaves of the tree are converted using <code>String.valueOf(leaveObject)</code>.</p>
-</div>
-<div class="paragraph">
-<p>This module automatically registers an instance of JNDIPropertySource with a
-default ordinal of 200.</p>
-</div>
-<div class="paragraph">
-<p>You can extend this class or manually instantiate it, e.g. as part of a
-PropertySourceProvider. If no <code>Context</code> is passed explicitly, a new
-InitialContext is created, without any environment parameters set.</p>
-</div>
-</div>
-</div>
+}</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>By default the property source is <em>non scannable</em>, so a call the <code>getProperties()</code> will return an empty map instance. After calling <code>setScannable(true);</code> a call to <code>getProperties()</code> will return a String representation of the JNDI tree. Hereby leaves of the tree are converted using <code>String.valueOf(leaveObject)</code>.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>This module automatically registers an instance of JNDIPropertySource with a default ordinal of 200.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>You can extend this class or manually instantiate it, e.g. as part of a PropertySourceProvider. If no <code>Context</code> is passed explicitly, a new InitialContext is created, without any environment parameters set.</p> 
+   </div> 
+  </div> 
+ </div> 
 </div></p>
 
 			<hr />
@@ -215,8 +206,8 @@ InitialContext is created, without any environment parameters set.</p>
 		    <div id="footer">
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2018-05-03</span> |
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
+							at <span>2018-05-17</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

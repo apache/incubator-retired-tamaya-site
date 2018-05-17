@@ -125,326 +125,263 @@
 				<h1>Apache Tamaya - Extension: Collection Support</h1>
 			</div>
 
-			<p><em>2018-04-26</em></p>
+			<p><em>2018-05-17</em></p>
 
-			<p><div id="preamble">
-<div class="sectionbody">
-<!-- toc disabled -->
-</div>
-</div>
-<div class="sect1">
-<h2 id="Collections">Tamaya Collections Support (Extension Module)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Tamaya <em>Collections</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
-</div>
-<div class="sect2">
-<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
-<div class="paragraph">
-<p>All configuration in Tamaya is expressed as simple key, value pairs. Nevertheless this concept allows similarly
-the modelling of collection typed values such as lists, sets, maps or simple collections of things. The Tamaya
-Collections extension adds this functionality to the Tamaya eco-system.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_compatibility">Compatibility</h3>
-<div class="paragraph">
-<p>The module is based on Java 8, so it will not run on Java 8 and beyond.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_installation">Installation</h3>
-<div class="paragraph">
-<p>To use Tamaya collection support you only must add the corresponding dependency to your module:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+			<p><div id="preamble"> 
+ <div class="sectionbody"> 
+  <!-- toc disabled --> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="Collections">Tamaya Collections Support (Extension Module)</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>Tamaya <em>Collections</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3> 
+   <div class="paragraph"> 
+    <p>All configuration in Tamaya is expressed as simple key, value pairs. Nevertheless this concept allows similarly the modelling of collection typed values such as lists, sets, maps or simple collections of things. The Tamaya Collections extension adds this functionality to the Tamaya eco-system.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_compatibility">Compatibility</h3> 
+   <div class="paragraph"> 
+    <p>The module is based on Java 8, so it will not run on Java 8 and beyond.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_installation">Installation</h3> 
+   <div class="paragraph"> 
+    <p>To use Tamaya collection support you only must add the corresponding dependency to your module:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-collections&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_overview">Overview</h3>
-<div class="paragraph">
-<p>Tamaya Collections adds PropertyConverter implementations that are able to access configuration data
-as <em>lists, maps</em> or <em>sets</em>. By default this works out of the box as easy as accessing any other type of
-configuration data, e.g.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration config = ConfigurationProvider.getConfiguration();
+&lt;/dependency&gt;</code></pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_overview">Overview</h3> 
+   <div class="paragraph"> 
+    <p>Tamaya Collections adds PropertyConverter implementations that are able to access configuration data as <em>lists, maps</em> or <em>sets</em>. By default this works out of the box as easy as accessing any other type of configuration data, e.g.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration config = ConfigurationProvider.getConfiguration();
 
 // Without any content specification, a list of String is returned.
 List&lt;String&gt; simpleList = config.get("my.list.config.entry", List.class);
 
 // Using a TypeLiteral allows to use every convertible sub type supported by the system.
-List&lt;Integer&gt; intList = config.get("my.list.config.entry", new TypeLiteral&lt;List&lt;Integer&gt;&gt;(){});</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Configuration in that case, by default, is a simple comma-separated list of entries, e.g.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties">my.list.config.entry=1,34454,23,344545,3445</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Additionally the module allows adding additional meta-entries, which allows to tweak some of the
-inner-workings, e.g.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>using your own PropertyConverter implementation for parsing entries.</p>
-</li>
-<li>
-<p>specifying a custom separator to split the items (default is {{','}}.</p>
-</li>
-<li>
-<p>specifying a custom separator to split key/value pairs when parsing map entries.</p>
-</li>
-<li>
-<p>specifying the implementation type of the collection item to be returned.</p>
-</li>
-<li>
-<p>specifying the implementation type of the collection to be returned.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_supported_types">Supported Types</h3>
-<div class="paragraph">
-<p>This module currently supports the following types:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>java.util.Collection</p>
-</li>
-<li>
-<p>java.util.List</p>
-</li>
-<li>
-<p>java.util.ArrayList</p>
-</li>
-<li>
-<p>java.util.LinkedList</p>
-</li>
-<li>
-<p>java.util.Set</p>
-</li>
-<li>
-<p>java.util.SortedSet</p>
-</li>
-<li>
-<p>java.util.TreeSet</p>
-</li>
-<li>
-<p>java.util.HashSet</p>
-</li>
-<li>
-<p>java.util.Map</p>
-</li>
-<li>
-<p>java.util.SortedMap</p>
-</li>
-<li>
-<p>java.util.HashMap</p>
-</li>
-<li>
-<p>java.util.TreeMap</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Hereby the collection type is determined by the parameter type accessed, e.g.
-config.get("mylist", ArrayList.class) will always return an ArrayList
-as result.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-This means that depending on your use case you can access different
-collection types based on the same configuration values, as long as their is
-a PropertyConverter that can convert the <em>raw configuration value</em> to the
-required target type.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_configuring_the_target_implementation_type">Configuring the target implementation type</h4>
-<div class="paragraph">
-<p>Tamaya Collections allows you to configure the <em>default</em> target collection type by adding the
-following meta-configuration entry (shown for the mylist entry). Hereby the package part
-java.util. can be ommitted:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties">mylist=a,b,c
-_mylist.collection-type=LinkedList</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When calling config.get("mylist", ArrayList.class) this parameter does not have any effect,
-so you will still get an ArrayList as a result. However when you call config.get("mylist",
-List.class) you will get a LinkedList as implementation type.</p>
-</div>
-<div class="paragraph">
-<p>This mechanism similarly applies to all kind of collections, so you can use it similarly to define the implementation
-type returned when accessing List, Map or Collection.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_collecting_configuration_entries_instead_of_overriding">Collecting Configuration Entries instead of Overriding</h3>
-<div class="paragraph">
-<p>By default Tamaya applies always an overriding CombinationPolicy, where only the configuration entry for
-the most significant configuration entry is used. In case of collections (and maybe also other use cases),
-overriding is not always the mechanism of choice. E.g. when you want to have all entries added to your
-configuration to be <strong>combined</strong> to a new entry containing all values provided by any property sources.</p>
-</div>
-<div class="paragraph">
-<p>Therefore <em>Tamaya Collections</em> also provides a more sophistiated CombinationPolicy (automatically configured)
-that allows to adapt the way how configuration entries are combined. All you must do is declaring
-the mechanism to be applied by an according <em>meta-configuration</em> parameter, e.g. for my.list your config may
-look as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># from PropertSource 1
+List&lt;Integer&gt; intList = config.get("my.list.config.entry", new TypeLiteral&lt;List&lt;Integer&gt;&gt;(){});</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Configuration in that case, by default, is a simple comma-separated list of entries, e.g.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-properties" data-lang="properties">my.list.config.entry=1,34454,23,344545,3445</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Additionally the module allows adding additional meta-entries, which allows to tweak some of the inner-workings, e.g.</p> 
+   </div> 
+   <div class="ulist"> 
+    <ul> 
+     <li> <p>using your own PropertyConverter implementation for parsing entries.</p> </li> 
+     <li> <p>specifying a custom separator to split the items (default is {{','}}.</p> </li> 
+     <li> <p>specifying a custom separator to split key/value pairs when parsing map entries.</p> </li> 
+     <li> <p>specifying the implementation type of the collection item to be returned.</p> </li> 
+     <li> <p>specifying the implementation type of the collection to be returned.</p> </li> 
+    </ul> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_supported_types">Supported Types</h3> 
+   <div class="paragraph"> 
+    <p>This module currently supports the following types:</p> 
+   </div> 
+   <div class="ulist"> 
+    <ul> 
+     <li> <p>java.util.Collection</p> </li> 
+     <li> <p>java.util.List</p> </li> 
+     <li> <p>java.util.ArrayList</p> </li> 
+     <li> <p>java.util.LinkedList</p> </li> 
+     <li> <p>java.util.Set</p> </li> 
+     <li> <p>java.util.SortedSet</p> </li> 
+     <li> <p>java.util.TreeSet</p> </li> 
+     <li> <p>java.util.HashSet</p> </li> 
+     <li> <p>java.util.Map</p> </li> 
+     <li> <p>java.util.SortedMap</p> </li> 
+     <li> <p>java.util.HashMap</p> </li> 
+     <li> <p>java.util.TreeMap</p> </li> 
+    </ul> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Hereby the collection type is determined by the parameter type accessed, e.g. config.get("mylist", ArrayList.class) will always return an ArrayList as result.</p> 
+   </div> 
+   <div class="admonitionblock note"> 
+    <table> 
+     <tbody>
+      <tr> 
+       <td class="icon"> 
+        <div class="title">
+         Note
+        </div> </td> 
+       <td class="content"> This means that depending on your use case you can access different collection types based on the same configuration values, as long as their is a PropertyConverter that can convert the <em>raw configuration value</em> to the required target type. </td> 
+      </tr> 
+     </tbody>
+    </table> 
+   </div> 
+   <div class="sect3"> 
+    <h4 id="_configuring_the_target_implementation_type">Configuring the target implementation type</h4> 
+    <div class="paragraph"> 
+     <p>Tamaya Collections allows you to configure the <em>default</em> target collection type by adding the following meta-configuration entry (shown for the mylist entry). Hereby the package part java.util. can be ommitted:</p> 
+    </div> 
+    <div class="paragraph"> 
+     <p>[ source, properties]</p> 
+    </div> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre>mylist=a,b,c
+_mylist.collection-type=LinkedList</pre> 
+     </div> 
+    </div> 
+    <div class="paragraph"> 
+     <p>When calling config.get("mylist", ArrayList.class) this parameter does not have any effect, so you will still get an ArrayList as a result. However when you call config.get("mylist", List.class) you will get a LinkedList as implementation type.</p> 
+    </div> 
+    <div class="paragraph"> 
+     <p>This mechanism similarly applies to all kind of collections, so you can use it similarly to define the implementation type returned when accessing List, Map or Collection.</p> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_collecting_configuration_entries_instead_of_overriding">Collecting Configuration Entries instead of Overriding</h3> 
+   <div class="paragraph"> 
+    <p>By default Tamaya applies always an overriding CombinationPolicy, where only the configuration entry for the most significant configuration entry is used. In case of collections (and maybe also other use cases), overriding is not always the mechanism of choice. E.g. when you want to have all entries added to your configuration to be <strong>combined</strong> to a new entry containing all values provided by any property sources.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Therefore <em>Tamaya Collections</em> also provides a more sophistiated CombinationPolicy (automatically configured) that allows to adapt the way how configuration entries are combined. All you must do is declaring the mechanism to be applied by an according <em>meta-configuration</em> parameter, e.g. for my.list your config may look as follows:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># from PropertSource 1
 my.list=1,2,3
 
 # from PropertSource 2, with higher precedence
 my.list=4,5,6
 
 # without any additional meta-info these entries would be combined to
-my.list=4,5,6</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>With Tamaya Collections you can now configure the combination policy as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># use one of the default policies: override / collect
+my.list=4,5,6</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>With Tamaya Collections you can now configure the combination policy as follows:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># use one of the default policies: override / collect
 _my.list.combination-policy=collect
 
 # or use your own custom CombinationPolicy to combine the values
-_my.list.combination-policy=com.mycomp.app.MyCombincationPolicy</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>So declaring the collect policy the resulting raw output of the entry looks as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># result when applying the collect policy:
-my.list=1,2,3,4,5,6</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The customizable policy mechanism of Tamaya Collections also honors the item-separator meta-configuration
-parameter explained later in this document.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_format_of_collection_configuration">Format of Collection Configuration</h3>
-<div class="paragraph">
-<p>By default collections are modelled as simple String values, that are tokenized into individual parts using a
-defined item-separator (by default ','). So a given configuration entry of 1,2,3 is mapped to "1","2","3".
-If the target context type is something different than String the smae conversion logic is used as when mapping
-configuration parameters directly to non-String target types (implemented as +PropertyConverter classes, manahed
-within the current ConfigurationContext. The procedure is identical for all collection types, including Map types,
-with the difference that each token in the list is parsed once more for separating it into a key and a value.
-The default separator for map entries hereby is "::". Map keys, as of now, are always of type String, whereas
-for values the same logic is applied as for non-map collection types.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># a list, using the default format
+_my.list.combination-policy=com.mycomp.app.MyCombincationPolicy</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>So declaring the collect policy the resulting raw output of the entry looks as follows:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># result when applying the collect policy:
+my.list=1,2,3,4,5,6</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>The customizable policy mechanism of Tamaya Collections also honors the item-separator meta-configuration parameter explained later in this document.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_format_of_collection_configuration">Format of Collection Configuration</h3> 
+   <div class="paragraph"> 
+    <p>By default collections are modelled as simple String values, that are tokenized into individual parts using a defined item-separator (by default ','). So a given configuration entry of 1,2,3 is mapped to "1","2","3". If the target context type is something different than String the smae conversion logic is used as when mapping configuration parameters directly to non-String target types (implemented as +PropertyConverter classes, manahed within the current ConfigurationContext. The procedure is identical for all collection types, including Map types, with the difference that each token in the list is parsed once more for separating it into a key and a value. The default separator for map entries hereby is "::". Map keys, as of now, are always of type String, whereas for values the same logic is applied as for non-map collection types.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># a list, using the default format
 list=1,2,3,4,5,6
 
 # a map, using the default format
-map=a::b, c::d</code></pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_trimming_of_entries">Trimming of entries</h4>
-<div class="paragraph">
-<p>By default all tokens parsed are trimmed <em>before</em> adding them to the final collection. In case of map entries this is
-also the case for key/value entries. So the following configuration results in the identical values for
-list1,list2 and map1,map2:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># a list, using the default format
+map=a::b, c::d</code></pre> 
+    </div> 
+   </div> 
+   <div class="sect3"> 
+    <h4 id="_trimming_of_entries">Trimming of entries</h4> 
+    <div class="paragraph"> 
+     <p>By default all tokens parsed are trimmed <em>before</em> adding them to the final collection. In case of map entries this is also the case for key/value entries. So the following configuration results in the identical values for list1,list2 and map1,map2:</p> 
+    </div> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># a list, using the default format
 list1=1,2,3,4,5,6
 list2=1, 2, 3, 4, 5, 6
 
 # a map, using the default format
 map1=a::b, c::d
-map2=a :: b, c :: d</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Nevertheless truncation can be controlled by the usage of brackets, e.g. the last list or map entry will have a single
-space character as value:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># a list, with a ' ' value at the end
+map2=a :: b, c :: d</code></pre> 
+     </div> 
+    </div> 
+    <div class="paragraph"> 
+     <p>Nevertheless truncation can be controlled by the usage of brackets, e.g. the last list or map entry will have a single space character as value:</p> 
+    </div> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># a list, with a ' ' value at the end
 list3=1, 2, 3, 4, 5, [ ]
 
 # a map, with a ' ' value for key '0'
-map3=1 :: a, 2 :: b, 0::[ ]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Hereby \[ escapes the sequence.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_customizing_the_format">Customizing the format</h4>
-<div class="paragraph">
-<p>The item and entry separators (by default ',' and "::") can be customized by setting corresponding meta-data
-entries as follows, resulting in the same values as in the prevoius listing:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># a list, with a ' ' value at the end
+map3=1 :: a, 2 :: b, 0::[ ]</code></pre> 
+     </div> 
+    </div> 
+    <div class="paragraph"> 
+     <p>Hereby \[ escapes the sequence.</p> 
+    </div> 
+   </div> 
+   <div class="sect3"> 
+    <h4 id="_customizing_the_format">Customizing the format</h4> 
+    <div class="paragraph"> 
+     <p>The item and entry separators (by default ',' and "::") can be customized by setting corresponding meta-data entries as follows, resulting in the same values as in the prevoius listing:</p> 
+    </div> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># a list, with a ' ' value at the end
 list3=1__2__3__ 4__ 5__[ ]
 _list3.item-separator=__
 
 # a map, with a ' ' value for key '0'
 map3=1-&gt;a, 2-&gt;b, 0-&gt;[ ]
-_map3.map-entry-separator=-&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Of course these settings also can be combined:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># a reformatted map
+_map3.map-entry-separator=-&gt;</code></pre> 
+     </div> 
+    </div> 
+    <div class="paragraph"> 
+     <p>Of course these settings also can be combined:</p> 
+    </div> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># a reformatted map
 redefined-map=0==none | 1==single | 2==any
 _redefined-map.map-entry-separator===
-_redefined-map.item-separator=|</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
+_redefined-map.item-separator=|</code></pre> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+ </div> 
 </div></p>
 
 			<hr />
@@ -456,8 +393,8 @@ _redefined-map.item-separator=|</code></pre>
 		    <div id="footer">
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2018-05-03</span> |
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
+							at <span>2018-05-17</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

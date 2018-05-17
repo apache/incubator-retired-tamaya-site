@@ -125,84 +125,76 @@
 				<h1>Apache Tamaya - Extension: Integration with Apache Camel</h1>
 			</div>
 
-			<p><em>2018-04-26</em></p>
+			<p><em>2018-05-17</em></p>
 
-			<p><div id="preamble">
-<div class="sectionbody">
-<!-- toc disabled -->
-</div>
-</div>
-<div class="sect1">
-<h2 id="Camel">Integration with Apache Camel (Extension Module)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Tamaya <em>Camel</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
-</div>
-<div class="sect2">
-<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
-<div class="paragraph">
-<p>The Tamaya <em>Camel</em> module provides different artifacts which allows integration of Apachae Tamaya
-configuration with Apache Camel.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_compatibility">Compatibility</h3>
-<div class="paragraph">
-<p>The module is based on Java 8, so it will not run on Java 8 and beyond.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_installation">Installation</h3>
-<div class="paragraph">
-<p>To benefit from configuration builder support you only must add the corresponding dependency to your module:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+			<p><div id="preamble"> 
+ <div class="sectionbody"> 
+  <!-- toc disabled --> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="Camel">Integration with Apache Camel (Extension Module)</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>Tamaya <em>Camel</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3> 
+   <div class="paragraph"> 
+    <p>The Tamaya <em>Camel</em> module provides different artifacts which allows integration of Apachae Tamaya configuration with Apache Camel.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_compatibility">Compatibility</h3> 
+   <div class="paragraph"> 
+    <p>The module is based on Java 8, so it will not run on Java 8 and beyond.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_installation">Installation</h3> 
+   <div class="paragraph"> 
+    <p>To benefit from configuration builder support you only must add the corresponding dependency to your module:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-camel&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_the_functionality_provided">The Functionality Provided</h3>
-<div class="paragraph">
-<p>Tamaya Camel comes basically with three artifacts:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>A Camel ResolverFunction implementation adding explicit property resolution
-(org.apache.tamaya.camel.TamayaPropertyResolver).</p>
-</li>
-<li>
-<p>A Camel PropertiesComponent implementation, which allows implicitly preconfigures the resolvers from above and
-additionally allows using Tamaya configuration as Camel <em>overrides</em>
-(org.apache.tamaya.camel.TamayaPropertiesComponent).</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_configuring_using_camel_java_dsl">Configuring using Camel Java DSL</h3>
-<div class="paragraph">
-<p>Camel integration using Java DSL is basically simple:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">import org.apache.tamaya.camel.TamayaPropertiesComponent;
+&lt;/dependency&gt;</code></pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_the_functionality_provided">The Functionality Provided</h3> 
+   <div class="paragraph"> 
+    <p>Tamaya Camel comes basically with three artifacts:</p> 
+   </div> 
+   <div class="ulist"> 
+    <ul> 
+     <li> <p>A Camel ResolverFunction implementation adding explicit property resolution (org.apache.tamaya.camel.TamayaPropertyResolver).</p> </li> 
+     <li> <p>A Camel PropertiesComponent implementation, which allows implicitly preconfigures the resolvers from above and additionally allows using Tamaya configuration as Camel <em>overrides</em> (org.apache.tamaya.camel.TamayaPropertiesComponent).</p> </li> 
+    </ul> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_configuring_using_camel_java_dsl">Configuring using Camel Java DSL</h3> 
+   <div class="paragraph"> 
+    <p>Camel integration using Java DSL is basically simple:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">import org.apache.tamaya.camel.TamayaPropertiesComponent;
 
-camelContext.addComponent("properties", new TamayaPropertiesComponent());</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Given so you can then use cfg or tamaya as prefix for resolving entries with Tamaya as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">RouteBuilder builder = new RouteBuilder() {
+camelContext.addComponent("properties", new TamayaPropertiesComponent());</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Given so you can then use cfg or tamaya as prefix for resolving entries with Tamaya as follows:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">RouteBuilder builder = new RouteBuilder() {
     public void configure() {
         from("direct:hello1").transform().simple("{{cfg:message}}");
     }
@@ -213,31 +205,27 @@ builder = new RouteBuilder() {
         from("direct:hello2").transform().simple("{{tamaya:message}}");
     }
 };
-camelContext.addRoutes(builder);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Optionally you can also configure TamayaPropertiesComponent that all currently known Tamaya properties are used
-as Camel overrides, meaning they are evaluated prior to all other available resolver functions in the Camel
-PropertiesComponent:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">TamayaPropertiesComponent props = new TamayaPropertiesComponent();
-props.setTamayaOverrides(true);</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_configuring_using_camel_xml_dsl">Configuring using Camel XML DSL</h3>
-<div class="paragraph">
-<p>Camel integration using XML DSL is basically very similar. You just have to add the properties component as bean
-as well. All other configuration parameters (e.g. file URIs are similar supported). In the example code below we
-again use Tamaya as the main configuration solutions only using Camel&#8217;s default behaviour as a fallback:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
+camelContext.addRoutes(builder);</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Optionally you can also configure TamayaPropertiesComponent that all currently known Tamaya properties are used as Camel overrides, meaning they are evaluated prior to all other available resolver functions in the Camel PropertiesComponent:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">TamayaPropertiesComponent props = new TamayaPropertiesComponent();
+props.setTamayaOverrides(true);</code></pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_configuring_using_camel_xml_dsl">Configuring using Camel XML DSL</h3> 
+   <div class="paragraph"> 
+    <p>Camel integration using XML DSL is basically very similar. You just have to add the properties component as bean as well. All other configuration parameters (e.g. file URIs are similar supported). In the example code below we again use Tamaya as the main configuration solutions only using Camel’s default behaviour as a fallback:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -269,11 +257,11 @@ again use Tamaya as the main configuration solutions only using Camel&#8217;s de
         &lt;property name="tamayaOverrides" value="true"/&gt;
     &lt;/bean&gt;
 
-&lt;/beans&gt;</code></pre>
-</div>
-</div>
-</div>
-</div>
+&lt;/beans&gt;</code></pre> 
+    </div> 
+   </div> 
+  </div> 
+ </div> 
 </div></p>
 
 			<hr />
@@ -285,8 +273,8 @@ again use Tamaya as the main configuration solutions only using Camel&#8217;s de
 		    <div id="footer">
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2018-05-03</span> |
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
+							at <span>2018-05-17</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

@@ -125,371 +125,287 @@
 				<h1>Apache Tamaya Release Guide</h1>
 			</div>
 
-			<p><em>2018-04-26</em></p>
+			<p><em>2018-05-17</em></p>
 
-			<p><div id="preamble">
-<div class="sectionbody">
-<div class="paragraph lead">
-<p>This document describes how to perform a release of Apache Tamaya
-API&amp;Core and Apache Tamaya Extensions during
-its incubation. It contains a step by step description of each step,
-so everybody in the commiters&#8217;s team will be able to perform
-the release procedure during the incubation phase.
-Differences in the procedure between Tamaya API&amp;Core and Tamaya
-Extensions are mentioned.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_prerequisites">1. Prerequisites</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This section describes the prerequisite which must be given to
-perform the release procedure.</p>
-</div>
-<div class="olist upperroman">
-<ol class="upperroman" type="I">
-<li>
-<p>Subversion client, needed to upload the source distribution.</p>
-</li>
-<li>
-<p>Git</p>
-</li>
-<li>
-<p>A valid GPG key, needed to sign all artifacts created during
-the release process.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_performing_the_release">2. Performing the release</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_tell_the_others_you_would_proceed_with_the_release_procedure">2.1. Tell the others you would proceed with the release procedure</h3>
-<div class="paragraph">
-<p>The first step is to announce on developer mailing list that
-you plan to release a new version of Tamaya API&amp;Core as well
-as of the Tamaya Extensions.</p>
-</div>
-<div class="paragraph">
-<p>Take the mail template below, adapt it if necessary, an send it
-to <a href="mailto:dev@tamaya.incubator.apache.org">dev@tamaya.incubator.apache.org</a>.</p>
-</div>
-<div class="listingblock">
-<div class="title">Subject of the announcement of an upcomming release</div>
-<div class="content">
-<pre>Starting with the preparation of the next release of &lt;&lt;project&gt;&gt;</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Body of the announcement of an upcomming release.</div>
-<div class="content">
-<pre>Dear all,
+			<p><div id="preamble"> 
+ <div class="sectionbody"> 
+  <div class="paragraph lead"> 
+   <p>This document describes how to perform a release of Apache Tamaya API&amp;Core and Apache Tamaya Extensions during its incubation. It contains a step by step description of each step, so everybody in the commiters’s team will be able to perform the release procedure during the incubation phase. Differences in the procedure between Tamaya API&amp;Core and Tamaya Extensions are mentioned.</p> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_prerequisites">1. Prerequisites</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>This section describes the prerequisite which must be given to perform the release procedure.</p> 
+  </div> 
+  <div class="olist upperroman"> 
+   <ol class="upperroman" type="I"> 
+    <li> <p>Subversion client, needed to upload the source distribution.</p> </li> 
+    <li> <p>Git</p> </li> 
+    <li> <p>A valid GPG key, needed to sign all artifacts created during the release process.</p> </li> 
+   </ol> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_performing_the_release">2. Performing the release</h2> 
+ <div class="sectionbody"> 
+  <div class="sect2"> 
+   <h3 id="_tell_the_others_you_would_proceed_with_the_release_procedure">2.1. Tell the others you would proceed with the release procedure</h3> 
+   <div class="paragraph"> 
+    <p>The first step is to announce on developer mailing list that you plan to release a new version of Tamaya API&amp;Core as well as of the Tamaya Extensions.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Take the mail template below, adapt it if necessary, an send it to <a href="mailto:dev@tamaya.incubator.apache.org">dev@tamaya.incubator.apache.org</a>.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Subject of the announcement of an upcomming release
+    </div> 
+    <div class="content"> 
+     <pre>Starting with the preparation of the next release of &lt;&lt;project&gt;&gt;</pre> 
+    </div> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Body of the announcement of an upcomming release.
+    </div> 
+    <div class="content"> 
+     <pre>Dear all,
 
 If there are no objections, I'll start with the first steps for
 the next release of &lt;&lt;project&gt;&gt; (review, documentation,...).
 It would be great to start with the release procedure next week.
 
 Best regards,
-&lt;&lt;your name&gt;&gt;</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Don&#8217;t expect that everyone will response immediately as we all are very
-busy. So be patient with you team members. Meanwhile you can
-proceed with the release preparations.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_check_if_everything_is_ready">2.2. Check if everything is ready</h3>
-<div class="paragraph">
-<p>The following items must be done before you can start with the
-actual release process.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Check if the build chains in
-<a href="https://builds.apache.org/view/Tamaya/" target="_blank">Apache&#8217;s Jenkins</a>
-of the project in to be released are fine and where are
-no problems with the build and quality of the project.</p>
-</li>
-<li>
-<p>Ensure that all
-<a href="https://issues.apache.org/jira/projects/TAMAYA" target="_blank">JIRA</a> issues
-targeting the upcomming release are resolved.
-If not, get in contact with the issue assignee or the reporter to
-check</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>if the issue can be postponed for the next release</p>
-</li>
-<li>
-<p>how long it takes to resolve it and if someone can help.</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_prepare_the_release_notes">2.3. Prepare the release notes</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Create release notes and commit them to the <code>/readme/</code>
-directory of the project. The file name of the release
-notes document should be <code>ReleaseNotes-[version].html</code>.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Tip</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Ensure that you include only notes an the release notes
-which affect the project you are releasing.
-For instance a notes on an issues which affects Tamaya Extensions
-should not be included in the release notes of Tamaya API&amp;Core.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_preparing_the_vote_of_the_ppmc_on_the_release">2.4. Preparing the vote of the PPMC on the release</h3>
-<div class="paragraph">
-<p>If you are sure that everything is ready for the
-next release you can start the vote of the PPMC
-on the proposed release.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Important</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Keep in mind that preparing the release
-really means only to prepare the release by
-uploading it to the dev area of the
-<a href="https://dist.apache.org" target="_blank">distribution
-server of the Apache project</a> and to a staging
-repository of <a href="https://repository.apache.org" target="_blank">Apache&#8217;s Nexus</a>.</p>
-</div>
-<div class="paragraph">
-<p>You must not publish the artifacts created during
-the preparation of the release until the IPMC as well
-as the PPMC of Apache Tamaya have approved the release.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Before you can present the proposed release to the
-IPMC of the Apache Incubator, the proposed release must be
-approved by the PPMC of the Tamaya project.</p>
-</div>
-<div class="paragraph">
-<p>Therefore you must run a vote on the proposed release
-by creating a vote candidat in the Git repository of
-the project, uploading the source distribution
-to the dev area of the distribution server of the Apache
-project and uploading the Maven artifacts to a staging
-repository in Apache&#8217;s Nexus. This sounds complicated
-but it isn&#8217;t that complicated if you follow the steps
-of this guide.</p>
-</div>
-<div class="paragraph">
-<p>In case the vote candidate does not pass the vote of
-the PPMC or the IPMC you can choose between
-canceling the current attempt for the next release
-or you try to fix the issues which hinders people to
-vote with yes. If you have choosen the second
-way then you have to prepare a new vote candidat.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_preparing_the_release_without_the_release_plugin">2.5. Preparing the release without the Release Plugin</h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>We tried to use the <a href="http://maven.apache.org/maven-release/maven-release-plugin/" target="_blank">Maven Release Plugin</a>
-to increase the level of automatisation of the release process, but
-we were not able to get the Maven Release Plugin working as we
-need it for our release process. Therefore we decided not to use
-it.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The first step is to create a separate branch for the release canidate.
-The name should consist of the release version and the number of the
-voting candidate.</p>
-</div>
-<div class="paragraph">
-<p>For example if you would like to run a vote for the 1.0 release of
-Tamaya API&amp;Core during its incubation for the second time, the usual
-branch name would be <code>vote-1.0-incubating-02</code>.</p>
-</div>
-<div class="paragraph">
-<p>Follow the instructions below to create the branch for the vote
-and to build the vote candidate.</p>
-</div>
-<div class="listingblock">
-<div class="title">Creating the vote branch and building the vote candidat</div>
-<div class="content">
-<pre>$ git checkout -b vote-[release version]-[attempt]                                         <b class="conum">(1)</b> <b class="conum">(2)</b>
+&lt;&lt;your name&gt;&gt;</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Don’t expect that everyone will response immediately as we all are very busy. So be patient with you team members. Meanwhile you can proceed with the release preparations.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_check_if_everything_is_ready">2.2. Check if everything is ready</h3> 
+   <div class="paragraph"> 
+    <p>The following items must be done before you can start with the actual release process.</p> 
+   </div> 
+   <div class="olist arabic"> 
+    <ol class="arabic"> 
+     <li> <p>Check if the build chains in <a href="https://builds.apache.org/view/Tamaya/" target="_blank" rel="noopener">Apache’s Jenkins</a> of the project in to be released are fine and where are no problems with the build and quality of the project.</p> </li> 
+     <li> <p>Ensure that all <a href="https://issues.apache.org/jira/projects/TAMAYA" target="_blank" rel="noopener">JIRA</a> issues targeting the upcomming release are resolved. If not, get in contact with the issue assignee or the reporter to check</p> 
+      <div class="olist loweralpha"> 
+       <ol class="loweralpha" type="a"> 
+        <li> <p>if the issue can be postponed for the next release</p> </li> 
+        <li> <p>how long it takes to resolve it and if someone can help.</p> </li> 
+       </ol> 
+      </div> </li> 
+    </ol> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_prepare_the_release_notes">2.3. Prepare the release notes</h3> 
+   <div class="ulist"> 
+    <ul> 
+     <li> <p>Create release notes and commit them to the <code>/readme/</code> directory of the project. The file name of the release notes document should be <code>ReleaseNotes-[version].html</code>.</p> </li> 
+    </ul> 
+   </div> 
+   <div class="admonitionblock tip"> 
+    <table> 
+     <tbody>
+      <tr> 
+       <td class="icon"> 
+        <div class="title">
+         Tip
+        </div> </td> 
+       <td class="content"> 
+        <div class="paragraph"> 
+         <p>Ensure that you include only notes an the release notes which affect the project you are releasing. For instance a notes on an issues which affects Tamaya Extensions should not be included in the release notes of Tamaya API&amp;Core.</p> 
+        </div> </td> 
+      </tr> 
+     </tbody>
+    </table> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_preparing_the_vote_of_the_ppmc_on_the_release">2.4. Preparing the vote of the PPMC on the release</h3> 
+   <div class="paragraph"> 
+    <p>If you are sure that everything is ready for the next release you can start the vote of the PPMC on the proposed release.</p> 
+   </div> 
+   <div class="admonitionblock important"> 
+    <table> 
+     <tbody>
+      <tr> 
+       <td class="icon"> 
+        <div class="title">
+         Important
+        </div> </td> 
+       <td class="content"> 
+        <div class="paragraph"> 
+         <p>Keep in mind that preparing the release really means only to prepare the release by uploading it to the dev area of the <a href="https://dist.apache.org" target="_blank" rel="noopener">distribution server of the Apache project</a> and to a staging repository of <a href="https://repository.apache.org" target="_blank" rel="noopener">Apache’s Nexus</a>.</p> 
+        </div> 
+        <div class="paragraph"> 
+         <p>You must not publish the artifacts created during the preparation of the release until the IPMC as well as the PPMC of Apache Tamaya have approved the release.</p> 
+        </div> </td> 
+      </tr> 
+     </tbody>
+    </table> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Before you can present the proposed release to the IPMC of the Apache Incubator, the proposed release must be approved by the PPMC of the Tamaya project.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Therefore you must run a vote on the proposed release by creating a vote candidat in the Git repository of the project, uploading the source distribution to the dev area of the distribution server of the Apache project and uploading the Maven artifacts to a staging repository in Apache’s Nexus. This sounds complicated but it isn’t that complicated if you follow the steps of this guide.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>In case the vote candidate does not pass the vote of the PPMC or the IPMC you can choose between canceling the current attempt for the next release or you try to fix the issues which hinders people to vote with yes. If you have choosen the second way then you have to prepare a new vote candidat.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_preparing_the_release_without_the_release_plugin">2.5. Preparing the release without the Release Plugin</h3> 
+   <div class="admonitionblock note"> 
+    <table> 
+     <tbody>
+      <tr> 
+       <td class="icon"> 
+        <div class="title">
+         Note
+        </div> </td> 
+       <td class="content"> 
+        <div class="paragraph"> 
+         <p>We tried to use the <a href="http://maven.apache.org/maven-release/maven-release-plugin/" target="_blank" rel="noopener">Maven Release Plugin</a> to increase the level of automatisation of the release process, but we were not able to get the Maven Release Plugin working as we need it for our release process. Therefore we decided not to use it.</p> 
+        </div> </td> 
+      </tr> 
+     </tbody>
+    </table> 
+   </div> 
+   <div class="paragraph"> 
+    <p>The first step is to create a separate branch for the release canidate. The name should consist of the release version and the number of the voting candidate.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>For example if you would like to run a vote for the 1.0 release of Tamaya API&amp;Core during its incubation for the second time, the usual branch name would be <code>vote-1.0-incubating-02</code>.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Follow the instructions below to create the branch for the vote and to build the vote candidate.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Creating the vote branch and building the vote candidat
+    </div> 
+    <div class="content"> 
+     <pre>$ git checkout -b vote-[release version]-[attempt]                                         <b class="conum">(1)</b> <b class="conum">(2)</b>
 $ export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=200m"
 $ mvn versions:set versions:commit -DnewVersion=[release version] -DperformRelease=true
-$ mvn clean install -DperformRelease=true -Dgpg.keyname=[key] -Dgpg.passphrase=[passphrase] <b class="conum">(3)</b> <b class="conum">(4)</b></pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>The version number of the planed release, e.g. <code>0.4-incubating</code></p>
-</li>
-<li>
-<p>The number of the current vote, e.g. <code>03</code></p>
-</li>
-<li>
-<p>The id of your GPG key.</p>
-</li>
-<li>
-<p>The passphrase of you GPG key.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Now you can check the source distribution and the Maven artifacts created
-during the build.</p>
-</div>
-<div class="paragraph">
-<p>If everything is correct, deploy them to a staging repository on Apache&#8217;s
-Nexus.</p>
-</div>
-<div class="listingblock">
-<div class="title">Deploying the vote candidate to Apache&#8217;s Nexus'</div>
-<div class="content">
-<pre>$ mvn deploy</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>After deploying the artifacts you have to check the staging repository
-created in Apache&#8217;s Nexus:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Login to <a href="https://repository.apache.org/" class="bare" target="_blank">https://repository.apache.org/</a> and go to <em>Staging Repositories</em>.</p>
-</li>
-<li>
-<p>Check the Contents of the newly create staging repository for you release.</p>
-</li>
-<li>
-<p>Close the staging repository to let Nexus do its validations on the deployed
-artifacts.</p>
-</li>
-</ol>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Important</div>
-</td>
-<td class="content">
-Do not release the content of the stating repository right now.
-           Releasing means to publish the artifacts. This will be done
-           after a successful vote of the IPMC.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>If everything is correct until now, commit your local changes, create a tag for
-the voting candidate and push the tag and your commits to the Git
-repository.</p>
-</div>
-<div class="listingblock">
-<div class="title">Commiting the changes done for the vote candidate</div>
-<div class="content">
-<pre>$ git add -A
+$ mvn clean install -DperformRelease=true -Dgpg.keyname=[key] -Dgpg.passphrase=[passphrase] <b class="conum">(3)</b> <b class="conum">(4)</b></pre> 
+    </div> 
+   </div> 
+   <div class="colist arabic"> 
+    <ol> 
+     <li> <p>The version number of the planed release, e.g. <code>0.4-incubating</code></p> </li> 
+     <li> <p>The number of the current vote, e.g. <code>03</code></p> </li> 
+     <li> <p>The id of your GPG key.</p> </li> 
+     <li> <p>The passphrase of you GPG key.</p> </li> 
+    </ol> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Now you can check the source distribution and the Maven artifacts created during the build.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>If everything is correct, deploy them to a staging repository on Apache’s Nexus.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Deploying the vote candidate to Apache’s Nexus'
+    </div> 
+    <div class="content"> 
+     <pre>$ mvn deploy</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>After deploying the artifacts you have to check the staging repository created in Apache’s Nexus:</p> 
+   </div> 
+   <div class="olist arabic"> 
+    <ol class="arabic"> 
+     <li> <p>Login to <a href="https://repository.apache.org/" class="bare" target="_blank" rel="noopener">https://repository.apache.org/</a> and go to <em>Staging Repositories</em>.</p> </li> 
+     <li> <p>Check the Contents of the newly create staging repository for you release.</p> </li> 
+     <li> <p>Close the staging repository to let Nexus do its validations on the deployed artifacts.</p> </li> 
+    </ol> 
+   </div> 
+   <div class="admonitionblock important"> 
+    <table> 
+     <tbody>
+      <tr> 
+       <td class="icon"> 
+        <div class="title">
+         Important
+        </div> </td> 
+       <td class="content"> Do not release the content of the stating repository right now. Releasing means to publish the artifacts. This will be done after a successful vote of the IPMC. </td> 
+      </tr> 
+     </tbody>
+    </table> 
+   </div> 
+   <div class="paragraph"> 
+    <p>If everything is correct until now, commit your local changes, create a tag for the voting candidate and push the tag and your commits to the Git repository.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Commiting the changes done for the vote candidate
+    </div> 
+    <div class="content"> 
+     <pre>$ git add -A
 $ git commit -m "Release Prepare: Set release version."
 $ git tag vote-[release version]-[attempt]
-$ git push --tags</pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>The version number of the planed release, e.g. <code>0.4-incubating</code></p>
-</li>
-<li>
-<p>The number of the current vote, e.g. <code>03</code></p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Finally open the next development version of the project.</p>
-</div>
-<div class="listingblock">
-<div class="title">Set next development version of the project</div>
-<div class="content">
-<pre>$ mvn version:set versions:commit -DnewVersion=[development version]  <b class="conum">(1)</b>
+$ git push --tags</pre> 
+    </div> 
+   </div> 
+   <div class="colist arabic"> 
+    <ol> 
+     <li> <p>The version number of the planed release, e.g. <code>0.4-incubating</code></p> </li> 
+     <li> <p>The number of the current vote, e.g. <code>03</code></p> </li> 
+    </ol> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Finally open the next development version of the project.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Set next development version of the project
+    </div> 
+    <div class="content"> 
+     <pre>$ mvn version:set versions:commit -DnewVersion=[development version]  <b class="conum">(1)</b>
 $ git add -A
-$ git commit -m "Release Prepare: Open new development version."</pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>Next development version, e.g. <code>0.83-incubating-SNAPSHOT</code></p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>After setting the new development version you have to add the source
-distribution to the distribution repository at <a href="https://dist.apache.org/repos/dist/" class="bare" target="_blank">https://dist.apache.org/repos/dist/</a>.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Important</div>
-</td>
-<td class="content">
-The source distribution and all required artifacts must be added
-           to the development directory of Apache&#8217;s distribution server.
-           After the approvement of the release candidate by the PPMC and
-           the IPMC they will be moved to the release directory.
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="title">Adding all needed artifacts to distribution repository</div>
-<div class="content">
-<pre>$ svn co https://dist.apache.org/repos/dist/dev/incubator/tamaya/
+$ git commit -m "Release Prepare: Open new development version."</pre> 
+    </div> 
+   </div> 
+   <div class="colist arabic"> 
+    <ol> 
+     <li> <p>Next development version, e.g. <code>0.83-incubating-SNAPSHOT</code></p> </li> 
+    </ol> 
+   </div> 
+   <div class="paragraph"> 
+    <p>After setting the new development version you have to add the source distribution to the distribution repository at <a href="https://dist.apache.org/repos/dist/" class="bare" target="_blank" rel="noopener">https://dist.apache.org/repos/dist/</a>.</p> 
+   </div> 
+   <div class="admonitionblock important"> 
+    <table> 
+     <tbody>
+      <tr> 
+       <td class="icon"> 
+        <div class="title">
+         Important
+        </div> </td> 
+       <td class="content"> The source distribution and all required artifacts must be added to the development directory of Apache’s distribution server. After the approvement of the release candidate by the PPMC and the IPMC they will be moved to the release directory. </td> 
+      </tr> 
+     </tbody>
+    </table> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Adding all needed artifacts to distribution repository
+    </div> 
+    <div class="content"> 
+     <pre>$ svn co https://dist.apache.org/repos/dist/dev/incubator/tamaya/
 $ mkdir [release version]/[project]                                          <b class="conum">(1)</b>
 $ set RELEASE_HOME=`pwd`/[release version]/[project]
 $ set PROJECT_ROOT=[repository of the project]                               <b class="conum">(2)</b>
@@ -500,114 +416,90 @@ $ cp LICENCE $RELEASE_HOME
 $ cp keys/KEYS $RELEASE_HOME
 $ cp $PROJECT_ROOT/cp distribution/target/*{.tar.gz,.zip,.asc} $RELEASE_HOME <b class="conum">(3)</b>
 $ svn add [version]
-$ svn add [version]/[project]</pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>We store the artifacts of Tamaya API&amp;Core and Tamaya Extensions always
-in different subdirectories. So <em>project</em> can be either
-<code>apiandcore</code> or <code>extensions</code>.</p>
-</li>
-<li>
-<p><code>PROJECT_ROOT</code> is the Git repository of the project which you want to
-release.</p>
-</li>
-<li>
-<p>This command copies both distribution archives to <code>$RELEASE_HOME</code>.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Additionally there must be a SHA-1 and MD5 sigature file for each distribution
-archive and its GPG signature (<code>.asc</code>). To generate them you need programs
-like <code>md5</code> and <code>shasum</code>. The name of these programs might vary from system to system.</p>
-</div>
-<div class="listingblock">
-<div class="title">Generating the required SHA-1 and MD5 signatures</div>
-<div class="content">
-<pre>$ cd $RELEASE_HOME
-$ for f in $(ls *{.tar.gz,.zip,.asc}); do shasum -a 1 $f &gt; ${f}.sha1; md5 $f &gt; ${f}.md5; done</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>After generating the signature files you can add and commit all files and artifacts
-of the source distribution.</p>
-</div>
-<div class="listingblock">
-<div class="title">Adding and commiting the source distribution</div>
-<div class="content">
-<pre>$ cd $RELEASE_HOME
+$ svn add [version]/[project]</pre> 
+    </div> 
+   </div> 
+   <div class="colist arabic"> 
+    <ol> 
+     <li> <p>We store the artifacts of Tamaya API&amp;Core and Tamaya Extensions always in different subdirectories. So <em>project</em> can be either <code>apiandcore</code> or <code>extensions</code>.</p> </li> 
+     <li> <p><code>PROJECT_ROOT</code> is the Git repository of the project which you want to release.</p> </li> 
+     <li> <p>This command copies both distribution archives to <code>$RELEASE_HOME</code>.</p> </li> 
+    </ol> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Additionally there must be a SHA-1 and MD5 sigature file for each distribution archive and its GPG signature (<code>.asc</code>). To generate them you need programs like <code>md5</code> and <code>shasum</code>. The name of these programs might vary from system to system.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Generating the required SHA-1 and MD5 signatures
+    </div> 
+    <div class="content"> 
+     <pre>$ cd $RELEASE_HOME
+$ for f in $(ls *{.tar.gz,.zip,.asc}); do shasum -a 1 $f &gt; ${f}.sha1; md5 $f &gt; ${f}.md5; done</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>After generating the signature files you can add and commit all files and artifacts of the source distribution.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Adding and commiting the source distribution
+    </div> 
+    <div class="content"> 
+     <pre>$ cd $RELEASE_HOME
 $ svn add [project]
 $ svn add [version]
-$ svn commit --username [Apache ID]</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>All commited files and artifacts should be now available via
-<a href="https://dist.apache.org/repos/dist/dev/incubator/tamaya/" target="_blank">https://dist.apache.org/repos/dist/dev/incubator/tamaya/&#91;version&#93;/&#91;project&#93;</a>.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_run_the_vote_on_the_release_candidate">3. Run the vote on the release candidate</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_run_the_internally">3.1. Run the internally</h3>
-<div class="paragraph">
-<p>The next step is to prepare the vote on <a href="mailto:dev@tamaya.incubator.apache.org" target="_blank">dev@tamaya.incubator.apache.org</a>.
-The mail must contain serveral links, e.g. a link to the source distribution
-and a link to the tag in the Git repository.</p>
-</div>
-<div class="paragraph">
-<p>The following links are needed for the mail:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>A link to the source distribution in the dev section of the distribution repository
-at <a href="https://dist.apache.org/repos/dist/dev/incubator/tamaya/" class="bare" target="_blank">https://dist.apache.org/repos/dist/dev/incubator/tamaya/</a>.</p>
-</li>
-<li>
-<p>A link to the tag of the release candidate, taken from
-<a href="https://git1-us-west.apache.org/repos/asf?p=incubator-tamaya.git;a=summary" class="bare" target="_blank">https://git1-us-west.apache.org/repos/asf?p=incubator-tamaya.git;a=summary</a>.</p>
-</li>
-<li>
-<p>A link to the staging repository for the release candidate of the intended
-relase at <a href="http://repository.apache.org/content/repositories" class="bare" target="_blank">http://repository.apache.org/content/repositories</a>.</p>
-</li>
-<li>
-<p>A link to to the <a href="http://www.apache.org/foundation/voting.html#ReleaseVotes" target="_blank">rules for release votes</a>
-in the <em>Apache Voting Process</em> document.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Take the mail template below, insert the links, an send it
-to <a href="mailto:dev@tamaya.incubator.apache.org">dev@tamaya.incubator.apache.org</a>.</p>
-</div>
-<div class="listingblock">
-<div class="title">Subject of the vote on the release candidate</div>
-<div class="content">
-<pre>[Vote] Release of [project] [version] <b class="conum">(1)</b> <b class="conum">(2)</b></pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>Replace <em>project</em> by either Apache Tamaya API&amp;Core or Apache Tamaya Extensions</p>
-</li>
-<li>
-<p>Replace <em>version</em> by the version number of the release</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="title">Body of the vote on the release candidate</div>
-<div class="content">
-<pre>[VOTE] Release of [project] [version]                                         <b class="conum">(1)</b> <b class="conum">(2)</b>
+$ svn commit --username [Apache ID]</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>All commited files and artifacts should be now available via <a href="https://dist.apache.org/repos/dist/dev/incubator/tamaya/" target="_blank" rel="noopener">https://dist.apache.org/repos/dist/dev/incubator/tamaya/[version]/[project]</a>.</p> 
+   </div> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_run_the_vote_on_the_release_candidate">3. Run the vote on the release candidate</h2> 
+ <div class="sectionbody"> 
+  <div class="sect2"> 
+   <h3 id="_run_the_internally">3.1. Run the internally</h3> 
+   <div class="paragraph"> 
+    <p>The next step is to prepare the vote on <a href="mailto:dev@tamaya.incubator.apache.org" target="_blank" rel="noopener">dev@tamaya.incubator.apache.org</a>. The mail must contain serveral links, e.g. a link to the source distribution and a link to the tag in the Git repository.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>The following links are needed for the mail:</p> 
+   </div> 
+   <div class="olist arabic"> 
+    <ol class="arabic"> 
+     <li> <p>A link to the source distribution in the dev section of the distribution repository at <a href="https://dist.apache.org/repos/dist/dev/incubator/tamaya/" class="bare" target="_blank" rel="noopener">https://dist.apache.org/repos/dist/dev/incubator/tamaya/</a>.</p> </li> 
+     <li> <p>A link to the tag of the release candidate, taken from <a href="https://git1-us-west.apache.org/repos/asf?p=incubator-tamaya.git;a=summary" class="bare" target="_blank" rel="noopener">https://git1-us-west.apache.org/repos/asf?p=incubator-tamaya.git;a=summary</a>.</p> </li> 
+     <li> <p>A link to the staging repository for the release candidate of the intended relase at <a href="http://repository.apache.org/content/repositories" class="bare" target="_blank" rel="noopener">http://repository.apache.org/content/repositories</a>.</p> </li> 
+     <li> <p>A link to to the <a href="http://www.apache.org/foundation/voting.html#ReleaseVotes" target="_blank" rel="noopener">rules for release votes</a> in the <em>Apache Voting Process</em> document.</p> </li> 
+    </ol> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Take the mail template below, insert the links, an send it to <a href="mailto:dev@tamaya.incubator.apache.org">dev@tamaya.incubator.apache.org</a>.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Subject of the vote on the release candidate
+    </div> 
+    <div class="content"> 
+     <pre>[Vote] Release of [project] [version] <b class="conum">(1)</b> <b class="conum">(2)</b></pre> 
+    </div> 
+   </div> 
+   <div class="colist arabic"> 
+    <ol> 
+     <li> <p>Replace <em>project</em> by either Apache Tamaya API&amp;Core or Apache Tamaya Extensions</p> </li> 
+     <li> <p>Replace <em>version</em> by the version number of the release</p> </li> 
+    </ol> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Body of the vote on the release candidate
+    </div> 
+    <div class="content"> 
+     <pre>[VOTE] Release of [project] [version]                                         <b class="conum">(1)</b> <b class="conum">(2)</b>
 
 Hi,
 
@@ -634,63 +526,44 @@ Thanks,
 [1] [link to the source distribution]                                         <b class="conum">(3)</b>
 [2] [link to the staging repository at Apache's Nexus]                        <b class="conum">(4)</b>
 [3] [link to the tag in the Git repository]                                   <b class="conum">(5)</b>
-[4] http://www.apache.org/foundation/voting.html#ReleaseVotes</pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>Replace <em>project</em> by the name of the project to be release, which can be
-<em>Apache Tamaya API&amp;Core</em> or <em>Apache Tamaya Extensions</em>.</p>
-</li>
-<li>
-<p>Replease <em>version</em> by the version number of the intended release.</p>
-</li>
-<li>
-<p>Insert here the link to the source distribution of the project
-in the dev section of distribution repository
-at <a href="https://dist.apache.org/repos/dist/dev/incubator/tamaya/" class="bare" target="_blank">https://dist.apache.org/repos/dist/dev/incubator/tamaya/</a>.</p>
-</li>
-<li>
-<p>Insert here the link to the staging repository for the release candidate
-at <a href="http://repository.apache.org/content/repositories" class="bare" target="_blank">http://repository.apache.org/content/repositories</a>.</p>
-</li>
-<li>
-<p>Insert here the link to the tag created for the release candidate
-in the Git repository.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Wait at least 72 hours before you close the result. If there is not enough attention
-at the mailing list to vote, send a nice reminder to the list. Please keep in mind
-that people might be simple to busy to respond on your vote.</p>
-</div>
-<div class="paragraph">
-<p>To close the vote count all single votes and send the result as reply to your
-initial mail to the mailinglist by using the templates below.</p>
-</div>
-<div class="listingblock">
-<div class="title">Subject of the mail with the result of the vote</div>
-<div class="content">
-<pre>[Result] (was: Re: [VOTE] Release of [project] [version]) <b class="conum">(1)</b> <b class="conum">(2)</b></pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>Replace <em>project</em> by the name of the project to be release, which can be
-<em>Apache Tamaya API&amp;Core</em> or <em>Apache Tamaya Extensions</em>.</p>
-</li>
-<li>
-<p>Replease <em>version</em> by the version number of the intended release.</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="title">Body of the mail with the result of the vote</div>
-<div class="content">
-<pre>Thank you for voting!
+[4] http://www.apache.org/foundation/voting.html#ReleaseVotes</pre> 
+    </div> 
+   </div> 
+   <div class="colist arabic"> 
+    <ol> 
+     <li> <p>Replace <em>project</em> by the name of the project to be release, which can be <em>Apache Tamaya API&amp;Core</em> or <em>Apache Tamaya Extensions</em>.</p> </li> 
+     <li> <p>Replease <em>version</em> by the version number of the intended release.</p> </li> 
+     <li> <p>Insert here the link to the source distribution of the project in the dev section of distribution repository at <a href="https://dist.apache.org/repos/dist/dev/incubator/tamaya/" class="bare" target="_blank" rel="noopener">https://dist.apache.org/repos/dist/dev/incubator/tamaya/</a>.</p> </li> 
+     <li> <p>Insert here the link to the staging repository for the release candidate at <a href="http://repository.apache.org/content/repositories" class="bare" target="_blank" rel="noopener">http://repository.apache.org/content/repositories</a>.</p> </li> 
+     <li> <p>Insert here the link to the tag created for the release candidate in the Git repository.</p> </li> 
+    </ol> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Wait at least 72 hours before you close the result. If there is not enough attention at the mailing list to vote, send a nice reminder to the list. Please keep in mind that people might be simple to busy to respond on your vote.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>To close the vote count all single votes and send the result as reply to your initial mail to the mailinglist by using the templates below.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Subject of the mail with the result of the vote
+    </div> 
+    <div class="content"> 
+     <pre>[Result] (was: Re: [VOTE] Release of [project] [version]) <b class="conum">(1)</b> <b class="conum">(2)</b></pre> 
+    </div> 
+   </div> 
+   <div class="colist arabic"> 
+    <ol> 
+     <li> <p>Replace <em>project</em> by the name of the project to be release, which can be <em>Apache Tamaya API&amp;Core</em> or <em>Apache Tamaya Extensions</em>.</p> </li> 
+     <li> <p>Replease <em>version</em> by the version number of the intended release.</p> </li> 
+    </ol> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Body of the mail with the result of the vote
+    </div> 
+    <div class="content"> 
+     <pre>Thank you for voting!
 
 X binding +1 votes (PPMC):    <b class="conum">(1)</b>
 [list]                        <b class="conum">(2)</b>
@@ -699,80 +572,57 @@ Y non-binding +1 votes:       <b class="conum">(3)</b>
 [list]                        <b class="conum">(4)</b>
 
 Z -1 votes:                   <b class="conum">(5)</b>
-[list]                        <b class="conum">(6)</b></pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>Replace <em>X</em> by the number of positive votes by PPMC members</p>
-</li>
-<li>
-<p>Replace <em>list</em> by the names of PPMC members with a positive vote</p>
-</li>
-<li>
-<p>Replace <em>Y</em> by the number of non-binding positive votes by
-non-PPMC members</p>
-</li>
-<li>
-<p>Replace <em>list</em> by the names of non-PPMC members with a positive vote</p>
-</li>
-<li>
-<p>Replace <em>Z</em> by the number of negative votes by PPMC members</p>
-</li>
-<li>
-<p>Replace <em>list</em> by the names of PPMC members with a negative vote</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>After the vote on the PPMC has been finished and is successful,
-repeat the voting process on the incubator mailing list.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_let_the_ipmc_vote_on_the_release_candidate">3.2. Let the IPMC vote on the release candidate</h3>
-<div class="paragraph">
-<p>During the incubation phase of Tamaya, each release must be approved
-by the IPMC.</p>
-</div>
-<div class="paragraph">
-<p>The first step is to subscribe to the mailinglist
-<a href="mailto:general@incubator.apache.org">general@incubator.apache.org</a>.
-More information and how to do this can be found on
-<a href="https://incubator.apache.org/guides/lists.html" class="bare" target="_blank">https://incubator.apache.org/guides/lists.html</a>.</p>
-</div>
-<div class="paragraph">
-<p>The mail, which must be send to the list, is quite similar
-to the one for the PPMC, but it must also contain a link
-to the mail thread of the successful vote of the PPMC.
-The archive of the developers mailinglist of Apache Tamaya
-can be found at <a href="https://lists.apache.org" class="bare" target="_blank">https://lists.apache.org</a>.</p>
-</div>
-<div class="paragraph">
-<p>The mail to the IPMC can be composed by using these both
-templates:</p>
-</div>
-<div class="listingblock">
-<div class="title">Subject of the vote on the release candidate</div>
-<div class="content">
-<pre>[Vote] Release of [project] [version] <b class="conum">(1)</b> <b class="conum">(2)</b></pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>Replace <em>project</em> by either Apache Tamaya API&amp;Core or Apache Tamaya Extensions</p>
-</li>
-<li>
-<p>Replace <em>version</em> by the version number of the release</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="title">Body of the vote on the release candidate</div>
-<div class="content">
-<pre>[VOTE] Release of [project] [version]                                         <b class="conum">(1)</b> <b class="conum">(2)</b>
+[list]                        <b class="conum">(6)</b></pre> 
+    </div> 
+   </div> 
+   <div class="colist arabic"> 
+    <ol> 
+     <li> <p>Replace <em>X</em> by the number of positive votes by PPMC members</p> </li> 
+     <li> <p>Replace <em>list</em> by the names of PPMC members with a positive vote</p> </li> 
+     <li> <p>Replace <em>Y</em> by the number of non-binding positive votes by non-PPMC members</p> </li> 
+     <li> <p>Replace <em>list</em> by the names of non-PPMC members with a positive vote</p> </li> 
+     <li> <p>Replace <em>Z</em> by the number of negative votes by PPMC members</p> </li> 
+     <li> <p>Replace <em>list</em> by the names of PPMC members with a negative vote</p> </li> 
+    </ol> 
+   </div> 
+   <div class="paragraph"> 
+    <p>After the vote on the PPMC has been finished and is successful, repeat the voting process on the incubator mailing list.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_let_the_ipmc_vote_on_the_release_candidate">3.2. Let the IPMC vote on the release candidate</h3> 
+   <div class="paragraph"> 
+    <p>During the incubation phase of Tamaya, each release must be approved by the IPMC.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>The first step is to subscribe to the mailinglist <a href="mailto:general@incubator.apache.org">general@incubator.apache.org</a>. More information and how to do this can be found on <a href="https://incubator.apache.org/guides/lists.html" class="bare" target="_blank" rel="noopener">https://incubator.apache.org/guides/lists.html</a>.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>The mail, which must be send to the list, is quite similar to the one for the PPMC, but it must also contain a link to the mail thread of the successful vote of the PPMC. The archive of the developers mailinglist of Apache Tamaya can be found at <a href="https://lists.apache.org" class="bare" target="_blank" rel="noopener">https://lists.apache.org</a>.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>The mail to the IPMC can be composed by using these both templates:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Subject of the vote on the release candidate
+    </div> 
+    <div class="content"> 
+     <pre>[Vote] Release of [project] [version] <b class="conum">(1)</b> <b class="conum">(2)</b></pre> 
+    </div> 
+   </div> 
+   <div class="colist arabic"> 
+    <ol> 
+     <li> <p>Replace <em>project</em> by either Apache Tamaya API&amp;Core or Apache Tamaya Extensions</p> </li> 
+     <li> <p>Replace <em>version</em> by the version number of the release</p> </li> 
+    </ol> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Body of the vote on the release candidate
+    </div> 
+    <div class="content"> 
+     <pre>[VOTE] Release of [project] [version]                                         <b class="conum">(1)</b> <b class="conum">(2)</b>
 
 Dear IPMC members,
 
@@ -804,66 +654,45 @@ Thanks,
 [2] [link to the staging repository at Apache's Nexus]                        <b class="conum">(4)</b>
 [3] [link to the tag in the Git repository]                                   <b class="conum">(5)</b>
 [4] [link to the thread of the vote by the PPMC.]                             <b class="conum">(6)</b>
-[5] http://www.apache.org/foundation/voting.html#ReleaseVotes</pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>Replace <em>project</em> by the name of the project to be release, which can be
-<em>Apache Tamaya API&amp;Core</em> or <em>Apache Tamaya Extensions</em>.</p>
-</li>
-<li>
-<p>Replease <em>version</em> by the version number of the intended release.</p>
-</li>
-<li>
-<p>Insert here the link to the source distribution of the project
-in the dev section of distribution repository
-at <a href="https://dist.apache.org/repos/dist/dev/incubator/tamaya/" class="bare" target="_blank">https://dist.apache.org/repos/dist/dev/incubator/tamaya/</a>.</p>
-</li>
-<li>
-<p>Insert here the link to the staging repository for the release candidate
-at <a href="http://repository.apache.org/content/repositories" class="bare" target="_blank">http://repository.apache.org/content/repositories</a>.</p>
-</li>
-<li>
-<p>Insert here the link to the tag created for the release candidate
-in the Git repository.</p>
-</li>
-<li>
-<p>Insert here the link to vote thread on Tamaya&#8217;s developer mailinglist
-for this release candidate</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Send the mail to general@incubator.apache.org and let
-the vote run for at least 72 hours.</p>
-</div>
-<div class="paragraph">
-<p>To close the vote count all single votes and send the result as reply
-to your initial mail to the mailinglist by using the templates below:</p>
-</div>
-<div class="listingblock">
-<div class="title">Subject of the mail with the result of the vote</div>
-<div class="content">
-<pre>[Result] (was: Re: [VOTE] Release of [project] [version]) <b class="conum">(1)</b> <b class="conum">(2)</b></pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>Replace <em>project</em> by the name of the project to be release, which can be
-<em>Apache Tamaya API&amp;Core</em> or <em>Apache Tamaya Extensions</em>.</p>
-</li>
-<li>
-<p>Replease <em>version</em> by the version number of the intended release.</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="title">Body of the mail with the result of the vote</div>
-<div class="content">
-<pre>Thank you for voting!
+[5] http://www.apache.org/foundation/voting.html#ReleaseVotes</pre> 
+    </div> 
+   </div> 
+   <div class="colist arabic"> 
+    <ol> 
+     <li> <p>Replace <em>project</em> by the name of the project to be release, which can be <em>Apache Tamaya API&amp;Core</em> or <em>Apache Tamaya Extensions</em>.</p> </li> 
+     <li> <p>Replease <em>version</em> by the version number of the intended release.</p> </li> 
+     <li> <p>Insert here the link to the source distribution of the project in the dev section of distribution repository at <a href="https://dist.apache.org/repos/dist/dev/incubator/tamaya/" class="bare" target="_blank" rel="noopener">https://dist.apache.org/repos/dist/dev/incubator/tamaya/</a>.</p> </li> 
+     <li> <p>Insert here the link to the staging repository for the release candidate at <a href="http://repository.apache.org/content/repositories" class="bare" target="_blank" rel="noopener">http://repository.apache.org/content/repositories</a>.</p> </li> 
+     <li> <p>Insert here the link to the tag created for the release candidate in the Git repository.</p> </li> 
+     <li> <p>Insert here the link to vote thread on Tamaya’s developer mailinglist for this release candidate</p> </li> 
+    </ol> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Send the mail to general@incubator.apache.org and let the vote run for at least 72 hours.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>To close the vote count all single votes and send the result as reply to your initial mail to the mailinglist by using the templates below:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Subject of the mail with the result of the vote
+    </div> 
+    <div class="content"> 
+     <pre>[Result] (was: Re: [VOTE] Release of [project] [version]) <b class="conum">(1)</b> <b class="conum">(2)</b></pre> 
+    </div> 
+   </div> 
+   <div class="colist arabic"> 
+    <ol> 
+     <li> <p>Replace <em>project</em> by the name of the project to be release, which can be <em>Apache Tamaya API&amp;Core</em> or <em>Apache Tamaya Extensions</em>.</p> </li> 
+     <li> <p>Replease <em>version</em> by the version number of the intended release.</p> </li> 
+    </ol> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Body of the mail with the result of the vote
+    </div> 
+    <div class="content"> 
+     <pre>Thank you for voting!
 
 X binding +1 votes (PPMC):    <b class="conum">(1)</b>
 [list]                        <b class="conum">(2)</b>
@@ -872,238 +701,183 @@ Y non-binding +1 votes:       <b class="conum">(3)</b>
 [list]                        <b class="conum">(4)</b>
 
 Z -1 votes:                   <b class="conum">(5)</b>
-[list]                        <b class="conum">(6)</b></pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>Replace <em>X</em> by the number of positive votes by IPMC members</p>
-</li>
-<li>
-<p>Replace <em>list</em> by the names of IPMC members with a positive vote</p>
-</li>
-<li>
-<p>Replace <em>Y</em> by the number of non-binding positive votes by
-non-IPMC members</p>
-</li>
-<li>
-<p>Replace <em>list</em> by the names of non-PPMC members with a positive vote</p>
-</li>
-<li>
-<p>Replace <em>Z</em> by the number of negative votes by IPMC members</p>
-</li>
-<li>
-<p>Replace <em>list</em> by the names of IPMC members with a negative vote</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_performing_the_release_2">4. Performing the release</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The actually release process can be started if the binding majority
-of IPMC members have approved the release candidate.</p>
-</div>
-<div class="paragraph">
-<p>The first task is to create branch for the new release
-out of the branch, created for the vote on the release candidate.</p>
-</div>
-<div class="sect2">
-<h3 id="_tag_and_branch_for_the_release">4.1. Tag and branch for the release</h3>
-<div class="paragraph">
-<p>Creating this branch requires multiple commands, as Git does not
-allow to simply rename a remote branch. The listing below shows
-which commands are needed to create a branch for the new release</p>
-</div>
-<div class="listingblock">
-<div class="title">Renaming the branch of the release candidate</div>
-<div class="content">
-<pre>$ git checkout master                                                  <b class="conum">(1)</b>
+[list]                        <b class="conum">(6)</b></pre> 
+    </div> 
+   </div> 
+   <div class="colist arabic"> 
+    <ol> 
+     <li> <p>Replace <em>X</em> by the number of positive votes by IPMC members</p> </li> 
+     <li> <p>Replace <em>list</em> by the names of IPMC members with a positive vote</p> </li> 
+     <li> <p>Replace <em>Y</em> by the number of non-binding positive votes by non-IPMC members</p> </li> 
+     <li> <p>Replace <em>list</em> by the names of non-PPMC members with a positive vote</p> </li> 
+     <li> <p>Replace <em>Z</em> by the number of negative votes by IPMC members</p> </li> 
+     <li> <p>Replace <em>list</em> by the names of IPMC members with a negative vote</p> </li> 
+    </ol> 
+   </div> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_performing_the_release_2">4. Performing the release</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>The actually release process can be started if the binding majority of IPMC members have approved the release candidate.</p> 
+  </div> 
+  <div class="paragraph"> 
+   <p>The first task is to create branch for the new release out of the branch, created for the vote on the release candidate.</p> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_tag_and_branch_for_the_release">4.1. Tag and branch for the release</h3> 
+   <div class="paragraph"> 
+    <p>Creating this branch requires multiple commands, as Git does not allow to simply rename a remote branch. The listing below shows which commands are needed to create a branch for the new release</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Renaming the branch of the release candidate
+    </div> 
+    <div class="content"> 
+     <pre>$ git checkout master                                                  <b class="conum">(1)</b>
 $ git branch release-[version] vote-[version]-[attempt]                <b class="conum">(2)</b> <b class="conum">(3)</b> <b class="conum">(4)</b>
 $ git push origin release-[version]:refs/heads/release-[version]       <b class="conum">(5)</b>
 $ git push origin :vote-[version]-[attempt]                            <b class="conum">(6)</b>
 $ git branch -D vote-[version]-[attempt]                               <b class="conum">(7)</b>
-$ git checkout -b release-[version] --track origin/release-[version]   <b class="conum">(8)</b></pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>Switching back to <code>master</code></p>
-</li>
-<li>
-<p>Creating a release branch out of the vote branch</p>
-</li>
-<li>
-<p>Replace <em>version</em> by the version number of the release</p>
-</li>
-<li>
-<p>Replace <em>attempt</em> by the number of the successful vote attempt</p>
-</li>
-<li>
-<p>Pushing the new branch under the same name to the blessed repository</p>
-</li>
-<li>
-<p>Delete the vote branch in the blessed remote repository</p>
-</li>
-<li>
-<p>Delete the branch locally</p>
-</li>
-<li>
-<p>Checkout the new release branch and set the corresponding
-remote branch as upstream branch</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Now create a new tag for the release based on the exsting tag
-for the release candidate and delete the tag made for
-the release candidate:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$ git tag release-[version] vote-[version]-[attempt]                   <b class="conum">(1)</b> <b class="conum">(2)</b> <b class="conum">(3)</b>
+$ git checkout -b release-[version] --track origin/release-[version]   <b class="conum">(8)</b></pre> 
+    </div> 
+   </div> 
+   <div class="colist arabic"> 
+    <ol> 
+     <li> <p>Switching back to <code>master</code></p> </li> 
+     <li> <p>Creating a release branch out of the vote branch</p> </li> 
+     <li> <p>Replace <em>version</em> by the version number of the release</p> </li> 
+     <li> <p>Replace <em>attempt</em> by the number of the successful vote attempt</p> </li> 
+     <li> <p>Pushing the new branch under the same name to the blessed repository</p> </li> 
+     <li> <p>Delete the vote branch in the blessed remote repository</p> </li> 
+     <li> <p>Delete the branch locally</p> </li> 
+     <li> <p>Checkout the new release branch and set the corresponding remote branch as upstream branch</p> </li> 
+    </ol> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Now create a new tag for the release based on the exsting tag for the release candidate and delete the tag made for the release candidate:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>$ git tag release-[version] vote-[version]-[attempt]                   <b class="conum">(1)</b> <b class="conum">(2)</b> <b class="conum">(3)</b>
 $ git tag -d vote-[version]-[attempt]                                  <b class="conum">(4)</b>
 $ git push origin :vote-[version]-[attempt]                            <b class="conum">(5)</b>
-$ git push --tags origin                                               <b class="conum">(6)</b></pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>Creating a release tag for the release</p>
-</li>
-<li>
-<p>Replace <em>version</em> by the version number of the release</p>
-</li>
-<li>
-<p>Replace <em>attempt</em> by the number of the successful vote attempt</p>
-</li>
-<li>
-<p>Delete the tag made for the vote locally</p>
-</li>
-<li>
-<p>Delete tag tag mode for the vote in the blessed remote repository</p>
-</li>
-<li>
-<p>Push the new tag to the remote repository</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Now you can merge the new release branch with the prepared
-development version to master.</p>
-</div>
-<div class="listingblock">
-<div class="title">Merging the release branch to <code>master</code></div>
-<div class="content">
-<pre>$ git checkout master
+$ git push --tags origin                                               <b class="conum">(6)</b></pre> 
+    </div> 
+   </div> 
+   <div class="colist arabic"> 
+    <ol> 
+     <li> <p>Creating a release tag for the release</p> </li> 
+     <li> <p>Replace <em>version</em> by the version number of the release</p> </li> 
+     <li> <p>Replace <em>attempt</em> by the number of the successful vote attempt</p> </li> 
+     <li> <p>Delete the tag made for the vote locally</p> </li> 
+     <li> <p>Delete tag tag mode for the vote in the blessed remote repository</p> </li> 
+     <li> <p>Push the new tag to the remote repository</p> </li> 
+    </ol> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Now you can merge the new release branch with the prepared development version to master.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Merging the release branch to 
+     <code>master</code>
+    </div> 
+    <div class="content"> 
+     <pre>$ git checkout master
 $ git merge release-[version]
-$ git push origin master</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_cleanup_jira">4.2. Cleanup Jira</h3>
-<div class="paragraph">
-<p>Login into <a href="https://issues.apache.org/jira/browse/tamaya">Apache&#8217;s Jira</a> and
-close all issues in the
-<a href="https://issues.apache.org/jira/browse/tamaya" target="_blank">Tamaya project</a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_release_the_staging_repository">4.3. Release the staging repository</h3>
-<div class="paragraph">
-<p>Login into <a href="https://repository.apache.org/" target="_blank">Apaches Nexus</a> and
-release to staging repository for the new release.</p>
-</div>
-<div class="paragraph">
-<p>Then wait some minutes and check if the artifacts have become
-available at <a href="http://repo2.maven.org/maven2/org/apache/tamaya" class="bare" target="_blank">http://repo2.maven.org/maven2/org/apache/tamaya</a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_releasing_the_distribution_artifacts">4.4. Releasing the distribution artifacts</h3>
-<div class="paragraph">
-<p>The source distribution of the release candidate must now be
-moved from the dev section of the distribution repository
-to the release section.</p>
-</div>
-<div class="paragraph">
-<p>An easy way to achive this is to use the <code>svn mv</code> command
-only with remote URLs. Before you move the distribution artifacts,
-make sure the the directory for the version of the projects exists.</p>
-</div>
-<div class="listingblock">
-<div class="title">Checking if the target directory exists in SVN</div>
-<div class="content">
-<pre>$ svn ls https://dist.apache.org/repos/dist/release/incubator/tamaya</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If the directory does not exists, create it.</p>
-</div>
-<div class="listingblock">
-<div class="title">Creating the directory for the version of the release</div>
-<div class="content">
-<pre>$ svn mkdir https://dist.apache.org/repos/dist/release/incubator/tamaya/[versio]    <b class="conum">(1)</b></pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>Replace <em>version</em> by the version number of the release.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Now move all distribution artifacts from the dev section to the release
-section.</p>
-</div>
-<div class="listingblock">
-<div class="title">Moving the source distribution to the release section with SVN</div>
-<div class="content">
-<pre>$ svn mv \
+$ git push origin master</pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_cleanup_jira">4.2. Cleanup Jira</h3> 
+   <div class="paragraph"> 
+    <p>Login into <a href="https://issues.apache.org/jira/browse/tamaya">Apache’s Jira</a> and close all issues in the <a href="https://issues.apache.org/jira/browse/tamaya" target="_blank" rel="noopener">Tamaya project</a>.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_release_the_staging_repository">4.3. Release the staging repository</h3> 
+   <div class="paragraph"> 
+    <p>Login into <a href="https://repository.apache.org/" target="_blank" rel="noopener">Apaches Nexus</a> and release to staging repository for the new release.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Then wait some minutes and check if the artifacts have become available at <a href="http://repo2.maven.org/maven2/org/apache/tamaya" class="bare" target="_blank" rel="noopener">http://repo2.maven.org/maven2/org/apache/tamaya</a>.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_releasing_the_distribution_artifacts">4.4. Releasing the distribution artifacts</h3> 
+   <div class="paragraph"> 
+    <p>The source distribution of the release candidate must now be moved from the dev section of the distribution repository to the release section.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>An easy way to achive this is to use the <code>svn mv</code> command only with remote URLs. Before you move the distribution artifacts, make sure the the directory for the version of the projects exists.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Checking if the target directory exists in SVN
+    </div> 
+    <div class="content"> 
+     <pre>$ svn ls https://dist.apache.org/repos/dist/release/incubator/tamaya</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>If the directory does not exists, create it.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Creating the directory for the version of the release
+    </div> 
+    <div class="content"> 
+     <pre>$ svn mkdir https://dist.apache.org/repos/dist/release/incubator/tamaya/[versio]    <b class="conum">(1)</b></pre> 
+    </div> 
+   </div> 
+   <div class="colist arabic"> 
+    <ol> 
+     <li> <p>Replace <em>version</em> by the version number of the release.</p> </li> 
+    </ol> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Now move all distribution artifacts from the dev section to the release section.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="title">
+     Moving the source distribution to the release section with SVN
+    </div> 
+    <div class="content"> 
+     <pre>$ svn mv \
     https://dist.apache.org/repos/dist/dev/incubator/tamaya/[version]/[project] \   <b class="conum">(1)</b> <b class="conum">(2)</b>
-    https://dist.apache.org/repos/dist/release/incubator/tamaya/[version]/[project]</pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>Replace <em>version</em> by the version number of the release.</p>
-</li>
-<li>
-<p>Replace <em>project</em> by the name of the project.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>To be sure that everything wents well, perform a checkout of the SVN
-repository for the release section and check if everything is there.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$ svn checkout https://dist.apache.org/repos/dist/release/incubator/tamaya
+    https://dist.apache.org/repos/dist/release/incubator/tamaya/[version]/[project]</pre> 
+    </div> 
+   </div> 
+   <div class="colist arabic"> 
+    <ol> 
+     <li> <p>Replace <em>version</em> by the version number of the release.</p> </li> 
+     <li> <p>Replace <em>project</em> by the name of the project.</p> </li> 
+    </ol> 
+   </div> 
+   <div class="paragraph"> 
+    <p>To be sure that everything wents well, perform a checkout of the SVN repository for the release section and check if everything is there.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>$ svn checkout https://dist.apache.org/repos/dist/release/incubator/tamaya
 $ cd tamaya
-$ ls -Rlah</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_updating_the_website_and_announcing_the_release">5. Updating the website and announcing the release</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Coordindate on the developers mailinglist the update of the website
-for the new version and the announcement of the new version.</p>
-</div>
-</div>
+$ ls -Rlah</pre> 
+    </div> 
+   </div> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_updating_the_website_and_announcing_the_release">5. Updating the website and announcing the release</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>Coordindate on the developers mailinglist the update of the website for the new version and the announcement of the new version.</p> 
+  </div> 
+ </div> 
 </div></p>
 
 			<hr />
@@ -1115,8 +889,8 @@ for the new version and the announcement of the new version.</p>
 		    <div id="footer">
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2018-05-03</span> |
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
+							at <span>2018-05-17</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

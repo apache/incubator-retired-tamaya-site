@@ -125,95 +125,74 @@
 				<h1>Apache Tamaya - Extension: Integration with consul (Hashicorp)</h1>
 			</div>
 
-			<p><em>2018-04-26</em></p>
+			<p><em>2018-05-17</em></p>
 
-			<p><div id="preamble">
-<div class="sectionbody">
-<!-- toc disabled -->
-</div>
-</div>
-<div class="sect1">
-<h2 id="Consul">Integration with consul (Extension Module)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Tamaya <em>Consul</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
-</div>
-<div class="sect2">
-<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
-<div class="paragraph">
-<p>Tamaya <em>Consul</em> provides different artifacts which allows use of
-<a href="http://www.consul.io">Consul from Hashicorp</a> as configuration backend. Basically the
-module supports read-only integration (as a ConsulonfigSource as well
-as a writing configuration changes back (based on Tamaya&#8217;s MutableConfiguration API
-defined by the <a href="mod_mutable_config.html">tamaya-mutable-config</a> extension module.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_compatibility">Compatibility</h3>
-<div class="paragraph">
-<p>The module is based on Java 8, so it will not run on Java 8 and beyond.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_installation">Installation</h3>
-<div class="paragraph">
-<p>To use <em>tamaya-consul</em> you only must add the corresponding dependency to your module:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+			<p><div id="preamble"> 
+ <div class="sectionbody"> 
+  <!-- toc disabled --> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="Consul">Integration with consul (Extension Module)</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>Tamaya <em>Consul</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3> 
+   <div class="paragraph"> 
+    <p>Tamaya <em>Consul</em> provides different artifacts which allows use of <a href="http://www.consul.io">Consul from Hashicorp</a> as configuration backend. Basically the module supports read-only integration (as a ConsulonfigSource as well as a writing configuration changes back (based on Tamaya’s MutableConfiguration API defined by the <a href="mod_mutable_config.html">tamaya-mutable-config</a> extension module.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_compatibility">Compatibility</h3> 
+   <div class="paragraph"> 
+    <p>The module is based on Java 8, so it will not run on Java 8 and beyond.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_installation">Installation</h3> 
+   <div class="paragraph"> 
+    <p>To use <em>tamaya-consul</em> you only must add the corresponding dependency to your module:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-consul&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_the_extensions_provided">The Extensions Provided</h3>
-<div class="paragraph">
-<p>Consul integration comes basically with 2 artifacts:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The org.apache.tamaya.etcd.ConsulConfigSource is a ConfigSource with a default
-ordinal of 100 and the name 'consul', which is automatically registered.</p>
-</li>
-<li>
-<p>If the tamaya-mutable-config module is loaded it is possible to write property values back into the consul cluster,
-by accessing a MutableConfiguration using the URI config:consul.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Access of consul key/value pairs is through the normal Tamaya API.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_the_consulconfigsource">The ConsulConfigSource</h3>
-<div class="paragraph">
-<p>The ConsulConfigSource is automatically registered and allows the consul servers to be used to be configured. This
-enables to use e.g. in Docker environments the docker environment configuration mechanisms to configure Tamaya running
-in microservice containers to connect with the according consul cluster:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The config source reads the tamaya.consul.urls system and environment property to evaluate possible consul servers
-(comma separated), which can be connected to. On failure the API just performs a Round-Robin through the list of
-configured servers. Without any configuration http://127.0.0.1:2400 is used. If no connection to any consul
-server can be established a warning will be logged, but deployment will not fail.</p>
-</li>
-<li>
-<p>The ConsulConfigSource finally also allows the values read from the consul cluster to be mapped to prefixed
-context. This can be activated by setting the <code>-Dtamaya.consul.prefix=&lt;PREFIX&gt;</code> system property. E.g. when the prefix is
-set to <code>cluster-config.</code> a consul key of <code>host:known/all</code> is mapped to <code>cluster-config.host:known/all</code>.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
+&lt;/dependency&gt;</code></pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_the_extensions_provided">The Extensions Provided</h3> 
+   <div class="paragraph"> 
+    <p>Consul integration comes basically with 2 artifacts:</p> 
+   </div> 
+   <div class="ulist"> 
+    <ul> 
+     <li> <p>The org.apache.tamaya.etcd.ConsulConfigSource is a ConfigSource with a default ordinal of 100 and the name 'consul', which is automatically registered.</p> </li> 
+     <li> <p>If the tamaya-mutable-config module is loaded it is possible to write property values back into the consul cluster, by accessing a MutableConfiguration using the URI config:consul.</p> </li> 
+    </ul> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Access of consul key/value pairs is through the normal Tamaya API.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_the_consulconfigsource">The ConsulConfigSource</h3> 
+   <div class="paragraph"> 
+    <p>The ConsulConfigSource is automatically registered and allows the consul servers to be used to be configured. This enables to use e.g. in Docker environments the docker environment configuration mechanisms to configure Tamaya running in microservice containers to connect with the according consul cluster:</p> 
+   </div> 
+   <div class="ulist"> 
+    <ul> 
+     <li> <p>The config source reads the tamaya.consul.urls system and environment property to evaluate possible consul servers (comma separated), which can be connected to. On failure the API just performs a Round-Robin through the list of configured servers. Without any configuration http://127.0.0.1:2400 is used. If no connection to any consul server can be established a warning will be logged, but deployment will not fail.</p> </li> 
+     <li> <p>The ConsulConfigSource finally also allows the values read from the consul cluster to be mapped to prefixed context. This can be activated by setting the <code>-Dtamaya.consul.prefix=&lt;PREFIX&gt;</code> system property. E.g. when the prefix is set to <code>cluster-config.</code> a consul key of <code>host:known/all</code> is mapped to <code>cluster-config.host:known/all</code>.</p> </li> 
+    </ul> 
+   </div> 
+  </div> 
+ </div> 
 </div></p>
 
 			<hr />
@@ -225,8 +204,8 @@ set to <code>cluster-config.</code> a consul key of <code>host:known/all</code> 
 		    <div id="footer">
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2018-05-03</span> |
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
+							at <span>2018-05-17</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

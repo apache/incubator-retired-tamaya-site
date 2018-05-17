@@ -125,57 +125,54 @@
 				<h1>Apache Tamaya - Extension: Remote Configuration</h1>
 			</div>
 
-			<p><em>2018-04-26</em></p>
+			<p><em>2018-05-17</em></p>
 
-			<p><div id="preamble">
-<div class="sectionbody">
-<!-- toc disabled -->
-</div>
-</div>
-<div class="sect1">
-<h2 id="Remote">Tamaya Remote Configuration (Extension Module)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Tamaya <em>Remote</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
-</div>
-<div class="sect2">
-<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
-<div class="paragraph">
-<p>Tamaya <em>Remote</em> provides support for reading configuration from remote resources. It provides
-out-of-the-box support for reading scoped configuration from a Tamaya configuration server as
-provided with the Tamaya <em>server</em> module .</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_compatibility">Compatibility</h3>
-<div class="paragraph">
-<p>The module is based on Java 7, so it will not run on Java 7 and beyond.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_installation">Installation</h3>
-<div class="paragraph">
-<p>To use remote support you only must add the corresponding dependency to your module:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+			<p><div id="preamble"> 
+ <div class="sectionbody"> 
+  <!-- toc disabled --> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="Remote">Tamaya Remote Configuration (Extension Module)</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>Tamaya <em>Remote</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3> 
+   <div class="paragraph"> 
+    <p>Tamaya <em>Remote</em> provides support for reading configuration from remote resources. It provides out-of-the-box support for reading scoped configuration from a Tamaya configuration server as provided with the Tamaya <em>server</em> module .</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_compatibility">Compatibility</h3> 
+   <div class="paragraph"> 
+    <p>The module is based on Java 7, so it will not run on Java 7 and beyond.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_installation">Installation</h3> 
+   <div class="paragraph"> 
+    <p>To use remote support you only must add the corresponding dependency to your module:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-remote&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_reading_remote_configuration_from_a_tamaya_configuration_server">Reading Remote configuration from a Tamaya Configuration Server</h3>
-<div class="paragraph">
-<p>The remote module allows reading JSON formatted configuration as provided by the Tamaya <em>server</em> extension . The JSON
-format used looks as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-json" data-lang="json">{
+&lt;/dependency&gt;</code></pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_reading_remote_configuration_from_a_tamaya_configuration_server">Reading Remote configuration from a Tamaya Configuration Server</h3> 
+   <div class="paragraph"> 
+    <p>The remote module allows reading JSON formatted configuration as provided by the Tamaya <em>server</em> extension . The JSON format used looks as follows:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-json" data-lang="json">{
   "java.vendor.url": "http://java.oracle.com/",
   "java.vendor.url.bug": "http://bugreport.sun.com/bugreport/",
   "java.vm.info": "mixed mode",
@@ -203,23 +200,18 @@ format used looks as follows:</p>
   "_info.timestamp": "1441463200571",
   "_timestamp": "1441463200571",
   "_type": "Configuration"
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Basically there are no constraints about they keys provided. By default Tamaya uses keys prefixed with
-'_' to identify meta-data entries, but this is not a required precondition.</p>
-</div>
-<div class="paragraph">
-<p>Finally such a remote configuration can be easily integrated by inheriting from the provided base
-class. Hereby a default ordinal must be defined and the protected Collection&lt;URL&gt; getAccessURLs()
-method must be implemented to define the URL from where the configuration should be accessible. Hereby
-multiple URLs can be provided, which are accesed in order as provided by the collection&#8217;s iterator. The
-first accessible URL determines the configuration read.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public class RemotePropertySource extends BaseRemotePropertySource{
+}</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Basically there are no constraints about they keys provided. By default Tamaya uses keys prefixed with '_' to identify meta-data entries, but this is not a required precondition.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Finally such a remote configuration can be easily integrated by inheriting from the provided base class. Hereby a default ordinal must be defined and the protected Collection&lt;URL&gt; getAccessURLs() method must be implemented to define the URL from where the configuration should be accessible. Hereby multiple URLs can be provided, which are accesed in order as provided by the collection’s iterator. The first accessible URL determines the configuration read.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public class RemotePropertySource extends BaseRemotePropertySource{
 
     @Override
     protected Collection&lt;URL&gt; getAccessURLs() {
@@ -239,11 +231,11 @@ first accessible URL determines the configuration read.</p>
         }
     }
 
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
+}</code></pre> 
+    </div> 
+   </div> 
+  </div> 
+ </div> 
 </div></p>
 
 			<hr />
@@ -255,8 +247,8 @@ first accessible URL determines the configuration read.</p>
 		    <div id="footer">
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2018-05-03</span> |
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
+							at <span>2018-05-17</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

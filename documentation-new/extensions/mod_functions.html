@@ -125,70 +125,65 @@
 				<h1>Apache Tamaya - Extension: Functions</h1>
 			</div>
 
-			<p><em>2018-04-26</em></p>
+			<p><em>2018-05-17</em></p>
 
-			<p><div id="preamble">
-<div class="sectionbody">
-<!-- toc disabled -->
-</div>
-</div>
-<div class="sect1">
-<h2 id="Functions">Tamaya Functions (Extension Module)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Tamaya <em>Functions</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
-</div>
-<div class="sect2">
-<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
-<div class="paragraph">
-<p>Tamaya <em>Functions</em> provides several functional extensions using the UnaryOperator&lt;Config&gt;,Function&lt;Config, T&gt; extension
-points. Most functional extension are accessible from the ConfigurationFunctions singleton. Since the JSR API
-does not provide any functional extension points it is recommended to adapt the Config instance into .FunctionalConfig.
-Then, when importing the functional methods statically they can very easily applied, e.g.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">import static org.apache.tamaya.functions.ConfigurationFunctions.*;
+			<p><div id="preamble"> 
+ <div class="sectionbody"> 
+  <!-- toc disabled --> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="Functions">Tamaya Functions (Extension Module)</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>Tamaya <em>Functions</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3> 
+   <div class="paragraph"> 
+    <p>Tamaya <em>Functions</em> provides several functional extensions using the UnaryOperator&lt;Config&gt;,Function&lt;Config, T&gt; extension points. Most functional extension are accessible from the ConfigurationFunctions singleton. Since the JSR API does not provide any functional extension points it is recommended to adapt the Config instance into .FunctionalConfig. Then, when importing the functional methods statically they can very easily applied, e.g.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">import static org.apache.tamaya.functions.ConfigurationFunctions.*;
 
 FunctionalConfig fc = FunctionalConfig.of(ConfigProvider.getConfig());
-Set&lt;String&gt; sections = fc.with(areas("a", false).with(transitiveAreas());</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The expression above returns all fully qualified section names that are child sections of the root section 'a'.
-So given the entries a.b.entry1, a.b.entry2, a.a.entry3, a.b.c.entry4 the reult would be a, a.a, a.b, a.b.c.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_compatibility">Compatibility</h3>
-<div class="paragraph">
-<p>The module is based on Java 8, so it can be used with Java 8 and beyond.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_installation">Installation</h3>
-<div class="paragraph">
-<p>For using the functionality shown in this document you only must add the corresponding dependency to your module:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+Set&lt;String&gt; sections = fc.with(areas("a", false).with(transitiveAreas());</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>The expression above returns all fully qualified section names that are child sections of the root section 'a'. So given the entries a.b.entry1, a.b.entry2, a.a.entry3, a.b.c.entry4 the reult would be a, a.a, a.b, a.b.c.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_compatibility">Compatibility</h3> 
+   <div class="paragraph"> 
+    <p>The module is based on Java 8, so it can be used with Java 8 and beyond.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_installation">Installation</h3> 
+   <div class="paragraph"> 
+    <p>For using the functionality shown in this document you only must add the corresponding dependency to your module:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-functions&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_functionalconfig">FunctionalConfig</h3>
-<div class="paragraph">
-<p>The FunctionalConfig actually adds the functional extension points with and query to .Config instance, which
-allow to chain expressions as seen in the introductionary snippet:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface FunctionalConfig extends Config, ConfigContextSupplier {
+&lt;/dependency&gt;</code></pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_functionalconfig">FunctionalConfig</h3> 
+   <div class="paragraph"> 
+    <p>The FunctionalConfig actually adds the functional extension points with and query to .Config instance, which allow to chain expressions as seen in the introductionary snippet:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface FunctionalConfig extends Config, ConfigContextSupplier {
 
     /**
      * Enriches a {@link Config} instance with functional access points.
@@ -201,131 +196,57 @@ allow to chain expressions as seen in the introductionary snippet:</p>
 
     default FunctionalConfig with(UnaryOperator&lt;Config&gt; operator);
     default &lt;T&gt; T query(Function&lt;Config, T&gt; query);
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_the_provided_functions">The Provided Functions</h3>
-<div class="sect3">
-<h4 id="_functions_on_configurationfunctions">Functions on ConfigurationFunctions</h4>
-<div class="paragraph">
-<p>The following sections explain the provided functions defined by ConfigurationFunctions singleton.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>UnaryOperator&lt;Config&gt; filter(PropertyMatcher matcher)</strong> creates a UnaryOperator&lt;Config&gt; that creates a Configuration
-containing only keys that are selected by the given <em>matcher predicate</em>. The PropertyMatcher hereby allows to evaluate not only
-the <em>key</em>, but also the <em>value</em>.</p>
-</li>
-<li>
-<p><strong>UnaryOperator&lt;Config&gt; map(KeyMapper keyMapper)</strong> creates a UnaryOperator&lt;Config&gt; that maps the keys as defined
-by the given <em>keyMapper</em>.</p>
-</li>
-<li>
-<p><strong>UnaryOperator&lt;Config&gt; section(String section)</strong> creates  a UnaryOperator&lt;Config&gt; that creates a Configuration containing only
-entries that are direct or indirect members of the given section.</p>
-</li>
-<li>
-<p><strong>UnaryOperator&lt;Config&gt; section(String areaKey, boolean stripKeys)</strong> creates  a UnaryOperator&lt;Config&gt; that creates a Configuration
-containing only entries that are direct or indirect members of the given section. Hereby <em>stripKeys</em> allows to determine
-if the returned entries should be relative to the search criteria {{stripKeys=true}} or absolute keys.</p>
-</li>
-<li>
-<p><strong>isKeyInSection(String section, String sectionKey)</strong> allows to easily determine if a given <em>key</em> is a direct or indirect member
-of a given section.</p>
-</li>
-<li>
-<p><strong>boolean isKeyInSections(String key, String&#8230;&#8203; sectionKeys)</strong> allows to easily determine if one key of given
-<em>key</em> is a direct or indirect member of at least one of the given <em>sectionKeys</em>.</p>
-</li>
-<li>
-<p><strong>Function&lt;Config,Set&lt;String&gt;&gt; sections()</strong> allows to query all the contained fully qualified section names (the ones that
-also have parameters present).</p>
-</li>
-<li>
-<p><strong>Function&lt;Config,Set&lt;String&gt;&gt; transitiveSections()</strong> allows to query all the contained fully qualified section names,
-including the transitive closure of sections.</p>
-</li>
-<li>
-<p><strong>Function&lt;Config,Set&lt;String&gt;&gt; sections(final Predicate&lt;String&gt; predicate)</strong> allows to query all the contained fully
-qualified section names that are selected by the given <em>predicate</em>.</p>
-</li>
-<li>
-<p><strong>Function&lt;Config,Set&lt;String&gt;&gt; sections(final Predicate&lt;String&gt; predicate)</strong> allows to query all the contained fully
-qualified section names that are selected by the given <em>predicate</em>, including the transitive closure of sections
-identified.</p>
-</li>
-<li>
-<p><strong>UnaryOperator&lt;Config&gt; sectionsRecursive(String&#8230;&#8203; sectionKeys)</strong> provides a UnaryOperator&lt;Config&gt; that filters all sections identified
-by the given <em>sectionKeys</em> and its child sections.</p>
-</li>
-<li>
-<p><strong>UnaryOperator&lt;Config&gt; sectionRecursive(final boolean stripKeys, final String&#8230;&#8203; sectionKeys)</strong> provides a UnaryOperator&lt;Config&gt;
-that filters all sections identified by the given <em>sectionKeys</em> and its child sections. <em>stripKeys</em> allows to
-determine if the resulting configuration should be relative to the selected areas ({{stripKeys=true}}) or
-absolute (filtering only).</p>
-</li>
-<li>
-<p><strong>Function&lt;Config,String&gt; jsonInfo()</strong> returns a query that converts a Configuration into a JSON formatted String
-representation.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_functions_on_configsourcefunctions">Functions on ConfigSourceFunctions</h4>
-<div class="paragraph">
-<p>The following sections explain the provided functions defined by ConfigSourceFunctions singleton.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>ConfigSource addMetaData(ConfigSource propertySource, Map&lt;String,String&gt; metaData)</strong> Creates a new ConfigSource
-with the given metadata added.</p>
-</li>
-<li>
-<p><strong>boolean isKeyInSection(String key, String sectionKey)</strong> Checks if the given <em>key</em> is a direct or indirect member of
-one of the given <em>sectionKey</em>.</p>
-</li>
-<li>
-<p><strong>boolean isKeyInSections(String key, String&#8230;&#8203; sectionKeys)</strong> Checks if the given <em>key</em> is a direct or indirect member of
-one of one of the given <em>sectionKeys</em>.</p>
-</li>
-<li>
-<p><strong>Set&lt;String&gt; sections(Map&lt;String, String&gt; properties)</strong> Extracts the sections from the given properties.</p>
-</li>
-<li>
-<p><strong>Set&lt;String&gt; transitiveSections(Map&lt;String, String&gt; properties)</strong> Extracts the transitive sections from the given
-properties.</p>
-</li>
-<li>
-<p><strong>Set&lt;String&gt; sections(Map&lt;String, String&gt; properties, final Predicate&lt;String&gt; predicate)</strong> Extracts the sections
-from the given properties, also filtering with the given predicate.</p>
-</li>
-<li>
-<p><strong>Set&lt;String&gt; transitiveSections(Map&lt;String, String&gt; properties, Predicate&lt;String&gt; predicate)</strong> Extracts the transitive
-sections from the given properties, also filtering with the given predicate.</p>
-</li>
-<li>
-<p><strong>Map&lt;String,String&gt; sectionsRecursive(Map&lt;String, String&gt; properties, String&#8230;&#8203; sectionKeys)</strong> Creates w ConfigSource
-only containing the sections that a direct or indirect children of the given <em>sectionKeys</em>.</p>
-</li>
-<li>
-<p><strong>Map&lt;String,String&gt; sectionRecursive(Map&lt;String, String&gt; properties, boolean stripKeys, String&#8230;&#8203; sectionKeys)</strong> Creates w ConfigSource
-only containing the sections that a direct or indirect children of the given <em>sectionKeys</em>. With <em>stripKeys</em> one can
-select of the returned values should be relative to its selection of be fully qualified.</p>
-</li>
-<li>
-<p><strong>String stripSectionKeys(String key, String&#8230;&#8203; sectionKeys)</strong> This function strips away the matching section key as given
-in <em>sectionKeys</em> from a given <em>key</em>.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
+}</code></pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_the_provided_functions">The Provided Functions</h3> 
+   <div class="sect3"> 
+    <h4 id="_functions_on_configurationfunctions">Functions on ConfigurationFunctions</h4> 
+    <div class="paragraph"> 
+     <p>The following sections explain the provided functions defined by ConfigurationFunctions singleton.</p> 
+    </div> 
+    <div class="ulist"> 
+     <ul> 
+      <li> <p><strong>UnaryOperator&lt;Config&gt; filter(PropertyMatcher matcher)</strong> creates a UnaryOperator&lt;Config&gt; that creates a Configuration containing only keys that are selected by the given <em>matcher predicate</em>. The PropertyMatcher hereby allows to evaluate not only the <em>key</em>, but also the <em>value</em>.</p> </li> 
+      <li> <p><strong>UnaryOperator&lt;Config&gt; map(KeyMapper keyMapper)</strong> creates a UnaryOperator&lt;Config&gt; that maps the keys as defined by the given <em>keyMapper</em>.</p> </li> 
+      <li> <p><strong>UnaryOperator&lt;Config&gt; section(String section)</strong> creates a UnaryOperator&lt;Config&gt; that creates a Configuration containing only entries that are direct or indirect members of the given section.</p> </li> 
+      <li> <p><strong>UnaryOperator&lt;Config&gt; section(String areaKey, boolean stripKeys)</strong> creates a UnaryOperator&lt;Config&gt; that creates a Configuration containing only entries that are direct or indirect members of the given section. Hereby <em>stripKeys</em> allows to determine if the returned entries should be relative to the search criteria {{stripKeys=true}} or absolute keys.</p> </li> 
+      <li> <p><strong>isKeyInSection(String section, String sectionKey)</strong> allows to easily determine if a given <em>key</em> is a direct or indirect member of a given section.</p> </li> 
+      <li> <p><strong>boolean isKeyInSections(String key, String…​ sectionKeys)</strong> allows to easily determine if one key of given <em>key</em> is a direct or indirect member of at least one of the given <em>sectionKeys</em>.</p> </li> 
+      <li> <p><strong>Function&lt;Config,Set&lt;String&gt;&gt; sections()</strong> allows to query all the contained fully qualified section names (the ones that also have parameters present).</p> </li> 
+      <li> <p><strong>Function&lt;Config,Set&lt;String&gt;&gt; transitiveSections()</strong> allows to query all the contained fully qualified section names, including the transitive closure of sections.</p> </li> 
+      <li> <p><strong>Function&lt;Config,Set&lt;String&gt;&gt; sections(final Predicate&lt;String&gt; predicate)</strong> allows to query all the contained fully qualified section names that are selected by the given <em>predicate</em>.</p> </li> 
+      <li> <p><strong>Function&lt;Config,Set&lt;String&gt;&gt; sections(final Predicate&lt;String&gt; predicate)</strong> allows to query all the contained fully qualified section names that are selected by the given <em>predicate</em>, including the transitive closure of sections identified.</p> </li> 
+      <li> <p><strong>UnaryOperator&lt;Config&gt; sectionsRecursive(String…​ sectionKeys)</strong> provides a UnaryOperator&lt;Config&gt; that filters all sections identified by the given <em>sectionKeys</em> and its child sections.</p> </li> 
+      <li> <p><strong>UnaryOperator&lt;Config&gt; sectionRecursive(final boolean stripKeys, final String…​ sectionKeys)</strong> provides a UnaryOperator&lt;Config&gt; that filters all sections identified by the given <em>sectionKeys</em> and its child sections. <em>stripKeys</em> allows to determine if the resulting configuration should be relative to the selected areas ({{stripKeys=true}}) or absolute (filtering only).</p> </li> 
+      <li> <p><strong>Function&lt;Config,String&gt; jsonInfo()</strong> returns a query that converts a Configuration into a JSON formatted String representation.</p> </li> 
+     </ul> 
+    </div> 
+   </div> 
+   <div class="sect3"> 
+    <h4 id="_functions_on_configsourcefunctions">Functions on ConfigSourceFunctions</h4> 
+    <div class="paragraph"> 
+     <p>The following sections explain the provided functions defined by ConfigSourceFunctions singleton.</p> 
+    </div> 
+    <div class="ulist"> 
+     <ul> 
+      <li> <p><strong>ConfigSource addMetaData(ConfigSource propertySource, Map&lt;String,String&gt; metaData)</strong> Creates a new ConfigSource with the given metadata added.</p> </li> 
+      <li> <p><strong>boolean isKeyInSection(String key, String sectionKey)</strong> Checks if the given <em>key</em> is a direct or indirect member of one of the given <em>sectionKey</em>.</p> </li> 
+      <li> <p><strong>boolean isKeyInSections(String key, String…​ sectionKeys)</strong> Checks if the given <em>key</em> is a direct or indirect member of one of one of the given <em>sectionKeys</em>.</p> </li> 
+      <li> <p><strong>Set&lt;String&gt; sections(Map&lt;String, String&gt; properties)</strong> Extracts the sections from the given properties.</p> </li> 
+      <li> <p><strong>Set&lt;String&gt; transitiveSections(Map&lt;String, String&gt; properties)</strong> Extracts the transitive sections from the given properties.</p> </li> 
+      <li> <p><strong>Set&lt;String&gt; sections(Map&lt;String, String&gt; properties, final Predicate&lt;String&gt; predicate)</strong> Extracts the sections from the given properties, also filtering with the given predicate.</p> </li> 
+      <li> <p><strong>Set&lt;String&gt; transitiveSections(Map&lt;String, String&gt; properties, Predicate&lt;String&gt; predicate)</strong> Extracts the transitive sections from the given properties, also filtering with the given predicate.</p> </li> 
+      <li> <p><strong>Map&lt;String,String&gt; sectionsRecursive(Map&lt;String, String&gt; properties, String…​ sectionKeys)</strong> Creates w ConfigSource only containing the sections that a direct or indirect children of the given <em>sectionKeys</em>.</p> </li> 
+      <li> <p><strong>Map&lt;String,String&gt; sectionRecursive(Map&lt;String, String&gt; properties, boolean stripKeys, String…​ sectionKeys)</strong> Creates w ConfigSource only containing the sections that a direct or indirect children of the given <em>sectionKeys</em>. With <em>stripKeys</em> one can select of the returned values should be relative to its selection of be fully qualified.</p> </li> 
+      <li> <p><strong>String stripSectionKeys(String key, String…​ sectionKeys)</strong> This function strips away the matching section key as given in <em>sectionKeys</em> from a given <em>key</em>.</p> </li> 
+     </ul> 
+    </div> 
+   </div> 
+  </div> 
+ </div> 
 </div></p>
 
 			<hr />
@@ -337,8 +258,8 @@ in <em>sectionKeys</em> from a given <em>key</em>.</p>
 		    <div id="footer">
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2018-05-03</span> |
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
+							at <span>2018-05-17</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

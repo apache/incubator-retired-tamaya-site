@@ -125,73 +125,70 @@
 				<h1>Apache Tamaya - Extension: Configuration Validation</h1>
 			</div>
 
-			<p><em>2018-04-26</em></p>
+			<p><em>2018-05-17</em></p>
 
-			<p><div id="preamble">
-<div class="sectionbody">
-<!-- toc disabled -->
-</div>
-</div>
-<div class="sect1">
-<h2 id="Validation">Tamaya Validation: Validating Configuration (Extension Module)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Tamaya <em>Validation</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
-</div>
-<div class="sect2">
-<h3 id="_overview">Overview</h3>
-<div class="paragraph">
-<p>Tamaya <em>Validation</em> adds support to validate a configuration against a set of rules
-defined in a Tamaya Metaconfiguration XML file.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_compatibility">Compatibility</h3>
-<div class="paragraph">
-<p>The module is based on Java 8, so it will run on Java 8 and beyond.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_installation">Installation</h3>
-<div class="paragraph">
-<p>To activate configuration <em>validation</em> you only must add the corresponding dependency to your module:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+			<p><div id="preamble"> 
+ <div class="sectionbody"> 
+  <!-- toc disabled --> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="Validation">Tamaya Validation: Validating Configuration (Extension Module)</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>Tamaya <em>Validation</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_overview">Overview</h3> 
+   <div class="paragraph"> 
+    <p>Tamaya <em>Validation</em> adds support to validate a configuration against a set of rules defined in a Tamaya Metaconfiguration XML file.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_compatibility">Compatibility</h3> 
+   <div class="paragraph"> 
+    <p>The module is based on Java 8, so it will run on Java 8 and beyond.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_installation">Installation</h3> 
+   <div class="paragraph"> 
+    <p>To activate configuration <em>validation</em> you only must add the corresponding dependency to your module:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-validation&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The component will extend Tamaya&#8217;s tamaya-metamodel module and adds an additional meta provider ruleset
-so validation rules can also be added to the default meta configuration XML file as separate sections.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_usage">Usage</h3>
-<div class="paragraph">
-<p>This module expects meta-configuration to be located at the following locations. Hereby multiple files
-are supported:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-text" data-lang="text">-Dtamaya-validation=&lt;an URL&gt;    // any resolvable URL
+&lt;/dependency&gt;</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>The component will extend Tamaya’s tamaya-metamodel module and adds an additional meta provider ruleset so validation rules can also be added to the default meta configuration XML file as separate sections.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_usage">Usage</h3> 
+   <div class="paragraph"> 
+    <p>This module expects meta-configuration to be located at the following locations. Hereby multiple files are supported:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-text" data-lang="text">-Dtamaya-validation=&lt;an URL&gt;    // any resolvable URL
 ./tamaya-validation-*.xml         // file
-META-INF/tamaya-validation-*.xml  // classpath (multiple entries-possible)</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_the_validation_xml_format">The Validation XML Format</h3>
-<div class="paragraph">
-<p>The configuration validation is defined by simple configuration meta-data entries.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;configuration-validation&gt;
+META-INF/tamaya-validation-*.xml  // classpath (multiple entries-possible)</code></pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_the_validation_xml_format">The Validation XML Format</h3> 
+   <div class="paragraph"> 
+    <p>The configuration validation is defined by simple configuration meta-data entries.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;configuration-validation&gt;
    ...
    &lt;provider&gt;The Validation Provider&lt;/provider&gt; &lt;!-- optional --&gt;
    &lt;section name="org.mycompany"&gt;
@@ -211,58 +208,37 @@ META-INF/tamaya-validation-*.xml  // classpath (multiple entries-possible)</code
      &lt;/section&gt;
    &lt;/section&gt;
    &lt;validator class="a,b,c,MyGlobalValidator"/&gt;
-&lt;/configuration-validation&gt;</code></pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_the_example_explained">The Example Explained</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>The <strong>provider</strong> entry is used for generating validation message, when a validation fails.</p>
-</li>
-<li>
-<p>Section itself can be recursively defined, where each level can have it&#8217;s own validations.</p>
-</li>
-<li>
-<p>Sections added, but without validation rules are <em>defined</em> section. Configuration outside of
-defined sections can be flagged out using WARNING messages.</p>
-</li>
-<li>
-<p>Sections can be <em>reuired</em> and additionally also <em>validated</em>.</p>
-</li>
-<li>
-<p>There is also the possibility to register global validators, which are called by the validation
-logic once a configuration has been completely loaded.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Similar to sections also parameters can be validated:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>they can be marked as <em>required</em></p>
-</li>
-<li>
-<p>they can have a certain type, meaning they must be convertible to the given type</p>
-</li>
-<li>
-<p>they can have an additional custom validator.</p>
-</li>
-<li>
-<p>they can have an optional description for error analysis and error output.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Similar to section parameters that are not defined, but encountered may be flagged out with
-a WARNING message.</p>
-</div>
-</div>
-</div>
-</div>
+&lt;/configuration-validation&gt;</code></pre> 
+    </div> 
+   </div> 
+   <div class="sect3"> 
+    <h4 id="_the_example_explained">The Example Explained</h4> 
+    <div class="ulist"> 
+     <ul> 
+      <li> <p>The <strong>provider</strong> entry is used for generating validation message, when a validation fails.</p> </li> 
+      <li> <p>Section itself can be recursively defined, where each level can have it’s own validations.</p> </li> 
+      <li> <p>Sections added, but without validation rules are <em>defined</em> section. Configuration outside of defined sections can be flagged out using WARNING messages.</p> </li> 
+      <li> <p>Sections can be <em>reuired</em> and additionally also <em>validated</em>.</p> </li> 
+      <li> <p>There is also the possibility to register global validators, which are called by the validation logic once a configuration has been completely loaded.</p> </li> 
+     </ul> 
+    </div> 
+    <div class="paragraph"> 
+     <p>Similar to sections also parameters can be validated:</p> 
+    </div> 
+    <div class="ulist"> 
+     <ul> 
+      <li> <p>they can be marked as <em>required</em></p> </li> 
+      <li> <p>they can have a certain type, meaning they must be convertible to the given type</p> </li> 
+      <li> <p>they can have an additional custom validator.</p> </li> 
+      <li> <p>they can have an optional description for error analysis and error output.</p> </li> 
+     </ul> 
+    </div> 
+    <div class="paragraph"> 
+     <p>Similar to section parameters that are not defined, but encountered may be flagged out with a WARNING message.</p> 
+    </div> 
+   </div> 
+  </div> 
+ </div> 
 </div></p>
 
 			<hr />
@@ -274,8 +250,8 @@ a WARNING message.</p>
 		    <div id="footer">
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2018-05-03</span> |
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
+							at <span>2018-05-17</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

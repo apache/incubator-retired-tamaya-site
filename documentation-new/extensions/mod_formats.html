@@ -125,91 +125,75 @@
 				<h1>Apache Tamaya - Extension: Formats</h1>
 			</div>
 
-			<p><em>2018-04-26</em></p>
+			<p><em>2018-05-17</em></p>
 
-			<p><div id="preamble">
-<div class="sectionbody">
-<!-- toc disabled -->
-</div>
-</div>
-<div class="sect1">
-<h2 id="Formats">Tamaya Formats (Extension Module)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Tamaya <em>Formats</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
-</div>
-<div class="sect2">
-<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
-<div class="paragraph">
-<p>Tamaya <em>Formats</em> provides an abstraction for configuration formats provding the following benefits:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Parsing of resources in can be implemented separately from interpreting the different aspects/parts parsed. As an
-example a file format can define different sections. Depending on the company specific semantics of the sections
-a different set of ConfigSource instances must be created.</p>
-</li>
-<li>
-<p>Similarly the configuration abstraction can also be used as an interface for integrating Tamaya with alternate
-frameworks that provide logic for reading configuration files, such as Apache commons.configuration.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_compatibility">Compatibility</h3>
-<div class="paragraph">
-<p>The module is based on Java 7, so it can be used with Java 7 and beyond.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_installation">Installation</h3>
-<div class="paragraph">
-<p>To use the formats module you only must add the corresponding dependency to your module:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+			<p><div id="preamble"> 
+ <div class="sectionbody"> 
+  <!-- toc disabled --> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="Formats">Tamaya Formats (Extension Module)</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>Tamaya <em>Formats</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3> 
+   <div class="paragraph"> 
+    <p>Tamaya <em>Formats</em> provides an abstraction for configuration formats provding the following benefits:</p> 
+   </div> 
+   <div class="ulist"> 
+    <ul> 
+     <li> <p>Parsing of resources in can be implemented separately from interpreting the different aspects/parts parsed. As an example a file format can define different sections. Depending on the company specific semantics of the sections a different set of ConfigSource instances must be created.</p> </li> 
+     <li> <p>Similarly the configuration abstraction can also be used as an interface for integrating Tamaya with alternate frameworks that provide logic for reading configuration files, such as Apache commons.configuration.</p> </li> 
+    </ul> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_compatibility">Compatibility</h3> 
+   <div class="paragraph"> 
+    <p>The module is based on Java 7, so it can be used with Java 7 and beyond.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_installation">Installation</h3> 
+   <div class="paragraph"> 
+    <p>To use the formats module you only must add the corresponding dependency to your module:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-formats&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_basic_concept">Basic Concept</h3>
-<div class="paragraph">
-<p>Formats should be reusable, meaning you should have to write a format parser only once and then be able to map the data read into whatever
-data structure (in our cases: property sources). So it is useful to separate concerns into</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>an arbitrary configuration format (textual or binary)</p>
-</li>
-<li>
-<p>a parser (ConfigurationFormat) that transfers a given format into an intermediate
-representation (ConfigurationData).</p>
-</li>
-<li>
-<p>an optional customization, implemented by a <em>factory method pattern</em> to adapt the mapping of ConfigurationData read
-to a collection of ConfigSources (they can have different ordinal semantics).</p>
-</li>
-</ul>
-</div>
-<div class="sect3">
-<h4 id="_configurationdata">ConfigurationData</h4>
-<div class="paragraph">
-<p>Configuration formats can be very different. Some are simple key/value pairs, whereas other also consist of multiple sections (e.g. ini-files) or
-hierarchical data (e.g. yaml, xml). This is solved in Tamaya by mapping the configuration read into a normalized intermediary format called
-ConfigurationData:</p>
-</div>
-<div class="listingblock">
-<div class="title">ConfigurationData</div>
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public final class ConfigurationData {
+&lt;/dependency&gt;</code></pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_basic_concept">Basic Concept</h3> 
+   <div class="paragraph"> 
+    <p>Formats should be reusable, meaning you should have to write a format parser only once and then be able to map the data read into whatever data structure (in our cases: property sources). So it is useful to separate concerns into</p> 
+   </div> 
+   <div class="ulist"> 
+    <ul> 
+     <li> <p>an arbitrary configuration format (textual or binary)</p> </li> 
+     <li> <p>a parser (ConfigurationFormat) that transfers a given format into an intermediate representation (ConfigurationData).</p> </li> 
+     <li> <p>an optional customization, implemented by a <em>factory method pattern</em> to adapt the mapping of ConfigurationData read to a collection of ConfigSources (they can have different ordinal semantics).</p> </li> 
+    </ul> 
+   </div> 
+   <div class="sect3"> 
+    <h4 id="_configurationdata">ConfigurationData</h4> 
+    <div class="paragraph"> 
+     <p>Configuration formats can be very different. Some are simple key/value pairs, whereas other also consist of multiple sections (e.g. ini-files) or hierarchical data (e.g. yaml, xml). This is solved in Tamaya by mapping the configuration read into a normalized intermediary format called ConfigurationData:</p> 
+    </div> 
+    <div class="listingblock"> 
+     <div class="title">
+      ConfigurationData
+     </div> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public final class ConfigurationData {
 
     public ConfigurationFormat getFormat();
     public String getResource();
@@ -222,92 +206,62 @@ ConfigurationData:</p>
     public Map&lt;String,String&gt; getCombinedProperties();
 
     public boolean isEmpty();
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In detail the data read from a file is organized into <em>sections</em> as follows:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>with getResource() and getFormat() the underlying resource and the format that read this data can be accessed.</p>
-</li>
-<li>
-<p>properties can be owned by</p>
-<div class="ulist">
-<ul>
-<li>
-<p>named sections</p>
-</li>
-<li>
-<p>an (unnamed) default section</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>each section section contains a map of properties. Hereby the same key can be part of the default section and multiple
-named sections, depending on the configuration format.</p>
-</li>
-<li>
-<p>The method getSectionNames() returns a set of all section names.</p>
-</li>
-<li>
-<p>With getSection(String name) a named section can be accessed.</p>
-</li>
-<li>
-<p>With getDefaultSection() the 'default' section can be accessed. This is a convenience method.</p>
-</li>
-<li>
-<p>With getCombinedProperties() a flattened entry map can be accessed built up (by default) out of</p>
-<div class="ulist">
-<ul>
-<li>
-<p>all entries from the default section, without any changes.</p>
-</li>
-<li>
-<p>all entries from named sections, where the key for each entry is prefix with the section name and a '::' separator.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>The configuration format used determines the mapping of configuration data read into this structure. The format
-implementation can as well provide alternate implementations of how the data read should be mapped into the
-combined properties map.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_configurationformat">ConfigurationFormat</h4>
-<div class="paragraph">
-<p>A ConfigurationFormat is basically an abstraction that reads a configuration resource (modelled by an InputStream) and
-creates a corresponding ConfigurationData instance.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface ConfigurationFormat {
+}</code></pre> 
+     </div> 
+    </div> 
+    <div class="paragraph"> 
+     <p>In detail the data read from a file is organized into <em>sections</em> as follows:</p> 
+    </div> 
+    <div class="ulist"> 
+     <ul> 
+      <li> <p>with getResource() and getFormat() the underlying resource and the format that read this data can be accessed.</p> </li> 
+      <li> <p>properties can be owned by</p> 
+       <div class="ulist"> 
+        <ul> 
+         <li> <p>named sections</p> </li> 
+         <li> <p>an (unnamed) default section</p> </li> 
+        </ul> 
+       </div> </li> 
+      <li> <p>each section section contains a map of properties. Hereby the same key can be part of the default section and multiple named sections, depending on the configuration format.</p> </li> 
+      <li> <p>The method getSectionNames() returns a set of all section names.</p> </li> 
+      <li> <p>With getSection(String name) a named section can be accessed.</p> </li> 
+      <li> <p>With getDefaultSection() the 'default' section can be accessed. This is a convenience method.</p> </li> 
+      <li> <p>With getCombinedProperties() a flattened entry map can be accessed built up (by default) out of</p> 
+       <div class="ulist"> 
+        <ul> 
+         <li> <p>all entries from the default section, without any changes.</p> </li> 
+         <li> <p>all entries from named sections, where the key for each entry is prefix with the section name and a '::' separator.</p> </li> 
+        </ul> 
+       </div> </li> 
+      <li> <p>The configuration format used determines the mapping of configuration data read into this structure. The format implementation can as well provide alternate implementations of how the data read should be mapped into the combined properties map.</p> </li> 
+     </ul> 
+    </div> 
+   </div> 
+   <div class="sect3"> 
+    <h4 id="_configurationformat">ConfigurationFormat</h4> 
+    <div class="paragraph"> 
+     <p>A ConfigurationFormat is basically an abstraction that reads a configuration resource (modelled by an InputStream) and creates a corresponding ConfigurationData instance.</p> 
+    </div> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface ConfigurationFormat {
 
     String getName();
     boolean accepts(URL url);
     ConfigurationData readConfiguration(String resource, InputStream inputStream);
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_creating_a_default_configsource_for_a_configurationformat">Creating a default ConfigSource for a ConfigurationFormat</h3>
-<div class="paragraph">
-<p>The module defines a singleton ConfigurationFormats which provides
-an easy to use API for creating ConfigurationData and ConfigSources
-using abstract ConfigurationFormat implementations:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public final class ConfigurationFormats {
+}</code></pre> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_creating_a_default_configsource_for_a_configurationformat">Creating a default ConfigSource for a ConfigurationFormat</h3> 
+   <div class="paragraph"> 
+    <p>The module defines a singleton ConfigurationFormats which provides an easy to use API for creating ConfigurationData and ConfigSources using abstract ConfigurationFormat implementations:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public final class ConfigurationFormats {
 
     public static List&lt;ConfigurationFormat&gt; getFormats();
     public static List&lt;ConfigurationFormat&gt; getFormats(String... formatNames);
@@ -336,143 +290,103 @@ using abstract ConfigurationFormat implementations:</p>
                                                       ConfigurationFormat... formats);
     public static ConfigSource createConfigSource(String resource, InputStream inputStream,
                                                        Collection&lt;ConfigurationFormat&gt; formats);
-}</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>getFormats() returns all registered formats.</p>
-</li>
-<li>
-<p>getFormats(String...) allows to access all formats with a given name.</p>
-</li>
-<li>
-<p>getFormats(URL url) allows to access all formats that declare that can optionally read an input from
-a given <code>URL</code>.</p>
-</li>
-<li>
-<p>readConfigurationData(...) reads data from an input and creates a corresponding ConfigurationData,
-either trying all known formats that declare its compatibility with the given input or the formats
-passed explicitly.</p>
-</li>
-<li>
-<p>createConfigSource(...) allows to create a ConfigSource reading a given input and the formats
-to be used or known. Hereby a default property mapping is applied.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>So creating a ConfigSource from a resource is basically a one liner:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">URL url = ...;
+}</code></pre> 
+    </div> 
+   </div> 
+   <div class="ulist"> 
+    <ul> 
+     <li> <p>getFormats() returns all registered formats.</p> </li> 
+     <li> <p>getFormats(String...) allows to access all formats with a given name.</p> </li> 
+     <li> <p>getFormats(URL url) allows to access all formats that declare that can optionally read an input from a given <code>URL</code>.</p> </li> 
+     <li> <p>readConfigurationData(...) reads data from an input and creates a corresponding ConfigurationData, either trying all known formats that declare its compatibility with the given input or the formats passed explicitly.</p> </li> 
+     <li> <p>createConfigSource(...) allows to create a ConfigSource reading a given input and the formats to be used or known. Hereby a default property mapping is applied.</p> </li> 
+    </ul> 
+   </div> 
+   <div class="paragraph"> 
+    <p>So creating a ConfigSource from a resource is basically a one liner:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">URL url = ...;
 ConfigSource configSource = ConfigurationFormats.createConfigSource(url);
 
 // constraining the formats to be used (assumption: json and yaml extensions are loaded)
 ConfigSource configSource = ConfigurationFormats.createConfigSource(
                                     url,
-                                    ConfigurationFormats.getFormats("json", "yaml"));</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_customize_how_configurationdata_maps_to_configsource">Customize how ConfigurationData maps to ConfigSource</h3>
-<div class="paragraph">
-<p>For for the conversion of ConfigurationData into a ConfigSource different approaches can be useful:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The ConfigurationFormat that reads the data can provides all properties read either as sectioned properties
-or/and as default properties. The most simple cases is, where all properties have been added as 'default'
-properties. In this case the default properties can be used as the property sources properties without any change.</p>
-</li>
-<li>
-<p>If the format did also add section based properties, the combined properties returned can be used, hereby
-replacing the '::' separator with a '.' separator.</p>
-</li>
-<li>
-<p>In all other cases a custom mapping is useful, which can be acomplished by using the MappedConfigurationDataConfigSource
-and overriding the Map&lt;String,String&gt; populateData(ConfigurationData data) method.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>In most cases the usage of a MappedConfigurationDataConfigSource, is a good choice to start. This class
-provides a convenient default mapping and also allows to customized the mapping easily:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationData data = ...;
+                                    ConfigurationFormats.getFormats("json", "yaml"));</code></pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_customize_how_configurationdata_maps_to_configsource">Customize how ConfigurationData maps to ConfigSource</h3> 
+   <div class="paragraph"> 
+    <p>For for the conversion of ConfigurationData into a ConfigSource different approaches can be useful:</p> 
+   </div> 
+   <div class="olist arabic"> 
+    <ol class="arabic"> 
+     <li> <p>The ConfigurationFormat that reads the data can provides all properties read either as sectioned properties or/and as default properties. The most simple cases is, where all properties have been added as 'default' properties. In this case the default properties can be used as the property sources properties without any change.</p> </li> 
+     <li> <p>If the format did also add section based properties, the combined properties returned can be used, hereby replacing the '::' separator with a '.' separator.</p> </li> 
+     <li> <p>In all other cases a custom mapping is useful, which can be acomplished by using the MappedConfigurationDataConfigSource and overriding the Map&lt;String,String&gt; populateData(ConfigurationData data) method.</p> </li> 
+    </ol> 
+   </div> 
+   <div class="paragraph"> 
+    <p>In most cases the usage of a MappedConfigurationDataConfigSource, is a good choice to start. This class provides a convenient default mapping and also allows to customized the mapping easily:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationData data = ...;
 MappedConfigurationDataConfigSource ps =
   new MappedConfigurationDataConfigSource(data){
     protected Map&lt;String, String&gt; populateData(ConfigurationData data) {
       ...
     }
-  };</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Nevertheless, depending on the context, where a configuration source was read (classloader, time, source etc.) the
-resulting properties can have different semnatics, especially different priorities. Also section
-names may be mapped into different ordinals instead of using them as key prefixes (e.g. imagine configuration formats
-with a 'default', 'main', and 'overrides' sections). For such more complex or custom cases no simple mapping
-can be defined. Consequently the functionality mapping the normalized ConfigurationData read to the
-appropriate collection of ConfigSource instances must be implemented.</p>
-</div>
-<div class="paragraph">
-<p>For this scenario the BaseFormatConfigSourceProvider can be used, defining the following mapping
-function that mus be implemented:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">/**
+  };</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Nevertheless, depending on the context, where a configuration source was read (classloader, time, source etc.) the resulting properties can have different semnatics, especially different priorities. Also section names may be mapped into different ordinals instead of using them as key prefixes (e.g. imagine configuration formats with a 'default', 'main', and 'overrides' sections). For such more complex or custom cases no simple mapping can be defined. Consequently the functionality mapping the normalized ConfigurationData read to the appropriate collection of ConfigSource instances must be implemented.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>For this scenario the BaseFormatConfigSourceProvider can be used, defining the following mapping function that mus be implemented:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">/**
  * Method to create a {@link org.apache.tamaya.spi.ConfigSource} based on the given entries read.
  *
  * @param data the configuration data, not null.
  * @return the {@link org.apache.tamaya.spi.ConfigSource} instance ready to be registered.
  */
-protected abstract Collection&lt;ConfigSource&gt; getConfigSources(ConfigurationData data);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When using Java 8 these mappings can be asily passed as parameters to the createConfigSource
-methods.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_predefined_formats">Predefined formats</h3>
-<div class="paragraph">
-<p>The <em>formats</em> module ships with 3 predefined formats:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>.ini</code> files, commonly known from Microsoft based systems, registered as <code>ini</code>.</p>
-</li>
-<li>
-<p><code>.properties</code> files, as defined by <code>java.util.Properties</code>, registered as <code>properties</code>.</p>
-</li>
-<li>
-<p><code>.xml</code> properties files, as defined by <code>java.util.Properties</code>, registered as <code>xml-properties</code>.</p>
-</li>
-</ul>
-</div>
-<div class="sect3">
-<h4 id="_ini_config_file_mapping">ini Config File Mapping</h4>
-<div class="paragraph">
-<p>This module implements the ini file format with the class
-org.apache.tamaya.format.formats.IniConfigurationFormat.</p>
-</div>
-<div class="paragraph">
-<p>The default mapping is bext illustrated by a small example, so consider the
-following <code>.ini</code> file:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">a=valA
+protected abstract Collection&lt;ConfigSource&gt; getConfigSources(ConfigurationData data);</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>When using Java 8 these mappings can be asily passed as parameters to the createConfigSource methods.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_predefined_formats">Predefined formats</h3> 
+   <div class="paragraph"> 
+    <p>The <em>formats</em> module ships with 3 predefined formats:</p> 
+   </div> 
+   <div class="ulist"> 
+    <ul> 
+     <li> <p><code>.ini</code> files, commonly known from Microsoft based systems, registered as <code>ini</code>.</p> </li> 
+     <li> <p><code>.properties</code> files, as defined by <code>java.util.Properties</code>, registered as <code>properties</code>.</p> </li> 
+     <li> <p><code>.xml</code> properties files, as defined by <code>java.util.Properties</code>, registered as <code>xml-properties</code>.</p> </li> 
+    </ul> 
+   </div> 
+   <div class="sect3"> 
+    <h4 id="_ini_config_file_mapping">ini Config File Mapping</h4> 
+    <div class="paragraph"> 
+     <p>This module implements the ini file format with the class org.apache.tamaya.format.formats.IniConfigurationFormat.</p> 
+    </div> 
+    <div class="paragraph"> 
+     <p>The default mapping is bext illustrated by a small example, so consider the following <code>.ini</code> file:</p> 
+    </div> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">a=valA
 a.b=valB
 
 [section1]
@@ -480,74 +394,56 @@ aa=sectionValA
 aa.b.c=SectionValC
 
 [section2]
-a=val2Section2</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This file content by default is mapped to the following Tamaya properties:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">a=valA
+a=val2Section2</code></pre> 
+     </div> 
+    </div> 
+    <div class="paragraph"> 
+     <p>This file content by default is mapped to the following Tamaya properties:</p> 
+    </div> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">a=valA
 a.b=valB
 section1::valA=sectionValA
 section1::a.b.c=SectionValC
-section2::a=val2Section2</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Summarizing</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>entries without a section are mapped to the <em>default</em> section.</p>
-</li>
-<li>
-<p>entries with a section are mapped to a corresponding section, hereby everything between
-the brackets is used as section name (trimmed).</p>
-</li>
-<li>
-<p>section names are separated using a double colon (<code>::</code>).</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>ConfigurationData allows to access all the different parts:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>the <em>default</em> properties (a, a.b)</p>
-</li>
-<li>
-<p>the section section1, with properties aa, aa.b.c</p>
-</li>
-<li>
-<p>the section section2, with properties a</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_xml_property_and_ordinary_property_files">XML Property and ordinary Property Files</h4>
-<div class="paragraph">
-<p>This module also ships with ConfigurationFormat implementations that reuse the parsing
-functionality provided with java.util.Properties:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>org.apache.tamaya.format.formats.PropertiesFormat</code> uses <code>Properties.read(InputStream)</code>.</p>
-</li>
-<li>
-<p><code>org.apache.tamaya.format.formats.PropertiesXmlFormat</code> uses <code>Properties.readFromXml(InputStream)</code>.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
+section2::a=val2Section2</code></pre> 
+     </div> 
+    </div> 
+    <div class="paragraph"> 
+     <p>Summarizing</p> 
+    </div> 
+    <div class="ulist"> 
+     <ul> 
+      <li> <p>entries without a section are mapped to the <em>default</em> section.</p> </li> 
+      <li> <p>entries with a section are mapped to a corresponding section, hereby everything between the brackets is used as section name (trimmed).</p> </li> 
+      <li> <p>section names are separated using a double colon (<code>::</code>).</p> </li> 
+     </ul> 
+    </div> 
+    <div class="paragraph"> 
+     <p>ConfigurationData allows to access all the different parts:</p> 
+    </div> 
+    <div class="ulist"> 
+     <ul> 
+      <li> <p>the <em>default</em> properties (a, a.b)</p> </li> 
+      <li> <p>the section section1, with properties aa, aa.b.c</p> </li> 
+      <li> <p>the section section2, with properties a</p> </li> 
+     </ul> 
+    </div> 
+   </div> 
+   <div class="sect3"> 
+    <h4 id="_xml_property_and_ordinary_property_files">XML Property and ordinary Property Files</h4> 
+    <div class="paragraph"> 
+     <p>This module also ships with ConfigurationFormat implementations that reuse the parsing functionality provided with java.util.Properties:</p> 
+    </div> 
+    <div class="ulist"> 
+     <ul> 
+      <li> <p><code>org.apache.tamaya.format.formats.PropertiesFormat</code> uses <code>Properties.read(InputStream)</code>.</p> </li> 
+      <li> <p><code>org.apache.tamaya.format.formats.PropertiesXmlFormat</code> uses <code>Properties.readFromXml(InputStream)</code>.</p> </li> 
+     </ul> 
+    </div> 
+   </div> 
+  </div> 
+ </div> 
 </div></p>
 
 			<hr />
@@ -559,8 +455,8 @@ functionality provided with java.util.Properties:</p>
 		    <div id="footer">
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2018-05-03</span> |
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
+							at <span>2018-05-17</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

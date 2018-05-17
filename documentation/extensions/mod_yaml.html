@@ -125,71 +125,69 @@
 				<h1>Apache Tamaya - Extension: Builder</h1>
 			</div>
 
-			<p><em>2018-04-26</em></p>
+			<p><em>2018-05-17</em></p>
 
-			<p><div id="preamble">
-<div class="sectionbody">
-<!-- toc disabled -->
-</div>
-</div>
-<div class="sect1">
-<h2 id="YAML">Tamaya YAML (Extension Module)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Tamaya <em>YAML</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
-</div>
-<div class="sect2">
-<h3 id="_overview">Overview</h3>
-<div class="paragraph">
-<p>Tamaya <em>YAML</em> provides support for reading configuration using the YAML format (yaml.org). YAML hereby
-use intendation for expressing hierarchy, which makes yaml configuration files very easily readable and compact.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_compatibility">Compatibility</h3>
-<div class="paragraph">
-<p>The YAML module is based on Java 7, so it will run on Java 7 and beyond.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_installation">Installation</h3>
-<div class="paragraph">
-<p>To use YAML as configuration format you must add the corresponding dependency to your module:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+			<p><div id="preamble"> 
+ <div class="sectionbody"> 
+  <!-- toc disabled --> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="YAML">Tamaya YAML (Extension Module)</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>Tamaya <em>YAML</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_overview">Overview</h3> 
+   <div class="paragraph"> 
+    <p>Tamaya <em>YAML</em> provides support for reading configuration using the YAML format (yaml.org). YAML hereby use intendation for expressing hierarchy, which makes yaml configuration files very easily readable and compact.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_compatibility">Compatibility</h3> 
+   <div class="paragraph"> 
+    <p>The YAML module is based on Java 7, so it will run on Java 7 and beyond.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_installation">Installation</h3> 
+   <div class="paragraph"> 
+    <p>To use YAML as configuration format you must add the corresponding dependency to your module:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-yaml&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This extension also transitively requires the tamaya.formats module.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_reading_configuration_in_yaml">Reading configuration in YAML</h3>
-<div class="paragraph">
-<p>For reading YAML based onfiguration most easily a YAMLFormat can be provided:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">PropertySource ps = ConfigurationFormats.createPropertySource(
-    getClassLoader().getResource("myFileConfig.yaml"), new YAMLFormat()));</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_examples">Examples</h3>
-<div class="paragraph">
-<p>The YAML module adds instances of ConfigurationFormat so YAML configuration can be read and mapped to the
-according property values. E.g. the following file is a simple and correct YAML configuration:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-yaml" data-lang="yaml">invoice: 34843
+&lt;/dependency&gt;</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>This extension also transitively requires the tamaya.formats module.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_reading_configuration_in_yaml">Reading configuration in YAML</h3> 
+   <div class="paragraph"> 
+    <p>For reading YAML based onfiguration most easily a YAMLFormat can be provided:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">PropertySource ps = ConfigurationFormats.createPropertySource(
+    getClassLoader().getResource("myFileConfig.yaml"), new YAMLFormat()));</code></pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_examples">Examples</h3> 
+   <div class="paragraph"> 
+    <p>The YAML module adds instances of ConfigurationFormat so YAML configuration can be read and mapped to the according property values. E.g. the following file is a simple and correct YAML configuration:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-yaml" data-lang="yaml">invoice: 34843
 date   : 2001-01-23
 bill-to: &amp;id001
     given  : Chris
@@ -216,15 +214,15 @@ total: 4443.52
 comments:
     Late afternoon is best.
     Backup contact is Nancy
-    Billsmer @ 338-4338.</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Hereby the above file, by default is mapped as follows into Map&lt;String,String&gt; typed properties:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">invoice -&gt; 34843
+    Billsmer @ 338-4338.</code></pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Hereby the above file, by default is mapped as follows into Map&lt;String,String&gt; typed properties:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">invoice -&gt; 34843
 date -&gt; Tue Jan 23 01:00:00 CET 2001
 bill-to.family -&gt; Dumars
 bill-to.given -&gt; Chris
@@ -247,11 +245,11 @@ _product.collection-type -&gt; List
 
 tax -&gt; 251.42
 total -&gt; 4443.52
-comments -&gt; Late afternoon is best. Backup contact is Nancy Billsmer @ 338-4338.</code></pre>
-</div>
-</div>
-</div>
-</div>
+comments -&gt; Late afternoon is best. Backup contact is Nancy Billsmer @ 338-4338.</code></pre> 
+    </div> 
+   </div> 
+  </div> 
+ </div> 
 </div></p>
 
 			<hr />
@@ -263,8 +261,8 @@ comments -&gt; Late afternoon is best. Backup contact is Nancy Billsmer @ 338-43
 		    <div id="footer">
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2018-05-03</span> |
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
+							at <span>2018-05-17</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

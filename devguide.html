@@ -125,250 +125,219 @@
 				<h1>Apache Tamaya: Development Guide</h1>
 			</div>
 
-			<p><em>2018-04-26</em></p>
+			<p><em>2018-05-17</em></p>
 
-			<p><div class="sect1">
-<h2 id="_suggested_git_workflows">1. Suggested Git Workflows</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_avoid_git_pull">1.1. Avoid git pull!</h3>
-<div class="paragraph">
-<p><code>git pull</code> should never get invoked if you have dirty files lying around
-or if your branch is ahead of master. This will always lead to
-some dirty artifacts in the commit history:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>Merge branch 'master' of http://git-wip-us.apache.org/tamaya into master</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_use_git_pull_rebase">1.2. Use git pull --rebase</h3>
-<div class="paragraph">
-<p>An easy version for getting rid of the auto-merges is using</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$ git pull --rebase</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Please note that this sometimes trashes your working tree if there
-are unmergeable files around. Cleaning this up with a forced manual
-rebase is not something we would recommend for a git beginner.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_working_in_an_own_branch">1.3. Working in an own branch</h3>
-<div class="paragraph">
-<p>This is actually the suggested way to prevent auto-merges. Create an own
-branch where you do your feature work. Either do all your work in one
-branch or create one branch per feature you are working on.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$ git branch mybranch</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>After you finished your feature, first add (<code>git add</code>) and commit (<code>git commit</code>) your work.
-Check with <code>git status</code> that you don&#8217;t have any dirty files and uncommitted
-changes around. You can use <code>git stash</code> to 'backup' unfinished work.</p>
-</div>
-<div class="paragraph">
-<p>Then switch back to the master branch and pull changes
-done by other committers in the meantime.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$ git checkout master
-$ git pull --rebase</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You should now get all the changes done by other committers and
-the will get applied to your local master branch. Now go back to
-your private branch and rebase your locally performed work to the HEAD of master.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$ git checkout mybranch
-$ git rebase master</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you got conflicts, you will get lines with "&gt;&gt;&gt;&gt;" added to those
-files. Resolve those conflicts manually, add them and finish the rebase.</p>
-</div>
-<div class="paragraph">
-<p>Check with <code>git-status</code> and <code>gitk</code> if the merge went well and the history now contains your changes.
-If all is well, go back to the master branch and merge your changes in.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$ git pull --rebase     // (just for safety, you should see no changes)
+			<p><div class="sect1"> 
+ <h2 id="_suggested_git_workflows">1. Suggested Git Workflows</h2> 
+ <div class="sectionbody"> 
+  <div class="sect2"> 
+   <h3 id="_avoid_git_pull">1.1. Avoid git pull!</h3> 
+   <div class="paragraph"> 
+    <p><code>git pull</code> should never get invoked if you have dirty files lying around or if your branch is ahead of master. This will always lead to some dirty artifacts in the commit history:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>Merge branch 'master' of http://git-wip-us.apache.org/tamaya into master</pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_use_git_pull_rebase">1.2. Use git pull --rebase</h3> 
+   <div class="paragraph"> 
+    <p>An easy version for getting rid of the auto-merges is using</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>$ git pull --rebase</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Please note that this sometimes trashes your working tree if there are unmergeable files around. Cleaning this up with a forced manual rebase is not something we would recommend for a git beginner.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_working_in_an_own_branch">1.3. Working in an own branch</h3> 
+   <div class="paragraph"> 
+    <p>This is actually the suggested way to prevent auto-merges. Create an own branch where you do your feature work. Either do all your work in one branch or create one branch per feature you are working on.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>$ git branch mybranch</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>After you finished your feature, first add (<code>git add</code>) and commit (<code>git commit</code>) your work. Check with <code>git status</code> that you don’t have any dirty files and uncommitted changes around. You can use <code>git stash</code> to 'backup' unfinished work.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Then switch back to the master branch and pull changes done by other committers in the meantime.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>$ git checkout master
+$ git pull --rebase</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>You should now get all the changes done by other committers and the will get applied to your local master branch. Now go back to your private branch and rebase your locally performed work to the HEAD of master.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>$ git checkout mybranch
+$ git rebase master</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>If you got conflicts, you will get lines with "&gt;&gt;&gt;&gt;" added to those files. Resolve those conflicts manually, add them and finish the rebase.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Check with <code>git-status</code> and <code>gitk</code> if the merge went well and the history now contains your changes. If all is well, go back to the master branch and merge your changes in.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>$ git pull --rebase     // (just for safety, you should see no changes)
 $ git checkout master
-$ git merge mybranch</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Finally you can push your changes to the ASF git repo</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$ git push</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="contributing-workflow">2. Contribution workflow</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_creating_patches">2.1. Creating patches</h3>
-<div class="paragraph">
-<p>You should use the following workflow, if you plan to contribute
-patches or new features to Tamaya.</p>
-</div>
-<div class="paragraph">
-<p>First update you local copy of the repository:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$ git checkout master
-$ git pull --rebase</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then create a new local branch for your work. It&#8217;s good practice to name
-it after the corresponding JIRA issue.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$ git checkout -b TAMAYA-XXX</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now you can start to work on your patch. When you are finished, commit your changes. But don&#8217;t forget to <strong>add the name
-of the JIRA issue to the commit message</strong>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$ git add -am "TAMAYA-XXX: Fixed some issue"</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>For small patches we recommend to do a single commit containing your changes. For larger contributions you should try
-to group your work into separate sub-tasks that you can commit one by one.</p>
-</div>
-<div class="paragraph">
-<p>Before you create your patch you should make sure that your local repository is up to date with the master repository.
-This is very important especially if you work on your branch for a long time. Use the following commands to pull the
-latest changes from the upstream repository and rebase your branch against the current master.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$ git checkout master
+$ git merge mybranch</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Finally you can push your changes to the ASF git repo</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>$ git push</pre> 
+    </div> 
+   </div> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="contributing-workflow">2. Contribution workflow</h2> 
+ <div class="sectionbody"> 
+  <div class="sect2"> 
+   <h3 id="_creating_patches">2.1. Creating patches</h3> 
+   <div class="paragraph"> 
+    <p>You should use the following workflow, if you plan to contribute patches or new features to Tamaya.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>First update you local copy of the repository:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>$ git checkout master
+$ git pull --rebase</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Then create a new local branch for your work. It’s good practice to name it after the corresponding JIRA issue.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>$ git checkout -b TAMAYA-XXX</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Now you can start to work on your patch. When you are finished, commit your changes. But don’t forget to <strong>add the name of the JIRA issue to the commit message</strong>.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>$ git add -am "TAMAYA-XXX: Fixed some issue"</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>For small patches we recommend to do a single commit containing your changes. For larger contributions you should try to group your work into separate sub-tasks that you can commit one by one.</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Before you create your patch you should make sure that your local repository is up to date with the master repository. This is very important especially if you work on your branch for a long time. Use the following commands to pull the latest changes from the upstream repository and rebase your branch against the current master.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>$ git checkout master
 $ git pull --rebase
 $ git checkout TAMAYA-XXX
-$ git rebase master</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now you are ready to create your patch:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$ git checkout TAMAYA-XXX
-$ git format-patch --stdout master &gt; ../TAMAYA-XXX.patch</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Please attach the resulting patch file to the correspoding JIRA issue.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_applying_patches">2.2. Applying patches</h3>
-<div class="paragraph">
-<p>If you are a committer and want to apply a patch you should do so in a separate branch.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$ git checkout -b TAMAYA-XXX</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then apply the patch using <code>git am</code> and rebase it against the master branch.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$ git am &lt; ../TAMAYA-XXX.patch
-$ git rebase master</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>After reviewing the changes and testing the code, the changes are ready to
-be merged into the master branch:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$ git checkout master
+$ git rebase master</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Now you are ready to create your patch:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>$ git checkout TAMAYA-XXX
+$ git format-patch --stdout master &gt; ../TAMAYA-XXX.patch</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Please attach the resulting patch file to the correspoding JIRA issue.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_applying_patches">2.2. Applying patches</h3> 
+   <div class="paragraph"> 
+    <p>If you are a committer and want to apply a patch you should do so in a separate branch.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>$ git checkout -b TAMAYA-XXX</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Then apply the patch using <code>git am</code> and rebase it against the master branch.</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>$ git am &lt; ../TAMAYA-XXX.patch
+$ git rebase master</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>After reviewing the changes and testing the code, the changes are ready to be merged into the master branch:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>$ git checkout master
 $ git merge TAMAYA-XXX
-$ git branch -d TAMAYA-XXX</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_discussion_workflow_optional">2.3. Discussion workflow (optional)</h3>
-<div class="paragraph">
-<p>All discussions which lead to a decision take place on the mailing list.
-Sometimes it&#8217;s required to show-case an idea esp. if the solution is
-more than few lines. As shown above it makes sense to use local branches
-for developing new parts. Git allows to push such local branches to a
-public repository. So it&#8217;s easier to share it with the community
-for discussing it. The following listings show an example in combination
-with GitHub - for sure it works with any hosting platform like BitBucket,
-Google-Code,&#8230;&#8203; The only important part here is that such branches
-<strong>NEVER</strong> get pushed to the main Apache repository to keep the commit history
-as clean as possible.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_initial_setup">2.4. Initial setup</h3>
-<div class="listingblock">
-<div class="content">
-<pre>$ git clone https://git-wip-us.apache.org/repos/asf/incubator-tamaya.git
+$ git branch -d TAMAYA-XXX</pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_discussion_workflow_optional">2.3. Discussion workflow (optional)</h3> 
+   <div class="paragraph"> 
+    <p>All discussions which lead to a decision take place on the mailing list. Sometimes it’s required to show-case an idea esp. if the solution is more than few lines. As shown above it makes sense to use local branches for developing new parts. Git allows to push such local branches to a public repository. So it’s easier to share it with the community for discussing it. The following listings show an example in combination with GitHub - for sure it works with any hosting platform like BitBucket, Google-Code,…​ The only important part here is that such branches <strong>NEVER</strong> get pushed to the main Apache repository to keep the commit history as clean as possible.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_initial_setup">2.4. Initial setup</h3> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>$ git clone https://git-wip-us.apache.org/repos/asf/incubator-tamaya.git
 $ git remote add discuss https://[username]@github.com/[username]/[repo-name].git
-$ git push -u discuss master</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_branches_for_discussions">2.5. Branches for discussions</h3>
-<div class="listingblock">
-<div class="content">
-<pre>$ git checkout -b TAMAYA-XXX # 1-n commits
-$ git push discuss TAMAYA-XXX # share the link to the branch for the discussions</pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>If the community agrees on the suggested change, the implementation will be applied to the origin master. A committer
-has to follow the steps described above for the basic workflow to keep the commit history simple, clean and straight.
-A contributor has to follow the steps described above for creating a patch.</strong></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_delete_the_branch_again">2.6. Delete the branch again</h3>
-<div class="listingblock">
-<div class="content">
-<pre>$ git push discuss :TAMAYA-XXX
-$ git branch -d TAMAYA-XXX</pre>
-</div>
-</div>
-</div>
-</div>
+$ git push -u discuss master</pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_branches_for_discussions">2.5. Branches for discussions</h3> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>$ git checkout -b TAMAYA-XXX # 1-n commits
+$ git push discuss TAMAYA-XXX # share the link to the branch for the discussions</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p><strong>If the community agrees on the suggested change, the implementation will be applied to the origin master. A committer has to follow the steps described above for the basic workflow to keep the commit history simple, clean and straight. A contributor has to follow the steps described above for creating a patch.</strong></p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_delete_the_branch_again">2.6. Delete the branch again</h3> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre>$ git push discuss :TAMAYA-XXX
+$ git branch -d TAMAYA-XXX</pre> 
+    </div> 
+   </div> 
+  </div> 
+ </div> 
 </div></p>
 
 			<hr />
@@ -380,8 +349,8 @@ $ git branch -d TAMAYA-XXX</pre>
 		    <div id="footer">
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2018-05-03</span> |
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
+							at <span>2018-05-17</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

@@ -125,82 +125,75 @@
 				<h1>Apache Tamaya - Extension: Integration for Vertx</h1>
 			</div>
 
-			<p><em>2018-04-26</em></p>
+			<p><em>2018-05-17</em></p>
 
-			<p><div id="preamble">
-<div class="sectionbody">
-<!-- toc disabled -->
-</div>
-</div>
-<div class="sect1">
-<h2 id="JNDI">Integration with Vertx (Extension Module)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Tamaya <em>JNDI</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
-</div>
-<div class="sect2">
-<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
-<div class="paragraph">
-<p>Tamaya <em>Vertx</em> provides configuration services that can be used in a Vertx environment:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>AbstractConfiguredVerticle defines a subclass extending AbstractVerticle, which allows you to
-use Tamaya Injection API.</p>
-</li>
-<li>
-<p>Additionally you deply a ConfigVerticle, which registers services to access configuration
-using asynchronous event bus.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_compatibility">Compatibility</h3>
-<div class="paragraph">
-<p>The module requires Java 8, so it will not run on Java 7.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_installation">Installation</h3>
-<div class="paragraph">
-<p>To use Tamaya&#8217;s <em>Vertx</em> support you only must add the corresponding dependency to
-your module:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+			<p><div id="preamble"> 
+ <div class="sectionbody"> 
+  <!-- toc disabled --> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="JNDI">Integration with Vertx (Extension Module)</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>Tamaya <em>JNDI</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3> 
+   <div class="paragraph"> 
+    <p>Tamaya <em>Vertx</em> provides configuration services that can be used in a Vertx environment:</p> 
+   </div> 
+   <div class="ulist"> 
+    <ul> 
+     <li> <p>AbstractConfiguredVerticle defines a subclass extending AbstractVerticle, which allows you to use Tamaya Injection API.</p> </li> 
+     <li> <p>Additionally you deply a ConfigVerticle, which registers services to access configuration using asynchronous event bus.</p> </li> 
+    </ul> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_compatibility">Compatibility</h3> 
+   <div class="paragraph"> 
+    <p>The module requires Java 8, so it will not run on Java 7.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_installation">Installation</h3> 
+   <div class="paragraph"> 
+    <p>To use Tamaya’s <em>Vertx</em> support you only must add the corresponding dependency to your module:</p> 
+   </div> 
+   <div class="listingblock"> 
+    <div class="content"> 
+     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-vertx-alpha&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_the_functionality_provided">The Functionality Provided</h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-This module is in alpha state. Please give feedback via our JIRA, so we can improve it.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_extending_abstractconfiguredverticle">Extending AbstractConfiguredVerticle</h4>
-<div class="paragraph">
-<p>Main artifact is the AbstractConfiguredVerticle class, which implements a
-base verticle class for Vertx:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public abstract class AbstractConfiguredVerticle extends AbstractVerticle{
+&lt;/dependency&gt;</code></pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_the_functionality_provided">The Functionality Provided</h3> 
+   <div class="admonitionblock note"> 
+    <table> 
+     <tbody>
+      <tr> 
+       <td class="icon"> 
+        <div class="title">
+         Note
+        </div> </td> 
+       <td class="content"> This module is in alpha state. Please give feedback via our JIRA, so we can improve it. </td> 
+      </tr> 
+     </tbody>
+    </table> 
+   </div> 
+   <div class="sect3"> 
+    <h4 id="_extending_abstractconfiguredverticle">Extending AbstractConfiguredVerticle</h4> 
+    <div class="paragraph"> 
+     <p>Main artifact is the AbstractConfiguredVerticle class, which implements a base verticle class for Vertx:</p> 
+    </div> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public abstract class AbstractConfiguredVerticle extends AbstractVerticle{
 
     private Configuration configuration;
 
@@ -228,28 +221,24 @@ base verticle class for Vertx:</p>
     protected final String getConfigPropertyOrDefault(String key, String defaultValue);
     protected final &lt;T&gt; T getConfigProperty(String key, Class&lt;T&gt; type);
     protected final &lt;T&gt; T getConfigPropertyOrDefault(String key, Class&lt;T&gt; type, T defaultValue);
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Using this verticle as a superclass, provides you</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>embedded convenience methods for programmatic configuration access (getConfigProperty* methods).</p>
-</li>
-<li>
-<p>support for configuration injection based on <a href="../mod_injection.html">Tamaya&#8217;s injection API</a>.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The following code snippet gives you an example, what you can do with this functionality:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public cllass MyVerticle extends AbstractConfiguredVerticle{
+}</code></pre> 
+     </div> 
+    </div> 
+    <div class="paragraph"> 
+     <p>Using this verticle as a superclass, provides you</p> 
+    </div> 
+    <div class="ulist"> 
+     <ul> 
+      <li> <p>embedded convenience methods for programmatic configuration access (getConfigProperty* methods).</p> </li> 
+      <li> <p>support for configuration injection based on <a href="../mod_injection.html">Tamaya’s injection API</a>.</p> </li> 
+     </ul> 
+    </div> 
+    <div class="paragraph"> 
+     <p>The following code snippet gives you an example, what you can do with this functionality:</p> 
+    </div> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public cllass MyVerticle extends AbstractConfiguredVerticle{
 
    @Override
    public void start(){
@@ -258,15 +247,15 @@ base verticle class for Vertx:</p>
      BigDecimal bd = getConfigureddPropertyOrDefault("MyNum", BigDecimal.ZERO);
      [...]
    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>As menioned you can also use the injection API:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public cllass MyVerticle extends AbstractConfiguredVerticle{
+}</code></pre> 
+     </div> 
+    </div> 
+    <div class="paragraph"> 
+     <p>As menioned you can also use the injection API:</p> 
+    </div> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public cllass MyVerticle extends AbstractConfiguredVerticle{
 
    @Config("myKey")
    private String configuredValue;
@@ -279,18 +268,18 @@ base verticle class for Vertx:</p>
    public void start(){
      [...]
    }
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_accessing_configuration_using_the_vertx_event_bus">Accessing Configuration using the Vertx event bus</h4>
-<div class="paragraph">
-<p>Additionally the extension allows to access configuration values from the event bus:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Override
+}</code></pre> 
+     </div> 
+    </div> 
+   </div> 
+   <div class="sect3"> 
+    <h4 id="_accessing_configuration_using_the_vertx_event_bus">Accessing Configuration using the Vertx event bus</h4> 
+    <div class="paragraph"> 
+     <p>Additionally the extension allows to access configuration values from the event bus:</p> 
+    </div> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Override
 public void start(){
   // the selector allows to apply a regex on the configuration key to select a
   // a configuration sub set.
@@ -308,15 +297,15 @@ public void start(){
                         // do something with the config
                         // ...
                     }
-                 });</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Similar only single values can be accessed:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Override
+                 });</code></pre> 
+     </div> 
+    </div> 
+    <div class="paragraph"> 
+     <p>Similar only single values can be accessed:</p> 
+    </div> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Override
 public void start(){
   vertx().eventBus().send(
              "CONFIG-VAL", // event bus address
@@ -328,25 +317,24 @@ public void start(){
                            // do something with the config value
                            // ...
                        }
-                   });</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Finally the event bus targets to be used can be configured using Tamaya configuration,
-see the code snippet from the implementation:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Config(value = "tamaya.vertx.config.map", defaultValue = "CONFIG-MAP")
+                   });</code></pre> 
+     </div> 
+    </div> 
+    <div class="paragraph"> 
+     <p>Finally the event bus targets to be used can be configured using Tamaya configuration, see the code snippet from the implementation:</p> 
+    </div> 
+    <div class="listingblock"> 
+     <div class="content"> 
+      <pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Config(value = "tamaya.vertx.config.map", defaultValue = "CONFIG-MAP")
 private String mapBusTarget;
 
 @Config(value = "tamaya.vertx.config.value", defaultValue = "CONFIG-VAL")
-private String valBusTarget;</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
+private String valBusTarget;</code></pre> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+ </div> 
 </div></p>
 
 			<hr />
@@ -358,8 +346,8 @@ private String valBusTarget;</code></pre>
 		    <div id="footer">
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.5.1</span></a>
-							at <span>2018-05-03</span> |
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
+							at <span>2018-05-17</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>
