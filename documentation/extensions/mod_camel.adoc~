@@ -1,0 +1,132 @@
+:jbake-type: page
+:jbake-status: published
+
+= Apache Tamaya - Extension: Integration with Apache Camel
+
+toc::[]
+
+
+[[Camel]]
+== Integration with Apache Camel (Extension Module)
+
+Tamaya _Camel_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+
+=== What functionality this module provides ?
+
+The Tamaya _Camel_ module provides different artifacts which allow integration of Apache Tamaya
+configuration with Apache Camel.
+
+
+=== Compatibility
+
+The module is based on Java 8. 
+{jbake-tamaya_version}
+
+=== Installation
+
+To benefit from configuration builder support you only must add the corresponding dependency to your module:
+
+[source,subs="attributes",xml]
+-----------------------------------------------
+<dependency>
+  <groupId>org.apache.tamaya.ext</groupId>
+  <artifactId>tamaya-camel_beta</artifactId>
+  <version>{jbake-tamaya_version}</version>
+</dependency>
+-----------------------------------------------
+
+
+=== The Functionality Provided
+
+Tamaya Camel comes basically with three artifacts:
+
+* A Camel +ResolverFunction+ implementation adding explicit property resolution
+  (+org.apache.tamaya.camel.TamayaPropertyResolver+).
+* A Camel +PropertiesComponent+ implementation, which allows implicitly preconfigures the resolvers from above and
+  additionally allows using Tamaya configuration as Camel _overrides_
+  (+org.apache.tamaya.camel.TamayaPropertiesComponent+).
+
+
+=== Configuring using Camel Java DSL
+
+Camel integration using Java DSL is basically simple:
+
+[source, java]
+-----------------------------------------------
+import org.apache.tamaya.camel.TamayaPropertiesComponent;
+
+camelContext.addComponent("properties", new TamayaPropertiesComponent());
+-----------------------------------------------
+
+Given so you can then use +cfg+ or +tamaya+ as prefix for resolving entries with Tamaya as follows:
+
+[source, java]
+-----------------------------------------------
+RouteBuilder builder = new RouteBuilder() {
+    public void configure() {
+        from("direct:hello1").transform().simple("{{cfg:message}}");
+    }
+};
+camelContext.addRoutes(builder);
+builder = new RouteBuilder() {
+    public void configure() {
+        from("direct:hello2").transform().simple("{{tamaya:message}}");
+    }
+};
+camelContext.addRoutes(builder);
+-----------------------------------------------
+
+
+Optionally you can also configure +TamayaPropertiesComponent+ that all currently known Tamaya properties are used
+as Camel overrides, meaning they are evaluated prior to all other available resolver functions in the Camel
++PropertiesComponent+:
+
+[source, java]
+-----------------------------------------------
+TamayaPropertiesComponent props = new TamayaPropertiesComponent();
+props.setTamayaOverrides(true);
+-----------------------------------------------
+
+
+=== Configuring using Camel XML DSL
+
+Camel integration using XML DSL is basically very similar. You just have to add the +properties+ component as bean
+as well. All other configuration parameters (e.g. file URIs are similar supported). In the example code below we
+again use Tamaya as the main configuration solutions only using Camel's default behaviour as a fallback:
+
+[source, xml]
+-----------------------------------------------
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+
+    <routeContext id="myCoolRoutes" xmlns="http://camel.apache.org/schema/spring">
+        <route id="r1">
+            <from uri="direct:hello1"/>
+            <transform>
+                <simple>{{message}}</simple>
+            </transform>
+        </route>
+        <route id="r2">
+            <from uri="direct:hello2"/>
+            <transform>
+                <simple>{{cfg:message}}</simple>
+            </transform>
+        </route>
+        <route id="r3">
+            <from uri="direct:hello3"/>
+            <transform>
+                <simple>{{tamaya:message}}</simple>
+            </transform>
+        </route>
+    </routeContext>
+
+    <bean id="properties" class="org.apache.tamaya.camel.TamayaPropertiesComponent">
+        <property name="tamayaOverrides" value="true"/>
+    </bean>
+
+</beans>
+-----------------------------------------------
