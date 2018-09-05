@@ -105,9 +105,9 @@ Though not recommended, it is possible to activate both extension at the same ti
 
 === Annotating your Classes
 
-Basically annotating your classes is stright forward. +@Config+ defines an additional CDI qualifier that is, depending
+Basically annotating your classes is straightforward. +@Config+ defines an additional CDI qualifier that is, depending
 on the module deployed, handled by a CDI producer (+tamaya-cdi-ee+) or the Tamaya SE injection mechanism $
-(+tamaya-cdi-se+). All types injected by this module are injected using _dependent scope_.
+(+tamaya-cdi-se+). All types injected by this module are injected using _dependent scope_. Keep in mind that values injected into fields by Tamaya cannot be used within constructors because https://docs.jboss.org/weld/reference/latest/en-US/html/injection.html[they will not yet have been injected].
 
 
 [source, java]
