@@ -125,7 +125,7 @@
 				<h1>Apache Tamaya - Extension: CDI Support</h1>
 			</div>
 
-			<p><em>2018-05-26</em></p>
+			<p><em>2018-09-06</em></p>
 
 			<p><div id="preamble"> 
  <div class="sectionbody"> 
@@ -244,7 +244,7 @@ org.apache.tamaya.cdi.TamayaCDIAccessor</code></pre>
   <div class="sect2"> 
    <h3 id="_annotating_your_classes">Annotating your Classes</h3> 
    <div class="paragraph"> 
-    <p>Basically annotating your classes is stright forward. @Config defines an additional CDI qualifier that is, depending on the module deployed, handled by a CDI producer (tamaya-cdi-ee) or the Tamaya SE injection mechanism $ (tamaya-cdi-se). All types injected by this module are injected using <em>dependent scope</em>.</p> 
+    <p>Basically annotating your classes is straightforward. @Config defines an additional CDI qualifier that is, depending on the module deployed, handled by a CDI producer (tamaya-cdi-ee) or the Tamaya SE injection mechanism $ (tamaya-cdi-se). All types injected by this module are injected using <em>dependent scope</em>. Keep in mind that values injected into fields by Tamaya cannot be used within constructors because <a href="https://docs.jboss.org/weld/reference/latest/en-US/html/injection.html">they will not yet have been injected</a>.</p> 
    </div> 
    <div class="listingblock"> 
     <div class="content"> 
@@ -406,7 +406,7 @@ private String value;</code></pre>
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
-							at <span>2018-06-16</span> |
+							at <span>2018-09-06</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>
