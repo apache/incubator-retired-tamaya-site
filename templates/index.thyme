@@ -7,18 +7,60 @@
 		<div th:replace="menu.thyme::menu"/>
 		<div class="container">
 			<div class="page-header">
-				<h1>Blog</h1>
+				<h1><img class="front-logo" src="/logos/tamaya.png"/>Apache Tamaya (Incubating)</h1>
 			</div>
-
-			<div th:each="post : ${published_posts}">
-				<a th:href='${post.uri}' href='href'><h1 th:text='${post.title}'>title</h1></a>
-				<p th:text='${#dates.format(post.date,"yyyy-MM-dd")}'>date</p>
-				<p th:utext='${post.body}'>body</p>
-			</div>
+            <div>
+            <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td class="front-cell">
+                                <h3>What is Tamaya?</h3>
+                                <p>Tamaya is a powerful, flexible but simple configuration API that decouples your application
+                                from your configuration backend sources.</p>
+                                <p><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'about.html'">Learn more about Tamaya</a></p>
+                            </td>
+                            <td class="front-cell">
+                                <h3>Challenge it: Why you should use Tamaya?</h3>
+                                <p>Configuration is one of the most important cross-cutting concerns. Nevertheless
+                                most people rewrite similar logic again and again. It's time to rely on a standard
+                                compliant solution that allows to plug-in any configuration resources?</p>
+                                <p><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'documentation/usecases.html'">Look at Tamaya's Use Cases</a></p>
+                            </td>
+                            <td class="front-cell">
+                                <h3>Try it: Get started!</h3>
+                                <p>Get started is easy. Look at our examples, add Tamaya's runtime dependency and
+                                there you go. Tamaya is plain Java SE in it's core. Lean and effective. And if you have
+                                a question, let us know. We are happy to help!</p>
+                                <p><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'documentation/quickstart.html'">"Getting started" right away!</a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="front-cell">
+                                <h3>Use it: Add more Features!</h3>
+                                <p>Did we already have mentioned features? There are a lot of them. Read this
+                                overview about current and upcoming features to see what matches your
+                                requirements. Tamaya is modular, you only depend on what you like.</p>
+                                <p><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'features.html'">Checkout our outstanding features</a></p>
+                            </td>
+                            <td class="front-cell">
+                                <h3>Rely on it: Tamaya as a standard</h3>
+                                <p>Tamaya is not only a flexible configuration solution, it is also future proof.
+                                With Tamaya you get an indepepdent implementation of the current Microprofile
+                                Config and JSR 310 API.</p>
+                                <p><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'documentation/tamayaasastandard.html'">Learn more</a></p>
+                            </td>
+                            <td class="front-cell">
+                                <h3>Improve it: Get involved...</h3>
+                                <p>Tell us your story and help us making Tamaya even better.
+                                We are happy to support you and discuss further features or improvements.</p>
+                                <p><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'development/community.html'">Get involved!</a></p>
+                            </td>
+                        </tr>
+                    </tbody>
+            </table>
+            </div>
 
 			<hr />
-
-			<p>Older posts are available via the <a th:href='${content.rootpath+config.archive_file}' href='href'>archive</a>.</p>
 		</div>
 	</div>
 

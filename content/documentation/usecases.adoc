@@ -1,7 +1,31 @@
 :jbake-type: page
 :jbake-status: published
 
-== Apache Tamaya: Use Cases and Requirements
+
+= Why you should rely on Tamaya?
+
+There are several reasons, why you should choose Tamaya, some of them:
+
+* *Tamaya is useful*: Tamaya ships with a type safe, easy to use API and SPI, which can help you to decouple your
+  code from configuration concerns.
+* *Tamaya is flexible*: Regardless of working
+with Vanilla Java SE or with OSGI or Jakarta EE, Tamaya can be the tool
+of choice for your configuration concerns.
+* *Tamaya is extendible*: Tamaya comes with a lean core API. Additional features can
+ be added easily by simply adding them to the project classpath as needed.
+Tamaya does not fill up your memory with things you wont ever need.
+* *Tamaya is easy*: Tamaya comes with a flexible auto-discovery mechanism to lookup
+  the property sources and define their individual significance.
+* *Tamaya is runtime-independent*: Tamaya runs on every JVM platform, since it's core is written in pure
+  Java.
+* *Tamaya is well documented*: Both the API as well as the extension are all well documented.
+* *Tamaya is Apache*: Tamaya is community as it's best, no vendor lock-in, no payed members, just
+  the Apache Way!
+
+A good way to continue is probably looking at the use cases we had in mind, when implementing Tamaya...
+
+
+= Use Cases and Requirements
 
 toc::[]
 

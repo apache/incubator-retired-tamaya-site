@@ -55,7 +55,7 @@ be supported by Tamaya as well.
 --------------------------------------------------------
 // SE API
 
-Config config = ConfigProvider.getConfig();
+Config config = Configuration.current();
 String serverUrl = config.getValue("acme.myprj.some.url", String.class);
 callToServer(serverUrl);
 

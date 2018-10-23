@@ -1,0 +1,105 @@
+:jbake-type: page
+:jbake-status: published
+
+[toc]
+
+= Tamaya\'s Features
+
+Apache Tamaya comes with numerous useful features. This page lists the most important
+ones. Also also have a look at the full feature list. If you don't find your features,
+please get in contact with us to discuss your ideas!
+
+== Core Features
+
+The Core Features are built-in riht away and available by default. Just add Tamaya to your project
+dependencies and there you go!
+
+
+=== Accessing Configuration
+
+Tamaya provides a super simple API to access configuration:
+
+[source: java]
+----
+Configuration config = Configuration.current();
+----
+
+Yes it's as easy as that. Optionally you can also pass your classloader of choice:
+
+[source: java]
+----
+ClassLoader myApplicationClassLoader = ...;
+Configuration config = Configuration.current(myApplicationClassLoader);
+----
+
+From there you can access your configuration properties:
+
+[source: java]
+----
+String host = config.getOrDefault("server.host", "localhost");
+Optional<Integer> port = config.getOptional("server.port", Integer.class);
+----
+
+
+=== Providing Configuration
+
+Providing configuration is as simple:
+
+* Implement the `PropertySource` interface.
+* Register your implementation with the Java `ServiceLoader`.
+
+
+== Configuration Auto-Discovery and Builders
+
+Tamaya can care about everything. You dont have to bother with
+configuration sources, classloaders, overriding etc. Tamaya will collect and load
+all registered property sources.
+
+On the other hand if you prefer having full control, Tamaya provides
+powerful factories and builders, with allow to built your customized
+configuration and manage your own configuration lifecycle.
+
+[source: java]
+----
+Configuration config = Configuration.builder()
+              .withDefaultPropertySources()
+              .addPropertySources(new MyCustomPropertySource())
+              .withDefaultConverters()
+              .build();
+----
+
+
+== Pluggable Extensions
+
+Tamaya comes with numerous features, that can be easily added. Just add
+the corresponding dependency to your build. Yes, it's as easy as that.
+So let's have a quick look at some of the most commonly used features...
+
+
+== Functional Extensions
+
+
+== Dynamic Placeholders
+
+
+== Different Configuration Formats: JSON, YAML, XML, properties, ini...
+
+
+== Support for Configuration Injection
+
+
+== Support for Configuration Templates
+
+
+== Ant styled File Resource Wildcards
+
+
+== Support for Spring/Spring Boot
+
+
+
+
+
+
+
+

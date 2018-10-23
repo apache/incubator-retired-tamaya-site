@@ -26,7 +26,7 @@ to provide the default values when accessing the configuration:
 
 [source,java]
 ----
-Configuration config = ConfigurationProvider.getConfiguration();
+Configuration config = Configuration.current();
 
 String aTextValue = config.getOrDefault("my.value.key", "N/A");
 int aNumericValue = config.getOrDefault("my.numValueKey", Integer.class, 15 /* default */);
@@ -37,9 +37,9 @@ With Java 8 you can, of course, also use +Optional+, e.g.
 
 [source,java]
 ----
-Configuration config = ConfigurationProvider.getConfiguration();
+Configuration config = Configuration.current();
 
-String aTextValue = Optional.ofNullable(config.getOrDefault("my.value.key").orElse("N/A");
+String aTextValue = config.getOptional("my.value.key", String.class).orElse("N/A");
 ----
 
 === Add/define your configuration data
