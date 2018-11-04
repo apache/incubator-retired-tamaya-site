@@ -12,28 +12,32 @@ link:../highleveldesign.html[High Level Design Documentation]
 == The Tamaya API
 The API provides the artifacts as described in the link:../highleveldesign.html[High Level Design Documentation], which are:
 
-* The package +org.apache.tamaya+ defines a simple but complete SE *API* for accessing key/value based _Configuration_:
+* The package +org.apache.tamaya+ defines a simple but complete SE *API* for accessing _Configuration_:
   ** +Configuration+ hereby models _configuration_, the main interface of Tamaya. +Configuration+ provides
      *** access to literal key/value pairs.
      *** functional extension points (+with, query+) using a unary +ConfigOperator+ or
          a function +ConfigurationQuery<T>+.
-  ** +ConfigurationProvider+ provides with +getConfiguration()+ the static entry point for accessing configuration.
+  ** +Configuration+ also provides with +current()+ and +current(ClassLoader)+ static access point for
+     obtaining the current configuration.
   ** +ConfigException+ defines a runtime exception for usage by the configuration system.
   ** +TypeLiteral+ provides a possibility to type safely define the target type to be returned in case non-String types
-     are accessed.
-  ** +PropertyConverter+, which defines conversion of configuration values (String) into any required target type.
+     are accessed. It is especially useful when accessing collections from Tamaya.
+  ** +PropertyConverter+, which defines conversion of configuration values (one or multiple Strings) into any
+     required target type.
 
 * The package +org.apache.tamaya.spi+ provides interfaces used for extending and/or
   adapting Tamaya's core functionality, as well as artifacts for creating
   +Configuration+ instances programmatically:
   ** _PropertySource:_ is the the interface to be implemented for adding configuration entries. A +PropertySource+ hereby
      *** is minimalistic and can be implemented in any way. E.g. there is no distiction that
-     the configuration data provided is managed locally, remotedely. There is even no
+     the configuration data provided is managed locally, remotely. There is even no
      requirement that the configuration data is always fully available. Summarizing a
      +PropertySource+
-     *** provides property access for single key/value pairs in _raw_ format (meaning no postprocessing
-         is applied yet). A single property hereby is modelled as +PropertyValue+, which also includes
-         its source and additional arbitrary metadata entries.
+     *** provides property access for property values. A single property value hereby is modelled as +PropertyValue+,
+         which by default contains a single literal value. Nevertheles Tamaya also supports more complex scenarios
+         by allowing property values to have children either as array/list type or as named fields. These children
+         themselves are recursively also modelled by property values. This makes it possible to map also complex
+         structures such as JSON, XML or YAML data. Finally a property value also may contain additional metadata entries.
      *** can _optionally_ provide access to a +Map<String,PropertyValue>+, providing all its properties at once.
      *** defines the default ordinal to be used for establishing the order of significance among all
          auto-discovered property sources.
@@ -42,36 +46,32 @@ The API provides the artifacts as described in the link:../highleveldesign.html[
   ** +ConfigurationProviderSpi+ defines the interface to be implemented by the delegating bean that is implementing the
      +ConfigurationProvider+ singleton.
   ** +PropertyFilter+ allows filtering of property values prior getting returned to the caller. Filters by default are
-     registered as global filters, filtering _raw_ values. The final +String+ value of a configuration entry is the
-     final value after all registered filters have been applied.
-  ** A +PropertyValueCombinationPolicy+ optionally can be registered to change the logic how key/value
-     pairs from subsequent property sources in the property source chain are combined to calculate the final
-     _raw_ value passed over to the filters registered.
-  ** A +ConfigurationContext+ is the container of all inner components (+PropertySource, PropertyFilter,
-     PropertyValueCombinationPolicy, PropertyConverter+) required to implement a +Configuration+. Also the ordering
+     registered as global filters. The final value of a configuration entry is the final value after all registered
+     filters have been applied.
+  ** A +ConfigurationContext+ is the container of all components that make up a configuration (+PropertySource,
+     PropertyFilter, PropertyConverter, MetadataProvider+) required to implement a +Configuration+. Also the ordering
      of the property sources, filters and converters is defined by the context.
-     A +ConfigurationContext+ is automatically created on startup collecting and adding all registered artifacts.
-     Based on this +ConfigurationContext+ the _default_ +Configuration+ is created, which can be accessed from
-     +ConfigurationProvider.getConfiguration+.
+     By default a +ConfigurationContext+ is automatically created on first use for each classloader collecting and
+     adding all registered artifacts. Based on a +ConfigurationContext+ a +Configuration+ can be created.
      Summarizing a +ConfigurationContext+ contains the ordered property sources, property filters, converters and combination
      policy used. Once a +ConfigurationContext+ is instanciated a corresponding +Configuration+ instance can be
-     created easily by calling +ConfigurationProvider.createConfiguration(context)+.
-  ** Finally Tamaya also supports _programmatically_ creating +Configuration+ instances and using them in your code
-     as needed. This can be achieved most easily by building a custom +ConfigurationContext+ using a
-     +ConfigurationContextBuilder+. This builder can be obtained calling +ConfigurationProvider.getConfigurationContextBuilder();+.
+     created easily using +ConfigurationBuilder+.
+  ** Whereas the Tamaya's API provides access to automatic configuration resources, it also allows to create
+     _programmatically_ +Configuration+ instances. This can be achieved using a
+     +ConfigurationContextBuilder+. This builder can be obtained calling +Configuration.createConfigurationBuilder();+.
   ** Finally +ServiceContext+ and +ServiceContextManager+ provide an abstraction to the underlying runtime environment,
      allowing different component loading and lifecycle strategies to be used. This is very useful since component (service)
      loading in Java SE, Java EE, OSGI and other runtime environments may be differ significantly. In most cases even
-     extension programmers will not have to deal with these two artifacts.
+     extension programmers will not have to deal with these internals.
 
 
 
 [[APIKeyValues]]
-=== Key/Value Pairs
+=== Key/Value Pairs and More
 
 Basically configuration is a very generic concept. Therefore it should be modelled in a generic way. The most simple
-and most commonly used approach are simple literal key/value pairs. So the core building block of {name} are key/value pairs.
-You can think of a common +.properties+ file, e.g.
+and most commonly used approach are simple literal key/value pairs. So the core building block of {name} are key/value
+pairs. You can think of a common +.properties+ file, e.g.
 
 [source,properties]
 .A simple properties file
@@ -95,11 +95,38 @@ val = props.getProperty("a.b.c.1");
 ...
 --------------------------------------------
 
+But we also have more complex configuration mechanism today. For example YAML is widely used format, which also
+supports lists and maps. Basically these can be mapped also as key/value pairs. Unfortunately this is not very
+useful in some cases:
+
+* a configuration client want to access a list of server configurations
+* a configuration client wants to map structures with named fields.
+* both of the above.
+
+As an example think of a server, which wants to extract a list of all members in the current cluster. Hereby:
+
+* A member is modelled by a +MembeConfigr+ class, with the fields +serverId, serverName, serverURL+.
+* The current members should be accessed as list, as follows:
+
+[source,java]
+----
+List<MemberConfig> members = configuration.get("cluster.members", new TypeLiteral<List<MemberConfig>>();
+----
+
+This coud be modelled as property as well, but it is more convenient to let Tamaya have a more flexible model
+to represent a configuration internally. This is why a +PropertyValue+ can have one of three flavors:
+
+. it is a simple literal value.
+. it is an object containing none to many child property values as named fields.
+. it is an array containing none to many child properties as unnamed array instances.
+
+Summarizing Tamaya is capable of fully represent the structures described by widely used configuration file formats.
+
 
 ==== Why Using Strings Only
 
 There are good reason to keep of non String-values as core storage representation of configuration. Mostly
-there are several huge advantages:
+there are several advantages:
 
 * Strings are simple to understand
 * Strings are human readable and therefore easy to prove for correctness
@@ -146,24 +173,36 @@ public interface Configuration{
     <T> T getOrDefault(String key, Class<T> type, T defaultValue);
     <T> T get(String key, TypeLiteral<T> type);
     <T> T getOrDefault(String key, TypeLiteral<T> type, T defaultValue);
+    <T> Optional<T> getOptional(String key, TypeLiteral<T> type);
+    <T> Optional<T> getOptional(String key, Class<T> type);
     Map<String,String> getProperties();
 
     // extension points
-    Configuration with(ConfigOperator operator);
-    <T> T query(ConfigQuery<T> query);
+    Configuration map(UnaryOperator<Configuration> operator);
+    <T> T adapt(Function<Configuration,T> adapter);
 
     ConfigurationContext getContext();
+    ConfigurationBuilder toBuilder();
+    static Configuration current();
+    static Configuration current(ClassLoader classsLoader);
+    static void setCurrent(Configuration config);
+    static void setCurrent(Configuration config, ClassLoader classLoader);
+    static ConfigurationBuilder createConfigurationBuilder();
+
+    // the deault EMPTY configuration
+    static Configuration EMPTY{}
 }
 --------------------------------------------
 
 Hereby
 
 * +<T> T get(String, Class<T>)+ provides type safe accessors for all basic wrapper types of the JDK.
-* +with, query+ provide the extension points for adding additional functionality.
+* +map, adapt+ provide the extension points for adding additional functionality.
 * +getProperties()+ provides access to all key/values, whereas entries from non scannable property sources may not
   be included.
 * +getOrDefault+ allows to pass default values as needed, returned if the requested value evaluated to +null+.
 * +getConfigurationContext()+ allows access to the underlying components of a +Configuration+ instance.
+* the +static+ methods allow access for obtaining or changing +Configuration+.
 
 The class +TypeLiteral+ is basically similar to the same class provided with CDI:
 
@@ -193,7 +232,8 @@ public class TypeLiteral<T> implements Serializable {
 --------------------------------------------
 
 
-Instances of +Configuration+ can be accessed from the +ConfigurationProvider+ singleton:
+Instances of +Configuration+ can be accessed using the +Configuration.current()+ or +Configuration.current(ClassLoader)+
+singleton:
 
 [source,java]
 .Accessing Configuration
@@ -237,10 +277,10 @@ We are well aware of the fact that this library will not be able to cover all ki
 we have added _functional_ extension mechanisms to +Configuration+ that were used in other areas of the
 Java eco-system (e.g. Java Time API and JSR 354) as well:
 
-* +with(ConfigOperator operator)+ allows to pass arbitrary unary functions that take and return instances of
+* +map(UnaryOperator<Configuration> operator)+ allows to pass arbitrary unary functions that take and return instances of
   +Configuration+. Operators can be used to cover use cases such as filtering, configuration views, security
   interception and more.
-* +query(ConfigQuery query)+ allows to apply a function returning any kind of result based on a
+* +adapt(Function<Configuration,T)+ allows to apply a function returning any kind of result based on a
   +Configuration+ instance. Queries are used for accessing/deriving any kind of data based on of a +Configuration+
   instance, e.g. accessing a +Set<String>+ of root keys present.
 
@@ -249,9 +289,9 @@ Both interfaces hereby are functional interfaces. Because of backward compatibil
 use Lambdas and method references in Java 8:
 
 [source,java]
-.Applying a +ConfigurationQuery+ using a method reference
+.Applying an Adapter using a method reference
 --------------------------------------------
-ConfigSecurity securityContext = ConfigurationProvider.getConfiguration().query(ConfigSecurity::targetSecurityContext);
+ConfigSecurity securityContext = Configuration.current().adapt(ConfigSecurity::targetSecurityContext);
 --------------------------------------------
 
 NOTE: +ConfigSecurity+ is an arbitrary class only for demonstration purposes.
@@ -262,7 +302,7 @@ Operator calls basically look similar:
 [source,java]
 .Applying a +ConfigurationOperator+ using a lambda expression:
 --------------------------------------------
-Configuration secured = ConfigurationProvider.getConfiguration()
+Configuration secured = Configuration.current()
                            .with((config) ->
                                  config.get("foo")!=null?;
                                  FooFilter.apply(config):
@@ -280,7 +320,7 @@ The class +ConfigException+ models the base *runtime* exception used by the conf
 == SPI
 
 [[PropertyValue]]
-=== PropertyValue, PropertyValueBuilder
+=== PropertyValue
 
 On the API properties are represented as Strings only, whereas in the SPI value are represented as +ProeprtyValue+,
 which contain
@@ -289,6 +329,7 @@ which contain
 * the property's _value_ (String)
 * the property's _source_ (String, typically equals to the property source's name)
 * any additional meta-data represented as _Map<String,String>_
+* named or unnamed child objects, arrays or text filters.s
 
 This helps to kepp all value relevant data together in one place and also allows to choose any kind of
 representation for meta-data entries. The +PropertyValue+ itself is a final and _serializable_ data container,
@@ -299,36 +340,33 @@ which also has a powerful builder API (e.g. for using within filters):
 public final class PropertyValue implements Serializable{
     [...]
 
-    public static PropertyValue of(String key, String value, String source);
+    public static ObjectValue createObject(){
+    public static ListValue createList(){
+    public static PropertyValue createValue(String key, String value){
+    public static ListValue createList(String key){
+    public static ObjectValue createObject(String key)
+
+    public final boolean isImmutable();
+    public PropertyValue immutable();
+    public PropertyValue mutable();
+    public final ValueType getValueType();
 
     public String getKey();
+    public String getQualifiedKey();
     public String getSource();
     public String getValue();
+    public PropertyValue setValue(String value);
     public Map<String, String> getMetaEntries();
     public String getMetaEntry(String key);
     public PropertyValueBuilder toBuilder();
 
-    public static PropertyValueBuilder builder(String key, String source);
-    public static PropertyValueBuilder builder(String key, String value, String source);
-
-    /**
-     * Maps a map of {@code Map<String,String>} to a {@code Map<String,PropertyValue>}.
-     * @param config the String based map, not null.
-     * @param source the source name, not null.
-     * @return the corresponding value based map.
-     */
+    public final PropertyValue getParent();
+    public final int getVersion();
+    public final boolean isRoot();
+    public final boolean isLeaf();
     public static Map<String,PropertyValue> map(Map<String, String> config, String source);
-
-    /**
-     * Maps a map of {@code Map<String,String>} to a {@code Map<String,PropertyValue>}.
-     * @param config the String based map, not null.
-     * @param source the source name, not null.
-     * @param metaData additional metadata, not null.
-     * @return the corresponding value based map.
-     */
     public static Map<String,PropertyValue> map(Map<String, String> config, String source,
                                                 Map<String,String> metaData);
-}
 ----------------------------------------------------------------
 
 When writing your own datasource you can easily create your own +PropertyValues+:
@@ -455,7 +493,7 @@ A +PropertyFilter+ is defined as follows:
 
 [source,java]
 --------------------------------------------
-// Functional Interface
+@FunctionalInterface
 public interface PropertyFilter{
     PropertyValue filterProperty(PropertyValue value, FilterContext context);
 }
@@ -472,113 +510,71 @@ Hereby:
 This method is called each time a single entry is accessed, and for each property in a full properties result.
 
 
-[[PropertyValueCombinationPolicy]]
-==== Interface PropertyValueCombinationPolicy
-
-This interface is purely optional and can be used to adapt the way how property key/value pairs are combined to
-build up the final configuration _raw_ value to be passed over to the +PropertyFilters+. The default implementation
-is just overriding all values read before with the new value read. Nevertheless for collections and other use cases
-more intelligent logic is required.
-
-[source,java]
---------------------------------------------
-// FunctionalInterface
-public interface PropertyValueCombinationPolicy{
-
-   PropertyValueCombinationPolicy DEFAULT_OVERRIDING_COLLECTOR =
-     new PropertyValueCombinationPolicy(){
-       @Override
-       public PropertyValue collect(PropertyValue currentValue, String key,
-                                         PropertySource propertySource) {
-           PropertyValue value = propertySource.get(key);
-           return value!=null?value:currentValue;
-       }
-   };
-
-   PropertyValue collect(PropertyValue currentValue, String key,
-                  PropertySource propertySource);
-
-}
---------------------------------------------
-
-Looking at the +collect+ method's signature, returning a +PropertyValue+ allows also to filter/combine/use meta entries.
-
-
 [[ConfigurationContext]]
 ==== The Configuration Context
 
-A +Configuration+ is created from a +ConfigurationContext+. Each +Configuration+ instance provides it's underlying
-context by +Configuration.getContext()+:
+A +Configuration+ is created based on a +ConfigurationContext+, which ia accessible calling
++configuration.getContext()+:
 
 [source,java]
-.Accessing the current +ConfigurationContext+
+.Accessing the +ConfigurationContext+ of a configuration
 --------------------------------------------
 Configuration config = ...;
 ConfigurationContext context = config.getContext();
 --------------------------------------------
 
-The +ConfigurationContext+ provides access to the internal artifacts that determine the +Configuration+ and
-also defines the ordering of the property sources, filters and converters contained:
+The +ConfigurationContext+ provides access to the internal artifacts that determine the +Configuration+.
+Similarly the context also defines the ordering and significance of property sources, filters and
+converters:
 
 * +PropertySources+ registered (including the PropertySources provided from +PropertySourceProvider+ instances).
 * +PropertyFilters+ registered, which filter values before they are returned to the client
 * +PropertyConverter+ instances that provide conversion functionality for converting String values to any other types.
-* the current +PropertyValueCombinationPolicy+ that determines how property values from different PropertySources are
-  combined to the final property value returned to the client.
 
 
 [[Mutability]]
-==== Changing the current Configuration Context
+==== Changing a Configuration
 
-A +ConfigurationContext+ is not mutable once it is created. In many cases mutability is also not needed. Nevertheless
-there are use cases where the current +ConfigurationContext+ (and
-consequently +Configuration+) must be adapted:
+A +Configuration+ is basically not mutable. Nevertheless when the containing property sources provide different
+values, e.g. because a  configuration file has been updated, also the configuration values may change
+(dependiing on the significance of the changed property source).
 
-* New configuration files where detected in a folder observed by Tamaya.
-* Remote configuration, e.g. stored in a database or alternate ways has been updated and the current system must
-  be adapted to these changes.
-* The overall configuration context is manually setup by the application logic.
-* Within unit testing alternate configuration setup should be setup to meet the configuration requirements of the
-  tests executed.
+Nevertheless it is also possible to create a new +ConfigurationBuilder+ based on an existing configuration
+and add/remove property sources, filters or converters as needed.
 
-In such cases the +ConfigurationContext+ may change, meaning it must be possible:
-
-* to add or remove +PropertySource+ instances
-* to add or remove +PropertyFilter+ instances
-* to add or remove +PropertyConverter+ instances
-* to redefine the current +PropertyValueCombinationPolicy+ instances.
-
-This is nothing new, a +ConfigurationContextBuilder+ already allows us to achive this. So we must only ensure that
-we can easily create a new +ConfigurationContextBuilder+ using a given +ConfigurationContext+ as input. This can be
-done by
-
-* calling +ConfigurationContext.toBuilder()+, hereby returning a builder instance preinitialized with the values from the
-  current +ConfigurationContext+.
-* calling +ConfigurationProvider.getConfigurationContextBuilder()+ and then applying the current +ConfigurationContext+
-  by calling +setContext(ConfigurationContext)+ on the +ConfigurationContextBuilder+ instance.
+A new configuration builder can be easily accessed from an existing configuration as follows:
 
 [source,java]
 .Accessing a +ConfigurationContextBuilder+
 --------------------------------------------
-ConfigurationContextBuilder preinitializedContextBuilder = ConfigurationProvider.getConfiguration().getContext().toBuilder();
-ConfigurationContextBuilder emptyContextBuilder = ConfigurationProvider.getConfigurationContextBuilder();
+Configuration config = ...;
+ConfigurationBuilder preinitializedConfigBuilder = config.toBuilder();
 --------------------------------------------
 
-Finally when we are finished a new +ConfigurationContext+ can be created:
+It is also possible to builkd up a configuration completely from scratch, having full control on the
+resources included:
 
 [source,java]
-.Creating and applying a new +ConfigurationContext+
+.Accessing a +ConfigurationContextBuilder+
 --------------------------------------------
-ConfigurationContext context = ConfigurationProvider.getConfiguration().getContext()
-                                    .toBuilder();
-                                    .addPropertySources(new MyPropertySource())
-                                    .addPropertyFilter(new MyFilter())
-                                    .build();
+ConfigurationBuilder emptyConfigBuilder = Configuration.createConfigurationBuilder();
 --------------------------------------------
 
-But let's also have a deeper look at what functionality a +ConfigurationContextBuilder+ provides. Basically such a
+Using the builder we then can change the configuration as needed:
+
+[source,java]
+--------------------------------------------
+ConfigurationBuilder builder = Configuration.crteateConfigurationBuilder();
+builder.addPropertySources(new MyPropertySource())
+       .addPropertyFilter(new MyFilter())
+       .setMeta("a.b.c.collectionType", "List")
+       .build();
+--------------------------------------------
+
+
+Let's have a short look at the +ConfigurationBuilder+. Basically such a
 builder allows to add, remove or reorder property sources, converters and filters or changing any other aspect
-of a +ConfigurationContext+:
+of a +Configuration+. Finally a new +Configuration+ instance can be built.
 
 [source,java]
 .Chain manipulation using +ConfigurationContextBuilder+
@@ -593,41 +589,37 @@ builder.decreasePriority(propertySource);
 builder.sortPropertyFilters(MyFilterComparator::compare);
 --------------------------------------------
 
-Finally if the new +ConfigurationContext+ is ready a new +Configuration+ can be created.
-Optionally the new +Configuration+ can also be installed as the new _default_ +Configuration+
-instace as illustrated below:
+Finally if a new +Configuration+ can be built. Optionally the new +Configuration+ can also be installed as
+the _default_ +Configuration+ instance as illustrated below:
 
 [source,java]
-.Creating and applying a new +ConfigurationContext+
+.Creating and applying a new +Configuration+
 --------------------------------------------
-ConfigurationContext context = builder.build();
-
 // Creates a new matching Configuration instance
-Configuration newConfig = ConfigurationProvider.createConfiguration(context);
+Configuration config = builder.build();
 
 // Apply the new context to replace the current configuration:
-ConfigurationProvider.setConfiguration(newConfig);
+Configuration.setCurrent(newConfig);
 --------------------------------------------
 
-Hereby +ConfigurationProvider.setConfiguration(Configuration)+ can throw an +UnsupportedOperationException+.
-This can be checked by calling the method +boolean ConfigurationProvider.isConfigurationSettable()+.
+Hereby +Configuration.setCurrent(Configuration)+ can throw an +UnsupportedOperationException+.
+This can be checked by calling the method +boolean Configuration.isConfigurationSettable()+.
 
+== SPI
 
 [[ConfigurationProviderSpi]]
-==== Implementing and Managing Configuration
+=== Implementing and Managing Configuration
 
 One of the most important SPI in Tamaya is the +ConfigurationProviderSpi+ interface, which is backing up the
-+ConfigurationProvider+ singleton. Implementing this class allows
++Configuration+ static accessor methods. Implementing this interface allows
 
-* to fully determine the implementation class for +Configuration+
-* to manage the current +Configuration+ in the scope and granularity required.
-* to provide access to the right +Configuration+ based on the current runtime context.
-* Performing changes as set with the current +ConfigurationContextBuilder+.
-
-= Interface ConfigurationContextBuilder
+* to fully determine the implementation class for +Configuration, ConfigurationBuilder, ConfigurationContext+
+* to manage +Configurations+ in the scope and granularity required.
+* to provide access to the right +Configuration+ based on the current runtime context (e.g. classloader).
 
 [[BuilderCore]]
-== Interface ConfigurationContextBuilder
+== Interface ConfigurationBuilder
+
 === Overview
 
 The Tamaya builder module provides a generic (one time) builder for creating +Configuration+ instances,
@@ -635,12 +627,12 @@ e.g. as follows:
 
 [source,java]
 ---------------------------------------------------------------
-ConfigurationBuilder builder = new ConfigurationBuilder();
+ConfigurationBuilder builder = Configuration.createConfigurationBuilder();
 // do something
 Configuration config = builder.build();
 ---------------------------------------------------------------
 
-Basically the builder allows to create configuration instances completely independent of the current configuration
+Basically a builder allows to create configuration instances completely independent of the current configuration
 setup. This gives you full control how and when +Configuration+ is created.
 
 
@@ -650,12 +642,12 @@ The builder allows you to add +PropertySource+ instances:
 
 [source,java]
 ----------------------------------------------------------------
-ConfigurationContextBuilder builder = ConfigurationProvider.getConfigurationContextBuilder();
+ConfigurationBuilder builder = Configuration.createConfigurationBuilder();
 builder.addPropertySources(sourceOne, sourceTwo, sourceThree
-Configuration config = ConfigurationProvider.createConfiguration(builder.build());
+Configuration config = builder.build();
 ----------------------------------------------------------------
 
-Hereby the ordering of the propertysources is not changed, regardless of the ordinals provided
+Hereby the ordering of the property sources is not changed, regardless of the ordinals provided
 by the property sources. This allows alternate ordering policies easily being implemented because
 creating a configuration based on a configuration context is already implemented and provided by the core
 API.
@@ -674,10 +666,11 @@ builder.addPropertyFilters(new MyConfigFilter());
 builder.addPropertySourceProvider(new MyPropertySourceProvider());
 ----------------------------------------------------------------
 
+...and of course converters and other artifacts.
 
 
 [[ServiceContext]]
-==== The ServiceContext
+== The ServiceContext
 
 The +ServiceContext+ allows to define how components are loaded in Tamaya. It is the glue layer, which interacts
 with the underlying runtime system such as Java SE, Java EE, OSGI, VertX etc.
@@ -687,32 +680,54 @@ The +ServiceContext+ hereby defines access methods to obtain components, whereas
 [source,java]
 .Accessing the +ServiceContext+
 --------------------------------------------
+// using an explicit classloader (recommended)
+ClassLoader classloader = ...;
+ServiceContext serviceContext = ServiceContextManager.getServiceContext(classloader);
+
+// using the default classloader
 ServiceContext serviceContext = ServiceContextManager.getServiceContext();
 
 public interface ServiceContext{
     int ordinal();
     <T> T getService(Class<T> serviceType);
+    <T> T getService(Class<T> serviceType, Supplier<T> serviceSupplier);
+    <T> T createService(Class<T> serviceType);
+    <T> T createService(Class<T> serviceType, Supplier<T> serviceSupplier);
     <T> List<T> getServices(Class<T> serviceType);
+    <T> List<T> getServices(Class<T> serviceType, Supplier<List<T>> serviceSupplier);
+    <T> T register(Class<T> type, T instance, boolean force);
+    <T> List<T> register(Class<T> type, List<T> instances, boolean force);
+
+    Enumeration<URL> getResources(String resource) throws IOException;
+    URL getResource(String resource);
+
 }
 --------------------------------------------
 
 With the +ServiceContext+ a component can be accessed in two different ways:
 
-. access as as a single property. Hereby the registered instances (if multiple) are sorted by priority and then finally
-  the most significant instance is returned only.
-. access all items given a type. This will return (by default) all  instances loadedable from the current
-  runtime context, ordered by priority (the most significant components added first).
+. access as as a single service. Hereby the detected services (if multiple) are sorted by priority and then finally
+  the most significant instance (the one with the highest priority value) is selected and cached.
+. access all items given a type. This will return (by default) all service instances loadedable from the current
+  runtime context (classloader), ordered by priority (the most significant components added first).
+. service lookup can be further customized by passing suppliers. The supplier is called if no default services
+  could be auto-detected. The supplied instance(s) are registered and cached for subsequent accesses.
+. the _register_ methods allow to explcitly register (and optionally override) a service or services
+  registered.
+. Finally the methods `getResource(s)` allow to load resources from the classpath. This is especially useful
+  when running in an OSGI context, where loading of resources from the classloaders will fail.
 
 
 ## Examples
 ### Accessing Configuration
 
-_Configuration_ is obtained from the ConfigurationProvider singleton:
+_Configuration_ is obtained from the `Configuration` interface using static accessors:
 
 [source,java]
 .Accessing +Configuration+
 --------------------------------------------
-Configuration config = ConfigurationProvider.getConfiguration();
+Configuration config = Configuration.current();
+Configuration config = Configuration.current(Thread.currentThread().getContextClassLoader());
 --------------------------------------------
 
 Many users in a SE context will probably only work with _Configuration_, since it offers all functionality
@@ -721,9 +736,10 @@ very similar to *Map<String,String>*, whereas in Java 8 additionally usage of _O
 
 [source,java]
 --------------------------------------------
-Configuration config = ConfigurationProvider.getConfiguration();
-String myKey = config.get("myKey");                         // may return null
-int myLimit = config.get("all.size.limit", int.class);
+Configuration config = Configuration.current();
+String myValue = config.get("myKey");                  // access as (raw) String value.
+int myLimit = config.get("all.size.limit", int.class); // access a value using type conversion.
+List<URL> urls = config.get("all.urls", new TypeLiteral<List<URL>>(); // access a value using advanced type conversion.
 --------------------------------------------
 
 
@@ -737,7 +753,7 @@ _PROMPT_ environment variable as follows:
 String prompt = ConfigurationProvider.getConfiguration().get("PROMPT");
 --------------------------------------------
 
-Similary the system properties are directly applied to the _Configuration_. So if we pass the following system
+Similary the system properties are directly applied to the _Configuration_. Let's assume, we pass the following system
 property to our JVM:
 
 [source,java]
@@ -745,18 +761,18 @@ property to our JVM:
 java ... -Duse.my.system.answer=yes
 --------------------------------------------
 
-we can access it as follows:
+We can then access the value from the configuration:
 
 [source,java]
 --------------------------------------------
-boolean useMySystem = ConfigurationProvider.getConfiguration().get("use.my.system.answer", boolean.class);
+boolean useMySystem = Configuration.current().get("use.my.system.answer", boolean.class);
 --------------------------------------------
 
 
-### Adding a Custom Configuration
+### Adding additional configuration entries
 
-Adding a classpath based configuration is simply as well: just implement an according _PropertySource_. With the
-_tamaya-spi-support_ module you just have to perform a few steps:
+Adding additional configuration entries is simple: just implement an according `PropertySource` and register
+it with the Java `ServiceLoader`. Using the _tamaya-spi-support_ extension library you just have to perform a few steps:
 
 . Define a PropertySource as follows:
 
@@ -788,5 +804,13 @@ com.mypackage.MyPropertySource
 [[APIImpl]]
 == API Implementation
 
-The API is implemented by the +tamaya-core+ module. Refer to the link:core.html[Core documentation] for
+The Tamaya configuration API is implemented by the +tamaya-core+ module. Refer to the link:core.html[Core documentation] for
 further details.
+
+Furhtermore Tamaya also implements or supports
+
+* the API as defined by JSR 310 (Config JSR)
+* the Microprofile API
+* the Spring Configuration Mechanism
+* integration with the OSGI `ConfigAdmin` API.
+* the Apache Camel Configuration SPI

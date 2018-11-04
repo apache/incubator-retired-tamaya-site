@@ -114,12 +114,12 @@ The server module formats the configuration returned by default in the following
   "sun.jnu.encoding": "Cp1252",
   "sun.management.compiler": "HotSpot 64-Bit Tiered Compilers",
   "sun.os.patch.level": "",
-  "_class": "org.apache.tamaya.functions.FilteredConfiguration",
-  "_info.filter": "java.v,sun",
-  "_info.format": "application/json",
-  "_info.timestamp": "1441463200571",
-  "_timestamp": "1441463200571",
-  "_type": "Configuration"
+  "[META]class": "org.apache.tamaya.functions.FilteredConfiguration",
+  "[META]info.filter": "java.v,sun",
+  "[META]info.format": "application/json",
+  "[META]info.timestamp": "1441463200571",
+  "[META]timestamp": "1441463200571",
+  "[META]type": "Configuration"
 }
 -----------------------------------------------
 
@@ -187,12 +187,12 @@ Configuration:
   sun.jnu.encoding: Cp1252,
   sun.management.compiler: HotSpot 64-Bit Tiered Compilers,
   sun.os.patch.level: ,
-  _class: org.apache.tamaya.functions.FilteredConfiguration,
-  _info.filter: java.v,sun,
-  _info.format: text/plain,
-  _info.timestamp: 1441463082020,
-  _timestamp: 1441463082021,
-  _type: Configuration
+  [META]class: org.apache.tamaya.functions.FilteredConfiguration,
+  [META]info.filter: java.v,sun,
+  [META]info.format: text/plain,
+  [META]info.timestamp: 1441463082020,
+  [META]timestamp: 1441463082021,
+  [META]type: Configuration
 -----------------------------------------------
 
 
@@ -227,12 +227,12 @@ Configuration:
   sun.jnu.encoding: Cp1252,
   sun.management.compiler: HotSpot 64-Bit Tiered Compilers,
   sun.os.patch.level: ,
-  _class: org.apache.tamaya.functions.FilteredConfiguration,
-  _info.filter: java.v,sun,
-  _info.format: text/html,
-  _info.timestamp: 1441463459653,
-  _timestamp: 1441463459654,
-  _type: Configuration
+  [META]class: org.apache.tamaya.functions.FilteredConfiguration,
+  [META]info.filter: java.v,sun,
+  [META]info.format: text/html,
+  [META]info.timestamp: 1441463459653,
+  [META]timestamp: 1441463459654,
+  [META]type: Configuration
 </pre>
 </body>
 </html>

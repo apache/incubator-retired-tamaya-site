@@ -22,7 +22,7 @@ Tamaya _Vertx_ provides configuration services that can be used in a Vertx envir
 
 === Compatibility
 
-The module requires Java 8, so it will not run on Java 7.
+The module requires Java 8.
 
 
 === Installation
@@ -62,7 +62,7 @@ public abstract class AbstractConfiguredVerticle extends AbstractVerticle{
 
     public Configuration getConfiguration(){
         if(this.configuration==null){
-          this.configuration = ConfigurationProvider.getConfiguration();
+          this.configuration = Configuration.current();
         }
         return this.configuration;
     }
@@ -73,7 +73,7 @@ public abstract class AbstractConfiguredVerticle extends AbstractVerticle{
     }
 
     protected void configure(){
-        ConfigurationInjection.getConfigurationInjector().configure(this, getConfiguration());
+        ConfigurationInjector.getInstance().configure(this, getConfiguration());
     }
 
     protected final String getConfigProperty(String key);

@@ -25,7 +25,7 @@ Tamaya _Microprofile_ currently provides full integration for the Microprofile C
 
 === Compatibility
 
-Both modules are based on Java 8, so they will run on Java 8 and beyond. The implemented Microprofile API is currently
+Both modules are based on Java 8. The implemented Microprofile API is currently
 version 1.1.
 
 

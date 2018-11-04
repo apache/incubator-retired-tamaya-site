@@ -12,7 +12,6 @@ Mature extensions have a stable API and SPI, similar to the API and Implementati
 [width="100%",frame="1",options="header",grid="all"]
 |=======
 |_Artifact_                                   |_Description_                                |_Links_
-|                                             | N/A: currently no extensions have reached that maturity level.  | -
 |+org.apache.tamaya.ext:tamaya-collections+   |Collections support.                                   |link:extensions/mod_collections.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-events+        |Provides support for publishing configuration changes  |link:extensions/mod_events.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-filter+        |Provides a programmatic filter for config entries.     |link:extensions/mod_filter.html[Documentation]
@@ -34,8 +33,6 @@ Mature extensions have a stable API and SPI, similar to the API and Implementati
 |+org.apache.tamaya.ext:tamaya-yaml+          |Support for using yaml as a configuration format.      |link:extensions/mod_yaml.html[Documentation]
 |=======
 
-NOTE: The former Tamaya _Builder_ extension module has been removed. The corresponding methods were integrated into
-Tamaya's main API's +ConfigurationContextBuilder+ interface.
 
 === Extensions Sandbox
 
@@ -43,7 +40,6 @@ Extensions in _draft state_ rather experimental or not yet very mature. API chan
 and the may also have severe issues or even not work at all. So use at your own risk or join and help
 us getting them stable and well tested!
 
-NOTE: All extensions currently require Java 8.
 
 [width="100%",frame="1",options="header",grid="all"]
 |=======

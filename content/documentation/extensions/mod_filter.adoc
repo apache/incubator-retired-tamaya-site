@@ -22,7 +22,7 @@ explicitily no filtering is applied and everything is visible.
 
 === Compatibility
 
-The module is based on Java 7, so it will not run on Java 7 and beyond.
+The module is based on Java 8.
 
 
 === Installation
@@ -43,9 +43,9 @@ To benefit from filter support you only must add the corresponding dependency to
 
 Tamaya Filter comes basically with 3 artifacts:
 
-* The +org.apache.tamaya.filter.ConfigurationFilter+ provides several static methods to register +PropertyFilter+
+* The +org.apache.tamaya.filter.ThreadBasedConfigurationFilter+ provides several static methods to register +PropertyFilter+
 instances on the current thread.
-* The +org.apache.tamaya.filter.DefaultMetdataFilter+ is a +PropertyFilter+ with hides all entries starting with
+* The +org.apache.tamaya.filter.ThreadFilterContext+ is a +PropertyFilter+ with hides all entries starting with
  an underscore ('_'), when a full property map is accessed.
 
 
@@ -95,22 +95,22 @@ is part of this module, So you can add a customized filter as follows:
 [source, java]
 -----------------------------------------------
 try {
-    ConfigurationFilter.getMapFilters().addFilter(new myFilter());
+    ThreadBasedConfigurationFilter.getMapFilters().addFilter(new myFilter());
 
     // do your code with filtering active
 }
 finally {
     // cleanup
-    ConfigurationFilter.clearFilters();
+    ThreadBasedConfigurationFilter.clearFilters();
 }
 -----------------------------------------------
 
-The +FilterContext+ is a simple structure just providing some handy accessors to the dynamic thread-local
+The +ThreadFilterContext+ is a simple structure just providing some handy accessors to the dynamic thread-local
 managed filters:
 
 [source, java]
 -----------------------------------------------
-public final class FilterContext implements PropertyFilter {
+public final class ThreadFilterContext implements PropertyFilter {
 
     public void addIncludes(PropertyFilter filter);
     public void addExcludes(int pos, PropertyFilter filter);

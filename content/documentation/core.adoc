@@ -2,31 +2,27 @@
 :jbake-status: published
 
 [[Core]]
-== Tamaya Core Implementation
+== Apache Tamaya: Core Implementation
 === Overview
 
-Tamaya Core provides an implementation of the link:api.html[Tamaya Configuration API] and adds additional functionality
+`tamaya-core` provides an implementation of the link:api.html[Tamaya Configuration API] and adds additional functionality
 and building blocks for supporting SPI implementations.
 
 Tamaya Core contains the following artifacts:
 
-* *tamaya-spisupport* provides implementations and base classes for different API artifacts such as +Configuration,
-  ConfigurationContext, ConfigurationContextBuilder, ConfigurationProviderSpi, BasePropertySource+ and more. It is
-  built as an independent core module, which also can be used with other implementations. The *tamaya-core*
-  implementation leverages these base classes to build up a full API implementation.
-* A +java.util.ServiceLoader+ based +ServiceContext+ implementation. This allows component priorization based
-  on the +@Priority+ annotations.
-* A +PropertyConverterManager+ that loads and stores references to all the preconfigured +PropertyConverter+ instances,
-  thus providing type conversion for all important types.
-* A simple default configuration setup using the current classpath and an optional staging variable.
-* It collects all +PropertySource+ and +PropertySourceProvider+ instances registered with the +ServiceLoader+ and
-  registers them in the global +ConfigurationContext+
-* It provides a +ConfigurationContextBuilder+ implementation (+DefaultConfigurationContextBuilder+) and allows to
-  change the current +ConfigurationContext+.
+* A service loader implementation, configurations and further logic required to run
+  in an OSGI environment.
+* Numerous *converters*, including an +EnumConverter+, that is a converter implementation that can automatically select
+  the currect enumeration values based on a configured entry.
+* A configurable `BannerManager`to print Tamaya's start logo on load.
 
-The overall size of the library is very small. All required components are implemented and registered, so basically the
-Core module is a complete configuration solution. Nevertheless it is also very minimalistic, but fortunately is flexible
-enough to be extended/accommodated with additional features as needed, such as
+Basically `tamaya-core` leverages the base implementations contained in Tamaya's SPI support module, so it is quite
+small in size. All required components are implemented and registered, so basically the
+Core module with its trasitive dependencies (API and spi-support) is a complete configuration solution. Nevertheless
+it is also very minimalistic, but fortunately it can be easily extended/accommodated with additional features as needed.
+
+These extensions are managed in the extensions repository of the Tamaya project. Some of the most commonly used
+extensions are
 
 * placeholder and resolution mechanisms (+org.apache.tamaya.ext:tamaya-resolver+)
 * dynamic resource path lookup, e.g. with ant styled patterns (+org.apache.tamaya.ext:tamaya-resources+)
@@ -35,18 +31,15 @@ enough to be extended/accommodated with additional features as needed, such as
 * integration with other existing solutions (e.g. +org.apache.tamaya.ext:tamaya-spring+)
 * configuration and configuration isolation targeting Java EE (+org.apache.tamaya.ext:tamaya-injection-ee+)
 * dynamic configuration and configuration updates (+org.apache.tamaya.ext:tamaya-events+)
-* remote configuration (+org.apache.tamaya.ext:tamaya-etcd, org.apache.tamaya.ext:tamaya-consul,
-  org.apache.tamaya.ext:tamaya-hazelcast+)
-* and more
 
-For details about the extension modules available and  their functionality refer to the link:extensions.html[extension user guide].
+For details about the extension modules available and  their functionality refer to the link:extensions.html[extension
+user guide].
 
 
 [[CorePropertyConverters]]
 === Default PropertyConverters
 
-The _SPI_ base module provides several +PropertyConverter+ implementations, which are automatically registered by the
-_Core_ module. Find below the listing of converters automatically registered with the Core module:
+The `tamaya-core` module provides several +PropertyConverter+ implementations, which are automatically registered:
 
 [width="100%",frame="1",options="header",grid="all"]
 |=======
@@ -59,29 +52,36 @@ _Core_ module. Find below the listing of converters automatically registered wit
 |java.ui.lang.Class         |ClassConverter            |<fully qualified class name>
 |java.util.Currency         |CurrencyConverter         |CHF, 123
 |java.ui.lang.Double        |DoubleConverter           |1, 0xFF, 1.2334, NaN, NEGATIVE_INFITIY, POSITIVE_INFINITY, MIN_VALUE, MAX_VALUE
-|_Enums_                    |EnumConverter             |<Enum item name>
+|java.time.Duration         |DurationConverter         |<Duration as defined by Duration.parse(String)>
+|java.io.File               |FileConverter             |value -> new File(value)
 |java.ui.lang.Float         |FloatConverter            |1, 0xFF, 1.2334, NaN, NEGATIVE_INFITIY, POSITIVE_INFINITY, MIN_VALUE, MAX_VALUE
+|java.time.Instant          |InstantConverter          |<Instant as defined by Instant.parse(String)>
 |java.ui.lang.Integer       |IntegerConverter          |1, 0xD3, MIN_VALUE, MAX_VALUE
-|LocalDate                  |LocalDateConverter        |<Date as defined by LocalDate.parse(String)
-|LocalTime                  |LocalTimeConverter        |<Time as defined by LocalTime.parse(String)
-|LocalDateTime              |LocalDateTimeConverter    |<LocalDateTime as defined by LocalDateTime.parse(String)>
+|java.time.LocalDate        |LocalDateConverter        |<Date as defined by LocalDate.parse(String)
+|java.time.LocalDateTime    |LocalDateTimeConverter    |<LocalDateTime as defined by LocalDateTime.parse(String)>
+|java.time.LocalTime        |LocalTimeConverter        |<Time as defined by LocalTime.parse(String)
 |java.ui.lang.Long          |LongConverter             |1, 0xD3, MIN_VALUE, MAX_VALUE
 |java.ui.lang.Number        |NumberConverter           |1, 0xFF, 1.2334, NaN, NEGATIVE_INFITIY, POSITIVE_INFINITY
+|java.time.OffsetDateTime   |OffsetDateTimeConverter   |<OffsetDateTime as defined by OffsetDateTime.parse(String)>
+|java.time.OffsetTime       |OffsetTimeConverter       |<OffsetTime as defined by OffsetTime.parse(String)>
+|java.util.Optional         |OptionalConverter         |
+|java.nio.Path              |PathConverter             |
 |java.ui.lang.Short         |ShortConverter            |1, 0xD3, MIN_VALUE, MAX_VALUE
+|java.util.Supplier         |SupplierConverter         |
 |java.net.URI               |URIConverter              |http://localhost:2020/testresource?api=true
 |java.net.URL               |URLConverter              |http://localhost:2020/testresource?api=true
-|ZoneId                     |ZoneIdConverter           |Europe/Zurich
+|_Enums_                    |EnumConverter             |<Enum item name>
 |=======
 
 
 === Registering PropertyConverters
 
-Additional +PropertyConverters+ can be implemented easily. It is recommended to register them using
+Additional +PropertyConverter+ classes can be implemented easily. It is recommended to register them using
 the +java.util.ServiceLoader+, meaning you add a file under +META-INF/service/org.apache.tamaya.spi.PropertyConverter+
 containing the fully qualified class names of the converters to be registered (one line each) to enable
 auto-discovery.
 
-Alternatively you can also use a +ConfigurationContextBuilder+ to add additional converters
+Alternatively you can also use a +ConfigurationBuilder+ to add additional converters
 programmatically.
 
 
@@ -114,7 +114,7 @@ NOTE: Sorting the property sources based on their ordinal value is only the defa
 
 +PropertySource+ implementations that provide configuration properties are registered as components as described in the
 previous section. Hereby the precedence (ordering) of property sources is not hard-coded. Instead a +Comparator<PropertySource>+
-can be passed to a +ConfigurationContextBuilder+ to perform automatic ordering of the property sources
+can be passed to a +ConfigurationBuilder+ to perform automatic ordering of the property sources
 registered. The default implementation hereby implements the following logic:
 
 . It checks for an property entry +tamaya.ordinal+ if present the value is parsed into an +int+ value and used as

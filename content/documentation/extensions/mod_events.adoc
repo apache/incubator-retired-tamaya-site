@@ -27,7 +27,7 @@ change events.
 
 === Compatibility
 
-The module is based on Java 7, so it can be used with Java 7 and beyond.
+The module is based on Java 8.
 
 === Installation
 
@@ -59,7 +59,7 @@ public interface ConfigEvent<T> {
     long getTimestamp();
 }
 
-// @FunctionalInterface
+@FunctionalInterface
 public interface ConfigEventListener {
 
     void onConfigEvent(ConfigEvent<?> event);
@@ -94,20 +94,23 @@ public final class ConfigEventManager {
 
     private ConfigEventManager() {}
 
-    public static void addListener(ConfigEventListener l);
-    public static <T extends ConfigEvent> void addListener(ConfigEventListener l, Class<T> eventType);
-    public static void removeListener(ConfigEventListener l);
-    public static <T extends ConfigEvent> void removeListener(ConfigEventListener l, Class<T> eventType);
-    public static <T extends ConfigEvent>
+    public static ConfigEventManager getInstance();
+    public static ConfigEventManager getInstance(ClassLoader classLoader);
+
+    public void addListener(ConfigEventListener l);
+    public <T extends ConfigEvent> void addListener(ConfigEventListener l, Class<T> eventType);
+    public void removeListener(ConfigEventListener l);
+    public <T extends ConfigEvent> void removeListener(ConfigEventListener l, Class<T> eventType);
+    public <T extends ConfigEvent>
         Collection<? extends ConfigEventListener> getListeners();
-    public static <T extends ConfigEvent>
+    public <T extends ConfigEvent>
         Collection<? extends ConfigEventListener> getListeners(Class<T> type);
 
-    public static <T> void fireEvent(ConfigEvent<?> event);
-    public static <T> void fireEventAsynch(ConfigEvent<?> event);
+    public <T> void fireEvent(ConfigEvent<?> event);
+    public <T> void fireEventAsynch(ConfigEvent<?> event);
 
-    public static void enableChangeMonitoring(boolean enable);
-    public static boolean isChangeMonitoring();
+    public void enableChangeMonitoring(boolean enable);
+    public boolean isChangeMonitoring();
     public long getChangeMonitoringPeriod();
     public void setChangeMonitoringPeriod(long millis);
 
@@ -263,7 +266,7 @@ In code freezing is a no-brainer:
 [source,java]
 .Freezing the current Configuration
 --------------------------------------------------
-Configuration config = ConfigurationProvider.getConfiguration();
+Configuration config = Configuration.current();
 Configuration frozenConfig = FrozenConfiguration.of(config);
 --------------------------------------------------
 

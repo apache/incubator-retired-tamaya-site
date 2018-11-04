@@ -17,7 +17,7 @@ descriptive ant-styled resource patterns.
 
 === Compatibility
 
-The module is based on Java 7, so it can be used with Java 7 and beyond.
+The module is based on Java 8.
 
 
 === Installation
@@ -47,10 +47,12 @@ ResourceResolver resolver = ConfigResources.getResourceResolver();
 [source,java]
 -----------------------------------------------
 public interface ResourceResolver {
+
+    static ResourceResolver getInstance();
+    static ResourceResolver getInstance(ClassLoader classLoader);
+
     Collection<URL> getResources(Collection<String> expressions) {...}
     Collection<URL> getResources(String... expressions) {...}
-    Collection<URL> getResources(ClassLoader classLoader, String... expressions){...}
-    Collection<URL> getResources(ClassLoader classLoader, Collection<String> expressions);
 }
 -----------------------------------------------
 
@@ -114,7 +116,7 @@ public class PathBasedPropertySourceProvider implements PropertySourceProvider {
     @Override
     public Collection<PropertySource> getPropertySources() {
         List<PropertySource> propertySources = new ArrayList<>();
-        Collection<URL> resources = ConfigResources.getResourceResolver().getResources("META-INF/cfg/**/*.properties");
+        Collection<URL> resources = ResourceResolver.getInstance().getResources("META-INF/cfg/**/*.properties");
         for(URL url:resources){
             Properties props = new Properties();
             try(InputStream is = url.openStream()){
@@ -159,9 +161,6 @@ public class PathBasedPropertySourceProvider implements PropertySourceProvider {
 
 === SPI
 
-The +ResourceResolver+ that is returned by the +ConfigResources+ singleton is determined by the
-current +ServiceContext+, by default you can replace the default implementation by registering an
+The +ResourceResolver+ that is returned is determined by the
+current +ServiceContext+. You can replace the default implementation by registering an
 alternate implementation with an overriding +@Priority+ annotation added using the +ServiceLoader+.
-
-Additionally a +BaseResourceResolver+ class can be used to reduce the amount of code to be written
-on your own.

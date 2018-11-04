@@ -4,11 +4,9 @@
 == Apache Tamaya: Quickstart
 
 
-The fastest way to start with Tamaya is just using the _Core_ implementation,
-implementing the **API** in a minimalistic way. For that add the following
-Maven dependency to your project:
-
-=== Adding the Tamaya Dependency
+The fastest way to start with Tamaya is just using the _Core_ module, which
+provides a simple configuration API. To start add the folloeing
+dependency to your project:
 
 [source,xml,subs="verbatim,attributes"]
 ----
@@ -29,34 +27,30 @@ to provide the default values when accessing the configuration:
 Configuration config = Configuration.current();
 
 String aTextValue = config.getOrDefault("my.value.key", "N/A");
-int aNumericValue = config.getOrDefault("my.numValueKey", Integer.class, 15 /* default */);
+int aNumericValue = config.getOrDefault("my.numValueKey", Integer.class, 15);
 BigDecimal bdValue = config.getOrDefault("my.BD.value", BigDecimal.class, BigDecimal.valueOf(120));
+List<URL> urls = config.get("servers.url", new TypeLiteral<List<URL>>());
 ----
 
-With Java 8 you can, of course, also use +Optional+, e.g.
+Of course, you can also use +Optional+ values:
 
 [source,java]
 ----
-Configuration config = Configuration.current();
-
 String aTextValue = config.getOptional("my.value.key", String.class).orElse("N/A");
 ----
 
 === Add/define your configuration data
 
-As seen you can immedeatly start working with your configuration backend, without adding any kind of
-default configuration. Nevertheless the _core_ implementation also comes with a _default_ mechanism,
-where you can store your configuration as +.properties+ in your classpath:
+As seen you can start working with your configuration backend, without adding any kind of
+default configuration. Nevertheless Tamaya also comes with a _default_ mechanism:
+simply store your configuration into +META-INF/javaconfiguration.properties+ in your classpath!
 
-[source]
-----
-META-INF/javaconfiguration.properties
-----
 
 Additionally also system properties are taken into account, hereby overriding the _default_ properties.
 Overall Tamaya by default defines the following configuration model per default (most significant first):
 
 . System Properties
+. Environment Properties
 . `META-INF/javaconfiguration.properties`
 
 
@@ -64,7 +58,7 @@ Overall Tamaya by default defines the following configuration model per default 
 
 === Multiple configuration files
 
-By default you can provide multiple `javaconfig.properties` files, e.g. as part
+By default you can provide multiple `javaconfiguration.properties` files, e.g. as part
 of multiple jars loaded into your system. The system creates one
 `PropertySource` for each file found on the classpath. All `PropertySource`
 instances created are ordered by their precedence.
@@ -83,7 +77,7 @@ calculated as follows:
 NOTE: Since evaluation of the `tamaya.ordinal` is always done first, it is possible to change
       the ordinal value by adding a corresponding configuration entry to a property source.
 
-Tamaya Core uses the following default ordinals:
+Tamaya's Core PropertySources uses the following default ordinals:
 
 [width=70]
 [cols="3,1", option="headers"]
@@ -140,7 +134,7 @@ This module also provides a `Resolver` singleton:
 [source,java]
 ----
 String myExpression = ...;
-String resolved = Resolver.evaluateExpression(myExpression);
+String resolved = Resolver.getInstance().evaluateExpression(myExpression);
 ----
 
 
@@ -162,7 +156,7 @@ description, e.g.
 
 [source,xml,subs="verbatim,attributes"]
 ----
-Collection<URL> urls = ResourceResolver.getResources("META-INF/cfg/**/*.properties");
+Collection<URL> urls = Resolver.getInstance().getResources("META-INF/cfg/**/*.properties");
 ----
 
 For further details refer to the module documentation.
@@ -196,7 +190,7 @@ public class MyType {
 }
 
 MyType type = new MyType();
-ConfigurationInjector.configure(type);
+ConfigurationInjector.getInstance().configure(type);
 ----
 
 Or the same as template:
@@ -208,7 +202,7 @@ public interface MyTypeTemplate {
    public String getName();
 }
 
-MyTypeTemplate type = ConfigurationInjector.createTemplate(MyTypeTemplate.class);
+MyTypeTemplate type = ConfigurationInjector.getInstance().createTemplate(MyTypeTemplate.class);
 ----
 
 Currently the following resolvers are available:

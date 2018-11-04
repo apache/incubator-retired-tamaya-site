@@ -51,36 +51,36 @@ For using the functionality shown in this document you only must add the corresp
 
 The following sections explain the provided functions defined by +ConfigurationFunctions+ singleton.
 
-* *ConfigOperator filter(PropertyMatcher matcher)* creates a +ConfigOperator+ that creates a +Configuration+
+* *UnaryOperator<Configuration> filter(PropertyMatcher matcher)* creates a +UnaryOperator<Configuration>+ that creates a +Configuration+
   containing only keys that are selected by the given _matcher predicate_. The +PropertyMatcher+ hereby allows to evaluate not only
   the _key_, but also the _value_.
-* *ConfigOperator map(KeyMapper keyMapper)* creates a +ConfigOperator+ that maps the keys as defined
+* *UnaryOperator<Configuration> map(KeyMapper keyMapper)* creates a +UnaryOperator<Configuration>+ that maps the keys as defined
   by the given _keyMapper_.
-* *ConfigOperator section(String section)* creates  a +ConfigOperator+ that creates a +Configuration+ containing only
+* *UnaryOperator<Configuration> section(String section)* creates  a +UnaryOperator<Configuration>+ that creates a +Configuration+ containing only
   entries that are direct or indirect members of the given section.
-* *ConfigOperator section(String areaKey, boolean stripKeys)* creates  a +ConfigOperator+ that creates a +Configuration+
+* *UnaryOperator<Configuration> section(String areaKey, boolean stripKeys)* creates  a +UnaryOperator<Configuration>+ that creates a +Configuration+
   containing only entries that are direct or indirect members of the given section. Hereby _stripKeys_ allows to determine
   if the returned entries should be relative to the search criteria {{stripKeys=true}} or absolute keys.
 * *isKeyInSection(String section, String sectionKey)* allows to easily determine if a given _key_ is a direct or indirect member
   of a given section.
 * *boolean isKeyInSections(String key, String... sectionKeys)* allows to easily determine if one key of given
   _key_ is a direct or indirect member of at least one of the given _sectionKeys_.
-* *ConfigQuery<Set<String>> sections()* allows to query all the contained fully qualified section names (the ones that
+* *Function<Configuration,Set<String>> sections()* allows to query all the contained fully qualified section names (the ones that
   also have parameters present).
-* *ConfigQuery<Set<String>> transitiveSections()* allows to query all the contained fully qualified section names,
+* *Function<Configuration,Set<String>> transitiveSections()* allows to query all the contained fully qualified section names,
   including the transitive closure of sections.
-* *ConfigQuery<Set<String>> sections(final Predicate<String> predicate)* allows to query all the contained fully
+* *Function<Configuration,Set<String>> sections(final Predicate<String> predicate)* allows to query all the contained fully
   qualified section names that are selected by the given _predicate_.
-* *ConfigQuery<Set<String>> sections(final Predicate<String> predicate)* allows to query all the contained fully
+* *Function<Configuration,Set<String>> sections(final Predicate<String> predicate)* allows to query all the contained fully
   qualified section names that are selected by the given _predicate_, including the transitive closure of sections
   identified.
-* *ConfigOperator sectionsRecursive(String... sectionKeys)* provides a +ConfigOperator+ that filters all sections identified
+* *UnaryOperator<Configuration> sectionsRecursive(String... sectionKeys)* provides a +UnaryOperator<Configuration>+ that filters all sections identified
   by the given _sectionKeys_ and its child sections.
-* *ConfigOperator sectionRecursive(final boolean stripKeys, final String... sectionKeys)* provides a +ConfigOperator+
+* *UnaryOperator<Configuration> sectionRecursive(final boolean stripKeys, final String... sectionKeys)* provides a +UnaryOperator<Configuration>+
   that filters all sections identified by the given _sectionKeys_ and its child sections. _stripKeys_ allows to
   determine if the resulting configuration should be relative to the selected areas ({{stripKeys=true}}) or
   absolute (filtering only).
-* *ConfigQuery<String> jsonInfo()* returns a query that converts a +Configuration+ into a JSON formatted +String+
+* *Function<Configuration,String> jsonInfo()* returns a query that converts a +Configuration+ into a JSON formatted +String+
   representation.
 
 

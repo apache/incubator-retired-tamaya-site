@@ -21,7 +21,7 @@ functionality.
 
 === Compatibility
 
-The module is based on Java 7, so it can be used with Java 7 and beyond.
+The module is based on Java 8.
 
 
 === Installation
@@ -42,7 +42,7 @@ To benefit from configuration mutability support you only must add the correspon
 
 ==== Accessing MutableConfiguration
 
-The core of the module is the +MutableConfigurationProvider+ singleton, which provides access to +MutableConfiguration+
+The core of the module is the +MutableConfiguration+ interface, which provides access to +MutableConfiguration+
 instance, which extends +Configuration+. This interface adds additional methods to add/update or remove property values.
 Hereby each +MutableConfiguration+ manages a transaction like context, which includes
 a UUID that identifes a change.
@@ -56,8 +56,7 @@ finally changes written back to the backend:
 [source,java]
 .Accessing and changing configuration
 --------------------------------------------
-MutableConfiguration config = MutableConfigurationProvider
-                                      .createMutableConfiguration();
+MutableConfiguration config = MutableConfiguration.create();
 config.put("newKey", "newValue")
       .put("anotherKey", "updatedValue")
       .remove("valueNotValid")
@@ -71,8 +70,7 @@ We can also pass any +Configuration+ to render it into a mutable instance, e.g.
 .Explicitly passing the backing configuration
 --------------------------------------------
 Configuration config = ...;
-MutableConfiguration config = MutableConfigurationProvider
-                                       .createMutableConfiguration(config);
+MutableConfiguration config = MutableConfiguration.create(config);
 --------------------------------------------
 
 NOTE: If a configuration does not contain any +MutablePropertySource+ instances,
@@ -85,38 +83,26 @@ We will show in the following sections more details on the options provided...
 
 [source, java]
 ---------------------------------------------
-public final class MutableConfigurationProvider {
-
-    private MutableConfigurationProvider(){}
-
-    public static MutableConfiguration createMutableConfiguration();
-    public static MutableConfiguration createMutableConfiguration(
-                                               ChangePropagationPolicy changePropgationPolicy);
-    public static MutableConfiguration createMutableConfiguration(Configuration configuration);
-    public static MutableConfiguration createMutableConfiguration(
-                                                   Configuration configuration,
-                                                   ChangePropagationPolicy changePropgationPolicy);
-
-    [...]
-}
----------------------------------------------
-
-As we have not yet shown it, +MutableConfiguration+ is defined as follows:
-
-[source, java]
----------------------------------------------
 public interface MutableConfiguration extends Configuration {
 
     void store();
-
     ConfigChangeRequest getConfigChangeRequest();
     ChangePropagationPolicy getChangePropagationPolicy();
-
     MutableConfiguration put(String key, String value);
     MutableConfiguration putAll(Map<String, String> properties);
     MutableConfiguration remove(Collection<String> keys);
     MutableConfiguration remove(String... keys);
 
+    public static MutableConfiguration create();
+    public static MutableConfiguration create(ClassLoader classLoader);
+    public static MutableConfiguration create(ChangePropagationPolicy changePropgationPolicy);
+    public static MutableConfiguration create(ChangePropagationPolicy changePropgationPolicy,
+                                              ClassLoader classLoader);
+    public static MutableConfiguration create(Configuration configuration);
+    public static MutableConfiguration create(Configuration configuration,
+                                              ChangePropagationPolicy changePropgationPolicy);
+
+    [...]
 }
 ---------------------------------------------
 

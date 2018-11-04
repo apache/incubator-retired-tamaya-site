@@ -20,7 +20,7 @@ Collections extension adds this functionality to the Tamaya eco-system.
 
 === Compatibility
 
-The module is based on Java 8, so it will not run on Java 7 and beyond.
+The module requires Java 8.
 
 
 === Installation
@@ -64,18 +64,20 @@ my.list.config.entry=1,34454,23,344545,3445
 Additionally the module allows adding additional meta-entries, which allows to tweak some of the
 inner-workings, e.g.
 
-* using your own +PropertyConverter+ implementation for parsing entries.
-* specifying a custom separator to split the items (default is {{','}}.
-* specifying a custom separator to split key/value pairs when parsing map entries.
-* specifying the implementation type of the collection item to be returned.
-* specifying the implementation type of the collection to be returned.
+* `item-converter`: using a custom +PropertyConverter+ implementation for parsing collection entries.
+* `entry-separator`: specifying a custom separator to split the list and map items (default is {{','}}.
+* `map-entry-separator`: specifying a custom separator to split key/value pairs when parsing map entries.
+* `collection-type`: specifying the implementation type of the collection to be returned.
+* `mapping-type`: specifying the implementation type of the collection item to be returned.
 
 === Supported Types
 
 This module currently supports the following types:
 
+* +java.util.Iterable+
 * +java.util.Collection+
 * +java.util.List+
+* +java.util.ArrayList+
 * +java.util.ArrayList+
 * +java.util.LinkedList+
 * +java.util.Set+
@@ -87,17 +89,32 @@ This module currently supports the following types:
 * +java.util.HashMap+
 * +java.util.TreeMap+
 
-Hereby the collection type is determined by the parameter type accessed, e.g.
+
+==== Default Collection Type Mapping
+
+The collection type is determined by the parameter type accessed, e.g.
 +config.get("mylist", ArrayList.class)+ will always return an +ArrayList+
 as result.
+* if you have a generic type:
+  ** an `ArrayList` is returned for `Collection, List, ArrayList, Iterable`
+  ** a `HashSet` is returned for `Set, HashSet`
+  ** a `HashMap` is returned for `Map, HashMap`
+  ** a `TreeMap` is returned for `SortedMap, TreeMap`
+  ** a `TreeSet` is returned for `SortedSet, TreeSet`
+* in all other cases you have to explicitly define the collection type. Hereby you may
+  omit the `java.util` package. Collection types not contained in `java.util`
+  require adding an additional converter implementation.
 
 NOTE: This means that depending on your use case you can access different
 collection types based on the same configuration values, as long as their is
 a +PropertyConverter+ that can convert the _raw configuration value_ to the
 required target type.
 
+CAUTION: If you do *NOT* use `TypeLiteral` to define your target type, the item target type will not
+         be available to Tamaya due to Java's type erasure. In this case it will always return `String`
+         as item type.
 
-==== Configuring the target implementation type
+==== Configuring Collection Type Mapping
 
 Tamaya Collections allows you to configure the _default_ target collection type by adding the
 following meta-configuration entry (shown for the +mylist+ entry). Hereby the package part +java.util.+
@@ -106,7 +123,7 @@ can be ommitted:
 [ source, properties]
 -----------------------------------------------
 mylist=a,b,c
-_mylist.collection-type=LinkedList
+[META]mylist.collection-type=LinkedList
 -----------------------------------------------
 
 When calling +config.get("mylist", ArrayList.class)+ this parameter does not have any effect, so you will still
@@ -117,17 +134,32 @@ This mechanism similarly applies to all kind of collections, so you can use it s
 type returned when accessing +List+, +Map+ or +Collection+.
 
 
-=== Collecting Configuration Entries instead of Overriding
+=== Evaluating Collection Entries
 
-By default Tamaya applies always an overriding +CombinationPolicy+, where only the configuration entry for
-the most significant configuration entry is used. In case of collections (and maybe also other use cases),
-overriding is not always the mechanism of choice. E.g. when you want to have all entries added to your
-configuration to be *combined* to a new entry containing all values provided by any property sources.
+Tamaya's internal representation of configuration is a modelled by a `PropertyValue`. This class actually supports
+different models how configuration data can be represented:
 
-Therefore _Tamaya Collections_ also provides a more sophistiated +CombinationPolicy+ (automatically configured)
-that allows to adapt the way how configuration entries are combined. All you must do is declaring
-the mechanism to be applied by an according _meta-configuration_ parameter, e.g. for +my.list+ your config may
-look as follows:
+. as simple literal key-value pair, or
+. as map-like value object, or
+. as list-like list object.
+
+Tamaya's `ConversionContext` actually provides all values matching a given target key. As a consequence there
+are four basic algorithms, how a collection can be mapped from entries given:
+
+* _value_all:_ The list values are identiified by parsing the node value(s) into items, hereby
+        the items of all values are combined.
+* _value:_ The list values are identiified by parsing the node value(s) into items.
+        Hereby only the items of the most significant config entry are considered.
+* _node:_ The list values are identiified by using the node's child value(s) as items.
+        Hereby only the items of the most significant config entry are considered.
+* _node_all:_ The list values are identiified by using the node's child value(s) as items. Hereby
+        the items of all values are combined.
+* _override:_ This policy will try to guess the best _value_ and _node_ evaluation policy for most significant
+        `PropertyValue`.
+* _combine:_ This policy will try to guess the best _value_ and _node_ evaluation policy for each
+        `PropertyValue` and combine the values to one collection. *This is the default behaviour.*
+
+As an example consider the following configuration for +my.list+:
 
 [source, properties]
 -----------------------------------------------
@@ -136,23 +168,56 @@ my.list=1,2,3
 
 # from PropertSource 2, with higher precedence
 my.list=4,5,6
-
-# without any additional meta-info these entries would be combined to
-my.list=4,5,6
 -----------------------------------------------
 
-With Tamaya Collections you can now configure the combination policy as follows:
+Using the _value_ evaluation policy this would result in the following final property:
 
 [source, properties]
 -----------------------------------------------
-# use one of the default policies: override / collect
-_my.list.combination-policy=collect
-
-# or use your own custom CombinationPolicy to combine the values
-_my.list.combination-policy=com.mycomp.app.MyCombincationPolicy
+my.list=4,5,6
 -----------------------------------------------
 
-So declaring the +collect+ policy the resulting raw output of the entry looks as follows:
+Using the _value_all_ evaluation policy this would result in the following final property:
+
+[source, properties]
+-----------------------------------------------
+my.list=1,2,3,4,5,6
+-----------------------------------------------
+
+For the _node_based evaluation policies consider the following YAML input data:
+
+[source, yaml]
+-----------------------------------------------
+# from PropertSource 1
+my.list:
+  - 1
+  - 2
+  - 3
+
+# from PropertSource 2, with higher precedence
+my.list:
+  - 4
+  - 5
+  - 6
+-----------------------------------------------
+
+In this case the entries are mapped to `ListValue` instances with multiple children. Similar mappings would apply
+using JSON or XML configuration formats. In this case it is more useful to collect the child nodes, instead the
+values (which basically are `null` on the parent node level). This is excatly what the _node_ and _node_all_
+evaluaion policies are doing.
+
+With Tamaya Collections you can now configure the evaluation policy using metadata, e.g. when using the default
+metadata format of Tamaya:
+
+[source, properties]
+-----------------------------------------------
+# use one of the policies: node, node_all, value, value_all, override or collect
+[META]my.list.collection-mapping=collect
+-----------------------------------------------
+
+So declaring the +collect+ policy the resulting raw output of the entry looks as illustrated below. Hereby it is even
+possible to mix different representations. E.g. it is possible to add additional values in a simple property files,
+whereas other values are configured in YAML or other formats:
 
 [source, properties]
 -----------------------------------------------
@@ -160,20 +225,19 @@ So declaring the +collect+ policy the resulting raw output of the entry looks as
 my.list=1,2,3,4,5,6
 -----------------------------------------------
 
-The customizable policy mechanism of Tamaya Collections also honors the +item-separator+ meta-configuration
-parameter explained later in this document.
 
 
-=== Format of Collection Configuration
+=== Item Value Splitting
 
-By default collections are modelled as simple String values, that are tokenized into individual parts using a
+When evaluating collections from literal values, these values have to be tokenized into individual parts using a
 defined +item-separator+ (by default +','+). So a given configuration entry of +1,2,3+ is mapped to +"1","2","3".
-If the target context type is something different than String the smae conversion logic is used as when mapping
-configuration parameters directly to non-String target types (implemented as +PropertyConverter+ classes, manahed
-within the current +ConfigurationContext+. The procedure is identical for all collection types, including +Map+ types,
-with the difference that each token in the list is parsed once more for separating it into a +key+ and a +value+.
-The default separator for map entries hereby is +"::"+. Map keys, as of now, are always of type +String+, whereas
-for values the same logic is applied as for non-map collection types.
+If the target context type is something different than String the same conversion logic is used as when mapping
+configuration parameters directly to non-String target types (implemented as +PropertyConverter+ classes).
+The procedure is identical for all collection types, including +Map+ types,
+with the difference that each token for a map is parsed additionally for separating it into a +key+ and a +value+ parts.
+The default separator for map entries hereby is +"="+. Map keys, as of now, are always of type +String+, whereas
+for values all convertible types are supported. All separator characters can be masked by prefixing them with a `\`
+character.
 
 [source, properties]
 -----------------------------------------------
@@ -181,11 +245,11 @@ for values the same logic is applied as for non-map collection types.
 list=1,2,3,4,5,6
 
 # a map, using the default format
-map=a::b, c::d
+map=a=b, c=d
 -----------------------------------------------
 
 
-==== Trimming of entries
+==== Trimming
 
 By default all tokens parsed are trimmed _before_ adding them to the final collection. In case of map entries this is
 also the case for key/value entries. So the following configuration results in the identical values for
@@ -194,15 +258,15 @@ also the case for key/value entries. So the following configuration results in t
 [source, properties]
 -----------------------------------------------
 # a list, using the default format
-list1=1,2,3,4,5,6
+list1=1, 2 ,3,4 , 5,6
 list2=1, 2, 3, 4, 5, 6
 
 # a map, using the default format
-map1=a::b, c::d
-map2=a :: b, c :: d
+map1=a =b, c= d
+map2=a=b, c = d
 -----------------------------------------------
 
-Nevertheless truncation can be controlled by the usage of brackets, e.g. the last list or map entry will have a single
+Nevertheless trimming/truncation can be controlled by the usage of brackets, e.g. the last list or map entry will have a single
 space character as value:
 
 [source, properties]
@@ -211,7 +275,7 @@ space character as value:
 list3=1, 2, 3, 4, 5, [ ]
 
 # a map, with a ' ' value for key '0'
-map3=1 :: a, 2 :: b, 0::[ ]
+map3=1 = a, 2 = b, 0=[ ]
 -----------------------------------------------
 
 Hereby +\[+ escapes the sequence.
@@ -219,18 +283,18 @@ Hereby +\[+ escapes the sequence.
 
 ==== Customizing the format
 
-The item and entry separators (by default +','+ and +"::"+) can be customized by setting corresponding meta-data
-entries as follows, resulting in the same values as in the prevoius listing:
+The item and entry separators (by default +','+ and +"="+) can be customized by setting corresponding meta-data
+entries, resulting in the same values as in the previous listing:
 
 [source, properties]
 -----------------------------------------------
 # a list, with a ' ' value at the end
 list3=1__2__3__ 4__ 5__[ ]
-_list3.item-separator=__
+[META]list3.item-separator=__
 
 # a map, with a ' ' value for key '0'
 map3=1->a, 2->b, 0->[ ]
-_map3.map-entry-separator=->
+[META]map3.map-entry-separator=->
 -----------------------------------------------
 
 Of course these settings also can be combined:
@@ -239,6 +303,23 @@ Of course these settings also can be combined:
 -----------------------------------------------
 # a reformatted map
 redefined-map=0==none | 1==single | 2==any
-_redefined-map.map-entry-separator===
-_redefined-map.item-separator=|
+[META]redefined-map.map-entry-separator===
+[META]redefined-map.item-separator=|
+-----------------------------------------------
+
+
+==== Using a custom Converter
+
+If configuring of item and map item separators as shown above is not sufficient, you still have an option: you can
+configure a custom converter to use for converting the given keys. This can be also configured by addinf a corresponding
+meta-configuration entry `item-converter`. As you would expect the converter must implement Tamaya's `PropertyConverter`
+interface:
+
+[source, properties]
+-----------------------------------------------
+# a map using a custom converter
+server.0=server1, localhost:8001
+server.1.name=server2, localhost:8000, master=true
+server.2=server3, localhost:8003
+[META]server.item-converter=com.mycompany.config.ServerConverter
 -----------------------------------------------

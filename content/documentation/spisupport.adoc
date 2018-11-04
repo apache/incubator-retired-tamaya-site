@@ -9,39 +9,38 @@ toc::[]
 [[SPISupport]]
 == Tamaya SPI Support
 
-Tamaya _SPI Support_ is a core module only depending on the API. It implements lots of API and SPI related
-artifacts in a portable way. Tamaya's core module reuses this functionality to build up a fully fledged
-Tamaya API implementatation.
+Tamaya _SPI Support_ is a module only depending on the API. It implements lots of API and SPI related
+artifacts in a portable way. Tamaya's core module completes this functionality to implement the
+full Tamaya API. This module can be reused also with alternate implementations of the Tamaya API.
+
 
 === What functionality this module provide?
 
-Tamaya _SPI Support_ provides a few helpful base classes that can be used to implement aspects of Tamaya:
+Tamaya _SPI Support_ provides several base classes that can be used to implement the Tamaya Configuration API:
 
-* +BasePropertySource+ provides an abstract *base class* for implementation of your own PropertySources.
+* +BasePropertySource+ provides an abstract *base class* for implementation of your own `PropertySource`.
 * +DefaultConfiguration+ provides you with a simple implementation of the +Configuration+ interface based on a
   +ConfigurationContext+ provided. This is also very useful for mocking configuration during test execution, but
   not only constraint to that use case.
-* +DefaultConfigurationContext+ provides you with a working implementation of the +ConfigurationContext+.
-* Numerous *converters*, including an +EnumConverter+,that is a converter implementation that can automatically select the currect enumeration values based
-  on a configured entry.
+* +DefaultConfigurationContext+ provides an implementation of the +ConfigurationContext+ API.
 * +MapPropertySource+ implements a property source based on +java.util.Map+.
 * +PriorityServiceComparator+ compares arbitrary services based on their +@Priority+ annotations (also handling the
   case, where no such annotation is present).
 * +PropertiesResourcePropertySource+ is an implementation of a +PropertySource+ based on a +Properties+ instance,
   loadable from any +URL+.
 + +PropertyConverterManager+ is a useful service class, when implementing instances of +ConfigurationContext+.
-  It manages registered instances of +PropertyConverter+ and provides easy to use type conversion logic.
-+ +PropertyFiltering+ provides another helpful class that manages +PropertyFilter+ instances and provides an
-  easy to use high level API.
+  It manages registered instances of +PropertyConverter+ and provides easy to use type conversion logic based on
+  the registered converters.
++ +PropertyFiltering+ provides a similar class, which manages +PropertyFilter+ instances and provides an
+  easy to use high level filtering API.
 + +PropertySourceComparator+ provides an implementation that compares +PropertySources+ based on their +getOrdinal()+
-  values and their class names.
+  values and their class names. It is used to establish the default loading (significance) of property sources.
 + The default configuration implementation also allows to replace the raw value evaluation
   logic using a +ConfigValueEvaluator+, similar to Tamaya's core implementation.
 
 NOTE: It is highly recommended that you also read the link:../core.html[documentation] of Tamaya's
-      core implementation, since this describes the abstrations in use in more
-      detail. This module allows to reuse Tamaya's implementation artifacts but
-      still allows alternate implementations of the core API to be used.
+      core implementation, since this describes the abstractions in use in more
+      detail.
 
 === Compatibility
 

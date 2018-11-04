@@ -134,10 +134,10 @@ Tamaya inject the configuration (or throw a +ConfigException+, if this is not po
 .Configuring the +ConfiguredClass+ Instance
 --------------------------------------------
 ConfiguredClass classInstance = new ConfiguredClass();
-ConfigurationInjector.configure(configuredClass);
+ConfigurationInjector.getInstance().configure(configuredClass);
 
 Tenant tenant = new Tenant();
-ConfigurationInjector.configure(tenant);
+ConfigurationInjector.getInstance().configure(tenant);
 --------------------------------------------
 
 NOTE: Configuration injection works similarly, when used with other integration modules, e.g. when Tamaya is used
@@ -194,7 +194,7 @@ pubic class ConfiguredItem{
 When this class is configured, e.g. by passing it to +ConfigurationInjector.getInstance().configure(Object)+,
 the following is happening:
 
-* The current valid +Configuration+ is evaluated by calling +Configuration cfg = ConfigurationProvider.getConfiguration();+
+* The current valid +Configuration+ is evaluated by calling +Configuration cfg = Configuration.current();+
 * The current property value (String) is evaluated by calling +cfg.get("aValue");+ for each possible key (mutliple
   keys are possible).
 * if not successful, an error is thrown (+ConfigException+)
@@ -385,32 +385,31 @@ public interface DynamicValue<T> {
 
     boolean isPresent();
     T orElse(T other);
-    // Enabled with Java 8
-    // T orElseGet(ConfiguredItemSupplier<? extends T> other);
-    // <X extends Throwable> T orElseThrow(ConfiguredItemSupplier<? extends X> exceptionSupplier) throws X;
+    T orElseGet(ConfiguredItemSupplier<? extends T> other);
+    <X extends Throwable> T orElseThrow(ConfiguredItemSupplier<? extends X> exceptionSupplier) throws X;
 
 }
 
 public enum UpdatePolicy{
     IMMEDIATE,
-    EXPLCIT,
+    EXPLICIT,
     NEVER,
     LOG_AND_DISCARD
 }
 --------------------------------------------
 
-//Summarizing +DynamicValue+ looks somehow similar to the new +Optional+ class added with Java 8. It provides
-//a wrapper class around a configured instance. Additionally this class provides functionality that gives
-//active control, to manage a configured value based on a ++LoadingPolicy+:
-//
-//* +IMMEDEATE+ means that when the configuration system detects a change on the underlying value, the new value
-//  is automatically applied without any further notice.
-//* +EXPLICIT+ means that a new configuration value is signalled by setting the +newValue+ property. if +getNewValue()+
-//  returns a non null value, the new value can be applied by calling +commit()+. You can always access the newest value,
-//  hereby implicitly applying it, by accessing it via +commitAndGet()+. Also it is possible ti ignore a change by calling
-//  +discard()+.
-//* +NEVER+ means the configured value is evaluated once and never updated. All changes are silently discarded.
-//* +LOG_AND_DISCARD+ similar to +NEVER+, but changes are logged before they are discarded.
+Summarizing +DynamicValue+ looks somehow similar to the new +Optional+ class added with Java 8. It provides
+a wrapper class around a configured instance. Additionally this class provides functionality that gives
+active control, to manage a configured value based on a ++LoadingPolicy+:
+
+* +IMMEDIATE+ means that when the configuration system detects a change on the underlying value, the new value
+  is automatically applied without any further notice.
+* +EXPLICIT+ means that a new configuration value is signalled by setting the +newValue+ property. if +getNewValue()+
+  returns a non null value, the new value can be applied by calling +commit()+. You can always access the newest value,
+  hereby implicitly applying it, by accessing it via +commitAndGet()+. Also it is possible ti ignore a change by calling
+  +discard()+.
+* +NEVER+ means the configured value is evaluated once and never updated. All changes are silently discarded.
+* +LOG_AND_DISCARD+ similar to +NEVER+, but changes are logged before they are discarded.
 
 Summarizing a +DynamicValue+ allows you
 
@@ -421,35 +420,6 @@ Summarizing a +DynamicValue+ allows you
 Dynamic values also allow on-the-fly reevaluation of the value by calling +evaluateValue()+. Hereby the value of the
 instance is not changed.
 
-
-===== The Loading policy enum
-
-The +LoadPolicy+ enum defines different configuration loading behaviour
-to be applied:
-
-[source,java]
---------------------------------------------
-@Deprecated
-public enum LoadPolicy {
-    /**
-     * The configuration keys is evaluated once, when the owning component is loaded/configured, but never updated later.
-     */
-    INITIAL,
-    /**
-     * The configuration keys is evaluated exactly once on its first access/use lazily, but never updated later.
-     * @see DynamicValue#get()
-     * @see DynamicValue#commitAndGet()
-     */
-    LAZY,
-    /**
-     * The configuration value is evaluated every time it is accessed.
-     */
-    ALWAYS
-}
---------------------------------------------
-
-This enum type currently is used only internally, so avoid using it as of
-now in your code is recommended.
 
 
 === Configuration Events

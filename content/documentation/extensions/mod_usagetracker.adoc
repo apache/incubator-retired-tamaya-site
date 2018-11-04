@@ -20,7 +20,7 @@ VM.
 
 === Compatibility
 
-The module is based on Java 7, so it can be used with Java 7 and beyond.
+The module is based on Java 8.
 
 
 === Installation
@@ -93,16 +93,19 @@ singleton for configuration statistics is defined as follows:
 
 [source,java]
 -----------------------------------------------------------
-public final class ConfigUsageStats{
-    public static Set<String> getIgnoredUsagePackages();
-    public static void addIgnoredUsagePackages(String... packageName);
-    public static void enableUsageTracking(boolean enabled);
-    public static Usage getUsage(String key);
-    public static Collection<Usage> getUsages();
-    public static void clearUsageStats();
-    public static Usage getUsageAllProperties();
-    public static boolean isUsageTrackingEnabled();
-    public static String getUsageInfo();
+public final class ConfigUsage{
+    public static ConfigUsage getInstance();
+    public static ConfigUsage getInstance(ClassLoader classLoader);
+
+    public Set<String> getIgnoredUsagePackages();
+    public void addIgnoredUsagePackages(String... packageName);
+    public void enableUsageTracking(boolean enabled);
+    public Usage getUsage(String key);
+    public Collection<Usage> getUsages();
+    public void clearUsageStats();
+    public Usage getUsageAllProperties();
+    public boolean isUsageTrackingEnabled();
+    public String getUsageInfo();
 }
 -----------------------------------------------------------
 

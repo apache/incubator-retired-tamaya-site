@@ -24,7 +24,7 @@ Tamaya _Formats_ provides an abstraction for configuration formats provding the 
 
 === Compatibility
 
-The module is based on Java 7, so it can be used with Java 7 and beyond.
+The module is based on Java 8.
 
 === Installation
 
@@ -66,34 +66,20 @@ public final class ConfigurationData {
     public ConfigurationFormat getFormat();
     public String getResource();
 
-    public Set<String> getSectionNames();
-    public Map<String,String> getSection(String name);
-
-    public boolean hasDefaultProperties();
-    public Map<String,String> getDefaultProperties();
-    public Map<String,String> getCombinedProperties();
+    public List<PropertyValue> getData();
 
     public boolean isEmpty();
 }
 -------------------------------------------------------
 
-In detail the data read from a file is organized into _sections_ as follows:
-
 * with +getResource()+ and +getFormat()+ the underlying resource and the format that read this data can be accessed.
-* properties can be owned by
-  ** named sections
-  ** an (unnamed) default section
-* each section section contains a map of properties. Hereby the same key can be part of the default section and multiple
-  named sections, depending on the configuration format.
-* The method +getSectionNames()+ returns a set of all section names.
-* With +getSection(String name)+ a named section can be accessed.
-* With +getDefaultSection()+ the 'default' section can be accessed. This is a convenience method.
-* With +getCombinedProperties()+ a flattened entry map can be accessed built up (by default) out of
-  ** all entries from the default section, without any changes.
-  ** all entries from named sections, where the key for each entry is prefix with the section name and a '::' separator.
-* The configuration format used determines the mapping of configuration data read into this structure. The format
-  implementation can as well provide alternate implementations of how the data read should be mapped into the
-  combined properties map.
+* +getData()+ allows access to the data read. Hereby this data can be mapped in different ways:
+** as (multiple) simple key-value literal pairs, or
+** as field-mapped object type values, or as
+** list values
+** the children of list and object values can be of any of the three types described above. As a consequence a simple
+ `PropertyValue` can be a simple literal value, or a complex tree/list structure, similar to common configuration
+ formats.
 
 
 ==== ConfigurationFormat
@@ -111,6 +97,7 @@ public interface ConfigurationFormat {
 }
 -------------------------------------------------------
 
+
 === Creating a default PropertySource for a ConfigurationFormat
 
 The module defines a singleton +ConfigurationFormats+ which provides
@@ -121,32 +108,35 @@ using abstract +ConfigurationFormat+ implementations:
 -------------------------------------------------------
 public final class ConfigurationFormats {
 
-    public static List<ConfigurationFormat> getFormats();
-    public static List<ConfigurationFormat> getFormats(String... formatNames);
-    public static List<ConfigurationFormat> getFormats(final URL url);
+    public static ConfigurationFormats getInstance();
+    public static ConfigurationFormats getInstance(ClassLoader classLoader);
 
-    public static ConfigurationData readConfigurationData(final URL url)
+    public List<ConfigurationFormat> getFormats();
+    public List<ConfigurationFormat> getFormats(String... formatNames);
+    public List<ConfigurationFormat> getFormats(final URL url);
+
+    public ConfigurationData readConfigurationData(final URL url)
     throws IOException;
-    public static ConfigurationData readConfigurationData(URL url, ConfigurationFormat... formats)
+    public ConfigurationData readConfigurationData(URL url, ConfigurationFormat... formats)
     throws IOException;
-    public static ConfigurationData readConfigurationData(URL url, Collection<ConfigurationFormat> formats)
+    public ConfigurationData readConfigurationData(URL url, Collection<ConfigurationFormat> formats)
     throws IOException;
-    public static Collection<ConfigurationData> readConfigurationData(Collection<URL> urls, ConfigurationFormat... formats);
-    public static Collection<ConfigurationData> readConfigurationData(Collection<URL> urls, Collection<ConfigurationFormat> formats);
-    public static ConfigurationData readConfigurationData(String resource, InputStream inputStream,
+    public Collection<ConfigurationData> readConfigurationData(Collection<URL> urls, ConfigurationFormat... formats);
+    public Collection<ConfigurationData> readConfigurationData(Collection<URL> urls, Collection<ConfigurationFormat> formats);
+    public ConfigurationData readConfigurationData(String resource, InputStream inputStream,
                                                           ConfigurationFormat... formats)
     throws IOException;
-    public static ConfigurationData readConfigurationData(String resource, InputStream inputStream,
+    public ConfigurationData readConfigurationData(String resource, InputStream inputStream,
                                                           Collection<ConfigurationFormat> formats)
     throws IOException;
 
-    public static PropertySource createPropertySource(URL url, ConfigurationFormat... formats)
+    public PropertySource createPropertySource(URL url, ConfigurationFormat... formats)
     throws IOException;
-    public static PropertySource createPropertySource(URL url, Collection<ConfigurationFormat> formats)
+    public PropertySource createPropertySource(URL url, Collection<ConfigurationFormat> formats)
     throws IOException;
-    public static PropertySource createPropertySource(String resource, InputStream inputStream,
+    public PropertySource createPropertySource(String resource, InputStream inputStream,
                                                       ConfigurationFormat... formats);
-    public static PropertySource createPropertySource(String resource, InputStream inputStream,
+    public PropertySource createPropertySource(String resource, InputStream inputStream,
                                                        Collection<ConfigurationFormat> formats);
 }
 -------------------------------------------------------
@@ -166,10 +156,10 @@ So creating a +PropertySource+ from a resource is basically a one liner:
 [source,java]
 -------------------------------------------------------
 URL url = ...;
-PropertySource propertySource = ConfigurationFormats.createPropertySource(url);
+PropertySource propertySource = ConfigurationFormats.getInstance().createPropertySource(url);
 
 // constraining the formats to be used (assumption: json and yaml extensions are loaded)
-PropertySource propertySource = ConfigurationFormats.createPropertySource(
+PropertySource propertySource = ConfigurationFormats.getInstance().reatePropertySource(
                                     url,
                                     ConfigurationFormats.getFormats("json", "yaml"));
 -------------------------------------------------------
@@ -177,25 +167,19 @@ PropertySource propertySource = ConfigurationFormats.createPropertySource(
 
 === Customize how ConfigurationData maps to PropertySource
 
-For for the conversion of +ConfigurationData+ into a +PropertySource+ different approaches can be useful:
-
-. The +ConfigurationFormat+ that reads the data can provides all properties read either as sectioned properties
-  or/and as default properties. The most simple cases is, where all properties have been added as 'default'
-  properties. In this case the default properties can be used as the property sources properties without any change.
-. If the format did also add section based properties, the combined properties returned can be used, hereby
-  replacing the '::' separator with a '.' separator.
-. In all other cases a custom mapping is useful, which can be acomplished by using the +MappedConfigurationDataPropertySource+
-  and overriding the +Map<String,String> populateData(ConfigurationData data)+ method.
-
+For for the conversion of +ConfigurationData+ into a +PropertySource+ different approaches can be useful.
 In most cases the usage of a +MappedConfigurationDataPropertySource+, is a good choice to start. This class
-provides a convenient default mapping and also allows to customized the mapping easily:
+provides a convenient default mapping and also allows to customized the mapping easily: it simply iterates over all
+values recursively and adds them using their fully qualified name as single value properties.
+
+This behaviour can be easily adapted by overriding the +popoulateData+ method:
 
 [source,java]
 -------------------------------------------------------
 ConfigurationData data = ...;
 MappedConfigurationDataPropertySource ps =
   new MappedConfigurationDataPropertySource(data){
-    protected Map<String, String> populateData(ConfigurationData data) {
+    protected Map<String, PropertyValue> populateData(ConfigurationData data) {
       ...
     }
   };
@@ -204,9 +188,9 @@ MappedConfigurationDataPropertySource ps =
 Nevertheless, depending on the context, where a configuration source was read (classloader, time, source etc.) the
 resulting properties can have different semnatics, especially different priorities. Also section
 names may be mapped into different ordinals instead of using them as key prefixes (e.g. imagine configuration formats
-with a 'default', 'main', and 'overrides' sections). For such more complex or custom cases no simple mapping
+with a 'default', 'main', and 'overrides' sections). For such use cases no simple mapping
 can be defined. Consequently the functionality mapping the normalized +ConfigurationData+ read to the
-appropriate collection of +PropertySource+ instances must be implemented.
+appropriate collection of +PropertySource+ instances must be implemented by the client code.
 
 For this scenario the +BaseFormatPropertySourceProvider+ can be used, defining the following mapping
 function that mus be implemented:
@@ -262,9 +246,9 @@ This file content by default is mapped to the following Tamaya properties:
 -------------------------------------------------------
 a=valA
 a.b=valB
-section1::valA=sectionValA
-section1::a.b.c=SectionValC
-section2::a=val2Section2
+section1.valA=sectionValA
+section1.a.b.c=SectionValC
+section2.a=val2Section2
 -------------------------------------------------------
 
 Summarizing
@@ -272,7 +256,7 @@ Summarizing
 * entries without a section are mapped to the _default_ section.
 * entries with a section are mapped to a corresponding section, hereby everything between
   the brackets is used as section name (trimmed).
-* section names are separated using a double colon (`::`).
+* section names are separated using a double colon (`.`), they are modelled as simple parent `PropertyValue` nodes.
 
 +ConfigurationData+ allows to access all the different parts:
 

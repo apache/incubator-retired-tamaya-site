@@ -21,7 +21,7 @@ cycles to loop endlessly.
 
 === Compatibility
 
-The module is based on Java 7, so it can be used with Java 7 and beyond.
+The module is based on Java 8.
 
 
 === Installation
@@ -70,6 +70,25 @@ Currently the module defines the following resolvers:
 
 |=======
 
+
+=== Explicit Expression Resolution
+
+The resolvers registered are normall running implicitly, when corresponding placeholders are used in configuration
+values. Additionally the expression resolution functionality can also used explcitly:
+
+[source,java]
+---------------
+public final class Resolver {
+
+    public static Resolver getInstance();
+    public static Resolver getInstance(ClassLoader classLoader);
+
+    public String evaluateExpression(String key, String value);
+    public String evaluateExpression(String key, String value, ClassLoader classLoader);
+    public String evaluateExpression(String value);
+    public String evaluateExpression(String value, boolean maskNotFound);
+}
+---------------
 
 === SPI: Implementing your own Resolvers
 
