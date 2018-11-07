@@ -11,7 +11,7 @@ toc::[]
 Tamaya _Classloader_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
 CAUTION: Classloader support has been added into the main API and implementation module. This module probably is not
-         useful anymore and will probably be removed in the future.
+         useful anymore and will be removed in the future.
 
 
 === What functionality this module provides ?
