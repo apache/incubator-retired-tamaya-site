@@ -5,7 +5,7 @@
 
 
 The fastest way to start with Tamaya is just using the _Core_ module, which
-provides a simple configuration API. To start add the folloeing
+provides a simple configuration API. To start add the following
 dependency to your project:
 
 [source,xml,subs="verbatim,attributes"]

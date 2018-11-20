@@ -20,15 +20,15 @@
                                 <p><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'about.html'">Learn more about Tamaya</a></p>
                             </td>
                             <td class="front-cell">
-                                <h3>Challenge it: Why you should use Tamaya?</h3>
+                                <h3>Challenge it &mdash; Why should you use Tamaya?</h3>
                                 <p>Configuration is one of the most important cross-cutting concerns. Nevertheless
                                 most people rewrite similar logic again and again. It's time to rely on a standard
-                                compliant solution that allows to plug-in any configuration resources?</p>
+                                compliant solution that allows to plugin any configuration resources?</p>
                                 <p><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'documentation/usecases.html'">Look at Tamaya's Use Cases</a></p>
                             </td>
                             <td class="front-cell">
-                                <h3>Try it: Get started!</h3>
-                                <p>Get started is easy. Look at our examples, add Tamaya's runtime dependency and
+                                <h3>Try it out &mdash; Get started!</h3>
+                                <p>Getting started is easy: look at our examples, add Tamaya's runtime dependency and
                                 there you go. Tamaya is plain Java SE in it's core. Lean and effective. And if you have
                                 a question, let us know. We are happy to help!</p>
                                 <p><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'documentation/quickstart.html'">"Getting started" right away!</a></p>
@@ -36,22 +36,22 @@
                         </tr>
                         <tr>
                             <td class="front-cell">
-                                <h3>Use it: Add more Features!</h3>
+                                <h3>Use it &mdash; Add more Features!</h3>
                                 <p>Did we already have mentioned features? There are a lot of them. Read this
                                 overview about current and upcoming features to see what matches your
                                 requirements. Tamaya is modular, you only depend on what you like.</p>
                                 <p><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'features.html'">Checkout our outstanding features</a></p>
                             </td>
                             <td class="front-cell">
-                                <h3>Rely on it: Tamaya as a standard</h3>
+                                <h3>Rely on it &mdash; Tamaya as a standard</h3>
                                 <p>Tamaya is not only a flexible configuration solution, it is also future proof.
-                                With Tamaya you get an indepepdent implementation of the current Microprofile
+                                With Tamaya you get an independent implementation of the current Microprofile
                                 Config and JSR 310 API.</p>
                                 <p><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'documentation/tamayaasastandard.html'">Learn more</a></p>
                             </td>
                             <td class="front-cell">
-                                <h3>Improve it: Get involved...</h3>
-                                <p>Tell us your story and help us making Tamaya even better.
+                                <h3>Improve it &mdash; Get involved...</h3>
+                                <p>Tell us your story and help us make Tamaya even better.
                                 We are happy to support you and discuss further features or improvements.</p>
                                 <p><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'development/community.html'">Get involved!</a></p>
                             </td>

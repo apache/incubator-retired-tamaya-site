@@ -2,7 +2,7 @@
 :jbake-status: published
 
 
-= Why you should rely on Tamaya?
+= Why should you rely on Tamaya?
 
 There are several reasons, why you should choose Tamaya, some of them:
 
@@ -19,11 +19,10 @@ Tamaya does not fill up your memory with things you wont ever need.
 * *Tamaya is runtime-independent*: Tamaya runs on every JVM platform, since it's core is written in pure
   Java.
 * *Tamaya is well documented*: Both the API as well as the extension are all well documented.
-* *Tamaya is Apache*: Tamaya is community as it's best, no vendor lock-in, no payed members, just
+* *Tamaya is Apache*: Tamaya is community at its best, no vendor lock-in, no payed members, just
   the Apache Way!
 
 A good way to continue is probably looking at the use cases we had in mind, when implementing Tamaya...
-
 
 = Use Cases and Requirements
 
@@ -507,6 +506,6 @@ on +Configuration+.
 
 [[RequirementsNonFunctional]]
 === Non Functional Requirements
-THe following non-functional requirements must be met:
+The following non-functional requirements must be met:
 
 * tbd
