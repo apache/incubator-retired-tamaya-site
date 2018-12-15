@@ -61,10 +61,10 @@ The following sections explain the provided functions defined by +ConfigurationF
 * *UnaryOperator<Configuration> section(String areaKey, boolean stripKeys)* creates  a +UnaryOperator<Configuration>+ that creates a +Configuration+
   containing only entries that are direct or indirect members of the given section. Hereby _stripKeys_ allows to determine
   if the returned entries should be relative to the search criteria {{stripKeys=true}} or absolute keys.
-* *isKeyInSection(String section, String sectionKey)* allows to easily determine if a given _key_ is a direct or indirect member
+* *isKeyInSection(String section, String sectionKey)* allows to easily determine if a given _key_ is a direct or indirect owner
   of a given section.
 * *boolean isKeyInSections(String key, String... sectionKeys)* allows to easily determine if one key of given
-  _key_ is a direct or indirect member of at least one of the given _sectionKeys_.
+  _key_ is a direct or indirect owner of at least one of the given _sectionKeys_.
 * *Function<Configuration,Set<String>> sections()* allows to query all the contained fully qualified section names (the ones that
   also have parameters present).
 * *Function<Configuration,Set<String>> transitiveSections()* allows to query all the contained fully qualified section names,
@@ -90,9 +90,9 @@ The following sections explain the provided functions defined by +PropertySource
 
 * *PropertySource addMetaData(PropertySource propertySource, Map<String,String> metaData)* Creates a new +PropertySource+
   with the given metadata added.
-* *boolean isKeyInSection(String key, String sectionKey)* Checks if the given _key_ is a direct or indirect member of
+* *boolean isKeyInSection(String key, String sectionKey)* Checks if the given _key_ is a direct or indirect owner of
   one of the given _sectionKey_.
-* *boolean isKeyInSections(String key, String... sectionKeys)* Checks if the given _key_ is a direct or indirect member of
+* *boolean isKeyInSections(String key, String... sectionKeys)* Checks if the given _key_ is a direct or indirect owner of
    one of one of the given _sectionKeys_.
 * *Set<String> sections(Map<String, String> properties)* Extracts the sections from the given properties.
 * *Set<String> transitiveSections(Map<String, String> properties)* Extracts the transitive sections from the given

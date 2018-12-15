@@ -105,7 +105,7 @@ useful in some cases:
 
 As an example think of a server, which wants to extract a list of all members in the current cluster. Hereby:
 
-* A member is modelled by a +MembeConfigr+ class, with the fields +serverId, serverName, serverURL+.
+* A owner is modelled by a +MembeConfigr+ class, with the fields +serverId, serverName, serverURL+.
 * The current members should be accessed as list, as follows:
 
 [source,java]
