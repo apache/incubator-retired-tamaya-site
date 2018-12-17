@@ -19,6 +19,7 @@ The API provides the artifacts as described in the link:../highleveldesign.html[
          a function +ConfigurationQuery<T>+.
   ** +Configuration+ also provides with +current()+ and +current(ClassLoader)+ static access point for
      obtaining the current configuration.
+  ** +ConfigurationSnapshot+ declares an immutable configuration instance, which supports consistent property access.
   ** +ConfigException+ defines a runtime exception for usage by the configuration system.
   ** +TypeLiteral+ provides a possibility to type safely define the target type to be returned in case non-String types
      are accessed. It is especially useful when accessing collections from Tamaya.
@@ -181,6 +182,10 @@ public interface Configuration{
     Configuration map(UnaryOperator<Configuration> operator);
     <T> T adapt(Function<Configuration,T> adapter);
 
+    // Snapshots for consistent config access
+    ConfigurationSnapshot getSnapshot(Iterable<String> keys);
+    ConfigurationSnapshot getSnapshot(String... keys);
+
     ConfigurationContext getContext();
     ConfigurationBuilder toBuilder();
     static Configuration current();
@@ -203,6 +208,12 @@ Hereby
 * +getOrDefault+ allows to pass default values as needed, returned if the requested value evaluated to +null+.
 * +getConfigurationContext()+ allows access to the underlying components of a +Configuration+ instance.
 * the +static+ methods allow access for obtaining or changing +Configuration+.
+* +getSnapshot+ allows to create a configuration snapshot, which guarantees consistent and immutable access to
+  a +Configuration+. It can optionally be constraint to a set of keys, by default a full snapshot is created.
+
+Accessor methods also support multi-key access, where an +Iterable+ of keys can be provided. This basically
+is equivalent to multiple calls to this method, where the result of the first successful call (returning
+configuration data) will end the evaluation chain.
 
 The class +TypeLiteral+ is basically similar to the same class provided with CDI:
 
@@ -238,7 +249,7 @@ singleton:
 [source,java]
 .Accessing Configuration
 --------------------------------------------
-Configuration config = ConfigurationProvider.getConfiguration();
+Configuration config = Configuration.current();
 --------------------------------------------
 
 Hereby the singleton is backed up by an instance of +ConfigurationProviderSpi+, which is managed by the
@@ -358,7 +369,6 @@ public final class PropertyValue implements Serializable{
     public PropertyValue setValue(String value);
     public Map<String, String> getMetaEntries();
     public String getMetaEntry(String key);
-    public PropertyValueBuilder toBuilder();
 
     public final PropertyValue getParent();
     public final int getVersion();
@@ -373,31 +383,66 @@ When writing your own datasource you can easily create your own +PropertyValues+
 
 [source,java]
 ----------------------------------------------------------------
-PropertyValue val = PropertyValue.of("key","value","source");
+PropertyValue val = PropertyValue.createValue("key","value");
 ----------------------------------------------------------------
 
-If you want to add additional metadata in most cases you would use the builder API:
-
-[source,java]
-----------------------------------------------------------------
-PropertyValue val = PropertyValue.builder("key","value","source")
-                     .addMetaEntry("figured", "true")
-                     .build();
-----------------------------------------------------------------
-
-+PropertyValues+ are type safe value objects. To change a value you have to create a
-new instance using a builder:
+You can also add additional metadata:
 
 [source,java]
 ----------------------------------------------------------------
-PropertyValue val = PropertyValue.builder("key","value","source")
-                     .addMetaEntry("figured", "true")
-                     .build();
-PropertyValue newVal = val.toBuilder().setValue("anotehrValue")
-                     .addMetaEntry("remote", "true")
-                     .removeMetaEntry("figured")
-                     .build();
+val.addMetaEntry("figured", "true");
 ----------------------------------------------------------------
+
++PropertyValues+ are type safe value objects. To render a value
+immutable just call the corresponding method:
+
+[source,java]
+----------------------------------------------------------------
+//mutable instance
+PropertyValue val = ...;
+
+// immutable instance
+PropertyValue newVal = val.immutable();
+----------------------------------------------------------------
+
+Changing an immutable value will result in a +IllegalStateException+. The process also works the other way
+round, so an immutable instance can be rendered into a mutable as follows:
+
+[source,java]
+----------------------------------------------------------------
+//immutable instance
+PropertyValue val = ...;
+
+// mutable instance
+PropertyValue newVal = val.mutable();
+----------------------------------------------------------------
+
+[[ObjectValue]]
+==== ObjectValue and ListValue
+
+In many cases using +PropertyValues+ is sufficient. Nevertheless when handling more complex configuration sources, such
+as file sources mapping hierarchical structures helps a lot. This is what +ObjectValue+ and +listValue+ are for:
+
+* +ObjectValue+ defines a +PropertyValue+ that has an arbitrary number of child values, identified by a unique text key.
+* +ListValue+ defines a +PropertyValue+ that has an arbitrary number of child values, organized as a list of
+  values.
+
+When rendered to +Map<String,String>+ generated keys look very familiar:
+
+[source,properties]
+----------------------------------------------------------------
+a.a=valA
+a.b=valB
+a.list[0]=val0
+a.list[1]=val1
+a.c=valC
+----------------------------------------------------------------
+
+Hereby
+
+* +a+ can be mapped as an +ObjectValue+, with +a,b,c+ being normale +PropertyValue+ instances.
+* +list+ is also a child of +a+, but of type +ListValue+ containing two +PropertyValue+ instances.
+
 
 [[PropertySource]]
 === Interface PropertySource
@@ -416,11 +461,13 @@ identified to be necessary:
 [source,java]
 --------------------------------------------
 public interface PropertySource{
-      int getOrdinal();
+
+      default int getOrdinal();
       String getName();
       PropertyValue get(String key);
-      boolean isScannable();
       Map<String,PropertyValue> getProperties();
+
+      ...
 }
 --------------------------------------------
 
@@ -429,11 +476,6 @@ Hereby
 * +get+ looks similar to the methods on +Map+. It may return +null+ in case no such entry is available.
 * +getProperties+ allows to extract all property data to a +Map<String,PropertyValue>+. Other methods like +containsKey,
   keySet+ as well as streaming operations then can be applied on the returned +Map+ instance.
-* But not in all scenarios a property source is able to provide all values at once (aka to be _scannable_), e.g.
-  when looking up keys is very inefficient, it may not make sense to iterate over all keys to collect the corresponding
-  properties. If a +PropertySource+ is defined as non scannable accesses to
-  +getProperties()+ may not return all key/value pairs that would be available when accessed directly using the
-  +PropertyValue get(String)+ method. The fact if a +PropertySource+ is _scannable_ can be determined by calling +isScannable()+.
 * +int getOrdinal()+ defines the ordinal of the +PropertySource+. Property sources are managed in an ordered chain, where
   property sources with higher ordinals override ones with lower ordinals. If the ordinal of two property sources is
   the same, the natural ordering of the fully qualified class names of the property source implementations is used.
@@ -443,6 +485,11 @@ Hereby
   property sources.
 * Finally +getName()+ returns a (unique) name that identifies the +PropertySource+ within its containing +ConfigurationContext+.
 
+NOTE: Not in all scenarios a property source is able to provide all values at once, e.g.
+      when looking up keys is very inefficient. In this case
+      +getProperties()+ may not return all key/value pairs that would be available when accessed directly using the
+      +PropertyValue get(String)+ method.
+
 This interface can be implemented by any kind of logic. It could be a simple in memory map, a distributed configuration
 provided by a data grid, a database, the JNDI tree or other resources. Or it can be a combination of multiple
 property sources with additional combination/aggregation rules in place.
@@ -450,6 +497,34 @@ property sources with additional combination/aggregation rules in place.
 +PropertySources+ to be picked up automatically and be added to the _default_ +Configuration, must be registered
 using the Java +ServiceLoader+ (or the mechanism provided by the current active +ServiceContext+, see later in this
 document for further details).
+
+==== Consistent Configuration Access
+
+For consistent configuration access using Snapshots property sources may provide additional services:
+
+[source,java]
+--------------------------------------------
+public interface PropertySource{
+
+      ...
+
+      // Method for consistent configuration access
+
+      default ChangeSupport getChangeSupport();
+      default String getVersion();
+      default void addChangeListener(BiConsumer<Set<String>, PropertySource> l);
+      default void removeChangeListener(BiConsumer<Set<String>, PropertySource> l);
+}
+--------------------------------------------
+
+These methods allow to determine Tamaya if all values accessed are consistent. The idea behind is that a
++PropertySource+ may change during a configuration evaluation. Providing a version allows the configuration system
+to detect such a change and restart the evaluation. Additionally registering of change listeners allow actively
+listening for changes. Since not all implementations may support versioning the may declare their capabilities:
+
+* +getChangeSupport()+ declares the versioning capabilities, possible values are +UNSUPPORTED,SUPPORTED,IMMUTABLE+.
+* +getVersion()+ returns a version. Returning a new String value signals c change in the property source.
+* +add/removeChangeListener+ allows to add or remove listeners.
 
 
 [[PropertySourceProvider]]
@@ -459,7 +534,7 @@ Instances of this type can be used to register multiple instances of +PropertySo
 
 [source,java]
 --------------------------------------------
-// @FunctionalInterface in Java 8
+@FunctionalInterface
 public interface PropertySourceProvider{
     Collection<PropertySource> getPropertySources();
 }

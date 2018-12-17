@@ -80,10 +80,10 @@ PropertySources. Hereby the final value, by default, is determined by the last n
 +PropertySource+.
 
 Since the ladder may not always be appropriate, e.g. when values should be combined instead of overridden, a
-instance of +PropertyValueCombinationPolicy+ can be registered, which allows to add more detailed behaviour how values
-are combined.
+instance of +PropertyConverter+ actually has access to all values returned. This enables more complex value
+evaluation algorithms, when needed.
 
-Access to the complete configuration +Map+ is performing the same resolution and combination algorithm, but for all
+Access to the complete configuration +Map+ is performing the same resolution algorithm, but for all
 key/value pairs available.
 
 === Filtering the raw properties:
@@ -106,30 +106,23 @@ returned to the caller.
 Basically the bahaviour of Tamaya can be customized using the following mechanisms. Basically configuration can be
 provided using the following mechanism:
 
-* Registering additional (default) +PropertySource+ instances. Depending on their _ordinal value_ they
+* Registering additional +PropertySource+ instances. Depending on their _ordinal value_ they
   will override or extend existing configuration.
-* Registering additional (default) +PropertySourceProvider+ instances.that can provide multiple +PropertySource+
+* Registering additional +PropertySourceProvider+ instances, to provide multiple +PropertySource+
   instances.
 
 Additionally Tamaya provides hooks for further adapting the internal workings:
 
-* Adapting the way how multiple entries with the same key are combined (+PropertyValueCombinationPolicy+). This
-  may be useful, if overriding is not the way how entries of the same key should be combined. An example, where
-  such an alternate scenario is useful are list entries, that combine all entries encountered to a collecting
-  list entry.
 * Adding additional support for new target types configurable by registering additional +PropertyConverter+
   instances. This can be used for adding support for new types as well as for adding support for additional
   formats.
-* Complex extensions may adapt the complete +ConfigurationContext+, using the +ConfigurationContextBuilder+ and
-  reapply the changed instance using +ConfigurationProvider.setConfigurationContext(ConfigurationContext)+.
-  This is one example how to react on dynamic changes detected on configuration files read.
+* Complex extensions may adapt the complete +ConfigurationContext+.
 * Registering additional +PropertyFilter+ instances, that filter the configuration values extracted.
 * Registering an alternate +ServiceContext+ to support alternate runtime containers, e.g. a CDI container.
 * A combination of all above.
 
-Additionally instances of +ConfigOperator, ConfigQuery+ can be provided that provide additional functionality
-that should not be globally visible. It is recommended to provide them from a singleton accessor, hereby hiding
-the effective implementation classes.
+Additionally instances of +ConfigOperator, ConfigQuery+ can be implemented that provide additional functionality.
+
 
 == Component Loading
 
@@ -143,6 +136,7 @@ of the +ServiceContext+ interface, annotating it with a +@Priority+ annotation a
 == Compatibility
 
 The Tamaya API is compatible with Java 8 and beyond.
+
 
 == Further Documentation
 

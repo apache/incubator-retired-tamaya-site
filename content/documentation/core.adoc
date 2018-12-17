@@ -265,14 +265,10 @@ The default implementation +DefaultConfigValueEvaluator+ implements the followin
 
 . Collect all +PropertySources+ from the context.
 . Access +PropertyValue get(String)+ (single key access)/ +Map<String,PropertyValue> getProperties()+
-  (config map access) from each property source and combine the previous with the next value using
-  the +PropertyValueCombinationPolicy+ in place.
+  (config map access) from each property source and combines the previous with the next value.
 
 The resulting _raw_ value(s) are then finally handed over to the registered filters and finally
-converted to +String/Map<String,String>+ as required by the user API.
-
-To replace this default behaviour you must register your implementation with the current
-+ServiceContext+.
+converted to the target type as required by the user API.
 
 
 [[Extensions]]
