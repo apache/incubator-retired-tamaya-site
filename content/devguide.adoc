@@ -14,7 +14,7 @@ or if your branch is ahead of master. This will always lead to
 some dirty artifacts in the commit history:
 
 ----
-Merge branch 'master' of http://git-wip-us.apache.org/tamaya into master
+Merge branch 'master' of http://gitbox.apache.org/tamaya into master
 ----
 
 === Use git pull --rebase
@@ -171,7 +171,7 @@ as clean as possible.
 === Initial setup
 
 ----
-$ git clone https://git-wip-us.apache.org/repos/asf/incubator-tamaya.git
+$ git clone https://gitbox.apache.org/repos/asf/incubator-tamaya.git
 $ git remote add discuss https://[username]@github.com/[username]/[repo-name].git
 $ git push -u discuss master
 ----
