@@ -19,9 +19,9 @@ If you would like to contribute to Apache Tamaya please also refer also to our
 
 The repository locations are:
 
-    - http://git-wip-us.apache.org/repos/asf/incubator-tamaya.git (read-only)
-    - https://git-wip-us.apache.org/repos/asf/incubator-tamaya.git
-    - https://github.com/apache/incubator-tamaya[https://github.com/apache/incubator-tamaya^] GitHub read-only mirror
+    - http://gitbox.apache.org/repos/asf/incubator-tamaya.git (read-only)
+    - https://gitbox.apache.org/repos/asf/incubator-tamaya.git
+    - https://github.com/apache/incubator-tamaya[https://github.com/apache/incubator-tamaya^] GitHub mirror
     - Current build status is image:https://builds.apache.org/buildStatus/icon?job=Tamaya-Master-branch&style=plastic[] - https://builds.apache.org/view/S-Z/view/Tamaya/job/Tamaya-Master-branch[Jenkins^]
 
 The GitHub mirror also provides the project as a downloadable zip archive.
@@ -30,9 +30,9 @@ The GitHub mirror also provides the project as a downloadable zip archive.
 
 The repository locations are:
 
-    - http://git-wip-us.apache.org/repos/asf/incubator-tamaya-extensions.git (read-only)
-    - https://git-wip-us.apache.org/repos/asf/incubator-tamaya-extensions.git
-    - https://github.com/apache/incubator-tamaya-extensions[https://github.com/apache/incubator-tamaya-extensions^] GitHub read-only mirror
+    - http://gitbox.apache.org/repos/asf/incubator-tamaya-extensions.git (read-only)
+    - https://gitbox.apache.org/repos/asf/incubator-tamaya-extensions.git
+    - https://github.com/apache/incubator-tamaya-extensions[https://github.com/apache/incubator-tamaya-extensions^] GitHub mirror
     - Current build status is image:https://builds.apache.org/buildStatus/icon?job=Tamaya-Extensions-Master&style=plastic[] - https://builds.apache.org/view/S-Z/view/Tamaya/job/Tamaya-Extensions-Master[Jenkins^]
 
 The GitHub mirror also provides the project as a downloadable zip archive.
@@ -41,9 +41,9 @@ The GitHub mirror also provides the project as a downloadable zip archive.
 
 The repository locations are:
 
-    - http://git-wip-us.apache.org/repos/asf/incubator-tamaya-sandbox.git (read-only)
-    - https://git-wip-us.apache.org/repos/asf/incubator-tamaya-sandbox.git
-    - https://github.com/apache/incubator-tamaya-sandbox[https://github.com/apache/incubator-tamaya-sandbox^] GitHub read-only mirror
+    - http://gitbox.apache.org/repos/asf/incubator-tamaya-sandbox.git (read-only)
+    - https://gitbox.apache.org/repos/asf/incubator-tamaya-sandbox.git
+    - https://github.com/apache/incubator-tamaya-sandbox[https://github.com/apache/incubator-tamaya-sandbox^] GitHub mirror
     - Current build status is image:https://builds.apache.org/buildStatus/icon?job=Tamaya-Sandbox-Master&style=plastic[] - https://builds.apache.org/view/S-Z/view/Tamaya/job/Tamaya-Sandbox-Master[Jenkins^]
 
 The GitHub mirror also provides the project as a downloadable zip archive.
@@ -52,9 +52,9 @@ The GitHub mirror also provides the project as a downloadable zip archive.
 
 The website is build with http://jbake.org/[jBake^]. Its contents is located in the master branch of:
 
-    - http://git-wip-us.apache.org/repos/asf/incubator-tamaya-site.git (read-only)
-    - https://git-wip-us.apache.org/repos/asf/incubator-tamaya-site.git
-    - https://github.com/apache/incubator-tamaya-site[https://github.com/apache/incubator-tamaya-site^] GitHub read-only mirror
+    - http://gitbox.apache.org/repos/asf/incubator-tamaya-site.git (read-only)
+    - https://gitbox.apache.org/repos/asf/incubator-tamaya-site.git
+    - https://github.com/apache/incubator-tamaya-site[https://github.com/apache/incubator-tamaya-site^] GitHub mirror
     - Current build status is image:https://builds.apache.org/buildStatus/icon?job=Tamaya-Site-jBake-Master&style=plastic[] - https://builds.apache.org/view/S-Z/view/Tamaya/job/Tamaya-Site-jBake-Master[Jenkins^]
 
 The generated page is in the asf-site branch of above project.
