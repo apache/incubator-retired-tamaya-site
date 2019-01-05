@@ -41,7 +41,7 @@ Please do not check in the `output` directory as it contains the baked homepage!
 ### ASF-site branch
 
 Is linked to
-https://tamaya.incubator.apache.org/jbake/
+https://tamaya.incubator.apache.org/
 as requested via https://issues.apache.org/jira/browse/INFRA-12814
 
 ### How to generate a new page
