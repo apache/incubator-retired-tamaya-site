@@ -69,7 +69,7 @@ $ git checkout 0.3-incubating (to generate the a stable release version)
 $ mvn site
 (since javadoc:javadoc does not generate a full report)
 ```
-1. Launch the bash script to generate the homepage and switch the the asf branch:
+1. Launch the bash script to generate the homepage and switch to the asf branch:
 ```
 $ git checkout master
 $ ./copysite.sh
