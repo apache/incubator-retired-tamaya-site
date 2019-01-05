@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 	    <meta charset="utf-8"/>
-	    <title>Tamaya Incubator</title>
+	    <title>About Tamaya</title>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	    <meta name="description" content=""/>
 	    <meta name="author" content=""/>
@@ -123,64 +123,94 @@
 
 	</div>
 		<div class="container">
+
 			<div class="page-header">
-				<h1><img class="front-logo" src="/logos/tamaya.png"/>Apache Tamaya (Incubating)</h1>
+				<h1>About Tamaya</h1>
 			</div>
-            <div>
-            <table class="table table-striped">
-                    <tbody>
-                        <tr>
-                            <td class="front-cell">
-                                <h3>What is Tamaya?</h3>
-                                <p>Tamaya is a powerful, flexible but simple configuration API that decouples your application
-                                from your configuration backend sources.</p>
-                                <p><a href="about.html">Learn more about Tamaya</a></p>
-                            </td>
-                            <td class="front-cell">
-                                <h3>Challenge it &mdash; Why should you use Tamaya?</h3>
-                                <p>Configuration is one of the most important cross-cutting concerns. Nevertheless
-                                most people rewrite similar logic again and again. It's time to rely on a standard
-                                compliant solution that allows to plugin any configuration resources?</p>
-                                <p><a href="documentation/usecases.html">Look at Tamaya's Use Cases</a></p>
-                            </td>
-                            <td class="front-cell">
-                                <h3>Try it out &mdash; Get started!</h3>
-                                <p>Getting started is easy: look at our examples, add Tamaya's runtime dependency and
-                                there you go. Tamaya is plain Java SE in it's core. Lean and effective. And if you have
-                                a question, let us know. We are happy to help!</p>
-                                <p><a href="documentation/quickstart.html">"Getting started" right away!</a></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="front-cell">
-                                <h3>Use it &mdash; Add more Features!</h3>
-                                <p>Did we already have mentioned features? There are a lot of them. Read this
-                                overview about current and upcoming features to see what matches your
-                                requirements. Tamaya is modular, you only depend on what you like.</p>
-                                <p><a href="features.html">Checkout our outstanding features</a></p>
-                            </td>
-                            <td class="front-cell">
-                                <h3>Rely on it &mdash; Tamaya as a standard</h3>
-                                <p>Tamaya is not only a flexible configuration solution, it is also future proof.
-                                With Tamaya you get an independent implementation of the current Microprofile
-                                Config and JSR 310 API.</p>
-                                <p><a href="documentation/tamayaasastandard.html">Learn more</a></p>
-                            </td>
-                            <td class="front-cell">
-                                <h3>Improve it &mdash; Get involved...</h3>
-                                <p>Tell us your story and help us make Tamaya even better.
-                                We are happy to support you and discuss further features or improvements.</p>
-                                <p><a href="development/community.html">Get involved!</a></p>
-                            </td>
-                        </tr>
-                    </tbody>
-            </table>
-            </div>
+
+			<p><em>2018-12-17</em></p>
+
+			<p><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Apache Tamaya (incubating) provides a <strong>unopinionated and powerful
+configuration solution</strong> for developers on the JVM.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_rationale">Rationale</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Configuration is one of the most prominent cross-cutting concerns similar to logging. Most of us already have been
+writing similar code again and again in each of our projects. Sometimes in a similar way but mostly always slightly
+different, but certainly with high coupling to your configuration backends. Given your code is reused or integrated
+some how, or deployed by some customers, struggling starts: not supported backends, different policies, missing
+combination and validation mechanisms and so on. Tamaya solves all this by defining a common API and backend SPI.
+Your code is decoupled from the configuration backend. There is no difference if your code is deployed on your dev box
+or in a clustered Docker environment in production, it stays the same!</p>
+</div>
+<div class="paragraph">
+<p>For further information we recommend to have a look at our documentation resources:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="features.html">Feature Overview</a></p>
+</li>
+<li>
+<p><a href="documentation/usecases.html">Use Cases and Requirements</a></p>
+</li>
+<li>
+<p><a href="highleveldesign.html">High Level Design</a></p>
+</li>
+<li>
+<p><a href="documentation/api.html">API</a></p>
+</li>
+<li>
+<p><a href="documentation/core.html">Core</a></p>
+</li>
+<li>
+<p><a href="documentation/extensions.html">Extensions</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_you_just_wanna_start_right_away">You just wanna start right away</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>So here is five liner to start&#8230;&#8203;</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add <code>org.apache.tamaya:tamaya-core:0.4-incubating-SNAPSHOT</code> to your dependencies.</p>
+</li>
+<li>
+<p>Add some config to <code>META-INF/javaconfiguration.properties</code></p>
+</li>
+<li>
+<p>Access your configuration by <code>Configuration.current()</code> and use it.</p>
+</li>
+<li>
+<p>Look at the <a href="features.html">extensions modules</a> to customize your setup!</p>
+</li>
+<li>
+<p>Enjoy!</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>And, yes, give feedback, so we can improve ;-)</p>
+</div>
+</div>
+</div></p>
 
 			<hr />
 		</div>
 	</div>
-
 	<div>
 			<div id="push"></div>
 

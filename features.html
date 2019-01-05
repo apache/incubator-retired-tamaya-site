@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 	    <meta charset="utf-8"/>
-	    <title>Tamaya Incubator</title>
+	    <title>Tamaya&#39;s Features</title>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	    <meta name="description" content=""/>
 	    <meta name="author" content=""/>
@@ -123,64 +123,156 @@
 
 	</div>
 		<div class="container">
+
 			<div class="page-header">
-				<h1><img class="front-logo" src="/logos/tamaya.png"/>Apache Tamaya (Incubating)</h1>
+				<h1>Tamaya&#39;s Features</h1>
 			</div>
-            <div>
-            <table class="table table-striped">
-                    <tbody>
-                        <tr>
-                            <td class="front-cell">
-                                <h3>What is Tamaya?</h3>
-                                <p>Tamaya is a powerful, flexible but simple configuration API that decouples your application
-                                from your configuration backend sources.</p>
-                                <p><a href="about.html">Learn more about Tamaya</a></p>
-                            </td>
-                            <td class="front-cell">
-                                <h3>Challenge it &mdash; Why should you use Tamaya?</h3>
-                                <p>Configuration is one of the most important cross-cutting concerns. Nevertheless
-                                most people rewrite similar logic again and again. It's time to rely on a standard
-                                compliant solution that allows to plugin any configuration resources?</p>
-                                <p><a href="documentation/usecases.html">Look at Tamaya's Use Cases</a></p>
-                            </td>
-                            <td class="front-cell">
-                                <h3>Try it out &mdash; Get started!</h3>
-                                <p>Getting started is easy: look at our examples, add Tamaya's runtime dependency and
-                                there you go. Tamaya is plain Java SE in it's core. Lean and effective. And if you have
-                                a question, let us know. We are happy to help!</p>
-                                <p><a href="documentation/quickstart.html">"Getting started" right away!</a></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="front-cell">
-                                <h3>Use it &mdash; Add more Features!</h3>
-                                <p>Did we already have mentioned features? There are a lot of them. Read this
-                                overview about current and upcoming features to see what matches your
-                                requirements. Tamaya is modular, you only depend on what you like.</p>
-                                <p><a href="features.html">Checkout our outstanding features</a></p>
-                            </td>
-                            <td class="front-cell">
-                                <h3>Rely on it &mdash; Tamaya as a standard</h3>
-                                <p>Tamaya is not only a flexible configuration solution, it is also future proof.
-                                With Tamaya you get an independent implementation of the current Microprofile
-                                Config and JSR 310 API.</p>
-                                <p><a href="documentation/tamayaasastandard.html">Learn more</a></p>
-                            </td>
-                            <td class="front-cell">
-                                <h3>Improve it &mdash; Get involved...</h3>
-                                <p>Tell us your story and help us make Tamaya even better.
-                                We are happy to support you and discuss further features or improvements.</p>
-                                <p><a href="development/community.html">Get involved!</a></p>
-                            </td>
-                        </tr>
-                    </tbody>
-            </table>
-            </div>
+
+			<p><em>2018-12-17</em></p>
+
+			<p><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Apache Tamaya comes with numerous useful features. This page lists the most important
+ones. Also also have a look at the full feature list. If you don&#8217;t find your features,
+please get in contact with us to discuss your ideas!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_core_features">Core Features</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Core Features are built-in riht away and available by default. Just add Tamaya to your project
+dependencies and there you go!</p>
+</div>
+<div class="sect2">
+<h3 id="_accessing_configuration">Accessing Configuration</h3>
+<div class="paragraph">
+<p>Tamaya provides a super simple API to access configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Configuration config = Configuration.current();</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Yes it&#8217;s as easy as that. Optionally you can also pass your classloader of choice:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>ClassLoader myApplicationClassLoader = ...;
+Configuration config = Configuration.current(myApplicationClassLoader);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>From there you can access your configuration properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>String host = config.getOrDefault("server.host", "localhost");
+Optional&lt;Integer&gt; port = config.getOptional("server.port", Integer.class);</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_providing_configuration">Providing Configuration</h3>
+<div class="paragraph">
+<p>Providing configuration is as simple:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Implement the <code>PropertySource</code> interface.</p>
+</li>
+<li>
+<p>Register your implementation with the Java <code>ServiceLoader</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration_auto_discovery_and_builders">Configuration Auto-Discovery and Builders</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tamaya can care about everything. You dont have to bother with
+configuration sources, classloaders, overriding etc. Tamaya will collect and load
+all registered property sources.</p>
+</div>
+<div class="paragraph">
+<p>On the other hand if you prefer having full control, Tamaya provides
+powerful factories and builders, with allow to built your customized
+configuration and manage your own configuration lifecycle.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Configuration config = Configuration.builder()
+              .withDefaultPropertySources()
+              .addPropertySources(new MyCustomPropertySource())
+              .withDefaultConverters()
+              .build();</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pluggable_extensions">Pluggable Extensions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tamaya comes with numerous features, that can be easily added. Just add
+the corresponding dependency to your build. Yes, it&#8217;s as easy as that.
+So let&#8217;s have a quick look at some of the most commonly used features&#8230;&#8203;</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_functional_extensions">Functional Extensions</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dynamic_placeholders">Dynamic Placeholders</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_different_configuration_formats_json_yaml_xml_properties_ini">Different Configuration Formats: JSON, YAML, XML, properties, ini&#8230;&#8203;</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_support_for_configuration_injection">Support for Configuration Injection</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_support_for_configuration_templates">Support for Configuration Templates</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ant_styled_file_resource_wildcards">Ant styled File Resource Wildcards</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_support_for_springspring_boot">Support for Spring/Spring Boot</h2>
+<div class="sectionbody">
+
+</div>
+</div></p>
 
 			<hr />
 		</div>
 	</div>
-
 	<div>
 			<div id="push"></div>
 

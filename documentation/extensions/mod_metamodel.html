@@ -58,7 +58,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../../index.html">Apache Tamaya (incubating)</a>
+          <a class="navbar-brand" href="../../index.html">Tamaya Home</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -111,9 +111,12 @@
               </ul>
             </li>
 -->
-						<li><a href="../../sitemap.xml">Sitemap</a></li>
-						<li><a href="../../feed.xml">Subscribe</a></li>
+			<li><a href="../../sitemap.xml">Sitemap</a></li>
+			<li><a href="../../feed.xml">Subscribe</a></li>
+			<li><a href="https://incubator.apache.org/guides/website.html" style="border:0px;" target="_target">
+                                 <img class="incubator-logo" src="../../logos/apache-incubator.png"/></a></li>
           </ul>
+
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -125,34 +128,33 @@
 				<h1>Apache Tamaya - Extension: Metamodel (Configuration of Tamaya)</h1>
 			</div>
 
-			<p><em>2018-09-06</em></p>
+			<p><em>2018-12-17</em></p>
 
-			<p><div id="preamble"> 
- <div class="sectionbody"> 
-  <!-- toc disabled --> 
- </div> 
-</div> 
-<div class="sect1"> 
- <h2 id="Model">Tamaya Metamodel (Configuration of Tamaya) (Extension Module)</h2> 
- <div class="sectionbody"> 
-  <div class="paragraph"> 
-   <p>Tamaya <em>metamodel</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3> 
-   <div class="paragraph"> 
-    <p>The Tamaya <em>metamodel</em> module provides support for configuring the Tamaya system itself. It allows, like a logging configuration, to configure how your configuration framework should work, where to find configuration and how it is combined using overrides, filters etc.</p> 
-   </div> 
-   <div class="paragraph"> 
-    <p>By default it uses an XML based configuration format as illustrated below:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="title">
-     Extract from 
-     <code>tamaya-config.xml</code>
-    </div> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;configuration&gt;
+			<p><div id="preamble">
+<div class="sectionbody">
+<!-- toc disabled -->
+</div>
+</div>
+<div class="sect1">
+<h2 id="Model">Tamaya Metamodel (Configuration of Tamaya) (Extension Module)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tamaya <em>metamodel</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
+</div>
+<div class="sect2">
+<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
+<div class="paragraph">
+<p>The Tamaya <em>metamodel</em> module provides support for configuring the Tamaya system itself. It
+allows, like a logging configuration, to configure how your configuration framework should
+work, where to find configuration and how it is combined using overrides, filters etc.</p>
+</div>
+<div class="paragraph">
+<p>By default it uses an XML based configuration format as illustrated below:</p>
+</div>
+<div class="listingblock">
+<div class="title">Extract from <code>tamaya-config.xml</code></div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;configuration&gt;
     &lt;!-- Context is evaluated first. --&gt;
     &lt;context&gt;
         &lt;context-entry name="stage"&gt;${properties:system:STAGE?default=DEV}&lt;/context-entry&gt;
@@ -190,70 +192,94 @@
        &lt;/source&gt;
        ...
     &lt;/property-sources&gt;
-&lt;/configuration&gt;</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>The module basically provides an XML representation to the ConfigurationContextBuilder API. It creates a corresponding ConfigurationContext and registers the corresponding Configuration as the system’s <em>default</em> configuration (accessible from <code>ConfigurationProvider.getConfiguration()</code>.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_compatibility">Compatibility</h3> 
-   <div class="paragraph"> 
-    <p>The module is based on Java 7, so it will not run on Java 7 and beyond.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_installation">Installation</h3> 
-   <div class="paragraph"> 
-    <p>To use <em>metamodel</em> features you only must add the corresponding dependency to your module:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+&lt;/configuration&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The module basically provides an XML representation to the ConfigurationContextBuilder API.
+It creates a corresponding ConfigurationContext and registers the corresponding Configuration
+as the system&#8217;s <em>default</em> configuration (accessible from <code>ConfigurationProvider.getConfiguration()</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compatibility">Compatibility</h3>
+<div class="paragraph">
+<p>The module is based on Java 8.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installation">Installation</h3>
+<div class="paragraph">
+<p>To use <em>metamodel</em> features you only must add the corresponding dependency to your module:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-model&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_creating_a_configuration_using_meta_configuration">Creating a Configuration using Meta-Configuration</h3> 
-   <div class="paragraph"> 
-    <p>The basic feature of this module is the capability of creating a Configuration completely based on a meta-configuration file. For this the MetaConfiguration main singleton provides different methods:</p> 
-   </div> 
-   <div class="paragraph"> 
-    <p>[source, java)</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre>public final class MetaConfiguration {
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_a_configuration_using_meta_configuration">Creating a Configuration using Meta-Configuration</h3>
+<div class="paragraph">
+<p>The basic feature of this module is the capability of creating a Configuration completely
+based on a meta-configuration file. For this the MetaConfiguration main singleton
+provides different methods:</p>
+</div>
+<div class="paragraph">
+<p>[source, java)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>public final class MetaConfiguration {
     public static void configure();
     public static void configure(URL metaConfig);
     public static ConfigurationContextBuilder createContextBuilder(URL metaConfig);
-    public static Configuration createConfiguration(URL metaConfig);</pre> 
-    </div> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>If you have supplied your meta-configuration at <code>META-INF/tamaya-config.xml</code> you simply call MetaConfiguration.configure();. This will read the meta-configuration and configure Tamaya’s <em>default</em> configuration. Alternatively you can choose your own metaconfiguration location by passing an alternate <code>URL</code> ro read from.</p> </li> 
-     <li> <p>With MetaConfiguration.createContextBuilder() you can stop a step earlier: a new instance of ConfigurationContextBuilder is created and configured with all the entries found in your meta-configuration. Also here you can optionally pass your custom location for the meta-configuration resouce.</p> </li> 
-     <li> <p>Finally MetaConfiguration.createConfiguration(URL) allows you to create an arbitrary Configuration instance using a meta-configuration file. The <code>Configuration</code> instance is completely independent and not registered as <em>default</em> configuration, so it’s lifecycle and usage is completely under your control.</p> </li> 
-    </ul> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_metacontext">MetaContext</h3> 
-   <div class="paragraph"> 
-    <p>When thinking what are the various input parameters for determining a correct configuration, there might be different things relevant in different scenarios, especially for developers in different companies. A good example of such an input parameter is the current <code>STAGE</code>. All these kinf od inputs can be summarized in some sort of meta-configuration, commonly known as a <em>context</em>. So the metamodel extension ships with a MetaContext class that allows to define a common meta-context, that can be accessed by components as needed to determine the correct settings to be applied:</p> 
-   </div> 
-   <div class="paragraph"> 
-    <p>[source, java)</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre>public final class MetaContext {
+    public static Configuration createConfiguration(URL metaConfig);</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you have supplied your meta-configuration at <code>META-INF/tamaya-config.xml</code> you simply
+call MetaConfiguration.configure();. This will read the meta-configuration and
+configure Tamaya&#8217;s <em>default</em> configuration. Alternatively you can choose your own
+metaconfiguration location by passing an alternate <code>URL</code> ro read from.</p>
+</li>
+<li>
+<p>With MetaConfiguration.createContextBuilder() you can stop a step earlier: a new
+instance of ConfigurationContextBuilder is created and configured with all the
+entries found in your meta-configuration. Also here you can optionally pass your
+custom location for the meta-configuration resouce.</p>
+</li>
+<li>
+<p>Finally MetaConfiguration.createConfiguration(URL) allows you to create an
+arbitrary Configuration instance using a meta-configuration file. The <code>Configuration</code>
+instance is completely independent and not registered as <em>default</em> configuration, so
+it&#8217;s lifecycle and usage is completely under your control.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_metacontext">MetaContext</h3>
+<div class="paragraph">
+<p>When thinking what are the various input parameters for determining a correct configuration, there
+might be different things relevant in different scenarios, especially for developers in different
+companies. A good example of such an input parameter is the current <code>STAGE</code>. All these kinf od inputs
+can be summarized in some sort of meta-configuration, commonly known as a <em>context</em>. So
+the metamodel extension ships with a MetaContext class that allows to define a common meta-context,
+that can be accessed by components as needed to determine the correct settings to be applied:</p>
+</div>
+<div class="paragraph">
+<p>[source, java)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>public final class MetaContext {
 
     ...
 
@@ -390,30 +416,45 @@
      * @return the properties, never null.
      */
     public Map&lt;String,String&gt; getProperties();
-}</pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>As you see, a MetaContext has the following aspects:</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>there are multiple context’s possible, identified by their name.</p> </li> 
-     <li> <p>Accessing an instance that does not yet exist, will create a new one.</p> </li> 
-     <li> <p>there is one shared <em>default</em> instance.</p> </li> 
-     <li> <p>they store ordinary <code>String,String</code> key, value pairs.</p> </li> 
-     <li> <p>they can be <em>combined</em> into a overriging hierarchy</p> </li> 
-     <li> <p>accessing the <em>default</em> MetaContext returns the global instance combined with a threaded override instance. Passing <code>reinit</code> will clear the thread instance’s data.</p> </li> 
-    </ul> 
-   </div> 
-   <div class="sect3"> 
-    <h4 id="_configuring_metacontexts">Configuring MetaContexts</h4> 
-    <div class="paragraph"> 
-     <p><code>MetaContext</code> instances can be configured in the <em>meta-configuration</em> in the first <code>meta-context</code> section as illustrated below:</p> 
-    </div> 
-    <div class="listingblock"> 
-     <div class="content"> 
-      <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;!-- Configuring the default context --&gt;
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you see, a MetaContext has the following aspects:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>there are multiple context&#8217;s possible, identified by their name.</p>
+</li>
+<li>
+<p>Accessing an instance that does not yet exist, will create a new one.</p>
+</li>
+<li>
+<p>there is one shared <em>default</em> instance.</p>
+</li>
+<li>
+<p>they store ordinary <code>String,String</code> key, value pairs.</p>
+</li>
+<li>
+<p>they can be <em>combined</em> into a overriging hierarchy</p>
+</li>
+<li>
+<p>accessing the <em>default</em> MetaContext returns the global instance combined with
+a threaded override instance. Passing <code>reinit</code> will clear the thread instance&#8217;s
+data.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_configuring_metacontexts">Configuring MetaContexts</h4>
+<div class="paragraph">
+<p><code>MetaContext</code> instances can be configured in the <em>meta-configuration</em> in the first
+<code>meta-context</code> section as illustrated below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;!-- Configuring the default context --&gt;
 &lt;context&gt;
     &lt;context-entry name="stage"&gt;${properties:system:STAGE?default=DEV}&lt;/context-entry&gt;
     &lt;context-entry name="configdir"&gt;${properties:system:configdir?default=.}&lt;/context-entry&gt;
@@ -426,43 +467,55 @@
 &lt;!-- Configuring a context named 'APP' --&gt;
 &lt;context name="APP"&gt;
     &lt;context-entry name="application"&gt;someAppName&lt;/context-entry&gt;
-&lt;/context&gt;</code></pre> 
-     </div> 
-    </div> 
-    <div class="paragraph"> 
-     <p>As shown above multiple contexts can be configured. Keys and values are of type <code>String</code>.</p> 
-    </div> 
-    <div class="sect4"> 
-     <h5 id="_using_expressions">Using Expressions</h5> 
-     <div class="paragraph"> 
-      <p>As shown before, it is possible to add simple expressions, enclosed in <code>${}</code>. Hereby the contents must be formatted as <code>evaluator:expression</code>, which then internally must be interpreted by the org.apache.tamaya.metamodel.internal.SimpleResolver, which effectively reads and applied context entries.</p> 
-     </div> 
-     <div class="paragraph"> 
-      <p>Currently the following placeholders for context entries are provided:</p> 
-     </div> 
-     <div class="ulist"> 
-      <ul> 
-       <li> <p>properties - mapping to system properties (<code>properties:sys:KEY</code>) or environment properties (<code>properties:env:KEY</code>) or other MetaContext entries initialized already (<code>properties:ctx[:CTXNAME]:KEY</code>)</p> </li> 
-       <li> <p>java - mapping to a static method or field, returning a <code>String</code> value.</p> </li> 
-      </ul> 
-     </div> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_general_extensions">General Extensions</h3> 
-   <div class="paragraph"> 
-    <p>Working with meta-models requires additional aspects to be generalized to separate concerns and reuse some of the common functionality. These concepts are shown in the following subsections.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_enabled">Enabled</h3> 
-   <div class="paragraph"> 
-    <p>Things can be dynamically enabled or disabled, e.g. based on context. This can be modelled by the Enabled interface:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface Enabled {
+&lt;/context&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As shown above multiple contexts can be configured. Keys and values are of type <code>String</code>.</p>
+</div>
+<div class="sect4">
+<h5 id="_using_expressions">Using Expressions</h5>
+<div class="paragraph">
+<p>As shown before, it is possible to add simple expressions, enclosed in <code>${}</code>. Hereby the
+contents must be formatted as <code>evaluator:expression</code>, which then internally must be interpreted by
+the org.apache.tamaya.metamodel.internal.SimpleResolver, which effectively reads and
+applied context entries.</p>
+</div>
+<div class="paragraph">
+<p>Currently the following placeholders for context entries are provided:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>properties - mapping to system properties (<code>properties:sys:KEY</code>) or
+environment properties (<code>properties:env:KEY</code>) or other MetaContext
+ entries initialized already (<code>properties:ctx[:CTXNAME]:KEY</code>)</p>
+</li>
+<li>
+<p>java - mapping to a static method or field, returning a <code>String</code> value.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_general_extensions">General Extensions</h3>
+<div class="paragraph">
+<p>Working with meta-models requires additional aspects to be generalized to separate
+concerns and reuse some of the common functionality. These concepts are shown in the following
+subsections.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_enabled">Enabled</h3>
+<div class="paragraph">
+<p>Things can be dynamically enabled or disabled, e.g. based on context. This can be
+modelled by the Enabled interface:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface Enabled {
 
     /**
      * Returns the enabled property.
@@ -475,51 +528,59 @@
      * @param enabled the enabled value.
      */
     void setEnabled(boolean enabled);
-}</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Enabled can be used as a mixin-logic, e.g. for decorating property sources, property source providers, filters and converters. The decorator can also, if not set explicitly, evaluate the <em>enabled</em> property based on the current runtime context.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_refreshable">Refreshable</h3> 
-   <div class="paragraph"> 
-    <p>Similar to <em>Enabled</em> things can also be refreshable.</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface Refreshable {
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Enabled can be used as a mixin-logic, e.g. for decorating property sources,
+property source providers, filters and converters. The decorator can also, if not
+set explicitly, evaluate the <em>enabled</em> property based on the current runtime
+context.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_refreshable">Refreshable</h3>
+<div class="paragraph">
+<p>Similar to <em>Enabled</em> things can also be refreshable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface Refreshable {
 
     /**
      * Refreshes the given instance.
      */
     void refresh();
-}</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>This can be used to define a common API for refreshing artifctas. Similar to <em>Enabled</em> this can be applied as a decorator/mix-in interface to property sources and property source providers. This property also is supported in the XML metaconfiguration, e.g.</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;property-sources&gt;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This can be used to define a common API for refreshing artifctas. Similar to
+<em>Enabled</em> this can be applied as a decorator/mix-in interface to property
+sources and property source providers. This property also is supported in the
+XML metaconfiguration, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;property-sources&gt;
     &lt;source type="file" refreshable="true"&gt;
        &lt;name&gt;config.json&lt;/name&gt;
        &lt;param name="location"&gt;config.json&lt;/param&gt;
     &lt;/source&gt;
-&lt;/property-sources&gt;</code></pre> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_the_metaconfiguration_xml_structure">The MetaConfiguration XML Structure</h3> 
-   <div class="paragraph"> 
-    <p>In general the <code>tamaya-config.xml</code> file does never apply an XML schema or similar. Nevertheless there is a common DSL structure, which can be extended as well (see next chapter).</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;configuration&gt;
+&lt;/property-sources&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_metaconfiguration_xml_structure">The MetaConfiguration XML Structure</h3>
+<div class="paragraph">
+<p>In general the <code>tamaya-config.xml</code> file does never apply an XML schema or
+similar. Nevertheless there is a common DSL structure, which can be extended
+as well (see next chapter).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;configuration&gt;
     &lt;!-- PART ONE: Contexts initialization. --&gt;
     &lt;context&gt;
         &lt;context-entry name="stage"&gt;${properties:system:STAGE?default=DEV}&lt;/context-entry&gt;
@@ -595,39 +656,57 @@
     &lt;!--&lt;converter type="AllInOneConverter"/&gt;--&gt;
         &lt;default-converters/&gt;
     &lt;/property-converters&gt;
-&lt;/configuration&gt;</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>The different parts in fact are not hardcoded, but implemented as independent components, where each of them gets access to the XML DOM tree to read the configuration aspects of interest. Instances related must implement the ++ interface and register it to the <code>ServiceContext</code>. Reading order is mapped using <code>@Priority</code> annotations. For further details refer to the SPI section in this document.</p> 
-   </div> 
-  </div> 
- </div> 
-</div> 
-<div class="sect1"> 
- <h2 id="_model_spi">Model SPI</h2> 
- <div class="sectionbody"> 
-  <div class="sect2"> 
-   <h3 id="_extending_the_xml_dsl">Extending the XML DSL</h3> 
-   <div class="paragraph"> 
-    <p>The XML DSL can be extended in various ways:</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>Basically adding a new feature maps to adding a new section to the meta-config XML. This can be easily done, by implementing MetaConfigurationReader and do whatever is appropriate for your use case.</p> </li> 
-     <li> <p>For adding new expression capabilities for `MetaContext`entries SimpleResolver must be implemented.</p> </li> 
-     <li> <p>For allowing customized parameterization of artifacts, e.g. property sources, property source providers, converters and filters etc. you may implement ItemFactory instances.</p> </li> 
-    </ul> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_metaconfigurationreader">MetaConfigurationReader</h3> 
-   <div class="paragraph"> 
-    <p>XML metaconfiguration is effectively processed by instances of type org.apache.tamaya.metamodel.spi.MetaConfigurationReader:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface MetaConfigurationReader {
+&lt;/configuration&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The different parts in fact are not hardcoded, but implemented
+as independent components, where each of them gets access to the
+XML DOM tree to read the configuration aspects of interest.
+Instances related must implement the ++ interface and register it to
+the <code>ServiceContext</code>. Reading order is mapped using <code>@Priority</code>
+annotations.
+For further details refer to the SPI section in this document.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_spi">Model SPI</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_extending_the_xml_dsl">Extending the XML DSL</h3>
+<div class="paragraph">
+<p>The XML DSL can be extended in various ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Basically adding a new feature maps to adding a new section to the
+meta-config XML. This can be easily done, by implementing MetaConfigurationReader
+and do whatever is appropriate for your use case.</p>
+</li>
+<li>
+<p>For adding new expression capabilities for `MetaContext`entries SimpleResolver must
+be implemented.</p>
+</li>
+<li>
+<p>For allowing customized parameterization of artifacts, e.g. property sources,
+property source providers, converters and filters etc. you may implement ItemFactory
+instances.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_metaconfigurationreader">MetaConfigurationReader</h3>
+<div class="paragraph">
+<p>XML metaconfiguration is effectively processed by instances of
+type org.apache.tamaya.metamodel.spi.MetaConfigurationReader:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface MetaConfigurationReader {
 
      /**
       * Reads meta-configuration from the given document and configures the current
@@ -638,27 +717,34 @@
       */
      void read(Document document, ConfigurationContextBuilder contextBuilder);
 
- }</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Hereby we also see that an instance of <code>ConfigurationContextBuilder</code> is passed. Remember, we mentioned earlier that meta-configuration basically is a XML API to the building a configuration using a ConfigurationContextBuilder. So all you can do with the meta-config XML can also be done programmatically using the Java API.</p> 
-   </div> 
-   <div class="paragraph"> 
-    <p>This module provides instances of this class for reading of meta-context, property-sources, property source providers, converters, filters and more. Look into the org.apache.tamaya.metamodel.internal package for further details.</p> 
-   </div> 
-   <div class="paragraph"> 
-    <p>New instances implementing this interface must be registered into the current ServiceContext, by default the ServiceLoader is used.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_itemfactory">ItemFactory</h3> 
-   <div class="paragraph"> 
-    <p>Instances of ItemFactory allow to configure artifacts using XML data:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface ItemFactory&lt;T&gt; {
+ }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hereby we also see that an instance of <code>ConfigurationContextBuilder</code> is passed.
+Remember, we mentioned earlier that meta-configuration basically is a XML
+API to the building a configuration using a ConfigurationContextBuilder. So
+all you can do with the meta-config XML can also be done programmatically using
+the Java API.</p>
+</div>
+<div class="paragraph">
+<p>This module provides instances of this class for reading of meta-context,
+property-sources, property source providers, converters, filters and more.
+Look into the org.apache.tamaya.metamodel.internal package for further details.</p>
+</div>
+<div class="paragraph">
+<p>New instances implementing this interface must be registered into the current
+ServiceContext, by default the ServiceLoader is used.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_itemfactory">ItemFactory</h3>
+<div class="paragraph">
+<p>Instances of ItemFactory allow to configure artifacts using XML data:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface ItemFactory&lt;T&gt; {
 
     /**
      * Get the factory name.
@@ -681,35 +767,40 @@
      */
     Class&lt;? extends T&gt; getType();
 
-}</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>The factory’s name hereby is used as a short cut, e.g. have a look at the following XML snippet defining a <code>PropertySource</code> to be added:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;source type="file" refreshable="true"&gt;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The factory&#8217;s name hereby is used as a short cut, e.g. have a look at the following
+XML snippet defining a <code>PropertySource</code> to be added:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;source type="file" refreshable="true"&gt;
    &lt;name&gt;config.json&lt;/name&gt;
    &lt;param name="location"&gt;config.json&lt;/param&gt;
-&lt;/source&gt;</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>In the above snippet <em>file</em> equals to the factory name, which provides the user a simple to use short name, instead of adding the fully qualified classname (which is always possible).</p> 
-   </div> 
-   <div class="paragraph"> 
-    <p>The <em>location</em> paramter with its value is passed as <code>Map</code> to the <code>create</code> method.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_itemfactorymanager">ItemFactoryManager</h3> 
-   <div class="paragraph"> 
-    <p>This singleton class manages the <em>ItemFactory</em> instances found, hereby allowing accessing and registering instances. This singleton is actually used by the component parsers (type <code>MetaConfigurationReader</code>).</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public final class ItemFactoryManager {
+&lt;/source&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above snippet <em>file</em> equals to the factory name, which provides the user
+a simple to use short name, instead of adding the fully qualified classname
+(which is always possible).</p>
+</div>
+<div class="paragraph">
+<p>The <em>location</em> paramter with its value is passed as <code>Map</code> to the <code>create</code> method.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_itemfactorymanager">ItemFactoryManager</h3>
+<div class="paragraph">
+<p>This singleton class manages the <em>ItemFactory</em> instances found, hereby allowing
+accessing and registering instances. This singleton is actually used by the
+component parsers (type <code>MetaConfigurationReader</code>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public final class ItemFactoryManager {
 
     ...
 
@@ -720,37 +811,58 @@
 
     public &lt;T&gt; void registerItemFactory(ItemFactory&lt;T&gt; factory);
 
-}</code></pre> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_extended_implementations">Extended Implementations</h3> 
-   <div class="paragraph"> 
-    <p>The package org.apache.tamaya.metamodel.ext contains a few useful implementations that also can be used in your meta-configuration and show how mixin-functionality can be added without touching property source implementations.</p> 
-   </div> 
-   <div class="paragraph"> 
-    <p>As of now the package contains</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>EnabledPropertySource: a decorator for a <code>PropertySource</code> adding the capability to <em>enable/disable</em> the property source.</p> </li> 
-     <li> <p>EnabledPropertySourceProvider a decorator for a <code>PropertySourceProvider</code> adding the capability to <em>enable/disable</em> the property source provider.</p> </li> 
-     <li> <p>RefreshablePropertySource: a decorator for a <code>PropertySource</code> adding the capability to <em>refresh</em> the property source.</p> </li> 
-     <li> <p>EnabledPropertySourceProvider a decorator for a <code>PropertySourceProvider</code> adding the capability to <em>refresh</em> the property source provider.</p> </li> 
-    </ul> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Not yet implemented but planned are implementations to add the following functionality:</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p><em>caching</em> of entries for a given time.</p> </li> 
-     <li> <p><em>immutability</em> of entries, so a configuration data (or parts of it) will never change later.</p> </li> 
-    </ul> 
-   </div> 
-  </div> 
- </div> 
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_extended_implementations">Extended Implementations</h3>
+<div class="paragraph">
+<p>The package org.apache.tamaya.metamodel.ext contains a few useful
+implementations that also can be used in your meta-configuration and
+show how mixin-functionality can be added without touching property source
+implementations.</p>
+</div>
+<div class="paragraph">
+<p>As of now the package contains</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>EnabledPropertySource: a decorator for a <code>PropertySource</code>
+adding the capability to <em>enable/disable</em> the property source.</p>
+</li>
+<li>
+<p>EnabledPropertySourceProvider a decorator for a <code>PropertySourceProvider</code>
+adding the capability to <em>enable/disable</em> the property source provider.</p>
+</li>
+<li>
+<p>RefreshablePropertySource: a decorator for a <code>PropertySource</code>
+adding the capability to <em>refresh</em> the property source.</p>
+</li>
+<li>
+<p>EnabledPropertySourceProvider a decorator for a <code>PropertySourceProvider</code>
+adding the capability to <em>refresh</em> the property source provider.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Not yet implemented but planned are implementations to add the following
+functionality:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>caching</em> of entries for a given time.</p>
+</li>
+<li>
+<p><em>immutability</em> of entries, so a configuration data (or parts of it) will
+never change later.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div></p>
 
 			<hr />
@@ -761,9 +873,9 @@
 
 		    <div id="footer">
 		      <div class="container">
-		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
-							at <span>2018-11-02</span> |
+		        <p class="muted credit">&copy; 2014-<span>2019</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.3</span></a>
+							at <span>2019-01-05</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

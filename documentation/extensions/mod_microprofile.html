@@ -58,7 +58,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../../index.html">Apache Tamaya (incubating)</a>
+          <a class="navbar-brand" href="../../index.html">Tamaya Home</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -111,9 +111,12 @@
               </ul>
             </li>
 -->
-						<li><a href="../../sitemap.xml">Sitemap</a></li>
-						<li><a href="../../feed.xml">Subscribe</a></li>
+			<li><a href="../../sitemap.xml">Sitemap</a></li>
+			<li><a href="../../feed.xml">Subscribe</a></li>
+			<li><a href="https://incubator.apache.org/guides/website.html" style="border:0px;" target="_target">
+                                 <img class="incubator-logo" src="../../logos/apache-incubator.png"/></a></li>
           </ul>
+
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -125,64 +128,78 @@
 				<h1>Apache Tamaya - Extension: Microprofile Implementation</h1>
 			</div>
 
-			<p><em>2018-09-06</em></p>
+			<p><em>2018-12-17</em></p>
 
-			<p><div id="preamble"> 
- <div class="sectionbody"> 
-  <!-- toc disabled --> 
- </div> 
-</div> 
-<div class="sect1"> 
- <h2 id="Spring">Tamaya Microprofile Implementation (Extension Module)</h2> 
- <div class="sectionbody"> 
-  <div class="paragraph"> 
-   <p>Tamaya <em>Microprofile</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3> 
-   <div class="paragraph"> 
-    <p>Tamaya <em>Microprofile</em> currently provides full integration for the Microprofile Configuration API:</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>A Microprofile ConfigSource implementation can be used with Tamaya.</p> </li> 
-     <li> <p>A Tamaya PropertySource can be used with any Microprofile implementation.</p> </li> 
-     <li> <p>The same is also true for Converter,PropertyConverter.</p> </li> 
-     <li> <p>Nevertheless Tamaya also fully implements the Microprofile API and also successfully is compatible with the Microprofile TCK.</p> </li> 
-    </ul> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_compatibility">Compatibility</h3> 
-   <div class="paragraph"> 
-    <p>Both modules are based on Java 8, so they will run on Java 8 and beyond. The implemented Microprofile API is currently version 1.1.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_installation">Installation</h3> 
-   <div class="paragraph"> 
-    <p>To benefit from Tamaya Microprofile you only must one of the following dependencies to your module:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+			<p><div id="preamble">
+<div class="sectionbody">
+<!-- toc disabled -->
+</div>
+</div>
+<div class="sect1">
+<h2 id="Spring">Tamaya Microprofile Implementation (Extension Module)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tamaya <em>Microprofile</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
+</div>
+<div class="sect2">
+<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
+<div class="paragraph">
+<p>Tamaya <em>Microprofile</em> currently provides full integration for the Microprofile Configuration API:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A Microprofile ConfigSource implementation can be used with Tamaya.</p>
+</li>
+<li>
+<p>A Tamaya PropertySource can be used with any Microprofile implementation.</p>
+</li>
+<li>
+<p>The same is also true for Converter,PropertyConverter.</p>
+</li>
+<li>
+<p>Nevertheless Tamaya also fully implements the Microprofile API and also successfully is compatible with the
+Microprofile TCK.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compatibility">Compatibility</h3>
+<div class="paragraph">
+<p>Both modules are based on Java 8. The implemented Microprofile API is currently
+version 1.1.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installation">Installation</h3>
+<div class="paragraph">
+<p>To benefit from Tamaya Microprofile you only must one of the following dependencies to your module:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-microprofile&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_using_microprofile_api">Using Microprofile API</h3> 
-   <div class="paragraph"> 
-    <p>Refer to <a href="http://microprofile.io/project/eclipse/microprofile-config" class="bare">http://microprofile.io/project/eclipse/microprofile-config</a> for details on how the API works and should be used. In general, you will see many similarities with Tamaya, since Tamaya heavily influenced the design of microprofile.io regarding configuration. Nevertheless Tamaya’s API is much more complete and provides far more feature as of now. Further changes in this area may be good to be expected, since as of now also a corresponding specification (JSR) has been started and will be supported by Tamaya as well.</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">// SE API
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_microprofile_api">Using Microprofile API</h3>
+<div class="paragraph">
+<p>Refer to <a href="http://microprofile.io/project/eclipse/microprofile-config" class="bare">http://microprofile.io/project/eclipse/microprofile-config</a> for details on how the API works and should be used. In general, you will see
+many similarities with Tamaya, since Tamaya heavily influenced the design of microprofile.io regarding configuration.
+Nevertheless Tamaya&#8217;s API is much more complete and provides far more feature as of now. Further changes in this area
+may be good to be expected, since as of now also a corresponding specification (JSR) has been started and will
+be supported by Tamaya as well.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">// SE API
 
-Config config = ConfigProvider.getConfig();
+Config config = Configuration.current();
 String serverUrl = config.getValue("acme.myprj.some.url", String.class);
 callToServer(serverUrl);
 
@@ -215,11 +232,11 @@ public class InjectedConfigUsageSample {
     @Inject
     @ConfigProperty(name="myprj.some.dynamic.timeout", defaultValue="100")
     private javax.inject.Provider&lt;Long&gt; timeout;
-}</code></pre> 
-    </div> 
-   </div> 
-  </div> 
- </div> 
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div></p>
 
 			<hr />
@@ -230,9 +247,9 @@ public class InjectedConfigUsageSample {
 
 		    <div id="footer">
 		      <div class="container">
-		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
-							at <span>2018-11-02</span> |
+		        <p class="muted credit">&copy; 2014-<span>2019</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.3</span></a>
+							at <span>2019-01-05</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

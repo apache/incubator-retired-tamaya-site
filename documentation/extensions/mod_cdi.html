@@ -58,7 +58,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../../index.html">Apache Tamaya (incubating)</a>
+          <a class="navbar-brand" href="../../index.html">Tamaya Home</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -111,9 +111,12 @@
               </ul>
             </li>
 -->
-						<li><a href="../../sitemap.xml">Sitemap</a></li>
-						<li><a href="../../feed.xml">Subscribe</a></li>
+			<li><a href="../../sitemap.xml">Sitemap</a></li>
+			<li><a href="../../feed.xml">Subscribe</a></li>
+			<li><a href="https://incubator.apache.org/guides/website.html" style="border:0px;" target="_target">
+                                 <img class="incubator-logo" src="../../logos/apache-incubator.png"/></a></li>
           </ul>
+
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -125,130 +128,151 @@
 				<h1>Apache Tamaya - Extension: CDI Support</h1>
 			</div>
 
-			<p><em>2018-09-06</em></p>
+			<p><em>2018-12-17</em></p>
 
-			<p><div id="preamble"> 
- <div class="sectionbody"> 
-  <!-- toc disabled --> 
- </div> 
-</div> 
-<div class="sect1"> 
- <h2 id="CDI">Tamaya CDI Integration (Extension Modules)</h2> 
- <div class="sectionbody"> 
-  <div class="paragraph"> 
-   <p>Tamaya <em>CDI</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3> 
-   <div class="paragraph"> 
-    <p>Apache <em>CDI</em> provides integration with CDI:</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>Loading of CDI managed SPI components as configuration extensions such as PropertySources, PropertySourceProviders, PropertyFilters, etc. This also includes SPI defined by any Tamaya submodules. This is useful when Tamaya is used as an application module managed by the CDI implementation.</p> </li> 
-     <li> <p>Implement and enable Tamaya’s configuration injection services (either using CDI injection or Tamaya’s standalone injection module.</p> </li> 
-    </ul> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Hereby there are two implementations provided:</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>tamaya-injection-cdi implements injection by using CDI’s injection mechanism to inject configuration values into the beans managed by the CDI systems.</p> </li> 
-     <li> <p>tamaya-injection-standalone implements injection by integrating the tamaya-injection SE based injection module (also used for Spring and OSGI injection) with CDI. Injection hereby is performed by the Tamaya SE module, whereas beans and injection control overall are still managed by CDI.</p> </li> 
-     <li> <p>One difference, of course, is that tamaya-injection-standalone also provides an SE compatible API (ConfigurationInjection, ConfigurationInjector), which is not available, when using the purely CDI based variant.</p> </li> 
-    </ul> 
-   </div> 
-   <div class="paragraph"> 
-    <p>The annotations used for all injection functionality in Tamaya is defined as a separate module. This allows you to code against the injection API without dependency on the concrete injection implementation. As a consequence your components will be compatible regardless if deployed in a pure SE or as Java EE (CDI) or Spring environment:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre>&lt;dependency&gt;
+			<p><div id="preamble">
+<div class="sectionbody">
+<!-- toc disabled -->
+</div>
+</div>
+<div class="sect1">
+<h2 id="CDI">Tamaya CDI Integration (Extension Modules)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tamaya <em>CDI</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
+</div>
+<div class="sect2">
+<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
+<div class="paragraph">
+<p>Apache <em>CDI</em> provides integration with CDI:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Loading of CDI managed SPI components as configuration extensions such as PropertySources, PropertySourceProviders,
+PropertyFilters, etc. This also includes SPI defined by any Tamaya submodules.
+This is useful when Tamaya is used as an application module managed by the CDI implementation.</p>
+</li>
+<li>
+<p>Implement and enable Tamaya&#8217;s configuration injection services (either using CDI injection or
+Tamaya&#8217;s standalone injection module.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Hereby there are two implementations provided:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>tamaya-injection-cdi implements injection by using CDI&#8217;s injection mechanism to inject configuration values into the
+beans managed by the CDI systems.</p>
+</li>
+<li>
+<p>tamaya-injection-standalone implements injection by integrating the tamaya-injection SE based injection module (also used
+for Spring and OSGI injection) with CDI. Injection hereby is performed by the Tamaya SE module, whereas
+beans and injection control overall are still managed by CDI.</p>
+</li>
+<li>
+<p>One difference, of course, is that tamaya-injection-standalone also provides an SE compatible API (ConfigurationInjection,
+ConfigurationInjector), which is not available, when using the purely CDI based variant.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The annotations used for all injection functionality in Tamaya is defined as a separate module. This allows you to
+code against the injection API without dependency on the concrete injection implementation. As a consequence your
+components will be compatible regardless if deployed in a pure SE or as Java EE (CDI) or Spring environment:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-injection-api&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
-&lt;/dependency&gt;</pre> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_compatibility">Compatibility</h3> 
-   <div class="paragraph"> 
-    <p>All modules are based on Java 7, so they will not run on Java 7 and beyond.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_installation">Installation</h3> 
-   <div class="paragraph"> 
-    <p>To benefit from Tamaya CDI integration you only must one of the following dependencies to your module. Ensure that you never have installed both CDI extensions at the same time because this may be lead to unforseen side-effects.</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="title">
-     CDI Java EE Application Configuration
-    </div> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+&lt;/dependency&gt;</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compatibility">Compatibility</h3>
+<div class="paragraph">
+<p>All modules are based on Java 7, so they will not run on Java 7 and beyond.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installation">Installation</h3>
+<div class="paragraph">
+<p>To benefit from Tamaya CDI integration you only must one of the following dependencies to your module. Ensure that
+you never have installed both CDI extensions at the same time because this may be lead to unforseen side-effects.</p>
+</div>
+<div class="listingblock">
+<div class="title">CDI Java EE Application Configuration</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-cdi&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <div class="title">
-     To use Tamaya’s 
-     <em>standalone injection support</em>, you additionally should add the
-    </div> 
-    <p>following dependency. If this dependency is missing injection is purely based on CDI injection features.</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">To use Tamaya&#8217;s <em>standalone injection support</em>, you additionally should add the</div>
+<p>following dependency. If this dependency is missing injection is purely based on
+CDI injection features.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-injection-standalone&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Both components will auto-register its components and override the default ServicceContext in use. Additionally they register CDI extensions that implement Configuration injection as described before.</p> 
-   </div> 
-   <div class="paragraph"> 
-    <p>For working with a pure non Java EE environment have a look at the <a href="mod_injection-standalone.html">tamaya-injection-standalone module</a>.</p> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Additionally you have to register Tamaya’s CDI extension modules into your <code>beans-xml</code>:</p> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Contents of <code>META-INF/services/javax.enterprise.inject.spi.Extension</code>:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># Register Tamaya to perform injection
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Both components will auto-register its components and override the default ServicceContext in use. Additionally they
+register CDI extensions that implement Configuration injection as described before.</p>
+</div>
+<div class="paragraph">
+<p>For working with a pure non Java EE environment have a look at the <a href="mod_injection-standalone.html">tamaya-injection-standalone module</a>.</p>
+</div>
+<div class="paragraph">
+<p>Additionally you have to register Tamaya&#8217;s CDI extension modules into your <code>beans-xml</code>:</p>
+</div>
+<div class="paragraph">
+<p>Contents of <code>META-INF/services/javax.enterprise.inject.spi.Extension</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># Register Tamaya to perform injection
 # org.apache.tamaya.cdi.TamayaCDIInjectionExtension
 # org.apache.tamaya.cdi.TamayaSEInjectionExtension
-org.apache.tamaya.cdi.TamayaCDIAccessor</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>If you want to use CDI standard injection (using @Inject @Config), activate org.apache.tamaya.cdi.TamayaCDIInjectionExtension as a CDI extension.</p> 
-   </div> 
-   <div class="paragraph"> 
-    <p>If you want to use SE based injection (using @Config <strong>without</strong> @Inject), activate org.apache.tamaya.cdi.TamayaSEInjectionExtension instead of.</p> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Though not recommended, it is possible to activate both extension at the same time.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_annotating_your_classes">Annotating your Classes</h3> 
-   <div class="paragraph"> 
-    <p>Basically annotating your classes is straightforward. @Config defines an additional CDI qualifier that is, depending on the module deployed, handled by a CDI producer (tamaya-cdi-ee) or the Tamaya SE injection mechanism $ (tamaya-cdi-se). All types injected by this module are injected using <em>dependent scope</em>. Keep in mind that values injected into fields by Tamaya cannot be used within constructors because <a href="https://docs.jboss.org/weld/reference/latest/en-US/html/injection.html">they will not yet have been injected</a>.</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">@RequestScoped
+org.apache.tamaya.cdi.TamayaCDIAccessor</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to use CDI standard injection (using @Inject @Config), activate
+org.apache.tamaya.cdi.TamayaCDIInjectionExtension as a CDI extension.</p>
+</div>
+<div class="paragraph">
+<p>If you want to use SE based injection (using @Config <strong>without</strong> @Inject),
+activate org.apache.tamaya.cdi.TamayaSEInjectionExtension instead of.</p>
+</div>
+<div class="paragraph">
+<p>Though not recommended, it is possible to activate both extension at the same time.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_annotating_your_classes">Annotating your Classes</h3>
+<div class="paragraph">
+<p>Basically annotating your classes is straightforward. @Config defines an additional CDI qualifier that is, depending
+on the module deployed, handled by a CDI producer (tamaya-cdi-ee) or the Tamaya SE injection mechanism $
+(tamaya-cdi-se). All types injected by this module are injected using <em>dependent scope</em>. Keep in mind that values injected into fields by Tamaya cannot be used within constructors because <a href="https://docs.jboss.org/weld/reference/latest/en-US/html/injection.html">they will not yet have been injected</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@RequestScoped
 public class ConfiguredClass{
 
     @Config
@@ -273,18 +297,21 @@ public class ConfiguredClass{
 
     ...
 
-}</code></pre> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_registering_cdi_managed_components_into_the_application_s_configurationcontext">Registering CDI managed components into the Application’s ConfigurationContext</h3> 
-   <div class="paragraph"> 
-    <p>As mentioned both modules allow to provide Tamaya SPI extensions modules as ordinary CDI managed beans. By default extensions should be registered using @Singleton or @ApplicationScoped scope annotations. So you can define/deploy additional application specific PropertySources and other artifacts simply by defining a CDI managed bean implementing the required SPI interface:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Singleton
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_registering_cdi_managed_components_into_the_applications_configurationcontext">Registering CDI managed components into the Application&#8217;s ConfigurationContext</h3>
+<div class="paragraph">
+<p>As mentioned both modules allow to provide Tamaya SPI extensions modules as ordinary CDI managed beans. By default
+extensions should be registered using @Singleton or @ApplicationScoped scope annotations. So you can define/deploy
+additional application specific PropertySources and other artifacts simply by defining a CDI managed bean implementing
+the required SPI interface:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Singleton
 public class TestPropertySource implements PropertySource{
 
     final Map&lt;String,String&gt; config = new HashMap&lt;&gt;();
@@ -319,81 +346,96 @@ public class TestPropertySource implements PropertySource{
     public boolean isScannable() {
         return true;
     }
-}</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>To enable this (optional) feature you must replace Tamaya’s ServiceContext with the CDI aware implementation:</p> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Contents of <code>META-INF/services/org.apache.tamaya.spi.ServiceContext</code>:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># Registering a CDI aware service context
-CDIAwareServiceContext</code></pre> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_advanced_use_cases">Advanced Use Cases</h3> 
-   <div class="paragraph"> 
-    <p>Beside basic configuration Tamaya also covers additional requirements:</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>_Reading multiple keys, where the first successful one is determining the value of the configuration, is simply possible, by adding multiple keys to the @Configy annotation. E.g. for trying first a.b and then new.b you would configure it as follows:</p> </li> 
-    </ul> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Config({"a.b", "new.b"}
-private String value;</code></pre> 
-    </div> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>When you must apply a ConfigOperator to your config, before reading the configuration, you can configure one as follows:</p> </li> 
-    </ul> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Config({"a.b", "new.b"}
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To enable this (optional) feature you must replace Tamaya&#8217;s ServiceContext with the
+CDI aware implementation:</p>
+</div>
+<div class="paragraph">
+<p>Contents of <code>META-INF/services/org.apache.tamaya.spi.ServiceContext</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties"># Registering a CDI aware service context
+CDIAwareServiceContext</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_advanced_use_cases">Advanced Use Cases</h3>
+<div class="paragraph">
+<p>Beside basic configuration Tamaya also covers additional requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>_Reading multiple keys, where the first successful one is determining the value of the configuration, is
+simply possible, by adding multiple keys to the @Configy annotation.
+E.g. for trying first a.b and then new.b you would configure it as follows:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Config({"a.b", "new.b"}
+private String value;</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When you must apply a ConfigOperator to your config, before reading the configuration, you can
+configure one as follows:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Config({"a.b", "new.b"}
 @WithConfigOperator(MyOperator.class)
-private String value;</code></pre> 
-    </div> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>When you must apply a some special conversion, or you use a type that is not registered for conversion, you can configure a custom converter to be applied as follows:</p> </li> 
-    </ul> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Config({"a.b", "new.b"}
+private String value;</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When you must apply a some special conversion, or you use a type that is not registered
+for conversion, you can configure a custom converter to be applied as follows:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Config({"a.b", "new.b"}
 @WithPropertyConverter(MyConverter.class)
-private MySpecialFooType value;</code></pre> 
-    </div> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>Often multiple keys in a class belong to the same root section. So instead of copying this to every entry you can define the most common root sections in the type’s header:</p> </li> 
-    </ul> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">@ConfigDefaultSections({"aaaa", "new"});
+private MySpecialFooType value;</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Often multiple keys in a class belong to the same root section. So instead of copying this to
+every entry you can define the most common root sections in the type&#8217;s header:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@ConfigDefaultSections({"aaaa", "new"});
 public class MyType{
 
 @Config({"b", "[legacy.bKey]"} // lookups: "aaaa.b", "new.b", legacy.bKey
-private String value;</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>In the example above legacy.bKey defines an absolute key, which is not combined with any defined default section parts.</p> 
-   </div> 
-  </div> 
- </div> 
+private String value;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the example above legacy.bKey defines an absolute key, which is not combined with any defined
+default section parts.</p>
+</div>
+</div>
+</div>
 </div></p>
 
 			<hr />
@@ -404,9 +446,9 @@ private String value;</code></pre>
 
 		    <div id="footer">
 		      <div class="container">
-		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
-							at <span>2018-11-02</span> |
+		        <p class="muted credit">&copy; 2014-<span>2019</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.3</span></a>
+							at <span>2019-01-05</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

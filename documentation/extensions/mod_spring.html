@@ -58,7 +58,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../../index.html">Apache Tamaya (incubating)</a>
+          <a class="navbar-brand" href="../../index.html">Tamaya Home</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -111,9 +111,12 @@
               </ul>
             </li>
 -->
-						<li><a href="../../sitemap.xml">Sitemap</a></li>
-						<li><a href="../../feed.xml">Subscribe</a></li>
+			<li><a href="../../sitemap.xml">Sitemap</a></li>
+			<li><a href="../../feed.xml">Subscribe</a></li>
+			<li><a href="https://incubator.apache.org/guides/website.html" style="border:0px;" target="_target">
+                                 <img class="incubator-logo" src="../../logos/apache-incubator.png"/></a></li>
           </ul>
+
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -125,62 +128,75 @@
 				<h1>Apache Tamaya - Extension: Spring Integration</h1>
 			</div>
 
-			<p><em>2018-09-06</em></p>
+			<p><em>2018-12-17</em></p>
 
-			<p><div id="preamble"> 
- <div class="sectionbody"> 
-  <!-- toc disabled --> 
- </div> 
-</div> 
-<div class="sect1"> 
- <h2 id="Spring">Tamaya Spring Integration (Extension Module)</h2> 
- <div class="sectionbody"> 
-  <div class="paragraph"> 
-   <p>Tamaya <em>Spring</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3> 
-   <div class="paragraph"> 
-    <p>Tamaya <em>Spring</em> currently provides full integration with Spring and Spring Boot:</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>A Spring @Configuration implementation that also provides a Tamaya based version of org.springframework.context.support.PropertySourcesPlaceholderConfigurer.</p> </li> 
-     <li> <p>org.apache.tamaya.integration.spring.TamayaEnvironment is the Tamaya based implementation of the Spring Environment interface.</p> </li> 
-     <li> <p>TamayaSpringPropertySource implements an additional Spring PropertySource.</p> </li> 
-     <li> <p>Finally org.apache.tamaya.integration.spring.SpringConfigInjectionPostProcessor implements a Bean PostProcessor, which adds all the fully fledged Tamaya configuration capabilities to Spring.</p> </li> 
-    </ul> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_compatibility">Compatibility</h3> 
-   <div class="paragraph"> 
-    <p>Both modules are based on Java 8, so they will run on Java 8 and beyond. The extension shown here works in Spring Framework as well as Spring Boot.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_installation">Installation</h3> 
-   <div class="paragraph"> 
-    <p>To benefit from Tamaya Spring integration add the following dependencies to your module:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+			<p><div id="preamble">
+<div class="sectionbody">
+<!-- toc disabled -->
+</div>
+</div>
+<div class="sect1">
+<h2 id="Spring">Tamaya Spring Integration (Extension Module)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tamaya <em>Spring</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
+</div>
+<div class="sect2">
+<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
+<div class="paragraph">
+<p>Tamaya <em>Spring</em> currently provides full integration with Spring and Spring Boot:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A Spring @Configuration implementation that also provides a Tamaya based version of
+org.springframework.context.support.PropertySourcesPlaceholderConfigurer.</p>
+</li>
+<li>
+<p>org.apache.tamaya.integration.spring.TamayaEnvironment is the Tamaya based implementation of the Spring
+Environment interface.</p>
+</li>
+<li>
+<p>TamayaSpringPropertySource implements an additional Spring PropertySource.</p>
+</li>
+<li>
+<p>Finally org.apache.tamaya.integration.spring.SpringConfigInjectionPostProcessor implements a Bean PostProcessor,
+which adds all the fully fledged Tamaya configuration capabilities to Spring.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compatibility">Compatibility</h3>
+<div class="paragraph">
+<p>Both modules are based on Java 8, so they will run on Java 8 and beyond. The extension shown here works in
+Spring Framework as well as Spring Boot.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installation">Installation</h3>
+<div class="paragraph">
+<p>To benefit from Tamaya Spring integration add the following dependencies to your module:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-spring&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_registering_tamaya_spring_configuration">Registering Tamaya Spring Configuration</h3> 
-   <div class="paragraph"> 
-    <p>Basically to activate the Tamaya Spring support the most simple thing is to a enable the Tamaya package for being scanned for Spring components, e.g. using by annotation:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">@SpringBootApplication
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_registering_tamaya_spring_configuration">Registering Tamaya Spring Configuration</h3>
+<div class="paragraph">
+<p>Basically to activate the Tamaya Spring support the most simple thing is to a enable the Tamaya package for being
+scanned for Spring components, e.g. using by annotation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@SpringBootApplication
 @ComponentScan({"org.apache.tamaya.integration.spring"})
 public class SampleWebFreeMarkerApplication {
 
@@ -188,15 +204,15 @@ public class SampleWebFreeMarkerApplication {
 		SpringApplication.run(SampleWebFreeMarkerApplication.class, args);
 	}
 
-}</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Of course, you can still use Spring’s XML configuration in a similar way:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Of course, you can still use Spring&#8217;s XML configuration in a similar way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"&gt;
@@ -206,40 +222,42 @@ public class SampleWebFreeMarkerApplication {
 
     ...
 
-&lt;/beans&gt;</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Though not recommended you can explicitly register the Tamaya related beans in your context configuration by hand: files:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;bean id="tamayaInjectionProcessor" name="tamayaInjectionProcessor" class="org.apache.tamaya.integration.spring.SpringConfigInjectionPostProcessor"/&gt;
-&lt;bean id="tamayaConfigProvider" name="tamayaConfigProvider" class="org.apache.tamaya.integration.spring.TamayaSpringConfig"/&gt;</code></pre> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_configuring_your_context">Configuring your Context</h3> 
-   <div class="paragraph"> 
-    <p>After activation you can use Tamaya as a backend for property resolution, e.g. propertyValue is resolved from the current Tamaya configuration. See example below:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;bean id="configuredBean" name="configuredBean" class="org.apache.tamaya.integration.spring.ConfiguredSpringBean"&gt;
+&lt;/beans&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Though not recommended you can explicitly register the Tamaya related beans in your context configuration by hand:
+files:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;bean id="tamayaInjectionProcessor" name="tamayaInjectionProcessor" class="org.apache.tamaya.integration.spring.SpringConfigInjectionPostProcessor"/&gt;
+&lt;bean id="tamayaConfigProvider" name="tamayaConfigProvider" class="org.apache.tamaya.integration.spring.TamayaSpringConfig"/&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_your_context">Configuring your Context</h3>
+<div class="paragraph">
+<p>After activation you can use Tamaya as a backend for property resolution, e.g. propertyValue
+is resolved from the current Tamaya configuration. See example below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;bean id="configuredBean" name="configuredBean" class="org.apache.tamaya.integration.spring.ConfiguredSpringBean"&gt;
     &lt;property name="message" value="${propertyValue}"/&gt;
-&lt;/bean&gt;</code></pre> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_configuring_your_beans">Configuring your Beans</h3> 
-   <div class="paragraph"> 
-    <p>Similarly you can inject any kind of configuration as supported by Tamaya into your Spring managed beans:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">@ConfigDefaultSections("app.root") // optional <b class="conum">(1)</b>
+&lt;/bean&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_your_beans">Configuring your Beans</h3>
+<div class="paragraph">
+<p>Similarly you can inject any kind of configuration as supported by Tamaya into your Spring managed beans:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@ConfigDefaultSections("app.root") // optional <b class="conum">(1)</b>
 @Component
 public class ConfiguredSpringBean {
 
@@ -259,59 +277,80 @@ public class ConfiguredSpringBean {
     private int testNumber;
 
     ...
-}</code></pre> 
-    </div> 
-   </div> 
-   <div class="colist arabic"> 
-    <ol> 
-     <li> <p>You can configure default section prefixes. This is an optional feature.</p> </li> 
-     <li> <p>Tamaya does not require you to change your code. You can still work with Spring injection for your configuration, but Tamaya will override Spring configuration by default.</p> </li> 
-     <li> <p>You can also define entries as optional, which allows you to perform default inialization using Java idoms.</p> </li> 
-     <li> <p>Tamaya allows you to define an ordered list of key candidates, which are combined with the section prefix, if present, to the full keys. Keys added in brackets ([]) are interpreted as absolute keys, so the example above the key candidate list evaluates to app.root.number", "app.root.testNum", "notavailable".</p> </li> 
-     <li> <p>You can configure default values used, if no other value can be evaluated for the given keyset.</p> </li> 
-    </ol> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Summarizing you get all the nice features of Tamaya out of the box running with your Spring code.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_working_with_dynamic_values">Working with Dynamic Values</h3> 
-   <div class="paragraph"> 
-    <p>Integration into Spring also includes for support for <em>dynamic values</em>:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Config(value = "foreground.color", required = false, defaultValue = "#DDDDDD")
-private DynamicValue&lt;Color&gt; foregroundColor;</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Dynamic values are a very flexible mechanism for managing configuration changes. You can even use an update policy to define how you want to handle configuration changes for your configuration parameter:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">foregroundColor.setUpdatePolicy(UpdatePolicy.IMMEDEATE);
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>You can configure default section prefixes. This is an optional feature.</p>
+</li>
+<li>
+<p>Tamaya does not require you to change your code. You can still work with
+Spring injection for your configuration, but Tamaya will override Spring
+configuration by default.</p>
+</li>
+<li>
+<p>You can also define entries as optional, which allows you to perform
+default inialization using Java idoms.</p>
+</li>
+<li>
+<p>Tamaya allows you to define an ordered list of key candidates, which are
+combined with the section prefix, if present, to the full keys. Keys added
+in brackets ([]) are interpreted as absolute keys, so the example above
+the key candidate list evaluates to app.root.number", "app.root.testNum",
+"notavailable".</p>
+</li>
+<li>
+<p>You can configure default values used, if no other value can be evaluated
+for the given keyset.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Summarizing you get all the nice features of Tamaya out of the box running
+with your Spring code.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_working_with_dynamic_values">Working with Dynamic Values</h3>
+<div class="paragraph">
+<p>Integration into Spring also includes for support for <em>dynamic values</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Config(value = "foreground.color", required = false, defaultValue = "#DDDDDD")
+private DynamicValue&lt;Color&gt; foregroundColor;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Dynamic values are a very flexible mechanism for managing configuration changes.
+You can even use an update policy to define how you want to handle configuration
+changes for your configuration parameter:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">foregroundColor.setUpdatePolicy(UpdatePolicy.IMMEDEATE);
 foregroundColor.addPropertyChangeListener(() -&gt; {
    System.out.println("New forground color: " + foregroundColor.get();
-});</code></pre> 
-    </div> 
-   </div> 
-   <div class="admonitionblock important"> 
-    <table> 
-     <tbody>
-      <tr> 
-       <td class="icon"> 
-        <div class="title">
-         Important
-        </div> </td> 
-       <td class="content"> For a full description of Tamaya’s injection API please refer to the <a href="extensions/mod_injection.html">corresponding documentation</a>. </td> 
-      </tr> 
-     </tbody>
-    </table> 
-   </div> 
-  </div> 
- </div> 
+});</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+For a full description of Tamaya&#8217;s injection API please
+           refer to the <a href="extensions/mod_injection.html">corresponding documentation</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 </div></p>
 
 			<hr />
@@ -322,9 +361,9 @@ foregroundColor.addPropertyChangeListener(() -&gt; {
 
 		    <div id="footer">
 		      <div class="container">
-		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
-							at <span>2018-11-02</span> |
+		        <p class="muted credit">&copy; 2014-<span>2019</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.3</span></a>
+							at <span>2019-01-05</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

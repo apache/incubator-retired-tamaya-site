@@ -58,7 +58,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../index.html">Apache Tamaya (incubating)</a>
+          <a class="navbar-brand" href="../index.html">Tamaya Home</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -111,9 +111,12 @@
               </ul>
             </li>
 -->
-						<li><a href="../sitemap.xml">Sitemap</a></li>
-						<li><a href="../feed.xml">Subscribe</a></li>
+			<li><a href="../sitemap.xml">Sitemap</a></li>
+			<li><a href="../feed.xml">Subscribe</a></li>
+			<li><a href="https://incubator.apache.org/guides/website.html" style="border:0px;" target="_target">
+                                 <img class="incubator-logo" src="../logos/apache-incubator.png"/></a></li>
           </ul>
+
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -125,83 +128,96 @@
 				<h1></h1>
 			</div>
 
-			<p><em>2018-09-06</em></p>
+			<p><em>2018-12-17</em></p>
 
-			<p><!-- toc disabled --> 
-<h1 id="_apache_tamaya_possible_tasks" class="sect0">Apache Tamaya - Possible Tasks</h1> 
-<div style="page-break-after: always;"></div> 
-<div class="sect1"> 
- <h2 id="_introduction">1. Introduction</h2> 
- <div class="sectionbody"> 
- </div> 
-</div> 
-<div class="sect1"> 
- <h2 id="_what_is_tamaya">2. What is Tamaya</h2> 
- <div class="sectionbody"> 
-  <div class="paragraph"> 
-   <p>{name} is the Apache standard for flexible and powerful configuration. Objective is to provide flavors for Java SE, ME as well as to ship with powerful features for Java EE and Cloud Solutions. All functions provided is build on top of a small but very powerful, flexible and extendible API. This API is implemented by a core implementation, which then can be extended or adapted for use in different runtime scenarios, such as SE, ME, EE, Spring, OSGI and more. Similarly additional modules may be provided that help also existing solution to be plugged into {name}, so you can start right away using {name} without having to rebuild/change your existing application.</p> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_purpose_of_this_document">2.1. Purpose of this Document</h3> 
-   <div class="paragraph"> 
-    <p>The document should help to organize people and ideas around the Apache Tamaya Library. It list possible features, ideas and tasks that need to be done. Everybody can have a look at and see, where hos contribution and capabilities would fit best.</p> 
-   </div> 
-  </div> 
- </div> 
-</div> 
-<div class="sect1"> 
- <h2 id="_main_features">3. Main Features</h2> 
- <div class="sectionbody"> 
-  <div class="sect2"> 
-   <h3 id="_metadata_model">3.1. Metadata Model</h3> 
-   <div class="paragraph"> 
-    <p>Currently MetaInfo models metadata as a separate constuct. It has been shown that this leads to more complex handling when creating composites and makes the API overall more complex. The idea is to model metadata as simple key/value pairs, that are part of the provider/configuration data as well, but handled separately. Metadata hereby is identified by a starting '_' character in its key. For example refer to the following configuration properties:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="title">
-     Basic Properties
-    </div> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">a.b.Foo=foo
+			<p><!-- toc disabled -->
+<h1 id="_apache_tamaya_possible_tasks" class="sect0">Apache Tamaya - Possible Tasks</h1>
+<div style="page-break-after: always;"></div>
+<div class="sect1">
+<h2 id="_introduction">1. Introduction</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_is_tamaya">2. What is Tamaya</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>{name} is the Apache standard for flexible and powerful configuration. Objective is to provide flavors for
+Java SE, ME as well as to ship with powerful features for Java EE and Cloud Solutions. All functions provided
+is build on top of a small but very powerful, flexible and extendible API. This API is implemented by a core implementation,
+which then can be extended or adapted for use in different runtime scenarios, such as SE, ME, EE, Spring, OSGI
+and more. Similarly additional modules may be provided that help also existing solution to be plugged into
+{name}, so you can start right away using {name} without having to rebuild/change your existing application.</p>
+</div>
+<div class="sect2">
+<h3 id="_purpose_of_this_document">2.1. Purpose of this Document</h3>
+<div class="paragraph">
+<p>The document should help to organize people and ideas around the Apache Tamaya Library. It list possible features,
+ideas and tasks that need to be done. Everybody can have a look at and see, where hos contribution and capabilities
+would fit best.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_main_features">3. Main Features</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_metadata_model">3.1. Metadata Model</h3>
+<div class="paragraph">
+<p>Currently MetaInfo models metadata as a separate constuct. It has been shown that this leads to more complex
+handling when creating composites and makes the API overall more complex. The idea is to model metadata as simple
+key/value pairs, that are part of the provider/configuration data as well, but handled separately. Metadata hereby
+is identified by a starting '_' character in its key. For example refer to the following configuration properties:</p>
+</div>
+<div class="listingblock">
+<div class="title">Basic Properties</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">a.b.Foo=foo
 a.b.Bar=bar
 a.AnyOther=whatelse
-Something=none</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Now we can model meta-data as follows:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="title">
-     Metadata Properties
-    </div> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">[a.b].info=An area info
+Something=none</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we can model meta-data as follows:</p>
+</div>
+<div class="listingblock">
+<div class="title">Metadata Properties</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">[a.b].info=An area info
 [a.b.Foo].auth=role1,role2
 [a.b.Foo].encrypt=PGP
 [a.b.Foo].sensitive=true
-[].info=This is a test configuration example.</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>The above would model the following:</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>The area a.b has the meta property info.</p> </li> 
-     <li> <p>The entry a.b.Foo has three meta properties auth,encrypt and sensitive. These could be interpreted by a security view and used to encrypt the values returned by the configuration instance, if not the current user has one of the specified roles.</p> </li> 
-     <li> <p>The last meta data defines an attribute info for the whole provider/configuration (the root area).</p> </li> 
-    </ul> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Given that the overall entries would be as follows:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="title">
-     Full Properties with Meta Properties
-    </div> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">[a.b].info=An area info
+[].info=This is a test configuration example.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The above would model the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The area a.b has the meta property info.</p>
+</li>
+<li>
+<p>The entry a.b.Foo has three meta properties auth,encrypt and sensitive. These could be interpreted by a security
+view and used to encrypt the values returned by the configuration instance, if not the current user has one of the
+specified roles.</p>
+</li>
+<li>
+<p>The last meta data defines an attribute info for the whole provider/configuration (the root area).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given that the overall entries would be as follows:</p>
+</div>
+<div class="listingblock">
+<div class="title">Full Properties with Meta Properties</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">[a.b].info=An area info
 a.b.Foo=foo
 [a.b.Foo].auth=role1,role2
 [a.b.Foo].encrypt=PGP
@@ -209,196 +225,245 @@ a.b.Foo=foo
 a.b.Bar=bar
 [].info=This is a test configuration example.
 a.AnyOther=whatelse
-Something=none</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>The current MetaInfo class could be adapted, so it is reading data from the underlying configuration/provider, instead of its own datastructure. This would make a later mapping of configuration and its metadata into DB table, JSON etc, much more easier. The providers on the other side may suppress any metadata from ordinary output, such as toString(), Similarly accessing metadata using the official config API (get, getOrDefault, getAreas etc) should be disabled. The MetaInfoBuilder must probably as well adapted or redesigned.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_management_client">3.2. Management Client</h3> 
-   <div class="paragraph"> 
-    <p>A nice web-based client to manage configuration data would be nice as well. This also includes a UI for creating new configurations.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_mapping_configuration_to_a_database">3.3. Mapping Configuration to a Database</h3> 
-   <div class="paragraph"> 
-    <p>A flexible mechanism should be implemented that allows the use of databases (SQL/JPA as well as non-SQL) for storing/retreiving/managing configuration:</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>JPA, Hibernate</p> </li> 
-     <li> <p>MongoDB</p> </li> 
-     <li> <p>…​</p> </li> 
-    </ul> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_integration_with_jigsaw">3.4. Integration with Jigsaw</h3> 
-   <div class="paragraph"> 
-    <p>Once Jigsaw is mature and in a usable (still early) stage, examples are to be created and tested, where OSGI is used as the basic runtime platform, e.g. Apache Felix, but as well others.</p> 
-   </div> 
-  </div> 
- </div> 
-</div> 
-<div class="sect1"> 
- <h2 id="_distributed_remote_configuration_support">4. Distributed/Remote Configuration Support</h2> 
- <div class="sectionbody"> 
-  <div class="sect2"> 
-   <h3 id="_configuration_distribution_policies">4.1. Configuration Distribution Policies</h3> 
-   <div class="paragraph"> 
-    <p>Different configuration distribution policies should be defined any implemented, e.g. distributed cache, restful services, web services, EJB/RMI calls, asynchronous queues, publish/subsribe models, …​</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_preferences_support">4.2. Preferences Support</h3> 
-   <div class="paragraph"> 
-    <p>Write a PreferencesFactory for java.util.preferences.</p> 
-   </div> 
-  </div> 
- </div> 
-</div> 
-<div class="sect1"> 
- <h2 id="_third_party_integration">5. Third Party Integration</h2> 
- <div class="sectionbody"> 
-  <div class="sect2"> 
-   <h3 id="_integration_with_deltaspike_config">5.1. Integration with Deltaspike Config</h3> 
-   <div class="paragraph"> 
-    <p>Integration with Deltaspike Config should be implemented and discussed with Deltaspike guys.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_integration_with_spring">5.2. Integration with Spring</h3> 
-   <div class="paragraph"> 
-    <p>A {name} module should be created that allows Spring to be used either as client or configuration provider.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_integration_with_jetty">5.3. Integration with Jetty</h3> 
-   <div class="paragraph"> 
-    <p>A {name} module should be created that allows a Jetty instance to be deployed and started that is (completely) configured based on configuration server.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_integration_with_tomcat">5.4. Integration with Tomcat</h3> 
-   <div class="paragraph"> 
-    <p>A {name} module should be created that allows a Tomcat instance to be deployed and started that is (completely) configured based on configuration server.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_configuration_of_java_ee">5.5. Configuration of Java EE</h3> 
-   <div class="paragraph"> 
-    <p>In the Java EE area there would be several options:</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_configuration_of_application_servers_administrative_resources">5.6. Configuration of Application Servers (administrative resources)</h3> 
-   <div class="paragraph"> 
-    <p>It should be possible to start a application server instance remotely and configure all administrative resources and the deployments based on the configuration service, server to be considered maybe</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>Wildfly</p> </li> 
-     <li> <p>IBM</p> </li> 
-     <li> <p>Weblogic</p> </li> 
-     <li> <p>Glassfish</p> </li> 
-     <li> <p>Apache Geronimo</p> </li> 
-    </ul> 
-   </div> 
-   <div class="sect3"> 
-    <h4 id="_configuration_of_bean_validation">5.6.1. Configuration of Bean Validation</h4> 
-    <div class="ulist"> 
-     <ul> 
-      <li> <p>Add configurable validators.</p> </li> 
-      <li> <p>Configure bean validation based on configuration</p> </li> 
-      <li> <p>…​</p> </li> 
-     </ul> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_jndi_support">5.7. JNDI Support</h3> 
-   <div class="paragraph"> 
-    <p>Write a JCA adapter to provide configuration data through JNDI.</p> 
-   </div> 
-   <div class="sect3"> 
-    <h4 id="_configure_jsf">5.7.1. Configure JSF</h4> 
-    <div class="paragraph"> 
-     <p>Use the JSF XML Document event to completely configure JSF.</p> 
-    </div> 
-   </div> 
-   <div class="sect3"> 
-    <h4 id="_configure_web_services">5.7.2. Configure Web Services</h4> 
-    <div class="paragraph"> 
-     <p>Provide a WebServiceProviderFactory that may be configured.</p> 
-    </div> 
-   </div> 
-   <div class="sect3"> 
-    <h4 id="_configure_jpa">5.7.3. Configure JPA</h4> 
-    <div class="paragraph"> 
-     <p>Provide an implementation that allows configuration of persistence units. Talk with JPA EG people to see if we can get an SPI to hook in a stadardized way.</p> 
-    </div> 
-   </div> 
-   <div class="sect3"> 
-    <h4 id="_configure_ejbs">5.7.4. Configure EJBs</h4> 
-    <div class="paragraph"> 
-     <p>Provide an implementation that allows configuration of EJBs and MDBs:</p> 
-    </div> 
-    <div class="ulist"> 
-     <ul> 
-      <li> <p>Register beans</p> </li> 
-      <li> <p>Unregister/disable beans</p> </li> 
-      <li> <p>Intercept beans</p> </li> 
-      <li> <p>Support Configuration Injection (in the worst case using a standard Interceptor, provide supporting artifacts to help developers to achive this easily).</p> </li> 
-      <li> <p>Talk with EE8 Umbrella EG (Bill Shanon, Linda DeMichels) on a feasible SPI for EE8, if possible join the EG.</p> </li> 
-     </ul> 
-    </div> 
-   </div> 
-   <div class="sect3"> 
-    <h4 id="_configure">5.7.5. Configure …​</h4> 
-    <div class="paragraph"> 
-     <p>Just think of any Java EE aspects that might be worth to be configured. If it can be done, e.g. by managing CDI managed resources, it might be easy. For others it is a good idea to discuss things with our matter of experts…​</p> 
-    </div> 
-   </div> 
-  </div> 
- </div> 
-</div> 
-<div class="sect1"> 
- <h2 id="_special_goodies">6. Special Goodies</h2> 
- <div class="sectionbody"> 
-  <div class="sect2"> 
-   <h3 id="_maintenance_mode_servlet_filter">6.1. Maintenance Mode Servlet Filter</h3> 
-   <div class="paragraph"> 
-    <p>Provide a servlet filter that is capable of switching to maintenance mode, based on configuration. Similarly also a forwarding servlet could be useful, wehere only request based on configuration are forwarded, other might be rejected or dropped as configured.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_dynamic_camel_routes">6.2. Dynamic Camel Routes</h3> 
-   <div class="paragraph"> 
-    <p>Provides dynamic (configurable) Camel routes, e.g. usable within ServiceMix or standalone.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_dynamic_cxf">6.3. Dynamic CXF</h3> 
-   <div class="paragraph"> 
-    <p>Provides dynamic (configurable) CXF adapters, e.g. usable within ServiceMix or standalone.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_configurable_apache_mq">6.4. Configurable Apache MQ</h3> 
-   <div class="paragraph"> 
-    <p>Provides an implementation for configuring Apache MQ.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_dynamic">6.5. Dynamic …​</h3> 
-   <div class="paragraph"> 
-    <p>Interested to see what other ideas are around. Let us know!</p> 
-   </div> 
-  </div> 
- </div> 
+Something=none</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The current MetaInfo class could be adapted, so it is reading data from the underlying configuration/provider,
+instead of its own datastructure. This would make a later mapping of configuration and its metadata into DB table, JSON
+etc, much more easier.
+The providers on the other side may suppress any metadata from ordinary output, such
+as toString(), Similarly accessing metadata using the official config API (get, getOrDefault, getAreas etc)
+should be disabled. The MetaInfoBuilder must probably as well adapted or redesigned.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_management_client">3.2. Management Client</h3>
+<div class="paragraph">
+<p>A nice web-based client to manage configuration data would be nice as well. This also includes a UI for creating new
+configurations.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mapping_configuration_to_a_database">3.3. Mapping Configuration to a Database</h3>
+<div class="paragraph">
+<p>A flexible mechanism should be implemented that allows the use of databases (SQL/JPA as well as non-SQL) for
+storing/retreiving/managing configuration:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>JPA, Hibernate</p>
+</li>
+<li>
+<p>MongoDB</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_integration_with_jigsaw">3.4. Integration with Jigsaw</h3>
+<div class="paragraph">
+<p>Once Jigsaw is mature and in a usable (still early) stage, examples are to be created and tested, where OSGI is used as
+the basic runtime platform, e.g. Apache Felix, but as well others.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_distributedremote_configuration_support">4. Distributed/Remote Configuration Support</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_configuration_distribution_policies">4.1. Configuration Distribution Policies</h3>
+<div class="paragraph">
+<p>Different configuration distribution policies should be defined any implemented, e.g. distributed cache, restful services,
+web services, EJB/RMI calls, asynchronous queues, publish/subsribe models, &#8230;&#8203;</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_preferences_support">4.2. Preferences Support</h3>
+<div class="paragraph">
+<p>Write a PreferencesFactory for java.util.preferences.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_third_party_integration">5. Third Party Integration</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_integration_with_deltaspike_config">5.1. Integration with Deltaspike Config</h3>
+<div class="paragraph">
+<p>Integration with Deltaspike Config should be implemented and discussed with Deltaspike guys.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_integration_with_spring">5.2. Integration with Spring</h3>
+<div class="paragraph">
+<p>A {name} module should be created that allows Spring to be used either as client or configuration provider.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_integration_with_jetty">5.3. Integration with Jetty</h3>
+<div class="paragraph">
+<p>A {name} module should be created that allows a Jetty instance to be deployed and started that is (completely)
+configured based on configuration server.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_integration_with_tomcat">5.4. Integration with Tomcat</h3>
+<div class="paragraph">
+<p>A {name} module should be created that allows a Tomcat instance to be deployed and started that is (completely)
+configured based on configuration server.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration_of_java_ee">5.5. Configuration of Java EE</h3>
+<div class="paragraph">
+<p>In the Java EE area there would be several options:</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration_of_application_servers_administrative_resources">5.6. Configuration of Application Servers (administrative resources)</h3>
+<div class="paragraph">
+<p>It should be possible to start a application server instance remotely and configure all administrative resources and the
+deployments based on the configuration service, server to be considered maybe</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Wildfly</p>
+</li>
+<li>
+<p>IBM</p>
+</li>
+<li>
+<p>Weblogic</p>
+</li>
+<li>
+<p>Glassfish</p>
+</li>
+<li>
+<p>Apache Geronimo</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_configuration_of_bean_validation">5.6.1. Configuration of Bean Validation</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Add configurable validators.</p>
+</li>
+<li>
+<p>Configure bean validation based on configuration</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jndi_support">5.7. JNDI Support</h3>
+<div class="paragraph">
+<p>Write a JCA adapter to provide configuration data through JNDI.</p>
+</div>
+<div class="sect3">
+<h4 id="_configure_jsf">5.7.1. Configure JSF</h4>
+<div class="paragraph">
+<p>Use the JSF XML Document event to completely configure JSF.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configure_web_services">5.7.2. Configure Web Services</h4>
+<div class="paragraph">
+<p>Provide a WebServiceProviderFactory that may be configured.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configure_jpa">5.7.3. Configure JPA</h4>
+<div class="paragraph">
+<p>Provide an implementation that allows configuration of persistence units. Talk with JPA EG people to see if we can
+get an SPI to hook in a stadardized way.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configure_ejbs">5.7.4. Configure EJBs</h4>
+<div class="paragraph">
+<p>Provide an implementation that allows configuration of EJBs and MDBs:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Register beans</p>
+</li>
+<li>
+<p>Unregister/disable beans</p>
+</li>
+<li>
+<p>Intercept beans</p>
+</li>
+<li>
+<p>Support Configuration Injection (in the worst case using a standard Interceptor, provide supporting artifacts to
+help developers to achive this easily).</p>
+</li>
+<li>
+<p>Talk with EE8 Umbrella EG (Bill Shanon, Linda DeMichels) on a feasible SPI for EE8, if possible join the EG.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configure">5.7.5. Configure &#8230;&#8203;</h4>
+<div class="paragraph">
+<p>Just think of any Java EE aspects that might be worth to be configured. If it can be done, e.g. by managing CDI managed
+resources, it might be easy. For others it is a good idea to discuss things with our matter of experts&#8230;&#8203;</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_special_goodies">6. Special Goodies</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_maintenance_mode_servlet_filter">6.1. Maintenance Mode Servlet Filter</h3>
+<div class="paragraph">
+<p>Provide a servlet filter that is capable of switching to maintenance mode, based on configuration. Similarly also a forwarding
+servlet could be useful, wehere only request based on configuration are forwarded, other might be rejected or dropped
+as configured.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dynamic_camel_routes">6.2. Dynamic Camel Routes</h3>
+<div class="paragraph">
+<p>Provides dynamic (configurable) Camel routes, e.g. usable within ServiceMix or standalone.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dynamic_cxf">6.3. Dynamic CXF</h3>
+<div class="paragraph">
+<p>Provides dynamic (configurable) CXF adapters, e.g. usable within ServiceMix or standalone.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configurable_apache_mq">6.4. Configurable Apache MQ</h3>
+<div class="paragraph">
+<p>Provides an implementation for configuring Apache MQ.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dynamic">6.5. Dynamic &#8230;&#8203;</h3>
+<div class="paragraph">
+<p>Interested to see what other ideas are around. Let us know!</p>
+</div>
+</div>
+</div>
 </div></p>
 
 			<hr />
@@ -409,9 +474,9 @@ Something=none</code></pre>
 
 		    <div id="footer">
 		      <div class="container">
-		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
-							at <span>2018-11-02</span> |
+		        <p class="muted credit">&copy; 2014-<span>2019</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.3</span></a>
+							at <span>2019-01-05</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

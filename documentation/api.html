@@ -58,7 +58,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../index.html">Apache Tamaya (incubating)</a>
+          <a class="navbar-brand" href="../index.html">Tamaya Home</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -111,9 +111,12 @@
               </ul>
             </li>
 -->
-						<li><a href="../sitemap.xml">Sitemap</a></li>
-						<li><a href="../feed.xml">Subscribe</a></li>
+			<li><a href="../sitemap.xml">Sitemap</a></li>
+			<li><a href="../feed.xml">Subscribe</a></li>
+			<li><a href="https://incubator.apache.org/guides/website.html" style="border:0px;" target="_target">
+                                 <img class="incubator-logo" src="../logos/apache-incubator.png"/></a></li>
           </ul>
+
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -125,179 +128,380 @@
 				<h1></h1>
 			</div>
 
-			<p><em>2018-09-06</em></p>
+			<p><em>2018-12-17</em></p>
 
-			<p><div class="sect1"> 
- <h2 id="CoreDesign">Apache Tamaya: API</h2> 
- <div class="sectionbody"> 
-  <div class="paragraph"> 
-   <p>Though Tamaya is a very powerful and flexible solution there are basically only a few simple core concepts required. Everything else uses or extends these basic mechanisms. As a starting point we recommend you read the corresponding <a href="../highleveldesign.html">High Level Design Documentation</a></p> 
-  </div> 
- </div> 
-</div> 
-<div class="sect1"> 
- <h2 id="API">The Tamaya API</h2> 
- <div class="sectionbody"> 
-  <div class="paragraph"> 
-   <p>The API provides the artifacts as described in the <a href="../highleveldesign.html">High Level Design Documentation</a>, which are:</p> 
-  </div> 
-  <div class="ulist"> 
-   <ul> 
-    <li> <p>The package org.apache.tamaya defines a simple but complete SE <strong>API</strong> for accessing key/value based <em>Configuration</em>:</p> 
-     <div class="ulist"> 
-      <ul> 
-       <li> <p>Configuration hereby models <em>configuration</em>, the main interface of Tamaya. Configuration provides</p> 
-        <div class="ulist"> 
-         <ul> 
-          <li> <p>access to literal key/value pairs.</p> </li> 
-          <li> <p>functional extension points (with, query) using a unary ConfigOperator or a function ConfigurationQuery&lt;T&gt;.</p> </li> 
-         </ul> 
-        </div> </li> 
-       <li> <p>ConfigurationProvider provides with getConfiguration() the static entry point for accessing configuration.</p> </li> 
-       <li> <p>ConfigException defines a runtime exception for usage by the configuration system.</p> </li> 
-       <li> <p>TypeLiteral provides a possibility to type safely define the target type to be returned in case non-String types are accessed.</p> </li> 
-       <li> <p>PropertyConverter, which defines conversion of configuration values (String) into any required target type.</p> </li> 
-      </ul> 
-     </div> </li> 
-    <li> <p>The package org.apache.tamaya.spi provides interfaces used for extending and/or adapting Tamaya’s core functionality, as well as artifacts for creating Configuration instances programmatically:</p> 
-     <div class="ulist"> 
-      <ul> 
-       <li> <p><em>PropertySource:</em> is the the interface to be implemented for adding configuration entries. A PropertySource hereby</p> 
-        <div class="ulist"> 
-         <ul> 
-          <li> <p>is minimalistic and can be implemented in any way. E.g. there is no distiction that the configuration data provided is managed locally, remotedely. There is even no requirement that the configuration data is always fully available. Summarizing a PropertySource</p> </li> 
-          <li> <p>provides property access for single key/value pairs in <em>raw</em> format (meaning no postprocessing is applied yet). A single property hereby is modelled as PropertyValue, which also includes its source and additional arbitrary metadata entries.</p> </li> 
-          <li> <p>can <em>optionally</em> provide access to a Map&lt;String,PropertyValue&gt;, providing all its properties at once.</p> </li> 
-          <li> <p>defines the default ordinal to be used for establishing the order of significance among all auto-discovered property sources.</p> </li> 
-         </ul> 
-        </div> </li> 
-       <li> <p><em>PropertySourceProvider:</em> allows to automatically register multiple property sources, e.g. all config files found in a file system folder..</p> </li> 
-       <li> <p>ConfigurationProviderSpi defines the interface to be implemented by the delegating bean that is implementing the ConfigurationProvider singleton.</p> </li> 
-       <li> <p>PropertyFilter allows filtering of property values prior getting returned to the caller. Filters by default are registered as global filters, filtering <em>raw</em> values. The final String value of a configuration entry is the final value after all registered filters have been applied.</p> </li> 
-       <li> <p>A PropertyValueCombinationPolicy optionally can be registered to change the logic how key/value pairs from subsequent property sources in the property source chain are combined to calculate the final <em>raw</em> value passed over to the filters registered.</p> </li> 
-       <li> <p>A ConfigurationContext is the container of all inner components (PropertySource, PropertyFilter, PropertyValueCombinationPolicy, PropertyConverter) required to implement a Configuration. Also the ordering of the property sources, filters and converters is defined by the context. A ConfigurationContext is automatically created on startup collecting and adding all registered artifacts. Based on this ConfigurationContext the <em>default</em> Configuration is created, which can be accessed from ConfigurationProvider.getConfiguration. Summarizing a ConfigurationContext contains the ordered property sources, property filters, converters and combination policy used. Once a ConfigurationContext is instanciated a corresponding Configuration instance can be created easily by calling ConfigurationProvider.createConfiguration(context).</p> </li> 
-       <li> <p>Finally Tamaya also supports <em>programmatically</em> creating Configuration instances and using them in your code as needed. This can be achieved most easily by building a custom ConfigurationContext using a ConfigurationContextBuilder. This builder can be obtained calling ConfigurationProvider.getConfigurationContextBuilder();.</p> </li> 
-       <li> <p>Finally ServiceContext and ServiceContextManager provide an abstraction to the underlying runtime environment, allowing different component loading and lifecycle strategies to be used. This is very useful since component (service) loading in Java SE, Java EE, OSGI and other runtime environments may be differ significantly. In most cases even extension programmers will not have to deal with these two artifacts.</p> </li> 
-      </ul> 
-     </div> </li> 
-   </ul> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="APIKeyValues">Key/Value Pairs</h3> 
-   <div class="paragraph"> 
-    <p>Basically configuration is a very generic concept. Therefore it should be modelled in a generic way. The most simple and most commonly used approach are simple literal key/value pairs. So the core building block of {name} are key/value pairs. You can think of a common .properties file, e.g.</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="title">
-     A simple properties file
-    </div> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-properties" data-lang="properties">a.b.c=cVal
+			<p><div class="sect1">
+<h2 id="CoreDesign">Apache Tamaya: API</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Though Tamaya is a very powerful and flexible solution there are basically only a few simple core concepts required.
+Everything else uses or extends these basic mechanisms. As a starting point we recommend you read the corresponding
+<a href="../highleveldesign.html">High Level Design Documentation</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="API">The Tamaya API</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The API provides the artifacts as described in the <a href="../highleveldesign.html">High Level Design Documentation</a>, which are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The package org.apache.tamaya defines a simple but complete SE <strong>API</strong> for accessing <em>Configuration</em>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Configuration hereby models <em>configuration</em>, the main interface of Tamaya. Configuration provides</p>
+<div class="ulist">
+<ul>
+<li>
+<p>access to literal key/value pairs.</p>
+</li>
+<li>
+<p>functional extension points (with, query) using a unary ConfigOperator or
+a function ConfigurationQuery&lt;T&gt;.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Configuration also provides with current() and current(ClassLoader) static access point for
+obtaining the current configuration.</p>
+</li>
+<li>
+<p>ConfigurationSnapshot declares an immutable configuration instance, which supports consistent property access.</p>
+</li>
+<li>
+<p>ConfigException defines a runtime exception for usage by the configuration system.</p>
+</li>
+<li>
+<p>TypeLiteral provides a possibility to type safely define the target type to be returned in case non-String types
+are accessed. It is especially useful when accessing collections from Tamaya.</p>
+</li>
+<li>
+<p>PropertyConverter, which defines conversion of configuration values (one or multiple Strings) into any
+required target type.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The package org.apache.tamaya.spi provides interfaces used for extending and/or
+adapting Tamaya&#8217;s core functionality, as well as artifacts for creating
+Configuration instances programmatically:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><em>PropertySource:</em> is the the interface to be implemented for adding configuration entries. A PropertySource hereby</p>
+<div class="ulist">
+<ul>
+<li>
+<p>is minimalistic and can be implemented in any way. E.g. there is no distiction that
+the configuration data provided is managed locally, remotely. There is even no
+requirement that the configuration data is always fully available. Summarizing a
+PropertySource</p>
+</li>
+<li>
+<p>provides property access for property values. A single property value hereby is modelled as PropertyValue,
+which by default contains a single literal value. Nevertheles Tamaya also supports more complex scenarios
+by allowing property values to have children either as array/list type or as named fields. These children
+themselves are recursively also modelled by property values. This makes it possible to map also complex
+structures such as JSON, XML or YAML data. Finally a property value also may contain additional metadata entries.</p>
+</li>
+<li>
+<p>can <em>optionally</em> provide access to a Map&lt;String,PropertyValue&gt;, providing all its properties at once.</p>
+</li>
+<li>
+<p>defines the default ordinal to be used for establishing the order of significance among all
+auto-discovered property sources.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><em>PropertySourceProvider:</em> allows to automatically register multiple property sources, e.g. all config files found in
+a file system folder..</p>
+</li>
+<li>
+<p>ConfigurationProviderSpi defines the interface to be implemented by the delegating bean that is implementing the
+ConfigurationProvider singleton.</p>
+</li>
+<li>
+<p>PropertyFilter allows filtering of property values prior getting returned to the caller. Filters by default are
+registered as global filters. The final value of a configuration entry is the final value after all registered
+filters have been applied.</p>
+</li>
+<li>
+<p>A ConfigurationContext is the container of all components that make up a configuration (PropertySource,
+PropertyFilter, PropertyConverter, MetadataProvider) required to implement a Configuration. Also the ordering
+of the property sources, filters and converters is defined by the context.
+By default a ConfigurationContext is automatically created on first use for each classloader collecting and
+adding all registered artifacts. Based on a ConfigurationContext a Configuration can be created.
+Summarizing a ConfigurationContext contains the ordered property sources, property filters, converters and combination
+policy used. Once a ConfigurationContext is instanciated a corresponding Configuration instance can be
+created easily using ConfigurationBuilder.</p>
+</li>
+<li>
+<p>Whereas the Tamaya&#8217;s API provides access to automatic configuration resources, it also allows to create
+<em>programmatically</em> Configuration instances. This can be achieved using a
+ConfigurationContextBuilder. This builder can be obtained calling Configuration.createConfigurationBuilder();.</p>
+</li>
+<li>
+<p>Finally ServiceContext and ServiceContextManager provide an abstraction to the underlying runtime environment,
+allowing different component loading and lifecycle strategies to be used. This is very useful since component (service)
+loading in Java SE, Java EE, OSGI and other runtime environments may be differ significantly. In most cases even
+extension programmers will not have to deal with these internals.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="APIKeyValues">Key/Value Pairs and More</h3>
+<div class="paragraph">
+<p>Basically configuration is a very generic concept. Therefore it should be modelled in a generic way. The most simple
+and most commonly used approach are simple literal key/value pairs. So the core building block of {name} are key/value
+pairs. You can think of a common .properties file, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="title">A simple properties file</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties">a.b.c=cVal
 a.b.c.1=cVal1
 a.b.c.2=cVal2
 a=aVal
 a.b=abVal
-a.b2=abVal</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Now you can use java.util.Properties to read this file and access the corresponding properties, e.g.</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-properties" data-lang="properties">Properties props = new Properties();
+a.b2=abVal</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now you can use java.util.Properties to read this file and access the corresponding properties, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties">Properties props = new Properties();
 props.readProperties(...);
 String val = props.getProperty("a.b.c");
 val = props.getProperty("a.b.c.1");
-...</code></pre> 
-    </div> 
-   </div> 
-   <div class="sect3"> 
-    <h4 id="_why_using_strings_only">Why Using Strings Only</h4> 
-    <div class="paragraph"> 
-     <p>There are good reason to keep of non String-values as core storage representation of configuration. Mostly there are several huge advantages:</p> 
-    </div> 
-    <div class="ulist"> 
-     <ul> 
-      <li> <p>Strings are simple to understand</p> </li> 
-      <li> <p>Strings are human readable and therefore easy to prove for correctness</p> </li> 
-      <li> <p>Strings can easily be used within different language, different VMs, files or network communications.</p> </li> 
-      <li> <p>Strings can easily be compared and manipulated</p> </li> 
-      <li> <p>Strings can easily be searched, indexed and cached</p> </li> 
-      <li> <p>It is very easy to provide Strings as configuration, which gives much flexibility for providing configuration in production as well in testing.</p> </li> 
-      <li> <p>and more…​</p> </li> 
-     </ul> 
-    </div> 
-    <div class="paragraph"> 
-     <p>On the other side there are also disadvantages:</p> 
-    </div> 
-    <div class="ulist"> 
-     <ul> 
-      <li> <p>Strings are inherently not type safe, they do not provide validation out of the box for special types, such as numbers, dates etc.</p> </li> 
-      <li> <p>In many cases you want to access configuration in a typesafe way avoiding conversion to the target types explicitly throughout your code.</p> </li> 
-      <li> <p>Strings are neither hierarchical nor multi-valued, so mapping hierarchical and collection structures requires some extra efforts.</p> </li> 
-     </ul> 
-    </div> 
-    <div class="paragraph"> 
-     <p>Nevertheless most of these advantages can be mitigated easily, hereby still keeping all the benefits from above:</p> 
-    </div> 
-    <div class="ulist"> 
-     <ul> 
-      <li> <p>Adding type safe adapters on top of String allow to add any type easily, that can be directly mapped out of Strings. This includes all common base types such as numbers, dates, time, but also timezones, formatting patterns and more.</p> </li> 
-      <li> <p>Also multi-valued, complex and collection types can be defined as a corresponding PropertyAdapter knows how to parse and create the target instance required.</p> </li> 
-      <li> <p>String s also can be used as references pointing to other locations and formats, where configuration is accessible.</p> </li> 
-     </ul> 
-    </div> 
-    <div class="paragraph"> 
-     <p>[[API Configuration]]</p> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_configuration">Configuration</h3> 
-   <div class="paragraph"> 
-    <p>Configuration is the main artifact provided by Tamaya. It allows reading of single property values or all known properties, but also supports type safe access:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="title">
-     Interface Configuration
-    </div> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface Configuration{
+...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>But we also have more complex configuration mechanism today. For example YAML is widely used format, which also
+supports lists and maps. Basically these can be mapped also as key/value pairs. Unfortunately this is not very
+useful in some cases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a configuration client want to access a list of server configurations</p>
+</li>
+<li>
+<p>a configuration client wants to map structures with named fields.</p>
+</li>
+<li>
+<p>both of the above.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>As an example think of a server, which wants to extract a list of all members in the current cluster. Hereby:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A owner is modelled by a MembeConfigr class, with the fields serverId, serverName, serverURL.</p>
+</li>
+<li>
+<p>The current members should be accessed as list, as follows:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">List&lt;MemberConfig&gt; members = configuration.get("cluster.members", new TypeLiteral&lt;List&lt;MemberConfig&gt;&gt;();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This coud be modelled as property as well, but it is more convenient to let Tamaya have a more flexible model
+to represent a configuration internally. This is why a PropertyValue can have one of three flavors:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>it is a simple literal value.</p>
+</li>
+<li>
+<p>it is an object containing none to many child property values as named fields.</p>
+</li>
+<li>
+<p>it is an array containing none to many child properties as unnamed array instances.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Summarizing Tamaya is capable of fully represent the structures described by widely used configuration file formats.</p>
+</div>
+<div class="sect3">
+<h4 id="_why_using_strings_only">Why Using Strings Only</h4>
+<div class="paragraph">
+<p>There are good reason to keep of non String-values as core storage representation of configuration. Mostly
+there are several advantages:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Strings are simple to understand</p>
+</li>
+<li>
+<p>Strings are human readable and therefore easy to prove for correctness</p>
+</li>
+<li>
+<p>Strings can easily be used within different language, different VMs, files or network communications.</p>
+</li>
+<li>
+<p>Strings can easily be compared and manipulated</p>
+</li>
+<li>
+<p>Strings can easily be searched, indexed and cached</p>
+</li>
+<li>
+<p>It is very easy to provide Strings as configuration, which gives much flexibility for providing configuration in
+production as well in testing.</p>
+</li>
+<li>
+<p>and more&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>On the other side there are also disadvantages:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Strings are inherently not type safe, they do not provide validation out of the box for special types, such as
+numbers, dates etc.</p>
+</li>
+<li>
+<p>In many cases you want to access configuration in a typesafe way avoiding conversion to the target types explicitly
+throughout your code.</p>
+</li>
+<li>
+<p>Strings are neither hierarchical nor multi-valued, so mapping hierarchical and collection structures requires some
+extra efforts.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Nevertheless most of these advantages can be mitigated easily, hereby still keeping all the benefits from above:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Adding type safe adapters on top of String allow to add any type easily, that can be directly mapped out of Strings.
+This includes all common base types such as numbers, dates, time, but also timezones, formatting patterns and more.</p>
+</li>
+<li>
+<p>Also multi-valued, complex and collection types can be defined as a corresponding PropertyAdapter knows how to
+parse and create the target instance required.</p>
+</li>
+<li>
+<p>String s also can be used as references pointing to other locations and formats, where configuration is
+accessible.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>[[API Configuration]]</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration">Configuration</h3>
+<div class="paragraph">
+<p>Configuration is the main artifact provided by Tamaya. It allows reading of single property values or all known
+properties, but also supports type safe access:</p>
+</div>
+<div class="listingblock">
+<div class="title">Interface Configuration</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface Configuration{
     String get(String key);
     String getOrDefault(String key, String value);
     &lt;T&gt; T get(String key, Class&lt;T&gt; type);
     &lt;T&gt; T getOrDefault(String key, Class&lt;T&gt; type, T defaultValue);
     &lt;T&gt; T get(String key, TypeLiteral&lt;T&gt; type);
     &lt;T&gt; T getOrDefault(String key, TypeLiteral&lt;T&gt; type, T defaultValue);
+    &lt;T&gt; Optional&lt;T&gt; getOptional(String key, TypeLiteral&lt;T&gt; type);
+    &lt;T&gt; Optional&lt;T&gt; getOptional(String key, Class&lt;T&gt; type);
     Map&lt;String,String&gt; getProperties();
 
     // extension points
-    Configuration with(ConfigOperator operator);
-    &lt;T&gt; T query(ConfigQuery&lt;T&gt; query);
+    Configuration map(UnaryOperator&lt;Configuration&gt; operator);
+    &lt;T&gt; T adapt(Function&lt;Configuration,T&gt; adapter);
+
+    // Snapshots for consistent config access
+    ConfigurationSnapshot getSnapshot(Iterable&lt;String&gt; keys);
+    ConfigurationSnapshot getSnapshot(String... keys);
 
     ConfigurationContext getContext();
-}</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Hereby</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>&lt;T&gt; T get(String, Class&lt;T&gt;) provides type safe accessors for all basic wrapper types of the JDK.</p> </li> 
-     <li> <p>with, query provide the extension points for adding additional functionality.</p> </li> 
-     <li> <p>getProperties() provides access to all key/values, whereas entries from non scannable property sources may not be included.</p> </li> 
-     <li> <p>getOrDefault allows to pass default values as needed, returned if the requested value evaluated to null.</p> </li> 
-     <li> <p>getConfigurationContext() allows access to the underlying components of a Configuration instance.</p> </li> 
-    </ul> 
-   </div> 
-   <div class="paragraph"> 
-    <p>The class TypeLiteral is basically similar to the same class provided with CDI:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public class TypeLiteral&lt;T&gt; implements Serializable {
+    ConfigurationBuilder toBuilder();
+    static Configuration current();
+    static Configuration current(ClassLoader classsLoader);
+    static void setCurrent(Configuration config);
+    static void setCurrent(Configuration config, ClassLoader classLoader);
+    static ConfigurationBuilder createConfigurationBuilder();
+
+    // the deault EMPTY configuration
+    static Configuration EMPTY{}
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hereby</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>&lt;T&gt; T get(String, Class&lt;T&gt;) provides type safe accessors for all basic wrapper types of the JDK.</p>
+</li>
+<li>
+<p>map, adapt provide the extension points for adding additional functionality.</p>
+</li>
+<li>
+<p>getProperties() provides access to all key/values, whereas entries from non scannable property sources may not
+be included.</p>
+</li>
+<li>
+<p>getOrDefault allows to pass default values as needed, returned if the requested value evaluated to null.</p>
+</li>
+<li>
+<p>getConfigurationContext() allows access to the underlying components of a Configuration instance.</p>
+</li>
+<li>
+<p>the static methods allow access for obtaining or changing Configuration.</p>
+</li>
+<li>
+<p>getSnapshot allows to create a configuration snapshot, which guarantees consistent and immutable access to
+a Configuration. It can optionally be constraint to a set of keys, by default a full snapshot is created.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Accessor methods also support multi-key access, where an Iterable of keys can be provided. This basically
+is equivalent to multiple calls to this method, where the result of the first successful call (returning
+configuration data) will end the evaluation chain.</p>
+</div>
+<div class="paragraph">
+<p>The class TypeLiteral is basically similar to the same class provided with CDI:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public class TypeLiteral&lt;T&gt; implements Serializable {
 
     [...]
 
@@ -317,647 +521,870 @@ val = props.getProperty("a.b.c.1");
     public static Type getTypeParameter(Class&lt;?&gt; clazz, Class&lt;?&gt; interfaceType){...}
 
     [...]
-}</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Instances of Configuration can be accessed from the ConfigurationProvider singleton:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="title">
-     Accessing Configuration
-    </div> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration config = ConfigurationProvider.getConfiguration();</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Hereby the singleton is backed up by an instance of ConfigurationProviderSpi, which is managed by the ServiceContextManager (see later).</p> 
-   </div> 
-   <div class="sect3"> 
-    <h4 id="PropertyConverter">Property Type Conversion</h4> 
-    <div class="paragraph"> 
-     <p>As illustrated in the previous section, Configuration also allows access of typed values. Internally all properties are strictly modelled as Strings. As a consequence non String values must be derived by converting the String values into the required target type. This is achieved with the help of PropertyConverters:</p> 
-    </div> 
-    <div class="listingblock"> 
-     <div class="content"> 
-      <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface PropertyConverter&lt;T&gt;{
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Instances of Configuration can be accessed using the Configuration.current() or Configuration.current(ClassLoader)
+singleton:</p>
+</div>
+<div class="listingblock">
+<div class="title">Accessing Configuration</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration config = Configuration.current();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hereby the singleton is backed up by an instance of ConfigurationProviderSpi, which is managed by the
+ServiceContextManager (see later).</p>
+</div>
+<div class="sect3">
+<h4 id="PropertyConverter">Property Type Conversion</h4>
+<div class="paragraph">
+<p>As illustrated in the previous section, Configuration also allows access of typed values. Internally
+all properties are strictly modelled as Strings. As a consequence non String values must be derived by converting the
+String values into the required target type. This is achieved with the help of PropertyConverters:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface PropertyConverter&lt;T&gt;{
     T convert(String value, ConversionContext context);
-}</code></pre> 
-     </div> 
-    </div> 
-    <div class="paragraph"> 
-     <p>The ConversionContext contains additional meta-information about the key accessed, including the key’a name and additional metadata. This can be very useful, e.g. when the implementation of a PropertyConverter requires additional metadata for determining the correct conversion to be applied.</p> 
-    </div> 
-    <div class="paragraph"> 
-     <p>PropertyConverter instances can be implemented and registered by default using the Java ServiceLoader. The ordering of the registered converters, by default, is based on the annotated @Priority values (priority 0 is assumed if the annotation is missing). The first non-null result of a converter is returned as the final configuration value.</p> 
-    </div> 
-    <div class="paragraph"> 
-     <p>Access to converters is provided by the current ConfigurationContext, which is accessible calling Configuration.getConfigurationContext().</p> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="ExtensionPoints">Extension Points</h3> 
-   <div class="paragraph"> 
-    <p>We are well aware of the fact that this library will not be able to cover all kinds of use cases. Therefore we have added <em>functional</em> extension mechanisms to Configuration that were used in other areas of the Java eco-system (e.g. Java Time API and JSR 354) as well:</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>with(ConfigOperator operator) allows to pass arbitrary unary functions that take and return instances of Configuration. Operators can be used to cover use cases such as filtering, configuration views, security interception and more.</p> </li> 
-     <li> <p>query(ConfigQuery query) allows to apply a function returning any kind of result based on a Configuration instance. Queries are used for accessing/deriving any kind of data based on of a Configuration instance, e.g. accessing a Set&lt;String&gt; of root keys present.</p> </li> 
-    </ul> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Both interfaces hereby are functional interfaces. Because of backward compatibility with Java 7 we did not use UnaryOperator and Function from the java.util.function package. Nevertheless usage is similar, so you can use Lambdas and method references in Java 8:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="title">
-     Applying a ConfigurationQuery using a method reference
-    </div> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigSecurity securityContext = ConfigurationProvider.getConfiguration().query(ConfigSecurity::targetSecurityContext);</code></pre> 
-    </div> 
-   </div> 
-   <div class="admonitionblock note"> 
-    <table> 
-     <tbody>
-      <tr> 
-       <td class="icon"> 
-        <div class="title">
-         Note
-        </div> </td> 
-       <td class="content"> ConfigSecurity is an arbitrary class only for demonstration purposes. </td> 
-      </tr> 
-     </tbody>
-    </table> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Operator calls basically look similar:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="title">
-     Applying a ConfigurationOperator using a lambda expression:
-    </div> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration secured = ConfigurationProvider.getConfiguration()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The ConversionContext contains additional meta-information about the key accessed, including the key&#8217;a name and
+additional metadata. This can be very useful, e.g. when the implementation of a PropertyConverter requires additional
+metadata for determining the correct conversion to be applied.</p>
+</div>
+<div class="paragraph">
+<p>PropertyConverter instances can be implemented and registered by default using the Java ServiceLoader. The ordering
+of the registered converters, by default, is based on the annotated @Priority values (priority 0 is assumed if the
+annotation is missing). The first non-null result of a converter is returned as the final configuration value.</p>
+</div>
+<div class="paragraph">
+<p>Access to converters is provided by the current ConfigurationContext, which is accessible calling Configuration.getConfigurationContext().</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ExtensionPoints">Extension Points</h3>
+<div class="paragraph">
+<p>We are well aware of the fact that this library will not be able to cover all kinds of use cases. Therefore
+we have added <em>functional</em> extension mechanisms to Configuration that were used in other areas of the
+Java eco-system (e.g. Java Time API and JSR 354) as well:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>map(UnaryOperator&lt;Configuration&gt; operator) allows to pass arbitrary unary functions that take and return instances of
+Configuration. Operators can be used to cover use cases such as filtering, configuration views, security
+interception and more.</p>
+</li>
+<li>
+<p>adapt(Function&lt;Configuration,T) allows to apply a function returning any kind of result based on a
+Configuration instance. Queries are used for accessing/deriving any kind of data based on of a Configuration
+instance, e.g. accessing a Set&lt;String&gt; of root keys present.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Both interfaces hereby are functional interfaces. Because of backward compatibility with Java 7 we did not use
+UnaryOperator and Function from the java.util.function package. Nevertheless usage is similar, so you can
+use Lambdas and method references in Java 8:</p>
+</div>
+<div class="listingblock">
+<div class="title">Applying an Adapter using a method reference</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigSecurity securityContext = Configuration.current().adapt(ConfigSecurity::targetSecurityContext);</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+ConfigSecurity is an arbitrary class only for demonstration purposes.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Operator calls basically look similar:</p>
+</div>
+<div class="listingblock">
+<div class="title">Applying a ConfigurationOperator using a lambda expression:</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration secured = Configuration.current()
                            .with((config) -&gt;
                                  config.get("foo")!=null?;
                                  FooFilter.apply(config):
-                                 config);</code></pre> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="ConfigException">ConfigException</h3> 
-   <div class="paragraph"> 
-    <p>The class ConfigException models the base <strong>runtime</strong> exception used by the configuration system.</p> 
-   </div> 
-  </div> 
- </div> 
-</div> 
-<div class="sect1"> 
- <h2 id="SPI">SPI</h2> 
- <div class="sectionbody"> 
-  <div class="sect2"> 
-   <h3 id="PropertyValue">PropertyValue, PropertyValueBuilder</h3> 
-   <div class="paragraph"> 
-    <p>On the API properties are represented as Strings only, whereas in the SPI value are represented as ProeprtyValue, which contain</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>the property’s <em>key</em> (String)</p> </li> 
-     <li> <p>the property’s <em>value</em> (String)</p> </li> 
-     <li> <p>the property’s <em>source</em> (String, typically equals to the property source’s name)</p> </li> 
-     <li> <p>any additional meta-data represented as <em>Map&lt;String,String&gt;</em></p> </li> 
-    </ul> 
-   </div> 
-   <div class="paragraph"> 
-    <p>This helps to kepp all value relevant data together in one place and also allows to choose any kind of representation for meta-data entries. The PropertyValue itself is a final and <em>serializable</em> data container, which also has a powerful builder API (e.g. for using within filters):</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public final class PropertyValue implements Serializable{
+                                 config);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ConfigException">ConfigException</h3>
+<div class="paragraph">
+<p>The class ConfigException models the base <strong>runtime</strong> exception used by the configuration system.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="SPI">SPI</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="PropertyValue">PropertyValue</h3>
+<div class="paragraph">
+<p>On the API properties are represented as Strings only, whereas in the SPI value are represented as ProeprtyValue,
+which contain</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the property&#8217;s <em>key</em> (String)</p>
+</li>
+<li>
+<p>the property&#8217;s <em>value</em> (String)</p>
+</li>
+<li>
+<p>the property&#8217;s <em>source</em> (String, typically equals to the property source&#8217;s name)</p>
+</li>
+<li>
+<p>any additional meta-data represented as <em>Map&lt;String,String&gt;</em></p>
+</li>
+<li>
+<p>named or unnamed child objects, arrays or text filters.s</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This helps to kepp all value relevant data together in one place and also allows to choose any kind of
+representation for meta-data entries. The PropertyValue itself is a final and <em>serializable</em> data container,
+which also has a powerful builder API (e.g. for using within filters):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public final class PropertyValue implements Serializable{
     [...]
 
-    public static PropertyValue of(String key, String value, String source);
+    public static ObjectValue createObject(){
+    public static ListValue createList(){
+    public static PropertyValue createValue(String key, String value){
+    public static ListValue createList(String key){
+    public static ObjectValue createObject(String key)
+
+    public final boolean isImmutable();
+    public PropertyValue immutable();
+    public PropertyValue mutable();
+    public final ValueType getValueType();
 
     public String getKey();
+    public String getQualifiedKey();
     public String getSource();
     public String getValue();
+    public PropertyValue setValue(String value);
     public Map&lt;String, String&gt; getMetaEntries();
     public String getMetaEntry(String key);
-    public PropertyValueBuilder toBuilder();
 
-    public static PropertyValueBuilder builder(String key, String source);
-    public static PropertyValueBuilder builder(String key, String value, String source);
-
-    /**
-     * Maps a map of {@code Map&lt;String,String&gt;} to a {@code Map&lt;String,PropertyValue&gt;}.
-     * @param config the String based map, not null.
-     * @param source the source name, not null.
-     * @return the corresponding value based map.
-     */
+    public final PropertyValue getParent();
+    public final int getVersion();
+    public final boolean isRoot();
+    public final boolean isLeaf();
     public static Map&lt;String,PropertyValue&gt; map(Map&lt;String, String&gt; config, String source);
-
-    /**
-     * Maps a map of {@code Map&lt;String,String&gt;} to a {@code Map&lt;String,PropertyValue&gt;}.
-     * @param config the String based map, not null.
-     * @param source the source name, not null.
-     * @param metaData additional metadata, not null.
-     * @return the corresponding value based map.
-     */
     public static Map&lt;String,PropertyValue&gt; map(Map&lt;String, String&gt; config, String source,
-                                                Map&lt;String,String&gt; metaData);
-}</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>When writing your own datasource you can easily create your own PropertyValues:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">PropertyValue val = PropertyValue.of("key","value","source");</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>If you want to add additional metadata in most cases you would use the builder API:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">PropertyValue val = PropertyValue.builder("key","value","source")
-                     .addMetaEntry("figured", "true")
-                     .build();</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>PropertyValues are type safe value objects. To change a value you have to create a new instance using a builder:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">PropertyValue val = PropertyValue.builder("key","value","source")
-                     .addMetaEntry("figured", "true")
-                     .build();
-PropertyValue newVal = val.toBuilder().setValue("anotehrValue")
-                     .addMetaEntry("remote", "true")
-                     .removeMetaEntry("figured")
-                     .build();</code></pre> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="PropertySource">Interface PropertySource</h3> 
-   <div class="paragraph"> 
-    <p>We have seen that constraining configuration aspects to simple literal key/value pairs provides us with an easy to understand, generic, flexible, yet extensible mechanism. Looking at the Java language features a java.util.Map&lt;String, String&gt; and java.util.Properties basically model these aspects out of the box.</p> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Though there are advantages in using these types as a model, there are some drawbacks. Notably implementation of these types is far not trivial and the collection API offers additional functionality not useful when aiming for modelling simple property sources.</p> 
-   </div> 
-   <div class="paragraph"> 
-    <p>To render an implementation of a custom PropertySource as convenient as possible only the following methods were identified to be necessary:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface PropertySource{
-      int getOrdinal();
+                                                Map&lt;String,String&gt; metaData);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When writing your own datasource you can easily create your own PropertyValues:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">PropertyValue val = PropertyValue.createValue("key","value");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also add additional metadata:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">val.addMetaEntry("figured", "true");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>PropertyValues are type safe value objects. To render a value
+immutable just call the corresponding method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">//mutable instance
+PropertyValue val = ...;
+
+// immutable instance
+PropertyValue newVal = val.immutable();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Changing an immutable value will result in a IllegalStateException. The process also works the other way
+round, so an immutable instance can be rendered into a mutable as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">//immutable instance
+PropertyValue val = ...;
+
+// mutable instance
+PropertyValue newVal = val.mutable();</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ObjectValue">ObjectValue and ListValue</h4>
+<div class="paragraph">
+<p>In many cases using PropertyValues is sufficient. Nevertheless when handling more complex configuration sources, such
+as file sources mapping hierarchical structures helps a lot. This is what ObjectValue and listValue are for:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ObjectValue defines a PropertyValue that has an arbitrary number of child values, identified by a unique text key.</p>
+</li>
+<li>
+<p>ListValue defines a PropertyValue that has an arbitrary number of child values, organized as a list of
+values.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When rendered to Map&lt;String,String&gt; generated keys look very familiar:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties">a.a=valA
+a.b=valB
+a.list[0]=val0
+a.list[1]=val1
+a.c=valC</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hereby</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a can be mapped as an ObjectValue, with a,b,c being normale PropertyValue instances.</p>
+</li>
+<li>
+<p>list is also a child of a, but of type ListValue containing two PropertyValue instances.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="PropertySource">Interface PropertySource</h3>
+<div class="paragraph">
+<p>We have seen that constraining configuration aspects to simple literal key/value pairs provides us with an easy to
+understand, generic, flexible, yet extensible mechanism. Looking at the Java language features a java.util.Map&lt;String,
+String&gt; and java.util.Properties basically model these aspects out of the box.</p>
+</div>
+<div class="paragraph">
+<p>Though there are advantages in using these types as a model, there are some drawbacks. Notably implementation
+of these types is far not trivial and the collection API offers additional functionality not useful when aiming
+for modelling simple property sources.</p>
+</div>
+<div class="paragraph">
+<p>To render an implementation of a custom PropertySource as convenient as possible only the following methods were
+identified to be necessary:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface PropertySource{
+
+      default int getOrdinal();
       String getName();
       PropertyValue get(String key);
-      boolean isScannable();
       Map&lt;String,PropertyValue&gt; getProperties();
-}</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Hereby</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>get looks similar to the methods on Map. It may return null in case no such entry is available.</p> </li> 
-     <li> <p>getProperties allows to extract all property data to a Map&lt;String,PropertyValue&gt;. Other methods like containsKey, keySet as well as streaming operations then can be applied on the returned Map instance.</p> </li> 
-     <li> <p>But not in all scenarios a property source is able to provide all values at once (aka to be <em>scannable</em>), e.g. when looking up keys is very inefficient, it may not make sense to iterate over all keys to collect the corresponding properties. If a PropertySource is defined as non scannable accesses to getProperties() may not return all key/value pairs that would be available when accessed directly using the PropertyValue get(String) method. The fact if a PropertySource is <em>scannable</em> can be determined by calling isScannable().</p> </li> 
-     <li> <p>int getOrdinal() defines the ordinal of the PropertySource. Property sources are managed in an ordered chain, where property sources with higher ordinals override ones with lower ordinals. If the ordinal of two property sources is the same, the natural ordering of the fully qualified class names of the property source implementations is used. The reason for not using @Priority annotations is that property sources can define dynamically their ordinals, e.g. based on a property contained with the configuration itself. Implementations of this API may provide additional functionality to adapt the default ordinal of auto-discovered property sources.</p> </li> 
-     <li> <p>Finally getName() returns a (unique) name that identifies the PropertySource within its containing ConfigurationContext.</p> </li> 
-    </ul> 
-   </div> 
-   <div class="paragraph"> 
-    <p>This interface can be implemented by any kind of logic. It could be a simple in memory map, a distributed configuration provided by a data grid, a database, the JNDI tree or other resources. Or it can be a combination of multiple property sources with additional combination/aggregation rules in place.</p> 
-   </div> 
-   <div class="paragraph"> 
-    <p>PropertySources to be picked up automatically and be added to the <em>default</em> Configuration, must be registered using the Java +ServiceLoader (or the mechanism provided by the current active ServiceContext, see later in this document for further details).</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="PropertySourceProvider">Interface PropertySourceProvider</h3> 
-   <div class="paragraph"> 
-    <p>Instances of this type can be used to register multiple instances of PropertySource.</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">// @FunctionalInterface in Java 8
+
+      ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hereby</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>get looks similar to the methods on Map. It may return null in case no such entry is available.</p>
+</li>
+<li>
+<p>getProperties allows to extract all property data to a Map&lt;String,PropertyValue&gt;. Other methods like containsKey,
+keySet as well as streaming operations then can be applied on the returned Map instance.</p>
+</li>
+<li>
+<p>int getOrdinal() defines the ordinal of the PropertySource. Property sources are managed in an ordered chain, where
+property sources with higher ordinals override ones with lower ordinals. If the ordinal of two property sources is
+the same, the natural ordering of the fully qualified class names of the property source implementations is used.
+The reason for not using @Priority annotations is that property sources can define dynamically their ordinals,
+e.g. based on a property contained with the configuration itself.
+Implementations of this API may provide additional functionality to adapt the default ordinal of auto-discovered
+property sources.</p>
+</li>
+<li>
+<p>Finally getName() returns a (unique) name that identifies the PropertySource within its containing ConfigurationContext.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Not in all scenarios a property source is able to provide all values at once, e.g.
+      when looking up keys is very inefficient. In this case
+      getProperties() may not return all key/value pairs that would be available when accessed directly using the
+      PropertyValue get(String) method.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This interface can be implemented by any kind of logic. It could be a simple in memory map, a distributed configuration
+provided by a data grid, a database, the JNDI tree or other resources. Or it can be a combination of multiple
+property sources with additional combination/aggregation rules in place.</p>
+</div>
+<div class="paragraph">
+<p>PropertySources to be picked up automatically and be added to the <em>default</em> Configuration, must be registered
+using the Java +ServiceLoader (or the mechanism provided by the current active ServiceContext, see later in this
+document for further details).</p>
+</div>
+<div class="sect3">
+<h4 id="_consistent_configuration_access">Consistent Configuration Access</h4>
+<div class="paragraph">
+<p>For consistent configuration access using Snapshots property sources may provide additional services:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public interface PropertySource{
+
+      ...
+
+      // Method for consistent configuration access
+
+      default ChangeSupport getChangeSupport();
+      default String getVersion();
+      default void addChangeListener(BiConsumer&lt;Set&lt;String&gt;, PropertySource&gt; l);
+      default void removeChangeListener(BiConsumer&lt;Set&lt;String&gt;, PropertySource&gt; l);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These methods allow to determine Tamaya if all values accessed are consistent. The idea behind is that a
+PropertySource may change during a configuration evaluation. Providing a version allows the configuration system
+to detect such a change and restart the evaluation. Additionally registering of change listeners allow actively
+listening for changes. Since not all implementations may support versioning the may declare their capabilities:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>getChangeSupport() declares the versioning capabilities, possible values are UNSUPPORTED,SUPPORTED,IMMUTABLE.</p>
+</li>
+<li>
+<p>getVersion() returns a version. Returning a new String value signals c change in the property source.</p>
+</li>
+<li>
+<p>add/removeChangeListener allows to add or remove listeners.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="PropertySourceProvider">Interface PropertySourceProvider</h3>
+<div class="paragraph">
+<p>Instances of this type can be used to register multiple instances of PropertySource.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@FunctionalInterface
 public interface PropertySourceProvider{
     Collection&lt;PropertySource&gt; getPropertySources();
-}</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>This allows to evaluate the property sources to be read/that are available dynamically. All property sources are read out and added to the current chain of PropertySource instances within the current ConfigurationContext, refer also to <a id="ConfigurationContext"></a>.</p> 
-   </div> 
-   <div class="paragraph"> 
-    <p>PropertySourceProviders are by default registered using the Java ServiceLoader or the mechanism provided by the current active ServiceContext.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="PropertyFilter">Interface PropertyFilter</h3> 
-   <div class="paragraph"> 
-    <p>Also PropertyFilters can be added to a Configuration. They are evaluated each time before a configuration value is passed to the user. Filters can be used for multiple purposes, such as</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>resolving placeholders</p> </li> 
-     <li> <p>masking sensitive entries, such as passwords</p> </li> 
-     <li> <p>constraining visibility based on the current active user</p> </li> 
-     <li> <p>…​</p> </li> 
-    </ul> 
-   </div> 
-   <div class="paragraph"> 
-    <p>For PropertyFilters to be picked up automatically and added to the <em>default</em> Configuration must be,by default, registered using the Java ServiceLoader (or the mechanism provided by the current active ServiceContext). Similar to property sources they are managed in an ordered filter chain, based on the class level @Priority annotations (assuming 0 if none is present).</p> 
-   </div> 
-   <div class="paragraph"> 
-    <p>A PropertyFilter is defined as follows:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">// Functional Interface
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This allows to evaluate the property sources to be read/that are available dynamically. All property sources
+are read out and added to the current chain of PropertySource instances within the current ConfigurationContext,
+refer also to <a id="ConfigurationContext"></a>.</p>
+</div>
+<div class="paragraph">
+<p>PropertySourceProviders are by default registered using the Java ServiceLoader or the mechanism provided by the
+current active ServiceContext.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="PropertyFilter">Interface PropertyFilter</h3>
+<div class="paragraph">
+<p>Also PropertyFilters can be added to a Configuration. They are evaluated each time before a configuration value
+is passed to the user. Filters can be used for multiple purposes, such as</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>resolving placeholders</p>
+</li>
+<li>
+<p>masking sensitive entries, such as passwords</p>
+</li>
+<li>
+<p>constraining visibility based on the current active user</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For PropertyFilters to be picked up automatically and added to the <em>default</em> Configuration must be,by default,
+registered using the Java ServiceLoader (or the mechanism provided by the current active ServiceContext).
+Similar to property sources they are managed in an ordered filter chain, based on the
+class level @Priority annotations (assuming 0 if none is present).</p>
+</div>
+<div class="paragraph">
+<p>A PropertyFilter is defined as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@FunctionalInterface
 public interface PropertyFilter{
     PropertyValue filterProperty(PropertyValue value, FilterContext context);
-}</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Hereby:</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>returning null will remove the key from the final result.</p> </li> 
-     <li> <p>non null values are used as the current value of the key. Nevertheless for resolving multi-step dependencies filter evaluation has to be continued as long as filters are still changing some of the values to be returned. To prevent possible endless loops after a defined number of loops evaluation is stopped.</p> </li> 
-     <li> <p>FilterContext provides additional metdata, including the property accessed, which is useful in many use cases.</p> </li> 
-    </ul> 
-   </div> 
-   <div class="paragraph"> 
-    <p>This method is called each time a single entry is accessed, and for each property in a full properties result.</p> 
-   </div> 
-   <div class="sect3"> 
-    <h4 id="PropertyValueCombinationPolicy">Interface PropertyValueCombinationPolicy</h4> 
-    <div class="paragraph"> 
-     <p>This interface is purely optional and can be used to adapt the way how property key/value pairs are combined to build up the final configuration <em>raw</em> value to be passed over to the PropertyFilters. The default implementation is just overriding all values read before with the new value read. Nevertheless for collections and other use cases more intelligent logic is required.</p> 
-    </div> 
-    <div class="listingblock"> 
-     <div class="content"> 
-      <pre class="prettyprint highlight"><code class="language-java" data-lang="java">// FunctionalInterface
-public interface PropertyValueCombinationPolicy{
-
-   PropertyValueCombinationPolicy DEFAULT_OVERRIDING_COLLECTOR =
-     new PropertyValueCombinationPolicy(){
-       @Override
-       public PropertyValue collect(PropertyValue currentValue, String key,
-                                         PropertySource propertySource) {
-           PropertyValue value = propertySource.get(key);
-           return value!=null?value:currentValue;
-       }
-   };
-
-   PropertyValue collect(PropertyValue currentValue, String key,
-                  PropertySource propertySource);
-
-}</code></pre> 
-     </div> 
-    </div> 
-    <div class="paragraph"> 
-     <p>Looking at the collect method’s signature, returning a PropertyValue allows also to filter/combine/use meta entries.</p> 
-    </div> 
-   </div> 
-   <div class="sect3"> 
-    <h4 id="ConfigurationContext">The Configuration Context</h4> 
-    <div class="paragraph"> 
-     <p>A Configuration is created from a ConfigurationContext. Each Configuration instance provides it’s underlying context by Configuration.getContext():</p> 
-    </div> 
-    <div class="listingblock"> 
-     <div class="title">
-      Accessing the current ConfigurationContext
-     </div> 
-     <div class="content"> 
-      <pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration config = ...;
-ConfigurationContext context = config.getContext();</code></pre> 
-     </div> 
-    </div> 
-    <div class="paragraph"> 
-     <p>The ConfigurationContext provides access to the internal artifacts that determine the Configuration and also defines the ordering of the property sources, filters and converters contained:</p> 
-    </div> 
-    <div class="ulist"> 
-     <ul> 
-      <li> <p>PropertySources registered (including the PropertySources provided from PropertySourceProvider instances).</p> </li> 
-      <li> <p>PropertyFilters registered, which filter values before they are returned to the client</p> </li> 
-      <li> <p>PropertyConverter instances that provide conversion functionality for converting String values to any other types.</p> </li> 
-      <li> <p>the current PropertyValueCombinationPolicy that determines how property values from different PropertySources are combined to the final property value returned to the client.</p> </li> 
-     </ul> 
-    </div> 
-   </div> 
-   <div class="sect3"> 
-    <h4 id="Mutability">Changing the current Configuration Context</h4> 
-    <div class="paragraph"> 
-     <p>A ConfigurationContext is not mutable once it is created. In many cases mutability is also not needed. Nevertheless there are use cases where the current ConfigurationContext (and consequently Configuration) must be adapted:</p> 
-    </div> 
-    <div class="ulist"> 
-     <ul> 
-      <li> <p>New configuration files where detected in a folder observed by Tamaya.</p> </li> 
-      <li> <p>Remote configuration, e.g. stored in a database or alternate ways has been updated and the current system must be adapted to these changes.</p> </li> 
-      <li> <p>The overall configuration context is manually setup by the application logic.</p> </li> 
-      <li> <p>Within unit testing alternate configuration setup should be setup to meet the configuration requirements of the tests executed.</p> </li> 
-     </ul> 
-    </div> 
-    <div class="paragraph"> 
-     <p>In such cases the ConfigurationContext may change, meaning it must be possible:</p> 
-    </div> 
-    <div class="ulist"> 
-     <ul> 
-      <li> <p>to add or remove PropertySource instances</p> </li> 
-      <li> <p>to add or remove PropertyFilter instances</p> </li> 
-      <li> <p>to add or remove PropertyConverter instances</p> </li> 
-      <li> <p>to redefine the current PropertyValueCombinationPolicy instances.</p> </li> 
-     </ul> 
-    </div> 
-    <div class="paragraph"> 
-     <p>This is nothing new, a ConfigurationContextBuilder already allows us to achive this. So we must only ensure that we can easily create a new ConfigurationContextBuilder using a given ConfigurationContext as input. This can be done by</p> 
-    </div> 
-    <div class="ulist"> 
-     <ul> 
-      <li> <p>calling ConfigurationContext.toBuilder(), hereby returning a builder instance preinitialized with the values from the current ConfigurationContext.</p> </li> 
-      <li> <p>calling ConfigurationProvider.getConfigurationContextBuilder() and then applying the current ConfigurationContext by calling setContext(ConfigurationContext) on the ConfigurationContextBuilder instance.</p> </li> 
-     </ul> 
-    </div> 
-    <div class="listingblock"> 
-     <div class="title">
-      Accessing a ConfigurationContextBuilder
-     </div> 
-     <div class="content"> 
-      <pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationContextBuilder preinitializedContextBuilder = ConfigurationProvider.getConfiguration().getContext().toBuilder();
-ConfigurationContextBuilder emptyContextBuilder = ConfigurationProvider.getConfigurationContextBuilder();</code></pre> 
-     </div> 
-    </div> 
-    <div class="paragraph"> 
-     <p>Finally when we are finished a new ConfigurationContext can be created:</p> 
-    </div> 
-    <div class="listingblock"> 
-     <div class="title">
-      Creating and applying a new ConfigurationContext
-     </div> 
-     <div class="content"> 
-      <pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationContext context = ConfigurationProvider.getConfiguration().getContext()
-                                    .toBuilder();
-                                    .addPropertySources(new MyPropertySource())
-                                    .addPropertyFilter(new MyFilter())
-                                    .build();</code></pre> 
-     </div> 
-    </div> 
-    <div class="paragraph"> 
-     <p>But let’s also have a deeper look at what functionality a ConfigurationContextBuilder provides. Basically such a builder allows to add, remove or reorder property sources, converters and filters or changing any other aspect of a ConfigurationContext:</p> 
-    </div> 
-    <div class="listingblock"> 
-     <div class="title">
-      Chain manipulation using ConfigurationContextBuilder
-     </div> 
-     <div class="content"> 
-      <pre class="prettyprint highlight"><code class="language-java" data-lang="java">PropertySource propertySource = builder.getPropertySource("sourceId");
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hereby:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>returning null will remove the key from the final result.</p>
+</li>
+<li>
+<p>non null values are used as the current value of the key. Nevertheless for resolving multi-step dependencies
+filter evaluation has to be continued as long as filters are still changing some of the values to be returned.
+To prevent possible endless loops after a defined number of loops evaluation is stopped.</p>
+</li>
+<li>
+<p>FilterContext provides additional metdata, including the property accessed, which is useful in many use cases.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This method is called each time a single entry is accessed, and for each property in a full properties result.</p>
+</div>
+<div class="sect3">
+<h4 id="ConfigurationContext">The Configuration Context</h4>
+<div class="paragraph">
+<p>A Configuration is created based on a ConfigurationContext, which ia accessible calling
+configuration.getContext():</p>
+</div>
+<div class="listingblock">
+<div class="title">Accessing the ConfigurationContext of a configuration</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration config = ...;
+ConfigurationContext context = config.getContext();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The ConfigurationContext provides access to the internal artifacts that determine the Configuration.
+Similarly the context also defines the ordering and significance of property sources, filters and
+converters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>PropertySources registered (including the PropertySources provided from PropertySourceProvider instances).</p>
+</li>
+<li>
+<p>PropertyFilters registered, which filter values before they are returned to the client</p>
+</li>
+<li>
+<p>PropertyConverter instances that provide conversion functionality for converting String values to any other types.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Mutability">Changing a Configuration</h4>
+<div class="paragraph">
+<p>A Configuration is basically not mutable. Nevertheless when the containing property sources provide different
+values, e.g. because a  configuration file has been updated, also the configuration values may change
+(dependiing on the significance of the changed property source).</p>
+</div>
+<div class="paragraph">
+<p>Nevertheless it is also possible to create a new ConfigurationBuilder based on an existing configuration
+and add/remove property sources, filters or converters as needed.</p>
+</div>
+<div class="paragraph">
+<p>A new configuration builder can be easily accessed from an existing configuration as follows:</p>
+</div>
+<div class="listingblock">
+<div class="title">Accessing a ConfigurationContextBuilder</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration config = ...;
+ConfigurationBuilder preinitializedConfigBuilder = config.toBuilder();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is also possible to builkd up a configuration completely from scratch, having full control on the
+resources included:</p>
+</div>
+<div class="listingblock">
+<div class="title">Accessing a ConfigurationContextBuilder</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationBuilder emptyConfigBuilder = Configuration.createConfigurationBuilder();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Using the builder we then can change the configuration as needed:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationBuilder builder = Configuration.crteateConfigurationBuilder();
+builder.addPropertySources(new MyPropertySource())
+       .addPropertyFilter(new MyFilter())
+       .setMeta("a.b.c.collectionType", "List")
+       .build();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s have a short look at the ConfigurationBuilder. Basically such a
+builder allows to add, remove or reorder property sources, converters and filters or changing any other aspect
+of a Configuration. Finally a new Configuration instance can be built.</p>
+</div>
+<div class="listingblock">
+<div class="title">Chain manipulation using ConfigurationContextBuilder</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">PropertySource propertySource = builder.getPropertySource("sourceId");
 
 // changing the priority of a property source. The ordinal value hereby is not considered.
 // Instead the position of the property source within the chain is changed.
 builder.decreasePriority(propertySource);
 
 // Alternately a comparator expression can be passed to establish the defined ordering...
-builder.sortPropertyFilters(MyFilterComparator::compare);</code></pre> 
-     </div> 
-    </div> 
-    <div class="paragraph"> 
-     <p>Finally if the new ConfigurationContext is ready a new Configuration can be created. Optionally the new Configuration can also be installed as the new <em>default</em> Configuration instace as illustrated below:</p> 
-    </div> 
-    <div class="listingblock"> 
-     <div class="title">
-      Creating and applying a new ConfigurationContext
-     </div> 
-     <div class="content"> 
-      <pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationContext context = builder.build();
-
-// Creates a new matching Configuration instance
-Configuration newConfig = ConfigurationProvider.createConfiguration(context);
+builder.sortPropertyFilters(MyFilterComparator::compare);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally if a new Configuration can be built. Optionally the new Configuration can also be installed as
+the <em>default</em> Configuration instance as illustrated below:</p>
+</div>
+<div class="listingblock">
+<div class="title">Creating and applying a new Configuration</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">// Creates a new matching Configuration instance
+Configuration config = builder.build();
 
 // Apply the new context to replace the current configuration:
-ConfigurationProvider.setConfiguration(newConfig);</code></pre> 
-     </div> 
-    </div> 
-    <div class="paragraph"> 
-     <p>Hereby ConfigurationProvider.setConfiguration(Configuration) can throw an UnsupportedOperationException. This can be checked by calling the method boolean ConfigurationProvider.isConfigurationSettable().</p> 
-    </div> 
-   </div> 
-   <div class="sect3"> 
-    <h4 id="ConfigurationProviderSpi">Implementing and Managing Configuration</h4> 
-    <div class="paragraph"> 
-     <p>One of the most important SPI in Tamaya is the ConfigurationProviderSpi interface, which is backing up the ConfigurationProvider singleton. Implementing this class allows</p> 
-    </div> 
-    <div class="ulist"> 
-     <ul> 
-      <li> <p>to fully determine the implementation class for Configuration</p> </li> 
-      <li> <p>to manage the current Configuration in the scope and granularity required.</p> </li> 
-      <li> <p>to provide access to the right Configuration based on the current runtime context.</p> </li> 
-      <li> <p>Performing changes as set with the current ConfigurationContextBuilder.</p> </li> 
-     </ul> 
-    </div> 
-   </div> 
-  </div> 
- </div> 
-</div> 
-<h1 id="_interface_configurationcontextbuilder" class="sect0">Interface ConfigurationContextBuilder</h1> 
-<div class="sect1"> 
- <h2 id="BuilderCore">Interface ConfigurationContextBuilder</h2> 
- <div class="sectionbody"> 
-  <div class="sect2"> 
-   <h3 id="_overview">Overview</h3> 
-   <div class="paragraph"> 
-    <p>The Tamaya builder module provides a generic (one time) builder for creating Configuration instances, e.g. as follows:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationBuilder builder = new ConfigurationBuilder();
+Configuration.setCurrent(newConfig);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hereby Configuration.setCurrent(Configuration) can throw an UnsupportedOperationException.
+This can be checked by calling the method boolean Configuration.isConfigurationSettable().</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_spi">SPI</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="ConfigurationProviderSpi">Implementing and Managing Configuration</h3>
+<div class="paragraph">
+<p>One of the most important SPI in Tamaya is the ConfigurationProviderSpi interface, which is backing up the
+Configuration static accessor methods. Implementing this interface allows</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>to fully determine the implementation class for Configuration, ConfigurationBuilder, ConfigurationContext</p>
+</li>
+<li>
+<p>to manage Configurations in the scope and granularity required.</p>
+</li>
+<li>
+<p>to provide access to the right Configuration based on the current runtime context (e.g. classloader).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="BuilderCore">Interface ConfigurationBuilder</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview">Overview</h3>
+<div class="paragraph">
+<p>The Tamaya builder module provides a generic (one time) builder for creating Configuration instances,
+e.g. as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationBuilder builder = Configuration.createConfigurationBuilder();
 // do something
-Configuration config = builder.build();</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Basically the builder allows to create configuration instances completely independent of the current configuration setup. This gives you full control how and when Configuration is created.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_supported_functionality">Supported Functionality</h3> 
-   <div class="paragraph"> 
-    <p>The builder allows you to add PropertySource instances:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationContextBuilder builder = ConfigurationProvider.getConfigurationContextBuilder();
+Configuration config = builder.build();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Basically a builder allows to create configuration instances completely independent of the current configuration
+setup. This gives you full control how and when Configuration is created.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_supported_functionality">Supported Functionality</h3>
+<div class="paragraph">
+<p>The builder allows you to add PropertySource instances:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationBuilder builder = Configuration.createConfigurationBuilder();
 builder.addPropertySources(sourceOne, sourceTwo, sourceThree
-Configuration config = ConfigurationProvider.createConfiguration(builder.build());</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Hereby the ordering of the propertysources is not changed, regardless of the ordinals provided by the property sources. This allows alternate ordering policies easily being implemented because creating a configuration based on a configuration context is already implemented and provided by the core API.</p> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Similarly you can add PropertyFilters:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">builder.addPropertyFilters(new MyConfigFilter());</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>…​or PropertySourceProvider instances:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">builder.addPropertySourceProvider(new MyPropertySourceProvider());</code></pre> 
-    </div> 
-   </div> 
-   <div class="sect3"> 
-    <h4 id="ServiceContext">The ServiceContext</h4> 
-    <div class="paragraph"> 
-     <p>The ServiceContext allows to define how components are loaded in Tamaya. It is the glue layer, which interacts with the underlying runtime system such as Java SE, Java EE, OSGI, VertX etc. The ServiceContext hereby defines access methods to obtain components, whereas itself it is available from the ServiceContextManager singleton:</p> 
-    </div> 
-    <div class="listingblock"> 
-     <div class="title">
-      Accessing the ServiceContext
-     </div> 
-     <div class="content"> 
-      <pre class="prettyprint highlight"><code class="language-java" data-lang="java">ServiceContext serviceContext = ServiceContextManager.getServiceContext();
+Configuration config = builder.build();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hereby the ordering of the property sources is not changed, regardless of the ordinals provided
+by the property sources. This allows alternate ordering policies easily being implemented because
+creating a configuration based on a configuration context is already implemented and provided by the core
+API.</p>
+</div>
+<div class="paragraph">
+<p>Similarly you can add PropertyFilters:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">builder.addPropertyFilters(new MyConfigFilter());</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>&#8230;&#8203;or PropertySourceProvider instances:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">builder.addPropertySourceProvider(new MyPropertySourceProvider());</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>&#8230;&#8203;and of course converters and other artifacts.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ServiceContext">The ServiceContext</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The ServiceContext allows to define how components are loaded in Tamaya. It is the glue layer, which interacts
+with the underlying runtime system such as Java SE, Java EE, OSGI, VertX etc.
+The ServiceContext hereby defines access methods to obtain components, whereas itself it is available from the
+ServiceContextManager singleton:</p>
+</div>
+<div class="listingblock">
+<div class="title">Accessing the ServiceContext</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">// using an explicit classloader (recommended)
+ClassLoader classloader = ...;
+ServiceContext serviceContext = ServiceContextManager.getServiceContext(classloader);
+
+// using the default classloader
+ServiceContext serviceContext = ServiceContextManager.getServiceContext();
 
 public interface ServiceContext{
     int ordinal();
     &lt;T&gt; T getService(Class&lt;T&gt; serviceType);
+    &lt;T&gt; T getService(Class&lt;T&gt; serviceType, Supplier&lt;T&gt; serviceSupplier);
+    &lt;T&gt; T createService(Class&lt;T&gt; serviceType);
+    &lt;T&gt; T createService(Class&lt;T&gt; serviceType, Supplier&lt;T&gt; serviceSupplier);
     &lt;T&gt; List&lt;T&gt; getServices(Class&lt;T&gt; serviceType);
-}</code></pre> 
-     </div> 
-    </div> 
-    <div class="paragraph"> 
-     <p>With the ServiceContext a component can be accessed in two different ways:</p> 
-    </div> 
-    <div class="olist arabic"> 
-     <ol class="arabic"> 
-      <li> <p>access as as a single property. Hereby the registered instances (if multiple) are sorted by priority and then finally the most significant instance is returned only.</p> </li> 
-      <li> <p>access all items given a type. This will return (by default) all instances loadedable from the current runtime context, ordered by priority (the most significant components added first).</p> </li> 
-     </ol> 
-    </div> 
-   </div> 
-  </div> 
- </div> 
-</div> 
-<div class="sect1"> 
- <h2 id="_examples">Examples</h2> 
- <div class="sectionbody"> 
-  <div class="sect2"> 
-   <h3 id="_accessing_configuration">Accessing Configuration</h3> 
-   <div class="paragraph"> 
-    <p><em>Configuration</em> is obtained from the ConfigurationProvider singleton:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="title">
-     Accessing Configuration
-    </div> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration config = ConfigurationProvider.getConfiguration();</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Many users in a SE context will probably only work with <em>Configuration</em>, since it offers all functionality needed for basic configuration with a very lean memory and runtime footprint. In Java 7 access to the keys is very similar to <strong>Map&lt;String,String&gt;</strong>, whereas in Java 8 additionally usage of <em>Optional</em> is supported:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration config = ConfigurationProvider.getConfiguration();
-String myKey = config.get("myKey");                         // may return null
-int myLimit = config.get("all.size.limit", int.class);</code></pre> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_environment_and_system_properties">Environment and System Properties</h3> 
-   <div class="paragraph"> 
-    <p>By default environment and system properties are included into the <em>Configuration</em>. So we can access the current <em>PROMPT</em> environment variable as follows:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">String prompt = ConfigurationProvider.getConfiguration().get("PROMPT");</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Similary the system properties are directly applied to the <em>Configuration</em>. So if we pass the following system property to our JVM:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">java ... -Duse.my.system.answer=yes</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>we can access it as follows:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">boolean useMySystem = ConfigurationProvider.getConfiguration().get("use.my.system.answer", boolean.class);</code></pre> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_adding_a_custom_configuration">Adding a Custom Configuration</h3> 
-   <div class="paragraph"> 
-    <p>Adding a classpath based configuration is simply as well: just implement an according <em>PropertySource</em>. With the <em>tamaya-spi-support</em> module you just have to perform a few steps:</p> 
-   </div> 
-   <div class="olist arabic"> 
-    <ol class="arabic"> 
-     <li> <p>Define a PropertySource as follows:</p> </li> 
-    </ol> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">  public class MyPropertySource extends PropertiesResourcePropertySource{
+    &lt;T&gt; List&lt;T&gt; getServices(Class&lt;T&gt; serviceType, Supplier&lt;List&lt;T&gt;&gt; serviceSupplier);
+    &lt;T&gt; T register(Class&lt;T&gt; type, T instance, boolean force);
+    &lt;T&gt; List&lt;T&gt; register(Class&lt;T&gt; type, List&lt;T&gt; instances, boolean force);
+
+    Enumeration&lt;URL&gt; getResources(String resource) throws IOException;
+    URL getResource(String resource);
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With the ServiceContext a component can be accessed in two different ways:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>access as as a single service. Hereby the detected services (if multiple) are sorted by priority and then finally
+the most significant instance (the one with the highest priority value) is selected and cached.</p>
+</li>
+<li>
+<p>access all items given a type. This will return (by default) all service instances loadedable from the current
+runtime context (classloader), ordered by priority (the most significant components added first).</p>
+</li>
+<li>
+<p>service lookup can be further customized by passing suppliers. The supplier is called if no default services
+could be auto-detected. The supplied instance(s) are registered and cached for subsequent accesses.</p>
+</li>
+<li>
+<p>the <em>register</em> methods allow to explcitly register (and optionally override) a service or services
+registered.</p>
+</li>
+<li>
+<p>Finally the methods <code>getResource(s)</code> allow to load resources from the classpath. This is especially useful
+when running in an OSGI context, where loading of resources from the classloaders will fail.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_examples">Examples</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_accessing_configuration">Accessing Configuration</h3>
+<div class="paragraph">
+<p><em>Configuration</em> is obtained from the <code>Configuration</code> interface using static accessors:</p>
+</div>
+<div class="listingblock">
+<div class="title">Accessing Configuration</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration config = Configuration.current();
+Configuration config = Configuration.current(Thread.currentThread().getContextClassLoader());</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Many users in a SE context will probably only work with <em>Configuration</em>, since it offers all functionality
+needed for basic configuration with a very lean memory and runtime footprint. In Java 7 access to the keys is
+very similar to <strong>Map&lt;String,String&gt;</strong>, whereas in Java 8 additionally usage of <em>Optional</em> is supported:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Configuration config = Configuration.current();
+String myValue = config.get("myKey");                  // access as (raw) String value.
+int myLimit = config.get("all.size.limit", int.class); // access a value using type conversion.
+List&lt;URL&gt; urls = config.get("all.urls", new TypeLiteral&lt;List&lt;URL&gt;&gt;(); // access a value using advanced type conversion.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_environment_and_system_properties">Environment and System Properties</h3>
+<div class="paragraph">
+<p>By default environment and system properties are included into the <em>Configuration</em>. So we can access the current
+<em>PROMPT</em> environment variable as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">String prompt = ConfigurationProvider.getConfiguration().get("PROMPT");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Similary the system properties are directly applied to the <em>Configuration</em>. Let&#8217;s assume, we pass the following system
+property to our JVM:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">java ... -Duse.my.system.answer=yes</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can then access the value from the configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">boolean useMySystem = Configuration.current().get("use.my.system.answer", boolean.class);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_adding_additional_configuration_entries">Adding additional configuration entries</h3>
+<div class="paragraph">
+<p>Adding additional configuration entries is simple: just implement an according <code>PropertySource</code> and register
+it with the Java <code>ServiceLoader</code>. Using the <em>tamaya-spi-support</em> extension library you just have to perform a few steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Define a PropertySource as follows:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">  public class MyPropertySource extends PropertiesResourcePropertySource{
 
     public MyPropertySource(){
         super(ClassLoader.getSystemClassLoader().getResource("META-INF/cfg/myconfig.properties"), DEFAULT_ORDINAL);
     }
-  }</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Then register MyPropertySource using the ServiceLoader by adding the following file:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">META-INF/services/org.apache.tamaya.spi.PropertySource</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>…​containing the following line:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">com.mypackage.MyPropertySource</code></pre> 
-    </div> 
-   </div> 
-  </div> 
- </div> 
-</div> 
-<div class="sect1"> 
- <h2 id="APIImpl">API Implementation</h2> 
- <div class="sectionbody"> 
-  <div class="paragraph"> 
-   <p>The API is implemented by the tamaya-core module. Refer to the <a href="core.html">Core documentation</a> for further details.</p> 
-  </div> 
- </div> 
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then register MyPropertySource using the ServiceLoader by adding the following file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">META-INF/services/org.apache.tamaya.spi.PropertySource</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>&#8230;&#8203;containing the following line:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-listing" data-lang="listing">com.mypackage.MyPropertySource</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="APIImpl">API Implementation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Tamaya configuration API is implemented by the tamaya-core module. Refer to the <a href="core.html">Core documentation</a> for
+further details.</p>
+</div>
+<div class="paragraph">
+<p>Furhtermore Tamaya also implements or supports</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the API as defined by JSR 310 (Config JSR)</p>
+</li>
+<li>
+<p>the Microprofile API</p>
+</li>
+<li>
+<p>the Spring Configuration Mechanism</p>
+</li>
+<li>
+<p>integration with the OSGI <code>ConfigAdmin</code> API.</p>
+</li>
+<li>
+<p>the Apache Camel Configuration SPI</p>
+</li>
+</ul>
+</div>
+</div>
 </div></p>
 
 			<hr />
@@ -968,9 +1395,9 @@ int myLimit = config.get("all.size.limit", int.class);</code></pre>
 
 		    <div id="footer">
 		      <div class="container">
-		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
-							at <span>2018-11-02</span> |
+		        <p class="muted credit">&copy; 2014-<span>2019</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.3</span></a>
+							at <span>2019-01-05</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

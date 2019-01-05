@@ -58,7 +58,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../../index.html">Apache Tamaya (incubating)</a>
+          <a class="navbar-brand" href="../../index.html">Tamaya Home</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -111,9 +111,12 @@
               </ul>
             </li>
 -->
-						<li><a href="../../sitemap.xml">Sitemap</a></li>
-						<li><a href="../../feed.xml">Subscribe</a></li>
+			<li><a href="../../sitemap.xml">Sitemap</a></li>
+			<li><a href="../../feed.xml">Subscribe</a></li>
+			<li><a href="https://incubator.apache.org/guides/website.html" style="border:0px;" target="_target">
+                                 <img class="incubator-logo" src="../../logos/apache-incubator.png"/></a></li>
           </ul>
+
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -125,114 +128,131 @@
 				<h1>Apache Tamaya - Extension: Configuration Server</h1>
 			</div>
 
-			<p><em>2018-09-06</em></p>
+			<p><em>2018-12-17</em></p>
 
-			<p><div id="preamble"> 
- <div class="sectionbody"> 
-  <!-- toc disabled --> 
- </div> 
-</div> 
-<div class="sect1"> 
- <h2 id="Server">Tamaya Configuration Server (Extension Module)</h2> 
- <div class="sectionbody"> 
-  <div class="paragraph"> 
-   <p>Tamaya <em>Server</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3> 
-   <div class="paragraph"> 
-    <p>The Tamaya <em>Server</em> module provides support for providing scoped configuration using a http server serving JSON formatted configuration properties.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_compatibility">Compatibility</h3> 
-   <div class="paragraph"> 
-    <p>The module is based on Java 7, so it will not run on Java 7 and beyond.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_installation">Installation</h3> 
-   <div class="paragraph"> 
-    <p>To benefit from configuration server support you only must add the corresponding dependency to your module:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+			<p><div id="preamble">
+<div class="sectionbody">
+<!-- toc disabled -->
+</div>
+</div>
+<div class="sect1">
+<h2 id="Server">Tamaya Configuration Server (Extension Module)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tamaya <em>Server</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
+</div>
+<div class="sect2">
+<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
+<div class="paragraph">
+<p>The Tamaya <em>Server</em> module provides support for providing scoped configuration using a http server serving JSON formatted
+configuration properties.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compatibility">Compatibility</h3>
+<div class="paragraph">
+<p>The module is based on Java 7, so it will not run on Java 7 and beyond.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installation">Installation</h3>
+<div class="paragraph">
+<p>To benefit from configuration server support you only must add the corresponding dependency to your module:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-server&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_providing_configuration_using_the_tamaya_built_in_configuration_server">Providing configuration using the Tamaya Built-in Configuration Server</h3> 
-   <div class="paragraph"> 
-    <p>The most simple way for providing configuration is to start the internal server:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">// using context path: '/', port 8085
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_providing_configuration_using_the_tamaya_built_in_configuration_server">Providing configuration using the Tamaya Built-in Configuration Server</h3>
+<div class="paragraph">
+<p>The most simple way for providing configuration is to start the internal server:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">// using context path: '/', port 8085
 org.apache.tamaya.server.Server.start();
 
 // optionally pass the root context path and/or port:
 // org.apache.tamaya.server.Server.start(8088);
-// org.apache.tamaya.server.Server.start("/appconf", 7787);</code></pre> 
-    </div> 
-   </div> 
-   <div class="paragraph"> 
-    <p>This will start a simple server instance that serves the following URL patterns:</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>GET ${CONTEXT}/config provides access to the full configuration tree.</p> </li> 
-     <li> <p>GET ${CONTEXT}/config/filtered/${path} let you filter the configuration returned using regular expression (comma separated). E.g. ${CONTEXT}/config/filtered/java,sun will return all configuration entries starting with <em>java</em> and <em>sun</em>.</p> </li> 
-    </ul> 
-   </div> 
-   <div class="paragraph"> 
-    <p>Additionally the server module has the following options implemented, which can be passed as additional, optional parameters:</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>format allows to define the target format. By default the ACCEPT header of the http request is checked, but this setting can be explicitly controlled by passing this parameter explicitly. The value is the expected MIME type to be returned. By default the service supports the following types:</p> 
-      <div class="ulist"> 
-       <ul> 
-        <li> <p>text/html</p> </li> 
-        <li> <p>text/plain</p> </li> 
-        <li> <p>application/xml</p> </li> 
-        <li> <p>application/json</p> </li> 
-       </ul> 
-      </div> </li> 
-    </ul> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_using_the_configuration_servlets">Using the Configuration Servlets</h3> 
-   <div class="paragraph"> 
-    <p>You can also register a servlet, e.g. as follows;</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre>&lt;servlet&gt;
+// org.apache.tamaya.server.Server.start("/appconf", 7787);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will start a simple server instance that serves the following URL patterns:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>GET ${CONTEXT}/config provides access to the full configuration tree.</p>
+</li>
+<li>
+<p>GET ${CONTEXT}/config/filtered/${path} let you filter the configuration returned using regular expression (comma separated).
+E.g. ${CONTEXT}/config/filtered/java,sun will return all configuration entries starting with <em>java</em> and <em>sun</em>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Additionally the server module has the following options implemented, which can be passed as additional, optional
+parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>format allows to define the target format. By default the ACCEPT header of the http request is checked, but this
+setting can be explicitly controlled by passing this parameter explicitly. The value is the expected MIME type to be
+returned. By default the service supports the following types:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>text/html</p>
+</li>
+<li>
+<p>text/plain</p>
+</li>
+<li>
+<p>application/xml</p>
+</li>
+<li>
+<p>application/json</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_the_configuration_servlets">Using the Configuration Servlets</h3>
+<div class="paragraph">
+<p>You can also register a servlet, e.g. as follows;</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&lt;servlet&gt;
   &lt;servlet-name&gt;config-servlet&lt;/servlet-name&gt;
   &lt;servlet-class&gt;org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet&lt;/servlet-class&gt;
   &lt;init-params&gt;
     &lt;init-param key="javax.ws.rs.Application"&gt;org.apache.tamaya.server.Server$ResourceLoader&lt;/init-param&gt;
   &lt;/init-params&gt;
-&lt;/servlet&gt;</pre> 
-    </div> 
-   </div> 
-   <div class="sect3"> 
-    <h4 id="_formatting_used_by_default">Formatting used by Default</h4> 
-    <div class="paragraph"> 
-     <p>The server module formats the configuration returned by default in the following variants:</p> 
-    </div> 
-    <div class="listingblock"> 
-     <div class="title">
-      Formatting for text/json
-     </div> 
-     <div class="content"> 
-      <pre class="prettyprint highlight"><code class="language-json" data-lang="json">{
+&lt;/servlet&gt;</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_formatting_used_by_default">Formatting used by Default</h4>
+<div class="paragraph">
+<p>The server module formats the configuration returned by default in the following variants:</p>
+</div>
+<div class="listingblock">
+<div class="title">Formatting for text/json</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-json" data-lang="json">{
   "java.vendor.url": "http://java.oracle.com/",
   "java.vendor.url.bug": "http://bugreport.sun.com/bugreport/",
   "java.vm.info": "mixed mode",
@@ -254,21 +274,19 @@ org.apache.tamaya.server.Server.start();
   "sun.jnu.encoding": "Cp1252",
   "sun.management.compiler": "HotSpot 64-Bit Tiered Compilers",
   "sun.os.patch.level": "",
-  "_class": "org.apache.tamaya.functions.FilteredConfiguration",
-  "_info.filter": "java.v,sun",
-  "_info.format": "application/json",
-  "_info.timestamp": "1441463200571",
-  "_timestamp": "1441463200571",
-  "_type": "Configuration"
-}</code></pre> 
-     </div> 
-    </div> 
-    <div class="listingblock"> 
-     <div class="title">
-      Formatting for application/xml
-     </div> 
-     <div class="content"> 
-      <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;configuration&gt;
+  "[META]class": "org.apache.tamaya.functions.FilteredConfiguration",
+  "[META]info.filter": "java.v,sun",
+  "[META]info.format": "application/json",
+  "[META]info.timestamp": "1441463200571",
+  "[META]timestamp": "1441463200571",
+  "[META]type": "Configuration"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Formatting for application/xml</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;configuration&gt;
   &lt;entry key="java.vendor.url"&gt;http://java.oracle.com/&lt;/entry&gt;
   &lt;entry key="java.vendor.url.bug"&gt;http://bugreport.sun.com/bugreport/&lt;/entry&gt;
   &lt;entry key="java.vm.info"&gt;mixed mode&lt;/entry&gt;
@@ -296,15 +314,13 @@ org.apache.tamaya.server.Server.start();
   &lt;entry key="_info.timestamp"&gt;1441463383687&lt;/entry&gt;
   &lt;entry key="_timestamp"&gt;1441463383687&lt;/entry&gt;
   &lt;entry key="_type"&gt;Configuration&lt;/entry&gt;
-&lt;/configuration&gt;</code></pre> 
-     </div> 
-    </div> 
-    <div class="listingblock"> 
-     <div class="title">
-      Formatting for text/plain
-     </div> 
-     <div class="content"> 
-      <pre class="prettyprint highlight"><code class="language-text" data-lang="text">Configuration:
+&lt;/configuration&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Formatting for text/plain</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-text" data-lang="text">Configuration:
   java.vendor.url: http://java.oracle.com/,
   java.vendor.url.bug: http://bugreport.sun.com/bugreport/,
   java.vm.info: mixed mode,
@@ -326,20 +342,18 @@ org.apache.tamaya.server.Server.start();
   sun.jnu.encoding: Cp1252,
   sun.management.compiler: HotSpot 64-Bit Tiered Compilers,
   sun.os.patch.level: ,
-  _class: org.apache.tamaya.functions.FilteredConfiguration,
-  _info.filter: java.v,sun,
-  _info.format: text/plain,
-  _info.timestamp: 1441463082020,
-  _timestamp: 1441463082021,
-  _type: Configuration</code></pre> 
-     </div> 
-    </div> 
-    <div class="listingblock"> 
-     <div class="title">
-      Formatting for application/html
-     </div> 
-     <div class="content"> 
-      <pre class="prettyprint highlight"><code class="language-html" data-lang="html">&lt;html&gt;
+  [META]class: org.apache.tamaya.functions.FilteredConfiguration,
+  [META]info.filter: java.v,sun,
+  [META]info.format: text/plain,
+  [META]info.timestamp: 1441463082020,
+  [META]timestamp: 1441463082021,
+  [META]type: Configuration</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Formatting for application/html</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-html" data-lang="html">&lt;html&gt;
 &lt;head&gt;&lt;title&gt;System Configuration&lt;/title&gt;&lt;/head&gt;
 &lt;body&gt;
 &lt;h1&gt;Sysem Configuration&lt;/h1&gt;
@@ -366,20 +380,20 @@ Configuration:
   sun.jnu.encoding: Cp1252,
   sun.management.compiler: HotSpot 64-Bit Tiered Compilers,
   sun.os.patch.level: ,
-  _class: org.apache.tamaya.functions.FilteredConfiguration,
-  _info.filter: java.v,sun,
-  _info.format: text/html,
-  _info.timestamp: 1441463459653,
-  _timestamp: 1441463459654,
-  _type: Configuration
+  [META]class: org.apache.tamaya.functions.FilteredConfiguration,
+  [META]info.filter: java.v,sun,
+  [META]info.format: text/html,
+  [META]info.timestamp: 1441463459653,
+  [META]timestamp: 1441463459654,
+  [META]type: Configuration
 &lt;/pre&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre> 
-     </div> 
-    </div> 
-   </div> 
-  </div> 
- </div> 
+&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div></p>
 
 			<hr />
@@ -390,9 +404,9 @@ Configuration:
 
 		    <div id="footer">
 		      <div class="container">
-		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
-							at <span>2018-11-02</span> |
+		        <p class="muted credit">&copy; 2014-<span>2019</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.3</span></a>
+							at <span>2019-01-05</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

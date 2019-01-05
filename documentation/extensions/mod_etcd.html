@@ -58,7 +58,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../../index.html">Apache Tamaya (incubating)</a>
+          <a class="navbar-brand" href="../../index.html">Tamaya Home</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -111,9 +111,12 @@
               </ul>
             </li>
 -->
-						<li><a href="../../sitemap.xml">Sitemap</a></li>
-						<li><a href="../../feed.xml">Subscribe</a></li>
+			<li><a href="../../sitemap.xml">Sitemap</a></li>
+			<li><a href="../../feed.xml">Subscribe</a></li>
+			<li><a href="https://incubator.apache.org/guides/website.html" style="border:0px;" target="_target">
+                                 <img class="incubator-logo" src="../../logos/apache-incubator.png"/></a></li>
           </ul>
+
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -125,195 +128,106 @@
 				<h1>Apache Tamaya - Extension: Integration with etcd (Core OS)</h1>
 			</div>
 
-			<p><em>2018-09-06</em></p>
+			<p><em>2018-12-17</em></p>
 
-			<p><div id="preamble"> 
- <div class="sectionbody"> 
-  <!-- toc disabled --> 
- </div> 
-</div> 
-<div class="sect1"> 
- <h2 id="Etcd">Integration with etcd (Extension Module)</h2> 
- <div class="sectionbody"> 
-  <div class="paragraph"> 
-   <p>Tamaya <em>Etcd</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3> 
-   <div class="paragraph"> 
-    <p>Tamaya <em>Etcd</em> provides different artifacts which allows using <a href="https://github.com/coreos/etcd">etcd</a> as a configuration backend. Basically the module adds a read-only property source (EtcdPropertySource). If the <em>tamaya-mutable-config</em> extension is loaded it is alos possible to write configuration changes to <em>etcd</em> using MutableConfiguration.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_compatibility">Compatibility</h3> 
-   <div class="paragraph"> 
-    <p>The module is based on Java 7, so it will not run on Java 7 and beyond.</p> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_installation">Installation</h3> 
-   <div class="paragraph"> 
-    <p>To use <em>etcd</em> as a configuration backend you only must add the corresponding dependency to your module:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+			<p><div id="preamble">
+<div class="sectionbody">
+<!-- toc disabled -->
+</div>
+</div>
+<div class="sect1">
+<h2 id="Etcd">Integration with etcd (Extension Module)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tamaya <em>Etcd</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
+</div>
+<div class="sect2">
+<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
+<div class="paragraph">
+<p>Tamaya <em>Etcd</em> provides artifacts, which allow using <a href="https://github.com/coreos/etcd">etcd</a> as a
+configuration backend. Basically the module adds a read-only property source (EtcdPropertySource). If
+the <em>tamaya-mutable-config</em> extension is loaded it is alos possible to write configuration
+changes to <em>etcd</em> using MutableConfiguration.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compatibility">Compatibility</h3>
+<div class="paragraph">
+<p>The module is based on Java 8.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installation">Installation</h3>
+<div class="paragraph">
+<p>To use <em>etcd</em> as a configuration backend you only must add the corresponding dependency to
+your module:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
   &lt;artifactId&gt;tamaya-etcd&lt;/artifactId&gt;
   &lt;version&gt;{tamaya_version}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_the_extensions_provided">The Extensions Provided</h3> 
-   <div class="paragraph"> 
-    <p>Tamaya’s <em>etcd</em> integration provides basically the following artifacts:</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>The org.apache.tamaya.etcd.EtcdAccessor can be configured with a an url targeting an etcd server’s REST endpoint root. The accessor basically provides a simple Java API for communicating with the <em>etcd</em> server. The accessor hereby allows reading of single properties, or whole subtrees. Also the basic non atomic write methods are implemented.</p> </li> 
-     <li> <p>The org.apache.tamaya.etcd.EtcdPropertySource is a PropertySource with a default ordinal of 100 and the name 'etcd', which is automatically registered.</p> </li> 
-     <li> <p>If the tamaya-mutable-config module is loaded it is possible to write property values back into the etcd cluster, by accessing a MutableConfiguration using the URI config:etcd.</p> </li> 
-    </ul> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_the_etcdaccessor">The EtcdAccessor</h3> 
-   <div class="paragraph"> 
-    <p>The accessor implements the basic read and write API for communicating with an <em>etcd</em> server. Hereby the accessor also provides <em>etcd</em> specific data such as createdIndex, modifiedIndex, ttl in the Map returned. Hereby the concept of <em>etcd</em> is used where keys starting with an '_' represent meta-configuration that will be hidden from the overall properties map, being only directly/explicitly accessible:</p> 
-   </div> 
-   <div class="listingblock"> 
-    <div class="content"> 
-     <pre class="prettyprint highlight"><code class="language-java" data-lang="java">public class EtcdAccessor {
-
-    /**
-     * Creates a new instance with the basic access url.
-     * @param server server url, e.g. {@code http://127.0.0.1:4001}.
-     * @throws MalformedURLException
-     */
-    public EtcdAccessor(String server) throws MalformedURLException;
-
-    /**
-     * Get the etcd server version.
-     * @return the etcd server version, never null.
-     */
-    public String getVersion();
-
-    /**
-     * Ask etcd for s aingle key, value pair. Hereby the response returned from etcd:
-     * &lt;pre&gt;
-     *     key=value
-     *     _key.source=[etcd]http://127.0.0.1:4001
-     *     _key.createdIndex=12
-     *     _key.modifiedIndex=34    // optional
-     *     _key.ttl=300             // optional
-     *     _key.expiration=...      // optional
-     * &lt;/pre&gt;
-     * @param key the requested key
-     * @return the mapped result, including meta-entries.
-     */
-    public Map&lt;String,String&gt; get(String key);
-
-    /**
-     * Creates/updates an entry in etcd without any ttl set.
-     * The response is as follows:
-     * &lt;pre&gt;
-     *     key=value
-     *     _key.source=[etcd]http://127.0.0.1:4001
-     *     _key.createdIndex=12
-     *     _key.modifiedIndex=34             // optional
-     *     _key.prevNode.createdIndex=12     // optional
-     *     _key.prevNode.modifiedIndex=34    // optional
-     * &lt;/pre&gt;
-     * @param key the property key, not null
-     * @param value the value to be set
-     * @return the result map as described above.
-     */
-    public Map&lt;String,String&gt; set(String key, String value);
-
-    /**
-     * Creates/updates an entry in etcd. The response is as follows:
-     * &lt;pre&gt;
-     *     key=value
-     *     _key.source=[etcd]http://127.0.0.1:4001
-     *     _key.createdIndex=12
-     *     _key.modifiedIndex=34             // optional
-     *     _key.ttl=300                      // optional
-     *     _key.expiry=...                   // optional
-     *     _key.prevNode.createdIndex=12     // optional
-     *     _key.prevNode.modifiedIndex=34    // optional
-     *     _key.prevNode.ttl=300             // optional
-     *     _key.prevNode.expiration=...      // optional
-     * &lt;/pre&gt;
-     * @param key the property key, not null
-     * @param value the value to be set
-     * @param ttlSeconds the ttl in seconds (optional)
-     * @return the result map as described above.
-     */
-    public Map&lt;String,String&gt; set(String key, String value, Integer ttlSeconds);
-
-
-    /**
-     * Deletes a given key. The response is as follows:
-     * &lt;pre&gt;
-     *     _key.source=[etcd]http://127.0.0.1:4001
-     *     _key.createdIndex=12
-     *     _key.modifiedIndex=34
-     *     _key.ttl=300                       // optional
-     *     _key.expiry=...                    // optional
-     *     _key.prevNode.createdIndex=12      // optional
-     *     _key.prevNode.modifiedIndex=34     // optional
-     *     _key.prevNode.ttl=300              // optional
-     *     _key.prevNode.expiration=...       // optional
-     *     _key.prevNode.value=...            // optional
-     * &lt;/pre&gt;
-     * @param key the key to be deleted.
-     * @return the response mpas as described above.
-     */
-    public Map&lt;String,String&gt; delete(String key);
-
-
-    /**
-     * Access regular Tamaya properties map as follows:
-     * &lt;pre&gt;
-     *    key1=myvalue
-     *     _key1.source=[etcd]http://127.0.0.1:4001
-     *     _key1.createdIndex=12
-     *     _key1.modifiedIndex=34          // optional
-     *     _key1.ttl=300                   // optional
-     *     _key1.expiration=...            // optional
-     *
-     *      key2=myvaluexxx
-     *     _key2.source=[etcd]http://127.0.0.1:4001
-     *     _key2.createdIndex=12
-     *
-     *      key3=val3
-     *     _key3.source=[etcd]http://127.0.0.1:4001
-     *     _key3.createdIndex=12
-     *     _key3.modifiedIndex=2
-     * &lt;/pre&gt;
-     */
-    public Map&lt;String,String&gt; getProperties(String directory, boolean recursive);
-
-}</code></pre> 
-    </div> 
-   </div> 
-  </div> 
-  <div class="sect2"> 
-   <h3 id="_the_etcdpropertysource">The EtcdPropertySource</h3> 
-   <div class="paragraph"> 
-    <p>The EtcdPropertySource is automatically registered and allows to configure the <em>etcd</em> servers to be used. This enables to use e.g. in Docker environments the docker environment configuration mechanisms to configure Tamaya running in microservice containers to connect with the according etcd cluster:</p> 
-   </div> 
-   <div class="ulist"> 
-    <ul> 
-     <li> <p>The property source reads the tamaya.etcd.server.urls system and environment property to evaluate possible etcd servers (comma separated), which can be connected to. On error the API just performs a Round-Robin through the list of configured servers. Without any configuration http://127.0.0.1:4001 is used. If no connection to any etcd server can be established a warning will be logged, but deployment will not fail.</p> </li> 
-     <li> <p>Additionally also the accessor allows to configure the socket/connection timeouts by setting tamaya.etcd.timeout in seconds either as system or environment property.</p> </li> 
-     <li> <p>The EtcdPropertySource finally also allows the values read from the <em>etcd</em> cluster to be mapped to prefixed context. This can be activated by setting the -Dtamaya.etcd.prefix=&lt;PREFIX&gt; system property. E.g. when the prefix is set to <code>cluster-config.</code> a etcd key of <code>host:known/all</code> is mapped to <code>cluster-config.host:known/all</code>.</p> </li> 
-    </ul> 
-   </div> 
-  </div> 
- </div> 
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_functionality_provided">The Functionality Provided</h3>
+<div class="paragraph">
+<p>Tamaya&#8217;s <em>etcd</em> integration provides basically the following artifacts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The org.apache.tamaya.etcd.EtcdPropertySource is a ready-to-use PropertySource with a default ordinal of 100 and
+the name 'etcd'.</p>
+</li>
+<li>
+<p>The org.apache.tamaya.etcd.AbstractEtcdPropertySource is a abstract base PropertySource you can use to
+implement your own etcd propertysource.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_etcdpropertysource">The EtcdPropertySource</h3>
+<div class="paragraph">
+<p>The EtcdPropertySource is a ready-to-use property source implementation for etcd. For use you must simply register it
+with the Java <code>ServiceLoader</code> od include it in a PropertySourceProvider. It provides:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a etcd based property source implementation.</p>
+</li>
+<li>
+<p>configurable caching of key/values.</p>
+</li>
+<li>
+<p>configuring a dedicated etcd directory ID to be used.</p>
+</li>
+<li>
+<p>The property source reads the tamaya.etcd.server system or environment property to evaluate the etcd servers
+(comma separated). The API hereby just performs a Round-Robin through the list of
+configured servers. Without any configuration http://127.0.0.1:4001 is used. If no connection to any etcd
+server can be established a warning will be logged, but deployment will not fail.</p>
+</li>
+<li>
+<p>Additionally with tamaya.etcd.timeout system or environment property you can configure the connection timeout
+in seconds.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_abstractetcdpropertysource">The AbstractEtcdPropertySource</h3>
+<div class="paragraph">
+<p>The AbstractEtcdPropertySource is the base class used by EtcdPropertySource. Use it to implement your own custom
+etcd property source.</p>
+</div>
+</div>
+</div>
 </div></p>
 
 			<hr />
@@ -324,9 +238,9 @@
 
 		    <div id="footer">
 		      <div class="container">
-		        <p class="muted credit">&copy; 2014-<span>2018</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span>v2.6.1</span></a>
-							at <span>2018-11-02</span> |
+		        <p class="muted credit">&copy; 2014-<span>2019</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
+							| Baked with <a href="http://jbake.org">JBake <span>v2.6.3</span></a>
+							at <span>2019-01-05</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>
