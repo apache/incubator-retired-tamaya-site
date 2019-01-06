@@ -1,0 +1,74 @@
+:jbake-type: page
+:jbake-status: published
+
+= Tamaya as a Standard
+
+Apache Tamaya (incubating) actually supports several configuration standards to
+provide a long term stable configuration solution.
+
+
+== JSR 382
+
+Tamaya implements a recent state of the Configuration JSR. The exact commit
+version of the JSR API implemented (the JSR has not yet released any version
+as of now) can be evaluated looing at the _tamaya-jsr382_ `pom.xml` in the
+sandbox repository.
+
+To use Tamaya aS a JSR-382 Configuration provider you must add the following
+dependency:
+
+[source,xml]
+---------
+<dependency>
+    <groupId>org.apache.tamaya.ext</groupId>
+    <artifactId>tamaya-jsr382</artifactId>
+    <version>${tamaya.version}</version>
+</dependency>
+---------
+
+Since this component is not yet officially released you must use the current snapshot
+version +0.4-incubating-SNAPSHOT+. You also must add the Apache Snapshot
+Repository to your build:
+
+[source,xml]
+---------
+<repository>
+    <id>apache.snapshots</id>
+    <name>Apache Development Snapshot Repository</name>
+    <url>https://repository.apache.org/content/repositories/snapshots/</url>
+    <releases>
+        <enabled>false</enabled>
+    </releases>
+    <snapshots>
+        <enabled>true</enabled>
+    </snapshots>
+</repository>
+---------
+
+
+== Microprofile
+
+Tamaya implements the Microprofile Configuration API Version 1.1. To use Tamaya
+as a Micropropfile Configuration provider you must add the following dependency:
+
+[source,xml]
+---------
+<dependency>
+    <groupId>org.apache.tamaya.ext</groupId>
+    <artifactId>tamaya-microprofile</artifactId>
+    <version>${tamaya.version}</version>
+</dependency>
+---------
+
+
+== OSGI ConfigAdmin
+
+Tamaya's OSGI Support leverages the OSGI +org.osgi.service.cm.ConfigurationAdmin+
+configuration manager as defined in OSGI Compendiumn Version +4.3.1+. Hereby
+Tamaya can add or modify Configuration in OSGI, which may trigger change events.
+The exact behaviour can be controlled in many ways. By default Tamaya, does not change
+anything, when deployed in OSGI, without being configured todo so. For details
+check link:documentation/extensions/mod_osgi.html[Tamaya's OSGI Documentation].
+
+
+
