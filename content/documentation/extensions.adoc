@@ -46,18 +46,21 @@ us getting them stable and well tested!
 
 [width="100%",frame="1",options="header",grid="all"]
 |=======
-|_Artifact_                                 |_Description_                                         |_Links_
-|+org.apache.tamaya.ext:tamaya-camel_beta+       |Integration with Apache Camel.                        | link:extensions/mod_camel.html[Documentation]
-|+org.apache.tamaya.ext:tamaya-commons_beta+     |Integration Support for Apache Commons.               | -
-|+org.apache.tamaya.ext:tamaya-configured-sysprops_beta+  | Tamaya configuration to be provided as +System.getProperties()+.  | link:extensions/mod_sysprops.html[Documentation]
-|+org.apache.tamaya.ext:tamaya-jodatime_beta+    |Provides support for JodaTime.                        | link:extensions/mod_jodatime.html[Documentation]
-|+org.apache.tamaya.ext:tamaya-management_alpha+  |Provides JMX support for inspecting configuration.    |link:extensions/mod_management.html[Documentation]
-|+org.apache.tamaya.ext:tamaya-metamodel_alpha+   |Provides an XML API for building configuration.       |link:extensions/mod_metamodel-staged.html[Documentation]
-|+org.apache.tamaya.ext:tamaya-remote_alpha+      |Remote configuration support using the server API.    |link:extensions/mod_remote.html[Documentation]
-|+org.apache.tamaya.ext:tamaya-server_alpha+      |Publishes configuration as a REST service.            |link:extensions/mod_server.html[Documentation]
-|+org.apache.tamaya.ext:tamaya-ui_alpha+          |Provides a web UI for a VM running Tamaya.            |link:extensions/mod_ui.html[Documentation]
-|+org.apache.tamaya.ext:tamaya-uom_beta+          |Provides additional converters based on the Units of Measurement JSR. |link:extensions/mod_uom.html[Documentation]
-|+org.apache.tamaya.ext:tamaya-usagetracker_beta+ |Allows tracking of configuration usage.              |link:extensions/mod_usagetracker.html[Documentation]
-|+org.apache.tamaya.ext:tamaya-validation-alpha+  |Provides an XML API for validating configuration.     |link:extensions/mod_validation.html[Documentation]
-|+org.apache.tamaya.ext:tamaya-vertx-alpha+ |Provides Vertx integration.                           |link:extensions/mod_vertx.html[Documentation]
+|_Artifact_                                       |_Description_                                         |_Links (if available)_
+|+org.apache.tamaya.ext:tamaya-camel_beta+        |Integration with Apache Camel.                        | link:extensions/mod_camel.html[Documentation]
+|+org.apache.tamaya.ext:tamaya-commons-config_beta+ |Integration Support for Apache Commons.             | -
+|+org.apache.tamaya.ext:tamaya-doc_alpha+         |Provides support for generating Configuration Documentation.  | -
+|+org.apache.tamaya.ext:tamaya-hjson_alpha+       |Provides support for using HJSON as configuration format.  | -
+|+org.apache.tamaya.ext:tamaya-jodatime_beta+     |Provides support for JodaTime.                        | link:extensions/mod_jodatime.html[Documentation]
+|+org.apache.tamaya.ext:tamaya-jsr382+            |Implementation of the current JSR 382 API.            | - (Checkout the JSR's documentation)
+|+org.apache.tamaya.ext:tamaya-management_alpha+  |Provides JMX support for inspecting configuration.    | link:extensions/mod_management.html[Documentation]
+|+org.apache.tamaya.ext:tamaya-metamodel_alpha+   |Provides an XML API for building configuration.       | link:extensions/mod_metamodel-staged.html[Documentation]
+|+org.apache.tamaya.ext:tamaya-propertysources+   |Provides different property source base classes.      | -
+|+org.apache.tamaya.ext:tamaya-remote_alpha+      |Remote configuration support using the server API.    | link:extensions/mod_remote.html[Documentation]
+|+org.apache.tamaya.ext:tamaya-server_alpha+      |Publishes configuration as a REST service.            | link:extensions/mod_server.html[Documentation]
+|+org.apache.tamaya.ext:tamaya-ui_alpha+          |Provides a web UI for a VM running Tamaya.            | link:extensions/mod_ui.html[Documentation]
+|+org.apache.tamaya.ext:tamaya-uom_beta+          |Provides additional converters based on the Units of Measurement JSR. | link:extensions/mod_uom.html[Documentation]
+|+org.apache.tamaya.ext:tamaya-usagetracker_beta+ |Allows tracking of configuration usage.               | link:extensions/mod_usagetracker.html[Documentation]
+|+org.apache.tamaya.ext:tamaya-validation-alpha+  |Provides an XML API for validating configuration.     | link:extensions/mod_validation.html[Documentation]
+|+org.apache.tamaya.ext:tamaya-vertx-alpha+       |Provides Vertx integration.                           | link:extensions/mod_vertx.html[Documentation]
 |=======
