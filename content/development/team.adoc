@@ -20,6 +20,8 @@ The following is a list of developers with commit privileges that have directly 
 |plexus     |Oliver B. Fischer  |plexus[at]apache.org     |PMC        |+1
 |pottlinger |Phil Ottlinger     |pottlinger[at]apache.org |PMC        |+1
 |wkeil      |Werner Keil        |wkeil[at]apache.org      |PMC        |+1
+|acoburn    |Aaron Coburn       |acoburn[at]apache.org    |Committer  |-5
+|wlieurance |William Lieurance  |wlieurance[at]apache.org |Committer  |-6
 |======================
 
 == Contributors
