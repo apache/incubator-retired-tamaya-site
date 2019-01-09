@@ -29,8 +29,9 @@ The following people are active contributors:
 .Contributors
 [width="60%",frame="topbot",options="header"]
 |======================
-|Id       |Name            |E-Mail                 |Role(s)     |Time Zone
-|yourname |can be here :-) |you[at]example.org     |Contributor |+1
+|Id         |Name              |E-Mail                    |Role(s)     |Time Zone
+|acoburn    |Aaron Coburn      |acoburn[at]apache.org     |Contributor |-5
+|wlieurance |William Lieurance |wlieurance[at]apache.org  |Contributor |-6
 |======================
 
 == Emeritus
