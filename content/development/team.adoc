@@ -1,6 +1,30 @@
 :jbake-type: page
 :jbake-status: published
 
+= Apache Tamaya: Project Mailinglists
+
+Following the Apache Way everything happens on our mailing lists. You may subscribe to all public lists.
+The table below lists all mailings used by the Tamaya project.
+
+[width="70"]
+[cols="4*.<", options="header"]
+|===
+| List
+| Subscribe
+| Unsubscribe
+| Archive
+//-- next row
+| Developer List
+| mailto:dev-subscribe@tamaya.incubator.apache.org[Subscribe]
+| mailto:dev-unsubscribe@tamaya.incubator.apache.org[Unsubscribe]
+| http://mail-archives.apache.org/mod_mbox/incubator-tamaya-dev/[Archive^]
+//-- next row
+| Committer List
+| mailto:commits-subscribe@tamaya.incubator.apache.org[Subscribe]
+| mailto:commits-unsubscribe@tamaya.incubator.apache.org[Unsubscribe]
+| http://mail-archives.apache.org/mod_mbox/incubator-tamaya-commits/[Archive^]
+|===
+
 = Apache Tamaya: Project Team
 
 A successful project requires many people to play many roles. Some members write code or documentation, while others are valuable as testers, submitting patches and suggestions.
