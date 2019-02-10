@@ -882,7 +882,7 @@ com.mypackage.MyPropertySource
 The Tamaya configuration API is implemented by the +tamaya-core+ module. Refer to the link:core.html[Core documentation] for
 further details.
 
-Furhtermore Tamaya also implements or supports
+Furthermore Tamaya also implements or supports:
 
 * the API as defined by JSR 310 (Config JSR)
 * the Microprofile API
