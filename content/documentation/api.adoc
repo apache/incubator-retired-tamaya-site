@@ -66,7 +66,6 @@ The API provides the artifacts as described in the link:../highleveldesign.html[
      extension programmers will not have to deal with these internals.
 
 
-
 [[APIKeyValues]]
 === Key/Value Pairs and More
 
@@ -157,8 +156,7 @@ Nevertheless most of these advantages can be mitigated easily, hereby still keep
   accessible.
 
 
-[[API Configuration]]
-
+[[APIConfiguration]]
 === Configuration
 
 +Configuration+ is the main artifact provided by Tamaya. It allows reading of single property values or all known
@@ -882,7 +880,7 @@ com.mypackage.MyPropertySource
 The Tamaya configuration API is implemented by the +tamaya-core+ module. Refer to the link:core.html[Core documentation] for
 further details.
 
-Furhtermore Tamaya also implements or supports
+Furthermore Tamaya also implements or supports:
 
 * the API as defined by JSR 310 (Config JSR)
 * the Microprofile API
