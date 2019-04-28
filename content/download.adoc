@@ -10,7 +10,7 @@
 
 The latest release is Apache Tamaya {tamaya_version_released}.
 You can download it it from the
-http://www.apache.org/dist/incubator/tamaya[Apache Software Foundation Distribution Directory^].
+http://www.apache.org/dyn/closer.cgi/incubator/tamaya[Apache Software Foundation Distribution Directory^].
 
 The release notes for each release of Apache Tamaya
 can be found at the link:history.html[release history page].
@@ -19,7 +19,7 @@ can be found at the link:history.html[release history page].
 
 Downloading of the the current state of the project can be done by
 
-* cloning the https://github.com/apache/incubator-tamaya[GitHub mirror^]
+* cloning the https://github.com/apache/incubator-tamaya[GitHub repo^]
 * Github also provides an easy way to dowload the current project source as zip archive.
 // @todo * Cloning the Apache source tree, see link:3[source section]. source.html
 
@@ -50,7 +50,7 @@ Downloading of the the current state of the project can be done by
 == Previous Releases
 
 All previous releases can also be found at the
-https://www.apache.org/dist/incubator/tamaya/[Apache Software Foundation Distribution Directory^].
+https://archive.apache.org/dist/incubator/tamaya/[Apache Software Foundation Distribution Archive^].
 In our link:history.html[release history overview] you can find all previous releases of Tamaya.
 
 == Verifying Releases
@@ -66,7 +66,7 @@ as well as the asc signature file for the artifact. Make sure you get
 these files from the
 https://www.apache.org/dist/incubator/tamaya/[main distribution directory^]
 rather than from a
-https://www.apache.org/dyn/closer.cgi/tamaya/[mirror^].
+https://www.apache.org/dyn/closer.cgi/incubator/tamaya/[mirror^].
 Then verify the signatures using e.g.:
 
 [source,shell]

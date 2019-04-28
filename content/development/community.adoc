@@ -16,7 +16,7 @@ project documentation. Apache Tamaya currently does
 not yet have a users mailing list. If you want discuss your use cases
 we encourage you to mailto:dev-subscribe@tamaya.incubator.apache.org[subscribe]
 to our mailto:dev@tamaya.incubator.apache.org[mailing list for developers].
-Furthermore, you can check our xref:a_mailing_lists[mail-archives].
+Furthermore, you can check our pass:[<a href="https://lists.apache.org/list.html?dev@tamaya.apache.org">mail-archives</a>].
 
 Before you file a ticket in our https://issues.apache.org/jira/browse/TAMAYA[Jira^]
 please ask on the mailing list if it's a known issue in case of a
@@ -65,7 +65,7 @@ start contributing and help users.
 
 Optionally mailto:commits-subscribe@tamaya.incubator.apache.org[subscribe] to our
 mailto:commits@tamaya.incubator.apache.org[mailing list for commits].
-Furthermore, you can check our link:community.html#mailing-lists[mail-archives].
+Furthermore, you can check our pass:[<a href="https://lists.apache.org/list.html?dev@tamaya.apache.org">mail-archives</a>].
 
 Further details are available at https://www.apache.org/dev/[https://www.apache.org/dev/^].
 
