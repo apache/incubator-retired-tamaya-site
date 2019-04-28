@@ -416,13 +416,11 @@ general@incubator.apache.org.
 More information and how to do this can be found on
 https://incubator.apache.org/guides/lists.html[^].
 
-:x: https://lists.apache.org/list.html?dev@tamaya.apache.org
-
 The mail, which must be send to the list, is quite similar
 to the one for the PPMC, but it must also contain a link
 to the mail thread of the successful vote of the PPMC.
 The archive of the developers mailinglist of Apache Tamaya
-can be found at https://lists.apache.org[^].
+can be found at pass:[<a href="https://lists.apache.org/list.html?dev@tamaya.apache.org">https://lists.apache.org</a>].
 
 The mail to the IPMC can be composed by using these both
 templates:
@@ -623,7 +621,7 @@ If the directory does not exists, create it.
 [listing,text]
 .Creating the directory for the version of the release
 ----
-$ svn mkdir https://dist.apache.org/repos/dist/release/incubator/tamaya/[versio]    <1>
+$ svn mkdir https://dist.apache.org/repos/dist/release/incubator/tamaya/[version]    <1>
 ----
 <1> Replace _version_ by the version number of the release.
 
