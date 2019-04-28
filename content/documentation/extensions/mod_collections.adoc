@@ -27,7 +27,7 @@ The module requires Java 8.
 
 To use Tamaya collection support you only must add the corresponding dependency to your module:
 
-[source, xml]
+[source, xml, subs=attributes+]
 -----------------------------------------------
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>

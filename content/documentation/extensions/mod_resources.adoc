@@ -24,7 +24,7 @@ The module is based on Java 8.
 
 To use this module add the following dependency:
 
-[source, listing, subs="verbatim,attributes"]
+[source, xml, subs=attributes+]
 -----------------------------------------------
 <dependency>
   <grooupId>org.apache.tamaya.ext</groupId>

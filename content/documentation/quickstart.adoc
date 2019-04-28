@@ -8,7 +8,7 @@ The fastest way to start with Tamaya is just using the _Core_ module, which
 provides a simple configuration API. To start add the following
 dependency to your project:
 
-[source,xml,subs="verbatim,attributes"]
+[source, xml, subs=attributes+]
 ----
 <dependency>
     <groupId>{tamaya_mvn_group_id}</groupId>
@@ -116,7 +116,7 @@ overview.
 
 ==== Dynamic Resolution and Value Placeholders
 
-[source,xml,subs="verbatim,attributes"]
+[source, xml, subs=attributes+]
 ----
 <dependency>
   <artifactId>org.apache.tamaya.ext</id>
@@ -140,7 +140,7 @@ String resolved = Resolver.getInstance().evaluateExpression(myExpression);
 
 ==== Ant-styled Path Resolution of Resources
 
-[source,xml,subs="verbatim,attributes"]
+[source, xml, subs=attributes+]
 ----
 <dependency>
   <artifactId>org.apache.tamaya.ext</id>
@@ -154,7 +154,7 @@ resolve configuration resources using a ant-styled resource
 description, e.g.
 
 
-[source,xml,subs="verbatim,attributes"]
+[source, xml]
 ----
 Collection<URL> urls = Resolver.getInstance().getResources("META-INF/cfg/**/*.properties");
 ----
@@ -164,7 +164,7 @@ For further details refer to the module documentation.
 
 ==== Configuration Injection
 
-[source,xml,subs="verbatim,attributes"]
+[source, xml, subs=attributes+]
 ----
 <dependency>
   <artifactId>org.apache.tamaya.ext</id>
@@ -178,7 +178,7 @@ annotated classes or let Tamaya implement a configuration template.
 
 Corresponding configuration:
 
-[source,xml,subs="verbatim,attributes"]
+[source, xml]
 ----
 public class MyType {
    @Config("my.key")
@@ -195,7 +195,7 @@ ConfigurationInjector.getInstance().configure(type);
 
 Or the same as template:
 
-[source,xml,subs="verbatim,attributes"]
+[source, xml]
 ----
 public interface MyTypeTemplate {
    @Config("my.key")

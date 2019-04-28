@@ -36,6 +36,7 @@ The annotations used for all injection functionality in Tamaya is defined as a s
 code against the injection API without dependency on the concrete injection implementation. As a consequence your
 components will be compatible regardless if deployed in a pure SE or as Java EE (CDI) or Spring environment:
 
+[source, xml, subs=attributes+]
 -----------------------------------------------
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>
@@ -56,7 +57,7 @@ To benefit from Tamaya CDI integration you only must one of the following depend
 you never have installed both CDI extensions at the same time because this may be lead to unforseen side-effects.
 
 .CDI Java EE Application Configuration
-[source, xml]
+[source, xml, subs=attributes+]
 -----------------------------------------------
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>
@@ -69,7 +70,7 @@ you never have installed both CDI extensions at the same time because this may b
 following dependency. If this dependency is missing injection is purely based on
 CDI injection features.
 
-[source, xml]
+[source, xml, subs=attributes+]
 -----------------------------------------------
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>

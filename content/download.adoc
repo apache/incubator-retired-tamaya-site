@@ -32,7 +32,7 @@ Downloading of the the current state of the project can be done by
 
 // @todo Source highlighting does not work currently.
 //
-[source,xml,subs="verbatim,attributes"]
+[source, xml, subs=attributes+]
 ----
 <dependency>
     <groupId>{tamaya_mvn_group_id}</groupId>

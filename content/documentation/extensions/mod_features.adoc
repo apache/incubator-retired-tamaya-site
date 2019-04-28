@@ -25,7 +25,7 @@ The module is based on Java 7, so it will not run on Java 7 and beyond.
 To use Tamaya _Features_ you only must add the corresponding dependency to
 your module:
 
-[source, xml]
+[source, xml, subs=attributes+]
 -----------------------------------------------
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>

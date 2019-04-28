@@ -33,7 +33,7 @@ version 1.1.
 
 To benefit from Tamaya Microprofile you only must one of the following dependencies to your module:
 
-[source, xml]
+[source, xml, subs=attributes+]
 -----------------------------------------------
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>

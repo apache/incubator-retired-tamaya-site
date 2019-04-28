@@ -35,7 +35,7 @@ The module is based on Java 7, so it can be used with Java 7 and beyond.
 
 For using the functionality shown in this document you only must add the corresponding dependency to your module:
 
-[source, xml]
+[source, xml, subs=attributes+]
 -----------------------------------------------
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>
