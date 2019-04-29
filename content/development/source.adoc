@@ -34,6 +34,8 @@ The repository locations are:
     - https://gitbox.apache.org/repos/asf/incubator-tamaya-extensions.git
     - https://github.com/apache/incubator-tamaya-extensions[https://github.com/apache/incubator-tamaya-extensions^] GitHub mirror
     - Current build status is image:https://builds.apache.org/buildStatus/icon?job=Tamaya-Extensions-Master&style=plastic[] - https://builds.apache.org/view/S-Z/view/Tamaya/job/Tamaya-Extensions-Master[Jenkins^]
+    - Current quality status via SonarCloud is image:https://sonarcloud.io/api/project_badges/measure?project=apache_incubator-tamaya-extensions&metric=alert_status[] - https://sonarcloud.io/dashboard?id=apache_incubator-tamaya-extensions[SonarCloud^]
+
 
 The GitHub mirror also provides the project as a downloadable zip archive.
 
