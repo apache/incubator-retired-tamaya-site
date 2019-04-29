@@ -47,6 +47,7 @@ The repository locations are:
     - https://gitbox.apache.org/repos/asf/incubator-tamaya-sandbox.git
     - https://github.com/apache/incubator-tamaya-sandbox[https://github.com/apache/incubator-tamaya-sandbox^] GitHub mirror
     - Current build status is image:https://builds.apache.org/buildStatus/icon?job=Tamaya-Sandbox-Master&style=plastic[] - https://builds.apache.org/view/S-Z/view/Tamaya/job/Tamaya-Sandbox-Master[Jenkins^]
+    - Current quality status is image:https://sonarcloud.io/api/project_badges/measure?project=apache_incubator-tamaya-sandbox&metric=alert_status[] - https://sonarcloud.io/dashboard?id=apache_incubator-tamaya-sandbox[SonarCloud^]
 
 The GitHub mirror also provides the project as a downloadable zip archive.
 
