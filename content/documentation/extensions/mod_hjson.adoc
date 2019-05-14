@@ -1,26 +1,29 @@
 :jbake-type: page
 :jbake-status: published
 
-= Apache Tamaya - Extension: JSON Format
+= Apache Tamaya - Extension: HJSON Format
 
 toc::[]
 
 
-[[JSON]]
-== Tamaya JSON (Extension Module)
-Tamaya _JSON_ is an extension module. Refer also to the link:../extensions.html[extensions documentation] for further details.
+[[HJSON]]
+== Tamaya HJSON (Extension Module)
+Tamaya _HJSON_ is an extension module. Refer also to the link:../extensions.html[extensions documentation] for further details.
 
 === What functionality this module provides ?
 
-Tamaya _JSON_ provides support for reading configuration in JSON (Java Serializued Object Notation):
+Tamaya _HJSON_ provides support for reading configuration in HJSON, a JSP similar format better
+suited for humans:
 
-[source, json]
+[source, hjson]
 -----------------------------------------------
 {
-  "a.b"{
-    "key1": "blabla",
-    "key2": true,
+  a : A
+  b : {
+    o : O
+    p : P
   }
+  c : C
 }
 -----------------------------------------------
 
@@ -30,8 +33,10 @@ to flat key-value pairs of type `String`, e.g. the bove will be mapped to
 
 [source, properties]
 -----------------------------------------------
-a.b.key1=blabla
-a.b.key2=true
+a=A
+b.o=O
+b.p=P
+c=C
 -----------------------------------------------
 
 This extension implements the SPI defined by the +tamaya.formats+ extension module.
@@ -44,13 +49,13 @@ The module is based on Java 8.
 
 === Installation
 
-To use the JSON extension module you only must add the corresponding dependency to your module:
+To use the HJSON extension module you only must add the corresponding dependency to your module:
 
 [source, xml]
 -----------------------------------------------
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>
-  <artifactId>tamaya-json</artifactId>
+  <artifactId>tamaya-hjson</artifactId>
   <version>{tamaya_version}</version>
 </dependency>
 -----------------------------------------------
@@ -58,15 +63,15 @@ To use the JSON extension module you only must add the corresponding dependency 
 This extension also transitively requires the +tamaya.formats+ module.
 
 
-=== Reading configuration in JSON
+=== Reading configuration in HJSON
 
-For reading JSON based onfiguration most easily a +JSONFormat+ can be
+For reading HJSON based onfiguration most easily a +HJSONFormat+ can be
 used:
 
 [source, java]
 -----------------------------------------------
 ConfigurationData dataRead = ConfigurationFormats.getInstance().readConfig(
-    getClassLoader().getResource("myFileConfig.json"), new JSONFormat()));
+    getClassLoader().getResource("myFileConfig.json"), new HJSONFormat()));
 -----------------------------------------------
 
 Or, if you are fine with the _default_ mapping you can directly create a
@@ -76,5 +81,5 @@ registers the _json_ format automatically using the `ServiceContext`):
 [source, java]
 -----------------------------------------------
 PropertySource ps = ConfigurationFormats.getInstance().createPropertySource(
-    getClassLoader().getResource("myFileConfig.json"));
+    getClassLoader().getResource("myFileConfig.hjson"));
 -----------------------------------------------

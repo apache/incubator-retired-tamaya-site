@@ -21,6 +21,8 @@ Mature extensions have a stable API and SPI, similar to the API and Implementati
 |+org.apache.tamaya.ext:tamaya-formats+       |Provides an abstract model for configuration formats   |link:extensions/mod_formats.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-functions+     |Provides several functional extension points.          |link:extensions/mod_functions.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-hazelcast+     |Integration with Hazelcast datagrids.                  |link:extensions/mod_hazelcast.html[Documentation]
+|+org.apache.tamaya.ext:tamaya-hocon+         |Provides format support for HOCON based configuration. |link:extensions/mod_hocon.html[Documentation]
+|+org.apache.tamaya.ext:tamaya-hjson+          |Provides format support for HJSON based configuration. |link:extensions/mod_hjson.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-injection-api+ |Provides Tamaya's injection annotations API.           |link:extensions/mod_injection.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-injection+     |Provides configuration injection services and configuration template support.  |link:extensions/mod_injection.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-injection-cdi+ | Java EE/standalone compliant CDI integration using CDI for injection. | link:extensions/mod_cdi.html[Documentation]
@@ -50,7 +52,6 @@ us getting them stable and well tested!
 |+org.apache.tamaya.ext:tamaya-camel_beta+        |Integration with Apache Camel.                        | link:extensions/mod_camel.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-commons-config_beta+ |Integration Support for Apache Commons.             | -
 |+org.apache.tamaya.ext:tamaya-doc_alpha+         |Provides support for generating Configuration Documentation.  | -
-|+org.apache.tamaya.ext:tamaya-hjson_alpha+       |Provides support for using HJSON as configuration format.  | -
 |+org.apache.tamaya.ext:tamaya-jodatime_beta+     |Provides support for JodaTime.                        | link:extensions/mod_jodatime.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-jsr382+            |Implementation of the current JSR 382 API.            | - (Checkout the JSR's documentation)
 |+org.apache.tamaya.ext:tamaya-management_alpha+  |Provides JMX support for inspecting configuration.    | link:extensions/mod_management.html[Documentation]

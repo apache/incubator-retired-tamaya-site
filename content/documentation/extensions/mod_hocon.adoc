@@ -1,7 +1,7 @@
 :jbake-type: page
 :jbake-status: published
 
-= Apache Tamaya - Extension: JSON Format
+= Apache Tamaya - Extension: HOCON Format
 
 toc::[]
 
@@ -12,26 +12,31 @@ Tamaya _JSON_ is an extension module. Refer also to the link:../extensions.html[
 
 === What functionality this module provides ?
 
-Tamaya _JSON_ provides support for reading configuration in JSON (Java Serializued Object Notation):
+Tamaya _HOCON_ provides support for reading configuration using Human Optimized Configuration) HOCON
+format as defined by http://https://lightbend.github.io/config/[Lightbend Typesafe Config]:
 
-[source, json]
+[source, hcon]
 -----------------------------------------------
 {
-  "a.b"{
-    "key1": "blabla",
-    "key2": true,
+  a : A
+  b : B
+  c {
+    o: O
+    p: P
   }
 }
 -----------------------------------------------
 
-Hereby the hierarchical structure of the JSON document will be mapped to a
-corresponding `PropertyValue` tree structure. This strucuture can be mapped
-to flat key-value pairs of type `String`, e.g. the bove will be mapped to
+Hereby the hierarchical structure of the HOCON document will be mapped
+into an according `PropertyValue` tree structure. By default this structure can be
+mapped to flat key-value pairs of type `String`, e.g. the bove will be mapped to
 
 [source, properties]
 -----------------------------------------------
-a.b.key1=blabla
-a.b.key2=true
+a=A
+b=B
+c.o=O
+c.p=P
 -----------------------------------------------
 
 This extension implements the SPI defined by the +tamaya.formats+ extension module.
@@ -50,7 +55,7 @@ To use the JSON extension module you only must add the corresponding dependency 
 -----------------------------------------------
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>
-  <artifactId>tamaya-json</artifactId>
+  <artifactId>tamaya-hocon</artifactId>
   <version>{tamaya_version}</version>
 </dependency>
 -----------------------------------------------
@@ -58,23 +63,23 @@ To use the JSON extension module you only must add the corresponding dependency 
 This extension also transitively requires the +tamaya.formats+ module.
 
 
-=== Reading configuration in JSON
+=== Reading configuration in HOCON
 
-For reading JSON based onfiguration most easily a +JSONFormat+ can be
+For reading HOCON based onfiguration most easily a +HOCONFormat+ can be
 used:
 
 [source, java]
 -----------------------------------------------
 ConfigurationData dataRead = ConfigurationFormats.getInstance().readConfig(
-    getClassLoader().getResource("myFileConfig.json"), new JSONFormat()));
+    getClassLoader().getResource("myFileConfig.hocon"), new HOCONFormat()));
 -----------------------------------------------
 
 Or, if you are fine with the _default_ mapping you can directly create a
 +PropertySource+ using the _formats_ API (this works since this module
-registers the _json_ format automatically using the `ServiceContext`):
+registers the _hocon_ format automatically in the `ServiceContext`):
 
 [source, java]
 -----------------------------------------------
 PropertySource ps = ConfigurationFormats.getInstance().createPropertySource(
-    getClassLoader().getResource("myFileConfig.json"));
+    getClassLoader().getResource("myFileConfig.hocon"));
 -----------------------------------------------
