@@ -1,3 +1,6 @@
 ---
 language: bash
 script: bake-jenkins.sh
+branches:
+   only:
+     - master
