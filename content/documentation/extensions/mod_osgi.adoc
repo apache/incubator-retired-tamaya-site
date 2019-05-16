@@ -37,7 +37,7 @@ is tested against the following OSGI runtimes:
 To benefit from Tamaya in an OSGI context you must deploy at least the following modules to
 your OSGI runtime environment:
 
-[source, listing]
+[source, listing, subs=attributes+]
 -----------------------------------------------
 # Runtime with OSGI ConfigAdmin support, e.g.
 org.apache.felix:org.apache.felix.configadmin:{felix_version}

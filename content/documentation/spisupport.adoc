@@ -51,7 +51,7 @@ The module is based on Java 8, so it will run on Java 8 and beyond.
 
 To use Tamaya's _spisupport_ you only have to add the corresponding dependency to your module:
 
-[source, xml]
+[source, xml, subs=attributes+]
 -----------------------------------------------
 <dependency>
   <groupId>org.apache.tamaya</groupId>

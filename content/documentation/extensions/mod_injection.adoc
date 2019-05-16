@@ -29,7 +29,7 @@ The module is based on Java 7, so it can be used with Java 7 and beyond.
 
 Basically Tamaya's injection API is deployed as API artifact:
 
-[source, xml]
+[source, xml, subs=attributes+]
 -----------------------------------------------
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>
@@ -40,7 +40,7 @@ Basically Tamaya's injection API is deployed as API artifact:
 
 To use injection with Java SE you must add the corresponding dependency to your module:
 
-[source, xml]
+[source, xml, subs=attributes+]
 -----------------------------------------------
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>

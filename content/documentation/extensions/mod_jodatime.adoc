@@ -21,7 +21,7 @@ converters to use Joda-Time types when accessing configuration.
 To support Joda-Time types as configuration values, you only have to add the following
 maven dependency to your project:
 
-[source, listing]
+[source, xml, subs=attributes+]
 -----------------------------------------------
 <dependency>
   <grooupId>org.apache.tamaya.ext</groupId>

@@ -20,18 +20,17 @@ configuration with Apache Camel.
 === Compatibility
 
 The module is based on Java 8. 
-{jbake-tamaya_version}
 
 === Installation
 
 To benefit from configuration builder support you only must add the corresponding dependency to your module:
 
-[source, xml, subs="attributes"]
+[source, xml, subs=attributes+]
 -----------------------------------------------
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>
   <artifactId>tamaya-camel_beta</artifactId>
-  <version>{jbake-tamaya_version}</version>
+  <version>{tamaya_version}</version>
 </dependency>
 -----------------------------------------------
 
