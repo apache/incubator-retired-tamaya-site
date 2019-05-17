@@ -1,5 +1,5 @@
----
-language: bash
+language: java
+jdk: openjdk11
 script: ./bake-jenkins.sh
 branches:
    only:
