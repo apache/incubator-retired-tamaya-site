@@ -7,8 +7,8 @@
 
 		    <div id="footer">
 		      <div class="container">
-		        <p class="muted credit">&copy; 2014-<span th:text='${#dates.format(published_date,"yyyy")}'>published_date</span> Apache Software Foundation | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a>
-							| Baked with <a href="http://jbake.org">JBake <span th:text='${version}'>version</span></a>
+		        <p class="muted credit">&copy; 2014-<span th:text='${#dates.format(published_date,"yyyy")}'>published_date</span> Apache Software Foundation | Mixed with <a href="https://getbootstrap.com/">Bootstrap v3.1.1</a>
+							| Baked with <a href="https://jbake.org">JBake <span th:text='${version}'>version</span></a>
 							at <span th:text='${#dates.format(published_date,"yyyy-MM-dd")}'>published_date</span> |
 						<a class="twitter-follow-button" data-show-count="false" th:href="'https://twitter.com/'+${config.twitterhandle}" th:text="'Follow @'+ ${config.twitterhandle}"></a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
@@ -17,7 +17,7 @@
                     Apache Tamaya (incubating) is an effort undergoing
                     incubation at
                     The Apache Software Foundation (ASF), sponsored by
-                    the name of Apache Incubator. Incubation is required of
+                    the Apache Incubator. Incubation is required of
                     all newly accepted projects until a further review indicates
                     that the infrastructure, communications, and decision making
                     process have stabilized in a manner consistent with other
