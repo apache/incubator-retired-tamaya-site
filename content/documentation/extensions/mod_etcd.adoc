@@ -28,7 +28,7 @@ The module is based on Java 8.
 To use _etcd_ as a configuration backend you only must add the corresponding dependency to
 your module:
 
-[source, xml]
+[source, xml, subs=attributes+]
 -----------------------------------------------
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>

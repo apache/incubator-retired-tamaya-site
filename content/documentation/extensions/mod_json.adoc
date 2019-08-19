@@ -46,7 +46,7 @@ The module is based on Java 8.
 
 To use the JSON extension module you only must add the corresponding dependency to your module:
 
-[source, xml]
+[source, xml, subs=attributes+]
 -----------------------------------------------
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>

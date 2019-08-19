@@ -53,6 +53,22 @@
 								<li><a th:with="rootpath=(${content.rootpath != null} ? ${content.rootpath} : '')" th:href="${rootpath}+'history.html'">Release History</a></li>
               </ul>
             </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">ASF <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+								<li><a href="https://www.apache.org/">Apache Software Foundation (ASF)</a></li>
+								<li><a href="https://www.apache.org/foundation/how-it-works.html">How the ASF works</a></li>
+								<li><a href="https://www.apache.org/foundation/getinvolved.html">Get Involved</a></li>
+								<li><a href="https://www.apache.org/dev/">Developer Resources</a></li>
+								<li><a href="https://www.apache.org/foundation/policies/conduct.html">Code of Conduct</a></li>
+								<li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+								<li><a href="https://www.apache.org/licenses/">License</a></li>
+								<li><a href="https://www.apache.org/security">Security</a></li>
+								<li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+								<hr/>
+								<li><a  href="https://www.apache.org/events/current-event.html"><img src="https://www.apache.org/events/current-event-125x125.png" alt="Current Apache event"/></a></li>
+              </ul>
+            </li>
 <!-- Example:
 						<li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>

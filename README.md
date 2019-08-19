@@ -92,3 +92,10 @@ $ git push
 
 There is a daily build job that triggers a site baking on ASF-Jenkins:
 https://builds.apache.org/view/S-Z/view/Tamaya/job/Tamaya-Site-jBake-Master/
+
+#### Travis integration
+
+Apart from integration into ASF CI there's a travis build:
+
+[![Build Status](https://travis-ci.org/apache/incubator-tamaya-site.svg?branch=master)](https://travis-ci.org/apache/incubator-tamaya-site/branches)
+

@@ -28,7 +28,7 @@ The module is based on Java 8.
 
 To benefit from dynamic value resolution you only must add the corresponding dependency to your module:
 
-[source, xml, subs="verbatim,attributes"]
+[source, xml, subs=attributes+]
 -----------------------------------------------
 <dependency>
   <groupId>org.apache.tamaya.ext</groupId>
