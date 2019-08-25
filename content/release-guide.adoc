@@ -183,8 +183,14 @@ Nexus.
 [listing,text]
 .Deploying the vote candidate to Apache's Nexus'
 ----
-$ mvn deploy
+$ mvn deploy -DperformRelease=true
 ----
+
+CAUTION: If you forget the _performRelease_ flag the signature files will be missing.
+
+NOTE: Ensure you have configured your Apache _userid_ and _password_ in your `settings.xml` for the Apache
+      Nexus server (id: `apache.releases.https`). Without uploading of your artifacts will fail.
+
 
 // Check if these commandline parameters are needed
 // -DperformRelease=true -Dgpg.keyname=[key] -Dgpg.passphrase=[passphrase] <1> <2>
