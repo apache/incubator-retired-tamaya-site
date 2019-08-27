@@ -9,7 +9,7 @@ There are several reasons, why you should choose Tamaya, some of them:
 * *Tamaya is useful*: Tamaya ships with a type safe, easy to use API and SPI, which can help you to decouple your
   code from configuration concerns.
 * *Tamaya is flexible*: Regardless of working
-with Vanilla Java SE or with OSGI or Jakarta EE, Tamaya can be the tool
+with Vanilla Java SE or with OSGi or Jakarta EE, Tamaya can be the tool
 of choice for your configuration concerns.
 * *Tamaya is extendible*: Tamaya comes with a lean core API. Additional features can
  be added easily by simply adding them to the project classpath as needed.

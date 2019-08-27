@@ -11,7 +11,7 @@ and building blocks for supporting SPI implementations.
 Tamaya Core contains the following artifacts:
 
 * A service loader implementation, configurations and further logic required to run
-  in an OSGI environment.
+  in an OSGi environment.
 * Numerous *converters*, including an +EnumConverter+, that is a converter implementation that can automatically select
   the currect enumeration values based on a configured entry.
 * A configurable `BannerManager`to print Tamaya's start logo on load.

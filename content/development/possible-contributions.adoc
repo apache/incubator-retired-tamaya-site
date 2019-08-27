@@ -16,7 +16,7 @@ toc::[]
 {name} is the Apache standard for flexible and powerful configuration. Objective is to provide flavors for
 Java SE, ME as well as to ship with powerful features for Java EE and Cloud Solutions. All functions provided
 is build on top of a small but very powerful, flexible and extendible API. This API is implemented by a core implementation,
-which then can be extended or adapted for use in different runtime scenarios, such as SE, ME, EE, Spring, OSGI
+which then can be extended or adapted for use in different runtime scenarios, such as SE, ME, EE, Spring, OSGi
 and more. Similarly additional modules may be provided that help also existing solution to be plugged into
 {name}, so you can start right away using {name} without having to rebuild/change your existing application.
 
@@ -108,7 +108,7 @@ storing/retreiving/managing configuration:
 
 === Integration with Jigsaw
 
-Once Jigsaw is mature and in a usable (still early) stage, examples are to be created and tested, where OSGI is used as
+Once Jigsaw is mature and in a usable (still early) stage, examples are to be created and tested, where OSGi is used as
 the basic runtime platform, e.g. Apache Felix, but as well others.
 
 == Distributed/Remote Configuration Support

@@ -62,7 +62,7 @@ The API provides the artifacts as described in the link:../highleveldesign.html[
      +ConfigurationContextBuilder+. This builder can be obtained calling +Configuration.createConfigurationBuilder();+.
   ** Finally +ServiceContext+ and +ServiceContextManager+ provide an abstraction to the underlying runtime environment,
      allowing different component loading and lifecycle strategies to be used. This is very useful since component (service)
-     loading in Java SE, Java EE, OSGI and other runtime environments may be differ significantly. In most cases even
+     loading in Java SE, Java EE, OSGi and other runtime environments may be differ significantly. In most cases even
      extension programmers will not have to deal with these internals.
 
 
@@ -746,7 +746,7 @@ builder.addPropertySourceProvider(new MyPropertySourceProvider());
 == The ServiceContext
 
 The +ServiceContext+ allows to define how components are loaded in Tamaya. It is the glue layer, which interacts
-with the underlying runtime system such as Java SE, Java EE, OSGI, VertX etc.
+with the underlying runtime system such as Java SE, Java EE, OSGi, VertX etc.
 The +ServiceContext+ hereby defines access methods to obtain components, whereas itself it is available from the
 +ServiceContextManager+ singleton:
 
@@ -788,7 +788,7 @@ With the +ServiceContext+ a component can be accessed in two different ways:
 . the _register_ methods allow to explcitly register (and optionally override) a service or services
   registered.
 . Finally the methods `getResource(s)` allow to load resources from the classpath. This is especially useful
-  when running in an OSGI context, where loading of resources from the classloaders will fail.
+  when running in an OSGi context, where loading of resources from the classloaders will fail.
 
 
 ## Examples
@@ -885,5 +885,5 @@ Furthermore Tamaya also implements or supports:
 * the API as defined by JSR 310 (Config JSR)
 * the Microprofile API
 * the Spring Configuration Mechanism
-* integration with the OSGI `ConfigAdmin` API.
+* integration with the OSGi `ConfigAdmin` API.
 * the Apache Camel Configuration SPI

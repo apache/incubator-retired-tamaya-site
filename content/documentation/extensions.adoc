@@ -31,7 +31,7 @@ Mature extensions have a stable API and SPI, similar to the API and Implementati
 |+org.apache.tamaya.ext:tamaya-microprofile+  |Implemenation and Integration with the Microprofile API. |link:extensions/mod_microprofile.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-mutable-config+|Provides API/SPI for writing configuration             |link:extensions/mod_mutable_config.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-optional+      |Lets a Tamaya configuration to be used as an optional project extension only.  |link:extensions/mod_optional.html[Documentation]
-|+org.apache.tamaya.ext:tamaya-osgi+          |Integration with OSGI containers.                      |link:extensions/mod_osgi.html[Documentation]
+|+org.apache.tamaya.ext:tamaya-osgi+          |Integration with OSGi containers.                      |link:extensions/mod_osgi.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-resolver+      |Provides placeholder and dynamic resolution functionality for configuration values.  |link:extensions/mod_resolver.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-resources+     |Provides ant-style resource path resolution            |link:extensions/mod_resources.html[Documentation]
 |+org.apache.tamaya.ext:tamaya-spring+        |Integration for Spring / Spring Boot.                  |link:extensions/mod_spring.html[Documentation]

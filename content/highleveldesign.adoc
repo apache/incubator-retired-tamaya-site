@@ -20,7 +20,7 @@ The *SPI* (package +org.apache.tamaya.spi+) provides:
   ** Several extension points for adding additional configuration property sources or adapting the internal workings
      of the overall system.
   ** A +ServiceContext / ServiceContextManager+ that controls the loading of the components in Tamaya. This allows to
-     adapt the behaviour depending on the runtime environment in use, e.g. a Java standalone application, an OSGI
+     adapt the behaviour depending on the runtime environment in use, e.g. a Java standalone application, an OSGi
      container or a Java EE application server.
 
 Tamaya *Modules* finally allow to add additional functionality to customize your configuration solution with the
@@ -30,7 +30,7 @@ functionality you want. E.g. modules are providing features such as
 * _Dynamic placeholders_ and resolution mechanism for configuration values
 * Abstractions for reusable _configuration formats_
 * Dynamic configuration updates and change events
-* Support for OSGI/Java EE Classloading
+* Support for OSGi/Java EE Classloading
 * A configuration server/client
 * and more...
 
