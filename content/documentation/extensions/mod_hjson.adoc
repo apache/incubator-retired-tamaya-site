@@ -10,7 +10,7 @@ toc::[]
 == Tamaya HJSON (Extension Module)
 Tamaya _HJSON_ is an extension module. Refer also to the link:../extensions.html[extensions documentation] for further details.
 
-=== What functionality this module provides ?
+=== What functionality does this module provide?
 
 Tamaya _HJSON_ provides support for reading configuration in HJSON, a JSP similar format better
 suited for humans:
@@ -29,7 +29,7 @@ suited for humans:
 
 Hereby the hierarchical structure of the JSON document will be mapped to a
 corresponding `PropertyValue` tree structure. This strucuture can be mapped
-to flat key-value pairs of type `String`, e.g. the bove will be mapped to
+to flat key-value pairs of type `String`, e.g. the above will be mapped to
 
 [source, properties]
 -----------------------------------------------
@@ -49,7 +49,7 @@ The module is based on Java 8.
 
 === Installation
 
-To use the HJSON extension module you only must add the corresponding dependency to your module:
+To use the HJSON extension module you only must add the corresponding dependency to your project:
 
 [source, xml]
 -----------------------------------------------
@@ -65,7 +65,7 @@ This extension also transitively requires the +tamaya.formats+ module.
 
 === Reading configuration in HJSON
 
-For reading HJSON based onfiguration most easily a +HJSONFormat+ can be
+For reading HJSON based configuration most easily a +HJSONFormat+ can be
 used:
 
 [source, java]
