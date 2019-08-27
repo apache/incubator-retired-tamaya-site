@@ -28,7 +28,7 @@ suited for humans:
 -----------------------------------------------
 
 Hereby the hierarchical structure of the JSON document will be mapped to a
-corresponding `PropertyValue` tree structure. This strucuture can be mapped
+corresponding `PropertyValue` tree structure. This structure can be mapped
 to flat key-value pairs of type `String`, e.g. the above will be mapped to
 
 [source, properties]
