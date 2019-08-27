@@ -27,7 +27,7 @@ Hereby there are two implementations provided:
 * +tamaya-injection-cdi+ implements injection by using CDI's injection mechanism to inject configuration values into the
   beans managed by the CDI systems.
 * +tamaya-injection-standalone+ implements injection by integrating the +tamaya-injection+ SE based injection module (also used
-  for Spring and OSGI injection) with CDI. Injection hereby is performed by the Tamaya SE module, whereas
+  for Spring and OSGi injection) with CDI. Injection hereby is performed by the Tamaya SE module, whereas
   beans and injection control overall are still managed by CDI.
 * One difference, of course, is that +tamaya-injection-standalone+ also provides an SE compatible API (+ConfigurationInjection,
   ConfigurationInjector+), which is not available, when using the purely CDI based variant.

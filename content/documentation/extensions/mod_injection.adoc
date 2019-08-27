@@ -141,7 +141,7 @@ ConfigurationInjector.getInstance().configure(tenant);
 --------------------------------------------
 
 NOTE: Configuration injection works similarly, when used with other integration modules, e.g. when Tamaya is used
-with CDI, Spring or within an OSGI container. For further details refer also to the corresponding integration module's
+with CDI, Spring or within an OSGi container. For further details refer also to the corresponding integration module's
 documentation.
 
 
