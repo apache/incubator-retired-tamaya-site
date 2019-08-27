@@ -16,7 +16,7 @@ Contains the jbake original files and all binaries (images, fonts, static JS) an
 
 #### Templates
 
-All [Thymeleaf-based](http://www.thymeleaf.org/) page templates can be found in the `templates` directory. These templates are footer, header and menu of the website.
+All [Thymeleaf-based](https://www.thymeleaf.org/) page templates can be found in the `templates` directory. These templates are footer, header and menu of the website.
 
 #### Template variables
 
@@ -65,7 +65,7 @@ You need write access to this repository and have to generate the javadoc manual
 ```
 $ cd tamaya
 $ git checkout master (to generate the current development version) OR
-$ git checkout 0.3-incubating (to generate the a stable release version)
+$ git checkout 0.4-incubating (to generate the a stable release version)
 $ mvn site
 (since javadoc:javadoc does not generate a full report)
 ```
