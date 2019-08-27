@@ -432,22 +432,22 @@ public interface TamayaConfigService{
 Finally Tamaya also provides support for using Tamaya's injection API with your OSGi project. To enable injection
 you must install a few additional bundles:
 
-[source, xml]
+[source, xml, subs=attributes+]
 -----------------------------------------------
 <dependency>
    <groupId>org.apache.tamaya.ext</groupId>
    <artifactId>tamaya-osgi-injection</artifactId>
-   <version>${tamaya.version}</version>
+   <version>{tamaya_version}</version>
 </dependency>
 <dependency>
    <groupId>org.apache.tamaya.ext</groupId>
    <artifactId>tamaya-injection</artifactId>
-   <version>${tamaya.version}</version>
+   <version>{tamaya_version}</version>
 </dependency>
 <dependency>
    <groupId>org.apache.tamaya.ext</groupId>
    <artifactId>injection-api</artifactId>
-   <version>${tamaya.version}</version>
+   <version>{tamaya_version}</version>
 </dependency>
 -----------------------------------------------
 
