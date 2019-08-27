@@ -11,10 +11,10 @@ provide a long term stable configuration solution.
 
 Tamaya implements a recent state of the Configuration JSR. The exact commit
 version of the JSR API implemented (the JSR has not yet released any version
-as of now) can be evaluated looing at the _tamaya-jsr382_ `pom.xml` in the
+as of now) can be evaluated by looking at the _tamaya-jsr382_ `pom.xml` in the
 sandbox repository.
 
-To use Tamaya aS a JSR-382 Configuration provider you must add the following
+To use Tamaya as a JSR-382 Configuration provider you must add the following
 dependency:
 
 [source,xml]
@@ -27,8 +27,7 @@ dependency:
 ---------
 
 Since this component is not yet officially released you must use the current snapshot
-version +0.4-incubating-SNAPSHOT+. You also must add the Apache Snapshot
-Repository to your build:
+version +0.4-incubating-SNAPSHOT+. In order for that to work, you need to add the Apache Snapshot Repository to your build:
 
 [source,xml]
 ---------
@@ -46,7 +45,7 @@ Repository to your build:
 ---------
 
 
-== Microprofile
+== Microprofile Configuration API
 
 Tamaya implements the Microprofile Configuration API Version 1.1. To use Tamaya
 as a Micropropfile Configuration provider you must add the following dependency:
@@ -61,14 +60,14 @@ as a Micropropfile Configuration provider you must add the following dependency:
 ---------
 
 
-== OSGI ConfigAdmin
+== OSGi ConfigAdmin
 
-Tamaya's OSGI Support leverages the OSGI +org.osgi.service.cm.ConfigurationAdmin+
-configuration manager as defined in OSGI Compendiumn Version +4.3.1+. Hereby
-Tamaya can add or modify Configuration in OSGI, which may trigger change events.
+Tamaya's OSGi Support leverages the OSGi +org.osgi.service.cm.ConfigurationAdmin+
+configuration manager as defined in OSGi Compendium Version +4.3.1+. Hereby
+Tamaya can add or modify Configuration in OSGi, which may trigger change events.
 The exact behaviour can be controlled in many ways. By default Tamaya, does not change
-anything, when deployed in OSGI, without being configured todo so. For details
-check link:documentation/extensions/mod_osgi.html[Tamaya's OSGI Documentation].
+anything, when deployed in OSGi, without being configured todo so. For details
+check link:documentation/extensions/mod_osgi.html[Tamaya's OSGi Documentation].
 
 
 

@@ -148,7 +148,7 @@ DATE: Sat Apr 30 21:51:09 CEST 2016
 A special feature of this module is that it observes +ConfigEvent+ published through Tamaya'as event channel
 (+tamaya-events+ module). If no metaconfiguration model is found the model manager by default automatically creates
 models for all injected instances on the fly. In the case of CDI integration this happens typically during deployment
-time, since CDI initializes during deployment time. Other runtime platforms, such as OSGI, may have rather different
+time, since CDI initializes during deployment time. Other runtime platforms, such as OSGi, may have rather different
 behaviour. Nevertheless this means that after your system has been started you should have access to a complete
 set of +ConfigModel+ instances that automatically document all the classes in your system that consume configuration
 (through injection).
