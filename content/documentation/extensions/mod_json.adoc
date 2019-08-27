@@ -10,9 +10,9 @@ toc::[]
 == Tamaya JSON (Extension Module)
 Tamaya _JSON_ is an extension module. Refer also to the link:../extensions.html[extensions documentation] for further details.
 
-=== What functionality this module provides ?
+=== What functionality does this module provide?
 
-Tamaya _JSON_ provides support for reading configuration in JSON (Java Serializued Object Notation):
+Tamaya _JSON_ provides support for reading configuration in JSON (Java Serialized Object Notation):
 
 [source, json]
 -----------------------------------------------
@@ -26,7 +26,7 @@ Tamaya _JSON_ provides support for reading configuration in JSON (Java Serializu
 
 Hereby the hierarchical structure of the JSON document will be mapped to a
 corresponding `PropertyValue` tree structure. This strucuture can be mapped
-to flat key-value pairs of type `String`, e.g. the bove will be mapped to
+to flat key-value pairs of type `String`, e.g. the above will be mapped to
 
 [source, properties]
 -----------------------------------------------
