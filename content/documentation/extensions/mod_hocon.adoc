@@ -7,12 +7,12 @@ toc::[]
 
 
 [[JSON]]
-== Tamaya JSON (Extension Module)
-Tamaya _JSON_ is an extension module. Refer also to the link:../extensions.html[extensions documentation] for further details.
+== Tamaya HOCON (Extension Module)
+Tamaya _HOCON_ is an extension module. Refer also to the link:../extensions.html[extensions documentation] for further details.
 
-=== What functionality this module provides ?
+=== What functionality does this module provide?
 
-Tamaya _HOCON_ provides support for reading configuration using Human Optimized Configuration) HOCON
+Tamaya _HOCON_ provides support for reading configuration using Human Optimized Configuration (HOCON)
 format as defined by http://https://lightbend.github.io/config/[Lightbend Typesafe Config]:
 
 [source, hcon]
@@ -29,7 +29,7 @@ format as defined by http://https://lightbend.github.io/config/[Lightbend Typesa
 
 Hereby the hierarchical structure of the HOCON document will be mapped
 into an according `PropertyValue` tree structure. By default this structure can be
-mapped to flat key-value pairs of type `String`, e.g. the bove will be mapped to
+mapped to flat key-value pairs of type `String`, e.g. the above will be mapped to
 
 [source, properties]
 -----------------------------------------------
@@ -49,7 +49,7 @@ The module is based on Java 8.
 
 === Installation
 
-To use the JSON extension module you only must add the corresponding dependency to your module:
+To use the HOCON extension module you only must add the corresponding dependency to your module:
 
 [source, xml]
 -----------------------------------------------
