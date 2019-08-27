@@ -62,7 +62,7 @@ public final class Features {
 
     public static boolean extSpringCoreAvailable();
     public static boolean extJndiAvailable();
-    public static boolean extOSGiAvailable();
+    public static boolean extOSGIAvailable();
 
     public static boolean checkClassIsLoadable(String classname);
 }
@@ -83,5 +83,5 @@ public final class Features {
 * +jndiAvailable();+ checks for the link:mod_jndi.html[_tamaya_jndi_] module.
 * +extJndiAvailable();+ checks if creation of a new `InitialContext` is successful.
 * +extSpringCoreAvailable();+ checks if Spring Core is on the classpath.
-* +extOSGiAvailable();+ checks the OSGi framework is on the classpath.
+* +extOSGIAvailable();+ checks the OSGi framework is on the classpath.
 * Finally +checkClassIsLoaded(String)+ tries to load a class. If it fails, `false` is returned.

@@ -58,7 +58,7 @@ Important to know is that within OSGi class- and resource loading is not compati
 in OSGi, bundles can be loaded or unloaded at any time, so Tamaya's logic must cope with this as well.
 These constraints are handled by Tamaya (implemented in +tamaya-core+ and +tamaya-osgi+) as follows:
 
-* Tamaya registers a +OSGiServiceContext+ which reads all +java.util.ServiceLoader+ configurations and
+* Tamaya registers a +OSGIServiceContext+ which reads all +java.util.ServiceLoader+ configurations and
   registers them as OSGi services. Hereby integration is two-way: The core module contains an
   OSGi +Activator+ that replaces Tamaya's default +ServiceContext+ with an OSGi based implementation that
   will consume all services from the OSGi service API. Consequently you can also register Tamaya extensions
@@ -415,7 +415,7 @@ public interface TamayaConfigService{
      * @param section a subsection to be filter (using startsWith).
      * @return the (optionally filtered) OSGi configuration.
      */
-    Dictionary<String,Object> getOSGiConfiguration(String pid, String section);
+    Dictionary<String,Object> getOSGIConfiguration(String pid, String section);
 
     /**
      * Checks if a backup exists.
@@ -522,7 +522,7 @@ public interface ConfigInjectionService {
     <T> T configure(Bundle bundle, T instance);
 
     /**
-     * Creates a suzpplier, which supplies events as created by the basic supplier, which are
+     * Creates a supplier, which supplies events as created by the basic supplier, which are
      * automatically configured, when supplying.
      * @param supplier the base supplier, not null.
      * @param bundle the target bundle, not null.
@@ -588,7 +588,7 @@ tamaya:tm_backup_create [options] pid
 +++
 
 | +tm_backup_delete+
-| Deletes the OSGi configuration backup  of Tamya.
+| Deletes the OSGi configuration backup of Tamaya.
 | +++
 <pre>
 <b>SYNTAX</b>
@@ -599,7 +599,7 @@ tamaya:tm_backup_delete pid
 +++
 
 | +tm_backup_list+
-| List the backed-up OSGi configuration before Tamya applied changes.
+| List the backed-up OSGi configuration before Tamaya applied changes.
 | +++
 <pre>
 <b>SYNTAX</b>
@@ -610,7 +610,7 @@ tamaya:tm_backup_list [pid]
 +++
 
 | +tm_backup_restore+
-| Restores the OSGi configuration backup of Tamya and disabled the PID for Tamaya configuration.
+| Restores the OSGi configuration backup of Tamaya and disabled the PID for Tamaya configuration.
 | +++
 <pre>
 <b>SYNTAX</b>
@@ -707,7 +707,7 @@ tamaya:tm_history_maxsize_set size
 +++
 
 | +tm_info+
-| Show he current Tamaya status.
+| Show the current Tamaya status.
 | +++
 <pre>
 <b>SYNTAX</b>
