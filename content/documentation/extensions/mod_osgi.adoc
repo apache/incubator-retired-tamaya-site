@@ -1,20 +1,20 @@
 :jbake-type: page
 :jbake-status: published
 
-= Apache Tamaya - Extensions: OSGI Integration
+= Apache Tamaya - Extensions: OSGi Integration
 
 toc::[]
 
 
-[[OSGI]]
-== Tamaya OSGI Support
+[[OSGi]]
+== Tamaya OSGi Support
 
-Tamaya _OSGI_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
+Tamaya _OSGi_ is an extension module. Refer to the link:../extensions.html[extensions documentation] for further details.
 
 
 === What functionality this module provides ?
 
-Tamaya _OSGI_ provides support for integration with OSGI. Hereby Tamaya does actively override or extend the OSGI
+Tamaya _OSGi_ provides support for integration with OSGi. Hereby Tamaya does actively override or extend the OSGi
 +ConfigAdmin+ based configuration with entries stored and managed by Tamaya. Tamaya provides also shell extensions
 to enable/perform configuration loading and restoring actions.
 Optionally Tamaya also provides extension for automatically trigger configuration updates, when configuration has
@@ -24,8 +24,8 @@ been changed and configuration injection using Tamaya's injection API.
 === Compatibility
 
 All module described are based on Java 8, so it will run on Java 8 and beyond.
-The modules are built against *OSGI Compendium version 5.0*. Tamaya OSGI support
-is tested against the following OSGI runtimes:
+The modules are built against *OSGi Compendium version 5.0*. Tamaya OSGi support
+is tested against the following OSGi runtimes:
 
 * Apache Karaf, version 4.0.7
 * Apache Felix, version 5.6.1
@@ -34,12 +34,12 @@ is tested against the following OSGI runtimes:
 
 === Installation
 
-To benefit from Tamaya in an OSGI context you must deploy at least the following modules to
-your OSGI runtime environment:
+To benefit from Tamaya in an OSGi context you must deploy at least the following modules to
+your OSGi runtime environment:
 
 [source, listing, subs=attributes+]
 -----------------------------------------------
-# Runtime with OSGI ConfigAdmin support, e.g.
+# Runtime with OSGi ConfigAdmin support, e.g.
 org.apache.felix:org.apache.felix.configadmin:{felix_version}
 # API and core
 org.apache.geronimo.specs:geronimo-annotation_1.2_spec:1.0
@@ -52,38 +52,38 @@ org.apache.tamaya.ext:tamaya-osgi:{tamaya_version}
 -----------------------------------------------
 
 
-=== Tamaya Service Loading in OSGI
+=== Tamaya Service Loading in OSGi
 
-Important to know is that within OSGI class- and resource loading is not compatible with standard Java SE. Also
-in OSGI, bundles can be loaded or unloaded at any time, so Tamaya's logic must cope with this as well.
+Important to know is that within OSGi class- and resource loading is not compatible with standard Java SE. Also
+in OSGi, bundles can be loaded or unloaded at any time, so Tamaya's logic must cope with this as well.
 These constraints are handled by Tamaya (implemented in +tamaya-core+ and +tamaya-osgi+) as follows:
 
-* Tamaya registers a +OSGIServiceContext+ which reads all +java.util.ServiceLoader+ configurations and
-  registers them as OSGI services. Hereby integration is two-way: The core module contains an
-  OSGI +Activator+ that replaces Tamaya's default +ServiceContext+ with an OSGI based implementation that
-  will consume all services from the OSGI service API. Consequently you can also register Tamaya extensions
-  as OSGI services using standard OSGI tooling (e.g. your own +PropertySource+ instances). Tamaya hereby
-  also does not store any service references, so the dynamic nature of OSGI is fully honored.
+* Tamaya registers a +OSGiServiceContext+ which reads all +java.util.ServiceLoader+ configurations and
+  registers them as OSGi services. Hereby integration is two-way: The core module contains an
+  OSGi +Activator+ that replaces Tamaya's default +ServiceContext+ with an OSGi based implementation that
+  will consume all services from the OSGi service API. Consequently you can also register Tamaya extensions
+  as OSGi services using standard OSGi tooling (e.g. your own +PropertySource+ instances). Tamaya hereby
+  also does not store any service references, so the dynamic nature of OSGi is fully honored.
 * Tamaya's +ServiceContext+ SPI does additionally provide functionality for loading of (classpath)
   resources using the bundle's +getEntry(String)+ method.
 * Tamaya similarly checks the classpath of all bundles for Tamaya SPI services to be registered thus
-  implementing the +ServiceLoader+ logic in OSGI. Hereby Tamaya will only register services with the
+  implementing the +ServiceLoader+ logic in OSGi. Hereby Tamaya will only register services with the
   +org.apache.tamaya+ as root package.
 
-NOTE: Tamaya actually does not replace any existing +ConfigAdmin+ component, Tamaya modifies any existing OSGI
-      configuration on changes detected and stores backups of any OSGI configuration before applying any
+NOTE: Tamaya actually does not replace any existing +ConfigAdmin+ component, Tamaya modifies any existing OSGi
+      configuration on changes detected and stores backups of any OSGi configuration before applying any
       changes.
 
 === Configuring Bundles
 ==== Mapping of pids and factoryPids
 
-When accessing configuration from the OSGI +ConfigAdmin+ a pid and an optional location can be provided.
+When accessing configuration from the OSGi +ConfigAdmin+ a pid and an optional location can be provided.
 Tamaya requires all configuration for a PID to be located in keys starting [PID]:
 
 [source, listing]
-.OSGI pid mapping
+.OSGi pid mapping
 -----------------------------------------------
-# OSGI settings
+# OSGi settings
 pid=myBundle
 key=common.net.port
 
@@ -93,31 +93,31 @@ key=common.net.port
 
 ==== Enabling/Disabling Tamaya
 
-By default, Tamaya doesn't do anything, unless it is told to so so. So having installed the Tamaya OSGI plugin,
-you will see the bundles are loaded, but your OSGI environment still works the same. This is not accidentally, since
+By default, Tamaya doesn't do anything, unless it is told to so so. So having installed the Tamaya OSGi plugin,
+you will see the bundles are loaded, but your OSGi environment still works the same. This is not accidentally, since
 configuration is a crucial part. This means Tamaya, by default, is disabled for all bundles. You have now several
 options to enabled Tamaya:
 
 * you can enable Tamaya for *all* bundles by default by
   ** setting the +-Dtamaya-enabled=true+ system property.
-  ** by setting +tamaya-enabled=true+ in the OSGI Configuration for the PID +TamayaConfigPlugin+.
+  ** by setting +tamaya-enabled=true+ in the OSGi Configuration for the PID +TamayaConfigPlugin+.
 * you can enable Tamaya for a single bundle by
-  ** by setting +tamaya-enabled=true+ in the OSGI Configuration for the given bundle.
+  ** by setting +tamaya-enabled=true+ in the OSGi Configuration for the given bundle.
   ** by adding +Tamaya-Enabled: true+ to the bundle's MANIFEST.
 
 Similarly you can also combine these options the other way round:
 
 * You can enable Tamaya by default as shown above.
 * You can disable Tamaya for bundles by
-  ** by setting +tamaya-enabled=false+ in the OSGI Configuration for the given bundle.
+  ** by setting +tamaya-enabled=false+ in the OSGi Configuration for the given bundle.
   ** by adding +Tamaya-Enabled: false+ to the bundle's MANIFEST.
 
 
-==== Controlling How Tamaya changes your OSGI Configuration
+==== Controlling How Tamaya changes your OSGi Configuration
 
-Tamaya supports different policies that define how Tamaya is changing the OSGI configuration:
+Tamaya supports different policies that define how Tamaya is changing the OSGi configuration:
 
-* *EXTEND*: Only add properties not existing in the OSGI configuration, but never override
+* *EXTEND*: Only add properties not existing in the OSGi configuration, but never override
             or remove existing properties.
 * *OVERRIDE*: Override existing properties and also add new properties.
 * *UPDATE_ONLY*: Only override existing properties but do not add any properties.
@@ -127,18 +127,18 @@ ways and with different scopes:
 
 * You can define the _default_ policy applied, by
   ** setting the +-Dtamaya-policy=POLICY+ system property.
-  ** by setting +tamaya-policy=POLICY+ in the OSGI Configuration for the PID +TamayaConfigPlugin+.
+  ** by setting +tamaya-policy=POLICY+ in the OSGi Configuration for the PID +TamayaConfigPlugin+.
 
 Hereby, _POLICY_ must be one of +OVERRIDE, EXTEND, UPDATE_ONLY+.
 
 * You can also configure the policy individually for a bundle by
-  ** by setting +tamaya-policy=POLICY+ in the OSGI Configuration for the given bundle.
+  ** by setting +tamaya-policy=POLICY+ in the OSGi Configuration for the given bundle.
   ** by adding +Tamaya-Policy: POLICY+ to the bundle's MANIFEST.
 
-==== Mapping OSGI PIDs to Tamaya Configuration
+==== Mapping OSGi PIDs to Tamaya Configuration
 
-Tamaya configuration is a single +Map<String,String> with String keys and String values. Whereas OSGI configuration are
-multiple +Dictionary<String,?>+ (for several PIDs). The Tamaya OSGI extension implements the following mapping:
+Tamaya configuration is a single +Map<String,String> with String keys and String values. Whereas OSGi configuration are
+multiple +Dictionary<String,?>+ (for several PIDs). The Tamaya OSGi extension implements the following mapping:
 
 As an example refer to the followinf Tamaya configuration entries:
 
@@ -150,21 +150,21 @@ As an example refer to the followinf Tamaya configuration entries:
 [MyPlugin]ch.base.pack.Main.encoding=UTF-8
 -----------------------------------------------
 
-The OSGI Configuration Plugin now provides the following configuration for PID:
+The OSGi Configuration Plugin now provides the following configuration for PID:
 
 [source, listing]
-.OSGI configuration for PID 'MyPlugin'
+.OSGi configuration for PID 'MyPlugin'
 -----------------------------------------------
 ch.base.pack.Main.use=100        (Integer)
 ch.base.pack.Main.switch=on      (Boolean)
 ch.base.pack.Main.customer=NONE  (String)
 -----------------------------------------------
 
-Now using +Policy.OVERRIDE+ (as desribed in the previous section), Tamaya will change the OSGI configuration
+Now using +Policy.OVERRIDE+ (as desribed in the previous section), Tamaya will change the OSGi configuration
 as follows:
 
 [source, listing]
-.OSGI configuration after Tamaya update for PID 'MyPlugin'
+.OSGi configuration after Tamaya update for PID 'MyPlugin'
 -----------------------------------------------
 ch.base.pack.Main.use=234                   (Integer)
 ch.base.pack.Main.switch=on                 (Boolean)
@@ -174,39 +174,39 @@ ch.base.pack.Main.customer=Native Inc       (String)
 
 So Tamaya configuration mapping can be summarized as follows:
 
-* The OSGI PID is mapped to a Tamaya prefix +[PID]+.
-* The OSGI keys are the exact same keys as from Tamaya with the _[PID]_ prefix removed.
+* The OSGi PID is mapped to a Tamaya prefix +[PID]+.
+* The OSGi keys are the exact same keys as from Tamaya with the _[PID]_ prefix removed.
 * New entries are added (depending on the +Policy+) as +String+ values.
 * Types of existing entries are preserved on update (this requires the Tamaya entries to be convertable into
   the required target types. Refer to Tamaya's core documentation for supported types and how
   to add custom converters).
 
-Finally, the mapping of the OSGI _PID_ to the Tamaya _[PID]_ prefix also can be customized by
+Finally, the mapping of the OSGi _PID_ to the Tamaya _[PID]_ prefix also can be customized by
 
-* adding +tamaya-config-root+ as an OSGI configuration property to the OSGI configuration.
+* adding +tamaya-config-root+ as an OSGi configuration property to the OSGi configuration.
 * adding +Tamaya-Config-Root+ as a MANIFEST entry to the bundle.
 
 The root will replace the default _[PID]_ prefix with the value configured.
 
-==== OSGI Configuration Backup
+==== OSGi Configuration Backup
 
-Before Tamaya changes any OSGI configuration it creates a _Backup_ of the existing OSGI
-configuration dictionary and stores it in serialized form in the plugin's OSGI configuration.
-This allows you to restore the original OSGI configuration in case of problems. Hereby Tamaya
+Before Tamaya changes any OSGi configuration it creates a _Backup_ of the existing OSGi
+configuration dictionary and stores it in serialized form in the plugin's OSGi configuration.
+This allows you to restore the original OSGi configuration in case of problems. Hereby Tamaya
 automatically sets the +tamaya-enabled=false+ property to disable Tamaya for the given
 configuration (bundle).
 
 The history can be accessed from the Tamaya Configuration Plugin Service
 (shown later).
 
-==== OSGI Configuration Change Log
+==== OSGi Configuration Change Log
 
 All changes applied by Tamaya are logged as well using
 +ConfigHistory+ entry items. The history can be accessed from the Tamaya Configuration Plugin Service
 (shown later):
 
 [source, Java]
-.OSGI ConfigHistory Entry
+.OSGi ConfigHistory Entry
 -----------------------------------------------
 public final class ConfigHistory implements Serializable{
 
@@ -241,10 +241,10 @@ public final class ConfigHistory implements Serializable{
 }
 -----------------------------------------------
 
-==== The Tamaya OSGI Configuration Service
+==== The Tamaya OSGi Configuration Service
 
-As mentioned Tamaya exposes it's OSGI functionality, allowing programmatic access to Tamaya configuration
-logic with the +TamayaConfigService+ OSGI service:
+As mentioned Tamaya exposes it's OSGi functionality, allowing programmatic access to Tamaya configuration
+logic with the +TamayaConfigService+ OSGi service:
 
 [source, Java]
 .The exposed +TamayaConfigService+
@@ -288,39 +288,39 @@ public interface TamayaConfigService{
     boolean isTamayaEnabledByDefault();
 
     /**
-     * Get the default policy Tamaya is using for adapting OSGI configuration.
+     * Get the default policy Tamaya is using for adapting OSGi configuration.
      * @return the default policy, never null.
      */
     Policy getDefaultPolicy();
 
     /**
-     * Set the default policy Tamaya is using for adapting OSGI configuration.
+     * Set the default policy Tamaya is using for adapting OSGi configuration.
      * @param policy the policy, not null.
      */
     void setDefaultPolicy(Policy policy);
 
     /**
-     * Updates the given OSGI configuration with Tamaya configuration.
+     * Updates the given OSGi configuration with Tamaya configuration.
      * @param pid the target PID, not null.
      * @return the new configuration.
      */
     Dictionary<String,Object> updateConfig(String pid);
 
     /**
-     * Updates the given OSGI configuration with Tamaya configuration.
+     * Updates the given OSGi configuration with Tamaya configuration.
      * @param pid the target PID, not null.
-     * @param dryRun if true, the changes will not be applied to the OSGI configuration.
+     * @param dryRun if true, the changes will not be applied to the OSGi configuration.
      * @return the configuration that would be applied, has been applied.
      */
     Dictionary<String,Object> updateConfig(String pid, boolean dryRun);
 
     /**
-     * Updates the given OSGI configuration with Tamaya configuration.
+     * Updates the given OSGi configuration with Tamaya configuration.
      * @param pid the target PID, not null.
      * @param policy the updating policy to be used, by default.
      * @param forcePolicy if set to true, the given policy will be used, even if an alternate policy is configured
      *                    for the given PID.
-     * @param dryRun if true, the changes will not be applied to the OSGI configuration.
+     * @param dryRun if true, the changes will not be applied to the OSGi configuration.
      * @return the configuration that would be applied, has been applied.
      */
     Dictionary<String,Object> updateConfig(String pid, Policy policy, boolean forcePolicy, boolean dryRun);
@@ -352,7 +352,7 @@ public interface TamayaConfigService{
     Set<String> getBackupPids();
 
     /**
-     * Restores a backup, replacing the current OSGI configuration with the backup and
+     * Restores a backup, replacing the current OSGi configuration with the backup and
      * disabling Tamaya for this PID.
      * @param pid the PID, not null.
      * @return true, if a backup has been restored successfully.
@@ -360,7 +360,7 @@ public interface TamayaConfigService{
     boolean restoreBackup(String pid);
 
     /**
-     * Stores the current OSGI configuration as a backup (only if no backup is existing).
+     * Stores the current OSGi configuration as a backup (only if no backup is existing).
      * @param pid the target PID, not null.
      * @return true, if a backup has been stored successfully.
      */
@@ -410,12 +410,12 @@ public interface TamayaConfigService{
     List<ConfigHistory> getHistory(String pid);
 
     /**
-     * Access the current OSGI configuration for a PID.
+     * Access the current OSGi configuration for a PID.
      * @param pid the target PID, not null.
      * @param section a subsection to be filter (using startsWith).
-     * @return the (optionally filtered) OSGI configuration.
+     * @return the (optionally filtered) OSGi configuration.
      */
-    Dictionary<String,Object> getOSGIConfiguration(String pid, String section);
+    Dictionary<String,Object> getOSGiConfiguration(String pid, String section);
 
     /**
      * Checks if a backup exists.
@@ -427,9 +427,9 @@ public interface TamayaConfigService{
 -----------------------------------------------
 
 
-==== The Tamaya OSGI Configuration Service
+==== The Tamaya OSGi Configuration Service
 
-Finally Tamaya also provides support for using Tamaya's injection API with your OSGI project. To enable injection
+Finally Tamaya also provides support for using Tamaya's injection API with your OSGi project. To enable injection
 you must install a few additional bundles:
 
 [source, xml]
@@ -463,7 +463,7 @@ Given that you can inject configuration entries
 public interface ConfigInjectionService {
     /** The manifest entry to enable Tamaya injection. */
     String TAMAYA_INJECTION_ENABLED_MANIFEST = "Tamaya-Config-Inject";
-    /** The OSGI config entry to enable Tamaya injection. */
+    /** The OSGi config entry to enable Tamaya injection. */
     String TAMAYA_INJECTION_ENABLED_PROP = "tamaya-config-inject";
 
     /**
@@ -543,18 +543,18 @@ public interface ConfigInjectionService {
 }
 -----------------------------------------------
 
-NOTE: Injection hereby is based on the OSGI ConfigAdmin values only. To use Tamaya configuration you have to additionally
-install the Tamaya common OSGI support as described in the previous sections.
+NOTE: Injection hereby is based on the OSGi ConfigAdmin values only. To use Tamaya configuration you have to additionally
+install the Tamaya common OSGi support as described in the previous sections.
 
 More details on Tamaya's injection API can be found in the corresponding link:mod_injection.html[API documentation].
 
-=== Special OSGI Platform support
+=== Special OSGi Platform support
 
 ==== Apache Karaf Shell
 
 Apache Tamaya provides a Karaf Shell Extension providing commands for performing several actions related
 to Tamaya configuration. To use them, simply add the +org.apache.tamaya.ext:tamaya-osgi-karaf-shell+ bundle
-to your OSGI runtime. The extension will add the following commands to your Karaf conaole (with prefix +tamaya+):
+to your OSGi runtime. The extension will add the following commands to your Karaf conaole (with prefix +tamaya+):
 
 [width="100%",frame="1",options="header",grid="all"]
 |=======
@@ -567,15 +567,15 @@ to your OSGI runtime. The extension will add the following commands to your Kara
 <b>SYNTAX</b>
 tamaya:tm_apply_config [options] pid
 <b>ARGUMENTS</b>
-<i>pid</i>  The target OSGI component PID.
+<i>pid</i>  The target OSGi component PID.
 <b>OPTIONS</b>
 <i>operationMode, -m, --opmode</i> Explicitly set (override) the operation mode to use.
-<i>dryRun, -d, --dryrun</i> If set to true no OSGI configuration gets changed.
+<i>dryRun, -d, --dryrun</i> If set to true no OSGi configuration gets changed.
 </pre>
 +++
 
 | +tm_backup_create+
-| Creates a backup of a current OSGI configuration.
+| Creates a backup of a current OSGi configuration.
 | +++
 <pre>
 <b>SYNTAX</b>
@@ -588,7 +588,7 @@ tamaya:tm_backup_create [options] pid
 +++
 
 | +tm_backup_delete+
-| Deletes the OSGI configuration backup  of Tamya.
+| Deletes the OSGi configuration backup  of Tamya.
 | +++
 <pre>
 <b>SYNTAX</b>
@@ -599,7 +599,7 @@ tamaya:tm_backup_delete pid
 +++
 
 | +tm_backup_list+
-| List the backed-up OSGI configuration before Tamya applied changes.
+| List the backed-up OSGi configuration before Tamya applied changes.
 | +++
 <pre>
 <b>SYNTAX</b>
@@ -610,7 +610,7 @@ tamaya:tm_backup_list [pid]
 +++
 
 | +tm_backup_restore+
-| Restores the OSGI configuration backup of Tamya and disabled the PID for Tamaya configuration.
+| Restores the OSGi configuration backup of Tamya and disabled the PID for Tamaya configuration.
 | +++
 <pre>
 <b>SYNTAX</b>
@@ -627,14 +627,14 @@ tamaya:tm_backup_restore pid
 <b>SYNTAX</b>
 tamaya:tm_config [options]
 <b>OPTIONS</b>
-<i>pi, -p, --pid</i> Apply filtering for the given OSGI component PID.
+<i>pi, -p, --pid</i> Apply filtering for the given OSGi component PID.
 <i>section, -s, --section</i> A starting expression selecting the section to be filtered.
 </pre>
 +++
 
 | +tm_enable+
 | Enables or disable Tamaya by default for all bundles/services (default: enabled=false). Disabling still allows to explicitly enable
-  bundles using 'tamaya-enable' manifest or OSGI config entries.
+  bundles using 'tamaya-enable' manifest or OSGi config entries.
 | +++
 <pre>
 <b>SYNTAX</b>
@@ -646,7 +646,7 @@ tamaya:tm_enable enabled
 
 | +tm_enabled+
 | Check if Tamaya is currently by default enabled for all bundles/services (default: enabled=false). If disabled still Tamaya allows to
-  explicitly enable bundles using 'tamaya-enable' manifest or OSGI config entries.
+  explicitly enable bundles using 'tamaya-enable' manifest or OSGi config entries.
 | +++
 <pre>
 <b>SYNTAX</b>
@@ -655,7 +655,7 @@ tamaya:tm_enabled
 +++
 
 | +tm_history+
-| Gets the getHistory of changes Tamaya applied to the OSGI configuration.
+| Gets the getHistory of changes Tamaya applied to the OSGi configuration.
 | +++
 <pre>
 <b>SYNTAX</b>
@@ -667,7 +667,7 @@ tamaya:tm_history [options] [pid]
 +++
 
 | +tm_history_delete+
-| Deletes the getHistory of changes Tamaya applied to the OSGI configuration.
+| Deletes the getHistory of changes Tamaya applied to the OSGi configuration.
 | +++
 <pre>
 <b>SYNTAX</b>
@@ -678,7 +678,7 @@ tamaya:tm_history_delete pid
 +++
 
 | +tm_history_delete_all+
-| Deletes the full getHistory of changes Tamaya applied to the OSGI configuration.
+| Deletes the full getHistory of changes Tamaya applied to the OSGi configuration.
 | +++
 <pre>
 <b>SYNTAX</b>
@@ -716,13 +716,13 @@ tamaya:tm_info
 +++
 
 | +tm_osgi_config+
-| Show the current OSGI configuration.
+| Show the current OSGi configuration.
 | +++
 <pre>
 <b>SYNTAX</b>
 tamaya:tm_osgi_config [options] pid
 <b>ARGUMENTS</b>
-<i>pid</i> The target OSGI component PID.
+<i>pid</i> The target OSGi component PID.
 <b>OPTIONS</b>
 <i>section, -s, --section</i>: A starting expression selecting the keys to be filtered.
 </pre>
@@ -744,11 +744,11 @@ tamaya:tm_policy
 <b>SYNTAX</b>
 tamaya:tm_policy_set tm_policy_set
 <b>ARGUMENTS</b>
-<i>tm_policy_set</i>: The operation policy how Tamaya intercepts OSGI configuration.
+<i>tm_policy_set</i>: The operation policy how Tamaya intercepts OSGi configuration.
 +++
 
 | +tm_propagate_updates+
-| Flag if Tamaya is automatically triggering OSGI config updates, when according Tamaya configuration changes.
+| Flag if Tamaya is automatically triggering OSGi config updates, when according Tamaya configuration changes.
 | +++
 <pre>
 <b>SYNTAX</b>
@@ -756,7 +756,7 @@ tm_propagate_updates
 +++
 
 | +tm_propagate_updates_set+
-| Configure if Tamaya is automatically triggering OSGI config updates, when according Tamaya configuration changes.
+| Configure if Tamaya is automatically triggering OSGi config updates, when according Tamaya configuration changes.
 | +++
 <pre>
 <b>SYNTAX</b>
