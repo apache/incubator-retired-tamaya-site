@@ -35,5 +35,4 @@ Overview of all released versions of Apache Tamaya.
 | 2015-08-22
 | https://archive.apache.org/dist/incubator/tamaya/0.1-incubating/ReleaseNotes-0.1-incubating.html[Release Notes for 0.1 incubating^]
 | https://archive.apache.org/dist/incubator/tamaya/0.1-incubating/[Download of 0.1 incubating^]
-
 |===
