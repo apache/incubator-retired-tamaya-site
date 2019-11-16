@@ -65,7 +65,7 @@ You need write access to this repository and have to generate the javadoc manual
 ```
 $ cd tamaya
 $ git checkout master (to generate the current development version) OR
-$ git checkout 0.4-incubating (to generate the a stable release version)
+$ git checkout 0.4-incubating (to generate a stable release version)
 $ mvn site
 (since javadoc:javadoc does not generate a full report)
 ```
