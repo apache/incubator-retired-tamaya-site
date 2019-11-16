@@ -1,0 +1,10 @@
+org.apache.tamaya
+org.apache.tamaya.core
+org.apache.tamaya.core.internal
+org.apache.tamaya.core.internal.converters
+org.apache.tamaya.core.propertysource
+org.apache.tamaya.examples.custompropertysource
+org.apache.tamaya.examples.minimal
+org.apache.tamaya.spi
+org.apache.tamaya.spisupport
+org.apache.tamaya.spisupport.propertysource
