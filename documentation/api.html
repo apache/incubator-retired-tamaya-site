@@ -72,8 +72,8 @@
 								<li><a href="../documentation/core.html">Core</a></li>
 								<li><a href="../documentation/extensions.html">Extension Guide</a></li>
 								<li class="divider"></li>
-								<li><a href="../apidocs/stable/index.html">Javadoc 0.3-incubating (release/stable)</a></li>
-								<li><a href="../apidocs/development/index.html">Javadoc 0.4-incubating-SNAPSHOT (development)</a></li>
+								<li><a href="../apidocs/stable/index.html">Javadoc 0.4-incubating (release/stable)</a></li>
+								<li><a href="../apidocs/development/index.html">Javadoc 0.5-incubating-SNAPSHOT (development)</a></li>
               </ul>
             </li>
 						<li class="dropdown">
@@ -144,7 +144,7 @@
 				<h1></h1>
 			</div>
 
-			<p><em>2019-06-04</em></p>
+			<p><em>2019-11-17</em></p>
 
 			<p><div class="sect1">
 <h2 id="CoreDesign">Apache Tamaya: API</h2>
@@ -267,7 +267,7 @@ ConfigurationContextBuilder. This builder can be obtained calling Configuration.
 <li>
 <p>Finally ServiceContext and ServiceContextManager provide an abstraction to the underlying runtime environment,
 allowing different component loading and lifecycle strategies to be used. This is very useful since component (service)
-loading in Java SE, Java EE, OSGI and other runtime environments may be differ significantly. In most cases even
+loading in Java SE, Java EE, OSGi and other runtime environments may be differ significantly. In most cases even
 extension programmers will not have to deal with these internals.</p>
 </li>
 </ul>
@@ -1208,7 +1208,7 @@ API.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The ServiceContext allows to define how components are loaded in Tamaya. It is the glue layer, which interacts
-with the underlying runtime system such as Java SE, Java EE, OSGI, VertX etc.
+with the underlying runtime system such as Java SE, Java EE, OSGi, VertX etc.
 The ServiceContext hereby defines access methods to obtain components, whereas itself it is available from the
 ServiceContextManager singleton:</p>
 </div>
@@ -1262,7 +1262,7 @@ registered.</p>
 </li>
 <li>
 <p>Finally the methods <code>getResource(s)</code> allow to load resources from the classpath. This is especially useful
-when running in an OSGI context, where loading of resources from the classloaders will fail.</p>
+when running in an OSGi context, where loading of resources from the classloaders will fail.</p>
 </li>
 </ol>
 </div>
@@ -1390,7 +1390,7 @@ further details.</p>
 <p>the Spring Configuration Mechanism</p>
 </li>
 <li>
-<p>integration with the OSGI <code>ConfigAdmin</code> API.</p>
+<p>integration with the OSGi <code>ConfigAdmin</code> API.</p>
 </li>
 <li>
 <p>the Apache Camel Configuration SPI</p>
@@ -1410,7 +1410,7 @@ further details.</p>
 		      <div class="container">
 		        <p class="muted credit">&copy; 2014-<span>2019</span> Apache Software Foundation | Mixed with <a href="https://getbootstrap.com/">Bootstrap v3.1.1</a>
 							| Baked with <a href="https://jbake.org">JBake <span>v2.6.4</span></a>
-							at <span>2019-06-04</span> |
+							at <span>2019-11-17</span> |
 						<a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/tamayaconf">Follow @tamayaconf</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</p>
 						<p>

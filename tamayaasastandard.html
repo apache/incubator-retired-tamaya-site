@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 	    <meta charset="utf-8"/>
-	    <title>Apache Tamaya - Extension: JSON Format</title>
+	    <title>Tamaya as a Standard</title>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	    <meta name="description" content="Homepage of Apache Tamaya (incubating)"/>
 	    <meta name="author" content="Apache Tamaya Project Team"/>
@@ -11,37 +11,37 @@
       <meta name="generator" content="JBake ${content.version}"/>
 
 	    <!-- Le styles -->
-	    <link href="../../css/bootstrap.min.css" rel="stylesheet"/>
-	    <link href="../../css/asciidoctor.css" rel="stylesheet"/>
-	    <link href="../../css/base.css" rel="stylesheet"/>
-	    <link href="../../css/prettify.css" rel="stylesheet"/>
+	    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+	    <link href="css/asciidoctor.css" rel="stylesheet"/>
+	    <link href="css/base.css" rel="stylesheet"/>
+	    <link href="css/prettify.css" rel="stylesheet"/>
 
 	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	    <!--[if lt IE 9]>
-	      <script src="../../js/html5shiv.min.js"></script>
+	      <script src="js/html5shiv.min.js"></script>
 	    <![endif]-->
 
 	    <!-- Fav and touch icons from ASF -->
-			<link rel="shortcut icon" href="../../favicon.ico"/>
-			<link rel="apple-touch-icon" sizes="57x57" href="../../favicons/apple-touch-icon-57x57.png"/>
-		  <link rel="apple-touch-icon" sizes="60x60" href="../../favicons/apple-touch-icon-60x60.png"/>
-		  <link rel="apple-touch-icon" sizes="72x72" href="../../favicons/apple-touch-icon-72x72.png"/>
-		  <link rel="apple-touch-icon" sizes="76x76" href="../../favicons/apple-touch-icon-76x76.png"/>
-		  <link rel="apple-touch-icon" sizes="114x114" href="../../favicons/apple-touch-icon-114x114.png"/>
-		  <link rel="apple-touch-icon" sizes="120x120" href="../../favicons/apple-touch-icon-120x120.png"/>
-		  <link rel="apple-touch-icon" sizes="144x144" href="../../favicons/apple-touch-icon-144x144.png"/>
-		  <link rel="apple-touch-icon" sizes="152x152" href="../../favicons/apple-touch-icon-152x152.png"/>
-		  <link rel="apple-touch-icon" sizes="180x180" href="../../favicons/apple-touch-icon-180x180.png"/>
-		  <link rel="icon" type="image/png" href="../../favicons/favicon-32x32.png" sizes="32x32"/>
-		  <link rel="icon" type="image/png" href="../../favicons/favicon-194x194.png" sizes="194x194"/>
-		  <link rel="icon" type="image/png" href="../../favicons/favicon-96x96.png" sizes="96x96"/>
-		  <link rel="icon" type="image/png" href="../../favicons/android-chrome-192x192.png" sizes="192x192"/>
-		  <link rel="icon" type="image/png" href="../../favicons/favicon-16x16.png" sizes="16x16"/>
-		  <link rel="manifest" href="../../favicons/manifest.json"/>
-		  <link rel="shortcut icon" href="../../favicons/favicon.ico"/>
+			<link rel="shortcut icon" href="favicon.ico"/>
+			<link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-touch-icon-57x57.png"/>
+		  <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-touch-icon-60x60.png"/>
+		  <link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-touch-icon-72x72.png"/>
+		  <link rel="apple-touch-icon" sizes="76x76" href="favicons/apple-touch-icon-76x76.png"/>
+		  <link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-touch-icon-114x114.png"/>
+		  <link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-touch-icon-120x120.png"/>
+		  <link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-touch-icon-144x144.png"/>
+		  <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png"/>
+		  <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png"/>
+		  <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32"/>
+		  <link rel="icon" type="image/png" href="favicons/favicon-194x194.png" sizes="194x194"/>
+		  <link rel="icon" type="image/png" href="favicons/favicon-96x96.png" sizes="96x96"/>
+		  <link rel="icon" type="image/png" href="favicons/android-chrome-192x192.png" sizes="192x192"/>
+		  <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16"/>
+		  <link rel="manifest" href="favicons/manifest.json"/>
+		  <link rel="shortcut icon" href="favicons/favicon.ico"/>
 		  <meta name="msapplication-TileColor" content="#603cba"/>
-		  <meta name="msapplication-TileImage" content="../../favicons/mstile-144x144.png"/>
-		  <meta name="msapplication-config" content="../../favicons/browserconfig.xml"/>
+		  <meta name="msapplication-TileImage" content="favicons/mstile-144x144.png"/>
+		  <meta name="msapplication-config" content="favicons/browserconfig.xml"/>
 		  <meta name="theme-color" content="#303284"/>
 	</head>
 	<body onload="prettyPrint()">
@@ -58,43 +58,43 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../../index.html">Tamaya Home</a>
+          <a class="navbar-brand" href="index.html">Tamaya Home</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-						<li><a href="../../start.html">Tamaya in 5 minutes</a></li>
+						<li><a href="start.html">Tamaya in 5 minutes</a></li>
 						<li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
               <ul class="dropdown-menu">
-								<li><a href="../../documentation/usecases.html">Use Cases and Requirements</a></li>
-								<li><a href="../../documentation/quickstart.html">Quickstart</a></li>
-								<li><a href="../../documentation/api.html">API</a></li>
-								<li><a href="../../documentation/core.html">Core</a></li>
-								<li><a href="../../documentation/extensions.html">Extension Guide</a></li>
+								<li><a href="documentation/usecases.html">Use Cases and Requirements</a></li>
+								<li><a href="documentation/quickstart.html">Quickstart</a></li>
+								<li><a href="documentation/api.html">API</a></li>
+								<li><a href="documentation/core.html">Core</a></li>
+								<li><a href="documentation/extensions.html">Extension Guide</a></li>
 								<li class="divider"></li>
-								<li><a href="../../apidocs/stable/index.html">Javadoc 0.4-incubating (release/stable)</a></li>
-								<li><a href="../../apidocs/development/index.html">Javadoc 0.5-incubating-SNAPSHOT (development)</a></li>
+								<li><a href="apidocs/stable/index.html">Javadoc 0.4-incubating (release/stable)</a></li>
+								<li><a href="apidocs/development/index.html">Javadoc 0.5-incubating-SNAPSHOT (development)</a></li>
               </ul>
             </li>
 						<li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
               <ul class="dropdown-menu">
-								<li><a href="../../development/source.html">Sources</a></li>
-								<li><a href="../../development/community.html">Community</a></li>
-								<li><a href="../../development/team.html">Project Team</a></li>
+								<li><a href="development/source.html">Sources</a></li>
+								<li><a href="development/community.html">Community</a></li>
+								<li><a href="development/team.html">Project Team</a></li>
 								<li><a target="_blank" href="https://builds.apache.org/view/S-Z/view/Tamaya/">CI / ASF Jenkins</a></li>
 								<li><a target="_blank" href="https://issues.apache.org/jira/browse/TAMAYA">Issues / ASF Jira</a></li>
-								<li><a href="../../devguide.html">Development Guide</a></li>
-								<li><a href="../../release-guide.html">Release Guide</a></li>
+								<li><a href="devguide.html">Development Guide</a></li>
+								<li><a href="release-guide.html">Release Guide</a></li>
 								<li class="divider"></li>
-								<li><a href="../../development/possible-contributions.html">Possible Contributions</a></li>
+								<li><a href="development/possible-contributions.html">Possible Contributions</a></li>
               </ul>
             </li>
 						<li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Releases <b class="caret"></b></a>
               <ul class="dropdown-menu">
-								<li><a href="../../download.html">Download</a></li>
-								<li><a href="../../history.html">Release History</a></li>
+								<li><a href="download.html">Download</a></li>
+								<li><a href="history.html">Release History</a></li>
               </ul>
             </li>
 						<li class="dropdown">
@@ -127,10 +127,10 @@
               </ul>
             </li>
 -->
-			<li><a href="../../sitemap.xml">Sitemap</a></li>
-			<li><a href="../../feed.xml">Subscribe</a></li>
+			<li><a href="sitemap.xml">Sitemap</a></li>
+			<li><a href="feed.xml">Subscribe</a></li>
 			<li><a href="https://incubator.apache.org/guides/website.html" style="border:0px;" target="_target">
-                                 <img class="incubator-logo" src="../../logos/apache-incubator.png"/></a></li>
+                                 <img class="incubator-logo" src="logos/apache-incubator.png"/></a></li>
           </ul>
 
         </div><!--/.nav-collapse -->
@@ -141,99 +141,90 @@
 		<div class="container">
 
 			<div class="page-header">
-				<h1>Apache Tamaya - Extension: JSON Format</h1>
+				<h1>Tamaya as a Standard</h1>
 			</div>
 
 			<p><em>2019-11-17</em></p>
 
 			<p><div id="preamble">
 <div class="sectionbody">
-<!-- toc disabled -->
+<div class="paragraph">
+<p>Apache Tamaya (incubating) actually supports several configuration standards to
+provide a long term stable configuration solution.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="JSON">Tamaya JSON (Extension Module)</h2>
+<h2 id="_jsr_382">JSR 382</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Tamaya <em>JSON</em> is an extension module. Refer also to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
-</div>
-<div class="sect2">
-<h3 id="_what_functionality_does_this_module_provide">What functionality does this module provide?</h3>
-<div class="paragraph">
-<p>Tamaya <em>JSON</em> provides support for reading configuration in JSON (Java Serialized Object Notation):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-json" data-lang="json">{
-  "a.b"{
-    "key1": "blabla",
-    "key2": true,
-  }
-}</code></pre>
-</div>
+<p>Tamaya implements a recent state of the Configuration JSR. The exact commit
+version of the JSR API implemented (the JSR has not yet released any version
+as of now) can be evaluated by looking at the <em>tamaya-jsr382</em> <code>pom.xml</code> in the
+sandbox repository.</p>
 </div>
 <div class="paragraph">
-<p>Hereby the hierarchical structure of the JSON document will be mapped to a
-corresponding <code>PropertyValue</code> tree structure. This structure can be mapped
-to flat key-value pairs of type <code>String</code>, e.g. the above will be mapped to</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties">a.b.key1=blabla
-a.b.key2=true</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This extension implements the SPI defined by the tamaya.formats extension module.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_compatibility">Compatibility</h3>
-<div class="paragraph">
-<p>The module is based on Java 8.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_installation">Installation</h3>
-<div class="paragraph">
-<p>To use the JSON extension module you only must add the corresponding dependency to your module:</p>
+<p>To use Tamaya as a JSR-382 Configuration provider you must add the following
+dependency:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
-  &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
-  &lt;artifactId&gt;tamaya-json&lt;/artifactId&gt;
-  &lt;version&gt;0.5-incubating-SNAPSHOT&lt;/version&gt;
+    &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
+    &lt;artifactId&gt;tamaya-jsr382&lt;/artifactId&gt;
+    &lt;version&gt;${tamaya.version}&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This extension also transitively requires the tamaya.formats module.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_reading_configuration_in_json">Reading configuration in JSON</h3>
-<div class="paragraph">
-<p>For reading JSON based onfiguration most easily a JSONFormat can be
-used:</p>
+<p>Since this component is not yet officially released you must use the current snapshot
+version 0.4-incubating-SNAPSHOT. In order for that to work, you need to add the Apache Snapshot Repository to your build:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationData dataRead = ConfigurationFormats.getInstance().readConfig(
-    getClassLoader().getResource("myFileConfig.json"), new JSONFormat()));</code></pre>
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;repository&gt;
+    &lt;id&gt;apache.snapshots&lt;/id&gt;
+    &lt;name&gt;Apache Development Snapshot Repository&lt;/name&gt;
+    &lt;url&gt;https://repository.apache.org/content/repositories/snapshots/&lt;/url&gt;
+    &lt;releases&gt;
+        &lt;enabled&gt;false&lt;/enabled&gt;
+    &lt;/releases&gt;
+    &lt;snapshots&gt;
+        &lt;enabled&gt;true&lt;/enabled&gt;
+    &lt;/snapshots&gt;
+&lt;/repository&gt;</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_microprofile_configuration_api">Microprofile Configuration API</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Or, if you are fine with the <em>default</em> mapping you can directly create a
-PropertySource using the <em>formats</em> API (this works since this module
-registers the <em>json</em> format automatically using the <code>ServiceContext</code>):</p>
+<p>Tamaya implements the Microprofile Configuration API Version 1.1. To use Tamaya
+as a Micropropfile Configuration provider you must add the following dependency:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">PropertySource ps = ConfigurationFormats.getInstance().createPropertySource(
-    getClassLoader().getResource("myFileConfig.json"));</code></pre>
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
+    &lt;artifactId&gt;tamaya-microprofile&lt;/artifactId&gt;
+    &lt;version&gt;${tamaya.version}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_osgi_configadmin">OSGi ConfigAdmin</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tamaya&#8217;s OSGi Support leverages the OSGi org.osgi.service.cm.ConfigurationAdmin
+configuration manager as defined in OSGi Compendium Version 4.3.1. Hereby
+Tamaya can add or modify Configuration in OSGi, which may trigger change events.
+The exact behaviour can be controlled in many ways. By default Tamaya, does not change
+anything, when deployed in OSGi, without being configured todo so. For details
+check <a href="documentation/extensions/mod_osgi.html">Tamaya&#8217;s OSGi Documentation</a>.</p>
 </div>
 </div>
 </div></p>
@@ -266,7 +257,7 @@ registers the <em>json</em> format automatically using the <code>ServiceContext<
                     be fully endorsed by the ASF.<br />
 										Apache, Apache Tamaya, and the Apache Tamaya logo are registered trademarks or trademarks of The Apache Software Foundation in the U.S. and/or other countries.<br />
                     <a href="https://incubator.apache.org/guides/website.html" style="border:0px;" target="_target">
-											<img class="incubator-logo" src="../../logos/apache-incubator.png" style="height: 50px;"/>
+											<img class="incubator-logo" src="logos/apache-incubator.png" style="height: 50px;"/>
 										</a>
 							</p>
 		      </div>
@@ -275,9 +266,9 @@ registers the <em>json</em> format automatically using the <code>ServiceContext<
 		    <!-- Le javascript
 		    ================================================== -->
 		    <!-- Placed at the end of the document so the pages load faster -->
-		    <script src="../../js/jquery-1.11.1.min.js"></script>
-		    <script src="../../js/bootstrap.min.js"></script>
-		    <script src="../../js/prettify.js"></script>
+		    <script src="js/jquery-1.11.1.min.js"></script>
+		    <script src="js/bootstrap.min.js"></script>
+		    <script src="js/prettify.js"></script>
     	</div>
     </body>
 </html>

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 	    <meta charset="utf-8"/>
-	    <title>Apache Tamaya - Extension: Spring Integration</title>
+	    <title>Apache Tamaya - Extension: HOCON Format</title>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	    <meta name="description" content="Homepage of Apache Tamaya (incubating)"/>
 	    <meta name="author" content="Apache Tamaya Project Team"/>
@@ -141,7 +141,7 @@
 		<div class="container">
 
 			<div class="page-header">
-				<h1>Apache Tamaya - Extension: Spring Integration</h1>
+				<h1>Apache Tamaya - Extension: HOCON Format</h1>
 			</div>
 
 			<p><em>2019-11-17</em></p>
@@ -152,166 +152,91 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="Spring">Tamaya Spring Integration (Extension Module)</h2>
+<h2 id="JSON">Tamaya HOCON (Extension Module)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Tamaya <em>Spring</em> is an extension module. Refer to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
+<p>Tamaya <em>HOCON</em> is an extension module. Refer also to the <a href="../extensions.html">extensions documentation</a> for further details.</p>
 </div>
 <div class="sect2">
-<h3 id="_what_functionality_this_module_provides">What functionality this module provides ?</h3>
+<h3 id="_what_functionality_does_this_module_provide">What functionality does this module provide?</h3>
 <div class="paragraph">
-<p>Tamaya <em>Spring</em> allows to use Tamaya as a configuration backend for Spring or Spring Boot:</p>
+<p>Tamaya <em>HOCON</em> provides support for reading configuration using Human Optimized Configuration (HOCON)
+format as defined by <a href="http://https://lightbend.github.io/config/">Lightbend Typesafe Config</a>:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Tamaya is added via a TamayaSpringPropertySource as an additional Spring PropertySource.</p>
-</li>
-<li>
-<p>Finally org.apache.tamaya.integration.spring.SpringConfigInjectionPostProcessor implements a Bean PostProcessor,
-which adds all the fully fledged Tamaya configuration injection capabilities to Spring.</p>
-</li>
-</ul>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-hcon" data-lang="hcon">{
+  a : A
+  b : B
+  c {
+    o: O
+    p: P
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hereby the hierarchical structure of the HOCON document will be mapped
+into an according <code>PropertyValue</code> tree structure. By default this structure can be
+mapped to flat key-value pairs of type <code>String</code>, e.g. the above will be mapped to</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties">a=A
+b=B
+c.o=O
+c.p=P</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This extension implements the SPI defined by the tamaya.formats extension module.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_compatibility">Compatibility</h3>
 <div class="paragraph">
-<p>Both modules are based on Java 8, so they will run on Java 8 and beyond. The extension shown here works in
-Spring Framework as well as Spring Boot.</p>
+<p>The module is based on Java 8.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_installation">Installation</h3>
 <div class="paragraph">
-<p>To benefit from Tamaya Spring integration add the following dependencies to your module:</p>
+<p>To use the HOCON extension module you only must add the corresponding dependency to your module:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.apache.tamaya.ext&lt;/groupId&gt;
-  &lt;artifactId&gt;tamaya-spring&lt;/artifactId&gt;
+  &lt;artifactId&gt;tamaya-hocon&lt;/artifactId&gt;
   &lt;version&gt;0.5-incubating-SNAPSHOT&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_configuring_tamaya_spring_configuration">Configuring Tamaya Spring Configuration</h3>
 <div class="paragraph">
-<p>Tamaya leverages standard Spring functionality of Spring. To activate and configure Tamaya just add the
-corresponding Tamaya annotation to your Spring Configuration:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@SpringBootApplication
-@EnableTamayaConfig
-public class SampleWebFreeMarkerApplication {
-
-	public static void main(String[] args) throws Exception {
-		SpringApplication.run(SampleWebFreeMarkerApplication.class, args);
-	}
-
-}</code></pre>
-</div>
+<p>This extension also transitively requires the tamaya.formats module.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_extending_or_overriding_existing_spring_configuration">Extending or Overriding existing Spring Configuration</h3>
+<h3 id="_reading_configuration_in_hocon">Reading configuration in HOCON</h3>
 <div class="paragraph">
-<p>By default Tamaya is overriding any existing Spring configuration. But you can also configure Tamaya to extend
-Spring configuration only as follows:</p>
+<p>For reading HOCON based onfiguration most easily a HOCONFormat can be
+used:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@EnableTamayaConfig(extendOnly=true)</code></pre>
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">ConfigurationData dataRead = ConfigurationFormats.getInstance().readConfig(
+    getClassLoader().getResource("myFileConfig.hocon"), new HOCONFormat()));</code></pre>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_configuring_your_beans">Configuring your Beans</h3>
 <div class="paragraph">
-<p>Similarly you can inject any kind of configuration as supported by Tamaya into your Spring managed beans.
-Hereby both, Spring injection and Tamaya injection mechanisms are supported:</p>
+<p>Or, if you are fine with the <em>default</em> mapping you can directly create a
+PropertySource using the <em>formats</em> API (this works since this module
+registers the <em>hocon</em> format automatically in the <code>ServiceContext</code>):</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@ConfigSection("app.root") // optional <b class="conum">(1)</b>
-@Component
-public class ConfiguredSpringBean {
-
-    @Value("${application.message:Hello World}")  <b class="conum">(2)</b>
-    private String message;
-
-    @Autowired
-    private Environment env;
-
-    @Config(value = "alternateMessage", required = false) <b class="conum">(3)</b>
-    private String anotherMessage = "N/A";
-
-    @Config("java.version")
-    private String javaVersion;
-
-    @Config(value={"number", "testNum", "[notavailable]"}, defaultValue="23") <b class="conum">(4)</b><b class="conum">(5)</b>
-    private int testNumber;
-
-    ...
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>You can configure default section prefixes. This is an optional feature.</p>
-</li>
-<li>
-<p>Tamaya does not require you to change your code. You can still work with
-Spring injection for your configuration, but Tamaya will override Spring
-configuration by default.</p>
-</li>
-<li>
-<p>You can also define entries as optional, which allows you to perform
-default inialization using Java idoms.</p>
-</li>
-<li>
-<p>Tamaya allows you to define an ordered list of key candidates, which are
-combined with the section prefix, if present, to the full keys. Keys added
-in brackets ([]) are interpreted as absolute keys, so the example above
-the key candidate list evaluates to app.root.number", "app.root.testNum",
-"notavailable".</p>
-</li>
-<li>
-<p>You can configure default values used, if no other value can be evaluated
-for the given keyset.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Summarizing you get all the nice features of Tamaya out of the box running
-with your Spring code.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-For a full description of Tamaya&#8217;s injection API please
-           refer to the <a href="extensions/mod_injection.html">corresponding documentation</a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_disabling_tamaya_injection">Disabling Tamaya Injection</h3>
-<div class="paragraph">
-<p>If you dont like Tamaya injection, you can simply disable it:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@EnableTamayaConfig(disableTamayaInjection=true)</code></pre>
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">PropertySource ps = ConfigurationFormats.getInstance().createPropertySource(
+    getClassLoader().getResource("myFileConfig.hocon"));</code></pre>
 </div>
 </div>
 </div>
