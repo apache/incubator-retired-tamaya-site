@@ -50,4 +50,4 @@ _builder extension_.
 
 === Remote
 
-THe remote example shows a simple setup where parts of the +Configuration+ are read remotedly.
+The remote example shows a simple setup where parts of the +Configuration+ are read remotedly.
