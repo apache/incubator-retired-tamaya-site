@@ -17,9 +17,9 @@ Tamaya _JSON_ provides support for reading configuration in JSON (Java Serialize
 [source, json]
 -----------------------------------------------
 {
-  "a.b"{
+  "a.b":{
     "key1": "blabla",
-    "key2": true,
+    "key2": true
   }
 }
 -----------------------------------------------
@@ -60,12 +60,12 @@ This extension also transitively requires the +tamaya.formats+ module.
 
 === Reading configuration in JSON
 
-For reading JSON based onfiguration most easily a +JSONFormat+ can be
+For reading JSON based configuration most easily a +JSONFormat+ can be
 used:
 
 [source, java]
 -----------------------------------------------
-ConfigurationData dataRead = ConfigurationFormats.getInstance().readConfig(
+ConfigurationData dataRead = ConfigurationFormats.getInstance().readConfigurationData(
     getClassLoader().getResource("myFileConfig.json"), new JSONFormat()));
 -----------------------------------------------
 
